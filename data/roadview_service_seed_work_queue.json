@@ -1,0 +1,1439 @@
+{
+  "generated_at": "2026-07-09",
+  "source_review_generated_at": "2026-07-09",
+  "summary": {
+    "total": 52,
+    "by_task_type": {
+      "official_source_review": 17,
+      "roadview_image_review": 17,
+      "crowd_policy_review": 17,
+      "category_refinement": 1
+    },
+    "by_priority": {
+      "high": 34,
+      "medium": 18
+    },
+    "by_status": {
+      "open": 52
+    }
+  },
+  "items": [
+    {
+      "task_id": "jeju_roadview_place_038_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_038",
+        "name": "국립제주박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 국립제주박물관",
+        "열린관광 모두의 여행 국립제주박물관",
+        "국립제주박물관 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_place_038_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_038",
+        "name": "국립제주박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "JEJUNATIONALMU-1-001",
+        "JEJUNATIONALMU-1-002",
+        "JEJUNATIONALMU-1-003"
+      ],
+      "image_count": 132,
+      "captured_date_start": "2022-08-23",
+      "captured_date_end": "2022-08-23",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_038_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_038",
+        "name": "국립제주박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "국립제주박물관 운영시간 행사 혼잡",
+        "국립제주박물관 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    },
+    {
+      "task_id": "jeju_roadview_place_088_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_088",
+        "name": "김녕미로공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 김녕미로공원",
+        "열린관광 모두의 여행 김녕미로공원",
+        "김녕미로공원 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_place_088_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_088",
+        "name": "김녕미로공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "GIMNYEONGMAZEPA-1-001",
+        "GIMNYEONGMAZEPA-1-002",
+        "GIMNYEONGMAZEPA-1-003"
+      ],
+      "image_count": 15,
+      "captured_date_start": "2022-09-26",
+      "captured_date_end": "2022-09-26",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_088_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_088",
+        "name": "김녕미로공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "김녕미로공원 운영시간 행사 혼잡",
+        "김녕미로공원 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    },
+    {
+      "task_id": "jeju_roadview_place_100_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_100",
+        "name": "삼성혈",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 삼성혈",
+        "열린관광 모두의 여행 삼성혈",
+        "삼성혈 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_place_100_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_100",
+        "name": "삼성혈",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "SAMSUNGHYEOL-1-001",
+        "SAMSUNGHYEOL-1-002",
+        "SAMSUNGHYEOL-1-003"
+      ],
+      "image_count": 52,
+      "captured_date_start": "2022-09-29",
+      "captured_date_end": "2022-09-29",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_100_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_100",
+        "name": "삼성혈",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "삼성혈 운영시간 행사 혼잡",
+        "삼성혈 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    },
+    {
+      "task_id": "jeju_roadview_place_095_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_095",
+        "name": "상효원수목원",
+        "region": "서귀포시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 상효원수목원",
+        "열린관광 모두의 여행 상효원수목원",
+        "상효원수목원 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_place_095_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_095",
+        "name": "상효원수목원",
+        "region": "서귀포시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "SANGHYO-1-001",
+        "SANGHYO-1-002",
+        "SANGHYO-1-003"
+      ],
+      "image_count": 73,
+      "captured_date_start": "2022-09-28",
+      "captured_date_end": "2022-09-28",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_095_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_095",
+        "name": "상효원수목원",
+        "region": "서귀포시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "상효원수목원 운영시간 행사 혼잡",
+        "상효원수목원 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    },
+    {
+      "task_id": "jeju_roadview_place_053_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_053",
+        "name": "서귀포시립기당미술관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 서귀포시립기당미술관",
+        "열린관광 모두의 여행 서귀포시립기당미술관",
+        "서귀포시립기당미술관 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_place_053_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_053",
+        "name": "서귀포시립기당미술관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "GIDANG-1-001",
+        "GIDANG-1-002",
+        "GIDANG-1-003"
+      ],
+      "image_count": 14,
+      "captured_date_start": "2022-08-31",
+      "captured_date_end": "2022-08-31",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_053_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_053",
+        "name": "서귀포시립기당미술관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "서귀포시립기당미술관 운영시간 행사 혼잡",
+        "서귀포시립기당미술관 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    },
+    {
+      "task_id": "jeju_roadview_place_104_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_104",
+        "name": "스누피가든",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 스누피가든",
+        "열린관광 모두의 여행 스누피가든",
+        "스누피가든 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_place_104_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_104",
+        "name": "스누피가든",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "SNOOPYGARDEN-1-001",
+        "SNOOPYGARDEN-1-002",
+        "SNOOPYGARDEN-1-003"
+      ],
+      "image_count": 168,
+      "captured_date_start": "2022-09-30",
+      "captured_date_end": "2022-09-30",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_104_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_104",
+        "name": "스누피가든",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "스누피가든 운영시간 행사 혼잡",
+        "스누피가든 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    },
+    {
+      "task_id": "jeju_roadview_place_104_category_refinement",
+      "card": {
+        "id": "jeju_roadview_place_104",
+        "name": "스누피가든",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "task_type": "category_refinement",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "primary_place_type",
+        "recommended_category"
+      ],
+      "source_queries": [
+        "스누피가든 공식",
+        "스누피가든 시설 유형"
+      ],
+      "image_samples": [],
+      "recommended_action": "other 카테고리를 indoor, culture, rest_area 등 서비스 추천 카테고리로 정제"
+    },
+    {
+      "task_id": "jeju_roadview_4_3_001_official_source_review",
+      "card": {
+        "id": "jeju_roadview_4_3_001",
+        "name": "제주4.3평화공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 제주4.3평화공원",
+        "열린관광 모두의 여행 제주4.3평화공원",
+        "제주4.3평화공원 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_4_3_001_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_4_3_001",
+        "name": "제주4.3평화공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "JEJU43PA-1-001",
+        "JEJU43PA-1-002",
+        "JEJU43PA-1-003"
+      ],
+      "image_count": 127,
+      "captured_date_start": "2022-07-15",
+      "captured_date_end": "2022-11-19",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_4_3_001_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_4_3_001",
+        "name": "제주4.3평화공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "제주4.3평화공원 운영시간 행사 혼잡",
+        "제주4.3평화공원 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    },
+    {
+      "task_id": "jeju_roadview_place_066_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_066",
+        "name": "제주고산리유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 제주고산리유적",
+        "열린관광 모두의 여행 제주고산리유적",
+        "제주고산리유적 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_place_066_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_066",
+        "name": "제주고산리유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "GOSANRIRUINS-1-001",
+        "GOSANRIRUINS-1-002",
+        "GOSANRIRUINS-1-003"
+      ],
+      "image_count": 17,
+      "captured_date_start": "2022-09-14",
+      "captured_date_end": "2022-09-14",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_066_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_066",
+        "name": "제주고산리유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "제주고산리유적 운영시간 행사 혼잡",
+        "제주고산리유적 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    },
+    {
+      "task_id": "jeju_roadview_place_014_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_014",
+        "name": "제주교육박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 제주교육박물관",
+        "열린관광 모두의 여행 제주교육박물관",
+        "제주교육박물관 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_place_014_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_014",
+        "name": "제주교육박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "EDUMU-1-001",
+        "EDUMU-1-002",
+        "EDUMU-1-003"
+      ],
+      "image_count": 43,
+      "captured_date_start": "2022-08-09",
+      "captured_date_end": "2022-08-09",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_014_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_014",
+        "name": "제주교육박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "제주교육박물관 운영시간 행사 혼잡",
+        "제주교육박물관 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    },
+    {
+      "task_id": "jeju_roadview_place_025_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_025",
+        "name": "제주도립김창열미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 제주도립김창열미술관",
+        "열린관광 모두의 여행 제주도립김창열미술관",
+        "제주도립김창열미술관 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_place_025_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_025",
+        "name": "제주도립김창열미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "KIMCHANG-1-001",
+        "KIMCHANG-1-002",
+        "KIMCHANG-1-003"
+      ],
+      "image_count": 43,
+      "captured_date_start": "2022-08-11",
+      "captured_date_end": "2022-08-11",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_025_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_025",
+        "name": "제주도립김창열미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "제주도립김창열미술관 운영시간 행사 혼잡",
+        "제주도립김창열미술관 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    },
+    {
+      "task_id": "jeju_roadview_place_013_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_013",
+        "name": "제주민속자연사박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 제주민속자연사박물관",
+        "열린관광 모두의 여행 제주민속자연사박물관",
+        "제주민속자연사박물관 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_place_013_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_013",
+        "name": "제주민속자연사박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "JEJUFOLKMU-1-001",
+        "JEJUFOLKMU-1-002",
+        "JEJUFOLKMU-1-003"
+      ],
+      "image_count": 90,
+      "captured_date_start": "2022-08-09",
+      "captured_date_end": "2022-08-09",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_013_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_013",
+        "name": "제주민속자연사박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "제주민속자연사박물관 운영시간 행사 혼잡",
+        "제주민속자연사박물관 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    },
+    {
+      "task_id": "jeju_roadview_place_010_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_010",
+        "name": "제주삼양동유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 제주삼양동유적",
+        "열린관광 모두의 여행 제주삼양동유적",
+        "제주삼양동유적 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_place_010_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_010",
+        "name": "제주삼양동유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "SAMYANGRUINS-1-001",
+        "SAMYANGRUINS-1-002",
+        "SAMYANGRUINS-1-003"
+      ],
+      "image_count": 37,
+      "captured_date_start": "2022-08-09",
+      "captured_date_end": "2022-08-09",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_010_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_010",
+        "name": "제주삼양동유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "제주삼양동유적 운영시간 행사 혼잡",
+        "제주삼양동유적 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    },
+    {
+      "task_id": "jeju_roadview_place_017_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_017",
+        "name": "제주아트센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 제주아트센터",
+        "열린관광 모두의 여행 제주아트센터",
+        "제주아트센터 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_place_017_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_017",
+        "name": "제주아트센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "ARTCENTER-1-001",
+        "ARTCENTER-1-002",
+        "ARTCENTER-1-003"
+      ],
+      "image_count": 26,
+      "captured_date_start": "2022-08-10",
+      "captured_date_end": "2022-08-10",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_017_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_017",
+        "name": "제주아트센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "제주아트센터 운영시간 행사 혼잡",
+        "제주아트센터 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    },
+    {
+      "task_id": "jeju_roadview_place_084_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_084",
+        "name": "제주웰컴센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 제주웰컴센터",
+        "열린관광 모두의 여행 제주웰컴센터",
+        "제주웰컴센터 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_place_084_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_084",
+        "name": "제주웰컴센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "WELCOME-1-001",
+        "WELCOME-1-002",
+        "WELCOME-2-001"
+      ],
+      "image_count": 15,
+      "captured_date_start": "2022-09-20",
+      "captured_date_end": "2022-09-20",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_084_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_084",
+        "name": "제주웰컴센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "제주웰컴센터 운영시간 행사 혼잡",
+        "제주웰컴센터 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    },
+    {
+      "task_id": "jeju_roadview_place_024_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_024",
+        "name": "제주현대미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 제주현대미술관",
+        "열린관광 모두의 여행 제주현대미술관",
+        "제주현대미술관 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_place_024_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_024",
+        "name": "제주현대미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "JEJUCONTEM-1-001",
+        "JEJUCONTEM-1-002",
+        "JEJUCONTEM-1-003"
+      ],
+      "image_count": 31,
+      "captured_date_start": "2022-08-11",
+      "captured_date_end": "2022-08-11",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_024_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_024",
+        "name": "제주현대미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "제주현대미술관 운영시간 행사 혼잡",
+        "제주현대미술관 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    },
+    {
+      "task_id": "jeju_roadview_place_105_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_105",
+        "name": "한림공원(아열대식물원)",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 한림공원(아열대식물원)",
+        "열린관광 모두의 여행 한림공원(아열대식물원)",
+        "한림공원(아열대식물원) 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_place_105_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_105",
+        "name": "한림공원(아열대식물원)",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "HALLIMPAGARDEN-1-001",
+        "HALLIMPAGARDEN-1-002",
+        "HALLIMPAGARDEN-1-003"
+      ],
+      "image_count": 53,
+      "captured_date_start": "2022-09-30",
+      "captured_date_end": "2022-09-30",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_105_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_105",
+        "name": "한림공원(아열대식물원)",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "한림공원(아열대식물원) 운영시간 행사 혼잡",
+        "한림공원(아열대식물원) 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    },
+    {
+      "task_id": "jeju_roadview_place_096_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_096",
+        "name": "휴애리자연생활공원",
+        "region": "서귀포시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "task_type": "official_source_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "source_queries": [
+        "이지제주 휴애리자연생활공원",
+        "열린관광 모두의 여행 휴애리자연생활공원",
+        "휴애리자연생활공원 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "image_samples": [],
+      "recommended_action": "공식/공공 상세 출처 URL을 확인하고 접근성 필드별 근거를 기록"
+    },
+    {
+      "task_id": "jeju_roadview_place_096_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_096",
+        "name": "휴애리자연생활공원",
+        "region": "서귀포시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "task_type": "roadview_image_review",
+      "priority": "high",
+      "status": "open",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "source_queries": [],
+      "image_samples": [
+        "HUEREE-1-001",
+        "HUEREE-1-002",
+        "HUEREE-1-003"
+      ],
+      "image_count": 87,
+      "captured_date_start": "2022-09-28",
+      "captured_date_end": "2022-09-28",
+      "recommended_action": "로드뷰 원본 이미지에서 경사·단차·바닥 상태와 주차장-출입구 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_096_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_096",
+        "name": "휴애리자연생활공원",
+        "region": "서귀포시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "task_type": "crowd_policy_review",
+      "priority": "medium",
+      "status": "open",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "source_queries": [
+        "휴애리자연생활공원 운영시간 행사 혼잡",
+        "휴애리자연생활공원 단체관람 예약"
+      ],
+      "image_samples": [],
+      "recommended_action": "혼잡 민감 사용자에게 표시할 혼잡도 정책과 회피 시간대를 정의"
+    }
+  ]
+}

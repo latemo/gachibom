@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_match_resolutions.schema.json",
+  "title": "Jeju Maeum Roadview Match Resolutions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "reviewed_by", "policy", "summary", "resolutions"],
+  "properties": {
+    "generated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "reviewed_by": { "type": "string" },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_basis", "field_update_policy"],
+      "properties": {
+        "decision_basis": { "type": "string" },
+        "field_update_policy": { "type": "string" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "uncertain_matches_reviewed",
+        "confirmed_same_place",
+        "confirmed_same_accessibility_scope",
+        "covered_subplace",
+        "separate_candidates"
+      ],
+      "properties": {
+        "uncertain_matches_reviewed": { "type": "integer", "minimum": 0 },
+        "confirmed_same_place": { "type": "integer", "minimum": 0 },
+        "confirmed_same_accessibility_scope": { "type": "integer", "minimum": 0 },
+        "covered_subplace": { "type": "integer", "minimum": 0 },
+        "separate_candidates": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "resolutions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/resolution" }
+    }
+  },
+  "$defs": {
+    "resolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "existing_id",
+        "existing_name",
+        "draft_id",
+        "draft_name",
+        "decision",
+        "reason",
+        "evidence_sources"
+      ],
+      "properties": {
+        "existing_id": { "type": "string" },
+        "existing_name": { "type": "string" },
+        "draft_id": { "type": "string" },
+        "draft_name": { "type": "string" },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "confirmed_same_place",
+            "confirmed_same_accessibility_scope",
+            "covered_subplace",
+            "separate_candidate"
+          ]
+        },
+        "reason": { "type": "string" },
+        "evidence_sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["title", "url"],
+            "properties": {
+              "title": { "type": "string" },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          }
+        },
+        "safety_note": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,690 @@
+{
+  "generated_at": "2026-07-09",
+  "source_work_queue_generated_at": "2026-07-09",
+  "criteria": {
+    "policy_defined": "혼잡 민감 사용자를 위해 기본 회피 시간대와 확인 항목을 정의",
+    "blocked": "장소별 운영 일정·행사 일정은 실제 방문 전 최신 출처로 재확인"
+  },
+  "summary": {
+    "total": 17,
+    "by_status": {
+      "resolved": 17
+    },
+    "by_review_decision": {
+      "policy_defined": 17
+    },
+    "by_category": {
+      "indoor": 8,
+      "rest_area": 4,
+      "culture": 3,
+      "forest": 1,
+      "other": 1
+    },
+    "operating_calendar_check_required": 17
+  },
+  "items": [
+    {
+      "task_id": "jeju_roadview_place_038_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_038",
+        "name": "국립제주박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "평일 개장 직후 또는 마감 1~2시간 전 우선, 주말·공휴일 한낮은 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "특별전, 방학, 우천일 대체 실내 방문 수요가 있으면 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 오전 첫 시간대 또는 단체 관람이 적은 늦은 오후",
+        "check_before_visit": [
+          "휴관일",
+          "특별전 일정",
+          "단체 관람 예약",
+          "주차장 혼잡"
+        ],
+        "avoid_conditions": [
+          "주말 한낮",
+          "방학 성수기",
+          "비 오는 날 인기 실내 대체지 수요"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "국립제주박물관 운영시간 행사 혼잡",
+        "국립제주박물관 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_088_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_088",
+        "name": "김녕미로공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "평일 오전 우선, 주말·꽃 시즌·축제 기간은 주차와 진입 동선 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "꽃 축제, 단풍, 봄·가을 성수기, 수학여행 기간에는 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 개장 직후, 더운 계절에는 한낮을 피한 오전 또는 늦은 오후",
+        "check_before_visit": [
+          "계절 행사",
+          "주차 가능 여부",
+          "단체 방문",
+          "기상 상황"
+        ],
+        "avoid_conditions": [
+          "주말 한낮",
+          "꽃 축제 피크",
+          "폭염·강풍·우천"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "김녕미로공원 운영시간 행사 혼잡",
+        "김녕미로공원 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_100_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_100",
+        "name": "삼성혈",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "평일 오전 우선, 주말·기념일·단체 해설 시간은 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "기념행사, 교육 프로그램, 문화행사 기간에는 동선 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 개장 직후 또는 행사 없는 시간대",
+        "check_before_visit": [
+          "기념행사",
+          "교육·해설 프로그램",
+          "단체 관람",
+          "휴관일"
+        ],
+        "avoid_conditions": [
+          "기념일 행사",
+          "단체 해설 집중 시간",
+          "주말 한낮"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "삼성혈 운영시간 행사 혼잡",
+        "삼성혈 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_095_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_095",
+        "name": "상효원수목원",
+        "region": "서귀포시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "평일 오전 우선, 주말·꽃 시즌·축제 기간은 주차와 진입 동선 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "꽃 축제, 단풍, 봄·가을 성수기, 수학여행 기간에는 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 개장 직후, 더운 계절에는 한낮을 피한 오전 또는 늦은 오후",
+        "check_before_visit": [
+          "계절 행사",
+          "주차 가능 여부",
+          "단체 방문",
+          "기상 상황"
+        ],
+        "avoid_conditions": [
+          "주말 한낮",
+          "꽃 축제 피크",
+          "폭염·강풍·우천"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "상효원수목원 운영시간 행사 혼잡",
+        "상효원수목원 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_053_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_053",
+        "name": "서귀포시립기당미술관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "평일 개장 직후 또는 마감 1~2시간 전 우선, 주말·공휴일 한낮은 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "특별전, 방학, 우천일 대체 실내 방문 수요가 있으면 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 오전 첫 시간대 또는 단체 관람이 적은 늦은 오후",
+        "check_before_visit": [
+          "휴관일",
+          "특별전 일정",
+          "단체 관람 예약",
+          "주차장 혼잡"
+        ],
+        "avoid_conditions": [
+          "주말 한낮",
+          "방학 성수기",
+          "비 오는 날 인기 실내 대체지 수요"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "서귀포시립기당미술관 운영시간 행사 혼잡",
+        "서귀포시립기당미술관 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_104_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_104",
+        "name": "스누피가든",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "스누피가든은 시설 성격 확인 전까지 주말·공휴일 한낮을 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "행사·공연·교육 일정이 있으면 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 오전 또는 사전 예약·문의로 조용한 시간 확인 후 방문",
+        "check_before_visit": [
+          "운영시간",
+          "행사 일정",
+          "예약 필요 여부",
+          "주차장 혼잡"
+        ],
+        "avoid_conditions": [
+          "주말 한낮",
+          "행사 시작·종료 직전",
+          "단체 방문 시간"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "스누피가든 운영시간 행사 혼잡",
+        "스누피가든 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_4_3_001_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_4_3_001",
+        "name": "제주4.3평화공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "평일 오전 우선, 주말·꽃 시즌·축제 기간은 주차와 진입 동선 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "꽃 축제, 단풍, 봄·가을 성수기, 수학여행 기간에는 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 개장 직후, 더운 계절에는 한낮을 피한 오전 또는 늦은 오후",
+        "check_before_visit": [
+          "계절 행사",
+          "주차 가능 여부",
+          "단체 방문",
+          "기상 상황"
+        ],
+        "avoid_conditions": [
+          "주말 한낮",
+          "꽃 축제 피크",
+          "폭염·강풍·우천"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "제주4.3평화공원 운영시간 행사 혼잡",
+        "제주4.3평화공원 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_066_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_066",
+        "name": "제주고산리유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "평일 오전 우선, 주말·기념일·단체 해설 시간은 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "기념행사, 교육 프로그램, 문화행사 기간에는 동선 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 개장 직후 또는 행사 없는 시간대",
+        "check_before_visit": [
+          "기념행사",
+          "교육·해설 프로그램",
+          "단체 관람",
+          "휴관일"
+        ],
+        "avoid_conditions": [
+          "기념일 행사",
+          "단체 해설 집중 시간",
+          "주말 한낮"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "제주고산리유적 운영시간 행사 혼잡",
+        "제주고산리유적 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_014_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_014",
+        "name": "제주교육박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "평일 개장 직후 또는 마감 1~2시간 전 우선, 주말·공휴일 한낮은 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "특별전, 방학, 우천일 대체 실내 방문 수요가 있으면 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 오전 첫 시간대 또는 단체 관람이 적은 늦은 오후",
+        "check_before_visit": [
+          "휴관일",
+          "특별전 일정",
+          "단체 관람 예약",
+          "주차장 혼잡"
+        ],
+        "avoid_conditions": [
+          "주말 한낮",
+          "방학 성수기",
+          "비 오는 날 인기 실내 대체지 수요"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "제주교육박물관 운영시간 행사 혼잡",
+        "제주교육박물관 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_025_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_025",
+        "name": "제주도립김창열미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "평일 개장 직후 또는 마감 1~2시간 전 우선, 주말·공휴일 한낮은 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "특별전, 방학, 우천일 대체 실내 방문 수요가 있으면 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 오전 첫 시간대 또는 단체 관람이 적은 늦은 오후",
+        "check_before_visit": [
+          "휴관일",
+          "특별전 일정",
+          "단체 관람 예약",
+          "주차장 혼잡"
+        ],
+        "avoid_conditions": [
+          "주말 한낮",
+          "방학 성수기",
+          "비 오는 날 인기 실내 대체지 수요"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "제주도립김창열미술관 운영시간 행사 혼잡",
+        "제주도립김창열미술관 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_013_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_013",
+        "name": "제주민속자연사박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "평일 개장 직후 또는 마감 1~2시간 전 우선, 주말·공휴일 한낮은 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "특별전, 방학, 우천일 대체 실내 방문 수요가 있으면 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 오전 첫 시간대 또는 단체 관람이 적은 늦은 오후",
+        "check_before_visit": [
+          "휴관일",
+          "특별전 일정",
+          "단체 관람 예약",
+          "주차장 혼잡"
+        ],
+        "avoid_conditions": [
+          "주말 한낮",
+          "방학 성수기",
+          "비 오는 날 인기 실내 대체지 수요"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "제주민속자연사박물관 운영시간 행사 혼잡",
+        "제주민속자연사박물관 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_010_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_010",
+        "name": "제주삼양동유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "평일 오전 우선, 주말·기념일·단체 해설 시간은 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "기념행사, 교육 프로그램, 문화행사 기간에는 동선 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 개장 직후 또는 행사 없는 시간대",
+        "check_before_visit": [
+          "기념행사",
+          "교육·해설 프로그램",
+          "단체 관람",
+          "휴관일"
+        ],
+        "avoid_conditions": [
+          "기념일 행사",
+          "단체 해설 집중 시간",
+          "주말 한낮"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "제주삼양동유적 운영시간 행사 혼잡",
+        "제주삼양동유적 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_017_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_017",
+        "name": "제주아트센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "평일 개장 직후 또는 마감 1~2시간 전 우선, 주말·공휴일 한낮은 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "특별전, 방학, 우천일 대체 실내 방문 수요가 있으면 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 오전 첫 시간대 또는 단체 관람이 적은 늦은 오후",
+        "check_before_visit": [
+          "휴관일",
+          "특별전 일정",
+          "단체 관람 예약",
+          "주차장 혼잡"
+        ],
+        "avoid_conditions": [
+          "주말 한낮",
+          "방학 성수기",
+          "비 오는 날 인기 실내 대체지 수요"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "제주아트센터 운영시간 행사 혼잡",
+        "제주아트센터 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_084_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_084",
+        "name": "제주웰컴센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "평일 개장 직후 또는 마감 1~2시간 전 우선, 주말·공휴일 한낮은 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "특별전, 방학, 우천일 대체 실내 방문 수요가 있으면 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 오전 첫 시간대 또는 단체 관람이 적은 늦은 오후",
+        "check_before_visit": [
+          "휴관일",
+          "특별전 일정",
+          "단체 관람 예약",
+          "주차장 혼잡"
+        ],
+        "avoid_conditions": [
+          "주말 한낮",
+          "방학 성수기",
+          "비 오는 날 인기 실내 대체지 수요"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "제주웰컴센터 운영시간 행사 혼잡",
+        "제주웰컴센터 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_024_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_024",
+        "name": "제주현대미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "평일 개장 직후 또는 마감 1~2시간 전 우선, 주말·공휴일 한낮은 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "특별전, 방학, 우천일 대체 실내 방문 수요가 있으면 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 오전 첫 시간대 또는 단체 관람이 적은 늦은 오후",
+        "check_before_visit": [
+          "휴관일",
+          "특별전 일정",
+          "단체 관람 예약",
+          "주차장 혼잡"
+        ],
+        "avoid_conditions": [
+          "주말 한낮",
+          "방학 성수기",
+          "비 오는 날 인기 실내 대체지 수요"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "제주현대미술관 운영시간 행사 혼잡",
+        "제주현대미술관 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_105_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_105",
+        "name": "한림공원(아열대식물원)",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "평일 오전 우선, 주말·꽃 시즌·축제 기간은 주차와 진입 동선 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "꽃 축제, 단풍, 봄·가을 성수기, 수학여행 기간에는 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 개장 직후, 더운 계절에는 한낮을 피한 오전 또는 늦은 오후",
+        "check_before_visit": [
+          "계절 행사",
+          "주차 가능 여부",
+          "단체 방문",
+          "기상 상황"
+        ],
+        "avoid_conditions": [
+          "주말 한낮",
+          "꽃 축제 피크",
+          "폭염·강풍·우천"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "한림공원(아열대식물원) 운영시간 행사 혼잡",
+        "한림공원(아열대식물원) 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_096_crowd_policy_review",
+      "card": {
+        "id": "jeju_roadview_place_096",
+        "name": "휴애리자연생활공원",
+        "region": "서귀포시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "policy_defined",
+      "required_evidence": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation"
+      ],
+      "policy": {
+        "weekday_weekend_crowd_policy": "평일 오전 우선, 주말·꽃 시즌·축제 기간은 주차와 진입 동선 혼잡 가능으로 감점",
+        "seasonal_event_crowd_policy": "꽃 축제, 단풍, 봄·가을 성수기, 수학여행 기간에는 혼잡 가능으로 표시",
+        "quiet_time_recommendation": "평일 개장 직후, 더운 계절에는 한낮을 피한 오전 또는 늦은 오후",
+        "check_before_visit": [
+          "계절 행사",
+          "주차 가능 여부",
+          "단체 방문",
+          "기상 상황"
+        ],
+        "avoid_conditions": [
+          "주말 한낮",
+          "꽃 축제 피크",
+          "폭염·강풍·우천"
+        ],
+        "operating_calendar_check_required": true
+      },
+      "source_queries": [
+        "휴애리자연생활공원 운영시간 행사 혼잡",
+        "휴애리자연생활공원 단체관람 예약"
+      ],
+      "recommended_action": "방문 직전 운영시간·휴관일·행사 일정을 최신 공식 출처로 재확인"
+    }
+  ]
+}

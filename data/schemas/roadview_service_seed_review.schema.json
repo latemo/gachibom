@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_service_seed_review.schema.json",
+  "title": "Jeju Maeum Roadview Service Seed Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "criteria", "summary", "items"],
+  "properties": {
+    "generated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "criteria": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["publishable", "blocked"],
+      "properties": {
+        "publishable": { "type": "string" },
+        "blocked": { "type": "string" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total",
+        "by_decision",
+        "by_image_review_status",
+        "total_roadview_images",
+        "blocker_counts"
+      ],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "by_decision": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_image_review_status": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "total_roadview_images": { "type": "integer", "minimum": 0 },
+        "blocker_counts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/reviewItem" }
+    }
+  },
+  "$defs": {
+    "reviewItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card",
+        "current_status",
+        "decision",
+        "blockers",
+        "required_checks",
+        "roadview_image_evidence",
+        "official_source_queries",
+        "recommended_action"
+      ],
+      "properties": {
+        "card": { "$ref": "#/$defs/cardRef" },
+        "current_status": { "type": "string" },
+        "decision": {
+          "type": "string",
+          "enum": ["blocked_pending_detail_review", "publishable_after_final_review"]
+        },
+        "blockers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "required_checks": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "roadview_image_evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "image_count",
+            "captured_date_start",
+            "captured_date_end",
+            "sample_image_file_names",
+            "review_status"
+          ],
+          "properties": {
+            "image_count": { "type": "integer", "minimum": 0 },
+            "captured_date_start": {
+              "type": ["string", "null"],
+              "format": "date"
+            },
+            "captured_date_end": {
+              "type": ["string", "null"],
+              "format": "date"
+            },
+            "sample_image_file_names": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "review_status": {
+              "type": "string",
+              "enum": ["ready_for_image_review", "metadata_missing"]
+            }
+          }
+        },
+        "official_source_queries": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "recommended_action": { "type": "string" }
+      }
+    },
+    "cardRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "region", "category", "verification_status"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "region": { "type": "string" },
+        "category": { "type": "string" },
+        "verification_status": { "type": "string" }
+      }
+    }
+  }
+}

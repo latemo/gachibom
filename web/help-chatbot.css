@@ -1,0 +1,1224 @@
+.help-page {
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(247, 248, 251, 0.96)),
+    var(--bg);
+}
+
+.help-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 24px;
+  border-bottom: 1px solid rgba(226, 229, 236, 0.9);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+}
+
+.help-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.help-brand-mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--yellow);
+  color: #0c0d0f;
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.help-brand strong,
+.help-brand small {
+  display: block;
+}
+
+.help-brand strong {
+  font-size: 19px;
+  line-height: 1.05;
+  font-weight: 950;
+}
+
+.help-brand small {
+  margin-top: 3px;
+  color: #747b88;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.help-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.help-nav a {
+  color: #5f6673;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.help-layout {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 34px 0 56px;
+}
+
+.help-brief {
+  min-height: 300px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: 34px;
+  align-items: center;
+  padding: 30px 0 38px;
+}
+
+.help-brief-copy {
+  max-width: 720px;
+}
+
+.help-kicker,
+.help-section-head span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: var(--teal-soft);
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.help-brief h1 {
+  margin: 16px 0 14px;
+  font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.help-brief p {
+  max-width: 620px;
+  margin: 0;
+  color: var(--soft-ink);
+  font-size: 17px;
+  line-height: 1.75;
+  font-weight: 650;
+}
+
+.help-brief img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft);
+}
+
+.help-topic-band,
+.help-chat-section {
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+
+.help-section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.help-section-head h2 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.18;
+}
+
+.help-topic-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.help-topic-button {
+  min-height: 132px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+  text-align: left;
+  box-shadow: var(--shadow-soft);
+}
+
+.help-topic-button:hover {
+  border-color: #bedcd7;
+  transform: translateY(-1px);
+}
+
+.help-topic-button strong,
+.help-topic-button span {
+  display: block;
+}
+
+.help-topic-button strong {
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 1.35;
+  font-weight: 950;
+}
+
+.help-topic-button span {
+  color: #656d7b;
+  font-size: 13px;
+  line-height: 1.55;
+  font-weight: 650;
+}
+
+.helpbot {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.35fr) minmax(0, 0.65fr);
+  min-height: 620px;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  touch-action: none;
+}
+
+.helpbot[data-mode="widget"] {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 70;
+  width: min(420px, calc(100vw - 32px));
+  height: min(660px, calc(100vh - 32px));
+  grid-template-columns: 1fr;
+}
+
+.helpbot-wing-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  --helpbot-panel-top: 92px;
+  --helpbot-panel-right: 18px;
+  --helpbot-panel-width: min(440px, calc(100vw - 36px));
+  --helpbot-panel-height: min(660px, calc(100vh - 116px));
+  --helpbot-tab-top: calc(var(--helpbot-panel-top) + 56px);
+  pointer-events: none;
+}
+
+.helpbot-wing-wrap::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  background: rgba(17, 19, 24, 0.16);
+  backdrop-filter: blur(1.5px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.helpbot-wing-wrap.is-open::before {
+  opacity: 1;
+}
+
+.helpbot-wing-banner {
+  position: fixed;
+  right: 0;
+  left: auto;
+  top: var(--helpbot-tab-top);
+  z-index: 2147483002;
+  width: 50px;
+  min-height: 176px;
+  display: block !important;
+  padding: 0;
+  border-radius: 8px 0 0 8px;
+  box-shadow: var(--shadow);
+  background: var(--ink);
+  color: #fff;
+  opacity: 1;
+  overflow: visible;
+  font-size: 14px;
+  font-weight: 950;
+  letter-spacing: 0;
+  pointer-events: auto;
+  visibility: visible;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  transition:
+    right 240ms cubic-bezier(0.2, 0.82, 0.2, 1),
+    top 120ms ease-out,
+    transform 220ms ease,
+    background-color 180ms ease,
+    filter 220ms ease,
+    box-shadow 220ms ease;
+  will-change: right, top, transform;
+}
+
+.helpbot-wing-wrap:not(.is-open) .helpbot-wing-banner {
+  background: rgba(17, 24, 39, 0.52);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 14px 34px rgba(10, 18, 32, 0.14);
+  cursor: grab;
+}
+
+.helpbot-wing-wrap:not(.is-open) .helpbot-wing-banner:hover,
+.helpbot-wing-wrap:not(.is-open) .helpbot-wing-banner:focus-visible {
+  background: rgba(17, 24, 39, 0.86);
+  box-shadow: var(--shadow);
+}
+
+.helpbot-wing-wrap.is-idle-active:not(.is-open) .helpbot-wing-banner {
+  animation:
+    helpbot-wing-idle-breathe 2.8s ease-in-out infinite,
+    helpbot-wing-idle-nudge 5.6s ease-in-out infinite;
+  background: rgba(17, 24, 39, 0.72);
+  box-shadow:
+    0 22px 56px rgba(10, 18, 32, 0.22),
+    0 0 0 1px rgba(49, 210, 154, 0.18),
+    0 0 22px rgba(49, 210, 154, 0.2);
+  filter: saturate(1.14);
+}
+
+.helpbot-wing-wrap.is-wing-dragging .helpbot-wing-banner {
+  background: var(--ink);
+  cursor: grabbing;
+  box-shadow: 0 28px 70px rgba(10, 18, 32, 0.28), 0 0 0 2px rgba(255, 210, 31, 0.2);
+}
+
+.helpbot-wing-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(255, 210, 31, 0.18) 28%,
+      rgba(49, 210, 154, 0.24) 50%,
+      transparent 74%
+    );
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-100%);
+}
+
+.helpbot-wing-wrap.is-idle-active:not(.is-open) .helpbot-wing-banner::before {
+  animation: helpbot-wing-scan 2.8s ease-in-out infinite;
+  opacity: 1;
+}
+
+.helpbot-wing-badge {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 24px;
+  border-radius: 7px;
+  background: rgba(255, 210, 31, 0.14);
+  color: #ffd21f;
+  font-size: 11px;
+  font-weight: 950;
+  z-index: 1;
+}
+
+.helpbot-wing-wrap.is-idle-active:not(.is-open) .helpbot-wing-badge {
+  animation: helpbot-wing-badge-pulse 2.8s ease-in-out infinite;
+}
+
+.helpbot-wing-label {
+  position: absolute;
+  left: 50%;
+  top: 56%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  display: block;
+  width: 118px;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1;
+  z-index: 1;
+}
+
+.helpbot-wing-wrap.is-idle-active:not(.is-open) .helpbot-wing-label {
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.58);
+}
+
+.helpbot-wing-banner::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #31d29a;
+  box-shadow: 0 0 0 5px rgba(49, 210, 154, 0.16);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.helpbot-wing-wrap.is-idle-active:not(.is-open) .helpbot-wing-banner::after {
+  animation: helpbot-wing-status-ping 2.8s ease-in-out infinite;
+}
+
+.helpbot[data-mode="wing"] {
+  position: fixed;
+  top: var(--helpbot-panel-top);
+  right: var(--helpbot-panel-right);
+  bottom: auto;
+  z-index: 2147483001;
+  width: var(--helpbot-panel-width);
+  min-height: 0;
+  height: var(--helpbot-panel-height);
+  grid-template-columns: 1fr;
+  border: 1px solid #c8d3e0;
+  background: #ffffff;
+  box-shadow: 0 32px 90px rgba(10, 18, 32, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.92);
+  transform: translateX(calc(100% + 34px)) scale(0.98);
+  transform-origin: right center;
+  opacity: 0;
+  transition:
+    transform 240ms cubic-bezier(0.2, 0.82, 0.2, 1),
+    opacity 180ms ease,
+    top 120ms ease-out,
+    width 160ms ease,
+    height 160ms ease,
+    box-shadow 220ms ease;
+  will-change: transform, opacity, top, width, height;
+  pointer-events: none;
+}
+
+.helpbot-wing-wrap.is-open .helpbot[data-mode="wing"] {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.helpbot-wing-wrap.is-open .helpbot-wing-banner {
+  right: min(calc(var(--helpbot-panel-width) + var(--helpbot-panel-right)), calc(100vw - 50px));
+  left: auto;
+  background: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.helpbot-wing-wrap.is-dragging .helpbot[data-mode="wing"],
+.helpbot-wing-wrap.is-dragging .helpbot-wing-banner,
+.helpbot-wing-wrap.is-wing-dragging .helpbot-wing-banner,
+.helpbot-wing-wrap.is-resizing .helpbot[data-mode="wing"],
+.helpbot-wing-wrap.is-resizing .helpbot-wing-banner {
+  transition: none;
+}
+
+.helpbot-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px;
+  border-right: 1px solid var(--line);
+  background: #f9fbfd;
+}
+
+.helpbot[data-mode="widget"] .helpbot-sidebar {
+  display: none;
+}
+
+.helpbot[data-mode="wing"] .helpbot-sidebar {
+  display: none;
+}
+
+.helpbot-title {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.18;
+}
+
+.helpbot-note {
+  margin: 8px 0 0;
+  color: #616a78;
+  font-size: 13px;
+  line-height: 1.65;
+  font-weight: 650;
+}
+
+.helpbot-status {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid #d8f1e3;
+  border-radius: 8px;
+  background: #f4fff8;
+}
+
+.helpbot-status strong {
+  color: #17824f;
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.helpbot-status span {
+  color: #3d4a41;
+  font-size: 13px;
+  line-height: 1.55;
+  font-weight: 650;
+}
+
+.helpbot-topic-list {
+  display: grid;
+  gap: 8px;
+}
+
+.helpbot-topic-list button,
+.helpbot-chip,
+.helpbot-submit,
+.helpbot-reset,
+.helpbot-launcher {
+  border-radius: 8px;
+}
+
+.helpbot-topic-list button {
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: #303744;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.helpbot-topic-list button:hover,
+.helpbot-chip:hover {
+  border-color: #bdded8;
+  background: #f4fffc;
+}
+
+.helpbot-main {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  background: #f5f8fc;
+}
+
+.helpbot-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-bottom: 1px solid #d7e0ea;
+  background: linear-gradient(180deg, #ffffff 0%, #f6f9fc 100%);
+  cursor: default;
+}
+
+.helpbot-head strong,
+.helpbot-head span {
+  display: block;
+}
+
+.helpbot-head strong {
+  font-size: 16px;
+  font-weight: 950;
+}
+
+.helpbot-head span {
+  margin-top: 3px;
+  color: #747b88;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.helpbot-head-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.helpbot-drag-handle {
+  min-height: 38px;
+  padding: 0 11px;
+  border: 1px solid #cfd9e6;
+  border-radius: 8px;
+  background: #f8fbff;
+  color: #415166;
+  font-size: 12px;
+  font-weight: 950;
+  cursor: grab;
+}
+
+.helpbot-drag-handle:active,
+.helpbot[data-mode="wing"].is-dragging .helpbot-drag-handle {
+  cursor: grabbing;
+}
+
+.helpbot[data-mode="wing"].is-dragging {
+  transition: none;
+  box-shadow: 0 40px 100px rgba(10, 18, 32, 0.34), 0 0 0 2px rgba(18, 111, 181, 0.2);
+}
+
+.helpbot[data-mode="wing"].is-resizing {
+  box-shadow: 0 40px 100px rgba(10, 18, 32, 0.34), 0 0 0 2px rgba(20, 129, 116, 0.22);
+  user-select: none;
+}
+
+.helpbot[data-mode="wing"][data-resize-edge] {
+  box-shadow: 0 34px 94px rgba(10, 18, 32, 0.3), 0 0 0 2px rgba(20, 129, 116, 0.16);
+}
+
+.helpbot[data-mode="wing"][data-resize-edge="left"] {
+  cursor: ew-resize;
+}
+
+.helpbot[data-mode="wing"][data-resize-edge="bottom"] {
+  cursor: ns-resize;
+}
+
+.helpbot[data-mode="wing"][data-resize-edge="corner"] {
+  cursor: nesw-resize;
+}
+
+.helpbot-reset {
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: #4f5967;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.helpbot-close {
+  width: 38px;
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: #4f5967;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.helpbot-log {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px;
+  background: linear-gradient(180deg, #f7fafe 0%, #eef4fa 100%);
+  touch-action: none;
+  scrollbar-width: thin;
+  scrollbar-color: #7ea9c7 #e5edf5;
+}
+
+.helpbot-log::-webkit-scrollbar {
+  width: 10px;
+}
+
+.helpbot-log::-webkit-scrollbar-track {
+  background: #e5edf5;
+}
+
+.helpbot-log::-webkit-scrollbar-thumb {
+  border: 2px solid #e5edf5;
+  border-radius: 999px;
+  background: #7ea9c7;
+}
+
+.helpbot-log.is-scroll-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.helpbot-message {
+  max-width: min(92%, 680px);
+  padding: 14px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.68;
+  font-weight: 600;
+}
+
+.helpbot-message[data-role="bot"] {
+  align-self: flex-start;
+  border: 1px solid #dce5ef;
+  background: #fff;
+  color: #4f5d6c;
+  font-weight: 560;
+  box-shadow: 0 8px 24px rgba(17, 28, 45, 0.07);
+}
+
+.helpbot-message[data-role="user"] {
+  align-self: flex-end;
+  max-width: min(84%, 560px);
+  background: var(--route-blue);
+  color: #fff;
+  font-weight: 820;
+}
+
+.helpbot-message strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #162436;
+  font-size: 14px;
+  font-weight: 880;
+}
+
+.helpbot-message ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+.helpbot-message li + li {
+  margin-top: 5px;
+}
+
+.helpbot-answer {
+  display: grid;
+  gap: 8px;
+  color: #566272;
+  font-weight: 520;
+}
+
+.helpbot-answer p {
+  margin: 0;
+  color: inherit;
+  font-weight: inherit;
+}
+
+.helpbot-confidence {
+  display: inline-flex;
+  margin-top: 10px;
+  padding: 4px 9px;
+  border-radius: 7px;
+  background: var(--blue-soft);
+  color: var(--route-blue-dark);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.helpbot-safe-note {
+  margin-top: 10px;
+  padding: 11px 12px;
+  border-radius: 8px;
+  background: #fff9e8;
+  color: #6f520a;
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 680;
+}
+
+.helpbot-loading {
+  display: grid;
+  gap: 10px;
+  min-width: min(300px, 100%);
+}
+
+.helpbot-loading-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #20252e;
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.helpbot-loading-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.helpbot-loading-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--route-blue);
+  animation: helpbot-dot-pulse 900ms ease-in-out infinite;
+}
+
+.helpbot-loading-dots span:nth-child(2) {
+  animation-delay: 120ms;
+}
+
+.helpbot-loading-dots span:nth-child(3) {
+  animation-delay: 240ms;
+}
+
+.helpbot-loading-copy {
+  color: #667080;
+  font-size: 12px;
+  line-height: 1.55;
+  font-weight: 750;
+}
+
+.helpbot-loading-track {
+  position: relative;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e9eef5;
+}
+
+.helpbot-loading-track::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 44%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--route-blue), var(--teal), var(--yellow));
+  animation: helpbot-loading-bar 1.15s ease-in-out infinite;
+}
+
+.helpbot-checklist {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f5fbff;
+  color: #173e5d;
+  font-size: 12.5px;
+  line-height: 1.55;
+  font-weight: 680;
+}
+
+.helpbot-checklist strong {
+  margin: 0 0 8px;
+  font-size: 12.5px;
+}
+
+.helpbot-checklist ul {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.helpbot-check-toggle {
+  width: 100%;
+  min-height: 38px;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 8px 9px;
+  border: 1px solid #d6e6f3;
+  border-radius: 8px;
+  background: #fff;
+  color: #173e5d;
+  text-align: left;
+  font-size: 12.5px;
+  line-height: 1.45;
+  font-weight: 850;
+}
+
+.helpbot-check-toggle::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border: 2px solid #9ab7cf;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.helpbot-check-toggle.is-done {
+  color: #5d6b78;
+  background: #eef6fb;
+  text-decoration: line-through;
+}
+
+.helpbot-check-toggle.is-done::before {
+  border-color: var(--teal);
+  background: var(--teal);
+  box-shadow: inset 0 0 0 4px #fff;
+}
+
+.helpbot-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.helpbot-action-button {
+  min-height: 34px;
+  padding: 0 11px;
+  border: 1px solid #dfe5ee;
+  border-radius: 8px;
+  background: #fff;
+  color: #303944;
+  font-size: 11.5px;
+  font-weight: 900;
+}
+
+.helpbot-action-button:hover,
+.helpbot-followups button:hover,
+.helpbot-chip:hover,
+.helpbot-drag-handle:hover {
+  transform: translateY(-1px);
+}
+
+.helpbot-action-button.primary {
+  border-color: #d8f1e3;
+  background: #f4fff8;
+  color: #17824f;
+}
+
+.helpbot-followups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.helpbot-followups button {
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid #b8d6ee;
+  border-radius: 8px;
+  background: #eff7ff;
+  color: #0b4f85;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.help-chat-intro {
+  max-width: 720px;
+  margin: 0 0 20px;
+  color: #5f6877;
+  font-size: 14px;
+  line-height: 1.7;
+  font-weight: 650;
+}
+
+.help-chat-intro code {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: #eef3f8;
+  color: #233047;
+  font-size: 13px;
+}
+
+.helpbot-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  overflow: visible;
+  padding: 10px 20px 12px;
+  border-top: 1px solid #dce5ef;
+  background: #f6fbfa;
+}
+
+.helpbot-chip {
+  flex: 0 1 auto;
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid #a9ded7;
+  background: #effdfa;
+  color: #0b6f69;
+  font-size: 11.5px;
+  font-weight: 850;
+}
+
+.helpbot-chip::before {
+  content: "예시 ";
+  color: #4a9d94;
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.helpbot-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  padding: 14px 20px 20px;
+  border-top: 1px solid var(--line);
+  background: #fff;
+  overscroll-behavior: contain;
+}
+
+.helpbot-input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  color: var(--ink);
+  background: #fff;
+  font-size: 14px;
+  font-weight: 680;
+}
+
+.helpbot-input:focus {
+  outline: 3px solid rgba(61, 114, 255, 0.2);
+  border-color: #3d72ff;
+}
+
+.helpbot-input:disabled {
+  background: #f6f8fb;
+  color: #87909e;
+}
+
+.helpbot-submit {
+  min-height: 48px;
+  padding: 0 18px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 900;
+}
+
+.helpbot-submit:disabled {
+  cursor: wait;
+  background: #596271;
+}
+
+.helpbot-empty {
+  align-self: center;
+  max-width: 420px;
+  margin: auto;
+  color: #687180;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.7;
+  font-weight: 650;
+}
+
+.helpbot-launcher {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 69;
+  min-height: 48px;
+  padding: 0 16px;
+  box-shadow: var(--shadow);
+  background: var(--ink);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 950;
+}
+
+@keyframes helpbot-loading-bar {
+  0% {
+    transform: translateX(-110%);
+  }
+
+  52% {
+    transform: translateX(58%);
+  }
+
+  100% {
+    transform: translateX(230%);
+  }
+}
+
+@keyframes helpbot-wing-idle-breathe {
+  0%,
+  100% {
+    filter: saturate(1.08) brightness(1);
+  }
+
+  46% {
+    filter: saturate(1.24) brightness(1.14);
+  }
+}
+
+@keyframes helpbot-wing-idle-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  16% {
+    transform: translateX(-5px);
+  }
+
+  32% {
+    transform: translateX(-2px);
+  }
+
+  48% {
+    transform: translateX(-4px);
+  }
+}
+
+@keyframes helpbot-wing-scan {
+  0% {
+    transform: translateY(-105%);
+  }
+
+  42%,
+  62% {
+    transform: translateY(20%);
+  }
+
+  100% {
+    transform: translateY(110%);
+  }
+}
+
+@keyframes helpbot-wing-badge-pulse {
+  0%,
+  100% {
+    background: rgba(255, 210, 31, 0.14);
+    box-shadow: none;
+  }
+
+  28% {
+    background: rgba(255, 210, 31, 0.32);
+    box-shadow: 0 0 0 6px rgba(255, 210, 31, 0.12);
+  }
+}
+
+@keyframes helpbot-wing-status-ping {
+  0%,
+  100% {
+    box-shadow: 0 0 0 5px rgba(49, 210, 154, 0.16);
+  }
+
+  34% {
+    box-shadow: 0 0 0 10px rgba(49, 210, 154, 0.12), 0 0 18px rgba(49, 210, 154, 0.56);
+  }
+}
+
+@keyframes helpbot-dot-pulse {
+  0%,
+  100% {
+    opacity: 0.32;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .helpbot-wing-wrap.is-idle-active:not(.is-open) .helpbot-wing-banner,
+  .helpbot-wing-wrap.is-idle-active:not(.is-open) .helpbot-wing-badge,
+  .helpbot-wing-wrap.is-idle-active:not(.is-open) .helpbot-wing-banner::before,
+  .helpbot-wing-wrap.is-idle-active:not(.is-open) .helpbot-wing-banner::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .help-topbar {
+    height: auto;
+    min-height: 68px;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 18px;
+  }
+
+  .help-nav {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .help-layout {
+    width: min(100% - 28px, 720px);
+    padding-top: 20px;
+  }
+
+  .help-brief,
+  .helpbot {
+    grid-template-columns: 1fr;
+  }
+
+  .help-brief h1 {
+    font-size: 38px;
+  }
+
+  .help-topic-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .helpbot {
+    min-height: 720px;
+  }
+
+  .helpbot-wing-wrap {
+    --helpbot-panel-top: 76px;
+    --helpbot-panel-right: 12px;
+    --helpbot-panel-width: min(420px, calc(100vw - 24px));
+    --helpbot-panel-height: calc(100vh - 88px);
+    --helpbot-tab-top: calc(var(--helpbot-panel-top) + 46px);
+  }
+
+  .helpbot[data-mode="wing"] {
+    min-height: 0;
+  }
+
+  .helpbot-sidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 560px) {
+  .help-brief h1 {
+    font-size: 33px;
+  }
+
+  .help-brief p {
+    font-size: 15px;
+  }
+
+  .help-section-head {
+    display: grid;
+    justify-items: start;
+  }
+
+  .helpbot-head,
+  .helpbot-form {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .helpbot-log {
+    padding: 14px;
+  }
+
+  .helpbot-message {
+    max-width: 94%;
+  }
+
+  .helpbot-form {
+    grid-template-columns: 1fr;
+  }
+
+  .helpbot-submit {
+    width: 100%;
+  }
+}

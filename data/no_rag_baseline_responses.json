@@ -1,0 +1,707 @@
+{
+  "generated_at": "2026-07-10",
+  "method": {
+    "id": "controlled_no_rag_generic_jeju_baseline_v1",
+    "type": "controlled_baseline_fixture",
+    "rag_used": false,
+    "status": "통제기준선_검증됨",
+    "note": "실제 외부 모델 호출 로그가 아니라, 근거 저장소 없이 일반 제주 대표 관광지 중심으로 응답했을 때의 위험을 검증하기 위한 통제 기준선 자료다."
+  },
+  "cases": [
+    {
+      "id": "recovery_quiet",
+      "label": "회복 중",
+      "intent": "체력 저하와 긴 걷기 부담을 줄이고, 식사·혼잡·장시간 야외 체류 위험을 피하는 코스",
+      "prompt": "체력 저하가 있어 긴 걷기와 혼잡한 곳을 피하고 싶은 제주 여행 코스를 추천해줘.",
+      "raw_response": "제주 대표 명소를 하루에 묶으면 동문재래시장, 성산일출봉, 협재해수욕장, 애월 카페거리를 둘러보는 코스가 좋습니다. 제주 분위기를 다양하게 볼 수 있습니다.",
+      "extracted": {
+        "score_total": null,
+        "route": [
+          {
+            "order": 1,
+            "name": "동문재래시장",
+            "category": "food_market",
+            "effort": {
+              "walking_level": "medium",
+              "weather_sensitivity": "low"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          },
+          {
+            "order": 2,
+            "name": "성산일출봉",
+            "category": "oreum",
+            "effort": {
+              "walking_level": "high",
+              "weather_sensitivity": "high"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          },
+          {
+            "order": 3,
+            "name": "협재해수욕장",
+            "category": "sea",
+            "effort": {
+              "walking_level": "medium",
+              "weather_sensitivity": "high"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          },
+          {
+            "order": 4,
+            "name": "애월 카페거리",
+            "category": "cafe",
+            "effort": {
+              "walking_level": "low",
+              "weather_sensitivity": "low"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          }
+        ],
+        "fit_reasons": [
+          "제주 대표 명소 위주 추천"
+        ],
+        "deduction_reasons": [],
+        "check_before_visit": [
+          "운영 시간 확인"
+        ]
+      }
+    },
+    {
+      "id": "diet_restricted",
+      "label": "음식 제한",
+      "intent": "식당·시장처럼 음식 섭취를 전제로 하는 장소를 제외하고, 쉬운 이동과 휴식 중심으로 묶는 코스",
+      "prompt": "음식 제한이 있어 식당이나 시장 중심 장소를 빼고 쉬운 제주 코스를 추천해줘.",
+      "raw_response": "제주 맛집과 대표 명소를 함께 즐기려면 동문재래시장, 흑돼지거리, 서귀포매일올레시장, 애월 카페거리를 추천합니다.",
+      "extracted": {
+        "score_total": null,
+        "route": [
+          {
+            "order": 1,
+            "name": "동문재래시장",
+            "category": "food_market",
+            "effort": {
+              "walking_level": "medium",
+              "weather_sensitivity": "low"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          },
+          {
+            "order": 2,
+            "name": "흑돼지거리",
+            "category": "restaurant",
+            "effort": {
+              "walking_level": "low",
+              "weather_sensitivity": "low"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          },
+          {
+            "order": 3,
+            "name": "서귀포매일올레시장",
+            "category": "food_market",
+            "effort": {
+              "walking_level": "medium",
+              "weather_sensitivity": "low"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          },
+          {
+            "order": 4,
+            "name": "애월 카페거리",
+            "category": "cafe",
+            "effort": {
+              "walking_level": "low",
+              "weather_sensitivity": "low"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          }
+        ],
+        "fit_reasons": [
+          "제주 대표 명소 위주 추천"
+        ],
+        "deduction_reasons": [],
+        "check_before_visit": [
+          "운영 시간 확인"
+        ]
+      }
+    },
+    {
+      "id": "wheelchair_access",
+      "label": "휠체어",
+      "intent": "휠체어 접근, 장애인 화장실, 주차 정보를 우선 확인하고 경사·계단 변수를 노출하는 코스",
+      "prompt": "휠체어를 이용하는 사람이 제주에서 갈 만한 대표 코스를 추천해줘.",
+      "raw_response": "제주를 처음 방문한다면 성산일출봉, 우도, 동문재래시장, 협재해수욕장을 추천합니다. 모두 유명해서 여행 만족도가 높습니다.",
+      "extracted": {
+        "score_total": null,
+        "route": [
+          {
+            "order": 1,
+            "name": "성산일출봉",
+            "category": "oreum",
+            "effort": {
+              "walking_level": "high",
+              "weather_sensitivity": "high"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          },
+          {
+            "order": 2,
+            "name": "우도",
+            "category": "sea",
+            "effort": {
+              "walking_level": "high",
+              "weather_sensitivity": "high"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          },
+          {
+            "order": 3,
+            "name": "동문재래시장",
+            "category": "food_market",
+            "effort": {
+              "walking_level": "medium",
+              "weather_sensitivity": "low"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          },
+          {
+            "order": 4,
+            "name": "협재해수욕장",
+            "category": "sea",
+            "effort": {
+              "walking_level": "medium",
+              "weather_sensitivity": "high"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          }
+        ],
+        "fit_reasons": [
+          "제주 대표 명소 위주 추천"
+        ],
+        "deduction_reasons": [],
+        "check_before_visit": [
+          "운영 시간 확인"
+        ]
+      }
+    },
+    {
+      "id": "stroller_family",
+      "label": "아이 동반",
+      "intent": "아이와 보호자가 쉬어갈 수 있고 계단·비포장 부담을 줄이는 짧은 코스",
+      "prompt": "유모차를 쓰는 아이 동반 가족에게 제주 코스를 추천해줘.",
+      "raw_response": "아이와 함께 제주를 느끼려면 협재해수욕장, 성산일출봉, 동문재래시장, 우도를 추천합니다. 사진 찍기 좋고 제주 대표 여행지입니다.",
+      "extracted": {
+        "score_total": null,
+        "route": [
+          {
+            "order": 1,
+            "name": "협재해수욕장",
+            "category": "sea",
+            "effort": {
+              "walking_level": "medium",
+              "weather_sensitivity": "high"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          },
+          {
+            "order": 2,
+            "name": "성산일출봉",
+            "category": "oreum",
+            "effort": {
+              "walking_level": "high",
+              "weather_sensitivity": "high"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          },
+          {
+            "order": 3,
+            "name": "동문재래시장",
+            "category": "food_market",
+            "effort": {
+              "walking_level": "medium",
+              "weather_sensitivity": "low"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          },
+          {
+            "order": 4,
+            "name": "우도",
+            "category": "sea",
+            "effort": {
+              "walking_level": "high",
+              "weather_sensitivity": "high"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          }
+        ],
+        "fit_reasons": [
+          "제주 대표 명소 위주 추천"
+        ],
+        "deduction_reasons": [],
+        "check_before_visit": [
+          "운영 시간 확인"
+        ]
+      }
+    },
+    {
+      "id": "weather_sensitive",
+      "label": "날씨 민감",
+      "intent": "비·바람·더위 영향을 줄이고 실내 대피 가능성이 높은 장소를 우선하는 코스",
+      "prompt": "비와 바람, 더위에 민감한 사람이 제주에서 갈 만한 코스를 추천해줘.",
+      "raw_response": "제주다운 풍경을 보려면 협재해수욕장, 성산일출봉, 새별오름, 우도가 좋습니다. 날씨가 좋으면 전망과 바다를 함께 즐길 수 있습니다.",
+      "extracted": {
+        "score_total": null,
+        "route": [
+          {
+            "order": 1,
+            "name": "협재해수욕장",
+            "category": "sea",
+            "effort": {
+              "walking_level": "medium",
+              "weather_sensitivity": "high"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          },
+          {
+            "order": 2,
+            "name": "성산일출봉",
+            "category": "oreum",
+            "effort": {
+              "walking_level": "high",
+              "weather_sensitivity": "high"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          },
+          {
+            "order": 3,
+            "name": "새별오름",
+            "category": "oreum",
+            "effort": {
+              "walking_level": "high",
+              "weather_sensitivity": "high"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          },
+          {
+            "order": 4,
+            "name": "우도",
+            "category": "sea",
+            "effort": {
+              "walking_level": "high",
+              "weather_sensitivity": "high"
+            },
+            "accessibility": [
+              {
+                "field": "wheelchair_access",
+                "state": "unknown"
+              },
+              {
+                "field": "accessible_toilet",
+                "state": "unknown"
+              },
+              {
+                "field": "parking",
+                "state": "unknown"
+              },
+              {
+                "field": "rest_area",
+                "state": "unknown"
+              }
+            ],
+            "verification_status": "ungrounded",
+            "source_summary": [],
+            "blocked": null
+          }
+        ],
+        "fit_reasons": [
+          "제주 대표 명소 위주 추천"
+        ],
+        "deduction_reasons": [],
+        "check_before_visit": [
+          "운영 시간 확인"
+        ]
+      }
+    }
+  ]
+}

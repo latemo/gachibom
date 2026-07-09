@@ -1,0 +1,1042 @@
+{
+  "generated_at": "2026-07-09",
+  "source_work_queue_generated_at": "2026-07-09",
+  "source_official_review_generated_at": "2026-07-09",
+  "source_roadview_image_review_generated_at": "2026-07-09",
+  "criteria": {
+    "ready_for_active_candidate": "공식 출처 검증, 로드뷰 이미지 동선 검증, 혼잡도 정책, 카테고리 정제가 모두 완료된 hidden 카드",
+    "blocked": "하나라도 미완료 게이트가 있으면 active 승격 금지"
+  },
+  "summary": {
+    "total": 17,
+    "ready_count": 0,
+    "blocked_count": 17,
+    "by_promotion_decision": {
+      "blocked_pending_hardening": 17
+    },
+    "blocking_gate_counts": {
+      "roadview_image_verified": 17
+    }
+  },
+  "items": [
+    {
+      "card": {
+        "id": "jeju_roadview_place_038",
+        "name": "국립제주박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "resolved",
+        "review_decision": "verified_usable_source",
+        "source_candidate_count": 1,
+        "missing_fields": [],
+        "visual_fallback_fields": [],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 132,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 오전 첫 시간대 또는 단체 관람이 적은 늦은 오후"
+      },
+      "category_refinement_review_status": {
+        "status": "not_required",
+        "review_decision": "not_required",
+        "recommended_category": null
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_place_038_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_088",
+        "name": "김녕미로공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "resolved",
+        "review_decision": "verified_usable_source",
+        "source_candidate_count": 1,
+        "missing_fields": [],
+        "visual_fallback_fields": [],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 15,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 개장 직후, 더운 계절에는 한낮을 피한 오전 또는 늦은 오후"
+      },
+      "category_refinement_review_status": {
+        "status": "not_required",
+        "review_decision": "not_required",
+        "recommended_category": null
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_place_088_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_100",
+        "name": "삼성혈",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "resolved",
+        "review_decision": "verified_usable_source",
+        "source_candidate_count": 1,
+        "missing_fields": [],
+        "visual_fallback_fields": [],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 52,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 개장 직후 또는 행사 없는 시간대"
+      },
+      "category_refinement_review_status": {
+        "status": "not_required",
+        "review_decision": "not_required",
+        "recommended_category": null
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_place_100_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_095",
+        "name": "상효원수목원",
+        "region": "서귀포시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "resolved",
+        "review_decision": "verified_usable_source",
+        "source_candidate_count": 1,
+        "missing_fields": [],
+        "visual_fallback_fields": [],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 73,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 개장 직후, 더운 계절에는 한낮을 피한 오전 또는 늦은 오후"
+      },
+      "category_refinement_review_status": {
+        "status": "not_required",
+        "review_decision": "not_required",
+        "recommended_category": null
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_place_095_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_053",
+        "name": "서귀포시립기당미술관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "resolved",
+        "review_decision": "verified_usable_source",
+        "source_candidate_count": 1,
+        "missing_fields": [],
+        "visual_fallback_fields": [],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 14,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 오전 첫 시간대 또는 단체 관람이 적은 늦은 오후"
+      },
+      "category_refinement_review_status": {
+        "status": "not_required",
+        "review_decision": "not_required",
+        "recommended_category": null
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_place_053_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_104",
+        "name": "스누피가든",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "resolved",
+        "review_decision": "verified_usable_source",
+        "source_candidate_count": 1,
+        "missing_fields": [],
+        "visual_fallback_fields": [],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 168,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 오전 또는 사전 예약·문의로 조용한 시간 확인 후 방문"
+      },
+      "category_refinement_review_status": {
+        "status": "resolved",
+        "review_decision": "category_refined",
+        "recommended_category": "rest_area"
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_place_104_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        },
+        {
+          "task_id": "jeju_roadview_place_104_category_refinement",
+          "task_type": "category_refinement",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_4_3_001",
+        "name": "제주4.3평화공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "resolved",
+        "review_decision": "verified_usable_source",
+        "source_candidate_count": 1,
+        "missing_fields": [],
+        "visual_fallback_fields": [],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 127,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 개장 직후, 더운 계절에는 한낮을 피한 오전 또는 늦은 오후"
+      },
+      "category_refinement_review_status": {
+        "status": "not_required",
+        "review_decision": "not_required",
+        "recommended_category": null
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_4_3_001_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_066",
+        "name": "제주고산리유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "in_progress",
+        "review_decision": "source_found_but_incomplete",
+        "source_candidate_count": 1,
+        "missing_fields": [
+          "slope_or_stairs",
+          "surface_condition"
+        ],
+        "visual_fallback_fields": [
+          "slope_or_stairs",
+          "surface_condition"
+        ],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 17,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 개장 직후 또는 행사 없는 시간대"
+      },
+      "category_refinement_review_status": {
+        "status": "not_required",
+        "review_decision": "not_required",
+        "recommended_category": null
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_place_066_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_014",
+        "name": "제주교육박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "resolved",
+        "review_decision": "verified_usable_source",
+        "source_candidate_count": 1,
+        "missing_fields": [],
+        "visual_fallback_fields": [],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 43,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 오전 첫 시간대 또는 단체 관람이 적은 늦은 오후"
+      },
+      "category_refinement_review_status": {
+        "status": "not_required",
+        "review_decision": "not_required",
+        "recommended_category": null
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_place_014_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_025",
+        "name": "제주도립김창열미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "resolved",
+        "review_decision": "verified_usable_source",
+        "source_candidate_count": 1,
+        "missing_fields": [],
+        "visual_fallback_fields": [],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 43,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 오전 첫 시간대 또는 단체 관람이 적은 늦은 오후"
+      },
+      "category_refinement_review_status": {
+        "status": "not_required",
+        "review_decision": "not_required",
+        "recommended_category": null
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_place_025_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_013",
+        "name": "제주민속자연사박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "resolved",
+        "review_decision": "verified_usable_source",
+        "source_candidate_count": 1,
+        "missing_fields": [],
+        "visual_fallback_fields": [],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 90,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 오전 첫 시간대 또는 단체 관람이 적은 늦은 오후"
+      },
+      "category_refinement_review_status": {
+        "status": "not_required",
+        "review_decision": "not_required",
+        "recommended_category": null
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_place_013_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_010",
+        "name": "제주삼양동유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "resolved",
+        "review_decision": "verified_usable_source",
+        "source_candidate_count": 1,
+        "missing_fields": [],
+        "visual_fallback_fields": [],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 37,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 개장 직후 또는 행사 없는 시간대"
+      },
+      "category_refinement_review_status": {
+        "status": "not_required",
+        "review_decision": "not_required",
+        "recommended_category": null
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_place_010_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_017",
+        "name": "제주아트센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "resolved",
+        "review_decision": "verified_usable_source",
+        "source_candidate_count": 1,
+        "missing_fields": [],
+        "visual_fallback_fields": [],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 26,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 오전 첫 시간대 또는 단체 관람이 적은 늦은 오후"
+      },
+      "category_refinement_review_status": {
+        "status": "not_required",
+        "review_decision": "not_required",
+        "recommended_category": null
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_place_017_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_084",
+        "name": "제주웰컴센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "in_progress",
+        "review_decision": "source_found_but_incomplete",
+        "source_candidate_count": 1,
+        "missing_fields": [
+          "surface_condition"
+        ],
+        "visual_fallback_fields": [
+          "surface_condition"
+        ],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 15,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 오전 첫 시간대 또는 단체 관람이 적은 늦은 오후"
+      },
+      "category_refinement_review_status": {
+        "status": "not_required",
+        "review_decision": "not_required",
+        "recommended_category": null
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_place_084_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_024",
+        "name": "제주현대미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "resolved",
+        "review_decision": "verified_usable_source",
+        "source_candidate_count": 1,
+        "missing_fields": [],
+        "visual_fallback_fields": [],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 31,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 오전 첫 시간대 또는 단체 관람이 적은 늦은 오후"
+      },
+      "category_refinement_review_status": {
+        "status": "not_required",
+        "review_decision": "not_required",
+        "recommended_category": null
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_place_024_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_105",
+        "name": "한림공원(아열대식물원)",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "resolved",
+        "review_decision": "verified_usable_source",
+        "source_candidate_count": 1,
+        "missing_fields": [],
+        "visual_fallback_fields": [],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 53,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 개장 직후, 더운 계절에는 한낮을 피한 오전 또는 늦은 오후"
+      },
+      "category_refinement_review_status": {
+        "status": "not_required",
+        "review_decision": "not_required",
+        "recommended_category": null
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_place_105_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_096",
+        "name": "휴애리자연생활공원",
+        "region": "서귀포시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "current_status": "hidden",
+      "promotion_decision": "blocked_pending_hardening",
+      "gate_statuses": {
+        "seed_card_hidden": "pass",
+        "official_source_verified": "pass",
+        "roadview_image_verified": "fail",
+        "crowd_policy_resolved": "pass",
+        "category_refinement_resolved": "pass"
+      },
+      "blocking_gates": [
+        "roadview_image_verified"
+      ],
+      "official_source_review_status": {
+        "status": "resolved",
+        "review_decision": "verified_usable_source",
+        "source_candidate_count": 1,
+        "missing_fields": [],
+        "visual_fallback_fields": [],
+        "blocking_missing_fields": []
+      },
+      "roadview_image_review_status": {
+        "status": "open",
+        "review_decision": "pending_visual_review",
+        "image_count": 87,
+        "pending_fields": [
+          "entrance_step_or_ramp",
+          "main_path_slope",
+          "surface_condition",
+          "parking_to_entrance_route"
+        ]
+      },
+      "crowd_policy_review_status": {
+        "status": "resolved",
+        "review_decision": "policy_defined",
+        "quiet_time_recommendation": "평일 개장 직후, 더운 계절에는 한낮을 피한 오전 또는 늦은 오후"
+      },
+      "category_refinement_review_status": {
+        "status": "not_required",
+        "review_decision": "not_required",
+        "recommended_category": null
+      },
+      "unresolved_work_items": [
+        {
+          "task_id": "jeju_roadview_place_096_crowd_policy_review",
+          "task_type": "crowd_policy_review",
+          "priority": "medium",
+          "status": "open"
+        }
+      ],
+      "recommended_action": "로드뷰 원본 이미지로 출입구·경사·바닥·주차장 연결 동선을 먼저 검수"
+    }
+  ]
+}

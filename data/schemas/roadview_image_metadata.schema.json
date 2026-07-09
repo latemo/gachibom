@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_image_metadata.schema.json",
+  "title": "Jeju Maeum Roadview Image Metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "tourist_name",
+    "tourist_name_en",
+    "image_file_name",
+    "captured_at",
+    "latitude",
+    "longitude",
+    "resolution",
+    "source"
+  ],
+  "properties": {
+    "tourist_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tourist_name_en": {
+      "type": "string"
+    },
+    "image_file_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "captured_at": {
+      "type": ["string", "null"]
+    },
+    "latitude": {
+      "type": ["number", "null"],
+      "minimum": -90,
+      "maximum": 90
+    },
+    "longitude": {
+      "type": ["number", "null"],
+      "minimum": -180,
+      "maximum": 180
+    },
+    "resolution": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "url", "dataset_name", "license"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "dataset_name": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

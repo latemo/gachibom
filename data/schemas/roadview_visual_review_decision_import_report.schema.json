@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_visual_review_decision_import_report.schema.json",
+  "title": "Jeju Maeum Roadview Visual Review Decision Import Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "generated_at",
+    "source_visual_review_sheet_generated_at",
+    "source_decision_csv",
+    "summary",
+    "items"
+  ],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "source_visual_review_sheet_generated_at": { "type": ["string", "null"], "format": "date" },
+    "source_decision_csv": { "type": "string" },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total_rows", "applied", "skipped", "invalid", "by_action"],
+      "properties": {
+        "total_rows": { "type": "integer", "minimum": 0 },
+        "applied": { "type": "integer", "minimum": 0 },
+        "skipped": { "type": "integer", "minimum": 0 },
+        "invalid": { "type": "integer", "minimum": 0 },
+        "by_action": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/importItem" }
+    }
+  },
+  "$defs": {
+    "importItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["card_id", "place_name", "field", "status", "action", "reason"],
+      "properties": {
+        "card_id": { "type": "string" },
+        "place_name": { "type": "string" },
+        "field": { "type": "string" },
+        "status": { "type": "string" },
+        "action": {
+          "type": "string",
+          "enum": [
+            "applied",
+            "skipped_not_found",
+            "skipped_pending_input",
+            "invalid_status",
+            "invalid_evidence",
+            "invalid_note"
+          ]
+        },
+        "reason": { "type": "string" }
+      }
+    }
+  }
+}

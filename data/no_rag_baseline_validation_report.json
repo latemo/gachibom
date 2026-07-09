@@ -1,0 +1,846 @@
+{
+  "generated_at": "2026-07-10",
+  "method": {
+    "id": "controlled_no_rag_generic_jeju_baseline_v1",
+    "type": "controlled_baseline_fixture",
+    "rag_used": false,
+    "status": "통제기준선_검증됨",
+    "note": "실제 외부 모델 호출 로그가 아니라, 근거 저장소 없이 일반 제주 대표 관광지 중심으로 응답했을 때의 위험을 검증하기 위한 통제 기준선 자료다."
+  },
+  "summary": {
+    "total_cases": 5,
+    "passed_cases": 0,
+    "failed_cases": 5,
+    "overall_status": "실패",
+    "total_checks": 59,
+    "passed_checks": 5,
+    "failed_checks": 54,
+    "check_pass_rate": 0.0847
+  },
+  "cases": [
+    {
+      "id": "recovery_quiet",
+      "label": "회복 중",
+      "intent": "체력 저하와 긴 걷기 부담을 줄이고, 식사·혼잡·장시간 야외 체류 위험을 피하는 코스",
+      "status": "실패",
+      "prompt": "체력 저하가 있어 긴 걷기와 혼잡한 곳을 피하고 싶은 제주 여행 코스를 추천해줘.",
+      "raw_response": "제주 대표 명소를 하루에 묶으면 동문재래시장, 성산일출봉, 협재해수욕장, 애월 카페거리를 둘러보는 코스가 좋습니다. 제주 분위기를 다양하게 볼 수 있습니다.",
+      "expected_policy": {
+        "recommendation_direction": "도보 부담이 낮은 실내·문화·휴식 중심 장소를 우선한다.",
+        "minimum_total_score": 85,
+        "selected_exclude_categories": [
+          "food_market",
+          "restaurant"
+        ],
+        "required_check_terms": [
+          "식사",
+          "혼잡",
+          "휴식"
+        ],
+        "required_fit_terms": [
+          "도보 부담",
+          "편의시설"
+        ],
+        "policy_effect_terms": [
+          "식사",
+          "혼잡"
+        ]
+      },
+      "recommendation": {
+        "score": {
+          "total": null,
+          "grade": null,
+          "confidence": "ungrounded"
+        },
+        "route": [
+          {
+            "order": 1,
+            "name": "동문재래시장",
+            "category": "food_market",
+            "walking_level": "medium",
+            "weather_sensitivity": "low",
+            "verification_status": "ungrounded"
+          },
+          {
+            "order": 2,
+            "name": "성산일출봉",
+            "category": "oreum",
+            "walking_level": "high",
+            "weather_sensitivity": "high",
+            "verification_status": "ungrounded"
+          },
+          {
+            "order": 3,
+            "name": "협재해수욕장",
+            "category": "sea",
+            "walking_level": "medium",
+            "weather_sensitivity": "high",
+            "verification_status": "ungrounded"
+          },
+          {
+            "order": 4,
+            "name": "애월 카페거리",
+            "category": "cafe",
+            "walking_level": "low",
+            "weather_sensitivity": "low",
+            "verification_status": "ungrounded"
+          }
+        ],
+        "fit_reasons": [
+          "제주 대표 명소 위주 추천"
+        ],
+        "deduction_reasons": [],
+        "check_before_visit": [
+          "운영 시간 확인"
+        ]
+      },
+      "validation": {
+        "total_checks": 12,
+        "passed_checks": 1,
+        "failed_checks": 11,
+        "checks": [
+          {
+            "area": "추천",
+            "name": "추천 장소 수",
+            "status": "통과",
+            "expected": "조건에 맞는 추천 장소가 1곳 이상 있어야 함",
+            "actual": "4곳: 동문재래시장, 성산일출봉, 협재해수욕장, 애월 카페거리"
+          },
+          {
+            "area": "추천",
+            "name": "총점 기준",
+            "status": "실패",
+            "expected": "85점 이상",
+            "actual": "점수 미제공"
+          },
+          {
+            "area": "추천",
+            "name": "추천 장소 차단 여부",
+            "status": "실패",
+            "expected": "차단 장소가 추천 결과에 없어야 함",
+            "actual": "차단 여부 미검증"
+          },
+          {
+            "area": "추천",
+            "name": "도보 부담",
+            "status": "실패",
+            "expected": "낮음, 매우 낮음만 허용",
+            "actual": "보통, 높음, 보통, 낮음"
+          },
+          {
+            "area": "제외",
+            "name": "상위 추천 제외 유형",
+            "status": "실패",
+            "expected": "먹거리 시장, 식당 미포함",
+            "actual": "먹거리 시장, 오름, 해안, 카페"
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 도보 부담",
+            "status": "실패",
+            "expected": "도보 부담 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 편의시설",
+            "status": "실패",
+            "expected": "편의시설 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 식사",
+            "status": "실패",
+            "expected": "식사 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 혼잡",
+            "status": "실패",
+            "expected": "혼잡 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 휴식",
+            "status": "실패",
+            "expected": "휴식 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "감점/제외",
+            "name": "정책 효과: 식사",
+            "status": "실패",
+            "expected": "식사 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "감점/제외",
+            "name": "정책 효과: 혼잡",
+            "status": "실패",
+            "expected": "혼잡 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          }
+        ]
+      }
+    },
+    {
+      "id": "diet_restricted",
+      "label": "음식 제한",
+      "intent": "식당·시장처럼 음식 섭취를 전제로 하는 장소를 제외하고, 쉬운 이동과 휴식 중심으로 묶는 코스",
+      "status": "실패",
+      "prompt": "음식 제한이 있어 식당이나 시장 중심 장소를 빼고 쉬운 제주 코스를 추천해줘.",
+      "raw_response": "제주 맛집과 대표 명소를 함께 즐기려면 동문재래시장, 흑돼지거리, 서귀포매일올레시장, 애월 카페거리를 추천합니다.",
+      "expected_policy": {
+        "recommendation_direction": "식사 중심 장소를 추천에서 배제하고 실내·숲·휴식 장소를 우선한다.",
+        "minimum_total_score": 85,
+        "selected_exclude_categories": [
+          "food_market",
+          "restaurant"
+        ],
+        "required_check_terms": [
+          "개별 식사",
+          "식사"
+        ],
+        "required_fit_terms": [
+          "도보 부담",
+          "편의시설"
+        ],
+        "policy_effect_terms": [
+          "식사",
+          "음식"
+        ]
+      },
+      "recommendation": {
+        "score": {
+          "total": null,
+          "grade": null,
+          "confidence": "ungrounded"
+        },
+        "route": [
+          {
+            "order": 1,
+            "name": "동문재래시장",
+            "category": "food_market",
+            "walking_level": "medium",
+            "weather_sensitivity": "low",
+            "verification_status": "ungrounded"
+          },
+          {
+            "order": 2,
+            "name": "흑돼지거리",
+            "category": "restaurant",
+            "walking_level": "low",
+            "weather_sensitivity": "low",
+            "verification_status": "ungrounded"
+          },
+          {
+            "order": 3,
+            "name": "서귀포매일올레시장",
+            "category": "food_market",
+            "walking_level": "medium",
+            "weather_sensitivity": "low",
+            "verification_status": "ungrounded"
+          },
+          {
+            "order": 4,
+            "name": "애월 카페거리",
+            "category": "cafe",
+            "walking_level": "low",
+            "weather_sensitivity": "low",
+            "verification_status": "ungrounded"
+          }
+        ],
+        "fit_reasons": [
+          "제주 대표 명소 위주 추천"
+        ],
+        "deduction_reasons": [],
+        "check_before_visit": [
+          "운영 시간 확인"
+        ]
+      },
+      "validation": {
+        "total_checks": 11,
+        "passed_checks": 1,
+        "failed_checks": 10,
+        "checks": [
+          {
+            "area": "추천",
+            "name": "추천 장소 수",
+            "status": "통과",
+            "expected": "조건에 맞는 추천 장소가 1곳 이상 있어야 함",
+            "actual": "4곳: 동문재래시장, 흑돼지거리, 서귀포매일올레시장, 애월 카페거리"
+          },
+          {
+            "area": "추천",
+            "name": "총점 기준",
+            "status": "실패",
+            "expected": "85점 이상",
+            "actual": "점수 미제공"
+          },
+          {
+            "area": "추천",
+            "name": "추천 장소 차단 여부",
+            "status": "실패",
+            "expected": "차단 장소가 추천 결과에 없어야 함",
+            "actual": "차단 여부 미검증"
+          },
+          {
+            "area": "추천",
+            "name": "도보 부담",
+            "status": "실패",
+            "expected": "낮음, 매우 낮음만 허용",
+            "actual": "보통, 낮음, 보통, 낮음"
+          },
+          {
+            "area": "제외",
+            "name": "상위 추천 제외 유형",
+            "status": "실패",
+            "expected": "먹거리 시장, 식당 미포함",
+            "actual": "먹거리 시장, 식당, 먹거리 시장, 카페"
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 도보 부담",
+            "status": "실패",
+            "expected": "도보 부담 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 편의시설",
+            "status": "실패",
+            "expected": "편의시설 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 개별 식사",
+            "status": "실패",
+            "expected": "개별 식사 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 식사",
+            "status": "실패",
+            "expected": "식사 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "감점/제외",
+            "name": "정책 효과: 식사",
+            "status": "실패",
+            "expected": "식사 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "감점/제외",
+            "name": "정책 효과: 음식",
+            "status": "실패",
+            "expected": "음식 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          }
+        ]
+      }
+    },
+    {
+      "id": "wheelchair_access",
+      "label": "휠체어",
+      "intent": "휠체어 접근, 장애인 화장실, 주차 정보를 우선 확인하고 경사·계단 변수를 노출하는 코스",
+      "status": "실패",
+      "prompt": "휠체어를 이용하는 사람이 제주에서 갈 만한 대표 코스를 추천해줘.",
+      "raw_response": "제주를 처음 방문한다면 성산일출봉, 우도, 동문재래시장, 협재해수욕장을 추천합니다. 모두 유명해서 여행 만족도가 높습니다.",
+      "expected_policy": {
+        "recommendation_direction": "휠체어 접근과 필수 편의시설 근거가 있는 장소를 우선한다.",
+        "minimum_total_score": 80,
+        "selected_exclude_categories": [],
+        "required_check_terms": [
+          "경사",
+          "바닥",
+          "주차"
+        ],
+        "required_fit_terms": [
+          "도보 부담",
+          "편의시설"
+        ],
+        "policy_effect_terms": [
+          "경사"
+        ]
+      },
+      "recommendation": {
+        "score": {
+          "total": null,
+          "grade": null,
+          "confidence": "ungrounded"
+        },
+        "route": [
+          {
+            "order": 1,
+            "name": "성산일출봉",
+            "category": "oreum",
+            "walking_level": "high",
+            "weather_sensitivity": "high",
+            "verification_status": "ungrounded"
+          },
+          {
+            "order": 2,
+            "name": "우도",
+            "category": "sea",
+            "walking_level": "high",
+            "weather_sensitivity": "high",
+            "verification_status": "ungrounded"
+          },
+          {
+            "order": 3,
+            "name": "동문재래시장",
+            "category": "food_market",
+            "walking_level": "medium",
+            "weather_sensitivity": "low",
+            "verification_status": "ungrounded"
+          },
+          {
+            "order": 4,
+            "name": "협재해수욕장",
+            "category": "sea",
+            "walking_level": "medium",
+            "weather_sensitivity": "high",
+            "verification_status": "ungrounded"
+          }
+        ],
+        "fit_reasons": [
+          "제주 대표 명소 위주 추천"
+        ],
+        "deduction_reasons": [],
+        "check_before_visit": [
+          "운영 시간 확인"
+        ]
+      },
+      "validation": {
+        "total_checks": 11,
+        "passed_checks": 1,
+        "failed_checks": 10,
+        "checks": [
+          {
+            "area": "추천",
+            "name": "추천 장소 수",
+            "status": "통과",
+            "expected": "조건에 맞는 추천 장소가 1곳 이상 있어야 함",
+            "actual": "4곳: 성산일출봉, 우도, 동문재래시장, 협재해수욕장"
+          },
+          {
+            "area": "추천",
+            "name": "총점 기준",
+            "status": "실패",
+            "expected": "80점 이상",
+            "actual": "점수 미제공"
+          },
+          {
+            "area": "추천",
+            "name": "추천 장소 차단 여부",
+            "status": "실패",
+            "expected": "차단 장소가 추천 결과에 없어야 함",
+            "actual": "차단 여부 미검증"
+          },
+          {
+            "area": "추천",
+            "name": "도보 부담",
+            "status": "실패",
+            "expected": "낮음, 매우 낮음만 허용",
+            "actual": "높음, 높음, 보통, 보통"
+          },
+          {
+            "area": "근거",
+            "name": "필수 편의시설 상태",
+            "status": "실패",
+            "expected": "장애인 화장실, 주차, 휠체어 접근는 확인됨 또는 부분 확인이어야 함",
+            "actual": "성산일출봉 장애인 화장실=정보 부족; 성산일출봉 주차=정보 부족; 성산일출봉 휠체어 접근=정보 부족; 우도 장애인 화장실=정보 부족; 우도 주차=정보 부족; 우도 휠체어 접근=정보 부족; 동문재래시장 장애인 화장실=정보 부족; 동문재래시장 주차=정보 부족; 동문재래시장 휠체어 접근=정보 부족; 협재해수욕장 장애인 화장실=정보 부족; 협재해수욕장 주차=정보 부족; 협재해수욕장 휠체어 접근=정보 부족"
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 도보 부담",
+            "status": "실패",
+            "expected": "도보 부담 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 편의시설",
+            "status": "실패",
+            "expected": "편의시설 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 경사",
+            "status": "실패",
+            "expected": "경사 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 바닥",
+            "status": "실패",
+            "expected": "바닥 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 주차",
+            "status": "실패",
+            "expected": "주차 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "감점/제외",
+            "name": "정책 효과: 경사",
+            "status": "실패",
+            "expected": "경사 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          }
+        ]
+      }
+    },
+    {
+      "id": "stroller_family",
+      "label": "아이 동반",
+      "intent": "아이와 보호자가 쉬어갈 수 있고 계단·비포장 부담을 줄이는 짧은 코스",
+      "status": "실패",
+      "prompt": "유모차를 쓰는 아이 동반 가족에게 제주 코스를 추천해줘.",
+      "raw_response": "아이와 함께 제주를 느끼려면 협재해수욕장, 성산일출봉, 동문재래시장, 우도를 추천합니다. 사진 찍기 좋고 제주 대표 여행지입니다.",
+      "expected_policy": {
+        "recommendation_direction": "실내 장소만 반복하지 않고 짧은 숲길·공원형 휴식 장소를 포함한다.",
+        "minimum_total_score": 80,
+        "selected_exclude_categories": [],
+        "required_check_terms": [
+          "경사",
+          "바닥",
+          "휴식"
+        ],
+        "required_fit_terms": [
+          "아이",
+          "유모차"
+        ],
+        "policy_effect_terms": [
+          "경사",
+          "날씨"
+        ]
+      },
+      "recommendation": {
+        "score": {
+          "total": null,
+          "grade": null,
+          "confidence": "ungrounded"
+        },
+        "route": [
+          {
+            "order": 1,
+            "name": "협재해수욕장",
+            "category": "sea",
+            "walking_level": "medium",
+            "weather_sensitivity": "high",
+            "verification_status": "ungrounded"
+          },
+          {
+            "order": 2,
+            "name": "성산일출봉",
+            "category": "oreum",
+            "walking_level": "high",
+            "weather_sensitivity": "high",
+            "verification_status": "ungrounded"
+          },
+          {
+            "order": 3,
+            "name": "동문재래시장",
+            "category": "food_market",
+            "walking_level": "medium",
+            "weather_sensitivity": "low",
+            "verification_status": "ungrounded"
+          },
+          {
+            "order": 4,
+            "name": "우도",
+            "category": "sea",
+            "walking_level": "high",
+            "weather_sensitivity": "high",
+            "verification_status": "ungrounded"
+          }
+        ],
+        "fit_reasons": [
+          "제주 대표 명소 위주 추천"
+        ],
+        "deduction_reasons": [],
+        "check_before_visit": [
+          "운영 시간 확인"
+        ]
+      },
+      "validation": {
+        "total_checks": 13,
+        "passed_checks": 1,
+        "failed_checks": 12,
+        "checks": [
+          {
+            "area": "추천",
+            "name": "추천 장소 수",
+            "status": "통과",
+            "expected": "조건에 맞는 추천 장소가 1곳 이상 있어야 함",
+            "actual": "4곳: 협재해수욕장, 성산일출봉, 동문재래시장, 우도"
+          },
+          {
+            "area": "추천",
+            "name": "총점 기준",
+            "status": "실패",
+            "expected": "80점 이상",
+            "actual": "점수 미제공"
+          },
+          {
+            "area": "추천",
+            "name": "추천 장소 차단 여부",
+            "status": "실패",
+            "expected": "차단 장소가 추천 결과에 없어야 함",
+            "actual": "차단 여부 미검증"
+          },
+          {
+            "area": "추천",
+            "name": "도보 부담",
+            "status": "실패",
+            "expected": "낮음, 매우 낮음만 허용",
+            "actual": "보통, 높음, 보통, 높음"
+          },
+          {
+            "area": "추천",
+            "name": "필수 장소 성격 포함",
+            "status": "실패",
+            "expected": "숲·산책, 공원·휴식 중 1개 이상 포함",
+            "actual": "해안, 오름, 먹거리 시장, 해안"
+          },
+          {
+            "area": "근거",
+            "name": "필수 편의시설 상태",
+            "status": "실패",
+            "expected": "장애인 화장실, 주차, 휴식 공간는 확인됨 또는 부분 확인이어야 함",
+            "actual": "협재해수욕장 장애인 화장실=정보 부족; 협재해수욕장 주차=정보 부족; 협재해수욕장 휴식 공간=정보 부족; 성산일출봉 장애인 화장실=정보 부족; 성산일출봉 주차=정보 부족; 성산일출봉 휴식 공간=정보 부족; 동문재래시장 장애인 화장실=정보 부족; 동문재래시장 주차=정보 부족; 동문재래시장 휴식 공간=정보 부족; 우도 장애인 화장실=정보 부족; 우도 주차=정보 부족; 우도 휴식 공간=정보 부족"
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 아이",
+            "status": "실패",
+            "expected": "아이 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 유모차",
+            "status": "실패",
+            "expected": "유모차 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 경사",
+            "status": "실패",
+            "expected": "경사 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 바닥",
+            "status": "실패",
+            "expected": "바닥 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 휴식",
+            "status": "실패",
+            "expected": "휴식 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "감점/제외",
+            "name": "정책 효과: 경사",
+            "status": "실패",
+            "expected": "경사 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "감점/제외",
+            "name": "정책 효과: 날씨",
+            "status": "실패",
+            "expected": "날씨 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          }
+        ]
+      }
+    },
+    {
+      "id": "weather_sensitive",
+      "label": "날씨 민감",
+      "intent": "비·바람·더위 영향을 줄이고 실내 대피 가능성이 높은 장소를 우선하는 코스",
+      "status": "실패",
+      "prompt": "비와 바람, 더위에 민감한 사람이 제주에서 갈 만한 코스를 추천해줘.",
+      "raw_response": "제주다운 풍경을 보려면 협재해수욕장, 성산일출봉, 새별오름, 우도가 좋습니다. 날씨가 좋으면 전망과 바다를 함께 즐길 수 있습니다.",
+      "expected_policy": {
+        "recommendation_direction": "날씨 영향이 큰 바다·오름·고노출 야외 장소를 상위 추천에서 배제한다.",
+        "minimum_total_score": 85,
+        "selected_exclude_categories": [
+          "oreum",
+          "sea"
+        ],
+        "required_check_terms": [
+          "강풍",
+          "그늘",
+          "날씨"
+        ],
+        "required_fit_terms": [
+          "도보 부담",
+          "편의시설"
+        ],
+        "policy_effect_terms": [
+          "날씨"
+        ]
+      },
+      "recommendation": {
+        "score": {
+          "total": null,
+          "grade": null,
+          "confidence": "ungrounded"
+        },
+        "route": [
+          {
+            "order": 1,
+            "name": "협재해수욕장",
+            "category": "sea",
+            "walking_level": "medium",
+            "weather_sensitivity": "high",
+            "verification_status": "ungrounded"
+          },
+          {
+            "order": 2,
+            "name": "성산일출봉",
+            "category": "oreum",
+            "walking_level": "high",
+            "weather_sensitivity": "high",
+            "verification_status": "ungrounded"
+          },
+          {
+            "order": 3,
+            "name": "새별오름",
+            "category": "oreum",
+            "walking_level": "high",
+            "weather_sensitivity": "high",
+            "verification_status": "ungrounded"
+          },
+          {
+            "order": 4,
+            "name": "우도",
+            "category": "sea",
+            "walking_level": "high",
+            "weather_sensitivity": "high",
+            "verification_status": "ungrounded"
+          }
+        ],
+        "fit_reasons": [
+          "제주 대표 명소 위주 추천"
+        ],
+        "deduction_reasons": [],
+        "check_before_visit": [
+          "운영 시간 확인"
+        ]
+      },
+      "validation": {
+        "total_checks": 12,
+        "passed_checks": 1,
+        "failed_checks": 11,
+        "checks": [
+          {
+            "area": "추천",
+            "name": "추천 장소 수",
+            "status": "통과",
+            "expected": "조건에 맞는 추천 장소가 1곳 이상 있어야 함",
+            "actual": "4곳: 협재해수욕장, 성산일출봉, 새별오름, 우도"
+          },
+          {
+            "area": "추천",
+            "name": "총점 기준",
+            "status": "실패",
+            "expected": "85점 이상",
+            "actual": "점수 미제공"
+          },
+          {
+            "area": "추천",
+            "name": "추천 장소 차단 여부",
+            "status": "실패",
+            "expected": "차단 장소가 추천 결과에 없어야 함",
+            "actual": "차단 여부 미검증"
+          },
+          {
+            "area": "추천",
+            "name": "도보 부담",
+            "status": "실패",
+            "expected": "낮음, 매우 낮음만 허용",
+            "actual": "보통, 높음, 높음, 높음"
+          },
+          {
+            "area": "제외",
+            "name": "상위 추천 제외 유형",
+            "status": "실패",
+            "expected": "오름, 해안 미포함",
+            "actual": "해안, 오름, 오름, 해안"
+          },
+          {
+            "area": "제외",
+            "name": "날씨 민감도",
+            "status": "실패",
+            "expected": "낮음, 보통만 허용",
+            "actual": "높음, 높음, 높음, 높음"
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 도보 부담",
+            "status": "실패",
+            "expected": "도보 부담 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 편의시설",
+            "status": "실패",
+            "expected": "편의시설 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 강풍",
+            "status": "실패",
+            "expected": "강풍 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 그늘",
+            "status": "실패",
+            "expected": "그늘 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 날씨",
+            "status": "실패",
+            "expected": "날씨 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          },
+          {
+            "area": "감점/제외",
+            "name": "정책 효과: 날씨",
+            "status": "실패",
+            "expected": "날씨 관련 근거가 있어야 함",
+            "actual": "근거 없음"
+          }
+        ]
+      }
+    }
+  ]
+}

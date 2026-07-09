@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_visual_review_apply_report.schema.json",
+  "title": "Jeju Maeum Roadview Visual Review Apply Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "generated_at",
+    "source_roadview_image_review_generated_at",
+    "source_visual_review_sheet_generated_at",
+    "summary",
+    "items"
+  ],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "source_roadview_image_review_generated_at": { "type": ["string", "null"], "format": "date" },
+    "source_visual_review_sheet_generated_at": { "type": ["string", "null"], "format": "date" },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "by_action", "by_new_status", "by_new_review_decision"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "by_action": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_new_status": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_new_review_decision": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/applyItem" }
+    }
+  },
+  "$defs": {
+    "applyItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card",
+        "action",
+        "previous_status",
+        "new_status",
+        "previous_review_decision",
+        "new_review_decision",
+        "field_statuses"
+      ],
+      "properties": {
+        "card": { "$ref": "#/$defs/cardRef" },
+        "action": {
+          "type": "string",
+          "enum": ["applied", "skipped_no_sheet", "skipped_pending_input"]
+        },
+        "previous_status": { "type": "string" },
+        "new_status": { "type": "string" },
+        "previous_review_decision": { "type": "string" },
+        "new_review_decision": { "type": "string" },
+        "field_statuses": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "cardRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "region", "category", "verification_status"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "region": { "type": "string" },
+        "category": { "type": "string" },
+        "verification_status": { "type": "string" }
+      }
+    }
+  }
+}

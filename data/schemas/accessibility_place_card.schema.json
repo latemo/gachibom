@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/accessibility_place_card.schema.json",
+  "title": "Jeju Maeum Accessibility Place Card",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "region",
+    "category",
+    "summary",
+    "recommended_for",
+    "avoid_for",
+    "accessibility",
+    "effort",
+    "sources",
+    "verification",
+    "status",
+    "safety_notes",
+    "operator_notes"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^jeju_[a-z0-9_]+_[0-9]{3}$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "region": {
+      "type": "string",
+      "minLength": 1
+    },
+    "category": {
+      "type": "string",
+      "enum": ["sea", "forest", "oreum", "culture", "indoor", "cafe", "restaurant", "food_market", "shopping", "rest_area", "transport", "medical_support", "other"]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recommended_for": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["wheelchair_user", "senior", "recovery_traveler", "pregnant_traveler", "stroller_family", "slow_walker", "caregiver_group", "diet_restricted_traveler", "immunocompromised_traveler", "sensory_sensitive_traveler", "heat_sensitive_traveler"]
+      },
+      "uniqueItems": true
+    },
+    "situation_tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["food_focused", "quiet", "indoor", "outdoor", "crowded_possible", "short_stay", "long_walk", "weather_sensitive", "low_stimulation", "sensory_intense", "restroom_important", "scenic_view", "requires_reservation"]
+      },
+      "uniqueItems": true
+    },
+    "avoid_for": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "accessibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wheelchair_access",
+        "accessible_toilet",
+        "parking",
+        "slope_or_stairs",
+        "rest_area",
+        "rental_or_assistance",
+        "surface_condition",
+        "crowd_level"
+      ],
+      "properties": {
+        "wheelchair_access": {
+          "$ref": "#/$defs/accessibilityField"
+        },
+        "accessible_toilet": {
+          "$ref": "#/$defs/accessibilityField"
+        },
+        "parking": {
+          "$ref": "#/$defs/accessibilityField"
+        },
+        "slope_or_stairs": {
+          "$ref": "#/$defs/accessibilityField"
+        },
+        "rest_area": {
+          "$ref": "#/$defs/accessibilityField"
+        },
+        "rental_or_assistance": {
+          "$ref": "#/$defs/accessibilityField"
+        },
+        "surface_condition": {
+          "$ref": "#/$defs/accessibilityField"
+        },
+        "crowd_level": {
+          "$ref": "#/$defs/accessibilityField"
+        }
+      }
+    },
+    "effort": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["walking_level", "recommended_duration_minutes", "outdoor_exposure", "weather_sensitivity"],
+      "properties": {
+        "walking_level": {
+          "type": "string",
+          "enum": ["very_low", "low", "medium", "high", "unknown"]
+        },
+        "recommended_duration_minutes": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "outdoor_exposure": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "unknown"]
+        },
+        "weather_sensitivity": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "unknown"]
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "url", "type"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["official", "public_agency", "operator_verified", "partner_verified", "user_feedback", "unknown"]
+          }
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "checked_at", "checked_by", "missing_fields"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["verified", "partial", "needs_check", "unavailable"]
+        },
+        "checked_at": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "checked_by": {
+          "type": ["string", "null"]
+        },
+        "missing_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "hidden", "deprecated", "blocked"]
+    },
+    "safety_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "operator_notes": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "accessibilityField": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "note", "source_ref"],
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": ["yes", "no", "partial", "unknown", "needs_check"]
+        },
+        "note": {
+          "type": "string"
+        },
+        "source_ref": {
+          "type": ["string", "null"]
+        }
+      }
+    }
+  }
+}

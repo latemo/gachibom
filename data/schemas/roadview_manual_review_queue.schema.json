@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_manual_review_queue.schema.json",
+  "title": "Jeju Maeum Roadview Manual Review Queue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "source_report_generated_at", "summary", "items"],
+  "properties": {
+    "generated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "source_report_generated_at": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "by_review_type", "by_priority"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "by_review_type": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_priority": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/reviewItem" }
+    }
+  },
+  "$defs": {
+    "reviewItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["review_type", "priority", "reason"],
+      "properties": {
+        "review_type": {
+          "type": "string",
+          "enum": ["field_conflict", "uncertain_match", "new_candidate", "auto_skipped_field_update"]
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["high", "medium", "low"]
+        },
+        "reason": { "type": "string" },
+        "existing": { "$ref": "#/$defs/cardRef" },
+        "draft": { "$ref": "#/$defs/cardRef" },
+        "match_confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "match_reasons": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "field_conflicts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/fieldUpdate" }
+        },
+        "field_update": { "$ref": "#/$defs/fieldUpdate" },
+        "recommended_action": { "type": "string" }
+      }
+    },
+    "cardRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "region", "category", "verification_status"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "region": { "type": "string" },
+        "category": { "type": "string" },
+        "verification_status": { "type": "string" }
+      }
+    },
+    "fieldUpdate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field",
+        "existing_state",
+        "existing_note",
+        "draft_state",
+        "draft_note",
+        "draft_source_ref",
+        "recommended_action"
+      ],
+      "properties": {
+        "field": { "type": "string" },
+        "existing_state": { "type": ["string", "null"] },
+        "existing_note": { "type": "string" },
+        "draft_state": { "type": ["string", "null"] },
+        "draft_note": { "type": "string" },
+        "draft_source_ref": { "type": ["string", "null"] },
+        "recommended_action": { "type": "string" }
+      }
+    }
+  }
+}

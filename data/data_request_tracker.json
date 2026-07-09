@@ -1,0 +1,188 @@
+{
+  "generated_at": "2026-07-09",
+  "criteria": {
+    "ready_to_use": "필수 로컬 산출물이 있고 서비스 반영 차단 사유가 없는 데이터",
+    "ready_to_submit": "요청 문안과 첨부 목록은 준비됐지만 제공기관 제출 또는 수령 기록이 없는 데이터",
+    "awaiting_receipt": "요청 대상 원본 수령이 필요해 서비스 검수 게이트가 막힌 데이터",
+    "action_required": "원본 수령, 누락 산출물, 갱신 자동화 중 하나가 필요한 데이터"
+  },
+  "summary": {
+    "total_sources": 5,
+    "ready_to_use_sources": 4,
+    "action_required_sources": 1,
+    "by_request_status": {
+      "not_required_ready": 4,
+      "awaiting_receipt": 1
+    },
+    "by_acquisition_mode": {
+      "direct_public_api": 1,
+      "application_required": 1,
+      "public_download": 3
+    },
+    "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령을 제공기관에 요청"
+  },
+  "items": [
+    {
+      "source_id": "roadview_api",
+      "dataset_name": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 오픈 API",
+      "provider": "제주특별자치도",
+      "portal_url": "https://www.data.go.kr/data/15109149/openapi.do?recommendDataYn=Y",
+      "source_type": "openapi",
+      "acquisition_mode": "direct_public_api",
+      "service_usage": "키 없이 호출 가능한 관광지 접근성 시설 원천 데이터 조회와 갱신 자동화 후보",
+      "request_status": "not_required_ready",
+      "gate_status": "pass",
+      "expected_counts": {
+        "facility_places": 107,
+        "metadata_rows": 4748
+      },
+      "current_counts": {},
+      "local_artifacts": [],
+      "blocking_reason": "",
+      "next_action": "키 없이 호출 가능 확인됨. 정기 갱신 주기와 호출량·장애 대응 절차 정의"
+    },
+    {
+      "source_id": "roadview_image_files",
+      "dataset_name": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 이미지",
+      "provider": "제주특별자치도",
+      "portal_url": "https://www.data.go.kr/data/15110209/fileData.do",
+      "source_type": "image_files",
+      "acquisition_mode": "application_required",
+      "service_usage": "출입구 단차, 경사, 바닥 상태, 주차장-출입구 동선 시각 검수",
+      "request_status": "awaiting_receipt",
+      "gate_status": "fail",
+      "expected_counts": {
+        "full_dataset_images": 4748
+      },
+      "current_counts": {
+        "requested_images": 1023,
+        "priority_sample_images": 102,
+        "received_requested_images": 953,
+        "missing_requested_images": 70,
+        "service_seed_blocked_places": 17
+      },
+      "local_artifacts": [
+        {
+          "path": "docs/roadview_image_data_request_message.md",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/roadview_image_acquisition_priority_samples.csv",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/roadview_image_acquisition_full_request.csv",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/roadview_image_acquisition_place_summary.csv",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/roadview_image_receipt_report.json",
+          "required": true,
+          "exists": true
+        }
+      ],
+      "blocking_reason": "요청 이미지 70장 미수령",
+      "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령을 제공기관에 요청"
+    },
+    {
+      "source_id": "roadview_image_metadata",
+      "dataset_name": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 이미지 메타데이터",
+      "provider": "제주특별자치도",
+      "portal_url": "https://www.data.go.kr/data/15109158/fileData.do",
+      "source_type": "file_data",
+      "acquisition_mode": "public_download",
+      "service_usage": "장소별 로드뷰 이미지 파일명, 촬영일, 좌표 매칭",
+      "request_status": "not_required_ready",
+      "gate_status": "pass",
+      "expected_counts": {
+        "metadata_rows": 4748
+      },
+      "current_counts": {
+        "metadata_rows": 4748
+      },
+      "local_artifacts": [
+        {
+          "path": "data/roadview_image_metadata.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/raw/jeju_roadview_image_metadata_20250730.csv",
+          "required": false,
+          "exists": true
+        }
+      ],
+      "blocking_reason": "",
+      "next_action": "정기 갱신 주기와 원본 변경 감지 절차 정의"
+    },
+    {
+      "source_id": "roadview_facility_status",
+      "dataset_name": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "provider": "제주특별자치도",
+      "portal_url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "source_type": "file_data",
+      "acquisition_mode": "public_download",
+      "service_usage": "장애인 화장실, 장애인 주차장, 휠체어 대여, 휴게실 등 공식 시설 근거",
+      "request_status": "not_required_ready",
+      "gate_status": "pass",
+      "expected_counts": {
+        "facility_places": 107
+      },
+      "current_counts": {
+        "facility_places": 107
+      },
+      "local_artifacts": [
+        {
+          "path": "data/place_catalog.roadview_facility.json",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/raw/jeju_roadview_facility_status_20250730.csv",
+          "required": false,
+          "exists": true
+        }
+      ],
+      "blocking_reason": "",
+      "next_action": "정기 갱신 주기와 원본 변경 감지 절차 정의"
+    },
+    {
+      "source_id": "tourism_weak_recommendation_courses",
+      "dataset_name": "제주관광공사_관광 약자 유형별 제주관광 추천코스",
+      "provider": "제주관광공사",
+      "portal_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "source_type": "file_data",
+      "acquisition_mode": "public_download",
+      "service_usage": "관광약자 유형별 공공 추천코스 일치도 보강과 신규 장소 후보 발굴",
+      "request_status": "not_required_ready",
+      "gate_status": "pass",
+      "expected_counts": {
+        "courses": 16
+      },
+      "current_counts": {
+        "courses": 16
+      },
+      "local_artifacts": [
+        {
+          "path": "data/raw/jeju_tourism_weak_recommendation_courses_20260528.csv",
+          "required": true,
+          "exists": true
+        },
+        {
+          "path": "data/tourism_weak_recommendation_courses.json",
+          "required": true,
+          "exists": true
+        }
+      ],
+      "blocking_reason": "",
+      "next_action": "정기 갱신 주기와 원본 변경 감지 절차 정의"
+    }
+  ]
+}

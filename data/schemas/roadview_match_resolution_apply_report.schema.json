@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_match_resolution_apply_report.schema.json",
+  "title": "Jeju Maeum Roadview Match Resolution Apply Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["applied_at", "resolution_report_generated_at", "summary", "applied_resolutions", "skipped_resolutions"],
+  "properties": {
+    "applied_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "resolution_report_generated_at": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_cards",
+        "output_cards",
+        "resolutions_requested",
+        "resolutions_applied",
+        "resolutions_skipped",
+        "manual_review_items_before",
+        "manual_review_items_after",
+        "resolved_uncertain_match_items"
+      ],
+      "properties": {
+        "input_cards": { "type": "integer", "minimum": 0 },
+        "output_cards": { "type": "integer", "minimum": 0 },
+        "resolutions_requested": { "type": "integer", "minimum": 0 },
+        "resolutions_applied": { "type": "integer", "minimum": 0 },
+        "resolutions_skipped": { "type": "integer", "minimum": 0 },
+        "manual_review_items_before": { "type": "integer", "minimum": 0 },
+        "manual_review_items_after": { "type": "integer", "minimum": 0 },
+        "resolved_uncertain_match_items": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "applied_resolutions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/resolution" }
+    },
+    "skipped_resolutions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/skippedResolution" }
+    }
+  },
+  "$defs": {
+    "resolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "existing_id",
+        "existing_name",
+        "draft_id",
+        "draft_name",
+        "decision",
+        "reason",
+        "evidence_sources"
+      ],
+      "properties": {
+        "existing_id": { "type": "string" },
+        "existing_name": { "type": "string" },
+        "draft_id": { "type": "string" },
+        "draft_name": { "type": "string" },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "confirmed_same_place",
+            "confirmed_same_accessibility_scope",
+            "covered_subplace",
+            "separate_candidate"
+          ]
+        },
+        "reason": { "type": "string" },
+        "evidence_sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["title", "url"],
+            "properties": {
+              "title": { "type": "string" },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          }
+        },
+        "safety_note": { "type": "string" }
+      }
+    },
+    "skippedResolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "existing_id",
+        "existing_name",
+        "draft_id",
+        "draft_name",
+        "decision",
+        "reason",
+        "evidence_sources",
+        "skip_reason"
+      ],
+      "properties": {
+        "existing_id": { "type": "string" },
+        "existing_name": { "type": "string" },
+        "draft_id": { "type": "string" },
+        "draft_name": { "type": "string" },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "confirmed_same_place",
+            "confirmed_same_accessibility_scope",
+            "covered_subplace",
+            "separate_candidate"
+          ]
+        },
+        "reason": { "type": "string" },
+        "evidence_sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["title", "url"],
+            "properties": {
+              "title": { "type": "string" },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          }
+        },
+        "safety_note": { "type": "string" },
+        "skip_reason": { "type": "string" }
+      }
+    }
+  }
+}

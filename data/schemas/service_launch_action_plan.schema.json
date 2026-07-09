@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/service_launch_action_plan.schema.json",
+  "title": "Jeju Maeum Service Launch Action Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "generated_at",
+    "overall_status",
+    "status_label",
+    "summary",
+    "actions",
+    "affected_places",
+    "app_highlights",
+    "source_files"
+  ],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "overall_status": {
+      "type": "string",
+      "enum": ["ready_for_full_service", "ready_with_warnings", "blocked_for_full_service"]
+    },
+    "status_label": { "type": "string" },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_actions",
+        "critical_actions",
+        "blocked_actions",
+        "service_seed_places",
+        "missing_roadview_images",
+        "affected_missing_image_places",
+        "visual_review_open_places",
+        "visual_review_pending_fields",
+        "promoted_active_candidates",
+        "first_action",
+        "next_action"
+      ],
+      "properties": {
+        "total_actions": { "type": "integer", "minimum": 0 },
+        "critical_actions": { "type": "integer", "minimum": 0 },
+        "blocked_actions": { "type": "integer", "minimum": 0 },
+        "service_seed_places": { "type": "integer", "minimum": 0 },
+        "missing_roadview_images": { "type": "integer", "minimum": 0 },
+        "affected_missing_image_places": { "type": "integer", "minimum": 0 },
+        "visual_review_open_places": { "type": "integer", "minimum": 0 },
+        "visual_review_pending_fields": { "type": "integer", "minimum": 0 },
+        "promoted_active_candidates": { "type": "integer", "minimum": 0 },
+        "first_action": { "type": "string" },
+        "next_action": { "type": "string" }
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/action" }
+    },
+    "affected_places": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/affectedPlace" }
+    },
+    "app_highlights": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/appHighlight" }
+    },
+    "source_files": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "$defs": {
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "priority",
+        "priority_label",
+        "status",
+        "status_label",
+        "owner",
+        "title",
+        "metric",
+        "why",
+        "evidence",
+        "affected_places",
+        "inputs",
+        "outputs",
+        "done_when",
+        "next_steps"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "priority": { "type": "string", "enum": ["critical", "high", "medium"] },
+        "priority_label": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": [
+            "blocked_external_request",
+            "manual_review_required",
+            "waiting_previous_gate",
+            "internal_review_ready",
+            "ready"
+          ]
+        },
+        "status_label": { "type": "string" },
+        "owner": { "type": "string" },
+        "title": { "type": "string" },
+        "metric": { "type": "string" },
+        "why": { "type": "string" },
+        "evidence": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/keyValue" }
+        },
+        "affected_places": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/actionPlace" }
+        },
+        "inputs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "outputs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "done_when": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "next_steps": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "keyValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "value"],
+      "properties": {
+        "label": { "type": "string" },
+        "value": { "type": "string" }
+      }
+    },
+    "actionPlace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["place_name"],
+      "properties": {
+        "place_name": { "type": "string" },
+        "missing_image_count": { "type": "integer", "minimum": 0 },
+        "sample_image_file_names": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "status": { "type": "string" },
+        "review_decision": { "type": "string" },
+        "pending_field_count": { "type": "integer", "minimum": 0 },
+        "pending_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "affectedPlace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "place_name",
+        "needs_missing_images",
+        "missing_image_count",
+        "needs_visual_review",
+        "pending_field_count"
+      ],
+      "properties": {
+        "place_name": { "type": "string" },
+        "needs_missing_images": { "type": "boolean" },
+        "missing_image_count": { "type": "integer", "minimum": 0 },
+        "needs_visual_review": { "type": "boolean" },
+        "pending_field_count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "appHighlight": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "status_label", "metric", "next_step"],
+      "properties": {
+        "title": { "type": "string" },
+        "status_label": { "type": "string" },
+        "metric": { "type": "string" },
+        "next_step": { "type": "string" }
+      }
+    }
+  }
+}

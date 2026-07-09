@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_visual_review_packet_report.schema.json",
+  "title": "Jeju Maeum Roadview Visual Review Packet Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "generated_at",
+    "total_places",
+    "contact_sheet_count",
+    "decision_csv_count",
+    "index_output",
+    "items"
+  ],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "total_places": { "type": "integer", "minimum": 0 },
+    "contact_sheet_count": { "type": "integer", "minimum": 0 },
+    "decision_csv_count": { "type": "integer", "minimum": 0 },
+    "index_output": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/packetItem" }
+    }
+  },
+  "$defs": {
+    "packetItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "place_name",
+        "contact_sheet",
+        "decision_csv",
+        "image_count",
+        "field_count"
+      ],
+      "properties": {
+        "card_id": { "type": "string" },
+        "place_name": { "type": "string" },
+        "contact_sheet": { "type": "string" },
+        "decision_csv": { "type": "string" },
+        "image_count": { "type": "integer", "minimum": 0 },
+        "field_count": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_new_candidate_triage.schema.json",
+  "title": "Jeju Maeum Roadview New Candidate Triage",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "source_queue_generated_at", "criteria", "summary", "candidates"],
+  "properties": {
+    "generated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "source_queue_generated_at": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "criteria": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["service_seed_candidate", "catalog_candidate", "field_review_required"],
+      "properties": {
+        "service_seed_candidate": { "type": "string" },
+        "catalog_candidate": { "type": "string" },
+        "field_review_required": { "type": "string" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "by_decision", "by_priority", "by_category", "by_region"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "by_decision": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_priority": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_category": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_region": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/candidate" }
+    }
+  },
+  "$defs": {
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "draft",
+        "score",
+        "decision",
+        "priority",
+        "yes_fields",
+        "no_fields",
+        "needs_check_fields",
+        "unknown_fields",
+        "strengths",
+        "risks",
+        "recommended_action"
+      ],
+      "properties": {
+        "draft": { "$ref": "#/$defs/cardRef" },
+        "score": { "type": "integer" },
+        "decision": {
+          "type": "string",
+          "enum": ["service_seed_candidate", "catalog_candidate", "field_review_required"]
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["high", "medium", "low"]
+        },
+        "yes_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "no_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "needs_check_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "unknown_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "strengths": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "risks": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "recommended_action": { "type": "string" }
+      }
+    },
+    "cardRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "region", "category", "verification_status"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "region": { "type": "string" },
+        "category": { "type": "string" },
+        "verification_status": { "type": "string" }
+      }
+    }
+  }
+}

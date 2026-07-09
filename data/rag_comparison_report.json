@@ -1,0 +1,561 @@
+{
+  "generated_at": "2026-07-10",
+  "scope": {
+    "title": "RAG 사용/미사용 추천 검증 비교",
+    "with_rag_definition": "장소 카드, 상황별 정책, 공식 추천코스, 출처/검수 상태를 검색·조립해 추천과 설명의 근거로 사용하는 현재 서비스 방식",
+    "without_rag_definition": "동일 질문에 대해 근거 저장소 검색 없이 일반 모델 지식 또는 프롬프트만 사용하는 기준선",
+    "measurement_note": "무RAG 값은 실제 외부 모델 운영 로그가 아니라, 근거 저장소 없이 일반 제주 대표 관광지 중심으로 응답했을 때를 재현한 통제 기준선 검증 자료를 사용한다."
+  },
+  "sources": {
+    "case_validation_report": "data/recommendation_case_validation_report.json",
+    "no_rag_baseline_validation_report": "data/no_rag_baseline_validation_report.json",
+    "no_rag_baseline_responses": "data/no_rag_baseline_responses.json",
+    "tourism_weak_courses": "data/tourism_weak_recommendation_courses.json",
+    "recommendation_policy": "src/recommendation_case_validation.py",
+    "runtime_service": "src/recommendation_service.py"
+  },
+  "summary": {
+    "scenario_cases": 5,
+    "with_rag_passed_cases": 5,
+    "with_rag_failed_cases": 0,
+    "with_rag_case_pass_rate": 1.0,
+    "with_rag_total_checks": 59,
+    "with_rag_passed_checks": 59,
+    "with_rag_failed_checks": 0,
+    "with_rag_check_pass_rate": 1.0,
+    "without_rag_observed_cases": 5,
+    "without_rag_passed_cases": 0,
+    "without_rag_failed_cases": 5,
+    "without_rag_case_pass_rate": 0.0,
+    "without_rag_total_checks": 59,
+    "without_rag_passed_checks": 5,
+    "without_rag_failed_checks": 54,
+    "without_rag_check_pass_rate": 0.0847,
+    "without_rag_status": "통제기준선_검증됨",
+    "official_course_slots": {
+      "courses": 16,
+      "stops": 62,
+      "matched_stops": 62,
+      "matched_places": 61,
+      "unmatched_places": 0,
+      "slot_match_rate": 1.0
+    },
+    "key_findings": [
+      "근거 기반 현재 방식은 상황별 검증 5/5건을 통과했다.",
+      "검증 체크는 59/59개 통과로 집계됐다.",
+      "무RAG 통제 기준선은 0/5건, 5/59개 체크를 통과했다.",
+      "무RAG 비교는 출처 연결, 제외 규칙, 방문 전 확인 항목의 실패 여부로 추적한다."
+    ]
+  },
+  "metrics": [
+    {
+      "metric_id": "scenario_case_pass_rate",
+      "label": "상황별 추천 검증 통과율",
+      "validation_target": "상황별 정책 반영 여부",
+      "with_rag": {
+        "observed": true,
+        "value": 1.0,
+        "status": "관측됨",
+        "evidence": "5/5 케이스 통과"
+      },
+      "without_rag": {
+        "observed": true,
+        "value": 0.0,
+        "status": "관측됨",
+        "evidence": "0/5 케이스 통과"
+      },
+      "interpretation": "상황별 추천 검증 통과율: 같은 평가표 기준으로 RAG/무RAG 통제 기준선을 비교한다."
+    },
+    {
+      "metric_id": "validation_check_pass_rate",
+      "label": "검증 체크 통과율",
+      "validation_target": "근거 문구, 제외 정책, 방문 전 확인 항목",
+      "with_rag": {
+        "observed": true,
+        "value": 1.0,
+        "status": "관측됨",
+        "evidence": "59/59 체크 통과"
+      },
+      "without_rag": {
+        "observed": true,
+        "value": 0.0847,
+        "status": "관측됨",
+        "evidence": "5/59 체크 통과"
+      },
+      "interpretation": "검증 체크 통과율: 같은 평가표 기준으로 RAG/무RAG 통제 기준선을 비교한다."
+    },
+    {
+      "metric_id": "official_course_slot_match_rate",
+      "label": "공식 추천코스 슬롯 매칭률",
+      "validation_target": "제주관광공사 추천코스 데이터 매칭",
+      "with_rag": {
+        "observed": true,
+        "value": 1.0,
+        "status": "관측됨",
+        "evidence": "62/62 슬롯 매칭"
+      },
+      "without_rag": {
+        "observed": false,
+        "value": null,
+        "status": "미측정",
+        "evidence": "근거 저장소를 사용하지 않으면 공식 코스 슬롯 대조 자체가 수행되지 않음"
+      },
+      "interpretation": "공식 추천코스 슬롯 매칭률: 현재 근거 기반 방식에서만 관측 가능하다."
+    },
+    {
+      "metric_id": "unmatched_official_places",
+      "label": "공식 코스 미매칭 장소 수",
+      "validation_target": "공식 코스 누락 방지",
+      "with_rag": {
+        "observed": true,
+        "value": 0,
+        "status": "관측됨",
+        "evidence": "미매칭 0건"
+      },
+      "without_rag": {
+        "observed": false,
+        "value": null,
+        "status": "미측정",
+        "evidence": "무RAG 기준선에는 장소명-내부카드 매칭 테이블이 없음"
+      },
+      "interpretation": "공식 코스 미매칭 장소 수: 현재 근거 기반 방식에서만 관측 가능하다."
+    },
+    {
+      "metric_id": "observable_no_rag_runs",
+      "label": "무RAG 기준선 자료 수",
+      "validation_target": "비교 데이터 신뢰도",
+      "with_rag": {
+        "observed": false,
+        "value": null,
+        "status": "해당 없음",
+        "evidence": "RAG 사용 성능이 아니라 비교 실험 준비 상태 지표"
+      },
+      "without_rag": {
+        "observed": true,
+        "value": 5,
+        "status": "통제기준선",
+        "evidence": "무RAG 통제 기준선 5건 검증"
+      },
+      "interpretation": "통제 기준선은 같은 평가표로 비교하되 실제 외부 모델 운영 로그와는 구분한다."
+    }
+  ],
+  "cases": [
+    {
+      "id": "recovery_quiet",
+      "label": "회복 중",
+      "title": "짧고 조용한 회복 여행",
+      "intent": "체력 저하와 긴 걷기 부담을 줄이고, 식사·혼잡·장시간 야외 체류 위험을 피하는 코스",
+      "with_rag": {
+        "status": "통과",
+        "score_total": 92,
+        "grade": "A",
+        "route_names": [
+          "제주문학관",
+          "제주한란전시관",
+          "사려니숲길 무장애나눔길",
+          "제주국제컨벤션센터"
+        ],
+        "route_categories": [
+          "indoor",
+          "indoor",
+          "forest",
+          "indoor"
+        ],
+        "total_checks": 12,
+        "passed_checks": 12,
+        "failed_checks": 0,
+        "excluded_candidate_samples": 7,
+        "deduction_samples": 10
+      },
+      "without_rag_baseline": {
+        "status": "실패",
+        "observed": true,
+        "comparable": true,
+        "prompt": "체력 저하가 있어 긴 걷기와 혼잡한 곳을 피하고 싶은 제주 여행 코스를 추천해줘.",
+        "raw_response": "제주 대표 명소를 하루에 묶으면 동문재래시장, 성산일출봉, 협재해수욕장, 애월 카페거리를 둘러보는 코스가 좋습니다. 제주 분위기를 다양하게 볼 수 있습니다.",
+        "route_names": [
+          "동문재래시장",
+          "성산일출봉",
+          "협재해수욕장",
+          "애월 카페거리"
+        ],
+        "route_categories": [
+          "food_market",
+          "oreum",
+          "sea",
+          "cafe"
+        ],
+        "total_checks": 12,
+        "passed_checks": 1,
+        "failed_checks": 11,
+        "failed_check_names": [
+          "추천:총점 기준",
+          "추천:추천 장소 차단 여부",
+          "추천:도보 부담",
+          "제외:상위 추천 제외 유형",
+          "설명:추천 근거: 도보 부담",
+          "설명:추천 근거: 편의시설",
+          "설명:방문 전 확인: 식사",
+          "설명:방문 전 확인: 혼잡",
+          "설명:방문 전 확인: 휴식",
+          "감점/제외:정책 효과: 식사",
+          "감점/제외:정책 효과: 혼잡"
+        ],
+        "expected_failure_modes": [
+          "없는 편의시설이나 접근 가능성을 일반 지식으로 단정할 위험",
+          "출처/검수 상태가 없는 설명을 근거처럼 제시할 위험",
+          "제외 대상 카테고리(food_market, restaurant)를 일관되게 배제하지 못할 위험",
+          "추천 근거 필수어(도보 부담, 편의시설)가 누락될 위험",
+          "방문 전 확인 항목(식사, 혼잡, 휴식)이 누락될 위험",
+          "감점/제외 정책 효과(식사, 혼잡)가 설명에 드러나지 않을 위험"
+        ],
+        "validation_gap": [
+          "장소별 검수 상태와 출처를 응답 근거로 대조할 수 없음",
+          "정책 위반 후보가 왜 제외/감점됐는지 로그로 재현하기 어려움",
+          "동일 입력 재실행 시 일반 지식 기반 설명이 바뀔 가능성이 있음"
+        ]
+      },
+      "comparison": {
+        "with_rag_advantage": [
+          "검증 체크 12/12 통과",
+          "추천 장소, 제외 후보, 감점 사유를 같은 데이터 구조로 추적",
+          "방문 전 확인 항목을 상황별 정책어와 연결"
+        ],
+        "needs_no_rag_experiment": true
+      }
+    },
+    {
+      "id": "diet_restricted",
+      "label": "음식 제한",
+      "title": "식사 장소를 제외한 코스",
+      "intent": "식당·시장처럼 음식 섭취를 전제로 하는 장소를 제외하고, 쉬운 이동과 휴식 중심으로 묶는 코스",
+      "with_rag": {
+        "status": "통과",
+        "score_total": 94,
+        "grade": "A",
+        "route_names": [
+          "제주문학관",
+          "사려니숲길 무장애나눔길",
+          "서귀포 치유의숲",
+          "제주한란전시관"
+        ],
+        "route_categories": [
+          "indoor",
+          "forest",
+          "forest",
+          "indoor"
+        ],
+        "total_checks": 11,
+        "passed_checks": 11,
+        "failed_checks": 0,
+        "excluded_candidate_samples": 4,
+        "deduction_samples": 10
+      },
+      "without_rag_baseline": {
+        "status": "실패",
+        "observed": true,
+        "comparable": true,
+        "prompt": "음식 제한이 있어 식당이나 시장 중심 장소를 빼고 쉬운 제주 코스를 추천해줘.",
+        "raw_response": "제주 맛집과 대표 명소를 함께 즐기려면 동문재래시장, 흑돼지거리, 서귀포매일올레시장, 애월 카페거리를 추천합니다.",
+        "route_names": [
+          "동문재래시장",
+          "흑돼지거리",
+          "서귀포매일올레시장",
+          "애월 카페거리"
+        ],
+        "route_categories": [
+          "food_market",
+          "restaurant",
+          "food_market",
+          "cafe"
+        ],
+        "total_checks": 11,
+        "passed_checks": 1,
+        "failed_checks": 10,
+        "failed_check_names": [
+          "추천:총점 기준",
+          "추천:추천 장소 차단 여부",
+          "추천:도보 부담",
+          "제외:상위 추천 제외 유형",
+          "설명:추천 근거: 도보 부담",
+          "설명:추천 근거: 편의시설",
+          "설명:방문 전 확인: 개별 식사",
+          "설명:방문 전 확인: 식사",
+          "감점/제외:정책 효과: 식사",
+          "감점/제외:정책 효과: 음식"
+        ],
+        "expected_failure_modes": [
+          "없는 편의시설이나 접근 가능성을 일반 지식으로 단정할 위험",
+          "출처/검수 상태가 없는 설명을 근거처럼 제시할 위험",
+          "제외 대상 카테고리(food_market, restaurant)를 일관되게 배제하지 못할 위험",
+          "추천 근거 필수어(도보 부담, 편의시설)가 누락될 위험",
+          "방문 전 확인 항목(개별 식사, 식사)이 누락될 위험",
+          "감점/제외 정책 효과(식사, 음식)가 설명에 드러나지 않을 위험"
+        ],
+        "validation_gap": [
+          "장소별 검수 상태와 출처를 응답 근거로 대조할 수 없음",
+          "정책 위반 후보가 왜 제외/감점됐는지 로그로 재현하기 어려움",
+          "동일 입력 재실행 시 일반 지식 기반 설명이 바뀔 가능성이 있음"
+        ]
+      },
+      "comparison": {
+        "with_rag_advantage": [
+          "검증 체크 11/11 통과",
+          "추천 장소, 제외 후보, 감점 사유를 같은 데이터 구조로 추적",
+          "방문 전 확인 항목을 상황별 정책어와 연결"
+        ],
+        "needs_no_rag_experiment": true
+      }
+    },
+    {
+      "id": "wheelchair_access",
+      "label": "휠체어",
+      "title": "휠체어 접근 확인 코스",
+      "intent": "휠체어 접근, 장애인 화장실, 주차 정보를 우선 확인하고 경사·계단 변수를 노출하는 코스",
+      "with_rag": {
+        "status": "통과",
+        "score_total": 87,
+        "grade": "A",
+        "route_names": [
+          "제주문학관",
+          "제주국제컨벤션센터",
+          "제주한란전시관",
+          "김만덕기념관"
+        ],
+        "route_categories": [
+          "indoor",
+          "indoor",
+          "indoor",
+          "indoor"
+        ],
+        "total_checks": 11,
+        "passed_checks": 11,
+        "failed_checks": 0,
+        "excluded_candidate_samples": 0,
+        "deduction_samples": 10
+      },
+      "without_rag_baseline": {
+        "status": "실패",
+        "observed": true,
+        "comparable": true,
+        "prompt": "휠체어를 이용하는 사람이 제주에서 갈 만한 대표 코스를 추천해줘.",
+        "raw_response": "제주를 처음 방문한다면 성산일출봉, 우도, 동문재래시장, 협재해수욕장을 추천합니다. 모두 유명해서 여행 만족도가 높습니다.",
+        "route_names": [
+          "성산일출봉",
+          "우도",
+          "동문재래시장",
+          "협재해수욕장"
+        ],
+        "route_categories": [
+          "oreum",
+          "sea",
+          "food_market",
+          "sea"
+        ],
+        "total_checks": 11,
+        "passed_checks": 1,
+        "failed_checks": 10,
+        "failed_check_names": [
+          "추천:총점 기준",
+          "추천:추천 장소 차단 여부",
+          "추천:도보 부담",
+          "근거:필수 편의시설 상태",
+          "설명:추천 근거: 도보 부담",
+          "설명:추천 근거: 편의시설",
+          "설명:방문 전 확인: 경사",
+          "설명:방문 전 확인: 바닥",
+          "설명:방문 전 확인: 주차",
+          "감점/제외:정책 효과: 경사"
+        ],
+        "expected_failure_modes": [
+          "없는 편의시설이나 접근 가능성을 일반 지식으로 단정할 위험",
+          "출처/검수 상태가 없는 설명을 근거처럼 제시할 위험",
+          "추천 근거 필수어(도보 부담, 편의시설)가 누락될 위험",
+          "방문 전 확인 항목(경사, 바닥, 주차)이 누락될 위험",
+          "감점/제외 정책 효과(경사)가 설명에 드러나지 않을 위험"
+        ],
+        "validation_gap": [
+          "장소별 검수 상태와 출처를 응답 근거로 대조할 수 없음",
+          "정책 위반 후보가 왜 제외/감점됐는지 로그로 재현하기 어려움",
+          "동일 입력 재실행 시 일반 지식 기반 설명이 바뀔 가능성이 있음"
+        ]
+      },
+      "comparison": {
+        "with_rag_advantage": [
+          "검증 체크 11/11 통과",
+          "추천 장소, 제외 후보, 감점 사유를 같은 데이터 구조로 추적",
+          "방문 전 확인 항목을 상황별 정책어와 연결"
+        ],
+        "needs_no_rag_experiment": true
+      }
+    },
+    {
+      "id": "stroller_family",
+      "label": "아이 동반",
+      "title": "아이 동반 짧은 코스",
+      "intent": "아이와 보호자가 쉬어갈 수 있고 계단·비포장 부담을 줄이는 짧은 코스",
+      "with_rag": {
+        "status": "통과",
+        "score_total": 88,
+        "grade": "A",
+        "route_names": [
+          "제주문학관",
+          "제주국제컨벤션센터",
+          "사려니숲길 무장애나눔길",
+          "신산공원"
+        ],
+        "route_categories": [
+          "indoor",
+          "indoor",
+          "forest",
+          "rest_area"
+        ],
+        "total_checks": 13,
+        "passed_checks": 13,
+        "failed_checks": 0,
+        "excluded_candidate_samples": 0,
+        "deduction_samples": 10
+      },
+      "without_rag_baseline": {
+        "status": "실패",
+        "observed": true,
+        "comparable": true,
+        "prompt": "유모차를 쓰는 아이 동반 가족에게 제주 코스를 추천해줘.",
+        "raw_response": "아이와 함께 제주를 느끼려면 협재해수욕장, 성산일출봉, 동문재래시장, 우도를 추천합니다. 사진 찍기 좋고 제주 대표 여행지입니다.",
+        "route_names": [
+          "협재해수욕장",
+          "성산일출봉",
+          "동문재래시장",
+          "우도"
+        ],
+        "route_categories": [
+          "sea",
+          "oreum",
+          "food_market",
+          "sea"
+        ],
+        "total_checks": 13,
+        "passed_checks": 1,
+        "failed_checks": 12,
+        "failed_check_names": [
+          "추천:총점 기준",
+          "추천:추천 장소 차단 여부",
+          "추천:도보 부담",
+          "추천:필수 장소 성격 포함",
+          "근거:필수 편의시설 상태",
+          "설명:추천 근거: 아이",
+          "설명:추천 근거: 유모차",
+          "설명:방문 전 확인: 경사",
+          "설명:방문 전 확인: 바닥",
+          "설명:방문 전 확인: 휴식",
+          "감점/제외:정책 효과: 경사",
+          "감점/제외:정책 효과: 날씨"
+        ],
+        "expected_failure_modes": [
+          "없는 편의시설이나 접근 가능성을 일반 지식으로 단정할 위험",
+          "출처/검수 상태가 없는 설명을 근거처럼 제시할 위험",
+          "추천 근거 필수어(아이, 유모차)가 누락될 위험",
+          "방문 전 확인 항목(경사, 바닥, 휴식)이 누락될 위험",
+          "감점/제외 정책 효과(경사, 날씨)가 설명에 드러나지 않을 위험"
+        ],
+        "validation_gap": [
+          "장소별 검수 상태와 출처를 응답 근거로 대조할 수 없음",
+          "정책 위반 후보가 왜 제외/감점됐는지 로그로 재현하기 어려움",
+          "동일 입력 재실행 시 일반 지식 기반 설명이 바뀔 가능성이 있음"
+        ]
+      },
+      "comparison": {
+        "with_rag_advantage": [
+          "검증 체크 13/13 통과",
+          "추천 장소, 제외 후보, 감점 사유를 같은 데이터 구조로 추적",
+          "방문 전 확인 항목을 상황별 정책어와 연결"
+        ],
+        "needs_no_rag_experiment": true
+      }
+    },
+    {
+      "id": "weather_sensitive",
+      "label": "날씨 민감",
+      "title": "날씨 영향을 줄인 코스",
+      "intent": "비·바람·더위 영향을 줄이고 실내 대피 가능성이 높은 장소를 우선하는 코스",
+      "with_rag": {
+        "status": "통과",
+        "score_total": 94,
+        "grade": "A",
+        "route_names": [
+          "제주문학관",
+          "제주국제컨벤션센터",
+          "제주한란전시관",
+          "제주세계자연유산센터"
+        ],
+        "route_categories": [
+          "indoor",
+          "indoor",
+          "indoor",
+          "indoor"
+        ],
+        "total_checks": 12,
+        "passed_checks": 12,
+        "failed_checks": 0,
+        "excluded_candidate_samples": 3,
+        "deduction_samples": 10
+      },
+      "without_rag_baseline": {
+        "status": "실패",
+        "observed": true,
+        "comparable": true,
+        "prompt": "비와 바람, 더위에 민감한 사람이 제주에서 갈 만한 코스를 추천해줘.",
+        "raw_response": "제주다운 풍경을 보려면 협재해수욕장, 성산일출봉, 새별오름, 우도가 좋습니다. 날씨가 좋으면 전망과 바다를 함께 즐길 수 있습니다.",
+        "route_names": [
+          "협재해수욕장",
+          "성산일출봉",
+          "새별오름",
+          "우도"
+        ],
+        "route_categories": [
+          "sea",
+          "oreum",
+          "oreum",
+          "sea"
+        ],
+        "total_checks": 12,
+        "passed_checks": 1,
+        "failed_checks": 11,
+        "failed_check_names": [
+          "추천:총점 기준",
+          "추천:추천 장소 차단 여부",
+          "추천:도보 부담",
+          "제외:상위 추천 제외 유형",
+          "제외:날씨 민감도",
+          "설명:추천 근거: 도보 부담",
+          "설명:추천 근거: 편의시설",
+          "설명:방문 전 확인: 강풍",
+          "설명:방문 전 확인: 그늘",
+          "설명:방문 전 확인: 날씨",
+          "감점/제외:정책 효과: 날씨"
+        ],
+        "expected_failure_modes": [
+          "없는 편의시설이나 접근 가능성을 일반 지식으로 단정할 위험",
+          "출처/검수 상태가 없는 설명을 근거처럼 제시할 위험",
+          "제외 대상 카테고리(oreum, sea)를 일관되게 배제하지 못할 위험",
+          "추천 근거 필수어(도보 부담, 편의시설)가 누락될 위험",
+          "방문 전 확인 항목(강풍, 그늘, 날씨)이 누락될 위험",
+          "감점/제외 정책 효과(날씨)가 설명에 드러나지 않을 위험"
+        ],
+        "validation_gap": [
+          "장소별 검수 상태와 출처를 응답 근거로 대조할 수 없음",
+          "정책 위반 후보가 왜 제외/감점됐는지 로그로 재현하기 어려움",
+          "동일 입력 재실행 시 일반 지식 기반 설명이 바뀔 가능성이 있음"
+        ]
+      },
+      "comparison": {
+        "with_rag_advantage": [
+          "검증 체크 12/12 통과",
+          "추천 장소, 제외 후보, 감점 사유를 같은 데이터 구조로 추적",
+          "방문 전 확인 항목을 상황별 정책어와 연결"
+        ],
+        "needs_no_rag_experiment": true
+      }
+    }
+  ]
+}

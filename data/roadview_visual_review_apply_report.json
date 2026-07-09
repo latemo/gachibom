@@ -1,0 +1,359 @@
+{
+  "generated_at": "2026-07-09",
+  "source_roadview_image_review_generated_at": "2026-07-09",
+  "source_visual_review_sheet_generated_at": "2026-07-09",
+  "summary": {
+    "total": 17,
+    "by_action": {
+      "skipped_pending_input": 17
+    },
+    "by_new_status": {
+      "open": 17
+    },
+    "by_new_review_decision": {
+      "pending_visual_review": 17
+    }
+  },
+  "items": [
+    {
+      "card": {
+        "id": "jeju_roadview_place_038",
+        "name": "국립제주박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_088",
+        "name": "김녕미로공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_100",
+        "name": "삼성혈",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_095",
+        "name": "상효원수목원",
+        "region": "서귀포시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_053",
+        "name": "서귀포시립기당미술관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_104",
+        "name": "스누피가든",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_4_3_001",
+        "name": "제주4.3평화공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_066",
+        "name": "제주고산리유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_014",
+        "name": "제주교육박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_025",
+        "name": "제주도립김창열미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_013",
+        "name": "제주민속자연사박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_010",
+        "name": "제주삼양동유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_017",
+        "name": "제주아트센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_084",
+        "name": "제주웰컴센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_024",
+        "name": "제주현대미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_105",
+        "name": "한림공원(아열대식물원)",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_096",
+        "name": "휴애리자연생활공원",
+        "region": "서귀포시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "action": "skipped_pending_input",
+      "previous_status": "open",
+      "new_status": "open",
+      "previous_review_decision": "pending_visual_review",
+      "new_review_decision": "pending_visual_review",
+      "field_statuses": {
+        "entrance_step_or_ramp": "pending_visual_review",
+        "main_path_slope": "pending_visual_review",
+        "surface_condition": "pending_visual_review",
+        "parking_to_entrance_route": "pending_visual_review"
+      }
+    }
+  ]
+}

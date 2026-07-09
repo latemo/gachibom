@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_visual_review_pipeline_report.schema.json",
+  "title": "Jeju Maeum Roadview Visual Review Pipeline Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "status", "summary", "outputs", "next_action"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "status": { "type": "string", "enum": ["completed", "blocked_invalid_decisions"] },
+    "summary": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "outputs": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "next_action": { "type": "string" }
+  }
+}

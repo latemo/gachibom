@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/place_data_operations_summary.schema.json",
+  "title": "Jeju Maeum Place Data Operations Summary",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "generated_at",
+    "summary",
+    "counts",
+    "raw_catalog",
+    "public_gate",
+    "category_policy",
+    "accessibility_field_coverage",
+    "scenario_rule_summary",
+    "operating_policies",
+    "next_actions"
+  ],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_places",
+        "public_candidate_places",
+        "review_only_places",
+        "blocked_from_default_recommendation",
+        "needs_check_places"
+      ],
+      "properties": {
+        "total_places": { "type": "integer", "minimum": 0 },
+        "public_candidate_places": { "type": "integer", "minimum": 0 },
+        "review_only_places": { "type": "integer", "minimum": 0 },
+        "blocked_from_default_recommendation": { "type": "integer", "minimum": 0 },
+        "needs_check_places": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["by_status", "by_verification_status", "by_category"],
+      "properties": {
+        "by_status": { "$ref": "#/$defs/countMap" },
+        "by_verification_status": { "$ref": "#/$defs/countMap" },
+        "by_category": { "$ref": "#/$defs/countMap" }
+      }
+    },
+    "raw_catalog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_items",
+        "matched_items",
+        "candidate_match_items",
+        "unmatched_items",
+        "by_status",
+        "by_category",
+        "by_match_status",
+        "policy"
+      ],
+      "properties": {
+        "total_items": { "type": "integer", "minimum": 0 },
+        "matched_items": { "type": "integer", "minimum": 0 },
+        "candidate_match_items": { "type": "integer", "minimum": 0 },
+        "unmatched_items": { "type": "integer", "minimum": 0 },
+        "by_status": { "$ref": "#/$defs/countMap" },
+        "by_category": { "$ref": "#/$defs/countMap" },
+        "by_match_status": { "$ref": "#/$defs/countMap" },
+        "policy": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "public_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["public_default_recommendation", "review_only", "never_default_recommendation"],
+      "properties": {
+        "public_default_recommendation": { "$ref": "#/$defs/stringList" },
+        "review_only": { "$ref": "#/$defs/stringList" },
+        "never_default_recommendation": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "category_policy": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["category", "current_count", "policy"],
+        "properties": {
+          "category": { "type": "string" },
+          "current_count": { "type": "integer", "minimum": 0 },
+          "policy": { "type": "string" }
+        }
+      }
+    },
+    "accessibility_field_coverage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "label", "total_places", "usable_count", "missing_count", "state_counts"],
+        "properties": {
+          "field": { "type": "string" },
+          "label": { "type": "string" },
+          "total_places": { "type": "integer", "minimum": 0 },
+          "usable_count": { "type": "integer", "minimum": 0 },
+          "missing_count": { "type": "integer", "minimum": 0 },
+          "state_counts": { "$ref": "#/$defs/countMap" }
+        }
+      }
+    },
+    "scenario_rule_summary": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "description",
+          "trigger_terms_count",
+          "exclude_categories",
+          "penalize_categories",
+          "check_before_visit"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "description": { "type": "string" },
+          "trigger_terms_count": { "type": "integer", "minimum": 0 },
+          "exclude_categories": { "$ref": "#/$defs/stringList" },
+          "penalize_categories": { "$ref": "#/$defs/stringList" },
+          "check_before_visit": { "$ref": "#/$defs/stringList" }
+        }
+      }
+    },
+    "operating_policies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "verification", "service_expansion"],
+      "properties": {
+        "status": { "$ref": "#/$defs/stringMap" },
+        "verification": { "$ref": "#/$defs/stringMap" },
+        "service_expansion": { "$ref": "#/$defs/stringMap" }
+      }
+    },
+    "next_actions": { "$ref": "#/$defs/stringList" }
+  },
+  "$defs": {
+    "countMap": {
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "stringMap": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "stringList": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

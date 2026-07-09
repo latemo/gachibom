@@ -1,0 +1,1079 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>제주의마음 Miro 스타일 서비스 시안</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root {
+      --primary: #1c1c1e;
+      --on-primary: #ffffff;
+      --yellow: #ffd02f;
+      --yellow-light: #fff4c4;
+      --yellow-dark: #746019;
+      --blue: #4262ff;
+      --blue-soft: #f5f3ff;
+      --coral: #ffc6c6;
+      --coral-dark: #600000;
+      --rose: #fde0f0;
+      --teal: #0fbcb0;
+      --teal-soft: #c3faf5;
+      --mint: #dff8df;
+      --orange: #ffe6cd;
+      --canvas: #ffffff;
+      --surface: #f7f8fa;
+      --surface-soft: #fafbfc;
+      --hairline: #e0e2e8;
+      --hairline-soft: #eef0f3;
+      --hairline-strong: #c7cad5;
+      --ink-deep: #050038;
+      --ink: #1c1c1e;
+      --slate: #555a6a;
+      --steel: #6b6f7e;
+      --muted: #8e91a0;
+      --success: #00b473;
+      --shadow-board: rgba(5, 0, 56, 0.08) 0 12px 32px -4px;
+      --shadow-soft: rgba(5, 0, 56, 0.06) 0 4px 12px 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: "Roobert PRO", "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+      letter-spacing: 0;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .promo {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 18px;
+      background: var(--primary);
+      color: var(--on-primary);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .promo span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      border-radius: 999px;
+      padding: 2px 10px;
+      background: var(--yellow);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      border-bottom: 1px solid var(--hairline-soft);
+      padding: 14px 32px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--yellow);
+      color: var(--ink-deep);
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--ink-deep);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--steel);
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: var(--slate);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pill-button {
+      min-height: 42px;
+      border: 1px solid var(--primary);
+      border-radius: 999px;
+      padding: 0 20px;
+      background: var(--primary);
+      color: var(--on-primary);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .pill-button.secondary {
+      border-color: var(--hairline-strong);
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .page {
+      max-width: 1420px;
+      margin: 0 auto;
+      padding: 36px 32px 64px;
+    }
+
+    .hero-workspace {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .brief-panel {
+      min-height: 660px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--hairline-soft);
+      border-radius: 28px;
+      padding: 32px;
+      background: var(--yellow);
+      color: var(--primary);
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      min-height: 30px;
+      border-radius: 999px;
+      padding: 4px 12px;
+      background: var(--canvas);
+      color: var(--yellow-dark);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    h1 {
+      margin: 24px 0 0;
+      color: var(--ink-deep);
+      font-size: clamp(42px, 5.4vw, 78px);
+      font-weight: 500;
+      line-height: 1.03;
+      letter-spacing: -1.4px;
+    }
+
+    .brief-panel p {
+      max-width: 520px;
+      margin: 20px 0 0;
+      color: #292915;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .brief-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .stat-card {
+      min-height: 112px;
+      border: 1px solid rgba(5, 0, 56, 0.12);
+      border-radius: 20px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    .stat-card strong {
+      display: block;
+      color: var(--ink-deep);
+      font-size: 36px;
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.5px;
+    }
+
+    .stat-card span {
+      display: block;
+      margin-top: 8px;
+      color: var(--slate);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .board-shell {
+      min-height: 660px;
+      border: 1px solid var(--hairline-soft);
+      border-radius: 20px;
+      background: var(--canvas);
+      box-shadow: var(--shadow-board);
+      overflow: hidden;
+    }
+
+    .board-top {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--hairline-soft);
+      padding: 12px 18px;
+      background: var(--surface-soft);
+    }
+
+    .board-title {
+      min-width: 0;
+    }
+
+    .board-title strong {
+      display: block;
+      color: var(--ink-deep);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .board-title span {
+      display: block;
+      margin-top: 2px;
+      color: var(--steel);
+      font-size: 12px;
+    }
+
+    .board-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .circle-button {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--hairline);
+      border-radius: 999px;
+      background: var(--canvas);
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .board-canvas {
+      display: grid;
+      grid-template-columns: minmax(230px, 0.75fr) minmax(0, 1.35fr) minmax(240px, 0.9fr);
+      gap: 18px;
+      min-height: 600px;
+      padding: 22px;
+      background:
+        linear-gradient(var(--hairline-soft) 1px, transparent 1px),
+        linear-gradient(90deg, var(--hairline-soft) 1px, transparent 1px),
+        var(--canvas);
+      background-size: 28px 28px;
+    }
+
+    .board-column {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .column-label {
+      width: fit-content;
+      border-radius: 999px;
+      padding: 5px 10px;
+      background: var(--primary);
+      color: var(--on-primary);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .condition-card,
+    .place-card,
+    .ai-card,
+    .detail-card {
+      border: 1px solid rgba(5, 0, 56, 0.08);
+      border-radius: 28px;
+      padding: 18px;
+      color: var(--ink);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .condition-card {
+      background: var(--rose);
+    }
+
+    .condition-card.teal {
+      background: var(--teal-soft);
+    }
+
+    .condition-card.orange {
+      background: var(--orange);
+    }
+
+    .condition-card strong,
+    .place-card strong,
+    .ai-card strong,
+    .detail-card strong {
+      display: block;
+      color: var(--ink-deep);
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .condition-card p,
+    .place-card p,
+    .ai-card p,
+    .detail-card p {
+      margin: 8px 0 0;
+      color: var(--slate);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .segment {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      border: 1px solid rgba(5, 0, 56, 0.12);
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .scenario-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 8px;
+      border: 1px solid var(--hairline);
+      border-radius: 999px;
+      background: var(--surface);
+    }
+
+    .scenario-tab {
+      min-height: 34px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 6px 12px;
+      background: var(--canvas);
+      color: var(--steel);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .scenario-tab.active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    .route-stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .place-card {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: start;
+      border-radius: 16px;
+      background: var(--canvas);
+      box-shadow: none;
+    }
+
+    .place-card.featured {
+      border: 2px solid var(--blue);
+      background: var(--blue-soft);
+    }
+
+    .route-number {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .score-pill {
+      min-width: 68px;
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: var(--primary);
+      color: var(--on-primary);
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .ai-card {
+      background: var(--teal-soft);
+    }
+
+    .ai-card .badge {
+      width: fit-content;
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: var(--success);
+      color: var(--on-primary);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .progress-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .progress-item {
+      display: grid;
+      gap: 6px;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--slate);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .bar {
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--primary);
+    }
+
+    .detail-card {
+      background: var(--canvas);
+      border-radius: 16px;
+      box-shadow: none;
+    }
+
+    .detail-media {
+      overflow: hidden;
+      border-radius: 16px;
+      aspect-ratio: 16 / 10;
+      background: var(--surface);
+    }
+
+    .detail-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .check-item {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      color: var(--slate);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .check-dot {
+      width: 9px;
+      height: 9px;
+      flex: 0 0 auto;
+      margin-top: 5px;
+      border-radius: 999px;
+      background: var(--blue);
+    }
+
+    .section {
+      margin-top: 32px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 16px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      color: var(--ink-deep);
+      font-size: clamp(28px, 3.4vw, 48px);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.6px;
+    }
+
+    .section-head p {
+      max-width: 560px;
+      margin: 0;
+      color: var(--steel);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .feature-card {
+      min-height: 240px;
+      border-radius: 28px;
+      padding: 24px;
+      color: var(--ink);
+    }
+
+    .feature-card h3 {
+      margin: 0;
+      color: var(--ink-deep);
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 1.22;
+    }
+
+    .feature-card p {
+      margin: 14px 0 0;
+      color: var(--slate);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .feature-card.yellow {
+      background: var(--yellow);
+    }
+
+    .feature-card.coral {
+      background: var(--coral);
+    }
+
+    .feature-card.teal {
+      background: var(--teal-soft);
+    }
+
+    .mini-board {
+      display: grid;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .mini-row {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border: 1px solid rgba(5, 0, 56, 0.12);
+      border-radius: 14px;
+      padding: 9px 12px;
+      background: rgba(255, 255, 255, 0.68);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .dark-cta {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      margin-top: 32px;
+      border-radius: 32px;
+      padding: 36px;
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+
+    .dark-cta h2 {
+      margin: 0;
+      font-size: clamp(28px, 3.4vw, 48px);
+      font-weight: 500;
+      line-height: 1.12;
+      letter-spacing: -0.6px;
+    }
+
+    .dark-cta p {
+      max-width: 680px;
+      margin: 12px 0 0;
+      color: var(--on-primary);
+      opacity: 0.72;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .dark-cta .pill-button {
+      border-color: var(--on-primary);
+      background: var(--on-primary);
+      color: var(--primary);
+    }
+
+    @media (max-width: 1180px) {
+      .hero-workspace,
+      .dark-cta {
+        grid-template-columns: 1fr;
+      }
+
+      .brief-panel,
+      .board-shell {
+        min-height: auto;
+      }
+
+      .board-canvas {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .promo {
+        justify-content: flex-start;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 18px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .top-actions {
+        width: 100%;
+      }
+
+      .top-actions .pill-button {
+        flex: 1;
+        padding: 0 12px;
+      }
+
+      .page {
+        padding: 24px 18px 48px;
+      }
+
+      .brief-panel,
+      .dark-cta {
+        border-radius: 24px;
+        padding: 24px;
+      }
+
+      .stat-row,
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .board-canvas {
+        padding: 14px;
+      }
+
+      .place-card {
+        grid-template-columns: 1fr;
+      }
+
+      .score-pill {
+        width: fit-content;
+      }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="promo">
+    <span>서비스 시안</span>
+    제주의마음 접근성 추천 화면을 Miro식 보드 경험으로 재구성
+  </div>
+
+  <header class="topbar">
+    <div class="brand" aria-label="제주의마음">
+      <div class="brand-mark">JM</div>
+      <div>
+        <strong>제주의마음</strong>
+        <span>접근성 여행 추천</span>
+      </div>
+    </div>
+    <nav class="nav-links" aria-label="주요 화면">
+      <span>조건</span>
+      <span>추천</span>
+      <span>장소 상세</span>
+      <span>검수 근거</span>
+    </nav>
+    <div class="top-actions">
+      <button class="pill-button secondary" type="button">운영자 보기</button>
+      <button class="pill-button" type="button">추천 시작</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero-workspace" aria-label="추천 서비스 첫 화면">
+      <aside class="brief-panel">
+        <div>
+          <span class="kicker">마음동행 AI + 접근성 점수 엔진</span>
+          <h1>조건을 보드에 올리면 제주 코스가 바로 정리됩니다.</h1>
+          <p>음식 제한, 휠체어 접근, 날씨 민감도, 휴식 필요 같은 조건을 한 화면에서 조합하고 검수된 장소만 추천합니다.</p>
+          <div class="brief-actions">
+            <button class="pill-button" type="button">맞춤 추천 받기</button>
+            <button class="pill-button secondary" type="button">검수 기준 보기</button>
+          </div>
+        </div>
+        <div class="stat-row" aria-label="서비스 지표">
+          <div class="stat-card">
+            <strong>35</strong>
+            <span>앱 추천 후보</span>
+          </div>
+          <div class="stat-card">
+            <strong>5</strong>
+            <span>상황별 추천 기준</span>
+          </div>
+          <div class="stat-card">
+            <strong>A</strong>
+            <span>현재 코스 적합도</span>
+          </div>
+        </div>
+      </aside>
+
+      <section class="board-shell" aria-label="추천 보드">
+        <div class="board-top">
+          <div class="board-title">
+            <strong>회복 중 여행자 추천 보드</strong>
+            <span>실시간 추천 API · 마음동행 AI 설명 반영</span>
+          </div>
+          <div class="board-controls" aria-label="보드 도구">
+            <button class="circle-button" type="button" aria-label="검색">찾기</button>
+            <button class="circle-button" type="button" aria-label="공유">공유</button>
+          </div>
+        </div>
+
+        <div class="board-canvas">
+          <div class="board-column">
+            <span class="column-label">입력 조건</span>
+            <div class="scenario-tabs" aria-label="상황 선택">
+              <button class="scenario-tab active" type="button" data-scenario="recovery">회복 중</button>
+              <button class="scenario-tab" type="button" data-scenario="wheelchair">휠체어</button>
+              <button class="scenario-tab" type="button" data-scenario="diet">음식 제한</button>
+            </div>
+            <article class="condition-card">
+              <strong>여행자 상태</strong>
+              <p id="travelerCopy">체력 저하와 긴 걷기 부담이 있어 실내, 문화, 휴식 중심으로 해석합니다.</p>
+              <div class="segment" id="travelerChips">
+                <span class="chip">회복 중</span>
+                <span class="chip">보호자 동반</span>
+                <span class="chip">휴식 필요</span>
+              </div>
+            </article>
+            <article class="condition-card teal">
+              <strong>필수 접근성</strong>
+              <p>장애인 화장실, 주차, 휴식 공간을 우선 점검합니다.</p>
+              <div class="segment">
+                <span class="chip">화장실</span>
+                <span class="chip">주차</span>
+                <span class="chip">휴식 공간</span>
+              </div>
+            </article>
+            <article class="condition-card orange">
+              <strong>제외 조건</strong>
+              <p id="avoidCopy">혼잡과 장시간 야외 체류는 감점합니다.</p>
+              <div class="segment" id="avoidChips">
+                <span class="chip">혼잡 감점</span>
+                <span class="chip">야외 최소화</span>
+              </div>
+            </article>
+          </div>
+
+          <div class="board-column">
+            <span class="column-label">추천 코스</span>
+            <div class="route-stack" id="routeStack">
+              <article class="place-card featured">
+                <div class="route-number">1</div>
+                <div>
+                  <strong>제주문학관</strong>
+                  <p>도보 부담이 낮고 실내 문화 코스로 적합합니다.</p>
+                  <div class="segment">
+                    <span class="chip">실내</span>
+                    <span class="chip">화장실 확인</span>
+                    <span class="chip">휴식</span>
+                  </div>
+                </div>
+                <div class="score-pill">96점</div>
+              </article>
+              <article class="place-card">
+                <div class="route-number">2</div>
+                <div>
+                  <strong>제주한란전시관</strong>
+                  <p>짧은 관람과 실내 체류 중심으로 조정하기 좋습니다.</p>
+                  <div class="segment">
+                    <span class="chip">문화</span>
+                    <span class="chip">주차</span>
+                  </div>
+                </div>
+                <div class="score-pill">92점</div>
+              </article>
+              <article class="place-card">
+                <div class="route-number">3</div>
+                <div>
+                  <strong>사려니숲길 무장애나눔길</strong>
+                  <p>날씨와 체류 시간을 확인하면 짧은 자연 코스로 활용 가능합니다.</p>
+                  <div class="segment">
+                    <span class="chip">무장애길</span>
+                    <span class="chip">날씨 확인</span>
+                  </div>
+                </div>
+                <div class="score-pill">89점</div>
+              </article>
+            </div>
+          </div>
+
+          <div class="board-column">
+            <span class="column-label">판단 근거</span>
+            <article class="ai-card">
+              <div class="badge">AI 설명 반영</div>
+              <strong style="margin-top: 12px;">무리하지 않는 실내 중심 코스입니다.</strong>
+              <p>추천은 점수 엔진이 먼저 계산하고, 마음동행 AI는 계산된 장소와 근거만 자연어로 설명합니다.</p>
+              <div class="progress-list">
+                <div class="progress-item">
+                  <div class="progress-meta"><span>이동 부담</span><span>25/25</span></div>
+                  <div class="bar"><span style="width: 100%"></span></div>
+                </div>
+                <div class="progress-item">
+                  <div class="progress-meta"><span>편의시설</span><span>18/20</span></div>
+                  <div class="bar"><span style="width: 90%"></span></div>
+                </div>
+                <div class="progress-item">
+                  <div class="progress-meta"><span>안전 안내</span><span>15/15</span></div>
+                  <div class="bar"><span style="width: 100%"></span></div>
+                </div>
+              </div>
+            </article>
+            <article class="detail-card">
+              <div class="detail-media">
+                <img src="assets/WELCOME-1-001.jpg" alt="실내 진입부 확인 이미지">
+              </div>
+              <strong style="margin-top: 14px;">방문 전 확인</strong>
+              <div class="check-list">
+                <div class="check-item"><span class="check-dot"></span><span>장애인 화장실 운영 여부</span></div>
+                <div class="check-item"><span class="check-dot"></span><span>주차장에서 입구까지 동선</span></div>
+                <div class="check-item"><span class="check-dot"></span><span>현장 혼잡 시간대</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="section" aria-label="서비스 화면 구성">
+      <div class="section-head">
+        <h2>서비스 화면은 카드가 아니라 보드처럼 움직입니다.</h2>
+        <p>사용자는 조건을 고르고, 서비스는 장소 후보를 보드 위에서 정렬합니다. 추천 이유와 감점 이유는 별도 설명 문서가 아니라 같은 화면의 판단 근거로 붙습니다.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card yellow">
+          <h3>조건 입력</h3>
+          <p>상황, 이동 부담, 음식 제한, 날씨 민감도, 필수 시설을 sticky note처럼 빠르게 조합합니다.</p>
+          <div class="mini-board">
+            <div class="mini-row"><span>음식 제한</span><strong>식당 제외</strong></div>
+            <div class="mini-row"><span>이동</span><strong>짧은 동선</strong></div>
+          </div>
+        </article>
+        <article class="feature-card coral">
+          <h3>추천 결과</h3>
+          <p>점수 높은 장소를 단순 나열하지 않고, 실제 이동 순서와 체류 부담을 같이 보여줍니다.</p>
+          <div class="mini-board">
+            <div class="mini-row"><span>제주문학관</span><strong>96점</strong></div>
+            <div class="mini-row"><span>한란전시관</span><strong>92점</strong></div>
+          </div>
+        </article>
+        <article class="feature-card teal">
+          <h3>검수 근거</h3>
+          <p>사진, 출처, 접근성 항목, 방문 전 확인을 하나의 장소 상세 패널에서 확인합니다.</p>
+          <div class="mini-board">
+            <div class="mini-row"><span>화장실</span><strong>확인됨</strong></div>
+            <div class="mini-row"><span>혼잡도</span><strong>확인 필요</strong></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="dark-cta" aria-label="다음 단계">
+      <div>
+        <h2>이 방향으로 가면 앱은 설명형 서비스가 아니라 의사결정 보드가 됩니다.</h2>
+        <p>다음 단계는 이 시안을 실제 `web/index.html` 구조로 옮기고, 추천 API 응답을 이 보드 레이아웃에 맞춰 재정렬하는 것입니다.</p>
+      </div>
+      <button class="pill-button" type="button">이 시안으로 적용</button>
+    </section>
+  </main>
+
+  <script>
+    const scenarios = {
+      recovery: {
+        title: "회복 중 여행자 추천 보드",
+        traveler: "체력 저하와 긴 걷기 부담이 있어 실내, 문화, 휴식 중심으로 해석합니다.",
+        chips: ["회복 중", "보호자 동반", "휴식 필요"],
+        avoid: "혼잡과 장시간 야외 체류는 감점합니다.",
+        avoidChips: ["혼잡 감점", "야외 최소화"],
+        places: [
+          ["제주문학관", "도보 부담이 낮고 실내 문화 코스로 적합합니다.", "96점", ["실내", "화장실 확인", "휴식"]],
+          ["제주한란전시관", "짧은 관람과 실내 체류 중심으로 조정하기 좋습니다.", "92점", ["문화", "주차"]],
+          ["사려니숲길 무장애나눔길", "날씨와 체류 시간을 확인하면 짧은 자연 코스로 활용 가능합니다.", "89점", ["무장애길", "날씨 확인"]]
+        ]
+      },
+      wheelchair: {
+        title: "휠체어 접근 확인 보드",
+        traveler: "경사와 계단 정보를 우선 확인하고, 화장실과 주차가 있는 실내 장소를 우선합니다.",
+        chips: ["휠체어", "경사 확인", "주차 필요"],
+        avoid: "정보 부족, 계단, 바닥 상태 미확인은 강하게 감점합니다.",
+        avoidChips: ["계단 제외", "정보 부족 감점"],
+        places: [
+          ["제주문학관", "실내 동선과 편의시설 확인 상태가 좋아 1순위 후보입니다.", "95점", ["실내", "장애인 화장실", "주차"]],
+          ["제주국제컨벤션센터", "대형 시설이라 진입과 화장실 확인 가능성이 높습니다.", "91점", ["실내", "넓은 동선"]],
+          ["제주한란전시관", "짧은 관람으로 부담을 낮출 수 있습니다.", "88점", ["문화", "짧은 동선"]]
+        ]
+      },
+      diet: {
+        title: "음식 제한 여행자 추천 보드",
+        traveler: "식당과 시장을 제외하고, 외부 음식 제한 가능성이 낮은 관람 중심 장소를 우선합니다.",
+        chips: ["음식 제한", "식당 제외", "짧은 체류"],
+        avoid: "식당, 카페, 시장, 시식 중심 장소는 추천에서 제외하거나 감점합니다.",
+        avoidChips: ["식당 제외", "시장 제외", "시식 감점"],
+        places: [
+          ["제주문학관", "식사 없이 관람 가능한 실내 문화 장소입니다.", "94점", ["실내", "식당 제외", "휴식"]],
+          ["제주한란전시관", "짧은 체류와 조용한 관람에 맞습니다.", "90점", ["문화", "짧은 동선"]],
+          ["제주국제컨벤션센터", "식사 없이 휴식과 실내 이동 중심으로 조정 가능합니다.", "87점", ["실내", "주차"]]
+        ]
+      }
+    };
+
+    const tabs = document.querySelectorAll(".scenario-tab");
+    const boardTitle = document.querySelector(".board-title strong");
+    const travelerCopy = document.getElementById("travelerCopy");
+    const travelerChips = document.getElementById("travelerChips");
+    const avoidCopy = document.getElementById("avoidCopy");
+    const avoidChips = document.getElementById("avoidChips");
+    const routeStack = document.getElementById("routeStack");
+
+    function chipHtml(values) {
+      return values.map((value) => `<span class="chip">${value}</span>`).join("");
+    }
+
+    function renderScenario(id) {
+      const scenario = scenarios[id];
+      boardTitle.textContent = scenario.title;
+      travelerCopy.textContent = scenario.traveler;
+      travelerChips.innerHTML = chipHtml(scenario.chips);
+      avoidCopy.textContent = scenario.avoid;
+      avoidChips.innerHTML = chipHtml(scenario.avoidChips);
+      routeStack.innerHTML = scenario.places.map((place, index) => `
+        <article class="place-card ${index === 0 ? "featured" : ""}">
+          <div class="route-number">${index + 1}</div>
+          <div>
+            <strong>${place[0]}</strong>
+            <p>${place[1]}</p>
+            <div class="segment">${chipHtml(place[3])}</div>
+          </div>
+          <div class="score-pill">${place[2]}</div>
+        </article>
+      `).join("");
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((item) => item.classList.remove("active"));
+        tab.classList.add("active");
+        renderScenario(tab.dataset.scenario);
+      });
+    });
+  </script>
+</body>
+</html>

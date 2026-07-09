@@ -1,0 +1,216 @@
+{
+  "generated_at": "2026-07-09",
+  "criteria": {
+    "ready_for_full_service": "자동 점검에서 blocker가 없고 외부 데이터 의존성이 해소된 상태",
+    "ready_with_warnings": "서비스 제한 공개는 가능하지만 운영 보강 warning이 남은 상태",
+    "blocked_for_full_service": "상용 서비스 공개 전 해소해야 할 blocker가 있는 상태"
+  },
+  "overall_status": "blocked_for_full_service",
+  "summary": {
+    "total_checks": 15,
+    "passed_checks": 12,
+    "warning_checks": 0,
+    "blocker_checks": 3,
+    "by_status": {
+      "pass": 12,
+      "block": 3
+    },
+    "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령을 제공기관에 요청"
+  },
+  "sections": [
+    {
+      "name": "base_place_catalog",
+      "status": "pass",
+      "checks": [
+        {
+          "check_id": "place_catalog_minimum_count",
+          "status": "pass",
+          "severity": "blocker",
+          "actual": "43 cards",
+          "expected": ">= 30 cards",
+          "detail": "제한 공개에 필요한 최소 장소 카드 수",
+          "next_action": "공식 출처 기반 장소 카드를 추가 수집"
+        },
+        {
+          "check_id": "place_catalog_source_coverage",
+          "status": "pass",
+          "severity": "blocker",
+          "actual": "43/43",
+          "expected": "100%",
+          "detail": "모든 장소 카드의 출처 보유 여부",
+          "next_action": "출처 없는 장소는 hidden 처리하거나 공식 출처를 보강"
+        },
+        {
+          "check_id": "place_catalog_safety_notes",
+          "status": "pass",
+          "severity": "blocker",
+          "actual": "43/43",
+          "expected": "100%",
+          "detail": "방문 전 주의사항과 안전 메모 보유 여부",
+          "next_action": "안전 메모가 없는 장소를 보강"
+        },
+        {
+          "check_id": "place_catalog_verified_or_partial_ratio",
+          "status": "pass",
+          "severity": "blocker",
+          "actual": "81.4%",
+          "expected": ">= 70%",
+          "detail": "verified 또는 partial 장소 비율",
+          "next_action": "needs_check 장소의 공식 출처와 접근성 필드를 보강"
+        },
+        {
+          "check_id": "place_catalog_active_visibility",
+          "status": "pass",
+          "severity": "warning",
+          "actual": "43/43",
+          "expected": "primary catalog all active",
+          "detail": "기본 장소 카탈로그 노출 상태",
+          "next_action": "hidden 또는 blocked 장소가 사용자 결과에 노출되지 않는지 확인"
+        }
+      ]
+    },
+    {
+      "name": "public_data_dependencies",
+      "status": "block",
+      "checks": [
+        {
+          "check_id": "public_data_ready_sources",
+          "status": "pass",
+          "severity": "warning",
+          "actual": "3/4",
+          "expected": "downloaded public datasets ready",
+          "detail": "다운로드형 공공데이터 로컬 산출물 준비 여부",
+          "next_action": "원본 CSV와 변환 JSON 산출물을 재생성"
+        },
+        {
+          "check_id": "roadview_image_request_submission",
+          "status": "block",
+          "severity": "blocker",
+          "actual": "awaiting_receipt",
+          "expected": "ready_to_use",
+          "detail": "로드뷰 이미지 원본 수령 상태",
+          "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령을 제공기관에 요청"
+        },
+        {
+          "check_id": "roadview_api_access_policy",
+          "status": "pass",
+          "severity": "warning",
+          "actual": "not_required_ready",
+          "expected": "not_required_ready or ready_to_use",
+          "detail": "로드뷰 OpenAPI 무인증 호출 가능 여부",
+          "next_action": "키 없이 호출 가능 확인됨. 정기 갱신 주기와 호출량·장애 대응 절차 정의"
+        }
+      ]
+    },
+    {
+      "name": "roadview_service_seed",
+      "status": "block",
+      "checks": [
+        {
+          "check_id": "roadview_service_seed_gate",
+          "status": "block",
+          "severity": "blocker",
+          "actual": "blocked",
+          "expected": "ready_for_service_activation",
+          "detail": "로드뷰 서비스 시드 17곳의 공개 승격 가능 여부",
+          "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령 후 data/raw/roadview_images에 배치"
+        },
+        {
+          "check_id": "roadview_visual_review_samples",
+          "status": "pass",
+          "severity": "blocker",
+          "actual": "missing 0",
+          "expected": "missing 0",
+          "detail": "우선 시각 검수 샘플 이미지 확보 여부",
+          "next_action": "이미지 원본 수령 후 자산 매니페스트 재생성"
+        },
+        {
+          "check_id": "roadview_active_candidates",
+          "status": "block",
+          "severity": "blocker",
+          "actual": "0/17",
+          "expected": "all service seeds promoted",
+          "detail": "서비스 시드 활성 후보 산출 여부",
+          "next_action": "로드뷰 이미지 검수 완료 후 활성 후보 산출 재실행"
+        }
+      ]
+    },
+    {
+      "name": "operational_documents",
+      "status": "pass",
+      "checks": [
+        {
+          "check_id": "document_exists_jeju_maeum_launch_checklist",
+          "status": "pass",
+          "severity": "warning",
+          "actual": "exists",
+          "expected": "exists",
+          "detail": "docs/jeju_maeum_launch_checklist.md",
+          "next_action": "운영 문서를 작성하거나 최신 산출물 링크를 반영"
+        },
+        {
+          "check_id": "document_exists_data_request_tracker_workflow",
+          "status": "pass",
+          "severity": "warning",
+          "actual": "exists",
+          "expected": "exists",
+          "detail": "docs/data_request_tracker_workflow.md",
+          "next_action": "운영 문서를 작성하거나 최신 산출물 링크를 반영"
+        },
+        {
+          "check_id": "document_exists_service_seed_gate_status_workflow",
+          "status": "pass",
+          "severity": "warning",
+          "actual": "exists",
+          "expected": "exists",
+          "detail": "docs/service_seed_gate_status_workflow.md",
+          "next_action": "운영 문서를 작성하거나 최신 산출물 링크를 반영"
+        },
+        {
+          "check_id": "document_exists_roadview_image_acquisition_guide",
+          "status": "pass",
+          "severity": "warning",
+          "actual": "exists",
+          "expected": "exists",
+          "detail": "docs/roadview_image_acquisition_guide.md",
+          "next_action": "운영 문서를 작성하거나 최신 산출물 링크를 반영"
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "check_id": "roadview_image_request_submission",
+      "status": "block",
+      "severity": "blocker",
+      "actual": "awaiting_receipt",
+      "expected": "ready_to_use",
+      "detail": "로드뷰 이미지 원본 수령 상태",
+      "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령을 제공기관에 요청"
+    },
+    {
+      "check_id": "roadview_service_seed_gate",
+      "status": "block",
+      "severity": "blocker",
+      "actual": "blocked",
+      "expected": "ready_for_service_activation",
+      "detail": "로드뷰 서비스 시드 17곳의 공개 승격 가능 여부",
+      "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령 후 data/raw/roadview_images에 배치"
+    },
+    {
+      "check_id": "roadview_active_candidates",
+      "status": "block",
+      "severity": "blocker",
+      "actual": "0/17",
+      "expected": "all service seeds promoted",
+      "detail": "서비스 시드 활성 후보 산출 여부",
+      "next_action": "로드뷰 이미지 검수 완료 후 활성 후보 산출 재실행"
+    }
+  ],
+  "warnings": [],
+  "next_actions": [
+    "누락 원본 이미지 복구 또는 대체 원본 수령을 제공기관에 요청",
+    "누락 원본 이미지 복구 또는 대체 원본 수령 후 data/raw/roadview_images에 배치",
+    "로드뷰 이미지 검수 완료 후 활성 후보 산출 재실행"
+  ]
+}

@@ -1,0 +1,1113 @@
+{
+  "generated_at": "2026-07-09",
+  "source_roadview_image_acquisition_request_generated_at": "2026-07-09",
+  "source_roadview_image_receipt_report_generated_at": "2026-07-09",
+  "source_image_asset_manifest_generated_at": "2026-07-09",
+  "source_visual_review_sheet_generated_at": "2026-07-09",
+  "source_promotion_readiness_generated_at": "2026-07-09",
+  "source_active_candidate_report_generated_at": "2026-07-09",
+  "criteria": {
+    "ready_for_service_activation": "이미지 수령, 샘플 자산, 로드뷰 시각 검수, active 후보 산출이 모두 통과",
+    "blocked": "어느 하나라도 실패하면 공개 서비스 데이터로 승격하지 않음"
+  },
+  "overall_status": "blocked",
+  "current_primary_stage": "awaiting_image_receipt",
+  "pipeline_gates": {
+    "image_acquisition_request_prepared": {
+      "status": "pass",
+      "detail": "서비스 시드 이미지 요청 목록 생성 여부",
+      "metrics": {
+        "requested_images": 1023,
+        "priority_sample_images": 102
+      }
+    },
+    "image_receipt_complete": {
+      "status": "fail",
+      "detail": "요청 이미지 원본 수령 완료 여부",
+      "metrics": {
+        "expected_images": 1023,
+        "received_requested_images": 953,
+        "missing_requested_images": 70
+      }
+    },
+    "review_samples_available": {
+      "status": "pass",
+      "detail": "우선 시각 검수 샘플 파일 준비 여부",
+      "metrics": {
+        "expected_review_sample_images": 102,
+        "available_review_sample_images": 102,
+        "missing_review_sample_images": 0
+      }
+    },
+    "visual_review_ready_or_verified": {
+      "status": "pass",
+      "detail": "시각 검수 입력 가능 또는 검증 완료 여부",
+      "metrics": {
+        "open_visual_review_places": 17,
+        "verified_roadview_places": 0,
+        "total_places": 17
+      }
+    },
+    "active_candidate_export_ready": {
+      "status": "fail",
+      "detail": "active 후보 산출 완료 여부",
+      "metrics": {
+        "promoted_count": 0,
+        "blocked_count": 17,
+        "total_places": 17
+      }
+    }
+  },
+  "summary": {
+    "total_places": 17,
+    "ready_for_service_activation_count": 0,
+    "blocked_count": 17,
+    "expected_images": 1023,
+    "received_requested_images": 953,
+    "missing_requested_images": 70,
+    "expected_priority_sample_images": 102,
+    "received_priority_sample_images": 102,
+    "missing_priority_sample_images": 0,
+    "available_review_sample_images": 102,
+    "missing_review_sample_images": 0,
+    "open_visual_review_places": 17,
+    "verified_roadview_places": 0,
+    "promoted_active_candidates": 0,
+    "by_primary_blocking_stage": {
+      "awaiting_image_receipt": 4,
+      "awaiting_visual_review": 13
+    },
+    "blocking_gate_counts": {
+      "image_receipt_complete": 4,
+      "roadview_image_verified": 17,
+      "active_candidate_ready": 17
+    },
+    "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령 후 data/raw/roadview_images에 배치"
+  },
+  "items": [
+    {
+      "card": {
+        "id": "jeju_roadview_place_038",
+        "name": "국립제주박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_image_receipt",
+      "gate_statuses": {
+        "image_receipt_complete": "fail",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "image_receipt_complete",
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "partial",
+        "receipt_decision": "needs_missing_files",
+        "expected_image_count": 132,
+        "received_image_count": 130,
+        "missing_image_count": 2,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "누락 원본 이미지 복구 또는 대체 원본 수령 후 data/raw/roadview_images에 배치"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_088",
+        "name": "김녕미로공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_visual_review",
+      "gate_statuses": {
+        "image_receipt_complete": "pass",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "complete",
+        "receipt_decision": "ready_for_visual_manifest",
+        "expected_image_count": 15,
+        "received_image_count": 15,
+        "missing_image_count": 0,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "로드뷰 이미지로 필수 동선 필드를 수동 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_100",
+        "name": "삼성혈",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_image_receipt",
+      "gate_statuses": {
+        "image_receipt_complete": "fail",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "image_receipt_complete",
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "partial",
+        "receipt_decision": "needs_missing_files",
+        "expected_image_count": 52,
+        "received_image_count": 51,
+        "missing_image_count": 1,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "누락 원본 이미지 복구 또는 대체 원본 수령 후 data/raw/roadview_images에 배치"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_095",
+        "name": "상효원수목원",
+        "region": "서귀포시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_visual_review",
+      "gate_statuses": {
+        "image_receipt_complete": "pass",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "complete",
+        "receipt_decision": "ready_for_visual_manifest",
+        "expected_image_count": 73,
+        "received_image_count": 73,
+        "missing_image_count": 0,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "로드뷰 이미지로 필수 동선 필드를 수동 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_053",
+        "name": "서귀포시립기당미술관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_visual_review",
+      "gate_statuses": {
+        "image_receipt_complete": "pass",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "complete",
+        "receipt_decision": "ready_for_visual_manifest",
+        "expected_image_count": 14,
+        "received_image_count": 14,
+        "missing_image_count": 0,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "로드뷰 이미지로 필수 동선 필드를 수동 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_104",
+        "name": "스누피가든",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_visual_review",
+      "gate_statuses": {
+        "image_receipt_complete": "pass",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "complete",
+        "receipt_decision": "ready_for_visual_manifest",
+        "expected_image_count": 168,
+        "received_image_count": 168,
+        "missing_image_count": 0,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "로드뷰 이미지로 필수 동선 필드를 수동 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_4_3_001",
+        "name": "제주4.3평화공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_image_receipt",
+      "gate_statuses": {
+        "image_receipt_complete": "fail",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "image_receipt_complete",
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "partial",
+        "receipt_decision": "needs_missing_files",
+        "expected_image_count": 127,
+        "received_image_count": 61,
+        "missing_image_count": 66,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "누락 원본 이미지 복구 또는 대체 원본 수령 후 data/raw/roadview_images에 배치"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_066",
+        "name": "제주고산리유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_visual_review",
+      "gate_statuses": {
+        "image_receipt_complete": "pass",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "complete",
+        "receipt_decision": "ready_for_visual_manifest",
+        "expected_image_count": 17,
+        "received_image_count": 17,
+        "missing_image_count": 0,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "로드뷰 이미지로 필수 동선 필드를 수동 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_014",
+        "name": "제주교육박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_visual_review",
+      "gate_statuses": {
+        "image_receipt_complete": "pass",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "complete",
+        "receipt_decision": "ready_for_visual_manifest",
+        "expected_image_count": 43,
+        "received_image_count": 43,
+        "missing_image_count": 0,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "로드뷰 이미지로 필수 동선 필드를 수동 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_025",
+        "name": "제주도립김창열미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_visual_review",
+      "gate_statuses": {
+        "image_receipt_complete": "pass",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "complete",
+        "receipt_decision": "ready_for_visual_manifest",
+        "expected_image_count": 43,
+        "received_image_count": 43,
+        "missing_image_count": 0,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "로드뷰 이미지로 필수 동선 필드를 수동 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_013",
+        "name": "제주민속자연사박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_visual_review",
+      "gate_statuses": {
+        "image_receipt_complete": "pass",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "complete",
+        "receipt_decision": "ready_for_visual_manifest",
+        "expected_image_count": 90,
+        "received_image_count": 90,
+        "missing_image_count": 0,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "로드뷰 이미지로 필수 동선 필드를 수동 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_010",
+        "name": "제주삼양동유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_image_receipt",
+      "gate_statuses": {
+        "image_receipt_complete": "fail",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "image_receipt_complete",
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "partial",
+        "receipt_decision": "needs_missing_files",
+        "expected_image_count": 37,
+        "received_image_count": 36,
+        "missing_image_count": 1,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "누락 원본 이미지 복구 또는 대체 원본 수령 후 data/raw/roadview_images에 배치"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_017",
+        "name": "제주아트센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_visual_review",
+      "gate_statuses": {
+        "image_receipt_complete": "pass",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "complete",
+        "receipt_decision": "ready_for_visual_manifest",
+        "expected_image_count": 26,
+        "received_image_count": 26,
+        "missing_image_count": 0,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "로드뷰 이미지로 필수 동선 필드를 수동 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_084",
+        "name": "제주웰컴센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_visual_review",
+      "gate_statuses": {
+        "image_receipt_complete": "pass",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "complete",
+        "receipt_decision": "ready_for_visual_manifest",
+        "expected_image_count": 15,
+        "received_image_count": 15,
+        "missing_image_count": 0,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "로드뷰 이미지로 필수 동선 필드를 수동 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_024",
+        "name": "제주현대미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_visual_review",
+      "gate_statuses": {
+        "image_receipt_complete": "pass",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "complete",
+        "receipt_decision": "ready_for_visual_manifest",
+        "expected_image_count": 31,
+        "received_image_count": 31,
+        "missing_image_count": 0,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "로드뷰 이미지로 필수 동선 필드를 수동 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_105",
+        "name": "한림공원(아열대식물원)",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_visual_review",
+      "gate_statuses": {
+        "image_receipt_complete": "pass",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "complete",
+        "receipt_decision": "ready_for_visual_manifest",
+        "expected_image_count": 53,
+        "received_image_count": 53,
+        "missing_image_count": 0,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "로드뷰 이미지로 필수 동선 필드를 수동 검수"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_096",
+        "name": "휴애리자연생활공원",
+        "region": "서귀포시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "primary_blocking_stage": "awaiting_visual_review",
+      "gate_statuses": {
+        "image_receipt_complete": "pass",
+        "review_samples_available": "pass",
+        "visual_review_sheet_open": "pass",
+        "roadview_image_verified": "fail",
+        "active_candidate_ready": "fail"
+      },
+      "blocking_gates": [
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "image_receipt_status": {
+        "status": "complete",
+        "receipt_decision": "ready_for_visual_manifest",
+        "expected_image_count": 87,
+        "received_image_count": 87,
+        "missing_image_count": 0,
+        "priority_sample_count": 6,
+        "received_priority_sample_count": 6,
+        "missing_priority_sample_count": 0,
+        "duplicate_name_count": 0
+      },
+      "asset_manifest_status": {
+        "status": "ready_for_visual_review",
+        "review_decision": "ready_for_visual_review",
+        "expected_review_sample_count": 6,
+        "available_review_sample_count": 6,
+        "missing_review_sample_count": 0
+      },
+      "visual_review_status": {
+        "status": "open",
+        "review_decision": "pending_reviewer_input",
+        "image_asset_status": "ready_for_visual_review",
+        "field_result_count": 4,
+        "pending_field_count": 4
+      },
+      "promotion_status": {
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "active_candidate_status": {
+        "action": "blocked",
+        "promotion_decision": "blocked_pending_hardening",
+        "blocking_gates": [
+          "roadview_image_verified"
+        ]
+      },
+      "recommended_action": "로드뷰 이미지로 필수 동선 필드를 수동 검수"
+    }
+  ]
+}

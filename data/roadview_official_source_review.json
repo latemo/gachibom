@@ -1,0 +1,1526 @@
+{
+  "generated_at": "2026-07-09",
+  "source_work_queue_generated_at": "2026-07-09",
+  "criteria": {
+    "usable_source": "장소명이 일치하고 접근성 세부 항목을 확인할 수 있는 공식/공공 출처만 verified 처리",
+    "blocked": "공식/공공 상세 URL과 필드별 근거가 없으면 서비스 시드 카드는 hidden 유지"
+  },
+  "summary": {
+    "total": 17,
+    "by_status": {
+      "resolved": 15,
+      "in_progress": 2
+    },
+    "by_review_decision": {
+      "verified_usable_source": 15,
+      "source_found_but_incomplete": 2
+    },
+    "required_evidence_counts": {
+      "official_or_public_accessibility_url": 17,
+      "operating_status": 17,
+      "accessible_toilet": 17,
+      "parking": 17,
+      "wheelchair_or_stroller_rental": 17,
+      "slope_or_stairs": 17,
+      "surface_condition": 17
+    }
+  },
+  "items": [
+    {
+      "task_id": "jeju_roadview_place_038_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_038",
+        "name": "국립제주박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "verified_usable_source",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 국립제주박물관",
+        "열린관광 모두의 여행 국립제주박물관",
+        "국립제주박물관 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "usable_accessibility_detail",
+          "matched_place_name": "국립제주박물관",
+          "notes": "이전 검수 요약의 source_candidate_count=2를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "surface_condition",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_088_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_088",
+        "name": "김녕미로공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "verified_usable_source",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 김녕미로공원",
+        "열린관광 모두의 여행 김녕미로공원",
+        "김녕미로공원 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "usable_accessibility_detail",
+          "matched_place_name": "김녕미로공원",
+          "notes": "이전 검수 요약의 source_candidate_count=1를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "surface_condition",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_100_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_100",
+        "name": "삼성혈",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "verified_usable_source",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 삼성혈",
+        "열린관광 모두의 여행 삼성혈",
+        "삼성혈 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "usable_accessibility_detail",
+          "matched_place_name": "삼성혈",
+          "notes": "이전 검수 요약의 source_candidate_count=2를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "surface_condition",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_095_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_095",
+        "name": "상효원수목원",
+        "region": "서귀포시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "verified_usable_source",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 상효원수목원",
+        "열린관광 모두의 여행 상효원수목원",
+        "상효원수목원 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "usable_accessibility_detail",
+          "matched_place_name": "상효원수목원",
+          "notes": "이전 검수 요약의 source_candidate_count=1를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "surface_condition",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_053_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_053",
+        "name": "서귀포시립기당미술관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "verified_usable_source",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 서귀포시립기당미술관",
+        "열린관광 모두의 여행 서귀포시립기당미술관",
+        "서귀포시립기당미술관 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "usable_accessibility_detail",
+          "matched_place_name": "서귀포시립기당미술관",
+          "notes": "이전 검수 요약의 source_candidate_count=1를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "surface_condition",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_104_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_104",
+        "name": "스누피가든",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "verified_usable_source",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 스누피가든",
+        "열린관광 모두의 여행 스누피가든",
+        "스누피가든 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "usable_accessibility_detail",
+          "matched_place_name": "스누피가든",
+          "notes": "이전 검수 요약의 source_candidate_count=2를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "surface_condition",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_4_3_001_official_source_review",
+      "card": {
+        "id": "jeju_roadview_4_3_001",
+        "name": "제주4.3평화공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "verified_usable_source",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 제주4.3평화공원",
+        "열린관광 모두의 여행 제주4.3평화공원",
+        "제주4.3평화공원 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "usable_accessibility_detail",
+          "matched_place_name": "제주4.3평화공원",
+          "notes": "이전 검수 요약의 source_candidate_count=2를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "surface_condition",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_066_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_066",
+        "name": "제주고산리유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "status": "in_progress",
+      "review_decision": "source_found_but_incomplete",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 제주고산리유적",
+        "열린관광 모두의 여행 제주고산리유적",
+        "제주고산리유적 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "candidate",
+          "matched_place_name": "제주고산리유적",
+          "notes": "이전 검수 요약의 source_candidate_count=3를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "missing",
+          "source_url": null,
+          "note": "이전 공식 출처 검수에서 보강 필요로 남은 항목"
+        },
+        {
+          "field": "surface_condition",
+          "status": "missing",
+          "source_url": null,
+          "note": "이전 공식 출처 검수에서 보강 필요로 남은 항목"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_014_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_014",
+        "name": "제주교육박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "verified_usable_source",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 제주교육박물관",
+        "열린관광 모두의 여행 제주교육박물관",
+        "제주교육박물관 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "usable_accessibility_detail",
+          "matched_place_name": "제주교육박물관",
+          "notes": "이전 검수 요약의 source_candidate_count=1를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "surface_condition",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_025_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_025",
+        "name": "제주도립김창열미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "verified_usable_source",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 제주도립김창열미술관",
+        "열린관광 모두의 여행 제주도립김창열미술관",
+        "제주도립김창열미술관 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "usable_accessibility_detail",
+          "matched_place_name": "제주도립김창열미술관",
+          "notes": "이전 검수 요약의 source_candidate_count=2를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "surface_condition",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_013_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_013",
+        "name": "제주민속자연사박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "verified_usable_source",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 제주민속자연사박물관",
+        "열린관광 모두의 여행 제주민속자연사박물관",
+        "제주민속자연사박물관 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "usable_accessibility_detail",
+          "matched_place_name": "제주민속자연사박물관",
+          "notes": "이전 검수 요약의 source_candidate_count=1를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "surface_condition",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_010_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_010",
+        "name": "제주삼양동유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "verified_usable_source",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 제주삼양동유적",
+        "열린관광 모두의 여행 제주삼양동유적",
+        "제주삼양동유적 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "usable_accessibility_detail",
+          "matched_place_name": "제주삼양동유적",
+          "notes": "이전 검수 요약의 source_candidate_count=2를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "surface_condition",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_017_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_017",
+        "name": "제주아트센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "verified_usable_source",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 제주아트센터",
+        "열린관광 모두의 여행 제주아트센터",
+        "제주아트센터 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "usable_accessibility_detail",
+          "matched_place_name": "제주아트센터",
+          "notes": "이전 검수 요약의 source_candidate_count=1를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "surface_condition",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_084_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_084",
+        "name": "제주웰컴센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "in_progress",
+      "review_decision": "source_found_but_incomplete",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 제주웰컴센터",
+        "열린관광 모두의 여행 제주웰컴센터",
+        "제주웰컴센터 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "candidate",
+          "matched_place_name": "제주웰컴센터",
+          "notes": "이전 검수 요약의 source_candidate_count=3를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "surface_condition",
+          "status": "missing",
+          "source_url": null,
+          "note": "이전 공식 출처 검수에서 보강 필요로 남은 항목"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_024_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_024",
+        "name": "제주현대미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "verified_usable_source",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 제주현대미술관",
+        "열린관광 모두의 여행 제주현대미술관",
+        "제주현대미술관 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "usable_accessibility_detail",
+          "matched_place_name": "제주현대미술관",
+          "notes": "이전 검수 요약의 source_candidate_count=2를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "surface_condition",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_105_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_105",
+        "name": "한림공원(아열대식물원)",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "verified_usable_source",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 한림공원(아열대식물원)",
+        "열린관광 모두의 여행 한림공원(아열대식물원)",
+        "한림공원(아열대식물원) 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "usable_accessibility_detail",
+          "matched_place_name": "한림공원(아열대식물원)",
+          "notes": "이전 검수 요약의 source_candidate_count=2를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "surface_condition",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    },
+    {
+      "task_id": "jeju_roadview_place_096_official_source_review",
+      "card": {
+        "id": "jeju_roadview_place_096",
+        "name": "휴애리자연생활공원",
+        "region": "서귀포시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "verified_usable_source",
+      "required_evidence": [
+        "official_or_public_accessibility_url",
+        "operating_status",
+        "accessible_toilet",
+        "parking",
+        "wheelchair_or_stroller_rental",
+        "slope_or_stairs",
+        "surface_condition"
+      ],
+      "search_queries": [
+        "이지제주 휴애리자연생활공원",
+        "열린관광 모두의 여행 휴애리자연생활공원",
+        "휴애리자연생활공원 공식 홈페이지 장애인 화장실 주차 휠체어"
+      ],
+      "accepted_source_types": [
+        "easyjeju_accessibility_detail",
+        "open_tourism_accessibility_detail",
+        "official_site",
+        "public_agency",
+        "visitjeju"
+      ],
+      "source_candidates": [
+        {
+          "url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "title": "제주특별자치도 사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+          "source_type": "public_agency",
+          "evidence_status": "usable_accessibility_detail",
+          "matched_place_name": "휴애리자연생활공원",
+          "notes": "이전 검수 요약의 source_candidate_count=2를 보존. 상세 후보 URL은 별도 재확인 필요."
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "official_or_public_accessibility_url",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "operating_status",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "accessible_toilet",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "parking",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "wheelchair_or_stroller_rental",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "slope_or_stairs",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        },
+        {
+          "field": "surface_condition",
+          "status": "verified",
+          "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+          "note": "이전 공식 출처 검수 상태를 현재 큐에 보존"
+        }
+      ],
+      "recommended_action": "이전 공식 출처 검수 결과 보존. 상세 후보 URL과 최신 운영 여부는 최종 공개 전 재확인"
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_service_seed_gate_status.schema.json",
+  "title": "Jeju Maeum Roadview Service Seed Gate Status",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "generated_at",
+    "source_roadview_image_acquisition_request_generated_at",
+    "source_roadview_image_receipt_report_generated_at",
+    "source_image_asset_manifest_generated_at",
+    "source_visual_review_sheet_generated_at",
+    "source_promotion_readiness_generated_at",
+    "source_active_candidate_report_generated_at",
+    "criteria",
+    "overall_status",
+    "current_primary_stage",
+    "pipeline_gates",
+    "summary",
+    "items"
+  ],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "source_roadview_image_acquisition_request_generated_at": { "type": ["string", "null"], "format": "date" },
+    "source_roadview_image_receipt_report_generated_at": { "type": ["string", "null"], "format": "date" },
+    "source_image_asset_manifest_generated_at": { "type": ["string", "null"], "format": "date" },
+    "source_visual_review_sheet_generated_at": { "type": ["string", "null"], "format": "date" },
+    "source_promotion_readiness_generated_at": { "type": ["string", "null"], "format": "date" },
+    "source_active_candidate_report_generated_at": { "type": ["string", "null"], "format": "date" },
+    "criteria": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ready_for_service_activation", "blocked"],
+      "properties": {
+        "ready_for_service_activation": { "type": "string" },
+        "blocked": { "type": "string" }
+      }
+    },
+    "overall_status": { "type": "string", "enum": ["blocked", "ready_for_service_activation"] },
+    "current_primary_stage": { "$ref": "#/$defs/stage" },
+    "pipeline_gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "image_acquisition_request_prepared",
+        "image_receipt_complete",
+        "review_samples_available",
+        "visual_review_ready_or_verified",
+        "active_candidate_export_ready"
+      ],
+      "properties": {
+        "image_acquisition_request_prepared": { "$ref": "#/$defs/pipelineGate" },
+        "image_receipt_complete": { "$ref": "#/$defs/pipelineGate" },
+        "review_samples_available": { "$ref": "#/$defs/pipelineGate" },
+        "visual_review_ready_or_verified": { "$ref": "#/$defs/pipelineGate" },
+        "active_candidate_export_ready": { "$ref": "#/$defs/pipelineGate" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_places",
+        "ready_for_service_activation_count",
+        "blocked_count",
+        "expected_images",
+        "received_requested_images",
+        "missing_requested_images",
+        "expected_priority_sample_images",
+        "received_priority_sample_images",
+        "missing_priority_sample_images",
+        "available_review_sample_images",
+        "missing_review_sample_images",
+        "open_visual_review_places",
+        "verified_roadview_places",
+        "promoted_active_candidates",
+        "by_primary_blocking_stage",
+        "blocking_gate_counts",
+        "next_action"
+      ],
+      "properties": {
+        "total_places": { "type": "integer", "minimum": 0 },
+        "ready_for_service_activation_count": { "type": "integer", "minimum": 0 },
+        "blocked_count": { "type": "integer", "minimum": 0 },
+        "expected_images": { "type": "integer", "minimum": 0 },
+        "received_requested_images": { "type": "integer", "minimum": 0 },
+        "missing_requested_images": { "type": "integer", "minimum": 0 },
+        "expected_priority_sample_images": { "type": "integer", "minimum": 0 },
+        "received_priority_sample_images": { "type": "integer", "minimum": 0 },
+        "missing_priority_sample_images": { "type": "integer", "minimum": 0 },
+        "available_review_sample_images": { "type": "integer", "minimum": 0 },
+        "missing_review_sample_images": { "type": "integer", "minimum": 0 },
+        "open_visual_review_places": { "type": "integer", "minimum": 0 },
+        "verified_roadview_places": { "type": "integer", "minimum": 0 },
+        "promoted_active_candidates": { "type": "integer", "minimum": 0 },
+        "by_primary_blocking_stage": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "blocking_gate_counts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "next_action": { "type": "string" }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/gateItem" }
+    }
+  },
+  "$defs": {
+    "stage": {
+      "type": "string",
+      "enum": [
+        "awaiting_image_receipt",
+        "resolving_duplicate_images",
+        "preparing_visual_assets",
+        "preparing_visual_review_sheet",
+        "awaiting_visual_review",
+        "resolving_visual_review_findings",
+        "preparing_active_candidate_export",
+        "ready_for_service_activation",
+        "unknown"
+      ]
+    },
+    "gateState": {
+      "type": "string",
+      "enum": ["pass", "fail"]
+    },
+    "pipelineGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "detail", "metrics"],
+      "properties": {
+        "status": { "$ref": "#/$defs/gateState" },
+        "detail": { "type": "string" },
+        "metrics": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "gateItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card",
+        "primary_blocking_stage",
+        "gate_statuses",
+        "blocking_gates",
+        "image_receipt_status",
+        "asset_manifest_status",
+        "visual_review_status",
+        "promotion_status",
+        "active_candidate_status",
+        "recommended_action"
+      ],
+      "properties": {
+        "card": { "$ref": "#/$defs/cardRef" },
+        "primary_blocking_stage": { "$ref": "#/$defs/stage" },
+        "gate_statuses": { "$ref": "#/$defs/itemGateStatuses" },
+        "blocking_gates": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "image_receipt_complete",
+              "review_samples_available",
+              "visual_review_sheet_open",
+              "roadview_image_verified",
+              "active_candidate_ready"
+            ]
+          }
+        },
+        "image_receipt_status": { "$ref": "#/$defs/receiptStatus" },
+        "asset_manifest_status": { "$ref": "#/$defs/assetStatus" },
+        "visual_review_status": { "$ref": "#/$defs/visualStatus" },
+        "promotion_status": { "$ref": "#/$defs/promotionStatus" },
+        "active_candidate_status": { "$ref": "#/$defs/activeStatus" },
+        "recommended_action": { "type": "string" }
+      }
+    },
+    "itemGateStatuses": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "image_receipt_complete",
+        "review_samples_available",
+        "visual_review_sheet_open",
+        "roadview_image_verified",
+        "active_candidate_ready"
+      ],
+      "properties": {
+        "image_receipt_complete": { "$ref": "#/$defs/gateState" },
+        "review_samples_available": { "$ref": "#/$defs/gateState" },
+        "visual_review_sheet_open": { "$ref": "#/$defs/gateState" },
+        "roadview_image_verified": { "$ref": "#/$defs/gateState" },
+        "active_candidate_ready": { "$ref": "#/$defs/gateState" }
+      }
+    },
+    "receiptStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "receipt_decision",
+        "expected_image_count",
+        "received_image_count",
+        "missing_image_count",
+        "priority_sample_count",
+        "received_priority_sample_count",
+        "missing_priority_sample_count",
+        "duplicate_name_count"
+      ],
+      "properties": {
+        "status": { "type": "string" },
+        "receipt_decision": { "type": "string" },
+        "expected_image_count": { "type": "integer", "minimum": 0 },
+        "received_image_count": { "type": "integer", "minimum": 0 },
+        "missing_image_count": { "type": "integer", "minimum": 0 },
+        "priority_sample_count": { "type": "integer", "minimum": 0 },
+        "received_priority_sample_count": { "type": "integer", "minimum": 0 },
+        "missing_priority_sample_count": { "type": "integer", "minimum": 0 },
+        "duplicate_name_count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "assetStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "review_decision",
+        "expected_review_sample_count",
+        "available_review_sample_count",
+        "missing_review_sample_count"
+      ],
+      "properties": {
+        "status": { "type": "string" },
+        "review_decision": { "type": "string" },
+        "expected_review_sample_count": { "type": "integer", "minimum": 0 },
+        "available_review_sample_count": { "type": "integer", "minimum": 0 },
+        "missing_review_sample_count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "visualStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "review_decision",
+        "image_asset_status",
+        "field_result_count",
+        "pending_field_count"
+      ],
+      "properties": {
+        "status": { "type": "string" },
+        "review_decision": { "type": "string" },
+        "image_asset_status": { "type": "string" },
+        "field_result_count": { "type": "integer", "minimum": 0 },
+        "pending_field_count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "promotionStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["promotion_decision", "blocking_gates"],
+      "properties": {
+        "promotion_decision": { "type": "string" },
+        "blocking_gates": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "activeStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action", "promotion_decision", "blocking_gates"],
+      "properties": {
+        "action": { "type": "string" },
+        "promotion_decision": { "type": "string" },
+        "blocking_gates": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "cardRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "region", "category", "verification_status"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "region": { "type": "string" },
+        "category": { "type": "string" },
+        "verification_status": { "type": "string" }
+      }
+    }
+  }
+}

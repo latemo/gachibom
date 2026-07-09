@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/recommendation_case_validation_report.schema.json",
+  "title": "Jeju Maeum Recommendation Case Validation Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "source", "summary", "cases"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "source": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total_cases", "passed_cases", "failed_cases", "overall_status"],
+      "properties": {
+        "total_cases": { "type": "integer", "minimum": 0 },
+        "passed_cases": { "type": "integer", "minimum": 0 },
+        "failed_cases": { "type": "integer", "minimum": 0 },
+        "overall_status": { "$ref": "#/$defs/status" }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/case" }
+    }
+  },
+  "$defs": {
+    "status": {
+      "type": "string",
+      "enum": ["통과", "실패"]
+    },
+    "stringList": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "travelerSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["traveler_type", "mobility_conditions", "preferred_themes", "required_accessibility", "avoid"],
+      "properties": {
+        "traveler_type": { "$ref": "#/$defs/stringList" },
+        "mobility_conditions": { "$ref": "#/$defs/stringList" },
+        "preferred_themes": { "$ref": "#/$defs/stringList" },
+        "required_accessibility": { "$ref": "#/$defs/stringList" },
+        "avoid": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "score": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["total", "grade", "confidence", "breakdown"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "grade": { "type": "string" },
+        "confidence": { "type": "string" },
+        "breakdown": { "type": "object" }
+      }
+    },
+    "routePlace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "order",
+        "spot_id",
+        "name",
+        "category",
+        "score_total",
+        "walking_level",
+        "weather_sensitivity",
+        "verification_status"
+      ],
+      "properties": {
+        "order": { "type": "integer", "minimum": 1 },
+        "spot_id": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "score_total": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "walking_level": { "type": "string" },
+        "weather_sensitivity": { "type": "string" },
+        "verification_status": { "type": "string" }
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "spot_id",
+        "name",
+        "category",
+        "score_total",
+        "blocked",
+        "block_reasons",
+        "deduction_reasons"
+      ],
+      "properties": {
+        "spot_id": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "score_total": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "blocked": { "type": "boolean" },
+        "block_reasons": { "$ref": "#/$defs/stringList" },
+        "deduction_reasons": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["area", "name", "status", "expected", "actual"],
+      "properties": {
+        "area": { "type": "string" },
+        "name": { "type": "string" },
+        "status": { "$ref": "#/$defs/status" },
+        "expected": { "type": "string" },
+        "actual": { "type": "string" }
+      }
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "title",
+        "intent",
+        "status",
+        "traveler_summary",
+        "expected_policy",
+        "recommendation",
+        "validation",
+        "excluded_candidates",
+        "deduction_samples"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "title": { "type": "string" },
+        "intent": { "type": "string" },
+        "status": { "$ref": "#/$defs/status" },
+        "traveler_summary": { "$ref": "#/$defs/travelerSummary" },
+        "expected_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recommendation_direction",
+            "minimum_total_score",
+            "selected_exclude_categories",
+            "required_check_terms",
+            "required_fit_terms",
+            "policy_effect_terms"
+          ],
+          "properties": {
+            "recommendation_direction": { "type": "string" },
+            "minimum_total_score": { "type": ["integer", "null"], "minimum": 0 },
+            "selected_exclude_categories": { "$ref": "#/$defs/stringList" },
+            "required_check_terms": { "$ref": "#/$defs/stringList" },
+            "required_fit_terms": { "$ref": "#/$defs/stringList" },
+            "policy_effect_terms": { "$ref": "#/$defs/stringList" }
+          }
+        },
+        "recommendation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["score", "route", "fit_reasons", "deduction_reasons", "check_before_visit"],
+          "properties": {
+            "score": { "$ref": "#/$defs/score" },
+            "route": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 4,
+              "items": { "$ref": "#/$defs/routePlace" }
+            },
+            "fit_reasons": { "$ref": "#/$defs/stringList" },
+            "deduction_reasons": { "$ref": "#/$defs/stringList" },
+            "check_before_visit": { "$ref": "#/$defs/stringList" }
+          }
+        },
+        "validation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["total_checks", "passed_checks", "failed_checks", "checks"],
+          "properties": {
+            "total_checks": { "type": "integer", "minimum": 0 },
+            "passed_checks": { "type": "integer", "minimum": 0 },
+            "failed_checks": { "type": "integer", "minimum": 0 },
+            "checks": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/check" }
+            }
+          }
+        },
+        "excluded_candidates": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/candidate" }
+        },
+        "deduction_samples": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/candidate" }
+        }
+      }
+    }
+  }
+}

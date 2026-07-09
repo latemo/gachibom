@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_image_download_report.schema.json",
+  "title": "Jeju Maeum Roadview Image Download Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "generated_at",
+    "source_roadview_image_acquisition_request_generated_at",
+    "source_endpoint",
+    "target_root",
+    "tier",
+    "dry_run",
+    "overwrite",
+    "summary",
+    "items"
+  ],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "source_roadview_image_acquisition_request_generated_at": { "type": ["string", "null"], "format": "date" },
+    "source_endpoint": { "type": "string", "format": "uri" },
+    "target_root": { "type": "string" },
+    "tier": { "type": "string", "enum": ["priority", "supplemental", "all"] },
+    "dry_run": { "type": "boolean" },
+    "overwrite": { "type": "boolean" },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_items",
+        "downloaded",
+        "skipped_existing",
+        "planned",
+        "failed",
+        "bytes_downloaded",
+        "by_status"
+      ],
+      "properties": {
+        "total_items": { "type": "integer", "minimum": 0 },
+        "downloaded": { "type": "integer", "minimum": 0 },
+        "skipped_existing": { "type": "integer", "minimum": 0 },
+        "planned": { "type": "integer", "minimum": 0 },
+        "failed": { "type": "integer", "minimum": 0 },
+        "bytes_downloaded": { "type": "integer", "minimum": 0 },
+        "by_status": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/downloadItem" }
+    }
+  },
+  "$defs": {
+    "downloadItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "place_name",
+        "image_file_name",
+        "request_tier",
+        "tourist_name",
+        "tourist_name_en",
+        "captured_at",
+        "source_url",
+        "target_path",
+        "status",
+        "http_status",
+        "file_size_bytes",
+        "error"
+      ],
+      "properties": {
+        "card_id": { "type": "string" },
+        "place_name": { "type": "string" },
+        "image_file_name": { "type": "string" },
+        "request_tier": { "type": "string" },
+        "tourist_name": { "type": "string" },
+        "tourist_name_en": { "type": "string" },
+        "captured_at": { "type": ["string", "null"] },
+        "source_url": { "type": "string", "format": "uri" },
+        "target_path": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["downloaded", "skipped_existing", "planned", "failed"]
+        },
+        "http_status": { "type": ["integer", "null"] },
+        "file_size_bytes": { "type": ["integer", "null"], "minimum": 0 },
+        "error": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_service_seed_work_queue.schema.json",
+  "title": "Jeju Maeum Roadview Service Seed Work Queue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "source_review_generated_at", "summary", "items"],
+  "properties": {
+    "generated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "source_review_generated_at": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "by_task_type", "by_priority", "by_status"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "by_task_type": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_priority": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_status": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/workItem" }
+    }
+  },
+  "$defs": {
+    "workItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task_id",
+        "card",
+        "task_type",
+        "priority",
+        "status",
+        "required_evidence",
+        "source_queries",
+        "image_samples",
+        "recommended_action"
+      ],
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card": { "$ref": "#/$defs/cardRef" },
+        "task_type": {
+          "type": "string",
+          "enum": [
+            "official_source_review",
+            "roadview_image_review",
+            "crowd_policy_review",
+            "category_refinement"
+          ]
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["high", "medium", "low"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["open", "in_progress", "resolved", "blocked"]
+        },
+        "required_evidence": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "source_queries": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "image_samples": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "image_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "captured_date_start": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "captured_date_end": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "recommended_action": { "type": "string" }
+      }
+    },
+    "cardRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "region", "category", "verification_status"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "region": { "type": "string" },
+        "category": { "type": "string" },
+        "verification_status": { "type": "string" }
+      }
+    }
+  }
+}

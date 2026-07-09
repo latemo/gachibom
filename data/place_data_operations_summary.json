@@ -1,0 +1,368 @@
+{
+  "generated_at": "2026-07-09",
+  "summary": {
+    "total_places": 43,
+    "public_candidate_places": 35,
+    "review_only_places": 8,
+    "blocked_from_default_recommendation": 8,
+    "needs_check_places": 8
+  },
+  "counts": {
+    "by_status": {
+      "active": 43
+    },
+    "by_verification_status": {
+      "needs_check": 8,
+      "partial": 30,
+      "verified": 5
+    },
+    "by_category": {
+      "cafe": 2,
+      "culture": 5,
+      "food_market": 2,
+      "forest": 9,
+      "indoor": 11,
+      "medical_support": 1,
+      "rest_area": 2,
+      "restaurant": 2,
+      "sea": 7,
+      "shopping": 1,
+      "transport": 1
+    }
+  },
+  "raw_catalog": {
+    "total_items": 107,
+    "matched_items": 14,
+    "candidate_match_items": 6,
+    "unmatched_items": 87,
+    "by_status": {
+      "active": 107
+    },
+    "by_category": {
+      "culture": 12,
+      "experience": 5,
+      "forest": 9,
+      "indoor": 30,
+      "oreum": 2,
+      "other": 22,
+      "rest_area": 23,
+      "sea": 4
+    },
+    "by_match_status": {
+      "candidate": 6,
+      "matched": 14,
+      "unmatched": 87
+    },
+    "policy": [
+      "원본 카탈로그에 있다는 사실만으로 접근성 추천 대상이 되지 않음",
+      "matched 항목은 접근성 카드 근거와 연결 가능",
+      "candidate 또는 manual_review 항목은 이름·지역 유사도 기반 검수 필요",
+      "unmatched 항목은 접근성 카드 생성 또는 외부 접근성 출처 보강 전까지 기본 추천 제외"
+    ]
+  },
+  "public_gate": {
+    "public_default_recommendation": [
+      "status가 active",
+      "verification.status가 verified 또는 partial",
+      "공식 또는 준공식 출처가 1개 이상 존재",
+      "방문 전 주의사항 또는 안전 메모가 존재",
+      "상황별 제외 규칙에 걸리지 않음"
+    ],
+    "review_only": [
+      "verification.status가 needs_check 또는 unavailable",
+      "필수 접근성 필드가 비어 있음",
+      "장소 분류가 other 또는 신규 분류로 아직 확정되지 않음",
+      "로드뷰·이미지 근거가 사람 검수 전 상태"
+    ],
+    "never_default_recommendation": [
+      "status가 hidden, blocked, deprecated",
+      "사용자 회피 조건과 장소 주의사항이 강하게 충돌",
+      "음식 제한 조건에서 restaurant 또는 food_market",
+      "의료적 효과를 이유로 추천해야만 하는 요청"
+    ]
+  },
+  "category_policy": [
+    {
+      "category": "cafe",
+      "current_count": 2,
+      "policy": "카페·차·디저트 장소. 음식 제한·혼잡 민감 조건에서 감점."
+    },
+    {
+      "category": "culture",
+      "current_count": 5,
+      "policy": "문화·역사·공연 공간. 실내외 동선과 화장실 접근성 확인."
+    },
+    {
+      "category": "event",
+      "current_count": 0,
+      "policy": "축제·행사. 기간, 혼잡도, 임시 동선 검수 전까지 추천 제외."
+    },
+    {
+      "category": "experience",
+      "current_count": 0,
+      "policy": "체험 관광. 프로그램별 접근성 검수 후 노출."
+    },
+    {
+      "category": "food_market",
+      "current_count": 2,
+      "policy": "시장·음식 중심 상권. 음식 제한 조건에서는 제외, 혼잡 민감 조건에서는 감점."
+    },
+    {
+      "category": "forest",
+      "current_count": 9,
+      "policy": "숲·수목원·자연휴양림. 도보 부담, 바닥 상태, 날씨 영향을 함께 확인."
+    },
+    {
+      "category": "indoor",
+      "current_count": 11,
+      "policy": "실내 전시·박물관·기념관. 회복 중·날씨 민감 조건에서 우선 후보."
+    },
+    {
+      "category": "lodging",
+      "current_count": 0,
+      "policy": "숙박. 접근 객실, 욕실, 주차, 엘리베이터 검수 전까지 추천 제외."
+    },
+    {
+      "category": "medical_support",
+      "current_count": 1,
+      "policy": "병원·응급 대응 참고 지점. 추천 여행지가 아니라 지원 정보로 분리."
+    },
+    {
+      "category": "oreum",
+      "current_count": 0,
+      "policy": "오름. 경사와 장거리 보행 가능성이 커 기본 추천 전 정밀 검수 필요."
+    },
+    {
+      "category": "other",
+      "current_count": 0,
+      "policy": "기타 장소. 분류 확정 전 추천 후보에서 보수적으로 처리."
+    },
+    {
+      "category": "rest_area",
+      "current_count": 2,
+      "policy": "공원·휴식 공간. 휴식 가능 여부와 야외 노출을 함께 확인."
+    },
+    {
+      "category": "restaurant",
+      "current_count": 2,
+      "policy": "식당. 음식 제한 조건에서는 기본 제외."
+    },
+    {
+      "category": "sea",
+      "current_count": 7,
+      "policy": "바다·해안·전망 장소. 날씨와 강풍 민감 조건에서 감점 또는 확인 필요."
+    },
+    {
+      "category": "shopping",
+      "current_count": 1,
+      "policy": "쇼핑 중심 장소. 혼잡 민감 조건에서 감점."
+    },
+    {
+      "category": "transport",
+      "current_count": 1,
+      "policy": "공항·터미널 등 교통 거점. 여행 보조 정보로 사용."
+    }
+  ],
+  "accessibility_field_coverage": [
+    {
+      "field": "wheelchair_access",
+      "label": "휠체어 접근",
+      "total_places": 43,
+      "usable_count": 42,
+      "missing_count": 0,
+      "state_counts": {
+        "needs_check": 1,
+        "partial": 38,
+        "yes": 4
+      }
+    },
+    {
+      "field": "accessible_toilet",
+      "label": "장애인 화장실",
+      "total_places": 43,
+      "usable_count": 35,
+      "missing_count": 0,
+      "state_counts": {
+        "needs_check": 4,
+        "no": 4,
+        "partial": 3,
+        "yes": 32
+      }
+    },
+    {
+      "field": "parking",
+      "label": "주차",
+      "total_places": 43,
+      "usable_count": 36,
+      "missing_count": 0,
+      "state_counts": {
+        "needs_check": 5,
+        "partial": 7,
+        "unknown": 2,
+        "yes": 29
+      }
+    },
+    {
+      "field": "slope_or_stairs",
+      "label": "경사·계단",
+      "total_places": 43,
+      "usable_count": 39,
+      "missing_count": 0,
+      "state_counts": {
+        "needs_check": 3,
+        "partial": 23,
+        "unknown": 1,
+        "yes": 16
+      }
+    },
+    {
+      "field": "rest_area",
+      "label": "휴식 공간",
+      "total_places": 43,
+      "usable_count": 34,
+      "missing_count": 0,
+      "state_counts": {
+        "needs_check": 2,
+        "partial": 27,
+        "unknown": 7,
+        "yes": 7
+      }
+    },
+    {
+      "field": "rental_or_assistance",
+      "label": "대여·보조",
+      "total_places": 43,
+      "usable_count": 24,
+      "missing_count": 0,
+      "state_counts": {
+        "no": 2,
+        "unknown": 17,
+        "yes": 24
+      }
+    },
+    {
+      "field": "surface_condition",
+      "label": "바닥 상태",
+      "total_places": 43,
+      "usable_count": 40,
+      "missing_count": 0,
+      "state_counts": {
+        "needs_check": 3,
+        "partial": 35,
+        "yes": 5
+      }
+    },
+    {
+      "field": "crowd_level",
+      "label": "혼잡도",
+      "total_places": 43,
+      "usable_count": 0,
+      "missing_count": 0,
+      "state_counts": {
+        "needs_check": 22,
+        "unknown": 21
+      }
+    }
+  ],
+  "scenario_rule_summary": [
+    {
+      "id": "diet_restriction_no_food",
+      "description": "외부 음식, 식당, 식사 장소를 피해야 하는 사용자 조건",
+      "trigger_terms_count": 9,
+      "exclude_categories": [
+        "restaurant",
+        "food_market"
+      ],
+      "penalize_categories": [
+        "cafe"
+      ],
+      "check_before_visit": [
+        "식사 장소 제외 여부",
+        "개별 식사 준비 가능 여부",
+        "음식 냄새나 혼잡이 부담되는지"
+      ]
+    },
+    {
+      "id": "crowd_or_infection_sensitive",
+      "description": "혼잡, 감염 우려, 면역 저하 등 사람이 많은 환경을 피해야 하는 조건",
+      "trigger_terms_count": 8,
+      "exclude_categories": [],
+      "penalize_categories": [
+        "food_market",
+        "shopping",
+        "cafe"
+      ],
+      "check_before_visit": [
+        "혼잡 시간대",
+        "대기줄 여부",
+        "주말·성수기 방문 여부"
+      ]
+    },
+    {
+      "id": "low_stamina_short_stay",
+      "description": "체력 저하, 회복 중, 긴 걷기 어려움 등 짧은 체류가 필요한 조건",
+      "trigger_terms_count": 7,
+      "exclude_categories": [],
+      "penalize_categories": [],
+      "check_before_visit": [
+        "도보 거리",
+        "중간 휴식 가능 지점",
+        "숙소 복귀 동선"
+      ]
+    },
+    {
+      "id": "weather_sensitive",
+      "description": "비, 바람, 더위, 추위 등 날씨 영향이 큰 환경을 피해야 하는 조건",
+      "trigger_terms_count": 8,
+      "exclude_categories": [],
+      "penalize_categories": [
+        "sea",
+        "oreum"
+      ],
+      "check_before_visit": [
+        "방문 당일 날씨",
+        "강풍 여부",
+        "그늘과 실내 대피 가능 여부"
+      ]
+    },
+    {
+      "id": "sensory_sensitive_low_stimulation",
+      "description": "소리, 빛, 어두운 공간, 강한 자극에 민감한 사용자 조건",
+      "trigger_terms_count": 7,
+      "exclude_categories": [],
+      "penalize_categories": [],
+      "check_before_visit": [
+        "조명과 소리 자극",
+        "어두운 전시장 여부",
+        "휴식 가능한 조용한 공간"
+      ]
+    }
+  ],
+  "operating_policies": {
+    "status": {
+      "active": "추천 후보로 계산할 수 있는 장소. 단, 상황별 제외 규칙과 검증 상태를 다시 적용.",
+      "hidden": "내부 보존용. 사용자 추천 결과에는 노출하지 않음.",
+      "blocked": "운영상 부적합 또는 오류가 있어 노출 금지.",
+      "deprecated": "폐업·이전·대체 등으로 더 이상 주 추천 데이터로 사용하지 않음."
+    },
+    "verification": {
+      "verified": "출처와 핵심 접근성 필드가 충분해 기본 추천 후보로 사용 가능.",
+      "partial": "추천 후보로 사용 가능하지만 화면에 확인 필요 문구와 근거를 함께 표시.",
+      "needs_check": "기본 추천에서 제외하고 검수 큐로 보냄.",
+      "unavailable": "접근성 판단 정보가 거의 없어 추천 제외."
+    },
+    "service_expansion": {
+      "raw_catalog": "제주 전체 관광지·식당·카페·숙박·행사 원본 목록.",
+      "accessibility_cards": "추천 점수 계산에 쓰는 접근성 검증 카드.",
+      "matching_layer": "원본 장소와 접근성 카드를 연결하는 검수 레이어.",
+      "manual_review": "AI 초안 이후 사람이 실제 노출 여부와 근거 이미지를 판정하는 단계."
+    }
+  },
+  "next_actions": [
+    "needs_check 장소 8곳은 기본 추천에서 보류하고 출처·접근성 필드를 보강",
+    "접근성 필드 정보 부족 항목 보강: 주차, 경사·계단, 휴식 공간, 대여·보조",
+    "식당·카페·시장 데이터는 전체 카탈로그로 확대하되 음식 제한 조건에서는 제외·감점 규칙 유지",
+    "숙박 데이터는 별도 검수 기준을 만든 뒤 raw catalog부터 수집",
+    "로드뷰 이미지와 공개 API 근거를 접근성 카드의 source_ref와 검수 화면에 연결"
+  ]
+}

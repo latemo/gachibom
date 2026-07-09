@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_crowd_policy_review.schema.json",
+  "title": "Jeju Maeum Roadview Crowd Policy Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "source_work_queue_generated_at", "criteria", "summary", "items"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "source_work_queue_generated_at": { "type": ["string", "null"], "format": "date" },
+    "criteria": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_defined", "blocked"],
+      "properties": {
+        "policy_defined": { "type": "string" },
+        "blocked": { "type": "string" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total",
+        "by_status",
+        "by_review_decision",
+        "by_category",
+        "operating_calendar_check_required"
+      ],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "by_status": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_review_decision": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_category": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "operating_calendar_check_required": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/reviewItem" }
+    }
+  },
+  "$defs": {
+    "reviewItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task_id",
+        "card",
+        "status",
+        "review_decision",
+        "required_evidence",
+        "policy",
+        "source_queries",
+        "recommended_action"
+      ],
+      "properties": {
+        "task_id": { "type": "string", "minLength": 1 },
+        "card": { "$ref": "#/$defs/cardRef" },
+        "status": { "type": "string", "enum": ["resolved", "blocked"] },
+        "review_decision": { "type": "string", "enum": ["policy_defined", "needs_manual_escalation"] },
+        "required_evidence": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "policy": { "$ref": "#/$defs/crowdPolicy" },
+        "source_queries": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "recommended_action": { "type": "string" }
+      }
+    },
+    "crowdPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "weekday_weekend_crowd_policy",
+        "seasonal_event_crowd_policy",
+        "quiet_time_recommendation",
+        "check_before_visit",
+        "avoid_conditions",
+        "operating_calendar_check_required"
+      ],
+      "properties": {
+        "weekday_weekend_crowd_policy": { "type": "string" },
+        "seasonal_event_crowd_policy": { "type": "string" },
+        "quiet_time_recommendation": { "type": "string" },
+        "check_before_visit": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "avoid_conditions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "operating_calendar_check_required": { "type": "boolean" }
+      }
+    },
+    "cardRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "region", "category", "verification_status"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "region": { "type": "string" },
+        "category": { "type": "string" },
+        "verification_status": { "type": "string" }
+      }
+    }
+  }
+}

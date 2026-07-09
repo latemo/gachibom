@@ -1,0 +1,1865 @@
+{
+  "generated_at": "2026-07-09",
+  "source_roadview_image_review_generated_at": "2026-07-09",
+  "asset_root": "data/raw/roadview_images",
+  "source_dataset": {
+    "title": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 이미지",
+    "url": "https://www.data.go.kr/data/15110209/fileData.do",
+    "provider": "제주특별자치도",
+    "application_required": true,
+    "expected_full_dataset_image_count": 4748,
+    "expected_full_dataset_size_gb": "23~25",
+    "note": "공공데이터포털 페이지 기준 전체 이미지는 활용신청 후 전자매체로 별도 제공"
+  },
+  "summary": {
+    "total_places": 17,
+    "total_place_images": 1023,
+    "expected_review_sample_images": 102,
+    "available_review_sample_images": 102,
+    "missing_review_sample_images": 0,
+    "by_status": {
+      "ready_for_visual_review": 17
+    },
+    "by_review_decision": {
+      "ready_for_visual_review": 17
+    }
+  },
+  "items": [
+    {
+      "card": {
+        "id": "jeju_roadview_place_038",
+        "name": "국립제주박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 132,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "JEJUNATIONALMU-1-001",
+          "captured_at": "2022-08-23 09:35",
+          "latitude": 33.512772194444445,
+          "longitude": 126.54902219444445,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUNATIONALMU-1-001.jpg",
+            "data/raw/roadview_images/JEJUNATIONALMU-1-001.JPG",
+            "data/raw/roadview_images/JEJUNATIONALMU-1-001.jpeg",
+            "data/raw/roadview_images/JEJUNATIONALMU-1-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUNATIONALMU-1-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJUNATIONALMU-1-027",
+          "captured_at": "2022-08-23 11:38",
+          "latitude": 33.51333888888889,
+          "longitude": 126.54957222222222,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUNATIONALMU-1-027.jpg",
+            "data/raw/roadview_images/JEJUNATIONALMU-1-027.JPG",
+            "data/raw/roadview_images/JEJUNATIONALMU-1-027.jpeg",
+            "data/raw/roadview_images/JEJUNATIONALMU-1-027.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUNATIONALMU-1-027.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJUNATIONALMU-1-053",
+          "captured_at": "2022-08-23 11:26",
+          "latitude": 33.51292775,
+          "longitude": 126.54867219444444,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUNATIONALMU-1-053.jpg",
+            "data/raw/roadview_images/JEJUNATIONALMU-1-053.JPG",
+            "data/raw/roadview_images/JEJUNATIONALMU-1-053.jpeg",
+            "data/raw/roadview_images/JEJUNATIONALMU-1-053.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUNATIONALMU-1-053.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJUNATIONALMU-2-019",
+          "captured_at": "2022-08-23 10:32",
+          "latitude": 33.513288861111114,
+          "longitude": 126.54857497222223,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUNATIONALMU-2-019.jpg",
+            "data/raw/roadview_images/JEJUNATIONALMU-2-019.JPG",
+            "data/raw/roadview_images/JEJUNATIONALMU-2-019.jpeg",
+            "data/raw/roadview_images/JEJUNATIONALMU-2-019.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUNATIONALMU-2-019.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJUNATIONALMU-2-045",
+          "captured_at": "2022-08-23 10:54",
+          "latitude": 33.51295277777778,
+          "longitude": 126.54939722222223,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUNATIONALMU-2-045.jpg",
+            "data/raw/roadview_images/JEJUNATIONALMU-2-045.JPG",
+            "data/raw/roadview_images/JEJUNATIONALMU-2-045.jpeg",
+            "data/raw/roadview_images/JEJUNATIONALMU-2-045.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUNATIONALMU-2-045.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJUNATIONALMU-2-070",
+          "captured_at": "2022-08-23 11:07",
+          "latitude": 33.51332222222222,
+          "longitude": 126.54959719444444,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUNATIONALMU-2-070.jpg",
+            "data/raw/roadview_images/JEJUNATIONALMU-2-070.JPG",
+            "data/raw/roadview_images/JEJUNATIONALMU-2-070.jpeg",
+            "data/raw/roadview_images/JEJUNATIONALMU-2-070.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUNATIONALMU-2-070.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_088",
+        "name": "김녕미로공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 15,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "GIMNYEONGMAZEPA-1-001",
+          "captured_at": "2022-09-26 10:38",
+          "latitude": 33.53617222222222,
+          "longitude": 126.77208611111111,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-001.jpg",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-001.JPG",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-001.jpeg",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/GIMNYEONGMAZEPA-1-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "GIMNYEONGMAZEPA-1-004",
+          "captured_at": "2022-09-26 10:40",
+          "latitude": 33.536052749999996,
+          "longitude": 126.7720138611111,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-004.jpg",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-004.JPG",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-004.jpeg",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-004.png"
+          ],
+          "present_path": "data/raw/roadview_images/GIMNYEONGMAZEPA-1-004.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "GIMNYEONGMAZEPA-1-007",
+          "captured_at": "2022-09-26 10:42",
+          "latitude": 33.536252749999996,
+          "longitude": 126.77208333333333,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-007.jpg",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-007.JPG",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-007.jpeg",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-007.png"
+          ],
+          "present_path": "data/raw/roadview_images/GIMNYEONGMAZEPA-1-007.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "GIMNYEONGMAZEPA-1-009",
+          "captured_at": "2022-09-26 10:44",
+          "latitude": 33.53635275,
+          "longitude": 126.77225833333333,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-009.jpg",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-009.JPG",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-009.jpeg",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-009.png"
+          ],
+          "present_path": "data/raw/roadview_images/GIMNYEONGMAZEPA-1-009.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "GIMNYEONGMAZEPA-1-012",
+          "captured_at": "2022-09-26 10:45",
+          "latitude": 33.53641111111111,
+          "longitude": 126.77243052777777,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-012.jpg",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-012.JPG",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-012.jpeg",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-012.png"
+          ],
+          "present_path": "data/raw/roadview_images/GIMNYEONGMAZEPA-1-012.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "GIMNYEONGMAZEPA-1-015",
+          "captured_at": "2022-09-26 10:48",
+          "latitude": 33.53678330555555,
+          "longitude": 126.77269444444444,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-015.jpg",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-015.JPG",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-015.jpeg",
+            "data/raw/roadview_images/GIMNYEONGMAZEPA-1-015.png"
+          ],
+          "present_path": "data/raw/roadview_images/GIMNYEONGMAZEPA-1-015.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_100",
+        "name": "삼성혈",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 52,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "SAMSUNGHYEOL-1-001",
+          "captured_at": "2022-09-29 15:04",
+          "latitude": 33.505363861111114,
+          "longitude": 126.52866108333333,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-001.jpg",
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-001.JPG",
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-001.jpeg",
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/SAMSUNGHYEOL-1-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SAMSUNGHYEOL-1-011",
+          "captured_at": "2022-09-29 15:12",
+          "latitude": 33.504805555555556,
+          "longitude": 126.52900552777778,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-011.jpg",
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-011.JPG",
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-011.jpeg",
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-011.png"
+          ],
+          "present_path": "data/raw/roadview_images/SAMSUNGHYEOL-1-011.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SAMSUNGHYEOL-1-021",
+          "captured_at": "2022-09-29 15:19",
+          "latitude": 33.50418611111111,
+          "longitude": 126.52958052777778,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-021.jpg",
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-021.JPG",
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-021.jpeg",
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-021.png"
+          ],
+          "present_path": "data/raw/roadview_images/SAMSUNGHYEOL-1-021.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SAMSUNGHYEOL-1-032",
+          "captured_at": "2022-09-29 15:25",
+          "latitude": 33.50437497222222,
+          "longitude": 126.52791944444445,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-032.jpg",
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-032.JPG",
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-032.jpeg",
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-032.png"
+          ],
+          "present_path": "data/raw/roadview_images/SAMSUNGHYEOL-1-032.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SAMSUNGHYEOL-1-042",
+          "captured_at": "2022-09-29 15:39",
+          "latitude": 33.50495,
+          "longitude": 126.52839441666667,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-042.jpg",
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-042.JPG",
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-042.jpeg",
+            "data/raw/roadview_images/SAMSUNGHYEOL-1-042.png"
+          ],
+          "present_path": "data/raw/roadview_images/SAMSUNGHYEOL-1-042.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SAMSUNGHYEOL-3-004",
+          "captured_at": "2022-09-29 15:31",
+          "latitude": 33.504197222222224,
+          "longitude": 126.52788888888888,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SAMSUNGHYEOL-3-004.jpg",
+            "data/raw/roadview_images/SAMSUNGHYEOL-3-004.JPG",
+            "data/raw/roadview_images/SAMSUNGHYEOL-3-004.jpeg",
+            "data/raw/roadview_images/SAMSUNGHYEOL-3-004.png"
+          ],
+          "present_path": "data/raw/roadview_images/SAMSUNGHYEOL-3-004.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_095",
+        "name": "상효원수목원",
+        "region": "서귀포시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 73,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "SANGHYO-1-001",
+          "captured_at": "2022-09-28 11:27",
+          "latitude": 33.30563330555555,
+          "longitude": 126.58492497222221,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SANGHYO-1-001.jpg",
+            "data/raw/roadview_images/SANGHYO-1-001.JPG",
+            "data/raw/roadview_images/SANGHYO-1-001.jpeg",
+            "data/raw/roadview_images/SANGHYO-1-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/SANGHYO-1-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SANGHYO-1-015",
+          "captured_at": "2022-09-28 11:36",
+          "latitude": 33.30611111111111,
+          "longitude": 126.58468888888889,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SANGHYO-1-015.jpg",
+            "data/raw/roadview_images/SANGHYO-1-015.JPG",
+            "data/raw/roadview_images/SANGHYO-1-015.jpeg",
+            "data/raw/roadview_images/SANGHYO-1-015.png"
+          ],
+          "present_path": "data/raw/roadview_images/SANGHYO-1-015.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SANGHYO-1-030",
+          "captured_at": "2022-09-28 11:50",
+          "latitude": 33.30828333333333,
+          "longitude": 126.58394997222221,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SANGHYO-1-030.jpg",
+            "data/raw/roadview_images/SANGHYO-1-030.JPG",
+            "data/raw/roadview_images/SANGHYO-1-030.jpeg",
+            "data/raw/roadview_images/SANGHYO-1-030.png"
+          ],
+          "present_path": "data/raw/roadview_images/SANGHYO-1-030.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SANGHYO-1-044",
+          "captured_at": "2022-09-28 11:43",
+          "latitude": 33.30769441666666,
+          "longitude": 126.58563055555555,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SANGHYO-1-044.jpg",
+            "data/raw/roadview_images/SANGHYO-1-044.JPG",
+            "data/raw/roadview_images/SANGHYO-1-044.jpeg",
+            "data/raw/roadview_images/SANGHYO-1-044.png"
+          ],
+          "present_path": "data/raw/roadview_images/SANGHYO-1-044.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SANGHYO-1-059",
+          "captured_at": "2022-09-28 11:29",
+          "latitude": 33.30659444444444,
+          "longitude": 126.58506108333333,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SANGHYO-1-059.jpg",
+            "data/raw/roadview_images/SANGHYO-1-059.JPG",
+            "data/raw/roadview_images/SANGHYO-1-059.jpeg",
+            "data/raw/roadview_images/SANGHYO-1-059.png"
+          ],
+          "present_path": "data/raw/roadview_images/SANGHYO-1-059.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SANGHYO-3-008",
+          "captured_at": "2022-09-28 12:07",
+          "latitude": 33.30748333333333,
+          "longitude": 126.58649722222222,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SANGHYO-3-008.jpg",
+            "data/raw/roadview_images/SANGHYO-3-008.JPG",
+            "data/raw/roadview_images/SANGHYO-3-008.jpeg",
+            "data/raw/roadview_images/SANGHYO-3-008.png"
+          ],
+          "present_path": "data/raw/roadview_images/SANGHYO-3-008.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_053",
+        "name": "서귀포시립기당미술관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 14,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "GIDANG-1-001",
+          "captured_at": "2022-08-31 14:22",
+          "latitude": 33.24476386111111,
+          "longitude": 126.551425,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GIDANG-1-001.jpg",
+            "data/raw/roadview_images/GIDANG-1-001.JPG",
+            "data/raw/roadview_images/GIDANG-1-001.jpeg",
+            "data/raw/roadview_images/GIDANG-1-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/GIDANG-1-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "GIDANG-2-001",
+          "captured_at": "2022-08-31 14:26",
+          "latitude": 33.24483330555556,
+          "longitude": 126.55124719444444,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GIDANG-2-001.jpg",
+            "data/raw/roadview_images/GIDANG-2-001.JPG",
+            "data/raw/roadview_images/GIDANG-2-001.jpeg",
+            "data/raw/roadview_images/GIDANG-2-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/GIDANG-2-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "GIDANG-2-003",
+          "captured_at": "2022-08-31 14:27",
+          "latitude": 33.244880555555554,
+          "longitude": 126.55136386111111,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GIDANG-2-003.jpg",
+            "data/raw/roadview_images/GIDANG-2-003.JPG",
+            "data/raw/roadview_images/GIDANG-2-003.jpeg",
+            "data/raw/roadview_images/GIDANG-2-003.png"
+          ],
+          "present_path": "data/raw/roadview_images/GIDANG-2-003.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "GIDANG-2-006",
+          "captured_at": "2022-08-31 14:29",
+          "latitude": 33.24489997222222,
+          "longitude": 126.55133330555556,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GIDANG-2-006.jpg",
+            "data/raw/roadview_images/GIDANG-2-006.JPG",
+            "data/raw/roadview_images/GIDANG-2-006.jpeg",
+            "data/raw/roadview_images/GIDANG-2-006.png"
+          ],
+          "present_path": "data/raw/roadview_images/GIDANG-2-006.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "GIDANG-2-008",
+          "captured_at": "2022-08-31 14:30",
+          "latitude": 33.24504163888889,
+          "longitude": 126.55120555555555,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GIDANG-2-008.jpg",
+            "data/raw/roadview_images/GIDANG-2-008.JPG",
+            "data/raw/roadview_images/GIDANG-2-008.jpeg",
+            "data/raw/roadview_images/GIDANG-2-008.png"
+          ],
+          "present_path": "data/raw/roadview_images/GIDANG-2-008.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "GIDANG-2-011",
+          "captured_at": "2022-08-31 14:32",
+          "latitude": 33.24583608333334,
+          "longitude": 126.55160277777777,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GIDANG-2-011.jpg",
+            "data/raw/roadview_images/GIDANG-2-011.JPG",
+            "data/raw/roadview_images/GIDANG-2-011.jpeg",
+            "data/raw/roadview_images/GIDANG-2-011.png"
+          ],
+          "present_path": "data/raw/roadview_images/GIDANG-2-011.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_104",
+        "name": "스누피가든",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 168,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "SNOOPYGARDEN-1-001",
+          "captured_at": "2022-09-30 11:34",
+          "latitude": 33.44354166666666,
+          "longitude": 126.77831944444445,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SNOOPYGARDEN-1-001.jpg",
+            "data/raw/roadview_images/SNOOPYGARDEN-1-001.JPG",
+            "data/raw/roadview_images/SNOOPYGARDEN-1-001.jpeg",
+            "data/raw/roadview_images/SNOOPYGARDEN-1-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/SNOOPYGARDEN-1-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SNOOPYGARDEN-1-034",
+          "captured_at": "2022-09-30 13:22",
+          "latitude": 33.44513886111111,
+          "longitude": 126.77932219444445,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SNOOPYGARDEN-1-034.jpg",
+            "data/raw/roadview_images/SNOOPYGARDEN-1-034.JPG",
+            "data/raw/roadview_images/SNOOPYGARDEN-1-034.jpeg",
+            "data/raw/roadview_images/SNOOPYGARDEN-1-034.png"
+          ],
+          "present_path": "data/raw/roadview_images/SNOOPYGARDEN-1-034.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SNOOPYGARDEN-1-068",
+          "captured_at": "2022-09-30 13:43",
+          "latitude": 33.44616944444444,
+          "longitude": 126.78075552777777,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SNOOPYGARDEN-1-068.jpg",
+            "data/raw/roadview_images/SNOOPYGARDEN-1-068.JPG",
+            "data/raw/roadview_images/SNOOPYGARDEN-1-068.jpeg",
+            "data/raw/roadview_images/SNOOPYGARDEN-1-068.png"
+          ],
+          "present_path": "data/raw/roadview_images/SNOOPYGARDEN-1-068.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SNOOPYGARDEN-1-101",
+          "captured_at": "2022-09-30 14:30",
+          "latitude": 33.44438608333333,
+          "longitude": 126.78012222222222,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SNOOPYGARDEN-1-101.jpg",
+            "data/raw/roadview_images/SNOOPYGARDEN-1-101.JPG",
+            "data/raw/roadview_images/SNOOPYGARDEN-1-101.jpeg",
+            "data/raw/roadview_images/SNOOPYGARDEN-1-101.png"
+          ],
+          "present_path": "data/raw/roadview_images/SNOOPYGARDEN-1-101.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SNOOPYGARDEN-2-005",
+          "captured_at": "2022-09-30 11:38",
+          "latitude": 33.444230527777776,
+          "longitude": 126.77839441666667,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SNOOPYGARDEN-2-005.jpg",
+            "data/raw/roadview_images/SNOOPYGARDEN-2-005.JPG",
+            "data/raw/roadview_images/SNOOPYGARDEN-2-005.jpeg",
+            "data/raw/roadview_images/SNOOPYGARDEN-2-005.png"
+          ],
+          "present_path": "data/raw/roadview_images/SNOOPYGARDEN-2-005.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SNOOPYGARDEN-2-038",
+          "captured_at": "2022-09-30 12:18",
+          "latitude": 33.44411944444444,
+          "longitude": 126.77850275,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SNOOPYGARDEN-2-038.jpg",
+            "data/raw/roadview_images/SNOOPYGARDEN-2-038.JPG",
+            "data/raw/roadview_images/SNOOPYGARDEN-2-038.jpeg",
+            "data/raw/roadview_images/SNOOPYGARDEN-2-038.png"
+          ],
+          "present_path": "data/raw/roadview_images/SNOOPYGARDEN-2-038.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_4_3_001",
+        "name": "제주4.3평화공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 127,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "JEJU43PA-1-001",
+          "captured_at": "2022-07-28 09:34",
+          "latitude": 33.453294444444445,
+          "longitude": 126.619175,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJU43PA-1-001.jpg",
+            "data/raw/roadview_images/JEJU43PA-1-001.JPG",
+            "data/raw/roadview_images/JEJU43PA-1-001.jpeg",
+            "data/raw/roadview_images/JEJU43PA-1-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJU43PA-1-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJU43PA-1-026",
+          "captured_at": "2022-07-28 12:16",
+          "latitude": 33.45142219444445,
+          "longitude": 126.61734722222222,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJU43PA-1-026.jpg",
+            "data/raw/roadview_images/JEJU43PA-1-026.JPG",
+            "data/raw/roadview_images/JEJU43PA-1-026.jpeg",
+            "data/raw/roadview_images/JEJU43PA-1-026.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJU43PA-1-026.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJU43PA-1-044",
+          "captured_at": "2022-07-28 12:56",
+          "latitude": 33.45013330555556,
+          "longitude": 126.61825277777777,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJU43PA-1-044.jpg",
+            "data/raw/roadview_images/JEJU43PA-1-044.JPG",
+            "data/raw/roadview_images/JEJU43PA-1-044.jpeg",
+            "data/raw/roadview_images/JEJU43PA-1-044.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJU43PA-1-044.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJU43PA-3-012",
+          "captured_at": "2022-07-15 11:27",
+          "latitude": 33.45102775,
+          "longitude": 126.62089166666667,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJU43PA-3-012.jpg",
+            "data/raw/roadview_images/JEJU43PA-3-012.JPG",
+            "data/raw/roadview_images/JEJU43PA-3-012.jpeg",
+            "data/raw/roadview_images/JEJU43PA-3-012.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJU43PA-3-012.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJU43PA-3-037",
+          "captured_at": "2022-07-28 10:54",
+          "latitude": 33.45084722222222,
+          "longitude": 126.62072222222221,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJU43PA-3-037.jpg",
+            "data/raw/roadview_images/JEJU43PA-3-037.JPG",
+            "data/raw/roadview_images/JEJU43PA-3-037.jpeg",
+            "data/raw/roadview_images/JEJU43PA-3-037.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJU43PA-3-037.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJU43PA-3-057",
+          "captured_at": "2022-07-28 11:03",
+          "latitude": 33.450988861111114,
+          "longitude": 126.62069722222222,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJU43PA-3-057.jpg",
+            "data/raw/roadview_images/JEJU43PA-3-057.JPG",
+            "data/raw/roadview_images/JEJU43PA-3-057.jpeg",
+            "data/raw/roadview_images/JEJU43PA-3-057.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJU43PA-3-057.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_066",
+        "name": "제주고산리유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 17,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "GOSANRIRUINS-1-001",
+          "captured_at": "2022-09-14 13:27",
+          "latitude": 33.30433052777777,
+          "longitude": 126.16620277777778,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GOSANRIRUINS-1-001.jpg",
+            "data/raw/roadview_images/GOSANRIRUINS-1-001.JPG",
+            "data/raw/roadview_images/GOSANRIRUINS-1-001.jpeg",
+            "data/raw/roadview_images/GOSANRIRUINS-1-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/GOSANRIRUINS-1-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "GOSANRIRUINS-1-004",
+          "captured_at": "2022-09-14 13:27",
+          "latitude": 33.30427497222222,
+          "longitude": 126.16627775,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GOSANRIRUINS-1-004.jpg",
+            "data/raw/roadview_images/GOSANRIRUINS-1-004.JPG",
+            "data/raw/roadview_images/GOSANRIRUINS-1-004.jpeg",
+            "data/raw/roadview_images/GOSANRIRUINS-1-004.png"
+          ],
+          "present_path": "data/raw/roadview_images/GOSANRIRUINS-1-004.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "GOSANRIRUINS-1-007",
+          "captured_at": "2022-09-14 13:29",
+          "latitude": 33.30407497222222,
+          "longitude": 126.16636386111112,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GOSANRIRUINS-1-007.jpg",
+            "data/raw/roadview_images/GOSANRIRUINS-1-007.JPG",
+            "data/raw/roadview_images/GOSANRIRUINS-1-007.jpeg",
+            "data/raw/roadview_images/GOSANRIRUINS-1-007.png"
+          ],
+          "present_path": "data/raw/roadview_images/GOSANRIRUINS-1-007.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "GOSANRIRUINS-2-003",
+          "captured_at": "2022-09-14 13:28",
+          "latitude": 33.304058,
+          "longitude": 126.16622500000001,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GOSANRIRUINS-2-003.jpg",
+            "data/raw/roadview_images/GOSANRIRUINS-2-003.JPG",
+            "data/raw/roadview_images/GOSANRIRUINS-2-003.jpeg",
+            "data/raw/roadview_images/GOSANRIRUINS-2-003.png"
+          ],
+          "present_path": "data/raw/roadview_images/GOSANRIRUINS-2-003.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "GOSANRIRUINS-2-006",
+          "captured_at": "2022-09-14 13:29",
+          "latitude": 33.304049,
+          "longitude": 126.16627700000001,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GOSANRIRUINS-2-006.jpg",
+            "data/raw/roadview_images/GOSANRIRUINS-2-006.JPG",
+            "data/raw/roadview_images/GOSANRIRUINS-2-006.jpeg",
+            "data/raw/roadview_images/GOSANRIRUINS-2-006.png"
+          ],
+          "present_path": "data/raw/roadview_images/GOSANRIRUINS-2-006.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "GOSANRIRUINS-3-001",
+          "captured_at": "2022-09-14 13:30",
+          "latitude": 33.30393052777777,
+          "longitude": 126.16648886111112,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/GOSANRIRUINS-3-001.jpg",
+            "data/raw/roadview_images/GOSANRIRUINS-3-001.JPG",
+            "data/raw/roadview_images/GOSANRIRUINS-3-001.jpeg",
+            "data/raw/roadview_images/GOSANRIRUINS-3-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/GOSANRIRUINS-3-001.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_014",
+        "name": "제주교육박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 43,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "EDUMU-1-001",
+          "captured_at": "2022-08-09 13:27",
+          "latitude": 33.49446941666667,
+          "longitude": 126.537675,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/EDUMU-1-001.jpg",
+            "data/raw/roadview_images/EDUMU-1-001.JPG",
+            "data/raw/roadview_images/EDUMU-1-001.jpeg",
+            "data/raw/roadview_images/EDUMU-1-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/EDUMU-1-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "EDUMU-1-009",
+          "captured_at": "2022-08-09 13:56",
+          "latitude": 33.49409444444444,
+          "longitude": 126.53816111111111,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/EDUMU-1-009.jpg",
+            "data/raw/roadview_images/EDUMU-1-009.JPG",
+            "data/raw/roadview_images/EDUMU-1-009.jpeg",
+            "data/raw/roadview_images/EDUMU-1-009.png"
+          ],
+          "present_path": "data/raw/roadview_images/EDUMU-1-009.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "EDUMU-2-007",
+          "captured_at": "2022-08-09 13:35",
+          "latitude": 33.49463611111111,
+          "longitude": 126.53793611111111,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/EDUMU-2-007.jpg",
+            "data/raw/roadview_images/EDUMU-2-007.JPG",
+            "data/raw/roadview_images/EDUMU-2-007.jpeg",
+            "data/raw/roadview_images/EDUMU-2-007.png"
+          ],
+          "present_path": "data/raw/roadview_images/EDUMU-2-007.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "EDUMU-2-015",
+          "captured_at": "2022-08-09 13:38",
+          "latitude": 33.494619444444446,
+          "longitude": 126.53798330555556,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/EDUMU-2-015.jpg",
+            "data/raw/roadview_images/EDUMU-2-015.JPG",
+            "data/raw/roadview_images/EDUMU-2-015.jpeg",
+            "data/raw/roadview_images/EDUMU-2-015.png"
+          ],
+          "present_path": "data/raw/roadview_images/EDUMU-2-015.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "EDUMU-2-024",
+          "captured_at": "2022-08-09 13:44",
+          "latitude": 33.494619444444446,
+          "longitude": 126.537925,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/EDUMU-2-024.jpg",
+            "data/raw/roadview_images/EDUMU-2-024.JPG",
+            "data/raw/roadview_images/EDUMU-2-024.jpeg",
+            "data/raw/roadview_images/EDUMU-2-024.png"
+          ],
+          "present_path": "data/raw/roadview_images/EDUMU-2-024.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "EDUMU-3-004",
+          "captured_at": "2022-08-09 14:00",
+          "latitude": 33.49406663888889,
+          "longitude": 126.53781108333334,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/EDUMU-3-004.jpg",
+            "data/raw/roadview_images/EDUMU-3-004.JPG",
+            "data/raw/roadview_images/EDUMU-3-004.jpeg",
+            "data/raw/roadview_images/EDUMU-3-004.png"
+          ],
+          "present_path": "data/raw/roadview_images/EDUMU-3-004.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_025",
+        "name": "제주도립김창열미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 43,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "KIMCHANG-1-001",
+          "captured_at": "2022-08-11 13:27",
+          "latitude": 33.33858886111111,
+          "longitude": 126.26936941666666,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/KIMCHANG-1-001.jpg",
+            "data/raw/roadview_images/KIMCHANG-1-001.JPG",
+            "data/raw/roadview_images/KIMCHANG-1-001.jpeg",
+            "data/raw/roadview_images/KIMCHANG-1-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/KIMCHANG-1-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "KIMCHANG-1-009",
+          "captured_at": "2022-08-11 13:33",
+          "latitude": 33.33909722222222,
+          "longitude": 126.26897219444444,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/KIMCHANG-1-009.jpg",
+            "data/raw/roadview_images/KIMCHANG-1-009.JPG",
+            "data/raw/roadview_images/KIMCHANG-1-009.jpeg",
+            "data/raw/roadview_images/KIMCHANG-1-009.png"
+          ],
+          "present_path": "data/raw/roadview_images/KIMCHANG-1-009.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "KIMCHANG-1-018",
+          "captured_at": "2022-08-11 14:02",
+          "latitude": 33.338883305555555,
+          "longitude": 126.26867219444445,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/KIMCHANG-1-018.jpg",
+            "data/raw/roadview_images/KIMCHANG-1-018.JPG",
+            "data/raw/roadview_images/KIMCHANG-1-018.jpeg",
+            "data/raw/roadview_images/KIMCHANG-1-018.png"
+          ],
+          "present_path": "data/raw/roadview_images/KIMCHANG-1-018.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "KIMCHANG-1-026",
+          "captured_at": "2022-08-11 14:08",
+          "latitude": 33.33873333333334,
+          "longitude": 126.26958888888889,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/KIMCHANG-1-026.jpg",
+            "data/raw/roadview_images/KIMCHANG-1-026.JPG",
+            "data/raw/roadview_images/KIMCHANG-1-026.jpeg",
+            "data/raw/roadview_images/KIMCHANG-1-026.png"
+          ],
+          "present_path": "data/raw/roadview_images/KIMCHANG-1-026.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "KIMCHANG-2-005",
+          "captured_at": "2022-08-11 13:45",
+          "latitude": 33.33916941666667,
+          "longitude": 126.26865277777777,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/KIMCHANG-2-005.jpg",
+            "data/raw/roadview_images/KIMCHANG-2-005.JPG",
+            "data/raw/roadview_images/KIMCHANG-2-005.jpeg",
+            "data/raw/roadview_images/KIMCHANG-2-005.png"
+          ],
+          "present_path": "data/raw/roadview_images/KIMCHANG-2-005.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "KIMCHANG-2-013",
+          "captured_at": "2022-08-11 13:50",
+          "latitude": 33.33914719444444,
+          "longitude": 126.26868611111111,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/KIMCHANG-2-013.jpg",
+            "data/raw/roadview_images/KIMCHANG-2-013.JPG",
+            "data/raw/roadview_images/KIMCHANG-2-013.jpeg",
+            "data/raw/roadview_images/KIMCHANG-2-013.png"
+          ],
+          "present_path": "data/raw/roadview_images/KIMCHANG-2-013.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_013",
+        "name": "제주민속자연사박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 90,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "JEJUFOLKMU-1-001",
+          "captured_at": "2022-08-09 10:25",
+          "latitude": 33.506119416666664,
+          "longitude": 126.53055275,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUFOLKMU-1-001.jpg",
+            "data/raw/roadview_images/JEJUFOLKMU-1-001.JPG",
+            "data/raw/roadview_images/JEJUFOLKMU-1-001.jpeg",
+            "data/raw/roadview_images/JEJUFOLKMU-1-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUFOLKMU-1-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJUFOLKMU-1-019",
+          "captured_at": "2022-08-09 11:15",
+          "latitude": 33.50631111111111,
+          "longitude": 126.53138886111111,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUFOLKMU-1-019.jpg",
+            "data/raw/roadview_images/JEJUFOLKMU-1-019.JPG",
+            "data/raw/roadview_images/JEJUFOLKMU-1-019.jpeg",
+            "data/raw/roadview_images/JEJUFOLKMU-1-019.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUFOLKMU-1-019.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJUFOLKMU-2-009",
+          "captured_at": "2022-08-09 10:46",
+          "latitude": 33.506305527777776,
+          "longitude": 126.5314638888889,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUFOLKMU-2-009.jpg",
+            "data/raw/roadview_images/JEJUFOLKMU-2-009.JPG",
+            "data/raw/roadview_images/JEJUFOLKMU-2-009.jpeg",
+            "data/raw/roadview_images/JEJUFOLKMU-2-009.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUFOLKMU-2-009.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJUFOLKMU-2-026",
+          "captured_at": "2022-08-09 11:00",
+          "latitude": 33.50633608333333,
+          "longitude": 126.5316666388889,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUFOLKMU-2-026.jpg",
+            "data/raw/roadview_images/JEJUFOLKMU-2-026.JPG",
+            "data/raw/roadview_images/JEJUFOLKMU-2-026.jpeg",
+            "data/raw/roadview_images/JEJUFOLKMU-2-026.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUFOLKMU-2-026.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJUFOLKMU-3-002",
+          "captured_at": "2022-08-09 11:18",
+          "latitude": 33.50644722222222,
+          "longitude": 126.53129441666667,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUFOLKMU-3-002.jpg",
+            "data/raw/roadview_images/JEJUFOLKMU-3-002.JPG",
+            "data/raw/roadview_images/JEJUFOLKMU-3-002.jpeg",
+            "data/raw/roadview_images/JEJUFOLKMU-3-002.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUFOLKMU-3-002.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJUFOLKMU-4-013",
+          "captured_at": "2022-08-09 12:28",
+          "latitude": 33.50604441666667,
+          "longitude": 126.53120555555556,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUFOLKMU-4-013.jpg",
+            "data/raw/roadview_images/JEJUFOLKMU-4-013.JPG",
+            "data/raw/roadview_images/JEJUFOLKMU-4-013.jpeg",
+            "data/raw/roadview_images/JEJUFOLKMU-4-013.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUFOLKMU-4-013.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_010",
+        "name": "제주삼양동유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 37,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "SAMYANGRUINS-1-002",
+          "captured_at": "2022-08-09 10:20",
+          "latitude": 33.52290555555555,
+          "longitude": 126.58832222222222,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SAMYANGRUINS-1-002.jpg",
+            "data/raw/roadview_images/SAMYANGRUINS-1-002.JPG",
+            "data/raw/roadview_images/SAMYANGRUINS-1-002.jpeg",
+            "data/raw/roadview_images/SAMYANGRUINS-1-002.png"
+          ],
+          "present_path": "data/raw/roadview_images/SAMYANGRUINS-1-002.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SAMYANGRUINS-1-008",
+          "captured_at": "2022-08-09 10:30",
+          "latitude": 33.522999999999996,
+          "longitude": 126.58808608333332,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SAMYANGRUINS-1-008.jpg",
+            "data/raw/roadview_images/SAMYANGRUINS-1-008.JPG",
+            "data/raw/roadview_images/SAMYANGRUINS-1-008.jpeg",
+            "data/raw/roadview_images/SAMYANGRUINS-1-008.png"
+          ],
+          "present_path": "data/raw/roadview_images/SAMYANGRUINS-1-008.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SAMYANGRUINS-1-015",
+          "captured_at": "2022-08-09 10:40",
+          "latitude": 33.52323888888889,
+          "longitude": 126.58800275,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SAMYANGRUINS-1-015.jpg",
+            "data/raw/roadview_images/SAMYANGRUINS-1-015.JPG",
+            "data/raw/roadview_images/SAMYANGRUINS-1-015.jpeg",
+            "data/raw/roadview_images/SAMYANGRUINS-1-015.png"
+          ],
+          "present_path": "data/raw/roadview_images/SAMYANGRUINS-1-015.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SAMYANGRUINS-1-023",
+          "captured_at": "2022-08-09 10:50",
+          "latitude": 33.52303608333333,
+          "longitude": 126.58747497222221,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SAMYANGRUINS-1-023.jpg",
+            "data/raw/roadview_images/SAMYANGRUINS-1-023.JPG",
+            "data/raw/roadview_images/SAMYANGRUINS-1-023.jpeg",
+            "data/raw/roadview_images/SAMYANGRUINS-1-023.png"
+          ],
+          "present_path": "data/raw/roadview_images/SAMYANGRUINS-1-023.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SAMYANGRUINS-1-030",
+          "captured_at": "2022-08-09 11:00",
+          "latitude": 33.52321108333333,
+          "longitude": 126.58700552777778,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SAMYANGRUINS-1-030.jpg",
+            "data/raw/roadview_images/SAMYANGRUINS-1-030.JPG",
+            "data/raw/roadview_images/SAMYANGRUINS-1-030.jpeg",
+            "data/raw/roadview_images/SAMYANGRUINS-1-030.png"
+          ],
+          "present_path": "data/raw/roadview_images/SAMYANGRUINS-1-030.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "SAMYANGRUINS-2-003",
+          "captured_at": "2022-08-09 10:43",
+          "latitude": 33.52308333333333,
+          "longitude": 126.58767219444444,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/SAMYANGRUINS-2-003.jpg",
+            "data/raw/roadview_images/SAMYANGRUINS-2-003.JPG",
+            "data/raw/roadview_images/SAMYANGRUINS-2-003.jpeg",
+            "data/raw/roadview_images/SAMYANGRUINS-2-003.png"
+          ],
+          "present_path": "data/raw/roadview_images/SAMYANGRUINS-2-003.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_017",
+        "name": "제주아트센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 26,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "ARTCENTER-1-001",
+          "captured_at": "2022-08-10 12:20",
+          "latitude": 33.47559719444445,
+          "longitude": 126.51536386111111,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/ARTCENTER-1-001.jpg",
+            "data/raw/roadview_images/ARTCENTER-1-001.JPG",
+            "data/raw/roadview_images/ARTCENTER-1-001.jpeg",
+            "data/raw/roadview_images/ARTCENTER-1-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/ARTCENTER-1-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "ARTCENTER-1-006",
+          "captured_at": "2022-08-10 12:23",
+          "latitude": 33.475858305555555,
+          "longitude": 126.51520833333333,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/ARTCENTER-1-006.jpg",
+            "data/raw/roadview_images/ARTCENTER-1-006.JPG",
+            "data/raw/roadview_images/ARTCENTER-1-006.jpeg",
+            "data/raw/roadview_images/ARTCENTER-1-006.png"
+          ],
+          "present_path": "data/raw/roadview_images/ARTCENTER-1-006.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "ARTCENTER-2-002",
+          "captured_at": "2022-08-10 12:29",
+          "latitude": 33.47566663888889,
+          "longitude": 126.51506663888888,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/ARTCENTER-2-002.jpg",
+            "data/raw/roadview_images/ARTCENTER-2-002.JPG",
+            "data/raw/roadview_images/ARTCENTER-2-002.jpeg",
+            "data/raw/roadview_images/ARTCENTER-2-002.png"
+          ],
+          "present_path": "data/raw/roadview_images/ARTCENTER-2-002.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "ARTCENTER-2-007",
+          "captured_at": "2022-08-10 12:39",
+          "latitude": 33.47519722222222,
+          "longitude": 126.51565,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/ARTCENTER-2-007.jpg",
+            "data/raw/roadview_images/ARTCENTER-2-007.JPG",
+            "data/raw/roadview_images/ARTCENTER-2-007.jpeg",
+            "data/raw/roadview_images/ARTCENTER-2-007.png"
+          ],
+          "present_path": "data/raw/roadview_images/ARTCENTER-2-007.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "ARTCENTER-2-012",
+          "captured_at": "2022-08-10 12:48",
+          "latitude": 33.47531941666667,
+          "longitude": 126.51522777777778,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/ARTCENTER-2-012.jpg",
+            "data/raw/roadview_images/ARTCENTER-2-012.JPG",
+            "data/raw/roadview_images/ARTCENTER-2-012.jpeg",
+            "data/raw/roadview_images/ARTCENTER-2-012.png"
+          ],
+          "present_path": "data/raw/roadview_images/ARTCENTER-2-012.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "ARTCENTER-2-017",
+          "captured_at": "2022-08-10 12:57",
+          "latitude": 33.475302750000004,
+          "longitude": 126.51537775,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/ARTCENTER-2-017.jpg",
+            "data/raw/roadview_images/ARTCENTER-2-017.JPG",
+            "data/raw/roadview_images/ARTCENTER-2-017.jpeg",
+            "data/raw/roadview_images/ARTCENTER-2-017.png"
+          ],
+          "present_path": "data/raw/roadview_images/ARTCENTER-2-017.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_084",
+        "name": "제주웰컴센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 15,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "WELCOME-1-001",
+          "captured_at": "2022-09-20 13:45",
+          "latitude": 33.486088861111114,
+          "longitude": 126.49949722222222,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/WELCOME-1-001.jpg",
+            "data/raw/roadview_images/WELCOME-1-001.JPG",
+            "data/raw/roadview_images/WELCOME-1-001.jpeg",
+            "data/raw/roadview_images/WELCOME-1-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/WELCOME-1-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "WELCOME-2-002",
+          "captured_at": "2022-09-20 13:46",
+          "latitude": 33.486469416666665,
+          "longitude": 126.49998611111111,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/WELCOME-2-002.jpg",
+            "data/raw/roadview_images/WELCOME-2-002.JPG",
+            "data/raw/roadview_images/WELCOME-2-002.jpeg",
+            "data/raw/roadview_images/WELCOME-2-002.png"
+          ],
+          "present_path": "data/raw/roadview_images/WELCOME-2-002.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "WELCOME-2-005",
+          "captured_at": "2022-09-20 13:49",
+          "latitude": 33.48608052777778,
+          "longitude": 126.49936111111111,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/WELCOME-2-005.jpg",
+            "data/raw/roadview_images/WELCOME-2-005.JPG",
+            "data/raw/roadview_images/WELCOME-2-005.jpeg",
+            "data/raw/roadview_images/WELCOME-2-005.png"
+          ],
+          "present_path": "data/raw/roadview_images/WELCOME-2-005.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "WELCOME-2-007",
+          "captured_at": "2022-09-20 13:48",
+          "latitude": 33.486497194444446,
+          "longitude": 126.49971386111112,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/WELCOME-2-007.jpg",
+            "data/raw/roadview_images/WELCOME-2-007.JPG",
+            "data/raw/roadview_images/WELCOME-2-007.jpeg",
+            "data/raw/roadview_images/WELCOME-2-007.png"
+          ],
+          "present_path": "data/raw/roadview_images/WELCOME-2-007.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "WELCOME-2-010",
+          "captured_at": "2022-09-20 13:44",
+          "latitude": 33.48622775,
+          "longitude": 126.49943608333334,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/WELCOME-2-010.jpg",
+            "data/raw/roadview_images/WELCOME-2-010.JPG",
+            "data/raw/roadview_images/WELCOME-2-010.jpeg",
+            "data/raw/roadview_images/WELCOME-2-010.png"
+          ],
+          "present_path": "data/raw/roadview_images/WELCOME-2-010.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "WELCOME-2-013",
+          "captured_at": "2022-09-20 13:45",
+          "latitude": 33.48625830555556,
+          "longitude": 126.49940830555556,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/WELCOME-2-013.jpg",
+            "data/raw/roadview_images/WELCOME-2-013.JPG",
+            "data/raw/roadview_images/WELCOME-2-013.jpeg",
+            "data/raw/roadview_images/WELCOME-2-013.png"
+          ],
+          "present_path": "data/raw/roadview_images/WELCOME-2-013.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_024",
+        "name": "제주현대미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 31,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "JEJUCONTEM-1-001",
+          "captured_at": "2022-08-11 14:35",
+          "latitude": 33.33826944444445,
+          "longitude": 126.26562777777778,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUCONTEM-1-001.jpg",
+            "data/raw/roadview_images/JEJUCONTEM-1-001.JPG",
+            "data/raw/roadview_images/JEJUCONTEM-1-001.jpeg",
+            "data/raw/roadview_images/JEJUCONTEM-1-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUCONTEM-1-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJUCONTEM-1-007",
+          "captured_at": "2022-08-11 14:41",
+          "latitude": 33.339669416666666,
+          "longitude": 126.2658,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUCONTEM-1-007.jpg",
+            "data/raw/roadview_images/JEJUCONTEM-1-007.JPG",
+            "data/raw/roadview_images/JEJUCONTEM-1-007.jpeg",
+            "data/raw/roadview_images/JEJUCONTEM-1-007.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUCONTEM-1-007.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJUCONTEM-1-013",
+          "captured_at": "2022-08-11 15:14",
+          "latitude": 33.33776666666667,
+          "longitude": 126.26655552777778,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUCONTEM-1-013.jpg",
+            "data/raw/roadview_images/JEJUCONTEM-1-013.JPG",
+            "data/raw/roadview_images/JEJUCONTEM-1-013.jpeg",
+            "data/raw/roadview_images/JEJUCONTEM-1-013.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUCONTEM-1-013.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJUCONTEM-1-019",
+          "captured_at": "2022-08-11 15:33",
+          "latitude": 33.337502750000006,
+          "longitude": 126.26706944444445,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUCONTEM-1-019.jpg",
+            "data/raw/roadview_images/JEJUCONTEM-1-019.JPG",
+            "data/raw/roadview_images/JEJUCONTEM-1-019.jpeg",
+            "data/raw/roadview_images/JEJUCONTEM-1-019.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUCONTEM-1-019.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJUCONTEM-2-002",
+          "captured_at": "2022-08-11 14:51",
+          "latitude": 33.33967775,
+          "longitude": 126.26564722222223,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUCONTEM-2-002.jpg",
+            "data/raw/roadview_images/JEJUCONTEM-2-002.JPG",
+            "data/raw/roadview_images/JEJUCONTEM-2-002.jpeg",
+            "data/raw/roadview_images/JEJUCONTEM-2-002.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUCONTEM-2-002.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "JEJUCONTEM-2-008",
+          "captured_at": "2022-08-11 15:01",
+          "latitude": 33.33972777777778,
+          "longitude": 126.26567777777778,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/JEJUCONTEM-2-008.jpg",
+            "data/raw/roadview_images/JEJUCONTEM-2-008.JPG",
+            "data/raw/roadview_images/JEJUCONTEM-2-008.jpeg",
+            "data/raw/roadview_images/JEJUCONTEM-2-008.png"
+          ],
+          "present_path": "data/raw/roadview_images/JEJUCONTEM-2-008.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_105",
+        "name": "한림공원(아열대식물원)",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 53,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "HALLIMPAGARDEN-1-001",
+          "captured_at": "2022-09-30 10:04",
+          "latitude": 33.39023888888889,
+          "longitude": 126.23798611111111,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-001.jpg",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-001.JPG",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-001.jpeg",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/HALLIMPAGARDEN-1-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "HALLIMPAGARDEN-1-011",
+          "captured_at": "2022-09-30 10:09",
+          "latitude": 33.39004444444444,
+          "longitude": 126.23757222222223,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-011.jpg",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-011.JPG",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-011.jpeg",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-011.png"
+          ],
+          "present_path": "data/raw/roadview_images/HALLIMPAGARDEN-1-011.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "HALLIMPAGARDEN-1-022",
+          "captured_at": "2022-09-30 10:17",
+          "latitude": 33.38955,
+          "longitude": 126.23770830555556,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-022.jpg",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-022.JPG",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-022.jpeg",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-022.png"
+          ],
+          "present_path": "data/raw/roadview_images/HALLIMPAGARDEN-1-022.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "HALLIMPAGARDEN-1-032",
+          "captured_at": "2022-09-30 10:21",
+          "latitude": 33.38883888888889,
+          "longitude": 126.238375,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-032.jpg",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-032.JPG",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-032.jpeg",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-032.png"
+          ],
+          "present_path": "data/raw/roadview_images/HALLIMPAGARDEN-1-032.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "HALLIMPAGARDEN-1-043",
+          "captured_at": "2022-09-30 10:26",
+          "latitude": 33.389561083333334,
+          "longitude": 126.23836386111111,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-043.jpg",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-043.JPG",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-043.jpeg",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-043.png"
+          ],
+          "present_path": "data/raw/roadview_images/HALLIMPAGARDEN-1-043.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "HALLIMPAGARDEN-1-053",
+          "captured_at": "2022-09-30 10:30",
+          "latitude": 33.38909722222222,
+          "longitude": 126.23854166666666,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-053.jpg",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-053.JPG",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-053.jpeg",
+            "data/raw/roadview_images/HALLIMPAGARDEN-1-053.png"
+          ],
+          "present_path": "data/raw/roadview_images/HALLIMPAGARDEN-1-053.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    },
+    {
+      "card": {
+        "id": "jeju_roadview_place_096",
+        "name": "휴애리자연생활공원",
+        "region": "서귀포시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "status": "ready_for_visual_review",
+      "expected_review_sample_count": 6,
+      "available_review_sample_count": 6,
+      "missing_review_sample_count": 0,
+      "total_place_image_count": 87,
+      "review_decision": "ready_for_visual_review",
+      "images": [
+        {
+          "image_file_name": "HUEREE-1-001",
+          "captured_at": "2022-09-28 10:04",
+          "latitude": 33.308658305555554,
+          "longitude": 126.63359444444446,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/HUEREE-1-001.jpg",
+            "data/raw/roadview_images/HUEREE-1-001.JPG",
+            "data/raw/roadview_images/HUEREE-1-001.jpeg",
+            "data/raw/roadview_images/HUEREE-1-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/HUEREE-1-001.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "HUEREE-1-018",
+          "captured_at": "2022-09-28 10:15",
+          "latitude": 33.308363888888884,
+          "longitude": 126.63465275,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/HUEREE-1-018.jpg",
+            "data/raw/roadview_images/HUEREE-1-018.JPG",
+            "data/raw/roadview_images/HUEREE-1-018.jpeg",
+            "data/raw/roadview_images/HUEREE-1-018.png"
+          ],
+          "present_path": "data/raw/roadview_images/HUEREE-1-018.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "HUEREE-1-035",
+          "captured_at": "2022-09-28 10:25",
+          "latitude": 33.30985833333333,
+          "longitude": 126.63631944444445,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/HUEREE-1-035.jpg",
+            "data/raw/roadview_images/HUEREE-1-035.JPG",
+            "data/raw/roadview_images/HUEREE-1-035.jpeg",
+            "data/raw/roadview_images/HUEREE-1-035.png"
+          ],
+          "present_path": "data/raw/roadview_images/HUEREE-1-035.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "HUEREE-1-053",
+          "captured_at": "2022-09-28 10:19",
+          "latitude": 33.30969722222222,
+          "longitude": 126.63428330555556,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/HUEREE-1-053.jpg",
+            "data/raw/roadview_images/HUEREE-1-053.JPG",
+            "data/raw/roadview_images/HUEREE-1-053.jpeg",
+            "data/raw/roadview_images/HUEREE-1-053.png"
+          ],
+          "present_path": "data/raw/roadview_images/HUEREE-1-053.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "HUEREE-1-070",
+          "captured_at": "2022-09-28 10:11",
+          "latitude": 33.30907497222222,
+          "longitude": 126.63469719444446,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/HUEREE-1-070.jpg",
+            "data/raw/roadview_images/HUEREE-1-070.JPG",
+            "data/raw/roadview_images/HUEREE-1-070.jpeg",
+            "data/raw/roadview_images/HUEREE-1-070.png"
+          ],
+          "present_path": "data/raw/roadview_images/HUEREE-1-070.jpg",
+          "status": "available"
+        },
+        {
+          "image_file_name": "HUEREE-4-001",
+          "captured_at": "2022-09-28 10:06",
+          "latitude": 33.308797194444445,
+          "longitude": 126.63387222222222,
+          "resolution": "6720*3360",
+          "expected_relative_paths": [
+            "data/raw/roadview_images/HUEREE-4-001.jpg",
+            "data/raw/roadview_images/HUEREE-4-001.JPG",
+            "data/raw/roadview_images/HUEREE-4-001.jpeg",
+            "data/raw/roadview_images/HUEREE-4-001.png"
+          ],
+          "present_path": "data/raw/roadview_images/HUEREE-4-001.jpg",
+          "status": "available"
+        }
+      ],
+      "recommended_action": "대표 이미지 파일을 열어 출입구·경사·바닥·주차장 연결 동선 시각 검수 진행"
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "generated_at": "2026-07-09",
+  "package_dir": "docs/roadview_visual_review_share_20260709",
+  "index_output": "docs/roadview_visual_review_share_20260709/index.html",
+  "packet_index_output": "docs/roadview_visual_review_share_20260709/packets.html",
+  "master_decision_csv": "docs/roadview_visual_review_share_20260709/roadview_visual_review_decisions.csv",
+  "copied_image_count": 102,
+  "total_places": 17,
+  "packet_report": {
+    "generated_at": "2026-07-09",
+    "total_places": 17,
+    "contact_sheet_count": 17,
+    "decision_csv_count": 17,
+    "index_output": "docs/roadview_visual_review_share_20260709/packets.html",
+    "items": [
+      {
+        "card_id": "jeju_roadview_place_038",
+        "place_name": "국립제주박물관",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_place_038.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_place_038.csv",
+        "image_count": 6,
+        "field_count": 4
+      },
+      {
+        "card_id": "jeju_roadview_place_088",
+        "place_name": "김녕미로공원",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_place_088.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_place_088.csv",
+        "image_count": 6,
+        "field_count": 4
+      },
+      {
+        "card_id": "jeju_roadview_place_100",
+        "place_name": "삼성혈",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_place_100.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_place_100.csv",
+        "image_count": 6,
+        "field_count": 4
+      },
+      {
+        "card_id": "jeju_roadview_place_095",
+        "place_name": "상효원수목원",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_place_095.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_place_095.csv",
+        "image_count": 6,
+        "field_count": 4
+      },
+      {
+        "card_id": "jeju_roadview_place_053",
+        "place_name": "서귀포시립기당미술관",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_place_053.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_place_053.csv",
+        "image_count": 6,
+        "field_count": 4
+      },
+      {
+        "card_id": "jeju_roadview_place_104",
+        "place_name": "스누피가든",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_place_104.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_place_104.csv",
+        "image_count": 6,
+        "field_count": 4
+      },
+      {
+        "card_id": "jeju_roadview_4_3_001",
+        "place_name": "제주4.3평화공원",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_4_3_001.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_4_3_001.csv",
+        "image_count": 6,
+        "field_count": 4
+      },
+      {
+        "card_id": "jeju_roadview_place_066",
+        "place_name": "제주고산리유적",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_place_066.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_place_066.csv",
+        "image_count": 6,
+        "field_count": 4
+      },
+      {
+        "card_id": "jeju_roadview_place_014",
+        "place_name": "제주교육박물관",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_place_014.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_place_014.csv",
+        "image_count": 6,
+        "field_count": 4
+      },
+      {
+        "card_id": "jeju_roadview_place_025",
+        "place_name": "제주도립김창열미술관",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_place_025.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_place_025.csv",
+        "image_count": 6,
+        "field_count": 4
+      },
+      {
+        "card_id": "jeju_roadview_place_013",
+        "place_name": "제주민속자연사박물관",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_place_013.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_place_013.csv",
+        "image_count": 6,
+        "field_count": 4
+      },
+      {
+        "card_id": "jeju_roadview_place_010",
+        "place_name": "제주삼양동유적",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_place_010.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_place_010.csv",
+        "image_count": 6,
+        "field_count": 4
+      },
+      {
+        "card_id": "jeju_roadview_place_017",
+        "place_name": "제주아트센터",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_place_017.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_place_017.csv",
+        "image_count": 6,
+        "field_count": 4
+      },
+      {
+        "card_id": "jeju_roadview_place_084",
+        "place_name": "제주웰컴센터",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_place_084.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_place_084.csv",
+        "image_count": 6,
+        "field_count": 4
+      },
+      {
+        "card_id": "jeju_roadview_place_024",
+        "place_name": "제주현대미술관",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_place_024.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_place_024.csv",
+        "image_count": 6,
+        "field_count": 4
+      },
+      {
+        "card_id": "jeju_roadview_place_105",
+        "place_name": "한림공원(아열대식물원)",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_place_105.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_place_105.csv",
+        "image_count": 6,
+        "field_count": 4
+      },
+      {
+        "card_id": "jeju_roadview_place_096",
+        "place_name": "휴애리자연생활공원",
+        "contact_sheet": "docs/roadview_visual_review_share_20260709/contact_sheets/jeju_roadview_place_096.jpg",
+        "decision_csv": "docs/roadview_visual_review_share_20260709/decisions_by_place/jeju_roadview_place_096.csv",
+        "image_count": 6,
+        "field_count": 4
+      }
+    ]
+  },
+  "zip_output": "docs/roadview_visual_review_share.zip"
+}

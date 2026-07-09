@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>가치봄 제주 접근성 여행 추천</title>
+  <link rel="icon" href="data:,">
+  <script>
+    try {
+      if (
+        new URLSearchParams(window.location.search).get("intro") === "0"
+        || window.sessionStorage.getItem("gachibom:site-intro-seen") === "true"
+      ) {
+        document.documentElement.classList.add("skip-site-intro");
+      }
+    } catch (error) {
+      // Continue with the standard intro when browser storage is unavailable.
+    }
+  </script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="styles.css?v=20260710-14">
+  <link rel="stylesheet" href="help-chatbot.css?v=20260710-8">
+</head>
+<body class="modal-open site-intro-open">
+  <div class="site-intro" id="siteIntro" role="dialog" aria-modal="true" aria-labelledby="siteIntroTitle">
+    <div class="site-intro-backdrop" aria-hidden="true"></div>
+    <section class="site-intro-panel">
+      <video id="siteIntroVideo" class="site-intro-video" autoplay muted playsinline preload="auto" poster="assets/jeju-theme-preview-hero.webp">
+        <source src="assets/media/gachibom-jeju-site-intro-lite.mp4" type="video/mp4">
+      </video>
+      <div class="site-intro-controls">
+        <div>
+          <span>가치봄 제주</span>
+          <h2 id="siteIntroTitle">장벽없는 여행의 시작</h2>
+        </div>
+        <div class="site-intro-actions">
+          <button class="outline-button" type="button" data-toggle-intro-sound>소리 켜기</button>
+          <button class="primary-button" type="button" data-close-site-intro>시작하기</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand" aria-label="가치봄 제주">
+        <div class="brand-mark">
+          <video class="brand-logo-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+            <source src="assets/media/gachibom-logo-final.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="brand-copy sr-only">
+          <strong>가치봄 제주</strong>
+          <span>모두를 위한 제주 접근성 여행</span>
+        </div>
+      </div>
+
+      <nav class="nav-tabs" aria-label="주요 메뉴">
+        <a class="active" href="#conceptPage" data-nav-target="concepts">테마 선택</a>
+        <a href="#recommendations" data-nav-target="recommend">추천 결과</a>
+        <a href="tourism-courses.html">관광공사 코스</a>
+        <a href="#promoVideoModal" data-nav-target="promo">홍보 영상</a>
+      </nav>
+
+      <div class="top-actions">
+        <button class="outline-button" type="button" data-open-route-modal>실제 경로</button>
+        <button class="outline-button" type="button" data-share-app>공유</button>
+        <button class="primary-button" type="button" data-go-concepts>테마 선택</button>
+      </div>
+    </header>
+
+    <section class="concept-page" id="conceptPage" aria-labelledby="conceptPageTitle">
+      <div class="concept-main">
+        <span class="concept-kicker">테마별 제주 추천</span>
+        <h1 id="conceptPageTitle">오늘의 여행 테마를 고르세요</h1>
+        <p>회복, 휠체어, 아이 동반, 날씨, 음식 제한 상황에 맞춰 접근성 여행지를 바로 추천합니다.</p>
+        <div class="concept-grid" id="conceptGrid"></div>
+      </div>
+
+      <aside class="concept-result-panel" aria-label="선택 테마 요약" tabindex="-1">
+        <img src="assets/jeju-theme-preview-hero.webp" alt="제주의 바다와 돌담 풍경" decoding="async" fetchpriority="high">
+        <div class="concept-result-body">
+          <span id="conceptSummaryBadge">선택된 테마</span>
+          <h2 id="conceptSummaryTitle">추천 준비 중</h2>
+          <p id="conceptSummaryText">테마에 맞는 접근성 코스를 불러오고 있습니다.</p>
+          <div class="concept-proof-row" id="conceptSummaryProof"></div>
+          <div class="concept-preview-list" id="conceptSummaryPlaces"></div>
+          <div class="concept-actions">
+            <button class="primary-button" type="button" data-view-selected-concept>추천 결과 보기</button>
+            <button class="outline-button" type="button" data-open-profile-modal>상세 조건</button>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <main class="journey-layout" id="recommendations">
+      <aside class="companion-card" aria-label="여행 조건">
+        <div class="left-hero">
+          <h1><span class="hero-word">당신</span>의 속도에 맞춘 <span class="hero-word">제주</span></h1>
+          <p>당신의 몸과 마음을 이해하는 여행, 가치봄 제주가 함께합니다.</p>
+        </div>
+
+        <section class="condition-card">
+          <div class="section-row condition-summary-row">
+            <h2>현재 여행 조건</h2>
+            <button class="condition-edit-button" type="button" data-open-profile-modal>
+              <i class="bi bi-sliders" aria-hidden="true"></i>
+              <span>조건 수정</span>
+            </button>
+          </div>
+          <div id="matchNote">추천 기준 계산 중</div>
+          <div class="scenario-list" id="scenarioList"></div>
+        </section>
+
+        <section class="condition-card official-course-card">
+          <div class="section-row">
+            <h2>제주관광공사 추천여행코스</h2>
+            <a class="official-course-all-link" id="officialCourseMeta" href="tourism-courses.html">전체 보기</a>
+          </div>
+          <div class="official-course-list" id="officialCourseList"></div>
+        </section>
+
+        <div class="medical-note" id="safetyNotice"></div>
+
+        <figure class="quote-card">
+          <blockquote>“천천히, 그러나 확실하게<br>제주의 바람을 느껴보세요.”</blockquote>
+          <img src="assets/WELCOME-1-001.jpg" alt="제주 해안 도로" loading="lazy" decoding="async">
+        </figure>
+      </aside>
+
+      <section class="map-card" id="mapPanel" aria-label="살아있는 제주 지도">
+        <div class="map-frame">
+          <div class="live-map" id="liveMap" aria-label="실제 좌표 기반 제주 추천 지도"></div>
+          <div class="live-map-header">
+            <div>
+              <h2>추천 지도</h2>
+              <p>실제 위치와 이동 경로를 기준으로 코스를 확인합니다.</p>
+            </div>
+            <div class="live-map-actions">
+              <button class="live-map-button" type="button" data-map-layer-toggle>지도 레이어</button>
+              <button class="live-map-button" type="button" data-map-fit-route>코스 맞춤</button>
+            </div>
+          </div>
+          <div class="live-map-stats" id="liveMapStats" aria-live="polite"></div>
+          <div class="map-hits" id="mapHits"></div>
+          <div class="sr-only" id="mapSyncStatus" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <aside class="detail-card" id="placeDetail" aria-label="선택 장소 상세"></aside>
+    </main>
+  </div>
+
+  <div class="profile-modal" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle" hidden>
+    <button class="profile-modal-backdrop" type="button" data-close-profile-modal aria-label="닫기"></button>
+    <section class="profile-modal-panel">
+      <header class="profile-modal-head">
+        <div>
+          <span>맞춤 추천 시작</span>
+          <h2 id="profileModalTitle">오늘의 여행 조건을 정해주세요</h2>
+        </div>
+        <button class="modal-close-button" type="button" data-close-profile-modal aria-label="닫기">×</button>
+      </header>
+      <div class="profile-modal-body">
+        <section>
+          <div class="section-row">
+            <h3>상황 선택</h3>
+            <span>하나를 먼저 고르세요</span>
+          </div>
+          <div class="scenario-list modal-scenario-list" id="modalScenarioList"></div>
+        </section>
+        <section>
+          <div class="section-row">
+            <h3>상세 조건</h3>
+            <span>여러 개 선택 가능</span>
+          </div>
+          <div class="option-list modal-option-list" id="modalProfileForm"></div>
+        </section>
+      </div>
+      <footer class="profile-modal-foot">
+        <p>선택한 조건은 중앙 지도와 장소 상세 설명에 바로 반영됩니다.</p>
+        <button class="primary-button" type="button" data-apply-profile-modal>적용하고 보기</button>
+      </footer>
+    </section>
+  </div>
+
+  <div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-labelledby="imageModalTitle" hidden>
+    <button class="image-modal-backdrop" type="button" data-close-image-modal aria-label="닫기"></button>
+    <section class="image-modal-panel">
+      <header class="image-modal-head">
+        <div>
+          <span id="imageModalPolicy">대표 이미지</span>
+          <h2 id="imageModalTitle">장소 이미지</h2>
+        </div>
+        <button class="modal-close-button" type="button" data-close-image-modal aria-label="닫기">×</button>
+      </header>
+      <img id="imageModalImage" src="" alt="">
+      <footer class="image-modal-foot">
+        <strong id="imageModalCaption"></strong>
+        <small id="imageModalSource"></small>
+      </footer>
+    </section>
+  </div>
+
+  <div class="route-modal" id="routeModal" role="dialog" aria-modal="true" aria-labelledby="routeModalTitle" hidden>
+    <button class="route-modal-backdrop" type="button" data-close-route-modal aria-label="닫기"></button>
+    <section class="route-modal-panel">
+      <header class="route-modal-head">
+        <div>
+          <span>실제 위치 기반 경로</span>
+          <h2 id="routeModalTitle">오늘의 동행 경로</h2>
+          <p id="routeModalSubtitle">추천 순서와 접근성 근거를 실제 지도 위에서 확인합니다.</p>
+        </div>
+        <button class="modal-close-button" type="button" data-close-route-modal aria-label="닫기">×</button>
+      </header>
+      <div class="route-modal-body">
+        <section class="route-map-shell" aria-label="실제 경로 지도">
+          <div class="route-map-toolbar">
+            <strong id="routeMapBadge">경로 계산 중</strong>
+            <span id="routeMapStatus">실제 좌표를 지도에 올리는 중입니다.</span>
+          </div>
+          <div class="route-map" id="routeMap"></div>
+        </section>
+        <aside class="route-itinerary" id="routeItinerary" aria-label="추천 경로 일정"></aside>
+      </div>
+    </section>
+  </div>
+
+  <div class="promo-modal" id="promoVideoModal" role="dialog" aria-modal="true" aria-labelledby="promoVideoTitle" hidden>
+    <button class="promo-modal-backdrop" type="button" data-close-promo-modal aria-label="닫기"></button>
+    <section class="promo-modal-panel">
+      <header class="promo-modal-head">
+        <div>
+          <span>가치봄 제주</span>
+          <h2 id="promoVideoTitle">홍보 영상</h2>
+          <p>모두를 위한 제주 여행 경험을 영상으로 확인합니다.</p>
+        </div>
+        <button class="modal-close-button" type="button" data-close-promo-modal aria-label="닫기">×</button>
+      </header>
+      <div class="promo-video-shell">
+        <video id="promoVideo" controls preload="none" playsinline poster="assets/jeju-theme-preview-hero.webp">
+          <source src="assets/media/gachibom-jeju-promo-20260710-lite.mp4" type="video/mp4">
+          이 브라우저에서는 영상을 재생할 수 없습니다.
+        </video>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js?v=20260710-17"></script>
+  <script src="help-chatbot.js?v=20260710-8"></script>
+</body>
+</html>

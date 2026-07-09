@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_category_refinement_review.schema.json",
+  "title": "Jeju Maeum Roadview Category Refinement Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "source_work_queue_generated_at", "criteria", "summary", "items"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "source_work_queue_generated_at": { "type": ["string", "null"], "format": "date" },
+    "criteria": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["category_refined", "blocked"],
+      "properties": {
+        "category_refined": { "type": "string" },
+        "blocked": { "type": "string" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "by_status", "by_review_decision", "by_recommended_category"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "by_status": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_review_decision": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_recommended_category": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/reviewItem" }
+    }
+  },
+  "$defs": {
+    "reviewItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task_id",
+        "card",
+        "status",
+        "review_decision",
+        "current_category",
+        "primary_place_type",
+        "recommended_category",
+        "recommended_situation_tags",
+        "rationale",
+        "source_queries",
+        "recommended_action"
+      ],
+      "properties": {
+        "task_id": { "type": "string", "minLength": 1 },
+        "card": { "$ref": "#/$defs/cardRef" },
+        "status": { "type": "string", "enum": ["resolved", "blocked"] },
+        "review_decision": { "type": "string", "enum": ["category_refined", "needs_manual_escalation"] },
+        "current_category": { "type": "string" },
+        "primary_place_type": { "type": "string" },
+        "recommended_category": { "$ref": "#/$defs/category" },
+        "recommended_situation_tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "rationale": { "type": "string" },
+        "source_queries": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "recommended_action": { "type": "string" }
+      }
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "sea",
+        "forest",
+        "oreum",
+        "culture",
+        "indoor",
+        "cafe",
+        "restaurant",
+        "food_market",
+        "shopping",
+        "rest_area",
+        "transport",
+        "medical_support",
+        "other"
+      ]
+    },
+    "cardRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "region", "category", "verification_status"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "region": { "type": "string" },
+        "category": { "type": "string" },
+        "verification_status": { "type": "string" }
+      }
+    }
+  }
+}

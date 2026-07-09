@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/service_preflight_report.schema.json",
+  "title": "Jeju Maeum Service Preflight Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "generated_at",
+    "overall_status",
+    "summary",
+    "sections",
+    "blockers",
+    "warnings",
+    "next_actions",
+    "secret_policy"
+  ],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "overall_status": { "$ref": "#/$defs/status" },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_checks",
+        "passed_checks",
+        "warning_checks",
+        "blocker_checks",
+        "by_status",
+        "next_action"
+      ],
+      "properties": {
+        "total_checks": { "type": "integer", "minimum": 0 },
+        "passed_checks": { "type": "integer", "minimum": 0 },
+        "warning_checks": { "type": "integer", "minimum": 0 },
+        "blocker_checks": { "type": "integer", "minimum": 0 },
+        "by_status": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "next_action": { "type": "string" }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/section" }
+    },
+    "blockers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/check" }
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/check" }
+    },
+    "next_actions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "secret_policy": { "type": "string" }
+  },
+  "$defs": {
+    "status": {
+      "type": "string",
+      "enum": ["pass", "warn", "block"]
+    },
+    "section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "label", "status", "checks"],
+      "properties": {
+        "name": { "type": "string" },
+        "label": { "type": "string" },
+        "status": { "$ref": "#/$defs/status" },
+        "checks": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/check" }
+        }
+      }
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "check_id",
+        "status",
+        "label",
+        "actual",
+        "expected",
+        "detail",
+        "next_action"
+      ],
+      "properties": {
+        "check_id": { "type": "string" },
+        "status": { "$ref": "#/$defs/status" },
+        "label": { "type": "string" },
+        "actual": { "type": "string" },
+        "expected": { "type": "string" },
+        "detail": { "type": "string" },
+        "next_action": { "type": "string" }
+      }
+    }
+  }
+}

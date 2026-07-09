@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_image_review.schema.json",
+  "title": "Jeju Maeum Roadview Image Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "source_work_queue_generated_at", "criteria", "summary", "items"],
+  "properties": {
+    "generated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "source_work_queue_generated_at": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "criteria": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["visual_review_required", "blocked"],
+      "properties": {
+        "visual_review_required": { "type": "string" },
+        "blocked": { "type": "string" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total",
+        "by_status",
+        "by_review_decision",
+        "total_roadview_images",
+        "min_images_per_place",
+        "max_images_per_place",
+        "required_evidence_counts"
+      ],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "by_status": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_review_decision": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "total_roadview_images": { "type": "integer", "minimum": 0 },
+        "min_images_per_place": { "type": "integer", "minimum": 0 },
+        "max_images_per_place": { "type": "integer", "minimum": 0 },
+        "required_evidence_counts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/reviewItem" }
+    }
+  },
+  "$defs": {
+    "reviewItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task_id",
+        "card",
+        "status",
+        "review_decision",
+        "required_evidence",
+        "image_count",
+        "captured_date_start",
+        "captured_date_end",
+        "coordinate_bounds",
+        "review_image_samples",
+        "field_evidence",
+        "recommended_action"
+      ],
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card": { "$ref": "#/$defs/cardRef" },
+        "status": {
+          "type": "string",
+          "enum": ["open", "in_progress", "resolved", "blocked"]
+        },
+        "review_decision": {
+          "type": "string",
+          "enum": [
+            "pending_visual_review",
+            "verified_accessible_route",
+            "needs_manual_escalation",
+            "insufficient_images",
+            "metadata_missing"
+          ]
+        },
+        "required_evidence": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "image_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "captured_date_start": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "captured_date_end": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "coordinate_bounds": { "$ref": "#/$defs/coordinateBounds" },
+        "review_image_samples": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/reviewImage" }
+        },
+        "field_evidence": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/fieldEvidence" }
+        },
+        "recommended_action": { "type": "string" }
+      }
+    },
+    "coordinateBounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min_latitude", "max_latitude", "min_longitude", "max_longitude"],
+      "properties": {
+        "min_latitude": {
+          "type": ["number", "null"],
+          "minimum": -90,
+          "maximum": 90
+        },
+        "max_latitude": {
+          "type": ["number", "null"],
+          "minimum": -90,
+          "maximum": 90
+        },
+        "min_longitude": {
+          "type": ["number", "null"],
+          "minimum": -180,
+          "maximum": 180
+        },
+        "max_longitude": {
+          "type": ["number", "null"],
+          "minimum": -180,
+          "maximum": 180
+        }
+      }
+    },
+    "reviewImage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["image_file_name", "captured_at", "latitude", "longitude", "resolution"],
+      "properties": {
+        "image_file_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "captured_at": {
+          "type": ["string", "null"]
+        },
+        "latitude": {
+          "type": ["number", "null"],
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude": {
+          "type": ["number", "null"],
+          "minimum": -180,
+          "maximum": 180
+        },
+        "resolution": { "type": "string" }
+      }
+    },
+    "fieldEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field", "status", "image_file_names", "note"],
+      "properties": {
+        "field": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["pending_visual_review", "verified", "needs_follow_up", "conflict", "missing"]
+        },
+        "image_file_names": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "note": { "type": "string" }
+      }
+    },
+    "cardRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "region", "category", "verification_status"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "region": { "type": "string" },
+        "category": { "type": "string" },
+        "verification_status": { "type": "string" }
+      }
+    }
+  }
+}

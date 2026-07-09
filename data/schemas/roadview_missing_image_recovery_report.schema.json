@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_missing_image_recovery_report.schema.json",
+  "title": "Jeju Maeum Roadview Missing Image Recovery Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "generated_at",
+    "source_provider_404_report_generated_at",
+    "receipt_root",
+    "hash_algorithm",
+    "criteria",
+    "overall_status",
+    "summary",
+    "place_statuses",
+    "items",
+    "next_actions"
+  ],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "source_provider_404_report_generated_at": { "type": ["string", "null"], "format": "date" },
+    "receipt_root": { "type": "string" },
+    "hash_algorithm": { "type": ["string", "null"], "enum": ["sha256", null] },
+    "criteria": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "complete_recovery",
+        "partial_recovery",
+        "awaiting_recovery",
+        "needs_duplicate_resolution"
+      ],
+      "properties": {
+        "complete_recovery": { "type": "string" },
+        "partial_recovery": { "type": "string" },
+        "awaiting_recovery": { "type": "string" },
+        "needs_duplicate_resolution": { "type": "string" }
+      }
+    },
+    "overall_status": { "$ref": "#/$defs/recoveryStatus" },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expected_recovery_images",
+        "recovered_images",
+        "still_missing_images",
+        "duplicate_name_images",
+        "affected_places",
+        "recovered_places",
+        "partial_recovery_places",
+        "still_missing_places",
+        "by_status",
+        "by_place_status",
+        "next_action"
+      ],
+      "properties": {
+        "expected_recovery_images": { "type": "integer", "minimum": 0 },
+        "recovered_images": { "type": "integer", "minimum": 0 },
+        "still_missing_images": { "type": "integer", "minimum": 0 },
+        "duplicate_name_images": { "type": "integer", "minimum": 0 },
+        "affected_places": { "type": "integer", "minimum": 0 },
+        "recovered_places": { "type": "integer", "minimum": 0 },
+        "partial_recovery_places": { "type": "integer", "minimum": 0 },
+        "still_missing_places": { "type": "integer", "minimum": 0 },
+        "by_status": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_place_status": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "next_action": { "type": "string" }
+      }
+    },
+    "place_statuses": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/placeStatus" }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/recoveryItem" }
+    },
+    "next_actions": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "$defs": {
+    "recoveryStatus": {
+      "type": "string",
+      "enum": [
+        "complete_recovery",
+        "partial_recovery",
+        "awaiting_recovery",
+        "needs_duplicate_resolution"
+      ]
+    },
+    "imageStatus": {
+      "type": "string",
+      "enum": ["recovered", "missing", "duplicate_name"]
+    },
+    "placeStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "place_name",
+        "expected_missing_image_count",
+        "recovered_image_count",
+        "still_missing_image_count",
+        "duplicate_name_count",
+        "status",
+        "sample_missing_image_file_names"
+      ],
+      "properties": {
+        "place_name": { "type": "string" },
+        "expected_missing_image_count": { "type": "integer", "minimum": 0 },
+        "recovered_image_count": { "type": "integer", "minimum": 0 },
+        "still_missing_image_count": { "type": "integer", "minimum": 0 },
+        "duplicate_name_count": { "type": "integer", "minimum": 0 },
+        "status": { "$ref": "#/$defs/recoveryStatus" },
+        "sample_missing_image_file_names": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "recoveryItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "place_name",
+        "image_file_name",
+        "request_tier",
+        "tourist_name",
+        "tourist_name_en",
+        "captured_at",
+        "source_url",
+        "status",
+        "present_path",
+        "file_size_bytes",
+        "sha256",
+        "duplicate_candidate_paths",
+        "recommended_action"
+      ],
+      "properties": {
+        "card_id": { "type": "string" },
+        "place_name": { "type": "string" },
+        "image_file_name": { "type": "string" },
+        "request_tier": { "type": "string" },
+        "tourist_name": { "type": "string" },
+        "tourist_name_en": { "type": "string" },
+        "captured_at": { "type": ["string", "null"] },
+        "source_url": { "type": "string" },
+        "status": { "$ref": "#/$defs/imageStatus" },
+        "present_path": { "type": ["string", "null"] },
+        "file_size_bytes": { "type": ["integer", "null"], "minimum": 0 },
+        "sha256": { "type": ["string", "null"] },
+        "duplicate_candidate_paths": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "recommended_action": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>가치봄 제주 도움말 챗봇</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css?v=20260709-53">
+  <link rel="stylesheet" href="help-chatbot.css?v=20260710-8">
+</head>
+<body class="help-page">
+  <header class="help-topbar">
+    <a class="help-brand" href="index.html" aria-label="가치봄 제주 홈으로 이동">
+      <span class="help-brand-mark">봄</span>
+      <span>
+        <strong>가치봄 제주</strong>
+        <small>도움말 챗봇</small>
+      </span>
+    </a>
+    <nav class="help-nav" aria-label="도움말 빠른 이동">
+      <a href="index.html">서비스 화면</a>
+      <a href="#helpTopics">도움말 주제</a>
+      <a href="#helpChatbot">챗봇 상담</a>
+    </nav>
+  </header>
+
+  <main class="help-layout">
+    <section class="help-brief" aria-labelledby="helpBriefTitle">
+      <div class="help-brief-copy">
+        <span class="help-kicker">방문 전 확인을 돕는 안내</span>
+        <h1 id="helpBriefTitle">추천 결과를 더 안전하게 읽도록 돕습니다</h1>
+        <p>
+          가치봄 제주 도움말 챗봇은 서비스 사용법, 접근성 정보 해석, 방문 전 확인 항목,
+          개인정보 기준을 빠르게 안내합니다. 의료 판단이나 이동 가능성 보장은 하지 않습니다.
+        </p>
+      </div>
+      <img src="assets/jeju-theme-preview-hero.png" alt="제주의 바다와 돌담 풍경">
+    </section>
+
+    <section class="help-topic-band" id="helpTopics" aria-labelledby="helpTopicsTitle">
+      <div class="help-section-head">
+        <span>Help Center</span>
+        <h2 id="helpTopicsTitle">자주 찾는 도움말</h2>
+      </div>
+      <div class="help-topic-grid" data-help-topic-grid></div>
+    </section>
+
+    <section class="help-chat-section" id="helpChatbot" aria-labelledby="helpChatbotTitle">
+      <div class="help-section-head">
+        <span>Chatbot</span>
+        <h2 id="helpChatbotTitle">오른쪽 날개 배너를 눌러 질문하세요</h2>
+      </div>
+      <p class="help-chat-intro">
+        챗봇은 추천 API 서버의 <code>/api/help-chat</code>으로 질문을 보내고, 서버에서 LLM 답변을 생성합니다.
+        API 키가 없거나 정적 미리보기 모드이면 안전한 기본 도움말로 대체됩니다.
+      </p>
+      <div data-help-chatbot data-help-chatbot-mode="wing"></div>
+    </section>
+  </main>
+
+  <script src="help-chatbot.js?v=20260710-8"></script>
+</body>
+</html>

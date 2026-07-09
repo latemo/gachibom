@@ -1,0 +1,3875 @@
+[
+  {
+    "id": "jeju_forest_healing_001",
+    "name": "서귀포 치유의숲",
+    "region": "서귀포시",
+    "category": "forest",
+    "summary": "무장애 나눔길과 숲 체험 요소가 있는 서귀포 산림 휴식지.",
+    "recommended_for": [
+      "senior",
+      "recovery_traveler",
+      "stroller_family",
+      "slow_walker",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "데크길 이후 흙길 전환 구간 이용이 어려운 사용자",
+      "단차와 경사에 민감한 휠체어 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "무장애 나눔길이 있으나 일부 흙길 입구 단차와 경사 구간 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "안내센터와 차롱 부근 장애인 화장실 설치 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 설치 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "무장애 나눔길 경사 5~8도, 일부 단차 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "yes",
+        "note": "숲길과 쉼팡 등 휴식 가능 구간이 있으나 이용 가능 구간 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어와 유아차 대여 가능 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "데크길 이후 흙길로 바뀌는 구간이 있어 회차 안내 필요",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "계절과 예약 상황에 따라 혼잡도 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "low",
+      "recommended_duration_minutes": 60,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "이지제주 서귀포 치유의숲",
+        "url": "https://easyjeju.net/pages.php?no=105&p=tourist",
+        "type": "public_agency"
+      },
+      {
+        "title": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+        "url": "https://www.data.go.kr/data/15109153/fileData.do",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "데크길 이후 흙길 전환 구간은 회차 필요",
+      "방문 전 장애인 화장실 운영 여부와 대여 가능 여부 확인 필요",
+      "휴식 지점은 실내 휴게실이 아닐 수 있으므로 체력 민감 사용자는 휴식 가능 위치를 방문 전 확인 필요",
+      "휠체어·유아차 대여 수량은 제한될 수 있으므로 방문 전 운영 여부 확인 필요"
+    ],
+    "operator_notes": "이지제주 2024.06.02 조사 정보 기반. 조사 이후 변경 가능 문구 있음.\nroadview_conflict_resolution 2026-07-07: rest_area=yes 유지(keep_existing). 기존 rest_area는 숲길·쉼팡 등 야외 휴식 가능 구간을 뜻하고, roadview의 N은 실내 휴게실 보유 여부로 의미 범위가 다름.\nroadview_conflict_resolution 2026-07-07: rental_or_assistance=yes 유지(keep_existing). 이지제주 2024.06.02 조사 상세정보에 휠체어와 유아차 대여 가능 문구가 있어 상세 출처를 우선함."
+  },
+  {
+    "id": "jeju_forest_saryeoni_002",
+    "name": "사려니숲길 무장애나눔길",
+    "region": "제주시 조천읍 / 서귀포시 표선면",
+    "category": "forest",
+    "summary": "나무데크 중심의 숲길로 무장애나눔길 이용 위치 확인이 필요한 산림 코스.",
+    "recommended_for": [
+      "senior",
+      "recovery_traveler",
+      "stroller_family",
+      "slow_walker",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "출입구 경사 12도 이용이 어려운 사용자",
+      "긴 숲길 체류가 부담되는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "관람로는 대체로 나무데크이나 출입구 최대 경사 12도 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 있음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "일부 구간 기울기 최대 5~7도, 출입구 경사 최대 12도",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "숲길 휴식 가능성은 있으나 구체 위치 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어 5대, 유아차 2대 대여 가능 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "대체로 나무데크이나 일부 경사 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "계절별 탐방객 혼잡도 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "low",
+      "recommended_duration_minutes": 60,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "이지제주 사려니숲길",
+        "url": "https://easyjeju.net/pages.php?no=1000&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "verified",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "무장애 나눔길 이용 위치를 방문 전 확인 필요",
+      "출입구 경사 구간은 보호자 동행 기준으로 확인 권장"
+    ],
+    "operator_notes": "이지제주 2025년 6월 조사 자료 기반."
+  },
+  {
+    "id": "jeju_forest_recreation_003",
+    "name": "서귀포 자연휴양림",
+    "region": "서귀포시",
+    "category": "forest",
+    "summary": "무장애나눔길이 있으나 매표소 단차와 일부 경사 확인이 필요한 자연휴양림.",
+    "recommended_for": [
+      "senior",
+      "recovery_traveler",
+      "stroller_family",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "매표소 단차 접근이 어려운 사용자",
+      "보도블록 울퉁불퉁한 바닥에 민감한 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "산책로는 대체로 평탄하나 매표소 단차와 주출입구 경사 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "매표소 건물에 남녀공용 장애인 화장실 설치 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인주차장 설치 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "일부 2~5도 경사, 주출입구 약 7.3도 경사로 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "yes",
+        "note": "휴게실 보유 여부",
+        "source_ref": "jeju_roadview_facility_status"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어 및 유아차 대여 가능 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "장애인주차장 바닥 보도블럭 울퉁불퉁함 주의",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "휴양림 예약과 계절 혼잡도 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 60,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "이지제주 서귀포 자연휴양림",
+        "url": "https://easyjeju.net/pages.php?no=109&p=tourist",
+        "type": "public_agency"
+      },
+      {
+        "title": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+        "url": "https://www.data.go.kr/data/15109153/fileData.do",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "매표소 단차와 주출입구 경사를 방문 전 확인 필요",
+      "휠체어 화장실 측면 공간 협소 가능성 안내 필요"
+    ],
+    "operator_notes": "이지제주 접근성 설명 기반. 조사일은 페이지 본문에서 명확히 확인되지 않음.\nroadview_safe_merge 2026-07-07: rest_area 필드를 제주특별자치도 사회적약자 시설현황 공공데이터로 보강."
+  },
+  {
+    "id": "jeju_forest_red_oreum_004",
+    "name": "붉은오름자연휴양림",
+    "region": "서귀포시 표선면",
+    "category": "forest",
+    "summary": "무장애나눔길과 숲길이 있으나 일부 시설 계단과 경사 확인이 필요한 자연휴양림.",
+    "recommended_for": [
+      "senior",
+      "recovery_traveler",
+      "stroller_family",
+      "slow_walker"
+    ],
+    "avoid_for": [
+      "경사 최대 7도 구간이 부담되는 사용자",
+      "목재체험관 2층 접근이 필요한 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "무장애나눔길이 있으나 목재체험관 2층은 계단 접근 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "주차장 부근, 방문자센터, 목재체험관, 숲속의집 잔디광장 장애인 화장실 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 있음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "외부 관람로 무장애나눔길과 어우렁더우렁길 경사 최대 7도",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "휴양림 내 휴식 가능성은 있으나 접근 가능한 지점 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어, 유아차 대여 가능 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "숲길과 휴양림 구간별 바닥 상태 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "예약과 계절에 따른 혼잡도 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 60,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "이지제주 붉은오름자연휴양림",
+        "url": "https://easyjeju.net/pages.php?no=59&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "목재체험관 2층 계단 접근 여부 확인 필요",
+      "숲길 경사와 날씨 영향을 고려해 짧은 체류 권장"
+    ],
+    "operator_notes": "이지제주 2023.10.05 조사 정보 기반."
+  },
+  {
+    "id": "jeju_forest_halla_005",
+    "name": "한라수목원",
+    "region": "제주시",
+    "category": "forest",
+    "summary": "제주시 내 수목원으로 휠체어·유아차 대여와 장애인 화장실 정보가 있는 숲 산책지.",
+    "recommended_for": [
+      "senior",
+      "recovery_traveler",
+      "stroller_family",
+      "slow_walker"
+    ],
+    "avoid_for": [
+      "경사 상 구간 이용이 어려운 사용자",
+      "숲길 바닥 상태에 민감한 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "도움필요 상, 경사로 상 픽토그램이 있어 구간별 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "주차장 및 장애인 전용 주차구역 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "경사로 상으로 표시되어 보호자 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "수목원 내 휴식 가능성은 있으나 접근 가능한 위치 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어와 유아차 대여 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "숲길, 야자매트, 자연 바닥 구간 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "주말과 계절 혼잡도 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 60,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "이지제주 한라수목원",
+        "url": "https://easyjeju.net/pages.php?no=32&p=tourist",
+        "type": "public_agency"
+      },
+      {
+        "title": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+        "url": "https://www.data.go.kr/data/15109153/fileData.do",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "verified",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "경사로 상 표시가 있어 짧은 산책 중심으로 계획 필요",
+      "우천 후 바닥 상태 확인 필요",
+      "휠체어·유아차 대여 수량은 제한될 수 있으므로 방문 전 운영 여부 확인 필요"
+    ],
+    "operator_notes": "이지제주 2025년 7월 조사 자료 기반.\nroadview_conflict_resolution 2026-07-07: rental_or_assistance=yes 유지(keep_existing). 이지제주 2025년 7월 조사 상세정보에 휠체어와 유아차 대여 가능 수량이 명시되어 있어 상세 출처를 우선함."
+  },
+  {
+    "id": "jeju_forest_ecoforest_006",
+    "name": "한라생태숲",
+    "region": "제주시",
+    "category": "forest",
+    "summary": "숲 산책과 휴식이 가능한 생태숲이나 일부 경사와 전망대 계단 제한이 있는 장소.",
+    "recommended_for": [
+      "senior",
+      "recovery_traveler",
+      "slow_walker"
+    ],
+    "avoid_for": [
+      "전망대 2층 이용이 필요한 사용자",
+      "10도 경사 구간이 부담되는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "외부 관람로 대부분 경사 3~5도, 일부 10도 경사 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "needs_check",
+        "note": "장애인 화장실 상세 상태는 추가 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "needs_check",
+        "note": "주차와 장애인 전용 주차구역 세부 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "yes",
+        "note": "매표소 앞 단차·경사, 전망대 2층 계단, 외부 관람로 경사 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "숲 내 휴식공간 이미지와 설명이 있으나 접근 가능 위치 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어와 유아차 대여 가능 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "유아숲 체험원 바닥 요철 마감 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "계절 혼잡도 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 50,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "이지제주 한라생태숲",
+        "url": "https://easyjeju.net/pages.php?no=76&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "needs_check",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "accessible_toilet",
+        "parking",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "전망대 2층은 계단 접근으로 제외 안내 필요",
+      "일부 10도 경사 구간 회피 필요"
+    ],
+    "operator_notes": "이지제주 2020.09.20 조사 정보 기반으로 최신 재확인 필요."
+  },
+  {
+    "id": "jeju_culture_folk_village_007",
+    "name": "제주민속촌",
+    "region": "서귀포시 표선면",
+    "category": "culture",
+    "summary": "제주 전통 생활문화를 볼 수 있는 야외형 문화 관광지로 바닥 재질이 다양함.",
+    "recommended_for": [
+      "senior",
+      "stroller_family",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "흙길·돌·자연석 바닥이 부담되는 휠체어 사용자",
+      "긴 야외 관람이 어려운 회복 중 여행자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "외부 이동 관람로는 아스팔트, 흙길, 돌, 자연석 등 재질 다양",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 있음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "야외 관람지 특성상 구간별 경사와 바닥 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "야외 관람 중 휴식 위치 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어 대여, 유아차 대여 가능 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "아스팔트, 흙길, 돌, 자연석 등 혼합",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "단체 관람과 계절 혼잡도 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 70,
+      "outdoor_exposure": "high",
+      "weather_sensitivity": "high"
+    },
+    "sources": [
+      {
+        "title": "이지제주 제주민속촌",
+        "url": "https://easyjeju.net/pages.php?no=73&p=tourist",
+        "type": "public_agency"
+      },
+      {
+        "title": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+        "url": "https://www.data.go.kr/data/15109153/fileData.do",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "verified",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "야외 체류와 바닥 재질 다양성으로 짧은 구역 중심 방문 권장",
+      "우천 시 흙길·돌길 상태 확인 필요",
+      "휠체어·유아차 대여 수량은 제한될 수 있으므로 방문 전 운영 여부 확인 필요"
+    ],
+    "operator_notes": "이지제주 2025년 9월 조사 자료 기반.\nroadview_conflict_resolution 2026-07-07: rental_or_assistance=yes 유지(keep_existing). 이지제주 상세정보에 휠체어 대여와 유아차 대여 가능 문구가 있어 상세 출처를 우선함."
+  },
+  {
+    "id": "jeju_culture_mokgwana_008",
+    "name": "제주목관아",
+    "region": "제주시",
+    "category": "culture",
+    "summary": "역사 유적 관람지로 장애인 화장실과 대여 정보가 있으나 내부 계단과 높은 단차가 많음.",
+    "recommended_for": [
+      "senior",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "계단과 높은 단차가 어려운 휠체어 사용자",
+      "요철 바닥이 부담되는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "모든 내부 시설 계단 및 높은 단차 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 주차장 보유 수: 1개",
+        "source_ref": "jeju_roadview_facility_status"
+      },
+      "slope_or_stairs": {
+        "state": "yes",
+        "note": "내부 시설 계단, 높은 단차, 외부 관람로 최대 5도 경사와 최대 11cm 단차",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "unknown",
+        "note": "접근 가능한 휴식 지점 확인 필요",
+        "source_ref": null
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어, 유아차 대여 가능 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "외부 관람로 바닥 요철 마감",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "행사와 관광 시즌 혼잡도 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 40,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "이지제주 제주목관아",
+        "url": "https://easyjeju.net/pages.php?no=20&p=tourist",
+        "type": "public_agency"
+      },
+      {
+        "title": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+        "url": "https://www.data.go.kr/data/15109153/fileData.do",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review_v2",
+      "missing_fields": [
+        "crowd_level",
+        "rest_area"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "계단과 높은 단차가 있어 휠체어 핵심 추천에서 감점 필요",
+      "주차장 운영 상태 방문 전 확인 필요"
+    ],
+    "operator_notes": "이지제주 2023.10.05 조사 정보 기반. 주차장 폐쇄 관련 문구 최신 확인 필요. 보강 검토: 공식 출처에 주차, 화장실, 계단·단차·요철 위험 정보가 있어 정보 부족보다는 조건부 추천 대상으로 분류.\nroadview_safe_merge 2026-07-07: parking 필드를 제주특별자치도 사회적약자 시설현황 공공데이터로 보강."
+  },
+  {
+    "id": "jeju_indoor_mandeok_museum_009",
+    "name": "김만덕기념관",
+    "region": "제주시",
+    "category": "indoor",
+    "summary": "실내 관람 중심의 기념관으로 장애인 화장실, 승강기, 휠체어·유아차 대여 정보가 있음.",
+    "recommended_for": [
+      "senior",
+      "recovery_traveler",
+      "stroller_family",
+      "slow_walker",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "장애인 주차장에서 차도 접근로 이동이 부담되는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "내부관람로는 단차와 보행장애물이 없다는 정보가 있으나 주차장-출입구 접근로가 차도",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "1층 장애인 화장실 설치, 손잡이와 세면대 하부공간 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "partial",
+        "note": "건물 옆 장애인 주차장 1대, 출입구 접근로가 차도",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "주출입구 경사로 약 6.3도",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "실내 로비 휴식 가능성은 있으나 좌석 위치 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어 및 유아차 대여 가능",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "yes",
+        "note": "내부 관람로는 전체적으로 단차와 보행장애물 없음",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "단체 관람 일정 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "very_low",
+      "recommended_duration_minutes": 45,
+      "outdoor_exposure": "low",
+      "weather_sensitivity": "low"
+    },
+    "sources": [
+      {
+        "title": "이지제주 김만덕기념관",
+        "url": "https://easyjeju.net/pages.php?no=5&p=tourist",
+        "type": "public_agency"
+      },
+      {
+        "title": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+        "url": "https://www.data.go.kr/data/15109153/fileData.do",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "장애인 주차장에서 출입구까지 차도 이동 주의",
+      "수유실 공간 협소 가능성 안내 필요",
+      "휠체어·유아차 대여 수량은 제한될 수 있으므로 방문 전 운영 여부 확인 필요"
+    ],
+    "operator_notes": "이지제주 상세 접근성 설명 기반. 조사일은 페이지 본문에서 별도 날짜 확인 필요.\nroadview_conflict_resolution 2026-07-07: rental_or_assistance=yes 유지(keep_existing). 이지제주 상세정보에 휠체어 및 유아차 대여 가능 문구가 있어 상세 출처를 우선함."
+  },
+  {
+    "id": "jeju_indoor_bunker_lumieres_010",
+    "name": "빛의 벙커",
+    "region": "서귀포시 성산읍",
+    "category": "indoor",
+    "situation_tags": [
+      "indoor",
+      "sensory_intense",
+      "crowded_possible"
+    ],
+    "summary": "미디어아트 실내 전시장으로 내부 관람로 접근성 정보가 있으나 2020년 조사 자료라 재확인 필요.",
+    "recommended_for": [
+      "senior",
+      "recovery_traveler",
+      "stroller_family",
+      "slow_walker"
+    ],
+    "avoid_for": [
+      "어두운 전시장 환경이 부담되는 사용자",
+      "경사 5.5도 구간이 어려운 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "내부 관람로 유효폭 적정, 휠체어·유아차 전용 게이트 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "남녀 각각 장애인 화장실 설치 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "partial",
+        "note": "장애인 주차장은 커피박물관 바움과 공유, 입식표지판 없음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "주출입구 앞 약 5.5도 경사로 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "unknown",
+        "note": "전시장 내 휴식 가능 지점 확인 필요",
+        "source_ref": null
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "대여 정보는 추가 확인 필요",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "yes",
+        "note": "내부 관람로는 보행장애물이 없고 유효폭 적정 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "전시 일정과 시간대별 혼잡 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "low",
+      "recommended_duration_minutes": 50,
+      "outdoor_exposure": "low",
+      "weather_sensitivity": "low"
+    },
+    "sources": [
+      {
+        "title": "이지제주 빛의 벙커",
+        "url": "https://easyjeju.net/pages.php?no=1010&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review_v2",
+      "missing_fields": [
+        "rest_area",
+        "rental_or_assistance",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "2020년 조사 정보라 방문 전 공식 운영 정보와 접근성 재확인 필요",
+      "어두운 미디어아트 환경이 부담될 수 있음"
+    ],
+    "operator_notes": "이지제주 2020.06.25 조사 정보 기반. 보강 검토: 공식 출처에 주차, 화장실, 출입구 경사, 내부 관람로 정보가 있어 오래된 자료이나 조건부 추천 대상으로 분류."
+  },
+  {
+    "id": "jeju_indoor_worldheritage_011",
+    "name": "제주세계자연유산센터",
+    "region": "제주시",
+    "category": "indoor",
+    "summary": "세계자연유산 전시시설로 장애인 화장실, 승강기, 수유실, 대여 정보가 있으나 일부 전시 동선 제한이 있음.",
+    "recommended_for": [
+      "senior",
+      "recovery_traveler",
+      "stroller_family",
+      "slow_walker",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "돔형 영상관 이후 계단 동선 이용이 필요한 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "일부 전시실 끝부분 짧은 14도 경사와 다음 관람로 계단으로 회차 필요",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 승강기 부근 남녀 구분 설치",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 설치",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "yes",
+        "note": "상설전시실 경사 0~5도, 일부 14도 짧은 경사와 계단 구간 있음",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "실내 관람 중 휴식 위치 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어, 유아차 대여 가능",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "상설전시실 일부 경사와 단차 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "단체 관람 일정 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "low",
+      "recommended_duration_minutes": 60,
+      "outdoor_exposure": "low",
+      "weather_sensitivity": "low"
+    },
+    "sources": [
+      {
+        "title": "이지제주 제주세계자연유산센터",
+        "url": "https://easyjeju.net/pages.php?no=767&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "돔형 영상관 이후 계단 구간은 회차 안내 필요",
+      "짧은 급경사 구간 보호자 확인 필요"
+    ],
+    "operator_notes": "이지제주 2023.09.20 조사 정보 기반."
+  },
+  {
+    "id": "jeju_forest_yeomiji_012",
+    "name": "여미지식물원",
+    "region": "서귀포시 중문",
+    "category": "forest",
+    "summary": "실내외 식물원으로 장애인 화장실과 대여 정보가 있으나 외부 관람로 요철·단차·경사가 많음.",
+    "recommended_for": [
+      "senior",
+      "stroller_family",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "외부 관람로 요철과 단차가 어려운 휠체어 사용자",
+      "긴 실내외 이동이 부담되는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "내부 관람로 짧은 경사로, 외부 관람로 요철·단차·경사 다수",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "한국정원, 주차장, 정문 부근 장애인 화장실 설치 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 있음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "yes",
+        "note": "주차장에서 매표소 접근로 약 6도 20m, 외부 관람로 단차와 경사 다수",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "식물원 내 휴식 가능성은 있으나 접근 가능한 위치 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어, 유아차 대여 가능",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "외부 관람로 요철과 단차 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "중문 관광지 혼잡도 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 70,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "이지제주 여미지식물원",
+        "url": "https://easyjeju.net/pages.php?no=41&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "외부 관람로는 휠체어 사용자에게 부담이 클 수 있어 실내 중심 코스 권장",
+      "주차장-매표소 경사 확인 필요"
+    ],
+    "operator_notes": "이지제주 2023.10.08 조사 정보 기반."
+  },
+  {
+    "id": "jeju_cafe_osulloc_013",
+    "name": "오설록 티 뮤지엄",
+    "region": "서귀포시 안덕면",
+    "category": "cafe",
+    "situation_tags": [
+      "food_focused",
+      "indoor",
+      "crowded_possible",
+      "short_stay"
+    ],
+    "summary": "녹차 테마 실내 관람과 카페 이용이 가능한 장소이나 건물 간 이동 경사와 야외 전망대 단차가 있음.",
+    "recommended_for": [
+      "senior",
+      "recovery_traveler",
+      "stroller_family",
+      "slow_walker"
+    ],
+    "avoid_for": [
+      "야외 차밭 요철과 전망대 단차가 어려운 사용자",
+      "혼잡한 카페 환경이 부담되는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "내부 관람로는 단차와 경사 없이 관람 가능하나 야외와 건물 간 경사 있음",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "오설록 티 뮤지엄 건물에 장애인 화장실 설치",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "건물 앞 주차장에 장애인 전용 주차구역 있음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "3층 야외 전망대 단차, 건물 간 이동 경로 경사",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "yes",
+        "note": "카페형 휴식 가능성이 있으나 혼잡도 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "휠체어·유아차 대여 정보는 추가 확인 필요",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "서광차밭 바닥 요철 마감",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "대표 관광지로 주말과 성수기 혼잡 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "low",
+      "recommended_duration_minutes": 50,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "이지제주 오설록 티 뮤지엄",
+        "url": "https://easyjeju.net/pages.php?no=89&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "rental_or_assistance",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "야외 차밭과 전망대는 조건에 따라 제외 안내 필요",
+      "혼잡 시간대와 장애인 화장실 운영 여부 확인 필요"
+    ],
+    "operator_notes": "이지제주 2023.09.19 조사 정보 기반."
+  },
+  {
+    "id": "jeju_forest_cheonjiyeon_014",
+    "name": "천지연폭포",
+    "region": "서귀포시",
+    "category": "forest",
+    "summary": "폭포 관람지로 주차와 대여 정보가 있으나 일부 귀로에 계단과 징검다리 형태가 있어 회차 안내 필요.",
+    "recommended_for": [
+      "senior",
+      "stroller_family",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "다리 이후 계단·징검다리 구간이 어려운 휠체어 사용자",
+      "장시간 야외 체류가 어려운 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "나가는 길 일부가 계단과 징검다리 형태로 들어가는 길 회차 필요",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "partial",
+        "note": "주차장 쪽과 매표소 부근 장애인 화장실에 각각 경사로 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 있음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "yes",
+        "note": "장애인 화장실 접근 경사로와 계단·징검다리 귀로 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "관람로 휴식 가능 위치 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어, 유아차 대여 가능",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "다리, 계단, 징검다리 구간 회피 필요",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "대표 관광지로 혼잡 시간대 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 50,
+      "outdoor_exposure": "high",
+      "weather_sensitivity": "high"
+    },
+    "sources": [
+      {
+        "title": "이지제주 천지연폭포",
+        "url": "https://easyjeju.net/pages.php?no=753&p=tourist",
+        "type": "public_agency"
+      },
+      {
+        "title": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+        "url": "https://www.data.go.kr/data/15109153/fileData.do",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review_v2",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "들어가는 길로 되돌아 나오는 회차 안내 필요",
+      "장애인 화장실 경사로와 혼잡도 방문 전 확인 필요",
+      "휠체어·유아차 대여 수량은 제한될 수 있으므로 방문 전 운영 여부 확인 필요"
+    ],
+    "operator_notes": "이지제주 2022.11.08 조사 정보 기반. 보강 검토: 공식 출처에 주차, 장애인 화장실, 대여, 회차 필요 위험 정보가 있어 조건부 추천 대상으로 분류.\nroadview_conflict_resolution 2026-07-07: rental_or_assistance=yes 유지(keep_existing). 이지제주 상세 접근성 정보에 보장구 대여와 유아차 대여가 체크되어 있어 상세 출처를 우선함."
+  },
+  {
+    "id": "jeju_rest_sinsan_015",
+    "name": "신산공원",
+    "region": "제주시",
+    "category": "rest_area",
+    "summary": "도심 공원과 산책로가 있는 휴식 장소로 주차장과 접근로 일부 확인이 필요한 공원.",
+    "recommended_for": [
+      "senior",
+      "stroller_family",
+      "slow_walker",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "공원 내 세부 동선 검증 없이 긴 산책이 어려운 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "주차장에서 신산공원 방향 접근로에 볼라드가 있으나 유효폭 적정, 단차 없이 접근 가능 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "partial",
+        "note": "제주영상문화산업진흥원과 문예회관 주차장 이용 가능 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "단차 없이 접근 가능하나 공원 내 세부 경사 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "yes",
+        "note": "도심 공원 산책과 휴식 가능",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "대여 정보 확인 필요",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "산책로 구간별 바닥 상태 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "행사와 시간대별 공원 혼잡도 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "low",
+      "recommended_duration_minutes": 40,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "이지제주 신산공원",
+        "url": "https://easyjeju.net/pages.php?no=1060&p=tourist",
+        "type": "public_agency"
+      },
+      {
+        "title": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+        "url": "https://www.data.go.kr/data/15109153/fileData.do",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "rental_or_assistance",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "주차장 위치와 공원 입구 동선 확인 필요",
+      "볼라드 등 장애물 구간은 보호자 확인 권장",
+      "휴식 지점은 실내 휴게실이 아닐 수 있으므로 체력 민감 사용자는 휴식 가능 위치를 방문 전 확인 필요"
+    ],
+    "operator_notes": "이지제주 신산공원 접근성 상세 정보 기반.\nroadview_conflict_resolution 2026-07-07: rest_area=yes 유지(keep_existing). 기존 rest_area는 도심 공원의 산책·휴식 가능성을 뜻하고, roadview의 N은 실내 휴게실 보유 여부로 의미 범위가 다름."
+  },
+  {
+    "id": "jeju_indoor_hanran_016",
+    "name": "제주한란전시관",
+    "region": "서귀포시",
+    "category": "indoor",
+    "summary": "제주한란 생태와 보존 가치를 관람하는 전시관으로 주차와 장애인 화장실 정보가 있음.",
+    "recommended_for": [
+      "senior",
+      "recovery_traveler",
+      "stroller_family",
+      "slow_walker"
+    ],
+    "avoid_for": [
+      "세부 관람로 폭과 휴식 위치 확인이 필요한 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "도움필요 하와 단차 하 표시, 세부 동선 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 픽토그램 확인",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "주차장과 장애인 전용 주차구역 픽토그램 확인",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "단차 하 표시가 있어 일부 단차 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "yes",
+        "note": "휴게실 보유 여부",
+        "source_ref": "jeju_roadview_facility_status"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "보장구(휠체어) 대여와 유아차 대여 픽토그램 확인",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "needs_check",
+        "note": "내부 관람로 바닥 상태 상세 확인 필요",
+        "source_ref": null
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "단체 관람 여부 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "low",
+      "recommended_duration_minutes": 40,
+      "outdoor_exposure": "low",
+      "weather_sensitivity": "low"
+    },
+    "sources": [
+      {
+        "title": "이지제주 제주한란전시관",
+        "url": "https://easyjeju.net/pages.php?no=116&p=tourist",
+        "type": "public_agency"
+      },
+      {
+        "title": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+        "url": "https://www.data.go.kr/data/15109153/fileData.do",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review_v2",
+      "missing_fields": [
+        "crowd_level",
+        "surface_condition"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "픽토그램 기반 정보라 세부 화장실·동선 상태 재확인 필요",
+      "조용한 실내 관람 위주로 제한 추천"
+    ],
+    "operator_notes": "이지제주 페이지의 픽토그램과 상세 설명 기반. 세부 접근성 문구 추가 수집 필요. 보강 검토: 공식 출처에 주차, 장애인 화장실, 대여 등 픽토그램 핵심 정보가 있어 세부 동선 확인 전제로 조건부 분류.\nroadview_safe_merge 2026-07-07: rest_area 필드를 제주특별자치도 사회적약자 시설현황 공공데이터로 보강."
+  },
+  {
+    "id": "jeju_sea_olle6_017",
+    "name": "올레길6코스 휠체어구간",
+    "region": "서귀포시",
+    "category": "sea",
+    "summary": "쇠소깍에서 보목포구 방향으로 이어지는 3.3km 휠체어 코스이나 도로 폭과 차량 유동 주의가 필요함.",
+    "recommended_for": [
+      "wheelchair_user",
+      "stroller_family",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "도로 폭 협소와 차량 유동이 부담되는 사용자",
+      "긴 이동 거리가 어려운 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "휠체어 코스이나 도로 폭 협소, 유동 차량 많음",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 픽토그램 확인",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "unknown",
+        "note": "주차 정보 추가 확인 필요",
+        "source_ref": null
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "도움필요 중, 경사로 중 표시",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "unknown",
+        "note": "중간 휴식 지점 확인 필요",
+        "source_ref": null
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "대여 정보 확인 필요",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "해안도로와 협소 도로 구간 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "차량 유동과 관광객 혼잡 확인 필요",
+        "source_ref": "easyjeju"
+      }
+    },
+    "effort": {
+      "walking_level": "high",
+      "recommended_duration_minutes": 90,
+      "outdoor_exposure": "high",
+      "weather_sensitivity": "high"
+    },
+    "sources": [
+      {
+        "title": "이지제주 올레길6코스 휠체어구간",
+        "url": "https://easyjeju.net/pages.php?no=966&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review_v2",
+      "missing_fields": [
+        "parking",
+        "rest_area",
+        "rental_or_assistance"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "3.3km 이동과 차량 유동으로 회복 중 사용자에게는 핵심 추천 제한",
+      "보호자 동행과 중간 회차 지점 확인 필요"
+    ],
+    "operator_notes": "이지제주 상세정보에 도로 폭 협소와 유동 차량 많음 명시. 보강 검토: 공식 출처에 휠체어 구간, 장애인 화장실, 경사·차량 유동 위험이 명시되어 조건부 코스 데이터로 분류."
+  },
+  {
+    "id": "jeju_sea_olle14_018",
+    "name": "올레길14코스 휠체어구간",
+    "region": "제주시 한림읍",
+    "category": "sea",
+    "summary": "비양도 전망과 금능으뜸원해변 방향의 2.1km 휠체어 구간.",
+    "recommended_for": [
+      "wheelchair_user",
+      "stroller_family",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "2km 이상 이동이 어려운 회복 중 여행자",
+      "시작점 찾기가 어려운 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "휠체어 구간이나 중간 마을길 폭 협소, 시작점 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "금릉해수욕장 화장실에 경사로 및 장애인화장실 설치 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "needs_check",
+        "note": "시작점과 주차 위치 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "도움필요 하, 경사로 하 표시",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "unknown",
+        "note": "중간 휴식 지점 확인 필요",
+        "source_ref": null
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "대여 정보 확인 필요",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "마을길 폭 협소와 해변 접근 동선 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "금능·협재 해변권 성수기 혼잡 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 70,
+      "outdoor_exposure": "high",
+      "weather_sensitivity": "high"
+    },
+    "sources": [
+      {
+        "title": "이지제주 올레길14코스 휠체어구간",
+        "url": "https://easyjeju.net/pages.php?no=970&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review_v2",
+      "missing_fields": [
+        "parking",
+        "rest_area",
+        "rental_or_assistance"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "20년 조사 정보가 포함되어 최신 확인 필요",
+      "시작점과 화장실 위치를 방문 전 확인 필요"
+    ],
+    "operator_notes": "이지제주에 20년 조사 접근성 정보 문구 있음. 최신 재조사 필요. 보강 검토: 공식 출처에 휠체어 구간, 장애인 화장실, 시작점 및 마을길 주의사항이 있어 조건부 코스 데이터로 분류."
+  },
+  {
+    "id": "jeju_sea_olle17_019",
+    "name": "올레길17코스 휠체어구간",
+    "region": "제주시 용담",
+    "category": "sea",
+    "summary": "용담해안도로를 따라 사수항 부근에서 용연다리입구까지 이어지는 4.4km 해안 휠체어 구간.",
+    "recommended_for": [
+      "wheelchair_user",
+      "stroller_family",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "4km 이상 이동이 어려운 사용자",
+      "강풍과 장시간 야외 체류가 부담되는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "휠체어 구간으로 소개되나 총 4.4km 이동 부담 있음",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "사수항, 레포츠공원, 용연다리입구 화장실 이용 가능 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "unknown",
+        "note": "출발지·도착지 주차 정보 확인 필요",
+        "source_ref": null
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "도움필요 상, 경사로 상 표시",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "해안도로 중간 휴식 가능 지점 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "대여 정보 확인 필요",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "해안도로 구간별 폭과 바닥 상태 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "해안도로 차량·보행 혼잡 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "high",
+      "recommended_duration_minutes": 100,
+      "outdoor_exposure": "high",
+      "weather_sensitivity": "high"
+    },
+    "sources": [
+      {
+        "title": "이지제주 올레길17코스 휠체어구간",
+        "url": "https://easyjeju.net/pages.php?no=971&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review_v2",
+      "missing_fields": [
+        "parking",
+        "rental_or_assistance"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "4.4km 전체 코스보다 짧은 구간 선택 권장",
+      "강풍과 해안도로 차량 유동 확인 필요"
+    ],
+    "operator_notes": "이지제주 올레길17코스 휠체어구간 상세정보 기반. 보강 검토: 공식 출처에 휠체어 구간, 화장실 지점, 장거리 이동 정보가 있어 조건부 코스 데이터로 분류."
+  },
+  {
+    "id": "jeju_sea_eoyeong_020",
+    "name": "어영해안공원 인근 해안도로",
+    "region": "제주시 용담",
+    "category": "sea",
+    "summary": "제주해안을 따라 이루어진 휠체어 올레길17코스 일부 구간으로 짧은 바다 감상에 활용 가능.",
+    "recommended_for": [
+      "wheelchair_user",
+      "senior",
+      "recovery_traveler",
+      "stroller_family"
+    ],
+    "avoid_for": [
+      "해안 강풍에 민감한 사용자",
+      "차량과 보행 혼잡이 부담되는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "제주해안을 따라 이루어진 휠체어 올레길17코스 구간으로 소개",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "needs_check",
+        "note": "근처 화장실 위치와 장애인 화장실 여부 확인 필요",
+        "source_ref": null
+      },
+      "parking": {
+        "state": "needs_check",
+        "note": "가까운 주차 가능 지점 확인 필요",
+        "source_ref": null
+      },
+      "slope_or_stairs": {
+        "state": "unknown",
+        "note": "세부 경사와 단차 확인 필요",
+        "source_ref": null
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "어영해안공원 인근 휴식 가능성은 있으나 접근 가능한 좌석 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "대여 정보 확인 필요",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "해안도로 바닥 상태와 보행 폭 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "시간대별 차량·보행 혼잡 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "low",
+      "recommended_duration_minutes": 30,
+      "outdoor_exposure": "high",
+      "weather_sensitivity": "high"
+    },
+    "sources": [
+      {
+        "title": "이지제주 해안도로 구간",
+        "url": "https://easyjeju.net/pages.php?no=731&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "needs_check",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "accessible_toilet",
+        "parking",
+        "slope_or_stairs",
+        "rental_or_assistance"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "짧은 바다 감상 지점으로 제한 사용 권장",
+      "장애인 화장실과 가까운 주차 지점 확인 전 고득점 금지"
+    ],
+    "operator_notes": "이지제주 이용안내 기반. 상세 접근성 항목 부족."
+  },
+  {
+    "id": "jeju_culture_tapdong_021",
+    "name": "탑동해변공연장",
+    "region": "제주시",
+    "category": "culture",
+    "summary": "제주시 원도심 해안 공연장으로 장애인 주차구역과 장애인 화장실 정보가 있음.",
+    "recommended_for": [
+      "senior",
+      "stroller_family",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "행사 혼잡과 해안 바람이 부담되는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "세부 접근성은 접근성관련안내 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 있음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "needs_check",
+        "note": "공연장 좌석과 해안 보행로 경사·단차 확인 필요",
+        "source_ref": null
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "공연장 주변 휴식 가능성은 있으나 행사 시 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "대여 정보 확인 필요",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "needs_check",
+        "note": "해안 공연장 바닥과 좌석 접근성 확인 필요",
+        "source_ref": null
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "행사 여부에 따라 혼잡도 크게 변동",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "low",
+      "recommended_duration_minutes": 40,
+      "outdoor_exposure": "high",
+      "weather_sensitivity": "high"
+    },
+    "sources": [
+      {
+        "title": "이지제주 탑동해변공연장",
+        "url": "https://easyjeju.net/pages.php?no=727&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "needs_check",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "slope_or_stairs",
+        "rental_or_assistance",
+        "surface_condition",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "행사일 혼잡과 좌석 접근성을 반드시 확인 필요",
+      "해안 바람과 야외 체류 부담 안내 필요"
+    ],
+    "operator_notes": "이지제주 2020.5.12 조사 정보 기반으로 최신 재확인 필요."
+  },
+  {
+    "id": "jeju_indoor_literature_022",
+    "name": "제주문학관",
+    "region": "제주시",
+    "category": "indoor",
+    "summary": "실내 문화시설로 장애인 주차구역, 휠체어 대여, 장애인 화장실, 엘리베이터 정보가 충실한 문학관.",
+    "recommended_for": [
+      "wheelchair_user",
+      "senior",
+      "recovery_traveler",
+      "stroller_family",
+      "slow_walker"
+    ],
+    "avoid_for": [
+      "문학 전시보다 야외 자연 감상을 우선하는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "yes",
+        "note": "문화시설 부지가 넓고 내부 턱 없음, 휠체어·전동스쿠터 이용 쉬움 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 1, 3, 4층 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 2대, 문화시설 바로 앞 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "출입통로에 경사로와 엘리베이터 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "실내 문화시설 내 휴식 가능성은 있으나 좌석 위치 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어 1대 안내데스크 대여 가능",
+        "source_ref": "open_tourism"
+      },
+      "surface_condition": {
+        "state": "yes",
+        "note": "내부 턱 없음, 이동경로 폭 넓음",
+        "source_ref": "open_tourism"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "전시·행사 일정 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "very_low",
+      "recommended_duration_minutes": 50,
+      "outdoor_exposure": "low",
+      "weather_sensitivity": "low"
+    },
+    "sources": [
+      {
+        "title": "열린관광 모두의 여행 제주문학관",
+        "url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=20b6c4bf-48c4-4595-8a3b-04b3ca8617be",
+        "type": "public_agency"
+      },
+      {
+        "title": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+        "url": "https://www.data.go.kr/data/15109153/fileData.do",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "verified",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "행사 일정과 대여 가능 수량은 방문 전 확인 필요",
+      "실내 코스로 날씨 민감 사용자에게 우선 후보",
+      "휠체어·유아차 대여 수량은 제한될 수 있으므로 방문 전 운영 여부 확인 필요"
+    ],
+    "operator_notes": "열린관광 모두의 여행 상세 편의정보 기반.\nroadview_conflict_resolution 2026-07-07: rental_or_assistance=yes 유지(keep_existing). 열린관광 모두의 여행 상세 편의정보에 휠체어 1대와 유모차 1대 대여 가능 정보가 있어 상세 출처를 우선함."
+  },
+  {
+    "id": "jeju_sea_songaksan_023",
+    "name": "송악산",
+    "region": "서귀포시 대정읍",
+    "category": "sea",
+    "summary": "바다 전망이 강한 자연 관광지로 장애인 주차구역과 장애인 화장실 정보가 있으나 야외 동선 확인이 필요함.",
+    "recommended_for": [
+      "senior",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "긴 야외 보행과 바람이 부담되는 회복 중 사용자",
+      "상세 동선 확인 없는 휠체어 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "needs_check",
+        "note": "주차와 화장실 정보는 있으나 전망 동선 접근성 추가 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 있음 정보",
+        "source_ref": "open_tourism"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "송악산공영주차장 장애인 전용 주차구역 2대, 관광지 바로 앞 정보",
+        "source_ref": "open_tourism"
+      },
+      "slope_or_stairs": {
+        "state": "needs_check",
+        "note": "송악산 산책로 경사와 바닥 상태 확인 필요",
+        "source_ref": null
+      },
+      "rest_area": {
+        "state": "unknown",
+        "note": "접근 가능한 휴식 위치 확인 필요",
+        "source_ref": null
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "대여 정보 확인 필요",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "needs_check",
+        "note": "자연 산책로 바닥 상태 확인 필요",
+        "source_ref": null
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "관광 성수기와 바람 강도 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 40,
+      "outdoor_exposure": "high",
+      "weather_sensitivity": "high"
+    },
+    "sources": [
+      {
+        "title": "열린관광 모두의 여행 송악산",
+        "url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=1b5929e2-60a3-4de4-8616-9451b2cdabfa",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "needs_check",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "wheelchair_access",
+        "slope_or_stairs",
+        "rest_area",
+        "rental_or_assistance",
+        "surface_condition",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "바람과 야외 체류 부담을 반드시 안내",
+      "전망 지점까지의 경사와 바닥 상태 확인 전 고득점 금지"
+    ],
+    "operator_notes": "열린관광 주차·화장실 정보 기반. 산책로 세부 동선은 추가 확인 필요."
+  },
+  {
+    "id": "jeju_indoor_haenyeo_024",
+    "name": "제주해녀박물관",
+    "region": "제주시 구좌읍",
+    "category": "indoor",
+    "summary": "제주 해녀문화를 소개하는 박물관으로 승강기와 대여 정보가 있으나 일부 전시·외부 관람 동선에 경사와 단차가 있음.",
+    "recommended_for": [
+      "senior",
+      "stroller_family",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "3층 전시 일부 시야 제한과 외부 요철 구간이 부담되는 휠체어 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "일부 테라스 출입문 폭과 단차, 3층 전시실 경사·시야 제한 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 픽토그램과 상세 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "주차장과 장애인 전용 주차구역 픽토그램 확인",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "yes",
+        "note": "주출입구 경사, 테라스 단차, 외부 관람로 경사 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "실내 박물관 휴식 가능성은 있으나 접근 가능한 좌석 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "보장구 대여, 휠체어·유아차 대여 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "외부 관람로 자연석 요철 구간 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "단체 관람 일정 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 60,
+      "outdoor_exposure": "low",
+      "weather_sensitivity": "low"
+    },
+    "sources": [
+      {
+        "title": "이지제주 제주해녀박물관",
+        "url": "https://easyjeju.net/pages.php?no=35&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review_v2",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "외부 기념탑과 테라스 구간은 조건에 따라 제외",
+      "박물관 내부 중심으로 코스 제한 권장"
+    ],
+    "operator_notes": "이지제주 2022.07.13 조사 정보 기반. 보강 검토: 공식 출처에 주차, 화장실, 승강기, 대여와 제한 동선이 명시되어 조건부 실내 관람지로 분류."
+  },
+  {
+    "id": "jeju_indoor_starlight_025",
+    "name": "별빛누리공원",
+    "region": "제주시",
+    "category": "indoor",
+    "summary": "천문 관람 시설로 장애인 주차·화장실·대여 정보가 있으나 천체관측실 접근 계단 제한이 있음.",
+    "recommended_for": [
+      "senior",
+      "stroller_family",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "천체관측실 접근이 핵심 목적인 휠체어 사용자",
+      "야간 이동이 부담되는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "천체관측실 접근로 계단 단차와 휠체어 관람석 없음 정보",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 설치",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "yes",
+        "note": "천체관측실 접근로 계단 단차",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "실내 대기 공간 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어, 유아차 대여 가능",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "천체관측실 동선 제외 시 내부 관람 동선 재확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "야간 프로그램 예약·혼잡 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "low",
+      "recommended_duration_minutes": 60,
+      "outdoor_exposure": "low",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "이지제주 별빛누리공원",
+        "url": "https://easyjeju.net/pages.php?no=768&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review_v2",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "천체관측실 접근은 휠체어 사용자에게 제한 가능성 안내",
+      "야간 이동과 예약 여부 확인 필요"
+    ],
+    "operator_notes": "이지제주 2020.09.15 조사 정보 기반. 보강 검토: 공식 출처에 주차, 화장실, 대여와 천체관측실 제한 동선이 명시되어 조건부 실내 관람지로 분류."
+  },
+  {
+    "id": "jeju_culture_hangmong_026",
+    "name": "항몽유적지",
+    "region": "제주시 애월읍",
+    "category": "culture",
+    "summary": "역사 유적지로 전시관 접근성은 비교적 좋으나 재단·토성 관람로는 요철과 경사·단차가 있음.",
+    "recommended_for": [
+      "senior",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "토성 관람로와 자연석 바닥이 어려운 휠체어 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "전시관 출입구 경사로와 내부 단차 없음, 재단·토성 관람로는 요철과 경사·단차 있음",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "주차장 부근과 순의문 부근 장애인 화장실 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 있음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "yes",
+        "note": "재단 관람로 자연석 요철, 토성 관람로 경사·단차",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "유적지 내 휴식 가능 위치 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어, 유아차 대여 가능",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "자연석 요철 마감 구간 있음",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "행사와 단체 방문 여부 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 45,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "이지제주 항몽유적지",
+        "url": "https://easyjeju.net/pages.php?no=75&p=tourist",
+        "type": "public_agency"
+      },
+      {
+        "title": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+        "url": "https://www.data.go.kr/data/15109153/fileData.do",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "전시관 중심 코스로 제한 추천",
+      "재단·토성 관람로는 조건에 따라 제외 안내",
+      "휠체어·유아차 대여 수량은 제한될 수 있으므로 방문 전 운영 여부 확인 필요"
+    ],
+    "operator_notes": "이지제주 2023.01.05 조사 정보 기반.\nroadview_conflict_resolution 2026-07-07: rental_or_assistance=yes 유지(keep_existing). 이지제주 상세 접근성 정보에 휠체어와 유아차 대여 가능 문구가 있어 상세 출처를 우선함."
+  },
+  {
+    "id": "jeju_forest_thinking_garden_027",
+    "name": "생각하는 정원",
+    "region": "제주시 한경면",
+    "category": "forest",
+    "summary": "정원형 관광지로 주차와 대여 정보가 있으나 장애인 화장실 이용과 경사 구간에 주의가 필요함.",
+    "recommended_for": [
+      "senior",
+      "stroller_family"
+    ],
+    "avoid_for": [
+      "장애인 화장실의 휠체어 이용이 필요한 사용자",
+      "정원 내 경사가 부담되는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "장애인 리프트와 대여 정보가 있으나 경사와 화장실 제약 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "partial",
+        "note": "장애인 화장실은 있으나 휠체어 사용자 이용 불가 설명 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "주차장과 장애인 전용 주차구역 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "yes",
+        "note": "레스토랑 출입구 7.8~9도 경사 등 구간별 경사 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "레스토랑 입식 테이블 정보 있으나 접근로 경사 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "보장구와 유아차 대여 픽토그램 확인",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "정원 관람로 바닥 상태 구간별 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "관광 시즌 혼잡도 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 50,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "이지제주 생각하는 정원",
+        "url": "https://easyjeju.net/pages.php?no=72&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review_v2",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "휠체어 사용자에게 장애인 화장실 이용 제한 가능성을 명확히 표시",
+      "정원 관람로 경사와 바닥 상태 확인 필요"
+    ],
+    "operator_notes": "이지제주 접근성 상세 설명 기반. 휠체어 화장실 이용 불가 문구 반영. 보강 검토: 공식 출처에 주차, 대여, 화장실 제약과 경사 정보가 명시되어 조건부 정원 관람지로 분류."
+  },
+  {
+    "id": "jeju_indoor_sumokwon_theme_028",
+    "name": "수목원테마파크",
+    "region": "제주시",
+    "category": "indoor",
+    "summary": "아이스뮤지엄과 체험 콘텐츠가 있는 실내 테마시설로 일부 경사와 체험 구간 단차가 있음.",
+    "recommended_for": [
+      "stroller_family",
+      "senior",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "14도 내리막 경사와 체험 단차가 어려운 휠체어 사용자",
+      "차가운 실내 환경이 부담되는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "1층 매표소까지 내리막 경사 14도, 내부 짧은 경사로 최대 12도 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 설치",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "yes",
+        "note": "내리막 14도, 내부 경사 최대 12도, 3D 착시아트 일부 단차",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "실내 휴식 가능성은 있으나 혼잡과 좌석 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어, 유아차 대여 가능",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "체험 구간 단차와 실내 경사 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "가족 관광지로 주말 혼잡도 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 60,
+      "outdoor_exposure": "low",
+      "weather_sensitivity": "low"
+    },
+    "sources": [
+      {
+        "title": "이지제주 수목원테마파크",
+        "url": "https://easyjeju.net/pages.php?no=52&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review_v2",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "급경사 구간으로 휠체어 이용자는 보호자 동행과 현장 확인 필요",
+      "아이스뮤지엄의 온도와 체험 단차 안내 필요"
+    ],
+    "operator_notes": "이지제주 2023.11.02 조사 정보 기반. 보강 검토: 공식 출처에 주차, 화장실, 승강기, 대여와 급경사·단차 정보가 명시되어 조건부 실내 관광지로 분류."
+  },
+  {
+    "id": "jeju_other_dongmun_market_029",
+    "name": "동문재래시장",
+    "region": "제주시",
+    "category": "food_market",
+    "situation_tags": [
+      "food_focused",
+      "crowded_possible",
+      "long_walk"
+    ],
+    "summary": "제주시 원도심 대표 시장으로 장애인 주차와 화장실 정보가 있으나 보행 장애물과 바닥 물기 주의가 필요함.",
+    "recommended_for": [
+      "senior",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "혼잡과 바닥 물기, 보행 장애물이 부담되는 휠체어·유모차 사용자",
+      "장시간 서 있기 어려운 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "시장 특성상 보행 장애물과 바닥 물기 있음",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 있음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "needs_check",
+        "note": "시장 내부 구간별 경사와 단차 확인 필요",
+        "source_ref": null
+      },
+      "rest_area": {
+        "state": "needs_check",
+        "note": "앉아서 쉴 수 있는 공간 확인 필요",
+        "source_ref": null
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "대여 정보 확인 필요",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "시장 특성상 바닥 물기와 보행 장애물 있음",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "시장과 야시장 혼잡도 확인 필요",
+        "source_ref": "easyjeju"
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 40,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "이지제주 동문재래시장",
+        "url": "https://easyjeju.net/pages.php?no=724&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review_v2",
+      "missing_fields": [
+        "slope_or_stairs",
+        "rest_area",
+        "rental_or_assistance"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "혼잡 시간대와 바닥 물기 때문에 휠체어·유모차 사용자에게 감점 필요",
+      "짧은 방문과 보호자 동행 기준으로만 추천"
+    ],
+    "operator_notes": "이지제주 2022.11.10 조사 정보 기반. 보강 검토: 공식 출처에 주차, 장애인 화장실, 보행 장애물과 바닥 물기 위험이 명시되어 조건부 시장 방문지로 분류."
+  },
+  {
+    "id": "jeju_culture_seotal_oreum_030",
+    "name": "섯알오름학살터",
+    "region": "서귀포시 대정읍",
+    "category": "culture",
+    "summary": "제주 4·3 및 전쟁기 역사 추모 장소로 장애인 주차와 화장실 정보가 있으나 위령비 접근 경사와 화장실 면적 제약이 있음.",
+    "recommended_for": [
+      "senior",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "장애인 화장실 바닥면적 제약이 큰 사용자",
+      "경사 높은 위령비 접근로가 어려운 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "보행로 유효폭은 적정하나 위령비 방면 경사로 기울기 높음",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "partial",
+        "note": "장애인 화장실은 있으나 바닥면적 미흡",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 있음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "yes",
+        "note": "위령비 접근로와 화장실 접근로 경사 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "unknown",
+        "note": "추모 공간 내 접근 가능한 휴식 지점 확인 필요",
+        "source_ref": null
+      },
+      "rental_or_assistance": {
+        "state": "no",
+        "note": "보장구 대여 체크안됨",
+        "source_ref": "easyjeju"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "시멘트 바닥 요철 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "추모 행사 일정 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 30,
+      "outdoor_exposure": "high",
+      "weather_sensitivity": "high"
+    },
+    "sources": [
+      {
+        "title": "이지제주 섯알오름학살터",
+        "url": "https://easyjeju.net/pages.php?no=493&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review_v2",
+      "missing_fields": [
+        "rest_area",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "장애인 화장실 바닥면적 미흡을 명확히 표시",
+      "위령비 접근로 경사로 인해 휠체어 핵심 추천 제한"
+    ],
+    "operator_notes": "이지제주 접근성 상세 설명 기반. 조사일 미표기 또는 최신성 재확인 필요. 보강 검토: 공식 출처에 주차, 화장실 제약, 보행로와 위령비 경사 위험이 명시되어 조건부 역사·추모 장소로 분류."
+  },
+  {
+    "id": "jeju_transport_airport_031",
+    "name": "제주국제공항 교통약자 서비스 거점",
+    "region": "제주시 용담동",
+    "category": "transport",
+    "situation_tags": [
+      "indoor",
+      "crowded_possible",
+      "restroom_important"
+    ],
+    "summary": "제주 여행의 입출도 거점으로 휠체어 대여, 교통약자 전용좌석, 공항의원·약국 등 지원 정보가 있는 교통 거점.",
+    "recommended_for": [
+      "wheelchair_user",
+      "senior",
+      "pregnant_traveler",
+      "stroller_family",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "긴 대기와 공항 혼잡이 부담되는 사용자",
+      "공항 내 이동 동선이 긴 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "공항 내 휠체어 대여와 교통약자 지원 서비스가 있으나 항공사별 탑승 지원은 별도 확인 필요",
+        "source_ref": "airport"
+      },
+      "accessible_toilet": {
+        "state": "needs_check",
+        "note": "장애인 화장실 위치는 공항 시설안내에서 추가 확인 필요",
+        "source_ref": null
+      },
+      "parking": {
+        "state": "partial",
+        "note": "공항 주차장과 교통약자 승하차 구역 정보가 있으나 주차 위치별 접근성 확인 필요",
+        "source_ref": "airport"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "터미널 내 이동은 가능하나 보안검색·탑승구 동선은 항공편별 확인 필요",
+        "source_ref": "airport"
+      },
+      "rest_area": {
+        "state": "yes",
+        "note": "교통약자 전용좌석이 대합실에 배치되어 있음",
+        "source_ref": "airport"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "종합안내카운터 휠체어 대여, 휠체어 전동화 키트 대여 정보 있음",
+        "source_ref": "airport"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "터미널 내부는 실내 동선이나 탑승구와 교통수단 연결 동선 확인 필요",
+        "source_ref": "airport"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "출도착 시간대와 보안검색 대기 혼잡 확인 필요",
+        "source_ref": "airport"
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 60,
+      "outdoor_exposure": "low",
+      "weather_sensitivity": "low"
+    },
+    "sources": [
+      {
+        "title": "제주국제공항 교통약자 동반 안내",
+        "url": "https://www.airport.co.kr/jeju/cms/frCon/index.do?MENU_ID=220",
+        "type": "official"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "accessible_toilet",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "항공사별 휠체어 탑승 지원과 보안검색 동선을 사전 확인 필요",
+      "공항 혼잡 시간대에는 충분한 여유 시간 필요"
+    ],
+    "operator_notes": "한국공항공사 제주국제공항 교통약자 동반 안내 기반. 공항은 관광지가 아니라 입출도·지원 거점으로 사용."
+  },
+  {
+    "id": "jeju_indoor_icc_032",
+    "name": "제주국제컨벤션센터",
+    "region": "서귀포시 중문",
+    "category": "indoor",
+    "situation_tags": [
+      "indoor",
+      "crowded_possible",
+      "restroom_important",
+      "short_stay"
+    ],
+    "summary": "장애인 주차, 휠체어 대여, 승강기, 층별 장애인 화장실 정보가 있는 대형 실내 컨벤션 시설.",
+    "recommended_for": [
+      "wheelchair_user",
+      "senior",
+      "recovery_traveler",
+      "stroller_family",
+      "caregiver_group",
+      "heat_sensitive_traveler"
+    ],
+    "avoid_for": [
+      "대형 행사 혼잡이 부담되는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "yes",
+        "note": "주출입구 턱 없음, 휠체어 접근 가능 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실이 층마다 있다는 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 12대 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "slope_or_stairs": {
+        "state": "yes",
+        "note": "엘리베이터와 턱 없는 출입통로 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "대형 실내시설 내 휴식 가능성은 있으나 행사별 좌석·대기 공간 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "휠체어 대여와 유모차 무료대여 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "surface_condition": {
+        "state": "yes",
+        "note": "주출입 통로 턱 없음 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "행사 일정에 따라 혼잡도가 크게 달라짐",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "low",
+      "recommended_duration_minutes": 50,
+      "outdoor_exposure": "low",
+      "weather_sensitivity": "low"
+    },
+    "sources": [
+      {
+        "title": "열린관광 모두의 여행 제주국제컨벤션센터",
+        "url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=c584055a-7100-4e8d-a171-e671a9c47436",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "verified",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "행사 일정과 혼잡도를 방문 전 확인 필요",
+      "대형 시설이라 이동 동선을 짧게 잡는 것이 좋음"
+    ],
+    "operator_notes": "열린관광 무장애 편의정보 기반."
+  },
+  {
+    "id": "jeju_indoor_art_museum_033",
+    "name": "제주특별자치도립미술관",
+    "region": "제주시 연동",
+    "category": "indoor",
+    "situation_tags": [
+      "indoor",
+      "low_stimulation",
+      "short_stay",
+      "restroom_important"
+    ],
+    "summary": "실내 전시 중심 장소로 휠체어 대여, 실내 단차 없음, 엘리베이터, 장애인 전용 화장실 정보가 있는 미술관.",
+    "recommended_for": [
+      "wheelchair_user",
+      "senior",
+      "recovery_traveler",
+      "stroller_family",
+      "sensory_sensitive_traveler",
+      "heat_sensitive_traveler"
+    ],
+    "avoid_for": [
+      "전시 관람 중 장시간 서 있기 어려운 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "yes",
+        "note": "입구에 턱이 없고 실내 단차 없음 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 전용 화장실 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "parking": {
+        "state": "needs_check",
+        "note": "장애인 주차 위치와 주차장-입구 거리 추가 확인 필요",
+        "source_ref": null
+      },
+      "slope_or_stairs": {
+        "state": "yes",
+        "note": "엘리베이터 있음, 실내 단차 없음 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "실내 전시시설 내 휴식 좌석 위치 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "안내데스크 휠체어 무료대여와 유모차 대여 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "surface_condition": {
+        "state": "yes",
+        "note": "실내 단차 없음 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "전시·행사 일정에 따른 혼잡 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "very_low",
+      "recommended_duration_minutes": 50,
+      "outdoor_exposure": "low",
+      "weather_sensitivity": "low"
+    },
+    "sources": [
+      {
+        "title": "열린관광 모두의 여행 제주특별자치도립미술관",
+        "url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=579a2679-468a-4abe-8c19-e0b8dcaa173a",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "parking",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "장애인 주차 위치와 전시 혼잡도 확인 필요",
+      "장시간 관람보다 짧은 전시 관람 중심 권장"
+    ],
+    "operator_notes": "열린관광 무장애 편의정보 기반. 주차 세부 정보 추가 확인 필요."
+  },
+  {
+    "id": "jeju_indoor_lee_jung_seop_034",
+    "name": "이중섭미술관",
+    "region": "서귀포시",
+    "category": "indoor",
+    "situation_tags": [
+      "indoor",
+      "short_stay",
+      "restroom_important"
+    ],
+    "summary": "서귀포 이중섭거리 인근 실내 미술관으로 경사로와 엘리베이터 정보가 있으나 장애인 화장실 폐쇄 정보가 있어 주의가 필요함.",
+    "recommended_for": [
+      "senior",
+      "recovery_traveler",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "장애인 화장실을 필수로 이용해야 하는 사용자",
+      "공사·운영 변동 확인 없이 방문하는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "주출입 접근로 경사로와 휠체어 접근 가능 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "accessible_toilet": {
+        "state": "no",
+        "note": "장애인 화장실 공사 중 폐쇄 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "parking": {
+        "state": "needs_check",
+        "note": "장애인 주차 정보 추가 확인 필요",
+        "source_ref": null
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "경사로와 엘리베이터 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "rest_area": {
+        "state": "unknown",
+        "note": "실내 휴식 좌석 위치 확인 필요",
+        "source_ref": null
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "휠체어·유아차 대여 정보 확인 필요",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "주출입구 경사로와 수동문 정보 기반, 내부 세부 바닥 상태 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "이중섭거리 관광 혼잡도 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "low",
+      "recommended_duration_minutes": 40,
+      "outdoor_exposure": "low",
+      "weather_sensitivity": "low"
+    },
+    "sources": [
+      {
+        "title": "열린관광 모두의 여행 이중섭 미술관",
+        "url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=96b662f9-03cf-4c2f-a2c2-69c9582665c9",
+        "type": "public_agency"
+      },
+      {
+        "title": "제주특별자치도_사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+        "url": "https://www.data.go.kr/data/15109153/fileData.do",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "needs_check",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "accessible_toilet",
+        "parking",
+        "rest_area",
+        "rental_or_assistance",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "장애인 화장실이 필수인 사용자에게는 핵심 추천에서 제외 또는 강한 감점 필요",
+      "화장실 공사 상태를 방문 전 확인 필요",
+      "장애인 화장실 공사·운영 상태는 방문 전 재확인 필요"
+    ],
+    "operator_notes": "열린관광 정보에 장애인 화장실 공사 중 폐쇄로 표시됨.\nroadview_conflict_resolution 2026-07-07: accessible_toilet=no 유지(keep_existing). 열린관광 모두의 여행 페이지가 2026.03.05 수정 기준으로 장애인 화장실 공사 중 폐쇄를 명시해 최신 상세 출처를 우선함."
+  },
+  {
+    "id": "jeju_food_market_olle_035",
+    "name": "서귀포매일올레시장",
+    "region": "서귀포시",
+    "category": "food_market",
+    "situation_tags": [
+      "food_focused",
+      "crowded_possible",
+      "long_walk",
+      "restroom_important"
+    ],
+    "summary": "먹거리와 특산품 중심의 시장으로 장애인 주차, 턱 없는 출입, 장애인 화장실, 유모차 대여 정보가 있음.",
+    "recommended_for": [
+      "senior",
+      "stroller_family",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "음식 제한이 있는 사용자",
+      "혼잡과 대기줄이 부담되는 사용자",
+      "장시간 서 있기 어려운 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "출입구까지 턱이 없어 휠체어 접근 가능 정보가 있으나 시장 내부 혼잡과 통로 폭 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 있음",
+        "source_ref": "open_tourism"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "공영주차장 장애인 주차장 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "주출입구 턱 없음 정보가 있으나 시장 내부 구간별 단차 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "rest_area": {
+        "state": "needs_check",
+        "note": "앉아서 쉴 수 있는 공간 확인 필요",
+        "source_ref": null
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "유모차 대여 가능 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "시장 내부 바닥 상태와 통로 혼잡 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "시장과 먹거리 상권 특성상 시간대별 혼잡 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 40,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "열린관광 모두의 여행 서귀포매일올레시장",
+        "url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=a63eb571-d505-4743-93cc-ce2ee4c25ea7",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "rest_area",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "음식 제한 사용자에게는 제외 대상",
+      "혼잡 시간대와 휴식 가능 여부 확인 필요"
+    ],
+    "operator_notes": "열린관광 무장애 편의정보 기반. 음식·시장 상황 규칙 테스트용 핵심 데이터."
+  },
+  {
+    "id": "jeju_restaurant_nangtteule_036",
+    "name": "낭뜰에쉼팡",
+    "region": "제주시 조천읍",
+    "category": "restaurant",
+    "situation_tags": [
+      "food_focused",
+      "crowded_possible"
+    ],
+    "summary": "한정식 음식점으로 접근로 경사와 출입구 단차가 있고 장애인 화장실이 없어 음식 제한·화장실 필수 조건에서 제외되어야 하는 장소.",
+    "recommended_for": [
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "음식 제한이 있는 사용자",
+      "장애인 화장실이 필수인 사용자",
+      "출입구 단차와 경사가 어려운 휠체어 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "정문 출입구 단차 10cm, 옆문 경사로 7도로 휠체어 이용자는 도움 필요",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "no",
+        "note": "장애인 화장실 없음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "partial",
+        "note": "일반주차장 30대, 장애인주차장은 없음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "yes",
+        "note": "주출입구 접근로 경사 5도, 출입구 단차와 경사로 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "음식점 좌석은 있으나 휴식 목적 이용은 적합하지 않음",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "대여 정보 없음",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "출입구와 접근로 경사·단차 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "식사 시간대 혼잡 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 60,
+      "outdoor_exposure": "low",
+      "weather_sensitivity": "low"
+    },
+    "sources": [
+      {
+        "title": "이지제주 낭뜰에쉼팡",
+        "url": "https://easyjeju.net/pages.php?no=706&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "rental_or_assistance",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "장애인 화장실이 없어 화장실 필수 조건에서는 제외 필요",
+      "음식 제한 사용자는 식당 추천에서 제외"
+    ],
+    "operator_notes": "이지제주 음식점 접근성 정보 기반. 추천용보다 제외·감점 판단 검증용 데이터."
+  },
+  {
+    "id": "jeju_restaurant_donsadon_037",
+    "name": "돈사돈 월정점",
+    "region": "제주시 구좌읍",
+    "category": "restaurant",
+    "situation_tags": [
+      "food_focused",
+      "crowded_possible"
+    ],
+    "summary": "정육식당으로 장애인 주차 정보는 있으나 경사와 장애인 화장실 부재가 있어 조건부 또는 제외 판단이 필요한 음식점.",
+    "recommended_for": [
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "음식 제한이 있는 사용자",
+      "장애인 화장실이 필수인 사용자",
+      "경사로 이용이 어려운 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "주출입구 접근로 약 7도 경사와 짧은 10도 경사로 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "no",
+        "note": "장애인 화장실 없음, 일반 화장실 유효폭 70cm 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차장 있음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "yes",
+        "note": "접근로 경사 7도, 짧은 경사로 10도 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "입식테이블 정보가 있으나 휴식 목적 장소는 아님",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "대여 정보 없음",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "출입구 경사와 식당 내부 동선 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "식사 시간대 혼잡 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 60,
+      "outdoor_exposure": "low",
+      "weather_sensitivity": "low"
+    },
+    "sources": [
+      {
+        "title": "이지제주 돈사돈 월정점",
+        "url": "https://easyjeju.net/pages.php?no=1080&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "needs_check",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "accessible_toilet",
+        "rental_or_assistance",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "2021년 조사 정보라 최신 확인 필요",
+      "장애인 화장실이 없어 화장실 필수 조건에서 제외 필요"
+    ],
+    "operator_notes": "이지제주 2021.11.07 조사 접근성 정보 기반. 식당 제외 규칙 검증용 데이터."
+  },
+  {
+    "id": "jeju_rest_area_geolmae_038",
+    "name": "천지연 걸매생태공원",
+    "region": "서귀포시",
+    "category": "rest_area",
+    "situation_tags": [
+      "outdoor",
+      "short_stay",
+      "low_stimulation",
+      "weather_sensitive",
+      "restroom_important"
+    ],
+    "summary": "장애인 전용 주차구역, 목재데크 경사로, 장애인전용화장실 정보가 있는 서귀포 도심 생태공원.",
+    "recommended_for": [
+      "senior",
+      "recovery_traveler",
+      "stroller_family",
+      "slow_walker",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "비·강풍 등 날씨 영향이 큰 날 야외 체류가 어려운 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "공원 진입로에 휠체어 이동 가능한 목재데크와 경사로 설치 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "주차장 옆 장애인전용화장실 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 있음",
+        "source_ref": "open_tourism"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "목재데크와 경사로 설치, 미끄럼 방지 설비 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "공원형 휴식 가능성이 있으나 접근 가능한 벤치 위치 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "대여 정보 없음",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "목재데크와 공원 산책로 상태 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "crowd_level": {
+        "state": "unknown",
+        "note": "계절·시간대별 공원 혼잡 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "low",
+      "recommended_duration_minutes": 35,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "열린관광 모두의 여행 천지연 걸매생태공원",
+        "url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=c1ee8bad-1453-4dd7-a920-5b62f267aeef",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "rental_or_assistance",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "야외 공원이라 날씨와 바닥 미끄럼 상태 확인 필요",
+      "짧은 산책과 휴식 중심으로 권장"
+    ],
+    "operator_notes": "열린관광 무장애 편의정보 기반."
+  },
+  {
+    "id": "jeju_sea_saeyeongyo_039",
+    "name": "새연교",
+    "region": "서귀포시",
+    "category": "sea",
+    "situation_tags": [
+      "outdoor",
+      "scenic_view",
+      "weather_sensitive",
+      "short_stay",
+      "crowded_possible"
+    ],
+    "summary": "서귀포항과 새섬을 잇는 보도교로 장애인 주차, 턱 없는 접근, 장애인 화장실 정보가 있는 바다 전망 장소.",
+    "recommended_for": [
+      "wheelchair_user",
+      "senior",
+      "stroller_family",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "강풍과 야간 혼잡이 부담되는 사용자",
+      "장시간 야외 체류가 어려운 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "yes",
+        "note": "출입구까지 턱이 없어 휠체어 접근 가능 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "장애인 화장실 있음",
+        "source_ref": "open_tourism"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 주차장 2대 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "보도교와 새섬 산책로 구간별 경사 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "전망 감상과 짧은 체류 가능하나 앉아서 쉴 위치 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "대여 정보 확인 필요",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "보도교와 새섬 산책로 바닥 상태 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "야경·행사 시간대 혼잡 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "low",
+      "recommended_duration_minutes": 30,
+      "outdoor_exposure": "high",
+      "weather_sensitivity": "high"
+    },
+    "sources": [
+      {
+        "title": "열린관광 모두의 여행 새연교",
+        "url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=650ac09c-0fe1-4f50-bdbe-2ca7f313e4a1",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "rental_or_assistance",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "강풍과 야외 체류 부담을 확인 필요",
+      "야간 점등 시간과 혼잡도를 방문 전 확인 필요"
+    ],
+    "operator_notes": "열린관광 무장애 편의정보 기반. 날씨 민감 조건에서 감점 대상."
+  },
+  {
+    "id": "jeju_shopping_donghwa_040",
+    "name": "제주동화마을",
+    "region": "제주시 구좌읍",
+    "category": "shopping",
+    "situation_tags": [
+      "food_focused",
+      "crowded_possible",
+      "outdoor",
+      "scenic_view",
+      "restroom_important"
+    ],
+    "summary": "공원, 상점, 카페, 식당이 결합된 복합 관광지로 장애인 주차, 휠체어 경사로, 장애인전용 화장실 정보가 있음.",
+    "recommended_for": [
+      "wheelchair_user",
+      "senior",
+      "stroller_family",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "음식 제한이 있어 음식점·카페 동선이 부담되는 사용자",
+      "복합 상업공간 혼잡이 부담되는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "스타벅스·도토리숲 경사로, 여러 매장 문턱 없이 평지 연결 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "동·서 야외화장실에 남녀분리 장애인전용 화장실 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 2칸 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "주차장~산책로~각 건물 휠체어 유도도로 표기 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "공원과 매장 휴식 가능성은 있으나 혼잡과 좌석 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "휠체어·유아차 대여 정보 확인 필요",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "복합 공원·매장 동선별 바닥 상태 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "카페·식당·상점 혼잡 시간대 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 60,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "열린관광 모두의 여행 제주동화마을",
+        "url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=f3189c14-9149-4a02-8c11-03d798c11c9c",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "rental_or_assistance",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "음식 제한 사용자에게는 식당·카페 동선을 제외하거나 감점 필요",
+      "복합상업공간이라 혼잡 시간대 확인 필요"
+    ],
+    "operator_notes": "열린관광 무장애 편의정보 기반. 쇼핑·음식·공원이 섞인 복합 상황 테스트용 데이터."
+  },
+  {
+    "id": "jeju_cafe_uyubudan_041",
+    "name": "우유부단 카페",
+    "region": "제주시 한림읍",
+    "category": "cafe",
+    "situation_tags": [
+      "food_focused",
+      "crowded_possible",
+      "outdoor",
+      "weather_sensitive"
+    ],
+    "summary": "성이시돌 목장 내 카페로 출입구 경사로와 자동문 정보가 있으나 장애인 전용 주차구역과 장애인 화장실이 없음.",
+    "recommended_for": [
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "음식 제한이 있는 사용자",
+      "장애인 화장실이 필수인 사용자",
+      "바닥 요철과 외부 경사가 어려운 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "주출입구 경사로와 자동문 정보가 있으나 외부 관람로 요철·경사 다수",
+        "source_ref": "easyjeju"
+      },
+      "accessible_toilet": {
+        "state": "no",
+        "note": "장애인 화장실 없음",
+        "source_ref": "easyjeju"
+      },
+      "parking": {
+        "state": "partial",
+        "note": "주차장은 있으나 장애인 전용 주차구역 없음, 바닥 요철과 보차 구분 없음",
+        "source_ref": "easyjeju"
+      },
+      "slope_or_stairs": {
+        "state": "yes",
+        "note": "외부 관람로 최대 10도 경사, 구간별 8~9도 경사 정보 있음",
+        "source_ref": "easyjeju"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "카페 좌석은 있으나 혼잡과 접근 가능한 좌석 확인 필요",
+        "source_ref": "easyjeju"
+      },
+      "rental_or_assistance": {
+        "state": "unknown",
+        "note": "대여 정보 없음",
+        "source_ref": null
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "주차장과 외부 관람로 바닥 요철 마감",
+        "source_ref": "easyjeju"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "카페와 목장 관광객 혼잡 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 40,
+      "outdoor_exposure": "medium",
+      "weather_sensitivity": "medium"
+    },
+    "sources": [
+      {
+        "title": "이지제주 우유부단 카페",
+        "url": "https://easyjeju.net/pages.php?no=925&p=tourist",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "needs_check",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "accessible_toilet",
+        "parking",
+        "rental_or_assistance",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "장애인 화장실과 장애인 전용 주차구역이 없어 조건에 따라 제외 필요",
+      "음식 제한 사용자에게는 카페 감점 대상"
+    ],
+    "operator_notes": "이지제주 2023.01.05 조사 정보 기반. 카페 감점 규칙 검증용 데이터."
+  },
+  {
+    "id": "jeju_sea_cruise_042",
+    "name": "서귀포유람선",
+    "region": "서귀포시",
+    "category": "sea",
+    "situation_tags": [
+      "outdoor",
+      "weather_sensitive",
+      "requires_reservation",
+      "scenic_view",
+      "crowded_possible"
+    ],
+    "summary": "서귀포 해상 경관을 보는 유람선으로 장애인 주차와 장애인 화장실 정보가 있으나 전동휠체어 탑승 제한과 기상 취소 가능성이 있음.",
+    "recommended_for": [
+      "senior",
+      "stroller_family",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "전동휠체어 이용자",
+      "기상 변화와 배 탑승이 부담되는 사용자",
+      "멀미나 감각 자극에 민감한 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "출입구까지 단차 없이 휠체어 접근 가능하나 유람선 탑승 시 전동휠체어 불가 정보 있음",
+        "source_ref": "open_tourism"
+      },
+      "accessible_toilet": {
+        "state": "yes",
+        "note": "주차장 화장실에 장애인 전용 화장실 있음",
+        "source_ref": "open_tourism"
+      },
+      "parking": {
+        "state": "yes",
+        "note": "장애인 전용 주차구역 있음",
+        "source_ref": "open_tourism"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "출입구 단차 없음 정보가 있으나 선박 탑승 동선은 현장 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "rest_area": {
+        "state": "partial",
+        "note": "유람선 대기와 탑승 중 좌석 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "rental_or_assistance": {
+        "state": "no",
+        "note": "전동휠체어 탑승 불가 정보가 있어 보조기기 조건 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "선박 탑승 동선과 선착장 바닥 상태 확인 필요",
+        "source_ref": "open_tourism"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "예약 회차와 단체 탑승 혼잡 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 80,
+      "outdoor_exposure": "high",
+      "weather_sensitivity": "high"
+    },
+    "sources": [
+      {
+        "title": "열린관광 모두의 여행 서귀포유람선",
+        "url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=7226947e-054d-4200-98bb-92048df10d4e",
+        "type": "public_agency"
+      }
+    ],
+    "verification": {
+      "status": "partial",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "기상 또는 현지 사정으로 운항 변경·취소 가능성 확인 필요",
+      "전동휠체어 이용자는 탑승 제한 여부를 사전 확인 필요"
+    ],
+    "operator_notes": "열린관광 무장애 편의정보 기반. 날씨 민감·예약 필요·보조기기 제한 상황 테스트용 데이터."
+  },
+  {
+    "id": "jeju_medical_airport_clinic_043",
+    "name": "제주국제공항 공항의원·약국",
+    "region": "제주시 용담동",
+    "category": "medical_support",
+    "situation_tags": [
+      "indoor",
+      "restroom_important",
+      "crowded_possible"
+    ],
+    "summary": "제주국제공항 안에 있는 공항의원과 약국 위치 확인용 지원 지점. 여행지 추천이 아니라 입출도 전후 지원시설 확인용이다.",
+    "recommended_for": [
+      "senior",
+      "recovery_traveler",
+      "pregnant_traveler",
+      "caregiver_group"
+    ],
+    "avoid_for": [
+      "의료 상담이나 진료 가능성을 서비스가 보장한다고 오해할 수 있는 사용자"
+    ],
+    "accessibility": {
+      "wheelchair_access": {
+        "state": "partial",
+        "note": "공항 터미널 내 시설이나 의원·약국 내부 접근성은 현장 확인 필요",
+        "source_ref": "airport"
+      },
+      "accessible_toilet": {
+        "state": "needs_check",
+        "note": "가까운 장애인 화장실 위치 확인 필요",
+        "source_ref": null
+      },
+      "parking": {
+        "state": "partial",
+        "note": "공항 주차와 승하차 구역 이용 가능하나 의원·약국까지 동선 확인 필요",
+        "source_ref": "airport"
+      },
+      "slope_or_stairs": {
+        "state": "partial",
+        "note": "국내선 1층·3층 터미널 동선 확인 필요",
+        "source_ref": "airport"
+      },
+      "rest_area": {
+        "state": "yes",
+        "note": "공항 대합실 교통약자 전용좌석 정보 있음",
+        "source_ref": "airport"
+      },
+      "rental_or_assistance": {
+        "state": "yes",
+        "note": "공항 종합안내카운터 휠체어 대여 정보와 연계 가능",
+        "source_ref": "airport"
+      },
+      "surface_condition": {
+        "state": "partial",
+        "note": "공항 내부 이동 동선은 가능하나 정확한 이동 경로 확인 필요",
+        "source_ref": "airport"
+      },
+      "crowd_level": {
+        "state": "needs_check",
+        "note": "공항 출도착 시간대 혼잡 확인 필요",
+        "source_ref": null
+      }
+    },
+    "effort": {
+      "walking_level": "medium",
+      "recommended_duration_minutes": 20,
+      "outdoor_exposure": "low",
+      "weather_sensitivity": "low"
+    },
+    "sources": [
+      {
+        "title": "제주국제공항 교통약자 동반 안내",
+        "url": "https://www.airport.co.kr/jeju/cms/frCon/index.do?MENU_ID=220",
+        "type": "official"
+      }
+    ],
+    "verification": {
+      "status": "needs_check",
+      "checked_at": "2026-07-07",
+      "checked_by": "codex_source_review",
+      "missing_fields": [
+        "accessible_toilet",
+        "wheelchair_access",
+        "crowd_level"
+      ]
+    },
+    "status": "active",
+    "safety_notes": [
+      "이 카드는 의료 판단이나 진료 가능성을 보장하지 않으며 위치 확인용 지원 정보임",
+      "운영시간과 이용 가능 여부는 공항 또는 시설에 직접 확인 필요"
+    ],
+    "operator_notes": "한국공항공사 제주국제공항 교통약자 동반 안내의 공항의원·약국 위치 정보 기반. 의료 추천이 아니라 지원시설 위치 확인용."
+  }
+]

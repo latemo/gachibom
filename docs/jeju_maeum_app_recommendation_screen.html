@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>제주의마음 추천 앱 구조 시안</title>
+  <style>
+    :root {
+      --bg: #f5f7f8;
+      --panel: #ffffff;
+      --text: #17202a;
+      --muted: #667085;
+      --line: #d9dee5;
+      --teal: #0f766e;
+      --teal-soft: #e7f7f3;
+      --amber: #b45309;
+      --amber-soft: #fff7ed;
+      --blue: #1d4ed8;
+      --blue-soft: #eef4ff;
+      --rose: #be123c;
+      --rose-soft: #fff1f2;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      letter-spacing: 0;
+    }
+
+    button, input, textarea {
+      font: inherit;
+    }
+
+    .app-shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 28px;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .brand strong {
+      font-size: 20px;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .header-status {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0 10px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .pill.good {
+      border-color: #99f6e4;
+      color: var(--teal);
+      background: var(--teal-soft);
+    }
+
+    .pill.warn {
+      border-color: #fed7aa;
+      color: var(--amber);
+      background: var(--amber-soft);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
+      gap: 18px;
+      padding: 22px 28px 30px;
+    }
+
+    .input-panel, .results-panel, .detail-band {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .input-panel {
+      padding: 18px;
+      align-self: start;
+      position: sticky;
+      top: 18px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    h3 {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .section {
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .control-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .choice {
+      min-height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text);
+      padding: 0 11px;
+      cursor: pointer;
+    }
+
+    .choice.active {
+      border-color: var(--teal);
+      color: var(--teal);
+      background: var(--teal-soft);
+      font-weight: 700;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    label.check {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 28px;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    label.check input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--teal);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 94px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.45;
+    }
+
+    .results-panel {
+      overflow: hidden;
+    }
+
+    .result-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: start;
+      padding: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .summary-line {
+      margin-top: 8px;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .score-box {
+      min-width: 138px;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      background: var(--blue-soft);
+      padding: 12px;
+      text-align: right;
+    }
+
+    .score-box strong {
+      display: block;
+      font-size: 30px;
+      line-height: 1;
+      color: var(--blue);
+    }
+
+    .score-box span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .analysis-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-bottom: 1px solid var(--line);
+    }
+
+    .analysis-item {
+      padding: 13px 16px;
+      border-right: 1px solid var(--line);
+      min-height: 74px;
+    }
+
+    .analysis-item:last-child {
+      border-right: 0;
+    }
+
+    .analysis-item strong {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .analysis-item span {
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .recommendations {
+      display: grid;
+      gap: 0;
+    }
+
+    .place-result {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr);
+      gap: 16px;
+      padding: 18px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .place-result:last-child {
+      border-bottom: 0;
+    }
+
+    .place-result img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 8px;
+      background: #eef2f6;
+    }
+
+    .place-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .place-title strong {
+      display: block;
+      font-size: 17px;
+    }
+
+    .place-title span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grade {
+      min-width: 64px;
+      border-radius: 8px;
+      padding: 6px 8px;
+      text-align: center;
+      background: var(--teal-soft);
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .grade.warn {
+      background: var(--amber-soft);
+      color: var(--amber);
+    }
+
+    .reason-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .reason {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      min-height: 84px;
+      background: #fbfcfd;
+    }
+
+    .reason strong {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .reason p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .detail-band {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 0;
+      overflow: hidden;
+    }
+
+    .detail-block {
+      padding: 18px;
+      border-right: 1px solid var(--line);
+    }
+
+    .detail-block:last-child {
+      border-right: 0;
+    }
+
+    .check-items {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .check-item {
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 7px 9px;
+      background: #fff;
+      font-size: 13px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--teal);
+      flex: 0 0 auto;
+    }
+
+    .status-dot.warn {
+      background: var(--amber);
+    }
+
+    .notice {
+      margin-top: 10px;
+      border: 1px solid #fecdd3;
+      border-radius: 8px;
+      background: var(--rose-soft);
+      color: var(--rose);
+      padding: 11px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 1040px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      .input-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 760px) {
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px;
+      }
+
+      main {
+        padding: 16px;
+      }
+
+      .result-header,
+      .place-result,
+      .detail-band {
+        grid-template-columns: 1fr;
+      }
+
+      .analysis-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .analysis-item:nth-child(2n) {
+        border-right: 0;
+      }
+
+      .reason-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-block {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .detail-block:last-child {
+        border-bottom: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <div class="brand">
+        <strong>제주의마음</strong>
+        <span>접근성 여행 추천</span>
+      </div>
+      <div class="header-status">
+        <span class="pill good">검증 장소 43곳</span>
+        <span class="pill warn">로드뷰 시드 검수 중</span>
+      </div>
+    </header>
+
+    <main>
+      <aside class="input-panel" aria-label="추천 조건 입력">
+        <div class="section">
+          <h1>여행 조건</h1>
+          <p class="summary-line">선택된 조건은 추천 점수와 제외 규칙에 바로 반영된다.</p>
+        </div>
+
+        <div class="section">
+          <h3>여행자 상황</h3>
+          <div class="control-grid" data-choice-group="profile">
+            <button class="choice active" type="button" data-value="recovery">회복 중</button>
+            <button class="choice" type="button" data-value="wheelchair">휠체어</button>
+            <button class="choice" type="button" data-value="senior">고령자</button>
+            <button class="choice" type="button" data-value="stroller">유모차</button>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>이동 조건</h3>
+          <div class="check-list">
+            <label class="check"><input type="checkbox" data-condition="shortWalk" checked> 긴 걷기 어려움</label>
+            <label class="check"><input type="checkbox" data-condition="lowSlope" checked> 경사와 계단 최소화</label>
+            <label class="check"><input type="checkbox" data-condition="restArea" checked> 중간 휴식 필요</label>
+            <label class="check"><input type="checkbox" data-condition="weather"> 강풍·비·더위 민감</label>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>필수 편의시설</h3>
+          <div class="check-list">
+            <label class="check"><input type="checkbox" data-requirement="toilet" checked> 장애인 화장실</label>
+            <label class="check"><input type="checkbox" data-requirement="parking" checked> 가까운 주차</label>
+            <label class="check"><input type="checkbox" data-requirement="rental"> 대여·보조 정보</label>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>피해야 할 요소</h3>
+          <div class="check-list">
+            <label class="check"><input type="checkbox" data-avoid="food" checked> 식당·음식 중심 장소 제외</label>
+            <label class="check"><input type="checkbox" data-avoid="crowd" checked> 혼잡 장소 감점</label>
+            <label class="check"><input type="checkbox" data-avoid="stimulus"> 강한 조명·소리 확인</label>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>자연어 메모</h3>
+          <textarea id="freeText">항암치료 후 체력이 약한 부모님과 짧고 조용하게 다녀오고 싶습니다. 식당은 빼고, 화장실과 주차가 확인된 곳이면 좋겠습니다.</textarea>
+        </div>
+      </aside>
+
+      <section class="results-panel" aria-label="추천 결과">
+        <div class="result-header">
+          <div>
+            <h2 id="courseTitle">짧은 실내·휴식 중심 코스</h2>
+            <p class="summary-line" id="conditionSummary">회복 중 여행자, 긴 걷기 어려움, 식당 제외, 혼잡 감점 조건으로 계산했다.</p>
+          </div>
+          <div class="score-box">
+            <strong id="courseScore">78</strong>
+            <span id="courseGrade">대체로 적합 · 중간 신뢰</span>
+          </div>
+        </div>
+
+        <div class="analysis-strip">
+          <div class="analysis-item">
+            <strong>이동 부담</strong>
+            <span id="mobilityLabel">낮은 도보와 휴식 지점 우선</span>
+          </div>
+          <div class="analysis-item">
+            <strong>제외 규칙</strong>
+            <span id="excludeLabel">식당·음식 중심 장소 제외</span>
+          </div>
+          <div class="analysis-item">
+            <strong>필수 확인</strong>
+            <span id="requiredLabel">화장실, 주차, 경사</span>
+          </div>
+          <div class="analysis-item">
+            <strong>데이터 상태</strong>
+            <span>운영 검수 완료 데이터 우선</span>
+          </div>
+        </div>
+
+        <div class="recommendations" id="recommendations"></div>
+      </section>
+
+      <section class="detail-band" aria-label="방문 전 확인과 안전 안내">
+        <div class="detail-block">
+          <h2>방문 전 확인</h2>
+          <div class="check-items" id="checkItems"></div>
+        </div>
+        <div class="detail-block">
+          <h2>안전 안내</h2>
+          <div class="notice">이 서비스는 의료 판단이나 여행 가능성을 보장하지 않는다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해야 한다.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const places = [
+      {
+        name: "제주웰컴센터",
+        region: "제주시",
+        image: "roadview_visual_review_share/assets/WELCOME-1-001.jpg",
+        baseScore: 84,
+        tags: ["indoor", "parking", "toilet", "short"],
+        fit: "실내 로비와 주차 접근이 확인되어 짧은 체류 조건과 잘 맞는다.",
+        deduction: "방문 전 운영 시간과 장애인 화장실 이용 가능 여부 확인이 필요하다.",
+        checks: ["장애인 화장실 운영 여부", "주차장에서 입구까지 동선", "혼잡 시간대"]
+      },
+      {
+        name: "국립제주박물관",
+        region: "제주시",
+        image: "roadview_visual_review_share/assets/JEJUNATIONALMU-1-001.jpg",
+        baseScore: 79,
+        tags: ["indoor", "culture", "parking", "toilet"],
+        fit: "실내 전시 중심이라 날씨 부담이 낮고 문화 관람 목적과 맞는다.",
+        deduction: "출입구 단차와 주차장 연결 동선은 사람 검수 확정 전 확인이 필요하다.",
+        checks: ["출입구 단차 또는 경사로", "주차장-출입구 연결", "전시실 내 휴식 지점"]
+      },
+      {
+        name: "삼성혈",
+        region: "제주시",
+        image: "roadview_visual_review_share/assets/SAMSUNGHYEOL-1-001.jpg",
+        baseScore: 68,
+        tags: ["culture", "outdoor", "parking"],
+        fit: "짧은 문화 관람 목적에는 맞지만 일부 야외 동선 확인이 필요하다.",
+        deduction: "숲길과 야외 포장로가 포함되어 날씨와 경사 조건에 따라 감점된다.",
+        checks: ["야외 구간 경사", "바닥 요철", "강풍·우천 여부"]
+      },
+      {
+        name: "김녕미로공원",
+        region: "제주시",
+        image: "roadview_visual_review_share/assets/GIMNYEONGMAZEPA-1-001.jpg",
+        baseScore: 54,
+        tags: ["outdoor", "long", "surface"],
+        fit: "야외 체험 선호에는 맞지만 짧은 이동 조건과는 거리가 있다.",
+        deduction: "미로 내부 폭, 회전 공간, 노면 상태 확인이 필요해 회복 중 사용자에게 낮게 배치된다.",
+        checks: ["미로 내부 폭", "회전 공간", "비포장 구간"]
+      }
+    ];
+
+    const profileCopy = {
+      recovery: {
+        title: "짧은 실내·휴식 중심 코스",
+        summary: "회복 중 여행자, 긴 걷기 어려움, 식당 제외, 혼잡 감점 조건으로 계산했다.",
+        mobility: "낮은 도보와 휴식 지점 우선"
+      },
+      wheelchair: {
+        title: "휠체어 접근 확인 코스",
+        summary: "휠체어 접근, 장애인 화장실, 가까운 주차, 경사 확인을 우선했다.",
+        mobility: "경사, 단차, 주차장 연결 우선"
+      },
+      senior: {
+        title: "고령자 천천히 이동 코스",
+        summary: "짧은 도보, 앉아서 쉴 공간, 화장실 확인을 우선했다.",
+        mobility: "짧은 이동과 휴식 지점 우선"
+      },
+      stroller: {
+        title: "유모차 가족 짧은 코스",
+        summary: "계단 회피, 주차, 화장실, 실내 대피 가능성을 우선했다.",
+        mobility: "계단 회피와 넓은 동선 우선"
+      }
+    };
+
+    const state = {
+      profile: "recovery",
+      shortWalk: true,
+      lowSlope: true,
+      restArea: true,
+      weather: false,
+      toilet: true,
+      parking: true,
+      rental: false,
+      food: true,
+      crowd: true,
+      stimulus: false
+    };
+
+    function gradeLabelFor(score) {
+      if (score >= 85) return "매우 적합";
+      if (score >= 70) return "대체로 적합";
+      if (score >= 50) return "조건부";
+      if (score >= 30) return "부담 큼";
+      return "추천 부적합";
+    }
+
+    function gradeToneFor(score) {
+      return score < 70 ? "warn" : "";
+    }
+
+    function scorePlace(place) {
+      let score = place.baseScore;
+      if (state.shortWalk && place.tags.includes("long")) score -= 18;
+      if (state.lowSlope && place.tags.includes("surface")) score -= 10;
+      if (state.weather && place.tags.includes("outdoor")) score -= 12;
+      if (state.toilet && !place.tags.includes("toilet")) score -= 8;
+      if (state.parking && !place.tags.includes("parking")) score -= 6;
+      if (state.profile === "wheelchair" && place.tags.includes("outdoor")) score -= 8;
+      if (state.profile === "stroller" && place.tags.includes("surface")) score -= 6;
+      return Math.max(0, Math.min(100, score));
+    }
+
+    function renderChoices() {
+      document.querySelectorAll("[data-choice-group='profile'] .choice").forEach((button) => {
+        button.classList.toggle("active", button.dataset.value === state.profile);
+      });
+      document.querySelectorAll("input[type='checkbox']").forEach((input) => {
+        const key = input.dataset.condition || input.dataset.requirement || input.dataset.avoid;
+        input.checked = Boolean(state[key]);
+      });
+    }
+
+    function renderResults() {
+      const copy = profileCopy[state.profile];
+      const scored = places
+        .map((place) => ({ ...place, score: scorePlace(place) }))
+        .sort((a, b) => b.score - a.score);
+      const selected = scored.slice(0, 3);
+      const average = Math.round(selected.reduce((sum, place) => sum + place.score, 0) / selected.length);
+
+      document.getElementById("courseTitle").textContent = copy.title;
+      document.getElementById("conditionSummary").textContent = copy.summary;
+      document.getElementById("mobilityLabel").textContent = copy.mobility;
+      document.getElementById("excludeLabel").textContent = state.food ? "식당·음식 중심 장소 제외" : "음식 장소 제외 없음";
+      document.getElementById("requiredLabel").textContent = [
+        state.toilet ? "화장실" : null,
+        state.parking ? "주차" : null,
+        state.lowSlope ? "경사" : null,
+        state.rental ? "대여" : null
+      ].filter(Boolean).join(", ") || "필수 조건 없음";
+      document.getElementById("courseScore").textContent = String(average);
+      document.getElementById("courseGrade").textContent = `${gradeLabelFor(average)} · 중간 신뢰`;
+
+      document.getElementById("recommendations").innerHTML = selected.map((place) => {
+        const grade = gradeLabelFor(place.score);
+        const gradeTone = gradeToneFor(place.score);
+        return `
+          <article class="place-result">
+            <img src="${place.image}" alt="${place.name}">
+            <div>
+              <div class="place-top">
+                <div class="place-title">
+                  <strong>${place.name}</strong>
+                  <span>${place.region}</span>
+                </div>
+                <div class="grade ${gradeTone}">${place.score}점 ${grade}</div>
+              </div>
+              <div class="reason-grid">
+                <div class="reason">
+                  <strong>추천 이유</strong>
+                  <p>${place.fit}</p>
+                </div>
+                <div class="reason">
+                  <strong>감점 이유</strong>
+                  <p>${place.deduction}</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      const checks = Array.from(new Set(selected.flatMap((place) => place.checks)));
+      document.getElementById("checkItems").innerHTML = checks.slice(0, 7).map((item, index) => `
+        <div class="check-item"><span class="status-dot ${index > 3 ? "warn" : ""}"></span>${item}</div>
+      `).join("");
+    }
+
+    document.addEventListener("click", (event) => {
+      const choice = event.target.closest("[data-choice-group='profile'] .choice");
+      if (!choice) return;
+      state.profile = choice.dataset.value;
+      renderChoices();
+      renderResults();
+    });
+
+    document.addEventListener("change", (event) => {
+      if (!event.target.matches("input[type='checkbox']")) return;
+      const key = event.target.dataset.condition || event.target.dataset.requirement || event.target.dataset.avoid;
+      state[key] = event.target.checked;
+      renderResults();
+    });
+
+    renderChoices();
+    renderResults();
+  </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_conflict_resolutions.schema.json",
+  "title": "Jeju Maeum Roadview Conflict Resolutions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "reviewed_by", "policy", "summary", "resolutions"],
+  "properties": {
+    "generated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "reviewed_by": { "type": "string" },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "reason"],
+      "properties": {
+        "decision": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field_conflicts_reviewed", "decisions_keep_existing", "decisions_update_existing"],
+      "properties": {
+        "field_conflicts_reviewed": { "type": "integer", "minimum": 0 },
+        "decisions_keep_existing": { "type": "integer", "minimum": 0 },
+        "decisions_update_existing": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "resolutions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/resolution" }
+    }
+  },
+  "$defs": {
+    "resolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "existing_id",
+        "existing_name",
+        "draft_id",
+        "draft_name",
+        "field",
+        "decision",
+        "kept_state",
+        "rejected_state",
+        "reason",
+        "evidence_sources"
+      ],
+      "properties": {
+        "existing_id": { "type": "string" },
+        "existing_name": { "type": "string" },
+        "draft_id": { "type": "string" },
+        "draft_name": { "type": "string" },
+        "field": { "type": "string" },
+        "decision": {
+          "type": "string",
+          "enum": ["keep_existing", "update_existing"]
+        },
+        "kept_state": { "type": "string" },
+        "rejected_state": { "type": "string" },
+        "reason": { "type": "string" },
+        "evidence_sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["title", "url"],
+            "properties": {
+              "title": { "type": "string" },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          }
+        },
+        "safety_note": { "type": "string" }
+      }
+    }
+  }
+}

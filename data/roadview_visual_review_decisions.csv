@@ -1,0 +1,69 @@
+﻿card_id,place_name,field,field_label,ai_suggested_status,ai_suggested_evidence_image_file_names,ai_suggested_note,ai_confidence,human_final_status,human_evidence_image_file_names,human_reviewer_note,human_reviewer,human_reviewed_at,available_image_file_names
+jeju_roadview_place_038,국립제주박물관,entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,JEJUNATIONALMU-1-001;JEJUNATIONALMU-1-027;JEJUNATIONALMU-1-053;JEJUNATIONALMU-2-019;JEJUNATIONALMU-2-045;JEJUNATIONALMU-2-070
+jeju_roadview_place_038,국립제주박물관,main_path_slope,주요 동선 경사,,,,,,,,,,JEJUNATIONALMU-1-001;JEJUNATIONALMU-1-027;JEJUNATIONALMU-1-053;JEJUNATIONALMU-2-019;JEJUNATIONALMU-2-045;JEJUNATIONALMU-2-070
+jeju_roadview_place_038,국립제주박물관,surface_condition,바닥 상태,,,,,,,,,,JEJUNATIONALMU-1-001;JEJUNATIONALMU-1-027;JEJUNATIONALMU-1-053;JEJUNATIONALMU-2-019;JEJUNATIONALMU-2-045;JEJUNATIONALMU-2-070
+jeju_roadview_place_038,국립제주박물관,parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,JEJUNATIONALMU-1-001;JEJUNATIONALMU-1-027;JEJUNATIONALMU-1-053;JEJUNATIONALMU-2-019;JEJUNATIONALMU-2-045;JEJUNATIONALMU-2-070
+jeju_roadview_place_088,김녕미로공원,entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,GIMNYEONGMAZEPA-1-001;GIMNYEONGMAZEPA-1-004;GIMNYEONGMAZEPA-1-007;GIMNYEONGMAZEPA-1-009;GIMNYEONGMAZEPA-1-012;GIMNYEONGMAZEPA-1-015
+jeju_roadview_place_088,김녕미로공원,main_path_slope,주요 동선 경사,,,,,,,,,,GIMNYEONGMAZEPA-1-001;GIMNYEONGMAZEPA-1-004;GIMNYEONGMAZEPA-1-007;GIMNYEONGMAZEPA-1-009;GIMNYEONGMAZEPA-1-012;GIMNYEONGMAZEPA-1-015
+jeju_roadview_place_088,김녕미로공원,surface_condition,바닥 상태,,,,,,,,,,GIMNYEONGMAZEPA-1-001;GIMNYEONGMAZEPA-1-004;GIMNYEONGMAZEPA-1-007;GIMNYEONGMAZEPA-1-009;GIMNYEONGMAZEPA-1-012;GIMNYEONGMAZEPA-1-015
+jeju_roadview_place_088,김녕미로공원,parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,GIMNYEONGMAZEPA-1-001;GIMNYEONGMAZEPA-1-004;GIMNYEONGMAZEPA-1-007;GIMNYEONGMAZEPA-1-009;GIMNYEONGMAZEPA-1-012;GIMNYEONGMAZEPA-1-015
+jeju_roadview_place_100,삼성혈,entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,SAMSUNGHYEOL-1-001;SAMSUNGHYEOL-1-011;SAMSUNGHYEOL-1-021;SAMSUNGHYEOL-1-032;SAMSUNGHYEOL-1-042;SAMSUNGHYEOL-3-004
+jeju_roadview_place_100,삼성혈,main_path_slope,주요 동선 경사,,,,,,,,,,SAMSUNGHYEOL-1-001;SAMSUNGHYEOL-1-011;SAMSUNGHYEOL-1-021;SAMSUNGHYEOL-1-032;SAMSUNGHYEOL-1-042;SAMSUNGHYEOL-3-004
+jeju_roadview_place_100,삼성혈,surface_condition,바닥 상태,,,,,,,,,,SAMSUNGHYEOL-1-001;SAMSUNGHYEOL-1-011;SAMSUNGHYEOL-1-021;SAMSUNGHYEOL-1-032;SAMSUNGHYEOL-1-042;SAMSUNGHYEOL-3-004
+jeju_roadview_place_100,삼성혈,parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,SAMSUNGHYEOL-1-001;SAMSUNGHYEOL-1-011;SAMSUNGHYEOL-1-021;SAMSUNGHYEOL-1-032;SAMSUNGHYEOL-1-042;SAMSUNGHYEOL-3-004
+jeju_roadview_place_095,상효원수목원,entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,SANGHYO-1-001;SANGHYO-1-015;SANGHYO-1-030;SANGHYO-1-044;SANGHYO-1-059;SANGHYO-3-008
+jeju_roadview_place_095,상효원수목원,main_path_slope,주요 동선 경사,,,,,,,,,,SANGHYO-1-001;SANGHYO-1-015;SANGHYO-1-030;SANGHYO-1-044;SANGHYO-1-059;SANGHYO-3-008
+jeju_roadview_place_095,상효원수목원,surface_condition,바닥 상태,,,,,,,,,,SANGHYO-1-001;SANGHYO-1-015;SANGHYO-1-030;SANGHYO-1-044;SANGHYO-1-059;SANGHYO-3-008
+jeju_roadview_place_095,상효원수목원,parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,SANGHYO-1-001;SANGHYO-1-015;SANGHYO-1-030;SANGHYO-1-044;SANGHYO-1-059;SANGHYO-3-008
+jeju_roadview_place_053,서귀포시립기당미술관,entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,GIDANG-1-001;GIDANG-2-001;GIDANG-2-003;GIDANG-2-006;GIDANG-2-008;GIDANG-2-011
+jeju_roadview_place_053,서귀포시립기당미술관,main_path_slope,주요 동선 경사,,,,,,,,,,GIDANG-1-001;GIDANG-2-001;GIDANG-2-003;GIDANG-2-006;GIDANG-2-008;GIDANG-2-011
+jeju_roadview_place_053,서귀포시립기당미술관,surface_condition,바닥 상태,,,,,,,,,,GIDANG-1-001;GIDANG-2-001;GIDANG-2-003;GIDANG-2-006;GIDANG-2-008;GIDANG-2-011
+jeju_roadview_place_053,서귀포시립기당미술관,parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,GIDANG-1-001;GIDANG-2-001;GIDANG-2-003;GIDANG-2-006;GIDANG-2-008;GIDANG-2-011
+jeju_roadview_place_104,스누피가든,entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,SNOOPYGARDEN-1-001;SNOOPYGARDEN-1-034;SNOOPYGARDEN-1-068;SNOOPYGARDEN-1-101;SNOOPYGARDEN-2-005;SNOOPYGARDEN-2-038
+jeju_roadview_place_104,스누피가든,main_path_slope,주요 동선 경사,,,,,,,,,,SNOOPYGARDEN-1-001;SNOOPYGARDEN-1-034;SNOOPYGARDEN-1-068;SNOOPYGARDEN-1-101;SNOOPYGARDEN-2-005;SNOOPYGARDEN-2-038
+jeju_roadview_place_104,스누피가든,surface_condition,바닥 상태,,,,,,,,,,SNOOPYGARDEN-1-001;SNOOPYGARDEN-1-034;SNOOPYGARDEN-1-068;SNOOPYGARDEN-1-101;SNOOPYGARDEN-2-005;SNOOPYGARDEN-2-038
+jeju_roadview_place_104,스누피가든,parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,SNOOPYGARDEN-1-001;SNOOPYGARDEN-1-034;SNOOPYGARDEN-1-068;SNOOPYGARDEN-1-101;SNOOPYGARDEN-2-005;SNOOPYGARDEN-2-038
+jeju_roadview_4_3_001,제주4.3평화공원,entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,JEJU43PA-1-001;JEJU43PA-1-026;JEJU43PA-1-044;JEJU43PA-3-012;JEJU43PA-3-037;JEJU43PA-3-057
+jeju_roadview_4_3_001,제주4.3평화공원,main_path_slope,주요 동선 경사,,,,,,,,,,JEJU43PA-1-001;JEJU43PA-1-026;JEJU43PA-1-044;JEJU43PA-3-012;JEJU43PA-3-037;JEJU43PA-3-057
+jeju_roadview_4_3_001,제주4.3평화공원,surface_condition,바닥 상태,,,,,,,,,,JEJU43PA-1-001;JEJU43PA-1-026;JEJU43PA-1-044;JEJU43PA-3-012;JEJU43PA-3-037;JEJU43PA-3-057
+jeju_roadview_4_3_001,제주4.3평화공원,parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,JEJU43PA-1-001;JEJU43PA-1-026;JEJU43PA-1-044;JEJU43PA-3-012;JEJU43PA-3-037;JEJU43PA-3-057
+jeju_roadview_place_066,제주고산리유적,entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,GOSANRIRUINS-1-001;GOSANRIRUINS-1-004;GOSANRIRUINS-1-007;GOSANRIRUINS-2-003;GOSANRIRUINS-2-006;GOSANRIRUINS-3-001
+jeju_roadview_place_066,제주고산리유적,main_path_slope,주요 동선 경사,,,,,,,,,,GOSANRIRUINS-1-001;GOSANRIRUINS-1-004;GOSANRIRUINS-1-007;GOSANRIRUINS-2-003;GOSANRIRUINS-2-006;GOSANRIRUINS-3-001
+jeju_roadview_place_066,제주고산리유적,surface_condition,바닥 상태,,,,,,,,,,GOSANRIRUINS-1-001;GOSANRIRUINS-1-004;GOSANRIRUINS-1-007;GOSANRIRUINS-2-003;GOSANRIRUINS-2-006;GOSANRIRUINS-3-001
+jeju_roadview_place_066,제주고산리유적,parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,GOSANRIRUINS-1-001;GOSANRIRUINS-1-004;GOSANRIRUINS-1-007;GOSANRIRUINS-2-003;GOSANRIRUINS-2-006;GOSANRIRUINS-3-001
+jeju_roadview_place_014,제주교육박물관,entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,EDUMU-1-001;EDUMU-1-009;EDUMU-2-007;EDUMU-2-015;EDUMU-2-024;EDUMU-3-004
+jeju_roadview_place_014,제주교육박물관,main_path_slope,주요 동선 경사,,,,,,,,,,EDUMU-1-001;EDUMU-1-009;EDUMU-2-007;EDUMU-2-015;EDUMU-2-024;EDUMU-3-004
+jeju_roadview_place_014,제주교육박물관,surface_condition,바닥 상태,,,,,,,,,,EDUMU-1-001;EDUMU-1-009;EDUMU-2-007;EDUMU-2-015;EDUMU-2-024;EDUMU-3-004
+jeju_roadview_place_014,제주교육박물관,parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,EDUMU-1-001;EDUMU-1-009;EDUMU-2-007;EDUMU-2-015;EDUMU-2-024;EDUMU-3-004
+jeju_roadview_place_025,제주도립김창열미술관,entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,KIMCHANG-1-001;KIMCHANG-1-009;KIMCHANG-1-018;KIMCHANG-1-026;KIMCHANG-2-005;KIMCHANG-2-013
+jeju_roadview_place_025,제주도립김창열미술관,main_path_slope,주요 동선 경사,,,,,,,,,,KIMCHANG-1-001;KIMCHANG-1-009;KIMCHANG-1-018;KIMCHANG-1-026;KIMCHANG-2-005;KIMCHANG-2-013
+jeju_roadview_place_025,제주도립김창열미술관,surface_condition,바닥 상태,,,,,,,,,,KIMCHANG-1-001;KIMCHANG-1-009;KIMCHANG-1-018;KIMCHANG-1-026;KIMCHANG-2-005;KIMCHANG-2-013
+jeju_roadview_place_025,제주도립김창열미술관,parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,KIMCHANG-1-001;KIMCHANG-1-009;KIMCHANG-1-018;KIMCHANG-1-026;KIMCHANG-2-005;KIMCHANG-2-013
+jeju_roadview_place_013,제주민속자연사박물관,entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,JEJUFOLKMU-1-001;JEJUFOLKMU-1-019;JEJUFOLKMU-2-009;JEJUFOLKMU-2-026;JEJUFOLKMU-3-002;JEJUFOLKMU-4-013
+jeju_roadview_place_013,제주민속자연사박물관,main_path_slope,주요 동선 경사,,,,,,,,,,JEJUFOLKMU-1-001;JEJUFOLKMU-1-019;JEJUFOLKMU-2-009;JEJUFOLKMU-2-026;JEJUFOLKMU-3-002;JEJUFOLKMU-4-013
+jeju_roadview_place_013,제주민속자연사박물관,surface_condition,바닥 상태,,,,,,,,,,JEJUFOLKMU-1-001;JEJUFOLKMU-1-019;JEJUFOLKMU-2-009;JEJUFOLKMU-2-026;JEJUFOLKMU-3-002;JEJUFOLKMU-4-013
+jeju_roadview_place_013,제주민속자연사박물관,parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,JEJUFOLKMU-1-001;JEJUFOLKMU-1-019;JEJUFOLKMU-2-009;JEJUFOLKMU-2-026;JEJUFOLKMU-3-002;JEJUFOLKMU-4-013
+jeju_roadview_place_010,제주삼양동유적,entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,SAMYANGRUINS-1-002;SAMYANGRUINS-1-008;SAMYANGRUINS-1-015;SAMYANGRUINS-1-023;SAMYANGRUINS-1-030;SAMYANGRUINS-2-003
+jeju_roadview_place_010,제주삼양동유적,main_path_slope,주요 동선 경사,,,,,,,,,,SAMYANGRUINS-1-002;SAMYANGRUINS-1-008;SAMYANGRUINS-1-015;SAMYANGRUINS-1-023;SAMYANGRUINS-1-030;SAMYANGRUINS-2-003
+jeju_roadview_place_010,제주삼양동유적,surface_condition,바닥 상태,,,,,,,,,,SAMYANGRUINS-1-002;SAMYANGRUINS-1-008;SAMYANGRUINS-1-015;SAMYANGRUINS-1-023;SAMYANGRUINS-1-030;SAMYANGRUINS-2-003
+jeju_roadview_place_010,제주삼양동유적,parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,SAMYANGRUINS-1-002;SAMYANGRUINS-1-008;SAMYANGRUINS-1-015;SAMYANGRUINS-1-023;SAMYANGRUINS-1-030;SAMYANGRUINS-2-003
+jeju_roadview_place_017,제주아트센터,entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,ARTCENTER-1-001;ARTCENTER-1-006;ARTCENTER-2-002;ARTCENTER-2-007;ARTCENTER-2-012;ARTCENTER-2-017
+jeju_roadview_place_017,제주아트센터,main_path_slope,주요 동선 경사,,,,,,,,,,ARTCENTER-1-001;ARTCENTER-1-006;ARTCENTER-2-002;ARTCENTER-2-007;ARTCENTER-2-012;ARTCENTER-2-017
+jeju_roadview_place_017,제주아트센터,surface_condition,바닥 상태,,,,,,,,,,ARTCENTER-1-001;ARTCENTER-1-006;ARTCENTER-2-002;ARTCENTER-2-007;ARTCENTER-2-012;ARTCENTER-2-017
+jeju_roadview_place_017,제주아트센터,parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,ARTCENTER-1-001;ARTCENTER-1-006;ARTCENTER-2-002;ARTCENTER-2-007;ARTCENTER-2-012;ARTCENTER-2-017
+jeju_roadview_place_084,제주웰컴센터,entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,WELCOME-1-001;WELCOME-2-002;WELCOME-2-005;WELCOME-2-007;WELCOME-2-010;WELCOME-2-013
+jeju_roadview_place_084,제주웰컴센터,main_path_slope,주요 동선 경사,,,,,,,,,,WELCOME-1-001;WELCOME-2-002;WELCOME-2-005;WELCOME-2-007;WELCOME-2-010;WELCOME-2-013
+jeju_roadview_place_084,제주웰컴센터,surface_condition,바닥 상태,,,,,,,,,,WELCOME-1-001;WELCOME-2-002;WELCOME-2-005;WELCOME-2-007;WELCOME-2-010;WELCOME-2-013
+jeju_roadview_place_084,제주웰컴센터,parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,WELCOME-1-001;WELCOME-2-002;WELCOME-2-005;WELCOME-2-007;WELCOME-2-010;WELCOME-2-013
+jeju_roadview_place_024,제주현대미술관,entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,JEJUCONTEM-1-001;JEJUCONTEM-1-007;JEJUCONTEM-1-013;JEJUCONTEM-1-019;JEJUCONTEM-2-002;JEJUCONTEM-2-008
+jeju_roadview_place_024,제주현대미술관,main_path_slope,주요 동선 경사,,,,,,,,,,JEJUCONTEM-1-001;JEJUCONTEM-1-007;JEJUCONTEM-1-013;JEJUCONTEM-1-019;JEJUCONTEM-2-002;JEJUCONTEM-2-008
+jeju_roadview_place_024,제주현대미술관,surface_condition,바닥 상태,,,,,,,,,,JEJUCONTEM-1-001;JEJUCONTEM-1-007;JEJUCONTEM-1-013;JEJUCONTEM-1-019;JEJUCONTEM-2-002;JEJUCONTEM-2-008
+jeju_roadview_place_024,제주현대미술관,parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,JEJUCONTEM-1-001;JEJUCONTEM-1-007;JEJUCONTEM-1-013;JEJUCONTEM-1-019;JEJUCONTEM-2-002;JEJUCONTEM-2-008
+jeju_roadview_place_105,한림공원(아열대식물원),entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,HALLIMPAGARDEN-1-001;HALLIMPAGARDEN-1-011;HALLIMPAGARDEN-1-022;HALLIMPAGARDEN-1-032;HALLIMPAGARDEN-1-043;HALLIMPAGARDEN-1-053
+jeju_roadview_place_105,한림공원(아열대식물원),main_path_slope,주요 동선 경사,,,,,,,,,,HALLIMPAGARDEN-1-001;HALLIMPAGARDEN-1-011;HALLIMPAGARDEN-1-022;HALLIMPAGARDEN-1-032;HALLIMPAGARDEN-1-043;HALLIMPAGARDEN-1-053
+jeju_roadview_place_105,한림공원(아열대식물원),surface_condition,바닥 상태,,,,,,,,,,HALLIMPAGARDEN-1-001;HALLIMPAGARDEN-1-011;HALLIMPAGARDEN-1-022;HALLIMPAGARDEN-1-032;HALLIMPAGARDEN-1-043;HALLIMPAGARDEN-1-053
+jeju_roadview_place_105,한림공원(아열대식물원),parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,HALLIMPAGARDEN-1-001;HALLIMPAGARDEN-1-011;HALLIMPAGARDEN-1-022;HALLIMPAGARDEN-1-032;HALLIMPAGARDEN-1-043;HALLIMPAGARDEN-1-053
+jeju_roadview_place_096,휴애리자연생활공원,entrance_step_or_ramp,출입구 단차/경사로,,,,,,,,,,HUEREE-1-001;HUEREE-1-018;HUEREE-1-035;HUEREE-1-053;HUEREE-1-070;HUEREE-4-001
+jeju_roadview_place_096,휴애리자연생활공원,main_path_slope,주요 동선 경사,,,,,,,,,,HUEREE-1-001;HUEREE-1-018;HUEREE-1-035;HUEREE-1-053;HUEREE-1-070;HUEREE-4-001
+jeju_roadview_place_096,휴애리자연생활공원,surface_condition,바닥 상태,,,,,,,,,,HUEREE-1-001;HUEREE-1-018;HUEREE-1-035;HUEREE-1-053;HUEREE-1-070;HUEREE-4-001
+jeju_roadview_place_096,휴애리자연생활공원,parking_to_entrance_route,주차장-출입구 동선,,,,,,,,,,HUEREE-1-001;HUEREE-1-018;HUEREE-1-035;HUEREE-1-053;HUEREE-1-070;HUEREE-4-001

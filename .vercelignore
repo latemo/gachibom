@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+.playwright-mcp/
+.serena/
+.tmp-*/
+tests/
+docs/
+data/tmp_*
+docs/tmp_*
+data/raw/roadview_images/
+/*.png
+/*.jpg
+/*.jpeg
+/*.mp4
+/*.pptx
+/*.docx

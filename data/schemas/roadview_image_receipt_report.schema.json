@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_image_receipt_report.schema.json",
+  "title": "Jeju Maeum Roadview Image Receipt Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "generated_at",
+    "source_roadview_image_acquisition_request_generated_at",
+    "receipt_root",
+    "hash_algorithm",
+    "criteria",
+    "summary",
+    "duplicate_file_name_groups",
+    "unexpected_files_sample",
+    "items"
+  ],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "source_roadview_image_acquisition_request_generated_at": { "type": ["string", "null"], "format": "date" },
+    "receipt_root": { "type": "string" },
+    "hash_algorithm": { "type": ["string", "null"], "enum": ["sha256", null] },
+    "criteria": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["complete", "partial", "empty", "unexpected_files"],
+      "properties": {
+        "complete": { "type": "string" },
+        "partial": { "type": "string" },
+        "empty": { "type": "string" },
+        "unexpected_files": { "type": "string" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_places",
+        "expected_images",
+        "received_requested_images",
+        "missing_requested_images",
+        "expected_priority_sample_images",
+        "received_priority_sample_images",
+        "missing_priority_sample_images",
+        "duplicate_requested_image_names",
+        "received_file_count",
+        "unexpected_file_count",
+        "duplicate_file_name_group_count",
+        "by_status",
+        "by_receipt_decision"
+      ],
+      "properties": {
+        "total_places": { "type": "integer", "minimum": 0 },
+        "expected_images": { "type": "integer", "minimum": 0 },
+        "received_requested_images": { "type": "integer", "minimum": 0 },
+        "missing_requested_images": { "type": "integer", "minimum": 0 },
+        "expected_priority_sample_images": { "type": "integer", "minimum": 0 },
+        "received_priority_sample_images": { "type": "integer", "minimum": 0 },
+        "missing_priority_sample_images": { "type": "integer", "minimum": 0 },
+        "duplicate_requested_image_names": { "type": "integer", "minimum": 0 },
+        "received_file_count": { "type": "integer", "minimum": 0 },
+        "unexpected_file_count": { "type": "integer", "minimum": 0 },
+        "duplicate_file_name_group_count": { "type": "integer", "minimum": 0 },
+        "by_status": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_receipt_decision": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "duplicate_file_name_groups": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/duplicateFileNameGroup" }
+    },
+    "unexpected_files_sample": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/receivedFile" }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/receiptItem" }
+    }
+  },
+  "$defs": {
+    "receiptItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card",
+        "status",
+        "receipt_decision",
+        "expected_image_count",
+        "received_image_count",
+        "missing_image_count",
+        "priority_sample_count",
+        "received_priority_sample_count",
+        "missing_priority_sample_count",
+        "duplicate_name_count",
+        "images",
+        "recommended_action"
+      ],
+      "properties": {
+        "card": { "$ref": "#/$defs/cardRef" },
+        "status": { "type": "string", "enum": ["complete", "partial", "empty"] },
+        "receipt_decision": {
+          "type": "string",
+          "enum": ["ready_for_visual_manifest", "needs_missing_files", "needs_duplicate_resolution"]
+        },
+        "expected_image_count": { "type": "integer", "minimum": 0 },
+        "received_image_count": { "type": "integer", "minimum": 0 },
+        "missing_image_count": { "type": "integer", "minimum": 0 },
+        "priority_sample_count": { "type": "integer", "minimum": 0 },
+        "received_priority_sample_count": { "type": "integer", "minimum": 0 },
+        "missing_priority_sample_count": { "type": "integer", "minimum": 0 },
+        "duplicate_name_count": { "type": "integer", "minimum": 0 },
+        "images": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/receiptImage" }
+        },
+        "recommended_action": { "type": "string" }
+      }
+    },
+    "receiptImage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "image_file_name",
+        "request_tier",
+        "tourist_name",
+        "tourist_name_en",
+        "captured_at",
+        "latitude",
+        "longitude",
+        "resolution",
+        "status",
+        "present_path",
+        "file_size_bytes",
+        "sha256",
+        "duplicate_candidate_paths"
+      ],
+      "properties": {
+        "image_file_name": { "type": "string", "minLength": 1 },
+        "request_tier": {
+          "type": "string",
+          "enum": ["priority_visual_review_sample", "supplemental_place_sequence"]
+        },
+        "tourist_name": { "type": "string" },
+        "tourist_name_en": { "type": "string" },
+        "captured_at": { "type": ["string", "null"] },
+        "latitude": { "type": ["number", "null"], "minimum": -90, "maximum": 90 },
+        "longitude": { "type": ["number", "null"], "minimum": -180, "maximum": 180 },
+        "resolution": { "type": "string" },
+        "status": { "type": "string", "enum": ["received", "missing", "duplicate_name"] },
+        "present_path": { "type": ["string", "null"] },
+        "file_size_bytes": { "type": ["integer", "null"], "minimum": 0 },
+        "sha256": { "type": ["string", "null"] },
+        "duplicate_candidate_paths": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "receivedFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["file_name", "relative_path", "file_size_bytes", "sha256"],
+      "properties": {
+        "file_name": { "type": "string" },
+        "relative_path": { "type": "string" },
+        "file_size_bytes": { "type": "integer", "minimum": 0 },
+        "sha256": { "type": ["string", "null"] }
+      }
+    },
+    "duplicateFileNameGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["image_key", "file_count", "paths"],
+      "properties": {
+        "image_key": { "type": "string" },
+        "file_count": { "type": "integer", "minimum": 2 },
+        "paths": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "cardRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "region", "category", "verification_status"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "region": { "type": "string" },
+        "category": { "type": "string" },
+        "verification_status": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "generated_at": "2026-07-09",
+  "status": "pass",
+  "package_dir": "docs/roadview_visual_review_share_20260709",
+  "zip_path": "docs/roadview_visual_review_share.zip",
+  "summary": {
+    "total_checks": 14,
+    "passed_checks": 14,
+    "failed_checks": 0,
+    "asset_count": 102,
+    "contact_sheet_count": 17,
+    "place_csv_count": 17,
+    "zip_size_bytes": 20652418,
+    "zip_sha256": "922a2889411852fe1c7f92480ba577b22b6f065d000e8bdd0340fd59b0fef920"
+  },
+  "checks": [
+    {
+      "check_id": "package_dir_exists",
+      "status": "pass",
+      "detail": "docs\\roadview_visual_review_share_20260709"
+    },
+    {
+      "check_id": "index_exists",
+      "status": "pass",
+      "detail": "index.html"
+    },
+    {
+      "check_id": "packets_exists",
+      "status": "pass",
+      "detail": "packets.html"
+    },
+    {
+      "check_id": "readme_exists",
+      "status": "pass",
+      "detail": "README.md"
+    },
+    {
+      "check_id": "master_csv_exists",
+      "status": "pass",
+      "detail": "roadview_visual_review_decisions.csv"
+    },
+    {
+      "check_id": "asset_count",
+      "status": "pass",
+      "detail": "102/102"
+    },
+    {
+      "check_id": "contact_sheet_count",
+      "status": "pass",
+      "detail": "17/17"
+    },
+    {
+      "check_id": "place_csv_count",
+      "status": "pass",
+      "detail": "17/17"
+    },
+    {
+      "check_id": "master_csv_columns",
+      "status": "pass",
+      "detail": "docs\\roadview_visual_review_share_20260709\\roadview_visual_review_decisions.csv"
+    },
+    {
+      "check_id": "place_csv_columns",
+      "status": "pass",
+      "detail": "17 files"
+    },
+    {
+      "check_id": "no_local_path_refs",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check_id": "zip_exists",
+      "status": "pass",
+      "detail": "docs\\roadview_visual_review_share.zip"
+    },
+    {
+      "check_id": "zip_has_index",
+      "status": "pass",
+      "detail": "index.html"
+    },
+    {
+      "check_id": "zip_has_assets",
+      "status": "pass",
+      "detail": "102"
+    }
+  ]
+}

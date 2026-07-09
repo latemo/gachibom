@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_service_seed_active_candidate_report.schema.json",
+  "title": "Jeju Maeum Roadview Service Seed Active Candidate Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "source_promotion_readiness_generated_at", "summary", "items"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "source_promotion_readiness_generated_at": { "type": ["string", "null"], "format": "date" },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "promoted_count", "blocked_count", "by_action", "blocking_gate_counts"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "promoted_count": { "type": "integer", "minimum": 0 },
+        "blocked_count": { "type": "integer", "minimum": 0 },
+        "by_action": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "blocking_gate_counts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/reportItem" }
+    }
+  },
+  "$defs": {
+    "reportItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card",
+        "action",
+        "promotion_decision",
+        "blocking_gates",
+        "recommended_action"
+      ],
+      "properties": {
+        "card": { "$ref": "#/$defs/cardRef" },
+        "action": { "type": "string", "enum": ["promoted", "blocked"] },
+        "promotion_decision": { "type": "string" },
+        "blocking_gates": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "recommended_action": { "type": "string" }
+      }
+    },
+    "cardRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "region", "category", "verification_status"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "region": { "type": "string" },
+        "category": { "type": "string" },
+        "verification_status": { "type": "string" }
+      }
+    }
+  }
+}

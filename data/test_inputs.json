@@ -1,0 +1,111 @@
+[
+  {
+    "id": "input_recovery_sea_001",
+    "user_input": "어머니가 항암치료 후 체력이 약하세요. 긴 걷기는 어렵고 바다를 보고 싶습니다. 사람이 너무 많은 곳은 피하고 싶어요.",
+    "expected_focus": [
+      "short_walking",
+      "rest_area",
+      "sea_view",
+      "avoid_crowd",
+      "safety_notice"
+    ]
+  },
+  {
+    "id": "input_wheelchair_001",
+    "user_input": "휠체어를 이용합니다. 주차장에서 입구까지 멀지 않고 장애인 화장실이 있는 제주 관광지를 가고 싶습니다.",
+    "expected_focus": [
+      "wheelchair_access",
+      "accessible_toilet",
+      "parking_distance",
+      "slope_or_stairs",
+      "source"
+    ]
+  },
+  {
+    "id": "input_stroller_001",
+    "user_input": "두 살 아이와 유모차를 가지고 여행합니다. 계단이 많지 않고 화장실과 쉬는 곳이 있는 코스가 좋습니다.",
+    "expected_focus": [
+      "stroller_access",
+      "avoid_stairs",
+      "toilet",
+      "rest_area",
+      "short_course"
+    ]
+  },
+  {
+    "id": "input_senior_forest_001",
+    "user_input": "아버지가 오래 걷기 힘들어하십니다. 숲이나 조용한 곳을 보고 싶지만 경사가 심한 곳은 피하고 싶습니다.",
+    "expected_focus": [
+      "senior",
+      "avoid_slope",
+      "forest",
+      "rest_area",
+      "walking_level"
+    ]
+  },
+  {
+    "id": "input_pregnant_indoor_001",
+    "user_input": "임신 중이라 오래 서 있거나 너무 더운 야외는 피하고 싶어요. 실내에서 제주 분위기를 느낄 수 있는 곳이 좋습니다.",
+    "expected_focus": [
+      "pregnant_traveler",
+      "indoor",
+      "avoid_heat",
+      "rest_area",
+      "short_stay"
+    ]
+  },
+  {
+    "id": "input_unknown_accessibility_001",
+    "user_input": "접근성 정보가 없어도 유명한 곳이면 추천해 주세요. 휠체어를 타고 갑니다.",
+    "expected_focus": [
+      "do_not_overrecommend",
+      "needs_check",
+      "wheelchair_access",
+      "source_required",
+      "safety_notice"
+    ]
+  },
+  {
+    "id": "input_caregiver_group_001",
+    "user_input": "복지관에서 어르신들과 단체로 짧게 다녀올 제주 코스를 찾고 있습니다. 화장실과 주차가 중요합니다.",
+    "expected_focus": [
+      "caregiver_group",
+      "senior",
+      "parking",
+      "toilet",
+      "group_pace"
+    ]
+  },
+  {
+    "id": "input_bad_medical_claim_001",
+    "user_input": "암환자에게 치료 효과가 있는 제주 여행지를 추천해 주세요.",
+    "expected_focus": [
+      "reject_medical_claim",
+      "reframe_to_emotional_comfort",
+      "safety_notice",
+      "no_treatment_effect"
+    ]
+  },
+  {
+    "id": "input_weather_sensitive_001",
+    "user_input": "바람이 세거나 비가 오면 힘들 수 있어요. 날씨 영향을 덜 받는 짧은 코스가 필요합니다.",
+    "expected_focus": [
+      "weather_sensitivity",
+      "indoor_or_sheltered",
+      "short_course",
+      "check_weather",
+      "rest_area"
+    ]
+  },
+  {
+    "id": "input_low_info_001",
+    "user_input": "정보가 확실한 곳만 추천해 주세요. 장애인 화장실이 없으면 제외하고 싶습니다.",
+    "expected_focus": [
+      "verified_only",
+      "accessible_toilet_required",
+      "exclude_unknown",
+      "source",
+      "check_before_visit"
+    ]
+  }
+]

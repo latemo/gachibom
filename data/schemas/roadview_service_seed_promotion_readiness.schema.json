@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_service_seed_promotion_readiness.schema.json",
+  "title": "Jeju Maeum Roadview Service Seed Promotion Readiness",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "generated_at",
+    "source_work_queue_generated_at",
+    "source_official_review_generated_at",
+    "source_roadview_image_review_generated_at",
+    "criteria",
+    "summary",
+    "items"
+  ],
+  "properties": {
+    "generated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "source_work_queue_generated_at": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "source_official_review_generated_at": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "source_roadview_image_review_generated_at": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "criteria": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ready_for_active_candidate", "blocked"],
+      "properties": {
+        "ready_for_active_candidate": { "type": "string" },
+        "blocked": { "type": "string" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total",
+        "ready_count",
+        "blocked_count",
+        "by_promotion_decision",
+        "blocking_gate_counts"
+      ],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "ready_count": { "type": "integer", "minimum": 0 },
+        "blocked_count": { "type": "integer", "minimum": 0 },
+        "by_promotion_decision": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "blocking_gate_counts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/readinessItem" }
+    }
+  },
+  "$defs": {
+    "readinessItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card",
+        "current_status",
+        "promotion_decision",
+        "gate_statuses",
+        "blocking_gates",
+        "official_source_review_status",
+        "roadview_image_review_status",
+        "crowd_policy_review_status",
+        "category_refinement_review_status",
+        "unresolved_work_items",
+        "recommended_action"
+      ],
+      "properties": {
+        "card": { "$ref": "#/$defs/cardRef" },
+        "current_status": { "type": "string" },
+        "promotion_decision": {
+          "type": "string",
+          "enum": ["ready_for_active_candidate", "blocked_pending_hardening"]
+        },
+        "gate_statuses": { "$ref": "#/$defs/gateStatuses" },
+        "blocking_gates": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "seed_card_hidden",
+              "official_source_verified",
+              "roadview_image_verified",
+              "crowd_policy_resolved",
+              "category_refinement_resolved"
+            ]
+          }
+        },
+        "official_source_review_status": { "$ref": "#/$defs/officialSourceStatus" },
+        "roadview_image_review_status": { "$ref": "#/$defs/roadviewImageStatus" },
+        "crowd_policy_review_status": { "$ref": "#/$defs/crowdPolicyStatus" },
+        "category_refinement_review_status": { "$ref": "#/$defs/categoryRefinementStatus" },
+        "unresolved_work_items": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/workItemRef" }
+        },
+        "recommended_action": { "type": "string" }
+      }
+    },
+    "gateStatuses": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "seed_card_hidden",
+        "official_source_verified",
+        "roadview_image_verified",
+        "crowd_policy_resolved",
+        "category_refinement_resolved"
+      ],
+      "properties": {
+        "seed_card_hidden": { "$ref": "#/$defs/gateState" },
+        "official_source_verified": { "$ref": "#/$defs/gateState" },
+        "roadview_image_verified": { "$ref": "#/$defs/gateState" },
+        "crowd_policy_resolved": { "$ref": "#/$defs/gateState" },
+        "category_refinement_resolved": { "$ref": "#/$defs/gateState" }
+      }
+    },
+    "gateState": {
+      "type": "string",
+      "enum": ["pass", "fail"]
+    },
+    "officialSourceStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "review_decision",
+        "source_candidate_count",
+        "missing_fields",
+        "visual_fallback_fields",
+        "blocking_missing_fields"
+      ],
+      "properties": {
+        "status": { "type": "string" },
+        "review_decision": { "type": "string" },
+        "source_candidate_count": { "type": "integer", "minimum": 0 },
+        "missing_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "visual_fallback_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "blocking_missing_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "roadviewImageStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "review_decision", "image_count", "pending_fields"],
+      "properties": {
+        "status": { "type": "string" },
+        "review_decision": { "type": "string" },
+        "image_count": { "type": "integer", "minimum": 0 },
+        "pending_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "crowdPolicyStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "review_decision", "quiet_time_recommendation"],
+      "properties": {
+        "status": { "type": "string" },
+        "review_decision": { "type": "string" },
+        "quiet_time_recommendation": { "type": ["string", "null"] }
+      }
+    },
+    "categoryRefinementStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "review_decision", "recommended_category"],
+      "properties": {
+        "status": { "type": "string" },
+        "review_decision": { "type": "string" },
+        "recommended_category": { "type": ["string", "null"] }
+      }
+    },
+    "workItemRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task_id", "task_type", "priority", "status"],
+      "properties": {
+        "task_id": { "type": "string" },
+        "task_type": {
+          "type": "string",
+          "enum": ["crowd_policy_review", "category_refinement"]
+        },
+        "priority": { "type": "string" },
+        "status": { "type": "string" }
+      }
+    },
+    "cardRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "region", "category", "verification_status"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "region": { "type": "string" },
+        "category": { "type": "string" },
+        "verification_status": { "type": "string" }
+      }
+    }
+  }
+}

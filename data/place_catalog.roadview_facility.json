@@ -1,0 +1,3426 @@
+[
+  {
+    "catalog_id": "catalog_rest_area_f8d234b0",
+    "name": "제주4.3평화공원",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 명림로 430",
+    "phone": "064-723-4352",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "1",
+      "raw_hash": "f8d234b0a7710c2d18ac2bef0fe5d3d812f8fcc4e3014c0731e3782c4cefe1f7"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_dcbc11a7",
+    "name": "신산공원",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 일도이동 830",
+    "phone": "064-728-3604",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "2",
+      "raw_hash": "dcbc11a7513bbb8bec66f43e770457c2c0ebb0151b06c17fb9e36f7b6cc91059"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_rest_sinsan_015",
+      "match_status": "matched",
+      "match_confidence": 1.0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_44fbc31d",
+    "name": "제주문예회관",
+    "category": "other",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 동광로 69",
+    "phone": "064-710-7632",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "3",
+      "raw_hash": "44fbc31dbb590f92943438339d744645a78f42441edb1153fb07ff605d5b0053"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_fff2b8e4",
+    "name": "탑동광장",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 중앙로 2",
+    "phone": "064-728-3453",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "4",
+      "raw_hash": "fff2b8e47178670802d7189d8588e6288cec3b1590dbe494a498b772c74aba83"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_sea_1179e34c",
+    "name": "도두사수항",
+    "category": "sea",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 도두이동 836-7",
+    "phone": null,
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "sea",
+      "raw_id": "5",
+      "raw_hash": "1179e34c67cc53e442abbd117b9d35c94f63c4030cdefc029b6d7dff1cb9fb42"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_9b4d2d5c",
+    "name": "어영공원",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 용담삼동 2396-16",
+    "phone": null,
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "6",
+      "raw_hash": "9b4d2d5c0f6724e288495df709c148fdecc3064920d54b77008859c807db2c42"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_d1ca0ebe",
+    "name": "용두암",
+    "category": "other",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 용두암길 15",
+    "phone": "064-728-3918",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "7",
+      "raw_hash": "d1ca0ebe3e8b7aa8002bf2d7abdffd7abdadeac22976c9ff40a9e9a9cb74b482"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_8a5811d6",
+    "name": "용연구름다리산책로",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 용담이동 2581",
+    "phone": null,
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "8",
+      "raw_hash": "8a5811d6a92d7d76edb0e98c29f91ea8f699d1b2fa9840e1907941850acd2ac7"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_forest_5966b3e1",
+    "name": "한라수목원",
+    "category": "forest",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 수목원길 72",
+    "phone": "064-710-7575",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "forest",
+      "raw_id": "9",
+      "raw_hash": "5966b3e1a05982869676332815f3683f5a82881621544d2b125c137c3d593705"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_forest_halla_005",
+      "match_status": "matched",
+      "match_confidence": 1.0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_culture_5c4d4815",
+    "name": "제주삼양동유적",
+    "category": "culture",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 선사로2길 13",
+    "phone": "064-710-6806",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "culture",
+      "raw_id": "10",
+      "raw_hash": "5c4d4815362e4404ec5201d617270922d269e2ae189e59e5eaf963187f32aee9"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_7dc3a495",
+    "name": "산지천갤러리,산짓물공원",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 중앙로3길 36",
+    "phone": "064-725-1208",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "11",
+      "raw_hash": "7dc3a49505a321efcc2f5436848472ba43358714ab0fb3b3c6048f23a3594607"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_9bb797c5",
+    "name": "제주목관아",
+    "category": "other",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 관덕로 25",
+    "phone": "064-710-6714",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "12",
+      "raw_hash": "9bb797c5dc5bf15a07dbe1b38bc767ee854369a91d69a5ee4576cdccc626ef8b"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_culture_mokgwana_008",
+      "match_status": "matched",
+      "match_confidence": 1.0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_e947e5de",
+    "name": "제주민속자연사박물관",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 삼성로 40",
+    "phone": "064-710-7708",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "13",
+      "raw_hash": "e947e5de0c6ad54f8f4f2ddbdd5930f38f3a148ff1e823059695cea1c2e71869"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_059a17a4",
+    "name": "제주교육박물관",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 오복4길 25",
+    "phone": "064-720-9114",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "14",
+      "raw_hash": "059a17a4310383f169ab8af3ad58ca37050a7004884166e591896b7a1a81a987"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_80ee99fd",
+    "name": "제주대학교박물관",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 제주대학로 102",
+    "phone": "064-754-2242",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "15",
+      "raw_hash": "80ee99fd934c6ff925d93f41d7ab62fb5f31a60f9c7ca02c232ce13cb488f6c3"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_b3fd731b",
+    "name": "한라산국립공원산악박물관",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 산록북로 588",
+    "phone": "064-710-4634",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "16",
+      "raw_hash": "b3fd731b136cc6f8857b1ebbdc0064650f8390290493ce6d7357792f207079bb"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_ea99c74d",
+    "name": "제주아트센터",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 오남로 231",
+    "phone": "064-728-1509",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "17",
+      "raw_hash": "ea99c74df4f76e04943b3f628761aa017690d73186f5a6218c75036c9d98aa76"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_39d16b6b",
+    "name": "설문대여성문화센터",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 선덕로8길 12",
+    "phone": "064-710-4202",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "18",
+      "raw_hash": "39d16b6bfbdae8d82021c0fce3bbd5d7117e86c4b92fd738178870b1526a2f64"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_4a6aad4e",
+    "name": "제주도립미술관",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 1100로 2894-78",
+    "phone": "064-710-4300",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "19",
+      "raw_hash": "4a6aad4e14563912913d1e848cad5b42d313e065565a5dfb471a363fda67de6c"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_edfbd4ba",
+    "name": "한마음근린공원",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 이도2동 1942-1",
+    "phone": null,
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "20",
+      "raw_hash": "edfbd4bab60e585bae529d6f83e867cbeaac9d04998d5b9d410282c29f46f18f"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_oreum_d8789715",
+    "name": "송악산전망대",
+    "category": "oreum",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 대정읍 상모리 산 2-13",
+    "phone": null,
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "oreum",
+      "raw_id": "21",
+      "raw_hash": "d8789715673a3a3239b729ec7f84d4d748c1a82d8add683397db5fdb06f5df00"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_sea_songaksan_023",
+      "match_status": "candidate",
+      "match_confidence": 0.75
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_eaa3a744",
+    "name": "제주추사관",
+    "category": "other",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 대정읍 추사로 44",
+    "phone": "064-710-6802",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "22",
+      "raw_hash": "eaa3a7447cf4b70fb43934f1001b07400ee38a3f0ae1724d8de05b61175d9908"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_7eccb4b5",
+    "name": "제주현대미술관",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 한경면 저지14길 35",
+    "phone": "064-710-7801",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "24",
+      "raw_hash": "7eccb4b500fc921189414669a2c7069472948af896181bf6173c76cea1fa3278"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_b48afedb",
+    "name": "제주도립김창열미술관",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 한림읍 용금로 883-5",
+    "phone": "064-710-4150",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "25",
+      "raw_hash": "b48afedb5731cd5e70e660de9ac9c7700765fa158ae59633a8cb8338a56ced0f"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_sea_dddcabaa",
+    "name": "이호테우해수욕장",
+    "category": "sea",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 이호일동 1665-13",
+    "phone": "064-728-3993",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "sea",
+      "raw_id": "26",
+      "raw_hash": "dddcabaaed3f4de5fa50dd49bfd7adce83afe80f280a0c10f447cdf8b2219a40"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_ea609515",
+    "name": "싱계물공원",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 한경면 신창리 1322-1",
+    "phone": null,
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "27",
+      "raw_hash": "ea60951582640306eea25e82114338791827e23338d92d493314727375495b81"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_f7941e87",
+    "name": "낙천의자공원",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 한경면 낙수로 97",
+    "phone": "064-773-1946",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "28",
+      "raw_hash": "f7941e878f3ddd6b3688709afcc669997a24b441ccb1a48d4daedb4173c7b250"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_41081d4f",
+    "name": "용머리해안기후변화홍보관",
+    "category": "indoor",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 안덕면 사계남로216번길 24-34",
+    "phone": "064-722-9506",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "29",
+      "raw_hash": "41081d4fa91b1cc77101a2db09b03f185955d0d82b2c9a805cc52c504fb48f39"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_sea_cdbd68e9",
+    "name": "천제연폭포",
+    "category": "sea",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 천제연로 132",
+    "phone": "064-760-6331",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "sea",
+      "raw_id": "30",
+      "raw_hash": "cdbd68e9cbb2b6b2492ac7eb810415a357230bd9785daf00e119eafde7d5a4f9"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_0de1c160",
+    "name": "제주국제평화센터",
+    "category": "indoor",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 중문관광로 227-24",
+    "phone": "064-735-6550",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "31",
+      "raw_hash": "0de1c16039660f9bd2006d02fcc06f18b157d4bdd8e164fcc25649bd0ab45696"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_c3ccac9a",
+    "name": "주상절리",
+    "category": "other",
+    "region": "서귀포시",
+    "address": "제주 서귀포시 이어도로 36-24",
+    "phone": "064-738-1521",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "32",
+      "raw_hash": "c3ccac9a19c43da845f730ad2bdb567ba6cde0e917f652a6b409ba4c7f36aa49"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_culture_f3935fcb",
+    "name": "김정문화회관",
+    "category": "culture",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 김정문화로 36",
+    "phone": "064-760-3579",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "culture",
+      "raw_id": "33",
+      "raw_hash": "f3935fcb59dca37d277c207e48b59ef8ff28179ce23de93267e40567bc73f3d4"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_70d19337",
+    "name": "서귀포칠십리시공원",
+    "category": "rest_area",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 서홍동 576-9",
+    "phone": null,
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "34",
+      "raw_hash": "70d193375dfa2c9fb60308e3f0df37c7421def20423154e1edd84d2babfaaa7a"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_sea_cf6f4804",
+    "name": "천지연폭포",
+    "category": "sea",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 서홍동 2565",
+    "phone": "064-733-1528",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "sea",
+      "raw_id": "35",
+      "raw_hash": "cf6f48048973376b94f73912cb522d9b547ef94d1125e4515edc36c913b745db"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_forest_cheonjiyeon_014",
+      "match_status": "matched",
+      "match_confidence": 1.0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_bbed41d3",
+    "name": "서복전시관",
+    "category": "indoor",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 칠십리로 156-8",
+    "phone": "064-760-6361",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "36",
+      "raw_hash": "bbed41d3b924f2fdadb4c3de206a48d2bd2fcc1712c456e030d4d6b413b63eb8"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_oreum_7657b36e",
+    "name": "사라봉",
+    "category": "oreum",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 사라봉동길 74",
+    "phone": "064-728-4643",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "oreum",
+      "raw_id": "37",
+      "raw_hash": "7657b36e878a7814b41aa014f811a6dc6a52fce2f347811288f1119deb2f1213"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_022bded0",
+    "name": "국립제주박물관",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 일주동로 17",
+    "phone": "064-720-8000",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "38",
+      "raw_hash": "022bded0e62154f35283b495333a3c28b39f0474ee76f94798577aedc3ddee70"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_c95d8491",
+    "name": "제주항일기념관",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 조천읍 신북로 303",
+    "phone": "064-783-2008",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "39",
+      "raw_hash": "c95d8491f6a16f5f6f2354718c94b7e50429d4049cf7c77a2c7b7cf5ccafe443"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_4f1b83aa",
+    "name": "만장굴",
+    "category": "other",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 구좌읍 만장굴길 182",
+    "phone": "064-710-7903",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "40",
+      "raw_hash": "4f1b83aa3e97253df8889f5a76718cc089c6244e8ce72a4a82925d2b29d5ed30"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_5d0ab408",
+    "name": "신재생에너지홍보관",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 구좌읍 해맞이해안로 712-3",
+    "phone": "064-720-7490",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "41",
+      "raw_hash": "5d0ab40806b6bc03adc73af8f534334d0ca4499e1687be6bd6d50f165281be46"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_6b62b590",
+    "name": "해녀박물관",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 구좌읍 해녀박물관길 26",
+    "phone": "064-782-9898",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "42",
+      "raw_hash": "6b62b5903077ad126b9bbdd807c6566ac338685bd22975ceffe8f62d3d1f6b97"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_indoor_haenyeo_024",
+      "match_status": "candidate",
+      "match_confidence": 0.75
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_c1d1fb78",
+    "name": "수운근린공원",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 연삼로 489",
+    "phone": "064-750-1691",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "43",
+      "raw_hash": "c1d1fb786192c6933894a18a7f42498d48645a044f0cc4084366b6f5b809cea1"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_99b23e02",
+    "name": "김만덕기념관",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 산지로 7",
+    "phone": "064-759-6090",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "44",
+      "raw_hash": "99b23e027945faa5a44ab5c9791bb75df46eeb65507d16e8171737eb2816ffe8"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_indoor_mandeok_museum_009",
+      "match_status": "matched",
+      "match_confidence": 1.0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_cd9cdb26",
+    "name": "제주세계자연유산센터",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 조천읍 선교로 569-36",
+    "phone": "064-710-6959",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "45",
+      "raw_hash": "cd9cdb265904577d8b42402359ee358a25b74696d05953efa311f28bb6f6aa89"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_indoor_worldheritage_011",
+      "match_status": "matched",
+      "match_confidence": 1.0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_culture_15d676db",
+    "name": "제주돌문화공원",
+    "category": "culture",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 조천읍 남조로 2023",
+    "phone": "064-710-7731",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "culture",
+      "raw_id": "46",
+      "raw_hash": "15d676db968b401b96b95a30b6999921a8026b29a9521b13f9865de6598ec2ee"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_c283a2f6",
+    "name": "제주돌박물관",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 조천읍 남조로 2023",
+    "phone": "064-710-7731",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "47",
+      "raw_hash": "c283a2f6f4372d84597cc2d1df26cc15a8af717bf71e91b0b201e97c2a8974e5"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_b55b5887",
+    "name": "오백장군갤러리",
+    "category": "other",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 조천읍 남조로 2023",
+    "phone": "064-710-7731",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "48",
+      "raw_hash": "b55b5887b50b900299b009a15aeb264183d915f4b5a0ff8f9450eb1fca08a052"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_forest_069b7ac3",
+    "name": "서귀포치유의숲",
+    "category": "forest",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 산록남로 2271",
+    "phone": "064-760-3067",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "forest",
+      "raw_id": "49",
+      "raw_hash": "069b7ac32c1928468bd828cb2e85de5f3c090b398ab77673970696fe8152bdef"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_forest_healing_001",
+      "match_status": "matched",
+      "match_confidence": 1.0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_f4004116",
+    "name": "이중섭미술관",
+    "category": "indoor",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 이중섭로 27-3",
+    "phone": "064-760-3567",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "50",
+      "raw_hash": "f4004116a75f05e17775f42c295686bf7a90a80cb89ddb0d23920ed463dd32d5"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_indoor_lee_jung_seop_034",
+      "match_status": "matched",
+      "match_confidence": 1.0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_207df6f8",
+    "name": "새연교",
+    "category": "other",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 서홍동 707-4",
+    "phone": "064-760-2654",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "51",
+      "raw_hash": "207df6f8cbf72ae5410f9e30b0e79ed2d128ef3420292f56d270630628149eb0"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_sea_saeyeongyo_039",
+      "match_status": "matched",
+      "match_confidence": 1.0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_culture_d68899dd",
+    "name": "서귀포예술의전당",
+    "category": "culture",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 태평로 270",
+    "phone": "064-760-3343",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "culture",
+      "raw_id": "52",
+      "raw_hash": "d68899ddf33599f6d352f4d99aba54e961e8877e332435ccbfa4e708d2ac790a"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_0acfc735",
+    "name": "서귀포시립기당미술관",
+    "category": "indoor",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 남성중로 153번길 15",
+    "phone": "064-733-1586",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "53",
+      "raw_hash": "0acfc73534d776165d598271177f1df3fd5413b41df9df6d689d05993ebb6876"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_4f916729",
+    "name": "한국야구명예의전당",
+    "category": "other",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 중산간서로 97-1",
+    "phone": "064-760-6411",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "54",
+      "raw_hash": "4f9167295305c7408121401b17fb937a65c97ddefb58c97377ca8f8ec5a8d8be"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_culture_052243ff",
+    "name": "서귀포천문과학문화관",
+    "category": "culture",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 1100로 506-1",
+    "phone": "064-739-9701",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "culture",
+      "raw_id": "55",
+      "raw_hash": "052243ffb2f53afcc60b2050027653aa4736c0191aa788bef8425a56fc458530"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_60216bfb",
+    "name": "노루생태관찰원(먹이주기, 전시관)",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 명림로 520",
+    "phone": "064-728-3611",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "56",
+      "raw_hash": "60216bfb70065589cf805c71ce4fb24fc551c33bcd0041e19208440d2b5d2980"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_experience_5f669c93",
+    "name": "노루생태관찰원(체험학습실, 연못)",
+    "category": "experience",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 명림로 520",
+    "phone": "064-728-3611",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "experience",
+      "raw_id": "57",
+      "raw_hash": "5f669c9362862032e08f1fb124156be5335cf5c0d47874437ef6d6a36f20cef7"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_experience_5180891a",
+    "name": "절물자연휴양림(실내산림욕체험관)",
+    "category": "experience",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 명림로 584",
+    "phone": "064-728-1510",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "experience",
+      "raw_id": "58",
+      "raw_hash": "5180891ab76cd805165cc77e20e508100c79a954a59fc2e46a1f94c1546412b4"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_forest_a1f0aef7",
+    "name": "절물자연휴양림(잔디광장)",
+    "category": "forest",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 명림로 584",
+    "phone": "064-728-1510",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "forest",
+      "raw_id": "59",
+      "raw_hash": "a1f0aef7702cb7abc2921f63b9bd458dcaeb7323236b19fcdbe906dbb7b62e90"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_forest_81eaa847",
+    "name": "사려니숲길",
+    "category": "forest",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 조천읍 교래리 산 137-1",
+    "phone": "064-900-8800",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "forest",
+      "raw_id": "60",
+      "raw_hash": "81eaa847de07631f0ca2fcc4f7e37b319369589430e035197d9c184a8c99f838"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_forest_saryeoni_002",
+      "match_status": "candidate",
+      "match_confidence": 0.75
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_forest_a03b25e9",
+    "name": "붉은오름자연휴양림(무장애나눔숲길)",
+    "category": "forest",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 표선면 남조로 1487-73",
+    "phone": "064-782-9171",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "forest",
+      "raw_id": "61",
+      "raw_hash": "a03b25e9d01421a06eb2a6165a964b702380c6c89b41dcb91b1da5ab18c1da62"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_forest_red_oreum_004",
+      "match_status": "candidate",
+      "match_confidence": 0.75
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_forest_bcafa3cb",
+    "name": "붉은오름자연휴양림(삼나무데크)",
+    "category": "forest",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 표선면 남조로 1487-73",
+    "phone": "064-782-9171",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "forest",
+      "raw_id": "62",
+      "raw_hash": "bcafa3cb64991c32c9bdb21a4a8f5aa02803d96bfc3496fff7aaa8dbf862dc07"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_forest_red_oreum_004",
+      "match_status": "candidate",
+      "match_confidence": 0.75
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_culture_ec76a307",
+    "name": "항몽유적지",
+    "category": "culture",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 애월읍 항파두리로 50",
+    "phone": "064-710-6720",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "culture",
+      "raw_id": "63",
+      "raw_hash": "ec76a307006d71785bab3e966ef48704183d24201779e7d5bbfd736abe977cd9"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_culture_hangmong_026",
+      "match_status": "matched",
+      "match_confidence": 1.0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_experience_32330d60",
+    "name": "제주안전체험관",
+    "category": "experience",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 애월읍 평화로 1885",
+    "phone": "064-710-4010",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "experience",
+      "raw_id": "64",
+      "raw_hash": "32330d60b8f8bd7b1b9550e3481b6e2b344eada79d7818a1dcd900b06c526621"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_08bebe07",
+    "name": "한림작은영화관",
+    "category": "other",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 한림읍 한림중앙로 71-9",
+    "phone": "064-796-0813",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "65",
+      "raw_hash": "08bebe075bf373b5860f1c608db85382e19b50d2826f031efac1cde32602c0ac"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_culture_ea96aa71",
+    "name": "제주고산리유적",
+    "category": "culture",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 한경면 노을해안로 1100",
+    "phone": "064-772-0041",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "culture",
+      "raw_id": "66",
+      "raw_hash": "ea96aa713b63d7dd66c7ff81001a7bd70d2dfd5837bf75ebfb60561270ad006c"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_culture_85e07a27",
+    "name": "예술곶산양",
+    "category": "culture",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 한경면 중산간서로 3181",
+    "phone": "070-8990-8200",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "culture",
+      "raw_id": "67",
+      "raw_hash": "85e07a2768ddd0fb7326de96f7ad62dc5f893decb2c8cebb1e1b1a72c566991c"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_6d4fd075",
+    "name": "제주항공우주박물관",
+    "category": "indoor",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 안덕면 녹차분재로 218",
+    "phone": "064-800-2114",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "68",
+      "raw_hash": "6d4fd07503c45d4dd0b845e8bfc2d7cddc209abbc7c75cb5bad8fce1ccf056ac"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_426c36af",
+    "name": "제주한란전시관",
+    "category": "indoor",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 돈내코로 67번길 19",
+    "phone": "064-710-6861",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "69",
+      "raw_hash": "426c36afe6551ff827dc9321c919393834561a02837249ea0b9e71ae5a3bcfad"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_indoor_hanran_016",
+      "match_status": "matched",
+      "match_confidence": 1.0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_38ec95b7",
+    "name": "감귤박물관",
+    "category": "indoor",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 효돈순환로 441",
+    "phone": "064-760-6401",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "70",
+      "raw_hash": "38ec95b78580d205de283a5de81099f30cfe3ff347e5668c44fffb7a6344828a"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_59541093",
+    "name": "헌마공신김만일기념관",
+    "category": "indoor",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 남원읍 서성로 919",
+    "phone": "064-805-9801",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "71",
+      "raw_hash": "595410935200554fd559953b93f81ab52ad90d709d27255e3a3f9530590de5f7"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_79dc574b",
+    "name": "비자림",
+    "category": "other",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 구좌읍 비자숲길 55",
+    "phone": "064-710-7912",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "72",
+      "raw_hash": "79dc574b91effb6a6b300edcc25b7daacb14fbbc1208f31119cb2843d47021e2"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_17d7a052",
+    "name": "김영갑갤러리두모악",
+    "category": "other",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 성산읍 삼달로 137",
+    "phone": "064-784-9907",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "73",
+      "raw_hash": "17d7a0525a9a03f81908805f42b873707bd1ac8418fce150ce9d4475cee0d8ae"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_a8c03d43",
+    "name": "섭지코지",
+    "category": "other",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 성산읍 섭지코지로 107",
+    "phone": "064-784-2810",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "74",
+      "raw_hash": "a8c03d43a7b41e3693baee1024bba4364ba6664fc01800f1b49bfbd7c3f724e6"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_2fe734ec",
+    "name": "제주자연생태공원",
+    "category": "rest_area",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 성산읍 금백조로 448",
+    "phone": "064-787-4711",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "75",
+      "raw_hash": "2fe734ec268ea016acd8dc6ad7673af61b37ddd0a40d9bd5701fd38267ffb636"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_culture_5c429454",
+    "name": "예술공간이아",
+    "category": "culture",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 중앙로14길 21",
+    "phone": "064-800-9331",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "culture",
+      "raw_id": "76",
+      "raw_hash": "5c429454f9e3823ff33a9ac13c937b0419a4a9f4704f3832e41737749b94b6c5"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_06d589e4",
+    "name": "용담레포츠공원",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 용담삼동 1071",
+    "phone": "064-728-3929",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "77",
+      "raw_hash": "06d589e402cf14002a742b0040eeac50a5e2c192f9b9fc5d0e67474af4205c7d"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_f363e1d5",
+    "name": "제주문학관",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 연북로 339",
+    "phone": "064-710-3490",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "78",
+      "raw_hash": "f363e1d52e2d422862ff45059b84d20bf91d2b20baf9f362e8ca93c7e3afdb30"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_indoor_literature_022",
+      "match_status": "matched",
+      "match_confidence": 1.0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_2613510e",
+    "name": "삼무공원",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 연동 270-3",
+    "phone": "064-746-0227",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "79",
+      "raw_hash": "2613510e141cf91c46f31919854c8b392d0d4d27c5c006e6cf7186e09a55999d"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_e6000533",
+    "name": "누웨마루거리",
+    "category": "other",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 신대로12길 52",
+    "phone": "064-728-3916",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "80",
+      "raw_hash": "e6000533bf9fa127578706765c492a67f23b14353ce44e86350cbd90d7918b55"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_forest_5347cf31",
+    "name": "교래자연휴양림(숲속의초가)",
+    "category": "forest",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 조천읍 남조로 2023",
+    "phone": "064-783-7482",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "forest",
+      "raw_id": "81",
+      "raw_hash": "5347cf313bbf4ee20b13d214af3aff0a24f681ed600c810535dc6e9832cf3f74"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_experience_7b16a660",
+    "name": "교래자연휴양림(생태체험관)",
+    "category": "experience",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 조천읍 남조로 2023",
+    "phone": "064-783-6047",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "experience",
+      "raw_id": "82",
+      "raw_hash": "7b16a660d54798274776318c1e55c33983ebb4d691e0b3c388813c0eeb19a503"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_aa69c12d",
+    "name": "너븐숭이4.3기념관",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 조천읍 북촌3길 3",
+    "phone": "064-783-4303",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "83",
+      "raw_hash": "aa69c12d5d0362118354bac97045a3bd47f2d4ab50593b5ee917ee1f2ea097ad"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_33b313eb",
+    "name": "제주웰컴센터",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 선덕로 23",
+    "phone": "064-740-6000",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "84",
+      "raw_hash": "33b313eb50440f2e2868c6935b2fb4da5e579f343c4c23891480f26836770676"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_experience_7aa8c5b3",
+    "name": "제주미래교육연구원과학탐구체험관",
+    "category": "experience",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 산록북로 421",
+    "phone": "064-710-0800",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "experience",
+      "raw_id": "85",
+      "raw_hash": "7aa8c5b3086bdf1bd98f9f53fdeffcdb7b5bfa91f3fb0a12b7f8231bed60b5bd"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_4e2af291",
+    "name": "제주별빛누리공원",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 선돌목동길 60",
+    "phone": "064-728-8900",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "86",
+      "raw_hash": "4e2af291c6f3fb3f33489fdaa306de4c5a74636402757e4cd5a64cbac9764cf4"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_indoor_starlight_025",
+      "match_status": "candidate",
+      "match_confidence": 0.75
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_1f4d3a7b",
+    "name": "메이즈랜드",
+    "category": "other",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 구좌읍 비자림로 2134-47",
+    "phone": "064-784-3838",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "87",
+      "raw_hash": "1f4d3a7bdd3d6b5f863c6174159ecb57111f8c0d7f6866c262988aadfa3e175f"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_580dc1f9",
+    "name": "김녕미로공원",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 구좌읍 만장굴길 122",
+    "phone": "064-782-9266",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "88",
+      "raw_hash": "580dc1f9e31d7b60baf197d85b0b3091cb3f7745ecff192a64ceee0da85b51f7"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_0beb3f52",
+    "name": "제주밭담테마공원",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 구좌읍 월정리 1400-14",
+    "phone": "064-710-3052",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "89",
+      "raw_hash": "0beb3f52d7cfec76e207e0754b0115caf0b363b4954938702bcb6afc57ed7cfb"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_b421f5e1",
+    "name": "소인국테마파크",
+    "category": "other",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 안덕면 중산간서로 1878",
+    "phone": "064-793-5400",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "90",
+      "raw_hash": "b421f5e13d98a3b35c1adf26ac34f58f34a558eb5be01969a352c1cf54b9e188"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_84a9b6a5",
+    "name": "헬로키티아일랜드",
+    "category": "other",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 안덕면 한창로 340",
+    "phone": "064-792-6114",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "91",
+      "raw_hash": "84a9b6a5a4abaed99f0dc4154d12fcc2f68650794bb9c88e3e9aecec893c2287"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_indoor_319d4434",
+    "name": "본태박물관",
+    "category": "indoor",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 안덕면 산록남로 762번길 69",
+    "phone": "064-792-8108",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "indoor",
+      "raw_id": "92",
+      "raw_hash": "319d44347da21382bb844e92cbc82f9dad3a8cb7aba37777a06b5864a7aef2e6"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_culture_5ed11a27",
+    "name": "제주민속촌",
+    "category": "culture",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 표선면 민속해안로 631-34",
+    "phone": "064-787-4501",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "culture",
+      "raw_id": "93",
+      "raw_hash": "5ed11a27ba865e48abe63a6098b847b8ce299a8631bed0158f5b2629a56e69b4"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_culture_folk_village_007",
+      "match_status": "matched",
+      "match_confidence": 1.0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_7ca12f74",
+    "name": "제주허브동산",
+    "category": "rest_area",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 표선면 돈오름로 170",
+    "phone": "064-787-7362",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "94",
+      "raw_hash": "7ca12f74951898ab63fefd7977b0a0258d39fbbd78cc2ac5595c699d10a8d71e"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_forest_2533047e",
+    "name": "상효원수목원",
+    "category": "forest",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 산록남로 2847-37",
+    "phone": "064-733-2200",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "forest",
+      "raw_id": "95",
+      "raw_hash": "2533047e8f77ee32e962c8fc947685f014cdd90209e4a0778f7cfb3a697fa2f0"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_55646a92",
+    "name": "휴애리자연생활공원",
+    "category": "rest_area",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 남원읍 신례동로 256",
+    "phone": "064-732-2114",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "96",
+      "raw_hash": "55646a92ad523233d134dc66e427d34a06c0534f2ff6bf793295892e747f39a8"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_5fe8c0ba",
+    "name": "제주대학교아라뮤즈홀",
+    "category": "other",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 제주대학로 102",
+    "phone": "064-754-4697",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "97",
+      "raw_hash": "5fe8c0ba56f20e669c4afc6a9d06379623d8b04db6b2a6d704aed793543803f4"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_73cc4097",
+    "name": "렛츠런파크제주",
+    "category": "other",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 애월읍 평화로 2144",
+    "phone": "1566-3333",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "98",
+      "raw_hash": "73cc40977d0fb32cf2759f00cb09077673970f2ca98ab1bf75d6598ac9566792"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_ae48b573",
+    "name": "도두봉둘레길",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 도두일동 산 2",
+    "phone": "064-710-6043",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "99",
+      "raw_hash": "ae48b5730418b7afecbfaed49542a9f396c08f8d8a0e7c7166da5d8c1ef1e384"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_culture_91cf6e61",
+    "name": "삼성혈",
+    "category": "culture",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 삼성로 22",
+    "phone": "064-722-3315",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "culture",
+      "raw_id": "100",
+      "raw_hash": "91cf6e61374adb4cde7a3bf4f571521523a9ef33b4423329b72a072bd5996586"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_forest_ffa223dd",
+    "name": "서귀포자연휴양림",
+    "category": "forest",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 1100로 882",
+    "phone": "064-738-4544",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "forest",
+      "raw_id": "101",
+      "raw_hash": "ffa223dd2c1e501d1afd0b880e234579e36ccb6e7128f754e5b2e76a18359759"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_forest_recreation_003",
+      "match_status": "matched",
+      "match_confidence": 1.0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_63ef42d7",
+    "name": "1100고지습지",
+    "category": "other",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 색달동 산 1-2",
+    "phone": "064-728-6200",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "102",
+      "raw_hash": "63ef42d70ce721a7998cc0e181797a53c4018f99989405f5771a3cdd8ed784a4"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_30eb1ea6",
+    "name": "서프라이즈테마파크",
+    "category": "other",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 조천읍 남조로 2243",
+    "phone": "064-783-7272",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "103",
+      "raw_hash": "30eb1ea6ddee9b1161b6972fed5a123236c45a3ee2cf965b1b14fd01fa1ae391"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_other_0d70d967",
+    "name": "스누피가든",
+    "category": "other",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 구좌읍 금백조로 916",
+    "phone": "064-784-0930",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "other",
+      "raw_id": "104",
+      "raw_hash": "0d70d9672fb3c34d3bd76ddc6118065c4f4126f3a46dddf6512f3719675af543"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_4ecd2219",
+    "name": "한림공원(아열대식물원)",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 한림읍 한림로 300",
+    "phone": "064-796-0001",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "105",
+      "raw_hash": "4ecd2219433d195d0a1a16511c7d08b73619fe66bc27594afb4c57f698d97314"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_2cdef610",
+    "name": "한림공원(산야초원)",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 한림읍 협재리 2650",
+    "phone": "064-796-0001",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "106",
+      "raw_hash": "2cdef61047aaee79ffa44d786000deb277beebf10d23372aba7345ca33e7bbc3"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_culture_3013ae71",
+    "name": "한림공원(재암민속마을)",
+    "category": "culture",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 한림읍 한림로 300",
+    "phone": "064-796-0001",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "culture",
+      "raw_id": "107",
+      "raw_hash": "3013ae71493591f3ae33cfddf25d4a85f14eb9decc895e7826d17a4205cb2b7d"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_rest_area_073f5d94",
+    "name": "한림공원(제주석분재원)",
+    "category": "rest_area",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 한림읍 한림로 300",
+    "phone": "064-796-0001",
+    "homepage": null,
+    "latitude": null,
+    "longitude": null,
+    "tags": [],
+    "description": null,
+    "source": {
+      "name": "제주특별자치도",
+      "url": "https://www.data.go.kr/data/15109153/fileData.do",
+      "dataset_name": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+      "license": "이용허락범위 제한 없음",
+      "updated_at": "2025-07-30"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-09",
+      "raw_category": "rest_area",
+      "raw_id": "108",
+      "raw_hash": "073f5d94071da46366e1b62b746a735d3e673173919b46afce5cae423154801d"
+    },
+    "matching": {
+      "accessibility_card_id": null,
+      "match_status": "unmatched",
+      "match_confidence": 0
+    },
+    "status": "active"
+  }
+]

@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_official_source_review.schema.json",
+  "title": "Jeju Maeum Roadview Official Source Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "source_work_queue_generated_at", "criteria", "summary", "items"],
+  "properties": {
+    "generated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "source_work_queue_generated_at": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "criteria": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["usable_source", "blocked"],
+      "properties": {
+        "usable_source": { "type": "string" },
+        "blocked": { "type": "string" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "by_status", "by_review_decision", "required_evidence_counts"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "by_status": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_review_decision": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "required_evidence_counts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/reviewItem" }
+    }
+  },
+  "$defs": {
+    "reviewItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task_id",
+        "card",
+        "status",
+        "review_decision",
+        "required_evidence",
+        "search_queries",
+        "accepted_source_types",
+        "source_candidates",
+        "field_evidence",
+        "recommended_action"
+      ],
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "card": { "$ref": "#/$defs/cardRef" },
+        "status": {
+          "type": "string",
+          "enum": ["open", "in_progress", "resolved", "blocked"]
+        },
+        "review_decision": {
+          "type": "string",
+          "enum": [
+            "pending_source_verification",
+            "verified_usable_source",
+            "source_found_but_incomplete",
+            "no_usable_source_found",
+            "needs_manual_escalation"
+          ]
+        },
+        "required_evidence": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "search_queries": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "accepted_source_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "easyjeju_accessibility_detail",
+              "open_tourism_accessibility_detail",
+              "official_site",
+              "public_agency",
+              "visitjeju"
+            ]
+          }
+        },
+        "source_candidates": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/sourceCandidate" }
+        },
+        "field_evidence": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/fieldEvidence" }
+        },
+        "recommended_action": { "type": "string" }
+      }
+    },
+    "sourceCandidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "url",
+        "title",
+        "source_type",
+        "evidence_status",
+        "matched_place_name",
+        "notes"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "title": { "type": "string" },
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "easyjeju_accessibility_detail",
+            "open_tourism_accessibility_detail",
+            "official_site",
+            "public_agency",
+            "visitjeju",
+            "other"
+          ]
+        },
+        "evidence_status": {
+          "type": "string",
+          "enum": ["candidate", "usable_accessibility_detail", "context_only", "rejected"]
+        },
+        "matched_place_name": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    },
+    "fieldEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field", "status", "source_url", "note"],
+      "properties": {
+        "field": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["missing", "candidate_found", "verified", "not_available", "conflict"]
+        },
+        "source_url": {
+          "type": ["string", "null"],
+          "format": "uri"
+        },
+        "note": { "type": "string" }
+      }
+    },
+    "cardRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "region", "category", "verification_status"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "region": { "type": "string" },
+        "category": { "type": "string" },
+        "verification_status": { "type": "string" }
+      }
+    }
+  }
+}

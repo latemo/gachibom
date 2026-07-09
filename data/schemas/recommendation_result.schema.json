@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/recommendation_result.schema.json",
+  "title": "Jeju Maeum Recommendation Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "traveler_summary",
+    "course",
+    "score",
+    "recommended_spots",
+    "fit_reasons",
+    "deduction_reasons",
+    "check_before_visit",
+    "source_summary",
+    "safety_notice"
+  ],
+  "properties": {
+    "traveler_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["traveler_type", "mobility_conditions", "preferred_themes", "required_accessibility", "avoid"],
+      "properties": {
+        "traveler_type": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mobility_conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "preferred_themes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "required_accessibility": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "avoid": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "course": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "summary", "pace", "route"],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "pace": {
+          "type": "string",
+          "enum": ["very_slow", "slow", "normal", "unknown"]
+        },
+        "route": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["order", "spot_id", "name", "purpose", "stay_tip"],
+            "properties": {
+              "order": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "spot_id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "purpose": {
+                "type": "string"
+              },
+              "stay_tip": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "score": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "grade", "breakdown", "confidence"],
+      "properties": {
+        "total": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "grade": {
+          "type": "string",
+          "enum": ["A", "B", "C", "D", "F"]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["high", "medium", "low"]
+        },
+        "breakdown": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source_trust", "mobility_fit", "facility_fit", "theme_fit", "safety_clarity"],
+          "properties": {
+            "source_trust": {
+              "$ref": "#/$defs/scoredItem"
+            },
+            "mobility_fit": {
+              "$ref": "#/$defs/scoredItem"
+            },
+            "facility_fit": {
+              "$ref": "#/$defs/scoredItem"
+            },
+            "theme_fit": {
+              "$ref": "#/$defs/scoredItem"
+            },
+            "safety_clarity": {
+              "$ref": "#/$defs/scoredItem"
+            }
+          }
+        }
+      }
+    },
+    "recommended_spots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "fit_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "deduction_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "check_before_visit": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_summary": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "url", "status"],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["verified", "partial", "needs_check", "unavailable"]
+          }
+        }
+      }
+    },
+    "safety_notice": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "$defs": {
+    "scoredItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["score", "max", "reason"],
+      "properties": {
+        "score": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

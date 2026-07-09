@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/place_location_overrides.schema.json",
+  "title": "Jeju Maeum Place Location Overrides",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "items"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "spot_id",
+          "name",
+          "latitude",
+          "longitude",
+          "source",
+          "source_title",
+          "source_url",
+          "evidence_count"
+        ],
+        "properties": {
+          "spot_id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "latitude": { "type": "number", "minimum": -90, "maximum": 90 },
+          "longitude": { "type": "number", "minimum": -180, "maximum": 180 },
+          "source": { "type": "string", "minLength": 1 },
+          "source_title": { "type": "string", "minLength": 1 },
+          "source_url": { "type": "string", "format": "uri" },
+          "evidence_count": { "type": "integer", "minimum": 1 }
+        }
+      }
+    }
+  }
+}

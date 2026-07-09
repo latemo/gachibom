@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/data_request_tracker.schema.json",
+  "title": "Jeju Maeum Data Request Tracker",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "criteria", "summary", "items"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "criteria": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ready_to_use", "ready_to_submit", "awaiting_receipt", "action_required"],
+      "properties": {
+        "ready_to_use": { "type": "string" },
+        "ready_to_submit": { "type": "string" },
+        "awaiting_receipt": { "type": "string" },
+        "action_required": { "type": "string" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_sources",
+        "ready_to_use_sources",
+        "action_required_sources",
+        "by_request_status",
+        "by_acquisition_mode",
+        "next_action"
+      ],
+      "properties": {
+        "total_sources": { "type": "integer", "minimum": 0 },
+        "ready_to_use_sources": { "type": "integer", "minimum": 0 },
+        "action_required_sources": { "type": "integer", "minimum": 0 },
+        "by_request_status": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_acquisition_mode": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "next_action": { "type": "string" }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/trackerItem" }
+    }
+  },
+  "$defs": {
+    "trackerItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "dataset_name",
+        "provider",
+        "portal_url",
+        "source_type",
+        "acquisition_mode",
+        "service_usage",
+        "request_status",
+        "gate_status",
+        "expected_counts",
+        "current_counts",
+        "local_artifacts",
+        "blocking_reason",
+        "next_action"
+      ],
+      "properties": {
+        "source_id": { "type": "string" },
+        "dataset_name": { "type": "string" },
+        "provider": { "type": "string" },
+        "portal_url": { "type": "string", "format": "uri" },
+        "source_type": { "type": "string", "enum": ["openapi", "file_data", "image_files"] },
+        "acquisition_mode": {
+          "type": "string",
+          "enum": ["direct_public_api", "application_required", "public_download"]
+        },
+        "service_usage": { "type": "string" },
+        "request_status": {
+          "type": "string",
+          "enum": ["ready_to_use", "not_required_ready", "ready_to_submit", "awaiting_receipt", "action_required"]
+        },
+        "gate_status": { "type": "string", "enum": ["pass", "fail"] },
+        "expected_counts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "current_counts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "local_artifacts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/artifact" }
+        },
+        "blocking_reason": { "type": "string" },
+        "next_action": { "type": "string" }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "required", "exists"],
+      "properties": {
+        "path": { "type": "string" },
+        "required": { "type": "boolean" },
+        "exists": { "type": "boolean" }
+      }
+    }
+  }
+}

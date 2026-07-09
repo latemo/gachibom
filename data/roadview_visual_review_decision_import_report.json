@@ -1,0 +1,560 @@
+{
+  "generated_at": "2026-07-09",
+  "source_visual_review_sheet_generated_at": "2026-07-09",
+  "source_decision_csv": "data/roadview_visual_review_decisions.csv",
+  "summary": {
+    "total_rows": 68,
+    "applied": 0,
+    "skipped": 68,
+    "invalid": 0,
+    "by_action": {
+      "skipped_pending_input": 68
+    }
+  },
+  "items": [
+    {
+      "card_id": "jeju_roadview_place_038",
+      "place_name": "국립제주박물관",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_038",
+      "place_name": "국립제주박물관",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_038",
+      "place_name": "국립제주박물관",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_038",
+      "place_name": "국립제주박물관",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_088",
+      "place_name": "김녕미로공원",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_088",
+      "place_name": "김녕미로공원",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_088",
+      "place_name": "김녕미로공원",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_088",
+      "place_name": "김녕미로공원",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_100",
+      "place_name": "삼성혈",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_100",
+      "place_name": "삼성혈",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_100",
+      "place_name": "삼성혈",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_100",
+      "place_name": "삼성혈",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_095",
+      "place_name": "상효원수목원",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_095",
+      "place_name": "상효원수목원",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_095",
+      "place_name": "상효원수목원",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_095",
+      "place_name": "상효원수목원",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_053",
+      "place_name": "서귀포시립기당미술관",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_053",
+      "place_name": "서귀포시립기당미술관",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_053",
+      "place_name": "서귀포시립기당미술관",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_053",
+      "place_name": "서귀포시립기당미술관",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_104",
+      "place_name": "스누피가든",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_104",
+      "place_name": "스누피가든",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_104",
+      "place_name": "스누피가든",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_104",
+      "place_name": "스누피가든",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_4_3_001",
+      "place_name": "제주4.3평화공원",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_4_3_001",
+      "place_name": "제주4.3평화공원",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_4_3_001",
+      "place_name": "제주4.3평화공원",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_4_3_001",
+      "place_name": "제주4.3평화공원",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_066",
+      "place_name": "제주고산리유적",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_066",
+      "place_name": "제주고산리유적",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_066",
+      "place_name": "제주고산리유적",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_066",
+      "place_name": "제주고산리유적",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_014",
+      "place_name": "제주교육박물관",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_014",
+      "place_name": "제주교육박물관",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_014",
+      "place_name": "제주교육박물관",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_014",
+      "place_name": "제주교육박물관",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_025",
+      "place_name": "제주도립김창열미술관",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_025",
+      "place_name": "제주도립김창열미술관",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_025",
+      "place_name": "제주도립김창열미술관",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_025",
+      "place_name": "제주도립김창열미술관",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_013",
+      "place_name": "제주민속자연사박물관",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_013",
+      "place_name": "제주민속자연사박물관",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_013",
+      "place_name": "제주민속자연사박물관",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_013",
+      "place_name": "제주민속자연사박물관",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_010",
+      "place_name": "제주삼양동유적",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_010",
+      "place_name": "제주삼양동유적",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_010",
+      "place_name": "제주삼양동유적",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_010",
+      "place_name": "제주삼양동유적",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_017",
+      "place_name": "제주아트센터",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_017",
+      "place_name": "제주아트센터",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_017",
+      "place_name": "제주아트센터",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_017",
+      "place_name": "제주아트센터",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_084",
+      "place_name": "제주웰컴센터",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_084",
+      "place_name": "제주웰컴센터",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_084",
+      "place_name": "제주웰컴센터",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_084",
+      "place_name": "제주웰컴센터",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_024",
+      "place_name": "제주현대미술관",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_024",
+      "place_name": "제주현대미술관",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_024",
+      "place_name": "제주현대미술관",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_024",
+      "place_name": "제주현대미술관",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_105",
+      "place_name": "한림공원(아열대식물원)",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_105",
+      "place_name": "한림공원(아열대식물원)",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_105",
+      "place_name": "한림공원(아열대식물원)",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_105",
+      "place_name": "한림공원(아열대식물원)",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_096",
+      "place_name": "휴애리자연생활공원",
+      "field": "entrance_step_or_ramp",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_096",
+      "place_name": "휴애리자연생활공원",
+      "field": "main_path_slope",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_096",
+      "place_name": "휴애리자연생활공원",
+      "field": "surface_condition",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    },
+    {
+      "card_id": "jeju_roadview_place_096",
+      "place_name": "휴애리자연생활공원",
+      "field": "parking_to_entrance_route",
+      "status": "",
+      "action": "skipped_pending_input",
+      "reason": "human_final_status_pending"
+    }
+  ]
+}

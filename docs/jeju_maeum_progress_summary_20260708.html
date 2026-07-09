@@ -1,0 +1,918 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>제주의마음 서비스화 작업 진행 요약</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --surface-soft: #eef3f7;
+      --ink: #1f2933;
+      --muted: #627182;
+      --line: #d9e1e8;
+      --brand: #0f766e;
+      --brand-dark: #115e59;
+      --warn: #b45309;
+      --danger: #b42318;
+      --ok: #16794c;
+      --code: #172033;
+      --shadow: 0 10px 28px rgba(31, 41, 51, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--brand-dark);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 36px 24px 72px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ffffff 0%, #eef8f6 100%);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 34px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--brand-dark);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0;
+      margin-bottom: 10px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--brand);
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 34px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 860px;
+      margin: 0;
+      color: #334155;
+      font-size: 17px;
+    }
+
+    .status-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .pill.blocked {
+      color: var(--danger);
+      border-color: #f1b8b3;
+      background: #fff4f2;
+    }
+
+    .pill.ready {
+      color: var(--ok);
+      border-color: #b7dfc9;
+      background: #f0fbf5;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      min-height: 112px;
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .metric span {
+      display: block;
+      font-size: 30px;
+      line-height: 1.1;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .metric small {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 24px;
+      margin-top: 28px;
+      align-items: start;
+    }
+
+    nav {
+      position: sticky;
+      top: 18px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    nav h2 {
+      margin: 0 0 12px;
+      font-size: 15px;
+    }
+
+    nav a {
+      display: block;
+      padding: 8px 10px;
+      border-radius: 7px;
+      color: #334155;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      background: var(--surface-soft);
+      text-decoration: none;
+    }
+
+    main {
+      min-width: 0;
+    }
+
+    section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      padding: 26px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 23px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 22px 0 10px;
+      font-size: 17px;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    ul,
+    ol {
+      margin: 8px 0 0;
+      padding-left: 22px;
+    }
+
+    li + li {
+      margin-top: 6px;
+    }
+
+    .callout {
+      border-left: 4px solid var(--brand);
+      background: #f1faf8;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 14px 0 0;
+    }
+
+    .callout.block {
+      border-left-color: var(--danger);
+      background: #fff4f2;
+    }
+
+    .callout.warn {
+      border-left-color: var(--warn);
+      background: #fff8eb;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-top: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px;
+      background: #fff;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      padding: 11px 12px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f0f4f8;
+      color: #243242;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 5px;
+      background: #e7eef5;
+      color: #243242;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      margin: 12px 0 0;
+      padding: 14px 16px;
+      border-radius: 8px;
+      background: var(--code);
+      color: #e5edf5;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+      color: inherit;
+      font-size: inherit;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 3px 9px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .tag.pass {
+      background: #e8f7ef;
+      color: var(--ok);
+    }
+
+    .tag.block {
+      background: #fff0ee;
+      color: var(--danger);
+    }
+
+    .tag.warn {
+      background: #fff5df;
+      color: var(--warn);
+    }
+
+    .footer {
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+      margin-top: 26px;
+    }
+
+    @media (max-width: 940px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        position: static;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        padding: 18px 14px 48px;
+      }
+
+      .hero,
+      section {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .page {
+        max-width: none;
+        padding: 0;
+      }
+
+      .hero,
+      section,
+      nav {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .layout {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="eyebrow">작성일 2026-07-08</div>
+      <h1>제주의마음 서비스화 작업 진행 요약</h1>
+      <p class="lead">
+        접근성 여행 인공지능을 데모가 아니라 상용 서비스로 만들기 위해 진행한 데이터 검수,
+        공공데이터 요청, 로드뷰 이미지 검증, 운영 게이트 구축 현황을 한 화면에 정리했다.
+      </p>
+      <div class="status-bar">
+        <span class="pill blocked">현재 상태: 전체 공개 차단</span>
+        <span class="pill blocked">1차 병목: 이미지 수령 대기</span>
+        <span class="pill ready">테스트: 76개 통과</span>
+      </div>
+      <div class="grid" aria-label="핵심 지표">
+        <div class="metric">
+          <strong>기본 장소 카드</strong>
+          <span>43</span>
+          <small>검증 대상 장소</small>
+        </div>
+        <div class="metric">
+          <strong>로드뷰 서비스 시드</strong>
+          <span>17</span>
+          <small>공개 전 비공개 유지</small>
+        </div>
+        <div class="metric">
+          <strong>요청 이미지</strong>
+          <span>1,023</span>
+          <small>우선 샘플 102장 포함</small>
+        </div>
+        <div class="metric">
+          <strong>수령 이미지</strong>
+          <span>953</span>
+          <small>70장 서버 404</small>
+        </div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <nav aria-label="문서 목차">
+        <h2>목차</h2>
+        <a href="#conclusion">현재 결론</a>
+        <a href="#direction">기획 방향</a>
+        <a href="#recommendation">추천/점수 방식</a>
+        <a href="#basis">개발 근거</a>
+        <a href="#data-status">데이터 상태</a>
+        <a href="#public-data">공공데이터 연계</a>
+        <a href="#outputs">주요 산출물</a>
+        <a href="#readiness">자동 점검 결과</a>
+        <a href="#commands">실행 명령</a>
+        <a href="#next">다음 작업</a>
+        <a href="#cautions">주의사항</a>
+      </nav>
+
+      <main>
+        <section id="conclusion">
+          <h2>1. 현재 결론</h2>
+          <p>
+            제주의마음 접근성 여행 인공지능은 서비스화를 전제로 데이터 검수, 공공데이터 수령,
+            로드뷰 이미지 검증, 운영 준비 게이트를 구축하는 방향으로 정리됐다.
+          </p>
+          <div class="callout block">
+            현재 자동 점검 기준은 전체 공개 차단 상태다.
+            기본 장소 데이터는 제한 공개 기준을 상당 부분 충족하고, 우선 검수 샘플 102장은 모두 확보됐다.
+            다만 서비스 시드 전체 원본 1,023장 중 70장이 제공 서버 오류로 남아 있어 전체 공개 승격은 아직 차단 상태다.
+          </div>
+          <div class="callout">
+            최우선 작업은 <code>data/roadview_provider_404_image_report.json</code>의 70건을 근거로
+            제공기관에 원본 복구 또는 대체 원본 수령을 요청하는 것이다. 확보된 102장 우선 샘플로 시각 검수는 시작할 수 있다.
+          </div>
+        </section>
+
+        <section id="direction">
+          <h2>2. 주요 기획 방향</h2>
+          <ul>
+            <li>단순 데모가 아니라 상용 서비스 기준으로 진행한다.</li>
+            <li>사용자 상황별 추천을 전제로 한다.</li>
+            <li>암환자, 회복기 여행자, 고령자, 휠체어 사용자, 보호자 동반 여행자, 음식 제한 사용자, 혼잡 민감 사용자 등 상황별로 추천 장소와 제외 장소가 달라질 수 있도록 데이터 구조와 정책을 잡았다.</li>
+            <li>식당, 음식 중심 장소, 실내 장소, 휴식 장소, 문화시설, 숲길, 시장 등 다양한 장소 유형을 수용한다.</li>
+            <li>제주 전체 관광지와 식당 등을 장기적으로 확장하되, 초기 공개에는 검증 가능한 장소부터 단계적으로 반영한다.</li>
+          </ul>
+        </section>
+
+        <section id="recommendation">
+          <h2>3. 여행지 추천 및 점수 집계 방식</h2>
+          <p>
+            추천은 좋은 관광지를 홍보하는 방식이 아니라, 사용자가 입력한 제약과 장소별 접근성 카드가
+            얼마나 맞는지 계산하는 방식으로 설계했다. 진단명은 판단 기준이 아니며, 사용자가 직접 입력한
+            음식 제한, 이동 부담, 혼잡 회피, 날씨 민감 같은 여행 제약만 반영한다.
+          </p>
+
+          <h3>사용자 조건 정리</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>입력 묶음</th>
+                  <th>예시</th>
+                  <th>추천 처리</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>traveler_type</code></td>
+                  <td>휠체어 사용자, 고령자, 회복기 여행자, 보호자 동반</td>
+                  <td>이동 부담, 필수 편의시설, 확인 항목의 우선순위를 조정</td>
+                </tr>
+                <tr>
+                  <td><code>mobility_conditions</code></td>
+                  <td>긴 걷기 어려움, 체력 저하, 날씨 민감, 혼잡 회피</td>
+                  <td>도보 부담, 야외 체류, 혼잡 가능성을 감점 또는 확인 필요로 반영</td>
+                </tr>
+                <tr>
+                  <td><code>preferred_themes</code></td>
+                  <td>바다, 숲, 실내, 문화, 휴식</td>
+                  <td>장소 카테고리와 맞으면 테마 적합도 가산</td>
+                </tr>
+                <tr>
+                  <td><code>required_accessibility</code></td>
+                  <td>장애인 화장실, 주차, 휠체어 접근, 휴식 공간</td>
+                  <td>필수 조건 정보가 부족하면 강제 감점</td>
+                </tr>
+                <tr>
+                  <td><code>avoid</code></td>
+                  <td>식당 제외, 장시간 야외 체류 회피, 강한 조명 회피</td>
+                  <td>명확히 충돌하는 장소는 제외하거나 점수를 낮춤</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>추천 처리 순서</h3>
+          <ol>
+            <li>검증 가능한 접근성 장소 카드에서 후보를 만든다.</li>
+            <li>비공개, 차단, 폐기 상태인 장소는 기본 추천 후보에서 제외한다.</li>
+            <li>음식 제한, 혼잡 민감, 날씨 민감, 감각 민감 등 상황별 제외·감점 규칙을 먼저 적용한다.</li>
+            <li>제외되지 않은 장소에 100점 기준 적합도 점수를 계산한다.</li>
+            <li>차단되지 않은 장소를 점수와 신뢰도 순으로 정렬한다.</li>
+            <li>상위 장소를 최대 4곳까지 묶어 코스를 만든다.</li>
+            <li>결과에는 점수, 추천 이유, 감점 이유, 방문 전 확인 항목, 출처, 안전 문구를 함께 표시한다.</li>
+          </ol>
+
+          <h3>장소별 100점 배점</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>평가 항목</th>
+                  <th>배점</th>
+                  <th>판단 기준</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>정보 신뢰도</td>
+                  <td>25</td>
+                  <td>공식 출처, 운영자 검수, 정보 확인일, 출처 주소</td>
+                </tr>
+                <tr>
+                  <td>이동 부담 적합성</td>
+                  <td>25</td>
+                  <td>도보 부담, 계단·경사, 바닥 상태, 주차장-입구 거리, 야외 체류 부담</td>
+                </tr>
+                <tr>
+                  <td>편의시설 충족도</td>
+                  <td>20</td>
+                  <td>장애인 화장실, 주차, 휴식 공간, 휠체어 접근, 대여·보조 정보</td>
+                </tr>
+                <tr>
+                  <td>선호 테마 적합성</td>
+                  <td>15</td>
+                  <td>바다, 숲, 실내, 문화, 휴식 등 사용자가 원하는 경험과의 일치</td>
+                </tr>
+                <tr>
+                  <td>안전 안내 명확성</td>
+                  <td>15</td>
+                  <td>안전 메모, 피해야 할 사용자군, 확인 필요 항목, 운영자 메모</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>상황별 제외와 감점</h3>
+          <ul>
+            <li>음식 제한 사용자는 식당과 음식 중심 시장을 제외하고, 카페는 감점한다.</li>
+            <li>혼잡·감염 민감 사용자는 시장, 쇼핑, 카페, 혼잡 가능 태그 장소를 감점한다.</li>
+            <li>날씨 민감 사용자는 해안, 오름, 장시간 야외 장소를 감점한다.</li>
+            <li>감각 민감 사용자는 강한 조명, 소리, 어두운 전시 등 자극 요소를 확인 필요로 둔다.</li>
+          </ul>
+
+          <h3>코스 점수 집계</h3>
+          <div class="callout">
+            <code>rank_places</code>가 장소별 점수를 계산하고 차단 장소를 제외한 뒤 정렬한다.
+            <code>build_recommendation_result</code>는 상위 장소를 최대 4곳까지 선택하며,
+            코스 총점은 선택된 장소 점수의 평균이다. 코스 신뢰도는 선택된 장소 중 가장 낮은 신뢰도를 따른다.
+          </div>
+          <ul>
+            <li>등급은 평균 점수 기준으로 A/B/C/D/F를 다시 계산한다.</li>
+            <li>추천 이유, 감점 이유, 확인 필요 항목, 출처는 선택된 장소들의 값을 중복 제거해 합친다.</li>
+            <li>조건에 맞는 장소가 없으면 무리한 추천을 하지 않고 <code>추천 보류</code> 결과를 만든다.</li>
+          </ul>
+
+          <h3>관련 구현</h3>
+          <ul>
+            <li><code>src/scoring.py</code>: 장소별 점수, 등급, 신뢰도, 차단 여부, 추천 이유와 감점 이유 계산</li>
+            <li><code>data/schemas/recommendation_result.schema.json</code>: 추천 결과 출력 형식 검증</li>
+            <li><code>docs/jeju_maeum_scoring_policy.md</code>: 100점 배점, 강제 감점, 차단 규칙</li>
+            <li><code>docs/jeju_maeum_situation_recommendation_policy.md</code>: 음식 제한, 혼잡, 날씨, 감각 민감 처리</li>
+            <li><code>tests/test_scoring.py</code>: 주요 추천·점수 규칙 테스트</li>
+          </ul>
+        </section>
+
+        <section id="basis">
+          <h2>4. 현재까지 개발한 근거</h2>
+          <h3>기획 근거</h3>
+          <ul>
+            <li>사용자가 데모가 아니라 서비스화를 요구했기 때문에, 화면보다 데이터 품질, 출처, 검수, 운영 게이트를 먼저 잡았다.</li>
+            <li>암환자 예시처럼 사용자 상황에 따라 식당을 제외해야 하는 요구가 있어, 진단명이 아니라 여행 제약으로 처리하는 상황별 추천 정책을 만들었다.</li>
+            <li>제주 전체 관광지와 식당까지 확장하려는 방향이 있으므로, 초기 데이터만 하드코딩하지 않고 전체 장소 카탈로그와 접근성 카드를 분리했다.</li>
+            <li>추천 결과가 과장되면 안 되므로 추천보다 근거, 가능보다 부담, 의료 판단 금지 원칙을 문서화했다.</li>
+          </ul>
+
+          <h3>데이터 근거</h3>
+          <ul>
+            <li>공공데이터 <code>15109149</code>, <code>15110209</code>, <code>15109158</code>, <code>15109153</code>을 검토해 공개 연계, 이미지 원본, 이미지 메타데이터, 시설 현황의 역할을 분리했다.</li>
+            <li>기본 장소 카드 43개는 스키마 검증 대상이며, 출처, 안전 메모, 접근성 상태, 운영자 메모를 포함한다.</li>
+            <li>로드뷰 기반 서비스 시드 17곳은 공개 전 비공개로 유지하고, 이미지 수령과 시각 검수 전에는 활성 후보로 승격하지 않는다.</li>
+            <li>로드뷰 이미지 원본 1,023장을 요청 대상으로 만들고, 그중 102장을 우선 검수 샘플로 분리했다.</li>
+            <li>공간정보 이미지 주소 패턴으로 원본 직접 내려받기를 수행해 953장을 확보했고, 서버 404 70건을 별도 리포트로 분리했다.</li>
+          </ul>
+
+          <h3>기술·운영 근거</h3>
+          <ul>
+            <li><code>jsonschema</code> 검증을 전제로 장소 카드, 추천 결과, 운영 리포트, 로드뷰 검수 산출물의 스키마를 만들었다.</li>
+            <li>공공데이터 수령 전에도 진행 상태를 판단할 수 있도록 데이터 요청 추적대장, 이미지 수령 리포트, 서비스 시드 게이트, 운영 준비 리포트를 만들었다.</li>
+            <li>전체 테스트 76개가 통과해 현재 기준의 스키마, 점수화, 공공데이터 변환, 로드뷰 검수 흐름이 깨지지 않는지 확인했다.</li>
+            <li>현재 전체 공개 차단 상태는 실패가 아니라, 상용 공개 전 이미지 수령과 시각 검수가 아직 끝나지 않았다는 운영 게이트 결과다.</li>
+          </ul>
+        </section>
+
+        <section id="data-status">
+          <h2>5. 현재 데이터 상태</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>구분</th>
+                  <th>파일</th>
+                  <th>현재 상태</th>
+                  <th>메모</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>기본 장소 카드</td>
+                  <td><code>data/jeju_accessible_spots.json</code></td>
+                  <td>43개</td>
+                  <td>출처, 안전 메모, 접근성 상태, 운영자 메모 포함</td>
+                </tr>
+                <tr>
+                  <td>로드뷰 서비스 시드</td>
+                  <td><code>data/roadview_service_seed_cards.review.json</code></td>
+                  <td>17곳</td>
+                  <td>공개 전까지 비공개 유지</td>
+                </tr>
+                <tr>
+                  <td>로드뷰 이미지 요청</td>
+                  <td><code>data/roadview_image_acquisition_request.json</code></td>
+                  <td>1,023장</td>
+                  <td>우선 검수 샘플 102장 포함</td>
+                </tr>
+                <tr>
+                  <td>이미지 수령 상태</td>
+                  <td><code>data/roadview_image_receipt_report.json</code></td>
+                  <td>953장 수령</td>
+                  <td>70장 제공 서버 404, 우선 샘플 102장 확보</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="public-data">
+          <h2>6. 공공데이터 연계 사용 판단</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>번호</th>
+                  <th>데이터</th>
+                  <th>판단</th>
+                  <th>다음 액션</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>15109149</code></td>
+                  <td>사회적약자 시설데이터 로드뷰 공개 연계</td>
+                  <td><span class="tag pass">키 없이 호출 가능</span></td>
+                  <td>제주도청 활용가이드 기준 인증/권한 없음, 정기 갱신 주기와 장애 대응 절차 정의</td>
+                </tr>
+                <tr>
+                  <td><code>15110209</code></td>
+                  <td>로드뷰 구축 이미지 원본</td>
+                  <td><span class="tag block">70장 복구 필요</span></td>
+                  <td>제공 서버 404 원본 복구 또는 대체 원본 수령 요청</td>
+                </tr>
+                <tr>
+                  <td><code>15109158</code></td>
+                  <td>로드뷰 이미지 메타데이터</td>
+                  <td><span class="tag pass">반영됨</span></td>
+                  <td>정기 갱신 주기 정의</td>
+                </tr>
+                <tr>
+                  <td><code>15109153</code></td>
+                  <td>로드뷰 관광지 시설 현황</td>
+                  <td><span class="tag pass">반영됨</span></td>
+                  <td>정기 갱신 주기 정의</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout warn">
+            공공데이터포털의 <code>15109149</code>는 LINK 유형이라 제주도청 활용가이드 페이지로 이동한다.
+            제주도청 활용가이드 원문에는 서비스 인증/권한이 없음으로 표시되어 있고,
+            <code>getJejuTouristList</code>, <code>getJejuTouristMeta</code>, <code>getJejuTouristIMG</code> 모두 키 없이
+            <code>200</code> JSON 응답을 확인했다.
+          </div>
+        </section>
+
+        <section id="outputs">
+          <h2>7. 생성한 핵심 산출물</h2>
+          <h3>로드뷰 이미지 요청 패키지</h3>
+          <ul>
+            <li><code>data/roadview_image_acquisition_request.json</code></li>
+            <li><code>data/roadview_image_acquisition_priority_samples.csv</code></li>
+            <li><code>data/roadview_image_acquisition_full_request.csv</code></li>
+            <li><code>data/roadview_image_acquisition_place_summary.csv</code></li>
+            <li><code>docs/roadview_image_data_request_message.md</code></li>
+          </ul>
+
+          <h3>운영/검수 리포트</h3>
+          <ul>
+            <li><code>data/roadview_image_receipt_report.json</code></li>
+            <li><code>data/roadview_service_seed_gate_status.json</code></li>
+            <li><code>data/data_request_tracker.json</code></li>
+            <li><code>data/data_request_tracker.csv</code></li>
+            <li><code>data/operations_readiness_report.json</code></li>
+            <li><code>data/roadview_provider_404_image_report.json</code></li>
+            <li><code>data/roadview_provider_404_image_request.csv</code></li>
+            <li><code>docs/roadview_provider_404_recovery_request.md</code></li>
+            <li><code>docs/roadview_visual_review_board.html</code></li>
+            <li><code>data/roadview_visual_review_decisions.csv</code></li>
+            <li><code>data/roadview_visual_review_pipeline_report.json</code></li>
+            <li><code>data/roadview_visual_review_decisions_by_place/</code></li>
+            <li><code>docs/roadview_visual_review_packets/index.html</code></li>
+            <li><code>docs/roadview_visual_review_share.zip</code></li>
+            <li><code>data/roadview_visual_review_share_validation_report.json</code></li>
+            <li><code>docs/roadview_visual_review_team_share_guide.md</code></li>
+          </ul>
+
+          <h3>워크플로우 문서</h3>
+          <ul>
+            <li><code>docs/roadview_image_receipt_workflow.md</code></li>
+            <li><code>docs/service_seed_gate_status_workflow.md</code></li>
+            <li><code>docs/data_request_tracker_workflow.md</code></li>
+            <li><code>docs/operations_readiness_workflow.md</code></li>
+            <li><code>docs/roadview_visual_review_workflow.md</code></li>
+          </ul>
+        </section>
+
+        <section id="readiness">
+          <h2>8. 현재 자동 점검 결과</h2>
+          <div class="grid">
+            <div class="metric">
+              <strong>총 점검</strong>
+              <span>15</span>
+              <small>운영 준비 리포트</small>
+            </div>
+            <div class="metric">
+              <strong>통과</strong>
+              <span>12</span>
+              <small>자동 점검 통과</small>
+            </div>
+            <div class="metric">
+              <strong>경고</strong>
+              <span>0</span>
+              <small>서비스키 경고 제거</small>
+            </div>
+            <div class="metric">
+              <strong>차단</strong>
+              <span>3</span>
+              <small>상용 전체 공개 보류</small>
+            </div>
+          </div>
+
+          <h3>차단 원인</h3>
+          <ul>
+            <li>로드뷰 이미지 원본 70장이 제공 서버 404로 미수령</li>
+            <li>로드뷰 서비스 시드 17곳 활성 후보 0건</li>
+            <li>이미지 검수 미완료로 상용 전체 공개 보류</li>
+          </ul>
+          <div class="callout">
+            로드뷰 공개 연계는 키 발급 병목이 아니다. 남은 운영 과제는 무인증 공개 연계의 정기 갱신 주기,
+            호출량, 실패 재시도, 장애 시 캐시 사용 정책 정의다.
+          </div>
+        </section>
+
+        <section id="commands">
+          <h2>9. 실행 명령</h2>
+          <h3>공공데이터 요청 추적대장 재생성</h3>
+          <pre><code>python scripts/build_data_request_tracker.py --output data/data_request_tracker.json --csv-output data/data_request_tracker.csv --generated-at 2026-07-08</code></pre>
+
+          <h3>운영 준비 리포트 재생성</h3>
+          <pre><code>python scripts/build_operations_readiness_report.py --output data/operations_readiness_report.json --generated-at 2026-07-08</code></pre>
+
+          <h3>이미지 수령 후 수령 리포트 재생성</h3>
+          <pre><code>python scripts/build_roadview_image_receipt_report.py --acquisition-request data/roadview_image_acquisition_request.json --receipt-root data/raw/roadview_images --output data/roadview_image_receipt_report.json --generated-at 2026-07-08</code></pre>
+
+          <h3>로드뷰 이미지 직접 다운로드</h3>
+          <pre><code>python scripts/download_roadview_requested_images.py --acquisition-request data/roadview_image_acquisition_request.json --target-root data/raw/roadview_images --tier all --output data/roadview_image_download_report.all.json --generated-at 2026-07-08 --timeout-seconds 90</code></pre>
+
+          <h3>제공 서버 404 리포트 재생성</h3>
+          <pre><code>python scripts/build_roadview_provider_404_image_report.py --download-report data/roadview_image_download_report.all.json --output data/roadview_provider_404_image_report.json --generated-at 2026-07-08</code></pre>
+
+          <h3>제공기관 404 복구 요청 패키지 생성</h3>
+          <pre><code>python scripts/export_roadview_provider_404_request_package.py --provider-404-report data/roadview_provider_404_image_report.json --csv-output data/roadview_provider_404_image_request.csv --message-output docs/roadview_provider_404_recovery_request.md --generated-at 2026-07-08</code></pre>
+
+          <h3>시각 검수 화면 생성</h3>
+          <pre><code>python scripts/build_roadview_visual_review_board.py --visual-review-sheet data/roadview_visual_review_sheet.json --provider-404-report data/roadview_provider_404_image_report.json --output docs/roadview_visual_review_board.html --generated-at 2026-07-08</code></pre>
+
+          <h3>장소별 검수 패킷 생성</h3>
+          <pre><code>python scripts/build_roadview_visual_review_packets.py --visual-review-sheet data/roadview_visual_review_sheet.json --contact-sheet-dir docs/roadview_visual_review_packets/contact_sheets --csv-dir data/roadview_visual_review_decisions_by_place --index-output docs/roadview_visual_review_packets/index.html --report-output data/roadview_visual_review_packet_report.json --generated-at 2026-07-08</code></pre>
+
+          <h3>팀 공유용 압축 파일 생성</h3>
+          <pre><code>python scripts/build_roadview_visual_review_share_package.py --visual-review-sheet data/roadview_visual_review_sheet.json --package-dir docs/roadview_visual_review_share --zip-output docs/roadview_visual_review_share.zip --report-output data/roadview_visual_review_share_package_report.json --max-image-width 1600 --generated-at 2026-07-08</code></pre>
+
+          <h3>팀 공유용 압축 파일 검증</h3>
+          <pre><code>python scripts/validate_roadview_visual_review_share_package.py --package-dir docs/roadview_visual_review_share --zip-path docs/roadview_visual_review_share.zip --output data/roadview_visual_review_share_validation_report.json --expected-assets 102 --expected-contact-sheets 17 --expected-place-csvs 17 --generated-at 2026-07-08</code></pre>
+
+          <div class="callout">
+            공유 압축 파일 검증 결과는 <code>pass</code>다. 점검 14개 통과, 실패 0개,
+            압축 파일 크기는 약 20.6메가바이트, 검증 해시는
+            <code>d1ac62b7f9fbec9583dd4c56d331d24352236bbfbb2b7319c5dc146e11fc2a26</code>다.
+            공유 검수 화면은 카드형 검수 화면으로 바뀌었고 <code>난해 항목 확인 가이드</code>에서
+            자동 판정이 애매하게 본 이유, 확인 포인트, 권장 처리를 보여준다.
+            현재 자동 판정 초안 68개 중 <code>자동 판정 확실</code> 20개,
+            <code>난해 항목</code> 48개이며,
+            서비스 반영은 <code>human_final_status</code>가
+            입력된 행만 대상으로 한다.
+          </div>
+
+          <h3>시각 검수 판정 파일 생성</h3>
+          <pre><code>python scripts/export_roadview_visual_review_decisions_csv.py --visual-review-sheet data/roadview_visual_review_sheet.json --output data/roadview_visual_review_decisions.csv</code></pre>
+
+          <h3>장소별 판정 파일 병합</h3>
+          <pre><code>python scripts/merge_roadview_visual_review_decision_csvs.py --csv-dir data/roadview_visual_review_decisions_by_place --output data/roadview_visual_review_decisions.csv</code></pre>
+
+          <h3>시각 검수 판정 파일 반영</h3>
+          <pre><code>python scripts/apply_roadview_visual_review_decisions_csv.py --visual-review-sheet data/roadview_visual_review_sheet.json --decisions-csv data/roadview_visual_review_decisions.csv --output data/roadview_visual_review_sheet.json --report-output data/roadview_visual_review_decision_import_report.json --reviewer operator --generated-at 2026-07-08</code></pre>
+
+          <h3>시각 검수 반영 전체 파이프라인</h3>
+          <pre><code>python scripts/run_roadview_visual_review_pipeline.py --generated-at 2026-07-08</code></pre>
+
+          <div class="callout">
+            현재 파이프라인 실행 결과는 <code>completed</code>이며, 판정 파일 68행 중 적용된 판정은 0개,
+            대기 행은 68개, 오류 행은 0개다. 서비스 시드 게이트는 준비 0곳, 차단 17곳이다.
+          </div>
+
+          <h3>서비스 시드 통합 게이트 재생성</h3>
+          <pre><code>python scripts/build_service_seed_gate_status.py --acquisition-request data/roadview_image_acquisition_request.json --receipt-report data/roadview_image_receipt_report.json --image-asset-manifest data/roadview_image_asset_manifest.json --visual-review-sheet data/roadview_visual_review_sheet.json --promotion-readiness data/roadview_service_seed_promotion_readiness.json --active-candidate-report data/roadview_service_seed_active_candidate_report.json --output data/roadview_service_seed_gate_status.json --generated-at 2026-07-08</code></pre>
+
+          <h3>전체 테스트</h3>
+          <pre><code>python -m unittest discover -s tests</code></pre>
+        </section>
+
+        <section id="next">
+          <h2>10. 다음 작업 순서</h2>
+          <ol>
+            <li>제공기관에 로드뷰 원본 70건 복구 또는 대체 원본 수령 요청</li>
+            <li><code>15109149</code> 로드뷰 공개 연계 정기 갱신 정책 정의</li>
+            <li><code>docs/roadview_visual_review_board.html</code>로 확보된 우선 검수 샘플 102장 시각 검수 진행</li>
+            <li>70건 복구 후 수령 리포트, 자산 매니페스트, 시각 검수 시트 재생성</li>
+            <li>운영자가 필드별 시각 검수 결과 입력</li>
+            <li>시각 검수 적용 후 승격 준비와 활성 후보 재생성</li>
+            <li>운영 준비 리포트 재생성 후 상용 공개 가능 여부 재판정</li>
+          </ol>
+        </section>
+
+        <section id="cautions">
+          <h2>11. 주의사항</h2>
+          <ul>
+            <li>이미지 원본은 저장소에 직접 커밋하지 않는다.</li>
+            <li><code>.env</code> 값이나 다른 외부 서비스키는 응답, 문서, 코드에 노출하지 않는다.</li>
+            <li>로드뷰 이미지 검수 전에는 서비스 시드 17곳을 공개 활성 카드로 승격하지 않는다.</li>
+            <li>음식 제한, 혼잡 민감, 날씨 민감 같은 사용자 상황은 추천 정책에서 제외/감점으로 반영한다.</li>
+            <li>공식 출처 없는 장소나 안전 메모 없는 장소는 상용 추천 결과에 노출하지 않는다.</li>
+            <li>추천 점수는 여행 가능성 보장이 아니라 판단 보조 신호로 표시한다.</li>
+            <li>암환자, 회복기, 고령자 같은 표현은 의료 판단이 아니라 사용자가 직접 입력한 여행 제약을 정리하는 용도로만 사용한다.</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <p class="footer">
+      원본 문서: <code>docs/jeju_maeum_progress_summary_20260708.md</code>
+    </p>
+  </div>
+</body>
+</html>

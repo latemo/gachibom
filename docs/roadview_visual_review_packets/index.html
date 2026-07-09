@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>로드뷰 시각 검수 패킷</title>
+  <style>
+    body { margin: 0; background: #f6f7f8; color: #17202a; font-family: Arial, "Noto Sans KR", sans-serif; }
+    header { padding: 24px 28px; background: #fff; border-bottom: 1px solid #d9dee5; }
+    h1 { margin: 0 0 6px; font-size: 26px; letter-spacing: 0; }
+    main { padding: 20px 28px 40px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; }
+    article { border: 1px solid #d9dee5; border-radius: 8px; background: #fff; overflow: hidden; }
+    img { display: block; width: 100%; height: auto; background: #eef2f6; }
+    .body { padding: 12px; }
+    h2 { margin: 0 0 8px; font-size: 18px; letter-spacing: 0; }
+    a { color: #0f766e; text-decoration: none; }
+    .meta { color: #667085; font-size: 13px; }
+
+    a[data-lightbox-image] {
+      cursor: zoom-in;
+    }
+    body.lightbox-open {
+      overflow: hidden;
+    }
+    .image-lightbox[hidden] {
+      display: none;
+    }
+    .image-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .image-lightbox-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.82);
+    }
+    .image-lightbox-panel {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+      max-width: min(96vw, 1440px);
+      max-height: 92vh;
+    }
+    .image-lightbox-close {
+      justify-self: end;
+      border-color: rgba(255, 255, 255, 0.35);
+      background: #ffffff;
+      color: #111827;
+      font-weight: 700;
+    }
+    .image-lightbox img {
+      display: block;
+      max-width: 96vw;
+      max-height: 82vh;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #0f172a;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+    .image-lightbox-caption {
+      max-width: 96vw;
+      color: #fff;
+      font-size: 13px;
+      line-height: 1.45;
+      text-align: center;
+      word-break: break-word;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>로드뷰 시각 검수 패킷</h1>
+    <div class="meta">생성일 2026-07-08 · 장소별 이미지 묶음과 판정 파일</div>
+  </header>
+  <main>
+    <div class="grid">
+      <article>
+        <a href="contact_sheets/jeju_roadview_place_038.jpg" data-lightbox-image data-lightbox-caption="국립제주박물관 이미지 묶음표"><img src="contact_sheets/jeju_roadview_place_038.jpg" alt="국립제주박물관 이미지 묶음표"></a>
+        <div class="body">
+          <h2>국립제주박물관</h2>
+          <div class="meta">jeju_roadview_place_038 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_place_038.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+      <article>
+        <a href="contact_sheets/jeju_roadview_place_088.jpg" data-lightbox-image data-lightbox-caption="김녕미로공원 이미지 묶음표"><img src="contact_sheets/jeju_roadview_place_088.jpg" alt="김녕미로공원 이미지 묶음표"></a>
+        <div class="body">
+          <h2>김녕미로공원</h2>
+          <div class="meta">jeju_roadview_place_088 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_place_088.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+      <article>
+        <a href="contact_sheets/jeju_roadview_place_100.jpg" data-lightbox-image data-lightbox-caption="삼성혈 이미지 묶음표"><img src="contact_sheets/jeju_roadview_place_100.jpg" alt="삼성혈 이미지 묶음표"></a>
+        <div class="body">
+          <h2>삼성혈</h2>
+          <div class="meta">jeju_roadview_place_100 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_place_100.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+      <article>
+        <a href="contact_sheets/jeju_roadview_place_095.jpg" data-lightbox-image data-lightbox-caption="상효원수목원 이미지 묶음표"><img src="contact_sheets/jeju_roadview_place_095.jpg" alt="상효원수목원 이미지 묶음표"></a>
+        <div class="body">
+          <h2>상효원수목원</h2>
+          <div class="meta">jeju_roadview_place_095 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_place_095.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+      <article>
+        <a href="contact_sheets/jeju_roadview_place_053.jpg" data-lightbox-image data-lightbox-caption="서귀포시립기당미술관 이미지 묶음표"><img src="contact_sheets/jeju_roadview_place_053.jpg" alt="서귀포시립기당미술관 이미지 묶음표"></a>
+        <div class="body">
+          <h2>서귀포시립기당미술관</h2>
+          <div class="meta">jeju_roadview_place_053 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_place_053.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+      <article>
+        <a href="contact_sheets/jeju_roadview_place_104.jpg" data-lightbox-image data-lightbox-caption="스누피가든 이미지 묶음표"><img src="contact_sheets/jeju_roadview_place_104.jpg" alt="스누피가든 이미지 묶음표"></a>
+        <div class="body">
+          <h2>스누피가든</h2>
+          <div class="meta">jeju_roadview_place_104 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_place_104.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+      <article>
+        <a href="contact_sheets/jeju_roadview_4_3_001.jpg" data-lightbox-image data-lightbox-caption="제주4.3평화공원 이미지 묶음표"><img src="contact_sheets/jeju_roadview_4_3_001.jpg" alt="제주4.3평화공원 이미지 묶음표"></a>
+        <div class="body">
+          <h2>제주4.3평화공원</h2>
+          <div class="meta">jeju_roadview_4_3_001 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_4_3_001.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+      <article>
+        <a href="contact_sheets/jeju_roadview_place_066.jpg" data-lightbox-image data-lightbox-caption="제주고산리유적 이미지 묶음표"><img src="contact_sheets/jeju_roadview_place_066.jpg" alt="제주고산리유적 이미지 묶음표"></a>
+        <div class="body">
+          <h2>제주고산리유적</h2>
+          <div class="meta">jeju_roadview_place_066 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_place_066.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+      <article>
+        <a href="contact_sheets/jeju_roadview_place_014.jpg" data-lightbox-image data-lightbox-caption="제주교육박물관 이미지 묶음표"><img src="contact_sheets/jeju_roadview_place_014.jpg" alt="제주교육박물관 이미지 묶음표"></a>
+        <div class="body">
+          <h2>제주교육박물관</h2>
+          <div class="meta">jeju_roadview_place_014 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_place_014.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+      <article>
+        <a href="contact_sheets/jeju_roadview_place_025.jpg" data-lightbox-image data-lightbox-caption="제주도립김창열미술관 이미지 묶음표"><img src="contact_sheets/jeju_roadview_place_025.jpg" alt="제주도립김창열미술관 이미지 묶음표"></a>
+        <div class="body">
+          <h2>제주도립김창열미술관</h2>
+          <div class="meta">jeju_roadview_place_025 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_place_025.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+      <article>
+        <a href="contact_sheets/jeju_roadview_place_013.jpg" data-lightbox-image data-lightbox-caption="제주민속자연사박물관 이미지 묶음표"><img src="contact_sheets/jeju_roadview_place_013.jpg" alt="제주민속자연사박물관 이미지 묶음표"></a>
+        <div class="body">
+          <h2>제주민속자연사박물관</h2>
+          <div class="meta">jeju_roadview_place_013 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_place_013.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+      <article>
+        <a href="contact_sheets/jeju_roadview_place_010.jpg" data-lightbox-image data-lightbox-caption="제주삼양동유적 이미지 묶음표"><img src="contact_sheets/jeju_roadview_place_010.jpg" alt="제주삼양동유적 이미지 묶음표"></a>
+        <div class="body">
+          <h2>제주삼양동유적</h2>
+          <div class="meta">jeju_roadview_place_010 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_place_010.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+      <article>
+        <a href="contact_sheets/jeju_roadview_place_017.jpg" data-lightbox-image data-lightbox-caption="제주아트센터 이미지 묶음표"><img src="contact_sheets/jeju_roadview_place_017.jpg" alt="제주아트센터 이미지 묶음표"></a>
+        <div class="body">
+          <h2>제주아트센터</h2>
+          <div class="meta">jeju_roadview_place_017 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_place_017.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+      <article>
+        <a href="contact_sheets/jeju_roadview_place_084.jpg" data-lightbox-image data-lightbox-caption="제주웰컴센터 이미지 묶음표"><img src="contact_sheets/jeju_roadview_place_084.jpg" alt="제주웰컴센터 이미지 묶음표"></a>
+        <div class="body">
+          <h2>제주웰컴센터</h2>
+          <div class="meta">jeju_roadview_place_084 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_place_084.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+      <article>
+        <a href="contact_sheets/jeju_roadview_place_024.jpg" data-lightbox-image data-lightbox-caption="제주현대미술관 이미지 묶음표"><img src="contact_sheets/jeju_roadview_place_024.jpg" alt="제주현대미술관 이미지 묶음표"></a>
+        <div class="body">
+          <h2>제주현대미술관</h2>
+          <div class="meta">jeju_roadview_place_024 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_place_024.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+      <article>
+        <a href="contact_sheets/jeju_roadview_place_105.jpg" data-lightbox-image data-lightbox-caption="한림공원(아열대식물원) 이미지 묶음표"><img src="contact_sheets/jeju_roadview_place_105.jpg" alt="한림공원(아열대식물원) 이미지 묶음표"></a>
+        <div class="body">
+          <h2>한림공원(아열대식물원)</h2>
+          <div class="meta">jeju_roadview_place_105 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_place_105.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+      <article>
+        <a href="contact_sheets/jeju_roadview_place_096.jpg" data-lightbox-image data-lightbox-caption="휴애리자연생활공원 이미지 묶음표"><img src="contact_sheets/jeju_roadview_place_096.jpg" alt="휴애리자연생활공원 이미지 묶음표"></a>
+        <div class="body">
+          <h2>휴애리자연생활공원</h2>
+          <div class="meta">jeju_roadview_place_096 · 이미지 6장 · 검수 항목 4개</div>
+          <div><a href="../../data/roadview_visual_review_decisions_by_place/jeju_roadview_place_096.csv">장소별 판정 파일 열기</a></div>
+        </div>
+      </article>
+    </div>
+  </main>
+  <script>
+(function () {
+  let activeTrigger = null;
+
+  function lightboxElements() {
+    return {
+      modal: document.getElementById("imageLightbox"),
+      image: document.getElementById("imageLightboxImage"),
+      caption: document.getElementById("imageLightboxCaption"),
+      closeButton: document.querySelector("[data-lightbox-close].image-lightbox-close")
+    };
+  }
+
+  function openLightbox(link) {
+    const { modal, image, caption, closeButton } = lightboxElements();
+    if (!modal || !image || !caption) {
+      return;
+    }
+    const sourceImage = link.querySelector("img");
+    activeTrigger = link;
+    image.src = link.href;
+    image.alt = sourceImage?.alt || "확대 이미지";
+    caption.textContent = link.dataset.lightboxCaption || sourceImage?.alt || "";
+    modal.hidden = false;
+    modal.classList.add("open");
+    document.body.classList.add("lightbox-open");
+    closeButton?.focus();
+  }
+
+  function closeLightbox() {
+    const { modal, image, caption } = lightboxElements();
+    if (!modal || modal.hidden) {
+      return;
+    }
+    modal.hidden = true;
+    modal.classList.remove("open");
+    document.body.classList.remove("lightbox-open");
+    if (image) {
+      image.removeAttribute("src");
+      image.alt = "";
+    }
+    if (caption) {
+      caption.textContent = "";
+    }
+    activeTrigger?.focus();
+    activeTrigger = null;
+  }
+
+  document.addEventListener("click", (event) => {
+    if (event.target.closest("[data-lightbox-close]")) {
+      event.preventDefault();
+      closeLightbox();
+      return;
+    }
+    const imageLink = event.target.closest("a[data-lightbox-image]");
+    if (!imageLink) {
+      return;
+    }
+    event.preventDefault();
+    openLightbox(imageLink);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeLightbox();
+    }
+  });
+})();
+</script>
+  <div class="image-lightbox" id="imageLightbox" hidden role="dialog" aria-modal="true" aria-label="이미지 확대 보기">
+    <div class="image-lightbox-backdrop" data-lightbox-close></div>
+    <div class="image-lightbox-panel">
+      <button type="button" class="image-lightbox-close" data-lightbox-close>닫기</button>
+      <img id="imageLightboxImage" alt="">
+      <div class="image-lightbox-caption" id="imageLightboxCaption"></div>
+    </div>
+  </div>
+</body>
+</html>

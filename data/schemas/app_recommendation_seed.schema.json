@@ -1,0 +1,324 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/app_recommendation_seed.schema.json",
+  "title": "Jeju Maeum App Recommendation Seed",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "safety_notice", "public_gate", "visual_assets", "official_courses", "scenarios"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "safety_notice": { "type": "string", "minLength": 1 },
+    "public_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_places",
+        "app_candidate_places",
+        "status_counts",
+        "verification_counts",
+        "excluded_statuses",
+        "pending_gate_note"
+      ],
+      "properties": {
+        "total_places": { "type": "integer", "minimum": 0 },
+        "app_candidate_places": { "type": "integer", "minimum": 0 },
+        "status_counts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "verification_counts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "excluded_statuses": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "pending_gate_note": { "type": "string", "minLength": 1 }
+      }
+    },
+    "visual_assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["src", "caption"],
+        "properties": {
+          "src": { "type": "string" },
+          "caption": { "type": "string" }
+        }
+      }
+    },
+    "official_courses": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/officialCourse" }
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/scenario" }
+    }
+  },
+  "$defs": {
+    "officialCourse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "overview",
+        "recommended_travelers",
+        "total_move_minutes",
+        "total_travel_minutes",
+        "recommendation_by_type",
+        "stops"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "overview": { "type": "string" },
+        "recommended_travelers": { "type": "string" },
+        "total_move_minutes": { "type": ["integer", "null"] },
+        "total_travel_minutes": { "type": ["integer", "null"] },
+        "recommendation_by_type": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "stops": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "order",
+              "name",
+              "spot_id",
+              "matched_name",
+              "category",
+              "verification_status",
+              "location_available",
+              "promoted_candidate",
+              "description",
+              "cautions"
+            ],
+            "properties": {
+              "order": { "type": ["integer", "null"] },
+              "name": { "type": "string" },
+              "spot_id": { "type": "string" },
+              "matched_name": { "type": "string" },
+              "category": { "type": "string" },
+              "verification_status": { "type": "string" },
+              "location_available": { "type": "boolean" },
+              "promoted_candidate": { "type": "boolean" },
+              "description": { "type": "string" },
+              "cautions": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "scenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "title", "traveler_summary", "recommendation", "places"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "title": { "type": "string" },
+        "traveler_summary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["traveler_type", "mobility_conditions", "preferred_themes", "required_accessibility", "avoid"],
+          "properties": {
+            "traveler_type": { "type": "array", "items": { "type": "string" } },
+            "mobility_conditions": { "type": "array", "items": { "type": "string" } },
+            "preferred_themes": { "type": "array", "items": { "type": "string" } },
+            "required_accessibility": { "type": "array", "items": { "type": "string" } },
+            "avoid": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "recommendation": {
+          "type": "object",
+          "additionalProperties": true,
+          "required": [
+            "traveler_summary",
+            "course",
+            "score",
+            "recommended_spots",
+            "fit_reasons",
+            "deduction_reasons",
+            "check_before_visit",
+            "source_summary",
+            "safety_notice"
+          ],
+          "properties": {
+            "course": {
+              "type": "object",
+              "additionalProperties": true,
+              "required": ["title", "summary", "pace", "route"],
+              "properties": {
+                "title": { "type": "string" },
+                "summary": { "type": "string" },
+                "pace": { "type": "string" },
+                "route": {
+                  "type": "array",
+                  "items": { "type": "object" }
+                }
+              }
+            },
+            "score": {
+              "type": "object",
+              "additionalProperties": true,
+              "required": ["total", "grade", "confidence", "breakdown"],
+              "properties": {
+                "total": { "type": "integer", "minimum": 0, "maximum": 100 },
+                "grade": { "type": "string" },
+                "confidence": { "type": "string" },
+                "breakdown": { "type": "object" }
+              }
+            },
+            "recommended_spots": { "type": "array", "items": { "type": "string" } },
+            "fit_reasons": { "type": "array", "items": { "type": "string" } },
+            "deduction_reasons": { "type": "array", "items": { "type": "string" } },
+            "check_before_visit": { "type": "array", "items": { "type": "string" } },
+            "source_summary": { "type": "array", "items": { "type": "object" } },
+            "safety_notice": { "type": "string" }
+          }
+        },
+        "places": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/placeResult" }
+        }
+      }
+    },
+    "placeResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "spot_id",
+        "name",
+        "region",
+        "category",
+        "summary",
+        "score",
+        "fit_reasons",
+        "deduction_reasons",
+        "check_before_visit",
+        "source_summary",
+        "blocked",
+        "block_reasons",
+        "verification_status",
+        "verification",
+        "accessibility",
+        "effort",
+        "location",
+        "safety_notes",
+        "avoid_for"
+      ],
+      "properties": {
+        "spot_id": { "type": "string" },
+        "name": { "type": "string" },
+        "region": { "type": "string" },
+        "category": { "type": "string" },
+        "summary": { "type": "string" },
+        "score": {
+          "type": "object",
+          "additionalProperties": true,
+          "required": ["total", "grade", "confidence", "breakdown"],
+          "properties": {
+            "total": { "type": "integer", "minimum": 0, "maximum": 100 },
+            "grade": { "type": "string" },
+            "confidence": { "type": "string" },
+            "breakdown": { "type": "object" }
+          }
+        },
+        "fit_reasons": { "type": "array", "items": { "type": "string" } },
+        "deduction_reasons": { "type": "array", "items": { "type": "string" } },
+        "check_before_visit": { "type": "array", "items": { "type": "string" } },
+        "source_summary": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["title", "url", "status"],
+            "properties": {
+              "title": { "type": "string" },
+              "url": { "type": "string" },
+              "status": { "type": "string" }
+            }
+          }
+        },
+        "blocked": { "type": "boolean" },
+        "block_reasons": { "type": "array", "items": { "type": "string" } },
+        "verification_status": { "type": "string" },
+        "verification": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "checked_at", "missing_fields"],
+          "properties": {
+            "status": { "type": "string" },
+            "checked_at": { "type": "string" },
+            "missing_fields": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "accessibility": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["field", "label", "state", "state_label", "note"],
+            "properties": {
+              "field": { "type": "string" },
+              "label": { "type": "string" },
+              "state": { "type": "string" },
+              "state_label": { "type": "string" },
+              "note": { "type": "string" }
+            }
+          }
+        },
+        "effort": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "walking_level",
+            "recommended_duration_minutes",
+            "outdoor_exposure",
+            "weather_sensitivity"
+          ],
+          "properties": {
+            "walking_level": { "type": "string" },
+            "recommended_duration_minutes": { "type": ["integer", "null"], "minimum": 0 },
+            "outdoor_exposure": { "type": "string" },
+            "weather_sensitivity": { "type": "string" }
+          }
+        },
+        "location": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": [
+            "latitude",
+            "longitude",
+            "source",
+            "source_title",
+            "source_url",
+            "matched_name",
+            "match_method",
+            "evidence_count"
+          ],
+          "properties": {
+            "latitude": { "type": "number", "minimum": -90, "maximum": 90 },
+            "longitude": { "type": "number", "minimum": -180, "maximum": 180 },
+            "source": { "type": "string" },
+            "source_title": { "type": "string" },
+            "source_url": { "type": "string" },
+            "matched_name": { "type": "string" },
+            "match_method": { "type": "string" },
+            "evidence_count": { "type": "integer", "minimum": 1 }
+          }
+        },
+        "safety_notes": { "type": "array", "items": { "type": "string" } },
+        "avoid_for": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-07-09",
+  "items": [
+    {
+      "spot_id": "jeju_indoor_icc_032",
+      "name": "제주국제컨벤션센터",
+      "latitude": 33.241364,
+      "longitude": 126.424515,
+      "source": "manual_public_coordinate",
+      "source_title": "VISIT JEJU 제주국제컨벤션센터 위치 정보",
+      "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500079",
+      "evidence_count": 1
+    },
+    {
+      "spot_id": "jeju_cafe_osulloc_013",
+      "name": "오설록 티 뮤지엄",
+      "latitude": 33.3058528,
+      "longitude": 126.2894694,
+      "source": "manual_public_coordinate",
+      "source_title": "2markers Osulloc Tea Museum coordinate listing",
+      "source_url": "https://sb.2markers.com/977660",
+      "evidence_count": 1
+    }
+  ]
+}

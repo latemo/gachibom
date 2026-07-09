@@ -1,0 +1,1966 @@
+{
+  "generated_at": "2026-07-09",
+  "source_work_queue_generated_at": "2026-07-09",
+  "criteria": {
+    "visual_review_required": "이미지 원본으로 출입구 단차·경사·바닥재·주차장-출입구 연결 동선을 검수",
+    "blocked": "이미지 메타데이터가 없거나 동선 핵심 구간 이미지가 부족하면 hidden 유지"
+  },
+  "summary": {
+    "total": 17,
+    "by_status": {
+      "open": 17
+    },
+    "by_review_decision": {
+      "pending_visual_review": 17
+    },
+    "total_roadview_images": 1023,
+    "min_images_per_place": 14,
+    "max_images_per_place": 168,
+    "required_evidence_counts": {
+      "entrance_step_or_ramp": 17,
+      "main_path_slope": 17,
+      "surface_condition": 17,
+      "parking_to_entrance_route": 17
+    }
+  },
+  "items": [
+    {
+      "task_id": "jeju_roadview_place_038_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_038",
+        "name": "국립제주박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 132,
+      "captured_date_start": "2022-08-23",
+      "captured_date_end": "2022-08-23",
+      "coordinate_bounds": {
+        "min_latitude": 33.51207775,
+        "max_latitude": 33.514005527777776,
+        "min_longitude": 126.53344444444444,
+        "max_longitude": 126.55020275
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "JEJUNATIONALMU-1-001",
+          "captured_at": "2022-08-23 09:35",
+          "latitude": 33.512772194444445,
+          "longitude": 126.54902219444445,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJUNATIONALMU-1-027",
+          "captured_at": "2022-08-23 11:38",
+          "latitude": 33.51333888888889,
+          "longitude": 126.54957222222222,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJUNATIONALMU-1-053",
+          "captured_at": "2022-08-23 11:26",
+          "latitude": 33.51292775,
+          "longitude": 126.54867219444444,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJUNATIONALMU-2-019",
+          "captured_at": "2022-08-23 10:32",
+          "latitude": 33.513288861111114,
+          "longitude": 126.54857497222223,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJUNATIONALMU-2-045",
+          "captured_at": "2022-08-23 10:54",
+          "latitude": 33.51295277777778,
+          "longitude": 126.54939722222223,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJUNATIONALMU-2-070",
+          "captured_at": "2022-08-23 11:07",
+          "latitude": 33.51332222222222,
+          "longitude": 126.54959719444444,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "JEJUNATIONALMU-1-001",
+            "JEJUNATIONALMU-1-027",
+            "JEJUNATIONALMU-1-053"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "JEJUNATIONALMU-1-001",
+            "JEJUNATIONALMU-1-027",
+            "JEJUNATIONALMU-1-053"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "JEJUNATIONALMU-1-001",
+            "JEJUNATIONALMU-1-027",
+            "JEJUNATIONALMU-1-053"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "JEJUNATIONALMU-1-001",
+            "JEJUNATIONALMU-1-027",
+            "JEJUNATIONALMU-1-053"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_088_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_088",
+        "name": "김녕미로공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 15,
+      "captured_date_start": "2022-09-26",
+      "captured_date_end": "2022-09-26",
+      "coordinate_bounds": {
+        "min_latitude": 33.536052749999996,
+        "max_latitude": 33.53678330555555,
+        "min_longitude": 126.7720138611111,
+        "max_longitude": 126.77269997222223
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "GIMNYEONGMAZEPA-1-001",
+          "captured_at": "2022-09-26 10:38",
+          "latitude": 33.53617222222222,
+          "longitude": 126.77208611111111,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "GIMNYEONGMAZEPA-1-004",
+          "captured_at": "2022-09-26 10:40",
+          "latitude": 33.536052749999996,
+          "longitude": 126.7720138611111,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "GIMNYEONGMAZEPA-1-007",
+          "captured_at": "2022-09-26 10:42",
+          "latitude": 33.536252749999996,
+          "longitude": 126.77208333333333,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "GIMNYEONGMAZEPA-1-009",
+          "captured_at": "2022-09-26 10:44",
+          "latitude": 33.53635275,
+          "longitude": 126.77225833333333,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "GIMNYEONGMAZEPA-1-012",
+          "captured_at": "2022-09-26 10:45",
+          "latitude": 33.53641111111111,
+          "longitude": 126.77243052777777,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "GIMNYEONGMAZEPA-1-015",
+          "captured_at": "2022-09-26 10:48",
+          "latitude": 33.53678330555555,
+          "longitude": 126.77269444444444,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "GIMNYEONGMAZEPA-1-001",
+            "GIMNYEONGMAZEPA-1-004",
+            "GIMNYEONGMAZEPA-1-007"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "GIMNYEONGMAZEPA-1-001",
+            "GIMNYEONGMAZEPA-1-004",
+            "GIMNYEONGMAZEPA-1-007"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "GIMNYEONGMAZEPA-1-001",
+            "GIMNYEONGMAZEPA-1-004",
+            "GIMNYEONGMAZEPA-1-007"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "GIMNYEONGMAZEPA-1-001",
+            "GIMNYEONGMAZEPA-1-004",
+            "GIMNYEONGMAZEPA-1-007"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_100_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_100",
+        "name": "삼성혈",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 52,
+      "captured_date_start": "2022-09-29",
+      "captured_date_end": "2022-09-29",
+      "coordinate_bounds": {
+        "min_latitude": 33.50381386111111,
+        "max_latitude": 33.50555830555555,
+        "min_longitude": 126.52780830555555,
+        "max_longitude": 126.52959719444445
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "SAMSUNGHYEOL-1-001",
+          "captured_at": "2022-09-29 15:04",
+          "latitude": 33.505363861111114,
+          "longitude": 126.52866108333333,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SAMSUNGHYEOL-1-011",
+          "captured_at": "2022-09-29 15:12",
+          "latitude": 33.504805555555556,
+          "longitude": 126.52900552777778,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SAMSUNGHYEOL-1-021",
+          "captured_at": "2022-09-29 15:19",
+          "latitude": 33.50418611111111,
+          "longitude": 126.52958052777778,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SAMSUNGHYEOL-1-032",
+          "captured_at": "2022-09-29 15:25",
+          "latitude": 33.50437497222222,
+          "longitude": 126.52791944444445,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SAMSUNGHYEOL-1-042",
+          "captured_at": "2022-09-29 15:39",
+          "latitude": 33.50495,
+          "longitude": 126.52839441666667,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SAMSUNGHYEOL-3-004",
+          "captured_at": "2022-09-29 15:31",
+          "latitude": 33.504197222222224,
+          "longitude": 126.52788888888888,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "SAMSUNGHYEOL-1-001",
+            "SAMSUNGHYEOL-1-011",
+            "SAMSUNGHYEOL-1-021"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "SAMSUNGHYEOL-1-001",
+            "SAMSUNGHYEOL-1-011",
+            "SAMSUNGHYEOL-1-021"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "SAMSUNGHYEOL-1-001",
+            "SAMSUNGHYEOL-1-011",
+            "SAMSUNGHYEOL-1-021"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "SAMSUNGHYEOL-1-001",
+            "SAMSUNGHYEOL-1-011",
+            "SAMSUNGHYEOL-1-021"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_095_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_095",
+        "name": "상효원수목원",
+        "region": "서귀포시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 73,
+      "captured_date_start": "2022-09-28",
+      "captured_date_end": "2022-09-28",
+      "coordinate_bounds": {
+        "min_latitude": 33.305324972222216,
+        "max_latitude": 33.30921386111111,
+        "min_longitude": 126.5837,
+        "max_longitude": 126.58689444444444
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "SANGHYO-1-001",
+          "captured_at": "2022-09-28 11:27",
+          "latitude": 33.30563330555555,
+          "longitude": 126.58492497222221,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SANGHYO-1-015",
+          "captured_at": "2022-09-28 11:36",
+          "latitude": 33.30611111111111,
+          "longitude": 126.58468888888889,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SANGHYO-1-030",
+          "captured_at": "2022-09-28 11:50",
+          "latitude": 33.30828333333333,
+          "longitude": 126.58394997222221,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SANGHYO-1-044",
+          "captured_at": "2022-09-28 11:43",
+          "latitude": 33.30769441666666,
+          "longitude": 126.58563055555555,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SANGHYO-1-059",
+          "captured_at": "2022-09-28 11:29",
+          "latitude": 33.30659444444444,
+          "longitude": 126.58506108333333,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SANGHYO-3-008",
+          "captured_at": "2022-09-28 12:07",
+          "latitude": 33.30748333333333,
+          "longitude": 126.58649722222222,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "SANGHYO-1-001",
+            "SANGHYO-1-015",
+            "SANGHYO-1-030"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "SANGHYO-1-001",
+            "SANGHYO-1-015",
+            "SANGHYO-1-030"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "SANGHYO-1-001",
+            "SANGHYO-1-015",
+            "SANGHYO-1-030"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "SANGHYO-1-001",
+            "SANGHYO-1-015",
+            "SANGHYO-1-030"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_053_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_053",
+        "name": "서귀포시립기당미술관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 14,
+      "captured_date_start": "2022-08-31",
+      "captured_date_end": "2022-08-31",
+      "coordinate_bounds": {
+        "min_latitude": 33.24475833333334,
+        "max_latitude": 33.24619444444445,
+        "min_longitude": 126.55120555555555,
+        "max_longitude": 126.55160277777777
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "GIDANG-1-001",
+          "captured_at": "2022-08-31 14:22",
+          "latitude": 33.24476386111111,
+          "longitude": 126.551425,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "GIDANG-2-001",
+          "captured_at": "2022-08-31 14:26",
+          "latitude": 33.24483330555556,
+          "longitude": 126.55124719444444,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "GIDANG-2-003",
+          "captured_at": "2022-08-31 14:27",
+          "latitude": 33.244880555555554,
+          "longitude": 126.55136386111111,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "GIDANG-2-006",
+          "captured_at": "2022-08-31 14:29",
+          "latitude": 33.24489997222222,
+          "longitude": 126.55133330555556,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "GIDANG-2-008",
+          "captured_at": "2022-08-31 14:30",
+          "latitude": 33.24504163888889,
+          "longitude": 126.55120555555555,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "GIDANG-2-011",
+          "captured_at": "2022-08-31 14:32",
+          "latitude": 33.24583608333334,
+          "longitude": 126.55160277777777,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "GIDANG-1-001",
+            "GIDANG-2-001",
+            "GIDANG-2-003"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "GIDANG-1-001",
+            "GIDANG-2-001",
+            "GIDANG-2-003"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "GIDANG-1-001",
+            "GIDANG-2-001",
+            "GIDANG-2-003"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "GIDANG-1-001",
+            "GIDANG-2-001",
+            "GIDANG-2-003"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_104_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_104",
+        "name": "스누피가든",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 168,
+      "captured_date_start": "2022-09-30",
+      "captured_date_end": "2022-09-30",
+      "coordinate_bounds": {
+        "min_latitude": 33.442772194444444,
+        "max_latitude": 33.446241666666666,
+        "min_longitude": 126.77802222222222,
+        "max_longitude": 126.78481111111111
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "SNOOPYGARDEN-1-001",
+          "captured_at": "2022-09-30 11:34",
+          "latitude": 33.44354166666666,
+          "longitude": 126.77831944444445,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SNOOPYGARDEN-1-034",
+          "captured_at": "2022-09-30 13:22",
+          "latitude": 33.44513886111111,
+          "longitude": 126.77932219444445,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SNOOPYGARDEN-1-068",
+          "captured_at": "2022-09-30 13:43",
+          "latitude": 33.44616944444444,
+          "longitude": 126.78075552777777,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SNOOPYGARDEN-1-101",
+          "captured_at": "2022-09-30 14:30",
+          "latitude": 33.44438608333333,
+          "longitude": 126.78012222222222,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SNOOPYGARDEN-2-005",
+          "captured_at": "2022-09-30 11:38",
+          "latitude": 33.444230527777776,
+          "longitude": 126.77839441666667,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SNOOPYGARDEN-2-038",
+          "captured_at": "2022-09-30 12:18",
+          "latitude": 33.44411944444444,
+          "longitude": 126.77850275,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "SNOOPYGARDEN-1-001",
+            "SNOOPYGARDEN-1-034",
+            "SNOOPYGARDEN-1-068"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "SNOOPYGARDEN-1-001",
+            "SNOOPYGARDEN-1-034",
+            "SNOOPYGARDEN-1-068"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "SNOOPYGARDEN-1-001",
+            "SNOOPYGARDEN-1-034",
+            "SNOOPYGARDEN-1-068"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "SNOOPYGARDEN-1-001",
+            "SNOOPYGARDEN-1-034",
+            "SNOOPYGARDEN-1-068"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_4_3_001_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_4_3_001",
+        "name": "제주4.3평화공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 127,
+      "captured_date_start": "2022-07-15",
+      "captured_date_end": "2022-11-19",
+      "coordinate_bounds": {
+        "min_latitude": 33.449869416666665,
+        "max_latitude": 33.45455552777778,
+        "min_longitude": 126.61728055555555,
+        "max_longitude": 126.6223888611111
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "JEJU43PA-1-001",
+          "captured_at": "2022-07-28 09:34",
+          "latitude": 33.453294444444445,
+          "longitude": 126.619175,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJU43PA-1-026",
+          "captured_at": "2022-07-28 12:16",
+          "latitude": 33.45142219444445,
+          "longitude": 126.61734722222222,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJU43PA-1-044",
+          "captured_at": "2022-07-28 12:56",
+          "latitude": 33.45013330555556,
+          "longitude": 126.61825277777777,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJU43PA-3-012",
+          "captured_at": "2022-07-15 11:27",
+          "latitude": 33.45102775,
+          "longitude": 126.62089166666667,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJU43PA-3-037",
+          "captured_at": "2022-07-28 10:54",
+          "latitude": 33.45084722222222,
+          "longitude": 126.62072222222221,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJU43PA-3-057",
+          "captured_at": "2022-07-28 11:03",
+          "latitude": 33.450988861111114,
+          "longitude": 126.62069722222222,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "JEJU43PA-1-001",
+            "JEJU43PA-1-026",
+            "JEJU43PA-1-044"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "JEJU43PA-1-001",
+            "JEJU43PA-1-026",
+            "JEJU43PA-1-044"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "JEJU43PA-1-001",
+            "JEJU43PA-1-026",
+            "JEJU43PA-1-044"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "JEJU43PA-1-001",
+            "JEJU43PA-1-026",
+            "JEJU43PA-1-044"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_066_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_066",
+        "name": "제주고산리유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 17,
+      "captured_date_start": "2022-09-14",
+      "captured_date_end": "2022-09-14",
+      "coordinate_bounds": {
+        "min_latitude": 33.30393052777777,
+        "max_latitude": 33.30444166666666,
+        "min_longitude": 126.16610552777779,
+        "max_longitude": 126.16648886111112
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "GOSANRIRUINS-1-001",
+          "captured_at": "2022-09-14 13:27",
+          "latitude": 33.30433052777777,
+          "longitude": 126.16620277777778,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "GOSANRIRUINS-1-004",
+          "captured_at": "2022-09-14 13:27",
+          "latitude": 33.30427497222222,
+          "longitude": 126.16627775,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "GOSANRIRUINS-1-007",
+          "captured_at": "2022-09-14 13:29",
+          "latitude": 33.30407497222222,
+          "longitude": 126.16636386111112,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "GOSANRIRUINS-2-003",
+          "captured_at": "2022-09-14 13:28",
+          "latitude": 33.304058,
+          "longitude": 126.16622500000001,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "GOSANRIRUINS-2-006",
+          "captured_at": "2022-09-14 13:29",
+          "latitude": 33.304049,
+          "longitude": 126.16627700000001,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "GOSANRIRUINS-3-001",
+          "captured_at": "2022-09-14 13:30",
+          "latitude": 33.30393052777777,
+          "longitude": 126.16648886111112,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "GOSANRIRUINS-1-001",
+            "GOSANRIRUINS-1-004",
+            "GOSANRIRUINS-1-007"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "GOSANRIRUINS-1-001",
+            "GOSANRIRUINS-1-004",
+            "GOSANRIRUINS-1-007"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "GOSANRIRUINS-1-001",
+            "GOSANRIRUINS-1-004",
+            "GOSANRIRUINS-1-007"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "GOSANRIRUINS-1-001",
+            "GOSANRIRUINS-1-004",
+            "GOSANRIRUINS-1-007"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_014_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_014",
+        "name": "제주교육박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 43,
+      "captured_date_start": "2022-08-09",
+      "captured_date_end": "2022-08-09",
+      "coordinate_bounds": {
+        "min_latitude": 33.49406663888889,
+        "max_latitude": 33.494641666666666,
+        "min_longitude": 126.537675,
+        "max_longitude": 126.53822497222222
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "EDUMU-1-001",
+          "captured_at": "2022-08-09 13:27",
+          "latitude": 33.49446941666667,
+          "longitude": 126.537675,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "EDUMU-1-009",
+          "captured_at": "2022-08-09 13:56",
+          "latitude": 33.49409444444444,
+          "longitude": 126.53816111111111,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "EDUMU-2-007",
+          "captured_at": "2022-08-09 13:35",
+          "latitude": 33.49463611111111,
+          "longitude": 126.53793611111111,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "EDUMU-2-015",
+          "captured_at": "2022-08-09 13:38",
+          "latitude": 33.494619444444446,
+          "longitude": 126.53798330555556,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "EDUMU-2-024",
+          "captured_at": "2022-08-09 13:44",
+          "latitude": 33.494619444444446,
+          "longitude": 126.537925,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "EDUMU-3-004",
+          "captured_at": "2022-08-09 14:00",
+          "latitude": 33.49406663888889,
+          "longitude": 126.53781108333334,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "EDUMU-1-001",
+            "EDUMU-1-009",
+            "EDUMU-2-007"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "EDUMU-1-001",
+            "EDUMU-1-009",
+            "EDUMU-2-007"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "EDUMU-1-001",
+            "EDUMU-1-009",
+            "EDUMU-2-007"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "EDUMU-1-001",
+            "EDUMU-1-009",
+            "EDUMU-2-007"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_025_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_025",
+        "name": "제주도립김창열미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 43,
+      "captured_date_start": "2022-08-11",
+      "captured_date_end": "2022-08-11",
+      "coordinate_bounds": {
+        "min_latitude": 33.338030555555555,
+        "max_latitude": 33.33916941666667,
+        "min_longitude": 126.26788052777778,
+        "max_longitude": 126.26985830555556
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "KIMCHANG-1-001",
+          "captured_at": "2022-08-11 13:27",
+          "latitude": 33.33858886111111,
+          "longitude": 126.26936941666666,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "KIMCHANG-1-009",
+          "captured_at": "2022-08-11 13:33",
+          "latitude": 33.33909722222222,
+          "longitude": 126.26897219444444,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "KIMCHANG-1-018",
+          "captured_at": "2022-08-11 14:02",
+          "latitude": 33.338883305555555,
+          "longitude": 126.26867219444445,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "KIMCHANG-1-026",
+          "captured_at": "2022-08-11 14:08",
+          "latitude": 33.33873333333334,
+          "longitude": 126.26958888888889,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "KIMCHANG-2-005",
+          "captured_at": "2022-08-11 13:45",
+          "latitude": 33.33916941666667,
+          "longitude": 126.26865277777777,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "KIMCHANG-2-013",
+          "captured_at": "2022-08-11 13:50",
+          "latitude": 33.33914719444444,
+          "longitude": 126.26868611111111,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "KIMCHANG-1-001",
+            "KIMCHANG-1-009",
+            "KIMCHANG-1-018"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "KIMCHANG-1-001",
+            "KIMCHANG-1-009",
+            "KIMCHANG-1-018"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "KIMCHANG-1-001",
+            "KIMCHANG-1-009",
+            "KIMCHANG-1-018"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "KIMCHANG-1-001",
+            "KIMCHANG-1-009",
+            "KIMCHANG-1-018"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_013_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_013",
+        "name": "제주민속자연사박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 90,
+      "captured_date_start": "2022-08-09",
+      "captured_date_end": "2022-08-09",
+      "coordinate_bounds": {
+        "min_latitude": 33.50568333333333,
+        "max_latitude": 33.506822194444446,
+        "min_longitude": 126.52961386111112,
+        "max_longitude": 126.53183886111111
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "JEJUFOLKMU-1-001",
+          "captured_at": "2022-08-09 10:25",
+          "latitude": 33.506119416666664,
+          "longitude": 126.53055275,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJUFOLKMU-1-019",
+          "captured_at": "2022-08-09 11:15",
+          "latitude": 33.50631111111111,
+          "longitude": 126.53138886111111,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJUFOLKMU-2-009",
+          "captured_at": "2022-08-09 10:46",
+          "latitude": 33.506305527777776,
+          "longitude": 126.5314638888889,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJUFOLKMU-2-026",
+          "captured_at": "2022-08-09 11:00",
+          "latitude": 33.50633608333333,
+          "longitude": 126.5316666388889,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJUFOLKMU-3-002",
+          "captured_at": "2022-08-09 11:18",
+          "latitude": 33.50644722222222,
+          "longitude": 126.53129441666667,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJUFOLKMU-4-013",
+          "captured_at": "2022-08-09 12:28",
+          "latitude": 33.50604441666667,
+          "longitude": 126.53120555555556,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "JEJUFOLKMU-1-001",
+            "JEJUFOLKMU-1-019",
+            "JEJUFOLKMU-2-009"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "JEJUFOLKMU-1-001",
+            "JEJUFOLKMU-1-019",
+            "JEJUFOLKMU-2-009"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "JEJUFOLKMU-1-001",
+            "JEJUFOLKMU-1-019",
+            "JEJUFOLKMU-2-009"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "JEJUFOLKMU-1-001",
+            "JEJUFOLKMU-1-019",
+            "JEJUFOLKMU-2-009"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_010_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_010",
+        "name": "제주삼양동유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 37,
+      "captured_date_start": "2022-08-09",
+      "captured_date_end": "2022-08-09",
+      "coordinate_bounds": {
+        "min_latitude": 33.52282775,
+        "max_latitude": 33.52353333333333,
+        "min_longitude": 126.58678330555556,
+        "max_longitude": 126.58850552777777
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "SAMYANGRUINS-1-002",
+          "captured_at": "2022-08-09 10:20",
+          "latitude": 33.52290555555555,
+          "longitude": 126.58832222222222,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SAMYANGRUINS-1-008",
+          "captured_at": "2022-08-09 10:30",
+          "latitude": 33.522999999999996,
+          "longitude": 126.58808608333332,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SAMYANGRUINS-1-015",
+          "captured_at": "2022-08-09 10:40",
+          "latitude": 33.52323888888889,
+          "longitude": 126.58800275,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SAMYANGRUINS-1-023",
+          "captured_at": "2022-08-09 10:50",
+          "latitude": 33.52303608333333,
+          "longitude": 126.58747497222221,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SAMYANGRUINS-1-030",
+          "captured_at": "2022-08-09 11:00",
+          "latitude": 33.52321108333333,
+          "longitude": 126.58700552777778,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "SAMYANGRUINS-2-003",
+          "captured_at": "2022-08-09 10:43",
+          "latitude": 33.52308333333333,
+          "longitude": 126.58767219444444,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "SAMYANGRUINS-1-002",
+            "SAMYANGRUINS-1-008",
+            "SAMYANGRUINS-1-015"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "SAMYANGRUINS-1-002",
+            "SAMYANGRUINS-1-008",
+            "SAMYANGRUINS-1-015"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "SAMYANGRUINS-1-002",
+            "SAMYANGRUINS-1-008",
+            "SAMYANGRUINS-1-015"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "SAMYANGRUINS-1-002",
+            "SAMYANGRUINS-1-008",
+            "SAMYANGRUINS-1-015"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_017_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_017",
+        "name": "제주아트센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 26,
+      "captured_date_start": "2022-08-10",
+      "captured_date_end": "2022-08-10",
+      "coordinate_bounds": {
+        "min_latitude": 33.47499166666667,
+        "max_latitude": 33.475858305555555,
+        "min_longitude": 126.51483055555556,
+        "max_longitude": 126.51571388888888
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "ARTCENTER-1-001",
+          "captured_at": "2022-08-10 12:20",
+          "latitude": 33.47559719444445,
+          "longitude": 126.51536386111111,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "ARTCENTER-1-006",
+          "captured_at": "2022-08-10 12:23",
+          "latitude": 33.475858305555555,
+          "longitude": 126.51520833333333,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "ARTCENTER-2-002",
+          "captured_at": "2022-08-10 12:29",
+          "latitude": 33.47566663888889,
+          "longitude": 126.51506663888888,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "ARTCENTER-2-007",
+          "captured_at": "2022-08-10 12:39",
+          "latitude": 33.47519722222222,
+          "longitude": 126.51565,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "ARTCENTER-2-012",
+          "captured_at": "2022-08-10 12:48",
+          "latitude": 33.47531941666667,
+          "longitude": 126.51522777777778,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "ARTCENTER-2-017",
+          "captured_at": "2022-08-10 12:57",
+          "latitude": 33.475302750000004,
+          "longitude": 126.51537775,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "ARTCENTER-1-001",
+            "ARTCENTER-1-006",
+            "ARTCENTER-2-002"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "ARTCENTER-1-001",
+            "ARTCENTER-1-006",
+            "ARTCENTER-2-002"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "ARTCENTER-1-001",
+            "ARTCENTER-1-006",
+            "ARTCENTER-2-002"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "ARTCENTER-1-001",
+            "ARTCENTER-1-006",
+            "ARTCENTER-2-002"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_084_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_084",
+        "name": "제주웰컴센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 15,
+      "captured_date_start": "2022-09-20",
+      "captured_date_end": "2022-09-20",
+      "coordinate_bounds": {
+        "min_latitude": 33.486049972222226,
+        "max_latitude": 33.486497194444446,
+        "min_longitude": 126.49932777777778,
+        "max_longitude": 126.49998611111111
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "WELCOME-1-001",
+          "captured_at": "2022-09-20 13:45",
+          "latitude": 33.486088861111114,
+          "longitude": 126.49949722222222,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "WELCOME-2-002",
+          "captured_at": "2022-09-20 13:46",
+          "latitude": 33.486469416666665,
+          "longitude": 126.49998611111111,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "WELCOME-2-005",
+          "captured_at": "2022-09-20 13:49",
+          "latitude": 33.48608052777778,
+          "longitude": 126.49936111111111,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "WELCOME-2-007",
+          "captured_at": "2022-09-20 13:48",
+          "latitude": 33.486497194444446,
+          "longitude": 126.49971386111112,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "WELCOME-2-010",
+          "captured_at": "2022-09-20 13:44",
+          "latitude": 33.48622775,
+          "longitude": 126.49943608333334,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "WELCOME-2-013",
+          "captured_at": "2022-09-20 13:45",
+          "latitude": 33.48625830555556,
+          "longitude": 126.49940830555556,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "WELCOME-1-001",
+            "WELCOME-2-002",
+            "WELCOME-2-005"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "WELCOME-1-001",
+            "WELCOME-2-002",
+            "WELCOME-2-005"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "WELCOME-1-001",
+            "WELCOME-2-002",
+            "WELCOME-2-005"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "WELCOME-1-001",
+            "WELCOME-2-002",
+            "WELCOME-2-005"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_024_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_024",
+        "name": "제주현대미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 31,
+      "captured_date_start": "2022-08-11",
+      "captured_date_end": "2022-08-11",
+      "coordinate_bounds": {
+        "min_latitude": 33.337272194444445,
+        "max_latitude": 33.339763861111116,
+        "min_longitude": 126.26534163888888,
+        "max_longitude": 126.26775552777778
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "JEJUCONTEM-1-001",
+          "captured_at": "2022-08-11 14:35",
+          "latitude": 33.33826944444445,
+          "longitude": 126.26562777777778,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJUCONTEM-1-007",
+          "captured_at": "2022-08-11 14:41",
+          "latitude": 33.339669416666666,
+          "longitude": 126.2658,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJUCONTEM-1-013",
+          "captured_at": "2022-08-11 15:14",
+          "latitude": 33.33776666666667,
+          "longitude": 126.26655552777778,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJUCONTEM-1-019",
+          "captured_at": "2022-08-11 15:33",
+          "latitude": 33.337502750000006,
+          "longitude": 126.26706944444445,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJUCONTEM-2-002",
+          "captured_at": "2022-08-11 14:51",
+          "latitude": 33.33967775,
+          "longitude": 126.26564722222223,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "JEJUCONTEM-2-008",
+          "captured_at": "2022-08-11 15:01",
+          "latitude": 33.33972777777778,
+          "longitude": 126.26567777777778,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "JEJUCONTEM-1-001",
+            "JEJUCONTEM-1-007",
+            "JEJUCONTEM-1-013"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "JEJUCONTEM-1-001",
+            "JEJUCONTEM-1-007",
+            "JEJUCONTEM-1-013"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "JEJUCONTEM-1-001",
+            "JEJUCONTEM-1-007",
+            "JEJUCONTEM-1-013"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "JEJUCONTEM-1-001",
+            "JEJUCONTEM-1-007",
+            "JEJUCONTEM-1-013"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_105_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_105",
+        "name": "한림공원(아열대식물원)",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 53,
+      "captured_date_start": "2022-09-30",
+      "captured_date_end": "2022-09-30",
+      "coordinate_bounds": {
+        "min_latitude": 33.38875275,
+        "max_latitude": 33.39023888888889,
+        "min_longitude": 126.23717222222223,
+        "max_longitude": 126.23854166666666
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "HALLIMPAGARDEN-1-001",
+          "captured_at": "2022-09-30 10:04",
+          "latitude": 33.39023888888889,
+          "longitude": 126.23798611111111,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "HALLIMPAGARDEN-1-011",
+          "captured_at": "2022-09-30 10:09",
+          "latitude": 33.39004444444444,
+          "longitude": 126.23757222222223,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "HALLIMPAGARDEN-1-022",
+          "captured_at": "2022-09-30 10:17",
+          "latitude": 33.38955,
+          "longitude": 126.23770830555556,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "HALLIMPAGARDEN-1-032",
+          "captured_at": "2022-09-30 10:21",
+          "latitude": 33.38883888888889,
+          "longitude": 126.238375,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "HALLIMPAGARDEN-1-043",
+          "captured_at": "2022-09-30 10:26",
+          "latitude": 33.389561083333334,
+          "longitude": 126.23836386111111,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "HALLIMPAGARDEN-1-053",
+          "captured_at": "2022-09-30 10:30",
+          "latitude": 33.38909722222222,
+          "longitude": 126.23854166666666,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "HALLIMPAGARDEN-1-001",
+            "HALLIMPAGARDEN-1-011",
+            "HALLIMPAGARDEN-1-022"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "HALLIMPAGARDEN-1-001",
+            "HALLIMPAGARDEN-1-011",
+            "HALLIMPAGARDEN-1-022"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "HALLIMPAGARDEN-1-001",
+            "HALLIMPAGARDEN-1-011",
+            "HALLIMPAGARDEN-1-022"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "HALLIMPAGARDEN-1-001",
+            "HALLIMPAGARDEN-1-011",
+            "HALLIMPAGARDEN-1-022"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    },
+    {
+      "task_id": "jeju_roadview_place_096_roadview_image_review",
+      "card": {
+        "id": "jeju_roadview_place_096",
+        "name": "휴애리자연생활공원",
+        "region": "서귀포시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "status": "open",
+      "review_decision": "pending_visual_review",
+      "required_evidence": [
+        "entrance_step_or_ramp",
+        "main_path_slope",
+        "surface_condition",
+        "parking_to_entrance_route"
+      ],
+      "image_count": 87,
+      "captured_date_start": "2022-09-28",
+      "captured_date_end": "2022-09-28",
+      "coordinate_bounds": {
+        "min_latitude": 33.30792222222222,
+        "max_latitude": 33.30985833333333,
+        "min_longitude": 126.63359444444446,
+        "max_longitude": 126.63693608333334
+      },
+      "review_image_samples": [
+        {
+          "image_file_name": "HUEREE-1-001",
+          "captured_at": "2022-09-28 10:04",
+          "latitude": 33.308658305555554,
+          "longitude": 126.63359444444446,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "HUEREE-1-018",
+          "captured_at": "2022-09-28 10:15",
+          "latitude": 33.308363888888884,
+          "longitude": 126.63465275,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "HUEREE-1-035",
+          "captured_at": "2022-09-28 10:25",
+          "latitude": 33.30985833333333,
+          "longitude": 126.63631944444445,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "HUEREE-1-053",
+          "captured_at": "2022-09-28 10:19",
+          "latitude": 33.30969722222222,
+          "longitude": 126.63428330555556,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "HUEREE-1-070",
+          "captured_at": "2022-09-28 10:11",
+          "latitude": 33.30907497222222,
+          "longitude": 126.63469719444446,
+          "resolution": "6720*3360"
+        },
+        {
+          "image_file_name": "HUEREE-4-001",
+          "captured_at": "2022-09-28 10:06",
+          "latitude": 33.308797194444445,
+          "longitude": 126.63387222222222,
+          "resolution": "6720*3360"
+        }
+      ],
+      "field_evidence": [
+        {
+          "field": "entrance_step_or_ramp",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "HUEREE-1-001",
+            "HUEREE-1-018",
+            "HUEREE-1-035"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "main_path_slope",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "HUEREE-1-001",
+            "HUEREE-1-018",
+            "HUEREE-1-035"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "surface_condition",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "HUEREE-1-001",
+            "HUEREE-1-018",
+            "HUEREE-1-035"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        },
+        {
+          "field": "parking_to_entrance_route",
+          "status": "pending_visual_review",
+          "image_file_names": [
+            "HUEREE-1-001",
+            "HUEREE-1-018",
+            "HUEREE-1-035"
+          ],
+          "note": "대표 이미지와 원본 이미지 시퀀스를 열어 시각 검수 필요"
+        }
+      ],
+      "recommended_action": "대표 이미지와 전체 이미지 시퀀스로 단차·경사·바닥재·주차장 연결 동선을 검수"
+    }
+  ]
+}

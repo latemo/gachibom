@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_apply_report.schema.json",
+  "title": "Jeju Maeum Roadview Safe Apply Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["applied_at", "policy", "summary", "applied_updates", "skipped_updates"],
+  "properties": {
+    "applied_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["auto_apply_states", "auto_apply_requires", "manual_review_states"],
+      "properties": {
+        "auto_apply_states": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "auto_apply_requires": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "manual_review_states": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_cards",
+        "output_cards",
+        "cards_updated",
+        "safe_field_updates_applied",
+        "skipped_field_updates",
+        "manual_review_items",
+        "source_report_matched_existing",
+        "source_report_new_candidate",
+        "source_report_needs_manual_review"
+      ],
+      "properties": {
+        "input_cards": { "type": "integer", "minimum": 0 },
+        "output_cards": { "type": "integer", "minimum": 0 },
+        "cards_updated": { "type": "integer", "minimum": 0 },
+        "safe_field_updates_applied": { "type": "integer", "minimum": 0 },
+        "skipped_field_updates": { "type": "integer", "minimum": 0 },
+        "manual_review_items": { "type": "integer", "minimum": 0 },
+        "source_report_matched_existing": { "type": "integer", "minimum": 0 },
+        "source_report_new_candidate": { "type": "integer", "minimum": 0 },
+        "source_report_needs_manual_review": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "applied_updates": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/appliedUpdate" }
+    },
+    "skipped_updates": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/skippedUpdate" }
+    }
+  },
+  "$defs": {
+    "appliedUpdate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["existing", "draft", "field", "previous", "applied"],
+      "properties": {
+        "existing": { "$ref": "#/$defs/cardRef" },
+        "draft": { "$ref": "#/$defs/cardRef" },
+        "field": { "type": "string" },
+        "previous": { "$ref": "#/$defs/accessibilityField" },
+        "applied": { "$ref": "#/$defs/accessibilityField" }
+      }
+    },
+    "skippedUpdate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["review_type", "priority", "reason", "existing", "draft", "field_update"],
+      "properties": {
+        "review_type": {
+          "type": "string",
+          "enum": ["auto_skipped_field_update"]
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["high", "medium", "low"]
+        },
+        "reason": { "type": "string" },
+        "existing": { "$ref": "#/$defs/cardRef" },
+        "draft": { "$ref": "#/$defs/cardRef" },
+        "field_update": { "$ref": "#/$defs/fieldUpdate" }
+      }
+    },
+    "cardRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "region", "category", "verification_status"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "region": { "type": "string" },
+        "category": { "type": "string" },
+        "verification_status": { "type": "string" }
+      }
+    },
+    "accessibilityField": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "note", "source_ref"],
+      "properties": {
+        "state": { "type": "string" },
+        "note": { "type": "string" },
+        "source_ref": { "type": ["string", "null"] }
+      }
+    },
+    "fieldUpdate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field",
+        "existing_state",
+        "existing_note",
+        "draft_state",
+        "draft_note",
+        "draft_source_ref",
+        "recommended_action"
+      ],
+      "properties": {
+        "field": { "type": "string" },
+        "existing_state": { "type": ["string", "null"] },
+        "existing_note": { "type": "string" },
+        "draft_state": { "type": ["string", "null"] },
+        "draft_note": { "type": "string" },
+        "draft_source_ref": { "type": ["string", "null"] },
+        "recommended_action": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_visual_review_share_validation_report.schema.json",
+  "title": "Jeju Maeum Roadview Visual Review Share Validation Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "status", "package_dir", "zip_path", "summary", "checks"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "status": { "type": "string", "enum": ["pass", "fail"] },
+    "package_dir": { "type": "string" },
+    "zip_path": { "type": "string" },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_checks",
+        "passed_checks",
+        "failed_checks",
+        "asset_count",
+        "contact_sheet_count",
+        "place_csv_count",
+        "zip_size_bytes",
+        "zip_sha256"
+      ],
+      "properties": {
+        "total_checks": { "type": "integer", "minimum": 0 },
+        "passed_checks": { "type": "integer", "minimum": 0 },
+        "failed_checks": { "type": "integer", "minimum": 0 },
+        "asset_count": { "type": "integer", "minimum": 0 },
+        "contact_sheet_count": { "type": "integer", "minimum": 0 },
+        "place_csv_count": { "type": "integer", "minimum": 0 },
+        "zip_size_bytes": { "type": "integer", "minimum": 0 },
+        "zip_sha256": { "type": "string" }
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/check" }
+    }
+  },
+  "$defs": {
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["check_id", "status", "detail"],
+      "properties": {
+        "check_id": { "type": "string" },
+        "status": { "type": "string", "enum": ["pass", "fail"] },
+        "detail": { "type": "string" }
+      }
+    }
+  }
+}

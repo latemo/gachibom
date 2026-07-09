@@ -1,0 +1,74 @@
+[
+  {
+    "catalog_id": "catalog_indoor_a7c4a10f",
+    "name": "제주문학관",
+    "category": "indoor",
+    "region": "제주시",
+    "address": "제주특별자치도 제주시 연북로 339",
+    "phone": "064-710-3490",
+    "homepage": null,
+    "latitude": 33.0,
+    "longitude": 126.0,
+    "tags": [
+      "문학",
+      "문화",
+      "실내"
+    ],
+    "description": "실내 문화시설 예시",
+    "source": {
+      "name": "운영자 샘플",
+      "url": "https://example.com",
+      "dataset_name": "sample",
+      "license": "sample",
+      "updated_at": "2026-07-07"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-07",
+      "raw_category": "관광지",
+      "raw_id": "sample-001",
+      "raw_hash": "a7c4a10fedc7b120834f805e47f5bf1fb6714b153f3e8d2ee8012e30e522f0d7"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_indoor_literature_022",
+      "match_status": "matched",
+      "match_confidence": 1.0
+    },
+    "status": "active"
+  },
+  {
+    "catalog_id": "catalog_food_market_2b38d699",
+    "name": "서귀포매일올레시장",
+    "category": "food_market",
+    "region": "서귀포시",
+    "address": "제주특별자치도 서귀포시 중앙로62번길 18",
+    "phone": null,
+    "homepage": null,
+    "latitude": 33.0,
+    "longitude": 126.0,
+    "tags": [
+      "시장",
+      "음식",
+      "혼잡가능"
+    ],
+    "description": "음식 중심 시장 예시",
+    "source": {
+      "name": "운영자 샘플",
+      "url": "https://example.com",
+      "dataset_name": "sample",
+      "license": "sample",
+      "updated_at": "2026-07-07"
+    },
+    "ingestion": {
+      "imported_at": "2026-07-07",
+      "raw_category": "음식점",
+      "raw_id": "sample-002",
+      "raw_hash": "2b38d6993323e4aeed7cad8a444e847d1fd2148dee8290ffbdafe7e300dbf33e"
+    },
+    "matching": {
+      "accessibility_card_id": "jeju_food_market_olle_035",
+      "match_status": "matched",
+      "match_confidence": 1.0
+    },
+    "status": "active"
+  }
+]

@@ -1,0 +1,587 @@
+{
+  "generated_at": "2026-07-09",
+  "overall_status": "blocked_for_full_service",
+  "status_label": "상용 공개 보류",
+  "summary": {
+    "total_actions": 4,
+    "critical_actions": 2,
+    "blocked_actions": 2,
+    "service_seed_places": 17,
+    "missing_roadview_images": 70,
+    "affected_missing_image_places": 4,
+    "visual_review_open_places": 17,
+    "visual_review_pending_fields": 68,
+    "promoted_active_candidates": 0,
+    "first_action": "누락 로드뷰 원본 이미지 70장 복구",
+    "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령 후 data/raw/roadview_images에 배치"
+  },
+  "actions": [
+    {
+      "id": "recover_missing_roadview_original_images",
+      "priority": "critical",
+      "priority_label": "즉시 처리",
+      "status": "blocked_external_request",
+      "status_label": "외부 수령 필요",
+      "owner": "데이터 수령 담당",
+      "title": "누락 로드뷰 원본 이미지 70장 복구",
+      "metric": "70장 / 4곳",
+      "why": "전체 원본 이미지가 일부 빠진 장소는 상용 공개 게이트에서 원본 수령 완료로 판정할 수 없습니다.",
+      "evidence": [
+        {
+          "label": "예상 원본",
+          "value": "1023장"
+        },
+        {
+          "label": "수령 원본",
+          "value": "953장"
+        },
+        {
+          "label": "누락 원본",
+          "value": "70장"
+        },
+        {
+          "label": "영향 장소",
+          "value": "4곳"
+        }
+      ],
+      "affected_places": [
+        {
+          "place_name": "제주4.3평화공원",
+          "missing_image_count": 66,
+          "sample_image_file_names": [
+            "JEJU43PA-1-004",
+            "JEJU43PA-1-005",
+            "JEJU43PA-1-006",
+            "JEJU43PA-1-007",
+            "JEJU43PA-1-014"
+          ]
+        },
+        {
+          "place_name": "국립제주박물관",
+          "missing_image_count": 2,
+          "sample_image_file_names": [
+            "JEJUNATIONALMU-2-068",
+            "JEJUNATIONALMU-2-071"
+          ]
+        },
+        {
+          "place_name": "삼성혈",
+          "missing_image_count": 1,
+          "sample_image_file_names": [
+            "SAMSUNGHYEOL-1-013"
+          ]
+        },
+        {
+          "place_name": "제주삼양동유적",
+          "missing_image_count": 1,
+          "sample_image_file_names": [
+            "SAMYANGRUINS-1-001"
+          ]
+        }
+      ],
+      "inputs": [
+        "data/roadview_provider_404_image_request.csv",
+        "docs/roadview_provider_404_recovery_request.md"
+      ],
+      "outputs": [
+        "data/roadview_missing_image_recovery_report.json",
+        "data/raw/roadview_images/",
+        "data/roadview_image_receipt_report.json",
+        "data/roadview_service_seed_gate_status.json"
+      ],
+      "done_when": [
+        "누락 70장 또는 제공기관이 인정한 대체 원본이 data/raw/roadview_images에 배치됨",
+        "로드뷰 이미지 수령 리포트의 missing_requested_images가 0으로 내려감",
+        "서비스 시드 게이트의 image_receipt_complete 보류가 사라짐"
+      ],
+      "next_steps": [
+        "제공기관에 404 원본 이미지 복구 또는 대체 원본 수령을 요청하고, 복구 전에는 전체 원본 수령 게이트를 차단 상태로 유지한다.",
+        "수령 파일명을 요청 CSV의 image_file_name 기준으로 맞춰 배치",
+        "누락 이미지 회복 검증 리포트로 70장 해소 여부를 먼저 확인",
+        "수령 후 수령 리포트와 게이트 상태를 재생성"
+      ]
+    },
+    {
+      "id": "complete_roadview_visual_review",
+      "priority": "critical",
+      "priority_label": "즉시 처리",
+      "status": "manual_review_required",
+      "status_label": "사람 검수 필요",
+      "owner": "접근성 검수 담당",
+      "title": "로드뷰 시드 17곳 시각 검수 완료",
+      "metric": "17곳 / 68개 필드",
+      "why": "출입구 단차, 경사, 바닥 상태, 주차장-입구 동선은 이미지 판정 전까지 추천 근거로 확정할 수 없습니다.",
+      "evidence": [
+        {
+          "label": "열린 검수 장소",
+          "value": "17곳"
+        },
+        {
+          "label": "미판정 필드",
+          "value": "68개"
+        },
+        {
+          "label": "우선 샘플 확보",
+          "value": "102/102장"
+        },
+        {
+          "label": "검수 완료 장소",
+          "value": "0곳"
+        }
+      ],
+      "affected_places": [
+        {
+          "place_name": "국립제주박물관",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        },
+        {
+          "place_name": "김녕미로공원",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        },
+        {
+          "place_name": "삼성혈",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        },
+        {
+          "place_name": "상효원수목원",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        },
+        {
+          "place_name": "서귀포시립기당미술관",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        },
+        {
+          "place_name": "스누피가든",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        },
+        {
+          "place_name": "제주4.3평화공원",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        },
+        {
+          "place_name": "제주고산리유적",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        },
+        {
+          "place_name": "제주교육박물관",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        },
+        {
+          "place_name": "제주도립김창열미술관",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        },
+        {
+          "place_name": "제주민속자연사박물관",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        },
+        {
+          "place_name": "제주삼양동유적",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        },
+        {
+          "place_name": "제주아트센터",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        },
+        {
+          "place_name": "제주웰컴센터",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        },
+        {
+          "place_name": "제주현대미술관",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        },
+        {
+          "place_name": "한림공원(아열대식물원)",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        },
+        {
+          "place_name": "휴애리자연생활공원",
+          "status": "open",
+          "review_decision": "pending_reviewer_input",
+          "pending_field_count": 4,
+          "pending_fields": [
+            "entrance_step_or_ramp",
+            "main_path_slope",
+            "surface_condition",
+            "parking_to_entrance_route"
+          ]
+        }
+      ],
+      "inputs": [
+        "docs/roadview_visual_review_share.zip",
+        "docs/roadview_visual_review_share_20260709/index.html"
+      ],
+      "outputs": [
+        "data/roadview_visual_review_sheet.json",
+        "data/roadview_service_seed_promotion_readiness.json"
+      ],
+      "done_when": [
+        "각 장소의 필수 4개 필드가 verified, needs_follow_up, conflict 중 하나로 판정됨",
+        "불확실한 항목은 verified로 올리지 않고 후속 확인으로 남김",
+        "로드뷰 이미지 검수 완료 장소 수가 17곳으로 올라감"
+      ],
+      "next_steps": [
+        "공유 HTML에서 장소별 대표 이미지를 열고 4개 필드를 버튼으로 판정",
+        "판정 CSV를 병합해 roadview_visual_review_sheet.json을 갱신",
+        "충돌 또는 후속 확인 항목은 추천 점수에서 보수적으로 감점"
+      ]
+    },
+    {
+      "id": "promote_verified_service_seed_candidates",
+      "priority": "high",
+      "priority_label": "검수 직후",
+      "status": "waiting_previous_gate",
+      "status_label": "이전 단계 대기",
+      "owner": "데이터 파이프라인 담당",
+      "title": "검수 통과 장소 활성 후보 승격",
+      "metric": "0/17곳",
+      "why": "상용 추천에는 검수 통과 또는 명확한 제한 조건이 붙은 장소만 활성 후보로 넣어야 합니다.",
+      "evidence": [
+        {
+          "label": "전체 시드",
+          "value": "17곳"
+        },
+        {
+          "label": "활성 후보",
+          "value": "0곳"
+        },
+        {
+          "label": "대기 장소",
+          "value": "17곳"
+        }
+      ],
+      "affected_places": [],
+      "inputs": [
+        "data/roadview_service_seed_promotion_readiness.json",
+        "data/roadview_visual_review_sheet.json"
+      ],
+      "outputs": [
+        "data/roadview_service_seed_active_candidates.json",
+        "data/roadview_service_seed_gate_status.json"
+      ],
+      "done_when": [
+        "활성 후보 수가 서비스 시드 17곳과 일치함",
+        "활성 후보 준비 보류 항목이 사라짐"
+      ],
+      "next_steps": [
+        "시각 검수 완료 후 승격 준비 리포트를 재생성",
+        "통과 장소만 활성 후보로 내보냄",
+        "앱 추천 기본 데이터 재생성 전 활성 후보 수를 확인"
+      ]
+    },
+    {
+      "id": "keep_limited_release_boundary",
+      "priority": "high",
+      "priority_label": "상시 유지",
+      "status": "internal_review_ready",
+      "status_label": "내부 검증 가능",
+      "owner": "서비스 운영 담당",
+      "title": "상용 공개 전 노출 범위 고정",
+      "metric": "상용 공개 보류",
+      "why": "서비스화 전에는 검수되지 않은 로드뷰 근거가 실제 사용자 추천 근거처럼 보이지 않아야 합니다.",
+      "evidence": [
+        {
+          "label": "운영 게이트",
+          "value": "상용 공개 보류"
+        },
+        {
+          "label": "다음 조치",
+          "value": "누락 원본 이미지 복구 또는 대체 원본 수령 후 data/raw/roadview_images에 배치"
+        }
+      ],
+      "affected_places": [],
+      "inputs": [
+        "web/data/operations_readiness_report.json",
+        "web/data/recommendation_case_validation_report.json"
+      ],
+      "outputs": [
+        "web/data/service_launch_action_plan.json",
+        "docs/service_launch_action_plan_20260709.md"
+      ],
+      "done_when": [
+        "앱 좌측 게이트에서 상용 공개 보류와 다음 실행 항목이 함께 보임",
+        "검수 전 장소는 서비스 추천 근거로 과장 표기되지 않음"
+      ],
+      "next_steps": [
+        "운영 게이트가 전체 공개 가능으로 바뀔 때까지 제한 공개 문구 유지",
+        "추천 품질 검증표와 서비스 실행 계획을 같은 기준일로 갱신"
+      ]
+    }
+  ],
+  "affected_places": [
+    {
+      "place_name": "제주4.3평화공원",
+      "needs_missing_images": true,
+      "missing_image_count": 66,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    },
+    {
+      "place_name": "국립제주박물관",
+      "needs_missing_images": true,
+      "missing_image_count": 2,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    },
+    {
+      "place_name": "삼성혈",
+      "needs_missing_images": true,
+      "missing_image_count": 1,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    },
+    {
+      "place_name": "제주삼양동유적",
+      "needs_missing_images": true,
+      "missing_image_count": 1,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    },
+    {
+      "place_name": "김녕미로공원",
+      "needs_missing_images": false,
+      "missing_image_count": 0,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    },
+    {
+      "place_name": "상효원수목원",
+      "needs_missing_images": false,
+      "missing_image_count": 0,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    },
+    {
+      "place_name": "서귀포시립기당미술관",
+      "needs_missing_images": false,
+      "missing_image_count": 0,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    },
+    {
+      "place_name": "스누피가든",
+      "needs_missing_images": false,
+      "missing_image_count": 0,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    },
+    {
+      "place_name": "제주고산리유적",
+      "needs_missing_images": false,
+      "missing_image_count": 0,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    },
+    {
+      "place_name": "제주교육박물관",
+      "needs_missing_images": false,
+      "missing_image_count": 0,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    },
+    {
+      "place_name": "제주도립김창열미술관",
+      "needs_missing_images": false,
+      "missing_image_count": 0,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    },
+    {
+      "place_name": "제주민속자연사박물관",
+      "needs_missing_images": false,
+      "missing_image_count": 0,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    },
+    {
+      "place_name": "제주아트센터",
+      "needs_missing_images": false,
+      "missing_image_count": 0,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    },
+    {
+      "place_name": "제주웰컴센터",
+      "needs_missing_images": false,
+      "missing_image_count": 0,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    },
+    {
+      "place_name": "제주현대미술관",
+      "needs_missing_images": false,
+      "missing_image_count": 0,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    },
+    {
+      "place_name": "한림공원(아열대식물원)",
+      "needs_missing_images": false,
+      "missing_image_count": 0,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    },
+    {
+      "place_name": "휴애리자연생활공원",
+      "needs_missing_images": false,
+      "missing_image_count": 0,
+      "needs_visual_review": true,
+      "pending_field_count": 4
+    }
+  ],
+  "app_highlights": [
+    {
+      "title": "누락 로드뷰 원본 이미지 70장 복구",
+      "status_label": "외부 수령 필요",
+      "metric": "70장 / 4곳",
+      "next_step": "제공기관에 404 원본 이미지 복구 또는 대체 원본 수령을 요청하고, 복구 전에는 전체 원본 수령 게이트를 차단 상태로 유지한다."
+    },
+    {
+      "title": "로드뷰 시드 17곳 시각 검수 완료",
+      "status_label": "사람 검수 필요",
+      "metric": "17곳 / 68개 필드",
+      "next_step": "공유 HTML에서 장소별 대표 이미지를 열고 4개 필드를 버튼으로 판정"
+    },
+    {
+      "title": "검수 통과 장소 활성 후보 승격",
+      "status_label": "이전 단계 대기",
+      "metric": "0/17곳",
+      "next_step": "시각 검수 완료 후 승격 준비 리포트를 재생성"
+    }
+  ],
+  "source_files": [
+    "data/operations_readiness_report.json",
+    "data/roadview_service_seed_gate_status.json",
+    "data/roadview_provider_404_image_report.json",
+    "data/roadview_image_receipt_report.json",
+    "data/roadview_visual_review_sheet.json"
+  ]
+}

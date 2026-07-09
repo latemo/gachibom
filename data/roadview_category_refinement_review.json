@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-07-09",
+  "source_work_queue_generated_at": "2026-07-09",
+  "criteria": {
+    "category_refined": "추천 규칙에 쓰이는 1차 서비스 카테고리로 other를 해소",
+    "blocked": "시설 성격이 복합적이면 대표 추천 목적 기준으로 카테고리 지정 후 보조 태그로 보완"
+  },
+  "summary": {
+    "total": 1,
+    "by_status": {
+      "resolved": 1
+    },
+    "by_review_decision": {
+      "category_refined": 1
+    },
+    "by_recommended_category": {
+      "rest_area": 1
+    }
+  },
+  "items": [
+    {
+      "task_id": "jeju_roadview_place_104_category_refinement",
+      "card": {
+        "id": "jeju_roadview_place_104",
+        "name": "스누피가든",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "status": "resolved",
+      "review_decision": "category_refined",
+      "current_category": "other",
+      "primary_place_type": "theme_garden",
+      "recommended_category": "rest_area",
+      "recommended_situation_tags": [
+        "outdoor",
+        "indoor",
+        "weather_sensitive",
+        "crowded_possible"
+      ],
+      "rationale": "실내 전시와 야외 정원이 결합된 테마형 정원으로, 서비스 추천에서는 휴식형 공원·정원 장소로 분류",
+      "source_queries": [
+        "스누피가든 공식",
+        "스누피가든 시설 유형"
+      ],
+      "recommended_action": "카드 승격 시 category와 situation_tags를 함께 갱신"
+    }
+  ]
+}

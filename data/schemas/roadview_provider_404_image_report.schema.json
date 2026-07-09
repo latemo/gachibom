@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_provider_404_image_report.schema.json",
+  "title": "Jeju Roadview Provider 404 Image Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "generated_at",
+    "source_roadview_image_download_report_generated_at",
+    "source_download_report_tier",
+    "source_endpoint",
+    "classification",
+    "criteria",
+    "summary",
+    "items",
+    "recommended_action"
+  ],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date" },
+    "source_roadview_image_download_report_generated_at": { "type": ["string", "null"], "format": "date" },
+    "source_download_report_tier": { "type": ["string", "null"] },
+    "source_endpoint": { "type": ["string", "null"] },
+    "classification": { "const": "provider_image_server_404" },
+    "criteria": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider_404", "gate_policy"],
+      "properties": {
+        "provider_404": { "type": "string" },
+        "gate_policy": { "type": "string" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider_404_images", "affected_places", "by_place", "by_request_tier"],
+      "properties": {
+        "provider_404_images": { "type": "integer", "minimum": 0 },
+        "affected_places": { "type": "integer", "minimum": 0 },
+        "by_place": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "by_request_tier": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/provider404Image" }
+    },
+    "recommended_action": { "type": "string" }
+  },
+  "$defs": {
+    "provider404Image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_id",
+        "place_name",
+        "image_file_name",
+        "request_tier",
+        "tourist_name",
+        "tourist_name_en",
+        "captured_at",
+        "source_url",
+        "error"
+      ],
+      "properties": {
+        "card_id": { "type": "string" },
+        "place_name": { "type": "string" },
+        "image_file_name": { "type": "string" },
+        "request_tier": { "type": "string" },
+        "tourist_name": { "type": "string" },
+        "tourist_name_en": { "type": "string" },
+        "captured_at": { "type": ["string", "null"] },
+        "source_url": { "type": "string" },
+        "error": { "type": "string" }
+      }
+    }
+  }
+}

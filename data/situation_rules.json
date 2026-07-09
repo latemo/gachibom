@@ -1,0 +1,47 @@
+[
+  {
+    "id": "diet_restriction_no_food",
+    "description": "외부 음식, 식당, 식사 장소를 피해야 하는 사용자 조건",
+    "trigger_terms": ["식당 제외", "음식 제한", "외부 음식 제한", "밥을 못", "먹지 못", "식사 조심", "음식 조심", "식이 제한", "diet restriction"],
+    "exclude_categories": ["restaurant", "food_market"],
+    "penalize_categories": ["cafe"],
+    "check_before_visit": ["식사 장소 제외 여부", "개별 식사 준비 가능 여부", "음식 냄새나 혼잡이 부담되는지"],
+    "safe_reframe": "식사 중심 장소보다 짧은 실내 관람, 조용한 전망, 휴식 가능한 장소를 우선합니다."
+  },
+  {
+    "id": "crowd_or_infection_sensitive",
+    "description": "혼잡, 감염 우려, 면역 저하 등 사람이 많은 환경을 피해야 하는 조건",
+    "trigger_terms": ["혼잡", "사람 많은", "사람이 많은", "감염", "면역", "붐비는", "대기줄", "줄 서기"],
+    "exclude_categories": [],
+    "penalize_categories": ["food_market", "shopping", "cafe"],
+    "check_before_visit": ["혼잡 시간대", "대기줄 여부", "주말·성수기 방문 여부"],
+    "safe_reframe": "혼잡 가능성이 큰 장소는 낮은 점수로 처리하고, 조용한 시간대 또는 대체 장소를 우선합니다."
+  },
+  {
+    "id": "low_stamina_short_stay",
+    "description": "체력 저하, 회복 중, 긴 걷기 어려움 등 짧은 체류가 필요한 조건",
+    "trigger_terms": ["체력 저하", "회복 중", "항암", "긴 걷기", "오래 걷기", "짧은 이동", "휴식 필요"],
+    "exclude_categories": [],
+    "penalize_categories": [],
+    "check_before_visit": ["도보 거리", "중간 휴식 가능 지점", "숙소 복귀 동선"],
+    "safe_reframe": "장거리 코스보다 짧은 감상과 휴식 중심 코스를 우선합니다."
+  },
+  {
+    "id": "weather_sensitive",
+    "description": "비, 바람, 더위, 추위 등 날씨 영향이 큰 환경을 피해야 하는 조건",
+    "trigger_terms": ["비", "바람", "강풍", "더위", "추위", "날씨", "야외 힘듦", "햇빛"],
+    "exclude_categories": [],
+    "penalize_categories": ["sea", "oreum"],
+    "check_before_visit": ["방문 당일 날씨", "강풍 여부", "그늘과 실내 대피 가능 여부"],
+    "safe_reframe": "날씨 영향을 덜 받는 실내 또는 짧은 야외 장소를 우선합니다."
+  },
+  {
+    "id": "sensory_sensitive_low_stimulation",
+    "description": "소리, 빛, 어두운 공간, 강한 자극에 민감한 사용자 조건",
+    "trigger_terms": ["소리 민감", "빛 민감", "어두운 곳", "강한 조명", "자극", "멀미", "어지러움"],
+    "exclude_categories": [],
+    "penalize_categories": [],
+    "check_before_visit": ["조명과 소리 자극", "어두운 전시장 여부", "휴식 가능한 조용한 공간"],
+    "safe_reframe": "강한 미디어 자극보다 조용한 실내·휴식형 장소를 우선합니다."
+  }
+]

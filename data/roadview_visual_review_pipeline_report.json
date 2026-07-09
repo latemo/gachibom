@@ -1,0 +1,150 @@
+{
+  "generated_at": "2026-07-09",
+  "status": "completed",
+  "summary": {
+    "missing_image_recovery": {
+      "expected_recovery_images": 70,
+      "recovered_images": 0,
+      "still_missing_images": 70,
+      "duplicate_name_images": 0,
+      "affected_places": 4,
+      "recovered_places": 0,
+      "partial_recovery_places": 0,
+      "still_missing_places": 4,
+      "by_status": {
+        "missing": 70
+      },
+      "by_place_status": {
+        "awaiting_recovery": 4
+      },
+      "next_action": "아직 확인되지 않은 누락 원본 70장을 제공기관에 재요청 또는 대체 원본으로 수령"
+    },
+    "decision_import": {
+      "total_rows": 68,
+      "applied": 0,
+      "skipped": 68,
+      "invalid": 0,
+      "by_action": {
+        "skipped_pending_input": 68
+      }
+    },
+    "visual_apply": {
+      "total": 17,
+      "by_action": {
+        "skipped_pending_input": 17
+      },
+      "by_new_status": {
+        "open": 17
+      },
+      "by_new_review_decision": {
+        "pending_visual_review": 17
+      }
+    },
+    "promotion_readiness": {
+      "total": 17,
+      "ready_count": 0,
+      "blocked_count": 17,
+      "by_promotion_decision": {
+        "blocked_pending_hardening": 17
+      },
+      "blocking_gate_counts": {
+        "roadview_image_verified": 17
+      }
+    },
+    "active_candidates": {
+      "total": 17,
+      "promoted_count": 0,
+      "blocked_count": 17,
+      "by_action": {
+        "blocked": 17
+      },
+      "blocking_gate_counts": {
+        "roadview_image_verified": 17
+      }
+    },
+    "gate_status": {
+      "total_places": 17,
+      "ready_for_service_activation_count": 0,
+      "blocked_count": 17,
+      "expected_images": 1023,
+      "received_requested_images": 953,
+      "missing_requested_images": 70,
+      "expected_priority_sample_images": 102,
+      "received_priority_sample_images": 102,
+      "missing_priority_sample_images": 0,
+      "available_review_sample_images": 102,
+      "missing_review_sample_images": 0,
+      "open_visual_review_places": 17,
+      "verified_roadview_places": 0,
+      "promoted_active_candidates": 0,
+      "by_primary_blocking_stage": {
+        "awaiting_image_receipt": 4,
+        "awaiting_visual_review": 13
+      },
+      "blocking_gate_counts": {
+        "image_receipt_complete": 4,
+        "roadview_image_verified": 17,
+        "active_candidate_ready": 17
+      },
+      "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령 후 data/raw/roadview_images에 배치"
+    },
+    "operations_readiness": {
+      "total_checks": 15,
+      "passed_checks": 12,
+      "warning_checks": 0,
+      "blocker_checks": 3,
+      "by_status": {
+        "pass": 12,
+        "block": 3
+      },
+      "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령을 제공기관에 요청"
+    },
+    "service_launch_action_plan": {
+      "total_actions": 4,
+      "critical_actions": 2,
+      "blocked_actions": 2,
+      "service_seed_places": 17,
+      "missing_roadview_images": 70,
+      "affected_missing_image_places": 4,
+      "visual_review_open_places": 17,
+      "visual_review_pending_fields": 68,
+      "promoted_active_candidates": 0,
+      "first_action": "누락 로드뷰 원본 이미지 70장 복구",
+      "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령 후 data/raw/roadview_images에 배치"
+    },
+    "service_preflight": {
+      "total_checks": 19,
+      "passed_checks": 16,
+      "warning_checks": 0,
+      "blocker_checks": 3,
+      "by_status": {
+        "block": 3,
+        "pass": 16
+      },
+      "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령을 제공기관에 요청"
+    }
+  },
+  "outputs": {
+    "missing_image_recovery": "data/roadview_missing_image_recovery_report.json",
+    "missing_image_recovery_md": "docs/roadview_missing_image_recovery_report_20260709.md",
+    "visual_review_sheet": "data/roadview_visual_review_sheet.json",
+    "decision_import_report": "data/roadview_visual_review_decision_import_report.json",
+    "roadview_image_review": "data/roadview_image_review.json",
+    "visual_apply_report": "data/roadview_visual_review_apply_report.json",
+    "promotion_readiness": "data/roadview_service_seed_promotion_readiness.json",
+    "active_candidates": "data/roadview_service_seed_active_candidates.json",
+    "active_candidate_report": "data/roadview_service_seed_active_candidate_report.json",
+    "gate_status": "data/roadview_service_seed_gate_status.json",
+    "data_request_tracker": "data/data_request_tracker.json",
+    "data_request_tracker_csv": "data/data_request_tracker.csv",
+    "operations_readiness": "data/operations_readiness_report.json",
+    "operations_readiness_web": "web/data/operations_readiness_report.json",
+    "service_launch_action_plan": "data/service_launch_action_plan.json",
+    "service_launch_action_plan_md": "docs/service_launch_action_plan_20260709.md",
+    "service_launch_action_plan_web": "web/data/service_launch_action_plan.json",
+    "service_preflight": "data/service_preflight_report.json",
+    "service_preflight_md": "docs/service_preflight_report_20260709.md",
+    "visual_review_board": "docs/roadview_visual_review_board.html"
+  },
+  "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령을 제공기관에 요청"
+}

@@ -1,0 +1,1747 @@
+{
+  "generated_at": "2026-07-07",
+  "source_report_generated_at": "2026-07-07",
+  "summary": {
+    "total": 106,
+    "by_review_type": {
+      "field_conflict": 9,
+      "uncertain_match": 6,
+      "new_candidate": 87,
+      "auto_skipped_field_update": 4
+    },
+    "by_priority": {
+      "high": 9,
+      "medium": 97
+    }
+  },
+  "items": [
+    {
+      "review_type": "field_conflict",
+      "priority": "high",
+      "reason": "기존 카드의 yes/no 값과 roadview 초안 값이 충돌하므로 출처 재확인 필요",
+      "existing": {
+        "id": "jeju_rest_sinsan_015",
+        "name": "신산공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_002",
+        "name": "신산공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "match_confidence": 1.0,
+      "match_reasons": [
+        "name_exact",
+        "region_overlap",
+        "category_match"
+      ],
+      "field_conflicts": [
+        {
+          "field": "rest_area",
+          "existing_state": "yes",
+          "existing_note": "도심 공원 산책과 휴식 가능",
+          "draft_state": "no",
+          "draft_note": "휴게실 보유 여부: N",
+          "draft_source_ref": "jeju_roadview_facility_status",
+          "recommended_action": "review_and_update_existing_card"
+        }
+      ]
+    },
+    {
+      "review_type": "field_conflict",
+      "priority": "high",
+      "reason": "기존 카드의 yes/no 값과 roadview 초안 값이 충돌하므로 출처 재확인 필요",
+      "existing": {
+        "id": "jeju_forest_halla_005",
+        "name": "한라수목원",
+        "region": "제주시",
+        "category": "forest",
+        "verification_status": "verified"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_009",
+        "name": "한라수목원",
+        "region": "제주시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "match_confidence": 1.0,
+      "match_reasons": [
+        "name_exact",
+        "region_overlap",
+        "category_match"
+      ],
+      "field_conflicts": [
+        {
+          "field": "rental_or_assistance",
+          "existing_state": "yes",
+          "existing_note": "휠체어와 유아차 대여 정보 있음",
+          "draft_state": "no",
+          "draft_note": "휠체어 대여 가능 여부: N",
+          "draft_source_ref": "jeju_roadview_facility_status",
+          "recommended_action": "review_and_update_existing_card"
+        }
+      ]
+    },
+    {
+      "review_type": "uncertain_match",
+      "priority": "medium",
+      "reason": "장소명이 부분 일치하여 동일 장소 여부 확인 필요",
+      "existing": {
+        "id": "jeju_sea_songaksan_023",
+        "name": "송악산",
+        "region": "서귀포시 대정읍",
+        "category": "sea",
+        "verification_status": "needs_check"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_021",
+        "name": "송악산전망대",
+        "region": "서귀포시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "match_confidence": 0.73,
+      "match_reasons": [
+        "name_contains",
+        "region_overlap"
+      ],
+      "field_conflicts": []
+    },
+    {
+      "review_type": "field_conflict",
+      "priority": "high",
+      "reason": "기존 카드의 yes/no 값과 roadview 초안 값이 충돌하므로 출처 재확인 필요",
+      "existing": {
+        "id": "jeju_forest_cheonjiyeon_014",
+        "name": "천지연폭포",
+        "region": "서귀포시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_035",
+        "name": "천지연폭포",
+        "region": "서귀포시",
+        "category": "sea",
+        "verification_status": "partial"
+      },
+      "match_confidence": 0.98,
+      "match_reasons": [
+        "name_exact",
+        "region_overlap"
+      ],
+      "field_conflicts": [
+        {
+          "field": "rental_or_assistance",
+          "existing_state": "yes",
+          "existing_note": "휠체어, 유아차 대여 가능",
+          "draft_state": "no",
+          "draft_note": "휠체어 대여 가능 여부: N",
+          "draft_source_ref": "jeju_roadview_facility_status",
+          "recommended_action": "review_and_update_existing_card"
+        }
+      ]
+    },
+    {
+      "review_type": "uncertain_match",
+      "priority": "medium",
+      "reason": "장소명이 부분 일치하여 동일 장소 여부 확인 필요",
+      "existing": {
+        "id": "jeju_indoor_haenyeo_024",
+        "name": "제주해녀박물관",
+        "region": "제주시 구좌읍",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_042",
+        "name": "해녀박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "match_confidence": 0.75,
+      "match_reasons": [
+        "name_contains",
+        "region_overlap",
+        "category_match"
+      ],
+      "field_conflicts": []
+    },
+    {
+      "review_type": "field_conflict",
+      "priority": "high",
+      "reason": "기존 카드의 yes/no 값과 roadview 초안 값이 충돌하므로 출처 재확인 필요",
+      "existing": {
+        "id": "jeju_indoor_mandeok_museum_009",
+        "name": "김만덕기념관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_044",
+        "name": "김만덕기념관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "match_confidence": 1.0,
+      "match_reasons": [
+        "name_exact",
+        "region_overlap",
+        "category_match"
+      ],
+      "field_conflicts": [
+        {
+          "field": "rental_or_assistance",
+          "existing_state": "yes",
+          "existing_note": "휠체어 및 유아차 대여 가능",
+          "draft_state": "no",
+          "draft_note": "휠체어 대여 가능 여부: N",
+          "draft_source_ref": "jeju_roadview_facility_status",
+          "recommended_action": "review_and_update_existing_card"
+        }
+      ]
+    },
+    {
+      "review_type": "field_conflict",
+      "priority": "high",
+      "reason": "기존 카드의 yes/no 값과 roadview 초안 값이 충돌하므로 출처 재확인 필요",
+      "existing": {
+        "id": "jeju_forest_healing_001",
+        "name": "서귀포 치유의숲",
+        "region": "서귀포시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_049",
+        "name": "서귀포치유의숲",
+        "region": "서귀포시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "match_confidence": 1.0,
+      "match_reasons": [
+        "name_exact",
+        "region_overlap",
+        "category_match"
+      ],
+      "field_conflicts": [
+        {
+          "field": "rest_area",
+          "existing_state": "yes",
+          "existing_note": "숲길과 쉼팡 등 휴식 가능 구간이 있으나 이용 가능 구간 확인 필요",
+          "draft_state": "no",
+          "draft_note": "휴게실 보유 여부: N",
+          "draft_source_ref": "jeju_roadview_facility_status",
+          "recommended_action": "review_and_update_existing_card"
+        },
+        {
+          "field": "rental_or_assistance",
+          "existing_state": "yes",
+          "existing_note": "휠체어와 유아차 대여 가능 정보 있음",
+          "draft_state": "no",
+          "draft_note": "휠체어 대여 가능 여부: N",
+          "draft_source_ref": "jeju_roadview_facility_status",
+          "recommended_action": "review_and_update_existing_card"
+        }
+      ]
+    },
+    {
+      "review_type": "field_conflict",
+      "priority": "high",
+      "reason": "기존 카드의 yes/no 값과 roadview 초안 값이 충돌하므로 출처 재확인 필요",
+      "existing": {
+        "id": "jeju_indoor_lee_jung_seop_034",
+        "name": "이중섭미술관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "needs_check"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_050",
+        "name": "이중섭미술관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "match_confidence": 1.0,
+      "match_reasons": [
+        "name_exact",
+        "region_overlap",
+        "category_match"
+      ],
+      "field_conflicts": [
+        {
+          "field": "accessible_toilet",
+          "existing_state": "no",
+          "existing_note": "장애인 화장실 공사 중 폐쇄 정보 있음",
+          "draft_state": "yes",
+          "draft_note": "장애인 화장실 보유 수: 2개",
+          "draft_source_ref": "jeju_roadview_facility_status",
+          "recommended_action": "review_and_update_existing_card"
+        }
+      ]
+    },
+    {
+      "review_type": "uncertain_match",
+      "priority": "medium",
+      "reason": "장소명이 부분 일치하여 동일 장소 여부 확인 필요",
+      "existing": {
+        "id": "jeju_forest_saryeoni_002",
+        "name": "사려니숲길 무장애나눔길",
+        "region": "제주시 조천읍 / 서귀포시 표선면",
+        "category": "forest",
+        "verification_status": "verified"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_060",
+        "name": "사려니숲길",
+        "region": "제주시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "match_confidence": 0.75,
+      "match_reasons": [
+        "name_contains",
+        "region_overlap",
+        "category_match"
+      ],
+      "field_conflicts": []
+    },
+    {
+      "review_type": "uncertain_match",
+      "priority": "medium",
+      "reason": "장소명이 부분 일치하여 동일 장소 여부 확인 필요",
+      "existing": {
+        "id": "jeju_forest_red_oreum_004",
+        "name": "붉은오름자연휴양림",
+        "region": "서귀포시 표선면",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_061",
+        "name": "붉은오름자연휴양림(무장애나눔숲길)",
+        "region": "서귀포시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "match_confidence": 0.75,
+      "match_reasons": [
+        "name_contains",
+        "region_overlap",
+        "category_match"
+      ],
+      "field_conflicts": []
+    },
+    {
+      "review_type": "uncertain_match",
+      "priority": "medium",
+      "reason": "장소명이 부분 일치하여 동일 장소 여부 확인 필요",
+      "existing": {
+        "id": "jeju_forest_red_oreum_004",
+        "name": "붉은오름자연휴양림",
+        "region": "서귀포시 표선면",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_062",
+        "name": "붉은오름자연휴양림(삼나무데크)",
+        "region": "서귀포시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "match_confidence": 0.75,
+      "match_reasons": [
+        "name_contains",
+        "region_overlap",
+        "category_match"
+      ],
+      "field_conflicts": []
+    },
+    {
+      "review_type": "field_conflict",
+      "priority": "high",
+      "reason": "기존 카드의 yes/no 값과 roadview 초안 값이 충돌하므로 출처 재확인 필요",
+      "existing": {
+        "id": "jeju_culture_hangmong_026",
+        "name": "항몽유적지",
+        "region": "제주시 애월읍",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_063",
+        "name": "항몽유적지",
+        "region": "제주시",
+        "category": "sea",
+        "verification_status": "partial"
+      },
+      "match_confidence": 0.98,
+      "match_reasons": [
+        "name_exact",
+        "region_overlap"
+      ],
+      "field_conflicts": [
+        {
+          "field": "rental_or_assistance",
+          "existing_state": "yes",
+          "existing_note": "휠체어, 유아차 대여 가능",
+          "draft_state": "no",
+          "draft_note": "휠체어 대여 가능 여부: N",
+          "draft_source_ref": "jeju_roadview_facility_status",
+          "recommended_action": "review_and_update_existing_card"
+        }
+      ]
+    },
+    {
+      "review_type": "field_conflict",
+      "priority": "high",
+      "reason": "기존 카드의 yes/no 값과 roadview 초안 값이 충돌하므로 출처 재확인 필요",
+      "existing": {
+        "id": "jeju_indoor_literature_022",
+        "name": "제주문학관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "verified"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_078",
+        "name": "제주문학관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "match_confidence": 1.0,
+      "match_reasons": [
+        "name_exact",
+        "region_overlap",
+        "category_match"
+      ],
+      "field_conflicts": [
+        {
+          "field": "rental_or_assistance",
+          "existing_state": "yes",
+          "existing_note": "휠체어 1대 안내데스크 대여 가능",
+          "draft_state": "no",
+          "draft_note": "휠체어 대여 가능 여부: N",
+          "draft_source_ref": "jeju_roadview_facility_status",
+          "recommended_action": "review_and_update_existing_card"
+        }
+      ]
+    },
+    {
+      "review_type": "uncertain_match",
+      "priority": "medium",
+      "reason": "장소명이 부분 일치하여 동일 장소 여부 확인 필요",
+      "existing": {
+        "id": "jeju_indoor_starlight_025",
+        "name": "별빛누리공원",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_086",
+        "name": "제주별빛누리공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "match_confidence": 0.73,
+      "match_reasons": [
+        "name_contains",
+        "region_overlap"
+      ],
+      "field_conflicts": []
+    },
+    {
+      "review_type": "field_conflict",
+      "priority": "high",
+      "reason": "기존 카드의 yes/no 값과 roadview 초안 값이 충돌하므로 출처 재확인 필요",
+      "existing": {
+        "id": "jeju_culture_folk_village_007",
+        "name": "제주민속촌",
+        "region": "서귀포시 표선면",
+        "category": "culture",
+        "verification_status": "verified"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_093",
+        "name": "제주민속촌",
+        "region": "서귀포시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "match_confidence": 1.0,
+      "match_reasons": [
+        "name_exact",
+        "region_overlap",
+        "category_match"
+      ],
+      "field_conflicts": [
+        {
+          "field": "rental_or_assistance",
+          "existing_state": "yes",
+          "existing_note": "휠체어 대여, 유아차 대여 가능 정보 있음",
+          "draft_state": "no",
+          "draft_note": "휠체어 대여 가능 여부: N",
+          "draft_source_ref": "jeju_roadview_facility_status",
+          "recommended_action": "review_and_update_existing_card"
+        }
+      ]
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_4_3_001",
+        "name": "제주4.3평화공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_003",
+        "name": "제주문예회관",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_004",
+        "name": "탑동광장",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_005",
+        "name": "도두사수항",
+        "region": "제주시",
+        "category": "sea",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_006",
+        "name": "어영공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_007",
+        "name": "용두암",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_008",
+        "name": "용연구름다리산책로",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_010",
+        "name": "제주삼양동유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_011",
+        "name": "산지천갤러리,산짓물공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_013",
+        "name": "제주민속자연사박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_014",
+        "name": "제주교육박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_015",
+        "name": "제주대학교박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_016",
+        "name": "한라산국립공원산악박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_017",
+        "name": "제주아트센터",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_018",
+        "name": "설문대여성문화센터",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_019",
+        "name": "제주도립미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_020",
+        "name": "한마음근린공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_022",
+        "name": "제주추사관",
+        "region": "서귀포시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_024",
+        "name": "제주현대미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_025",
+        "name": "제주도립김창열미술관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_026",
+        "name": "이호테우해수욕장",
+        "region": "제주시",
+        "category": "sea",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_027",
+        "name": "싱계물공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_028",
+        "name": "낙천의자공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_029",
+        "name": "용머리해안기후변화홍보관",
+        "region": "서귀포시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_030",
+        "name": "천제연폭포",
+        "region": "서귀포시",
+        "category": "sea",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_031",
+        "name": "제주국제평화센터",
+        "region": "서귀포시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_032",
+        "name": "주상절리",
+        "region": "서귀포시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_033",
+        "name": "김정문화회관",
+        "region": "서귀포시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_034",
+        "name": "서귀포칠십리시공원",
+        "region": "서귀포시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_036",
+        "name": "서복전시관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_037",
+        "name": "사라봉",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_038",
+        "name": "국립제주박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_039",
+        "name": "제주항일기념관",
+        "region": "제주시",
+        "category": "sea",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_040",
+        "name": "만장굴",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_041",
+        "name": "신재생에너지홍보관",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_043",
+        "name": "수운근린공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_046",
+        "name": "제주돌문화공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_047",
+        "name": "제주돌박물관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_048",
+        "name": "오백장군갤러리",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_052",
+        "name": "서귀포예술의전당",
+        "region": "서귀포시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_053",
+        "name": "서귀포시립기당미술관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_054",
+        "name": "한국야구명예의전당",
+        "region": "서귀포시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_055",
+        "name": "서귀포천문과학문화관",
+        "region": "서귀포시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_056",
+        "name": "노루생태관찰원(먹이주기, 전시관)",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_057",
+        "name": "노루생태관찰원(체험학습실, 연못)",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_058",
+        "name": "절물자연휴양림(실내산림욕체험관)",
+        "region": "제주시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_059",
+        "name": "절물자연휴양림(잔디광장)",
+        "region": "제주시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_064",
+        "name": "제주안전체험관",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_065",
+        "name": "한림작은영화관",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_066",
+        "name": "제주고산리유적",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_067",
+        "name": "예술곶산양",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_068",
+        "name": "제주항공우주박물관",
+        "region": "서귀포시",
+        "category": "sea",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_070",
+        "name": "감귤박물관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_071",
+        "name": "헌마공신김만일기념관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_072",
+        "name": "비자림",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_073",
+        "name": "김영갑갤러리두모악",
+        "region": "서귀포시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_074",
+        "name": "섭지코지",
+        "region": "서귀포시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_075",
+        "name": "제주자연생태공원",
+        "region": "서귀포시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_076",
+        "name": "예술공간이아",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_077",
+        "name": "용담레포츠공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_079",
+        "name": "삼무공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_080",
+        "name": "누웨마루거리",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_081",
+        "name": "교래자연휴양림(숲속의초가)",
+        "region": "제주시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_082",
+        "name": "교래자연휴양림(생태체험관)",
+        "region": "제주시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_4_3_083",
+        "name": "너븐숭이4.3기념관",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_084",
+        "name": "제주웰컴센터",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_085",
+        "name": "제주미래교육연구원과학탐구체험관",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_087",
+        "name": "메이즈랜드",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_088",
+        "name": "김녕미로공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_089",
+        "name": "제주밭담테마공원",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_090",
+        "name": "소인국테마파크",
+        "region": "서귀포시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_091",
+        "name": "헬로키티아일랜드",
+        "region": "서귀포시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_092",
+        "name": "본태박물관",
+        "region": "서귀포시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_094",
+        "name": "제주허브동산",
+        "region": "서귀포시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_095",
+        "name": "상효원수목원",
+        "region": "서귀포시",
+        "category": "forest",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_096",
+        "name": "휴애리자연생활공원",
+        "region": "서귀포시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_097",
+        "name": "제주대학교아라뮤즈홀",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_098",
+        "name": "렛츠런파크제주",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_099",
+        "name": "도두봉둘레길",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_100",
+        "name": "삼성혈",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_1100_102",
+        "name": "1100고지습지",
+        "region": "서귀포시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_103",
+        "name": "서프라이즈테마파크",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_104",
+        "name": "스누피가든",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_105",
+        "name": "한림공원(아열대식물원)",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_106",
+        "name": "한림공원(산야초원)",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_107",
+        "name": "한림공원(재암민속마을)",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "new_candidate",
+      "priority": "medium",
+      "reason": "기존 접근성 카드와 충분히 일치하는 이름/지역 매칭이 없음",
+      "draft": {
+        "id": "jeju_roadview_place_108",
+        "name": "한림공원(제주석분재원)",
+        "region": "제주시",
+        "category": "rest_area",
+        "verification_status": "partial"
+      },
+      "recommended_action": "review_before_adding"
+    },
+    {
+      "review_type": "auto_skipped_field_update",
+      "priority": "medium",
+      "reason": "자동 병합 정책은 공공데이터의 yes 근거만 반영하며 no 값은 운영 검수 후 반영",
+      "existing": {
+        "id": "jeju_culture_mokgwana_008",
+        "name": "제주목관아",
+        "region": "제주시",
+        "category": "culture",
+        "verification_status": "partial"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_012",
+        "name": "제주목관아",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "field_update": {
+        "field": "rest_area",
+        "existing_state": "unknown",
+        "existing_note": "접근 가능한 휴식 지점 확인 필요",
+        "draft_state": "no",
+        "draft_note": "휴게실 보유 여부: N",
+        "draft_source_ref": "jeju_roadview_facility_status",
+        "recommended_action": "review_and_update_existing_card"
+      }
+    },
+    {
+      "review_type": "auto_skipped_field_update",
+      "priority": "medium",
+      "reason": "자동 병합 정책은 공공데이터의 yes 근거만 반영하며 no 값은 운영 검수 후 반영",
+      "existing": {
+        "id": "jeju_indoor_worldheritage_011",
+        "name": "제주세계자연유산센터",
+        "region": "제주시",
+        "category": "indoor",
+        "verification_status": "partial"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_045",
+        "name": "제주세계자연유산센터",
+        "region": "제주시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "field_update": {
+        "field": "rest_area",
+        "existing_state": "partial",
+        "existing_note": "실내 관람 중 휴식 위치 확인 필요",
+        "draft_state": "no",
+        "draft_note": "휴게실 보유 여부: N",
+        "draft_source_ref": "jeju_roadview_facility_status",
+        "recommended_action": "review_and_update_existing_card"
+      }
+    },
+    {
+      "review_type": "auto_skipped_field_update",
+      "priority": "medium",
+      "reason": "자동 병합 정책은 공공데이터의 yes 근거만 반영하며 no 값은 운영 검수 후 반영",
+      "existing": {
+        "id": "jeju_sea_saeyeongyo_039",
+        "name": "새연교",
+        "region": "서귀포시",
+        "category": "sea",
+        "verification_status": "partial"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_051",
+        "name": "새연교",
+        "region": "서귀포시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "field_update": {
+        "field": "rest_area",
+        "existing_state": "partial",
+        "existing_note": "전망 감상과 짧은 체류 가능하나 앉아서 쉴 위치 확인 필요",
+        "draft_state": "no",
+        "draft_note": "휴게실 보유 여부: N",
+        "draft_source_ref": "jeju_roadview_facility_status",
+        "recommended_action": "review_and_update_existing_card"
+      }
+    },
+    {
+      "review_type": "auto_skipped_field_update",
+      "priority": "medium",
+      "reason": "자동 병합 정책은 공공데이터의 yes 근거만 반영하며 no 값은 운영 검수 후 반영",
+      "existing": {
+        "id": "jeju_sea_saeyeongyo_039",
+        "name": "새연교",
+        "region": "서귀포시",
+        "category": "sea",
+        "verification_status": "partial"
+      },
+      "draft": {
+        "id": "jeju_roadview_place_051",
+        "name": "새연교",
+        "region": "서귀포시",
+        "category": "other",
+        "verification_status": "partial"
+      },
+      "field_update": {
+        "field": "rental_or_assistance",
+        "existing_state": "unknown",
+        "existing_note": "대여 정보 확인 필요",
+        "draft_state": "no",
+        "draft_note": "휠체어 대여 가능 여부: N",
+        "draft_source_ref": "jeju_roadview_facility_status",
+        "recommended_action": "review_and_update_existing_card"
+      }
+    }
+  ]
+}

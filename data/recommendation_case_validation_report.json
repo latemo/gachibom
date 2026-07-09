@@ -1,0 +1,2018 @@
+{
+  "generated_at": "2026-07-09",
+  "source": {
+    "places": "data/jeju_accessible_spots.json",
+    "scoring_policy": "src/scoring.py",
+    "runtime_service": "src/recommendation_service.py"
+  },
+  "summary": {
+    "total_cases": 5,
+    "passed_cases": 5,
+    "failed_cases": 0,
+    "overall_status": "통과"
+  },
+  "cases": [
+    {
+      "id": "recovery_quiet",
+      "label": "회복 중",
+      "title": "짧고 조용한 회복 여행",
+      "intent": "체력 저하와 긴 걷기 부담을 줄이고, 식사·혼잡·장시간 야외 체류 위험을 피하는 코스",
+      "status": "통과",
+      "traveler_summary": {
+        "traveler_type": [
+          "recovery_traveler",
+          "caregiver_group"
+        ],
+        "mobility_conditions": [
+          "체력 저하",
+          "긴 걷기 어려움",
+          "휴식 필요"
+        ],
+        "preferred_themes": [
+          "실내",
+          "문화",
+          "휴식"
+        ],
+        "required_accessibility": [
+          "장애인 화장실",
+          "주차",
+          "휴식 공간"
+        ],
+        "avoid": [
+          "식당 제외",
+          "혼잡",
+          "장시간 야외 체류"
+        ]
+      },
+      "expected_policy": {
+        "recommendation_direction": "도보 부담이 낮은 실내·문화·휴식 중심 장소를 우선한다.",
+        "minimum_total_score": 85,
+        "selected_exclude_categories": [
+          "food_market",
+          "restaurant"
+        ],
+        "required_check_terms": [
+          "식사",
+          "혼잡",
+          "휴식"
+        ],
+        "required_fit_terms": [
+          "도보 부담",
+          "편의시설"
+        ],
+        "policy_effect_terms": [
+          "식사",
+          "혼잡"
+        ]
+      },
+      "recommendation": {
+        "score": {
+          "total": 92,
+          "grade": "A",
+          "confidence": "medium",
+          "breakdown": {
+            "source_trust": {
+              "score": 25,
+              "max": 25,
+              "reason": "정보 상태 verified, 출처 있음 기준"
+            },
+            "mobility_fit": {
+              "score": 25,
+              "max": 25,
+              "reason": "도보 부담 very_low 및 경사·바닥 상태 기준"
+            },
+            "facility_fit": {
+              "score": 18,
+              "max": 20,
+              "reason": "화장실, 주차, 휴식, 대여, 휠체어 접근성 기준"
+            },
+            "theme_fit": {
+              "score": 15,
+              "max": 15,
+              "reason": "선호 테마와 indoor 카테고리 일치"
+            },
+            "safety_clarity": {
+              "score": 15,
+              "max": 15,
+              "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
+            }
+          }
+        },
+        "route": [
+          {
+            "order": 1,
+            "spot_id": "jeju_indoor_literature_022",
+            "name": "제주문학관",
+            "category": "indoor",
+            "score_total": 98,
+            "walking_level": "very_low",
+            "weather_sensitivity": "low",
+            "verification_status": "verified"
+          },
+          {
+            "order": 2,
+            "spot_id": "jeju_indoor_hanran_016",
+            "name": "제주한란전시관",
+            "category": "indoor",
+            "score_total": 91,
+            "walking_level": "low",
+            "weather_sensitivity": "low",
+            "verification_status": "partial"
+          },
+          {
+            "order": 3,
+            "spot_id": "jeju_forest_saryeoni_002",
+            "name": "사려니숲길 무장애나눔길",
+            "category": "forest",
+            "score_total": 90,
+            "walking_level": "low",
+            "weather_sensitivity": "medium",
+            "verification_status": "verified"
+          },
+          {
+            "order": 4,
+            "spot_id": "jeju_indoor_icc_032",
+            "name": "제주국제컨벤션센터",
+            "category": "indoor",
+            "score_total": 90,
+            "walking_level": "low",
+            "weather_sensitivity": "low",
+            "verification_status": "verified"
+          }
+        ],
+        "fit_reasons": [
+          "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
+          "필수 편의시설 정보가 비교적 잘 맞습니다.",
+          "선호 테마와 장소 성격이 잘 맞습니다."
+        ],
+        "deduction_reasons": [
+          "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다.",
+          "혼잡 또는 감염 우려 조건이 있어 사람이 몰릴 수 있는 장소를 감점합니다."
+        ],
+        "check_before_visit": [
+          "휴식 공간",
+          "혼잡도",
+          "개별 식사 준비 가능 여부",
+          "식사 장소 제외 여부",
+          "혼잡 시간대",
+          "대기줄 여부",
+          "주말·성수기 방문 여부",
+          "휠체어 접근성",
+          "바닥 상태",
+          "방문 당일 날씨와 바람"
+        ]
+      },
+      "validation": {
+        "total_checks": 12,
+        "passed_checks": 12,
+        "failed_checks": 0,
+        "checks": [
+          {
+            "area": "추천",
+            "name": "추천 장소 수",
+            "status": "통과",
+            "expected": "조건에 맞는 추천 장소가 1곳 이상 있어야 함",
+            "actual": "4곳: 제주문학관, 제주한란전시관, 사려니숲길 무장애나눔길, 제주국제컨벤션센터"
+          },
+          {
+            "area": "추천",
+            "name": "총점 기준",
+            "status": "통과",
+            "expected": "85점 이상",
+            "actual": "92점"
+          },
+          {
+            "area": "추천",
+            "name": "추천 장소 차단 여부",
+            "status": "통과",
+            "expected": "차단 장소가 추천 결과에 없어야 함",
+            "actual": "차단 장소 없음"
+          },
+          {
+            "area": "추천",
+            "name": "도보 부담",
+            "status": "통과",
+            "expected": "낮음, 매우 낮음만 허용",
+            "actual": "매우 낮음, 낮음, 낮음, 낮음"
+          },
+          {
+            "area": "제외",
+            "name": "상위 추천 제외 유형",
+            "status": "통과",
+            "expected": "먹거리 시장, 식당 미포함",
+            "actual": "실내, 실내, 숲·산책, 실내"
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 도보 부담",
+            "status": "통과",
+            "expected": "도보 부담 관련 근거가 있어야 함",
+            "actual": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다."
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 편의시설",
+            "status": "통과",
+            "expected": "편의시설 관련 근거가 있어야 함",
+            "actual": "필수 편의시설 정보가 비교적 잘 맞습니다."
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 식사",
+            "status": "통과",
+            "expected": "식사 관련 근거가 있어야 함",
+            "actual": "개별 식사 준비 가능 여부"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 혼잡",
+            "status": "통과",
+            "expected": "혼잡 관련 근거가 있어야 함",
+            "actual": "혼잡도"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 휴식",
+            "status": "통과",
+            "expected": "휴식 관련 근거가 있어야 함",
+            "actual": "휴식 공간"
+          },
+          {
+            "area": "감점/제외",
+            "name": "정책 효과: 식사",
+            "status": "통과",
+            "expected": "식사 관련 근거가 있어야 함",
+            "actual": "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          },
+          {
+            "area": "감점/제외",
+            "name": "정책 효과: 혼잡",
+            "status": "통과",
+            "expected": "혼잡 관련 근거가 있어야 함",
+            "actual": "혼잡 또는 감염 우려 조건이 있어 사람이 몰릴 수 있는 장소를 감점합니다."
+          }
+        ]
+      },
+      "excluded_candidates": [
+        {
+          "spot_id": "jeju_sea_saeyeongyo_039",
+          "name": "새연교",
+          "category": "sea",
+          "score_total": 49,
+          "blocked": true,
+          "block_reasons": [
+            "사용자가 피하고 싶은 조건과 장소 주의사항이 충돌합니다."
+          ],
+          "deduction_reasons": [
+            "야외 체류 부담이 높아 체력 저하 사용자에게는 짧은 방문이 필요합니다.",
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다.",
+            "체력 저하 또는 회복 중 사용자에게 장시간 야외 체류 가능성이 큽니다.",
+            "혼잡 또는 감염 우려 조건이 있어 사람이 몰릴 수 있는 장소를 감점합니다.",
+            "사용자가 피하고 싶은 조건과 장소 주의사항이 충돌합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_forest_cheonjiyeon_014",
+          "name": "천지연폭포",
+          "category": "forest",
+          "score_total": 48,
+          "blocked": true,
+          "block_reasons": [
+            "사용자가 피하고 싶은 조건과 장소 주의사항이 충돌합니다."
+          ],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다.",
+            "야외 체류 부담이 높아 체력 저하 사용자에게는 짧은 방문이 필요합니다.",
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다.",
+            "요청한 장애인 화장실 정보가 충분하지 않습니다.",
+            "체력 저하 또는 회복 중 사용자에게 장시간 야외 체류 가능성이 큽니다.",
+            "사용자가 피하고 싶은 조건과 장소 주의사항이 충돌합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_food_market_olle_035",
+          "name": "서귀포매일올레시장",
+          "category": "food_market",
+          "score_total": 48,
+          "blocked": true,
+          "block_reasons": [
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          ],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다.",
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다.",
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다.",
+            "혼잡 또는 감염 우려 조건이 있어 사람이 몰릴 수 있는 장소를 감점합니다.",
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_other_dongmun_market_029",
+          "name": "동문재래시장",
+          "category": "food_market",
+          "score_total": 46,
+          "blocked": true,
+          "block_reasons": [
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          ],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다.",
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다.",
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다.",
+            "혼잡 또는 감염 우려 조건이 있어 사람이 몰릴 수 있는 장소를 감점합니다.",
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_restaurant_nangtteule_036",
+          "name": "낭뜰에쉼팡",
+          "category": "restaurant",
+          "score_total": 27,
+          "blocked": true,
+          "block_reasons": [
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          ],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다.",
+            "요청한 장애인 화장실 정보가 충분하지 않습니다.",
+            "요청한 주차 정보가 충분하지 않습니다.",
+            "장애인 화장실을 필수로 요청했지만 정보가 부족합니다.",
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다.",
+            "혼잡 또는 감염 우려 조건이 있어 사람이 몰릴 수 있는 장소를 감점합니다.",
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_restaurant_donsadon_037",
+          "name": "돈사돈 월정점",
+          "category": "restaurant",
+          "score_total": 27,
+          "blocked": true,
+          "block_reasons": [
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          ],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다.",
+            "요청한 장애인 화장실 정보가 충분하지 않습니다.",
+            "장애인 화장실을 필수로 요청했지만 정보가 부족합니다.",
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다.",
+            "혼잡 또는 감염 우려 조건이 있어 사람이 몰릴 수 있는 장소를 감점합니다.",
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_sea_olle17_019",
+          "name": "올레길17코스 휠체어구간",
+          "category": "sea",
+          "score_total": 0,
+          "blocked": true,
+          "block_reasons": [
+            "사용자가 피하고 싶은 조건과 장소 주의사항이 충돌합니다."
+          ],
+          "deduction_reasons": [
+            "도보 부담이 높아 긴 걷기가 어려운 사용자에게 부담이 큽니다.",
+            "야외 체류 부담이 높아 체력 저하 사용자에게는 짧은 방문이 필요합니다.",
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다.",
+            "요청한 주차 정보가 충분하지 않습니다.",
+            "가까운 주차를 요청했지만 주차 정보가 부족합니다.",
+            "긴 걷기가 어려운 조건과 높은 도보 부담이 충돌합니다.",
+            "체력 저하 또는 회복 중 사용자에게 장시간 야외 체류 가능성이 큽니다.",
+            "사용자가 피하고 싶은 조건과 장소 주의사항이 충돌합니다."
+          ]
+        }
+      ],
+      "deduction_samples": [
+        {
+          "spot_id": "jeju_forest_saryeoni_002",
+          "name": "사려니숲길 무장애나눔길",
+          "category": "forest",
+          "score_total": 90,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_icc_032",
+          "name": "제주국제컨벤션센터",
+          "category": "indoor",
+          "score_total": 90,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "혼잡 또는 감염 우려 조건이 있어 사람이 몰릴 수 있는 장소를 감점합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_forest_healing_001",
+          "name": "서귀포 치유의숲",
+          "category": "forest",
+          "score_total": 87,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_mandeok_museum_009",
+          "name": "김만덕기념관",
+          "category": "indoor",
+          "score_total": 86,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "요청한 주차 정보가 충분하지 않습니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_starlight_025",
+          "name": "별빛누리공원",
+          "category": "indoor",
+          "score_total": 85,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_rest_area_geolmae_038",
+          "name": "천지연 걸매생태공원",
+          "category": "rest_area",
+          "score_total": 83,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_rest_sinsan_015",
+          "name": "신산공원",
+          "category": "rest_area",
+          "score_total": 80,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다.",
+            "요청한 주차 정보가 충분하지 않습니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_forest_halla_005",
+          "name": "한라수목원",
+          "category": "forest",
+          "score_total": 79,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다.",
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_haenyeo_024",
+          "name": "제주해녀박물관",
+          "category": "indoor",
+          "score_total": 78,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_sumokwon_theme_028",
+          "name": "수목원테마파크",
+          "category": "indoor",
+          "score_total": 78,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "diet_restricted",
+      "label": "음식 제한",
+      "title": "식사 장소를 제외한 코스",
+      "intent": "식당·시장처럼 음식 섭취를 전제로 하는 장소를 제외하고, 쉬운 이동과 휴식 중심으로 묶는 코스",
+      "status": "통과",
+      "traveler_summary": {
+        "traveler_type": [
+          "recovery_traveler",
+          "diet_restricted_traveler"
+        ],
+        "mobility_conditions": [
+          "체력 저하",
+          "짧은 이동"
+        ],
+        "preferred_themes": [
+          "실내",
+          "휴식",
+          "문화"
+        ],
+        "required_accessibility": [
+          "장애인 화장실",
+          "주차"
+        ],
+        "avoid": [
+          "식당 제외",
+          "외부 음식 제한",
+          "혼잡"
+        ]
+      },
+      "expected_policy": {
+        "recommendation_direction": "식사 중심 장소를 추천에서 배제하고 실내·숲·휴식 장소를 우선한다.",
+        "minimum_total_score": 85,
+        "selected_exclude_categories": [
+          "food_market",
+          "restaurant"
+        ],
+        "required_check_terms": [
+          "개별 식사",
+          "식사"
+        ],
+        "required_fit_terms": [
+          "도보 부담",
+          "편의시설"
+        ],
+        "policy_effect_terms": [
+          "식사",
+          "음식"
+        ]
+      },
+      "recommendation": {
+        "score": {
+          "total": 94,
+          "grade": "A",
+          "confidence": "medium",
+          "breakdown": {
+            "source_trust": {
+              "score": 25,
+              "max": 25,
+              "reason": "정보 상태 verified, 출처 있음 기준"
+            },
+            "mobility_fit": {
+              "score": 25,
+              "max": 25,
+              "reason": "도보 부담 very_low 및 경사·바닥 상태 기준"
+            },
+            "facility_fit": {
+              "score": 18,
+              "max": 20,
+              "reason": "화장실, 주차, 휴식, 대여, 휠체어 접근성 기준"
+            },
+            "theme_fit": {
+              "score": 15,
+              "max": 15,
+              "reason": "선호 테마와 indoor 카테고리 일치"
+            },
+            "safety_clarity": {
+              "score": 15,
+              "max": 15,
+              "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
+            }
+          }
+        },
+        "route": [
+          {
+            "order": 1,
+            "spot_id": "jeju_indoor_literature_022",
+            "name": "제주문학관",
+            "category": "indoor",
+            "score_total": 98,
+            "walking_level": "very_low",
+            "weather_sensitivity": "low",
+            "verification_status": "verified"
+          },
+          {
+            "order": 2,
+            "spot_id": "jeju_forest_saryeoni_002",
+            "name": "사려니숲길 무장애나눔길",
+            "category": "forest",
+            "score_total": 94,
+            "walking_level": "low",
+            "weather_sensitivity": "medium",
+            "verification_status": "verified"
+          },
+          {
+            "order": 3,
+            "spot_id": "jeju_forest_healing_001",
+            "name": "서귀포 치유의숲",
+            "category": "forest",
+            "score_total": 91,
+            "walking_level": "low",
+            "weather_sensitivity": "medium",
+            "verification_status": "partial"
+          },
+          {
+            "order": 4,
+            "spot_id": "jeju_indoor_hanran_016",
+            "name": "제주한란전시관",
+            "category": "indoor",
+            "score_total": 91,
+            "walking_level": "low",
+            "weather_sensitivity": "low",
+            "verification_status": "partial"
+          }
+        ],
+        "fit_reasons": [
+          "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
+          "필수 편의시설 정보가 비교적 잘 맞습니다.",
+          "선호 테마와 장소 성격이 잘 맞습니다."
+        ],
+        "deduction_reasons": [],
+        "check_before_visit": [
+          "휴식 공간",
+          "혼잡도",
+          "개별 식사 준비 가능 여부",
+          "식사 장소 제외 여부",
+          "혼잡 시간대",
+          "대기줄 여부",
+          "주말·성수기 방문 여부",
+          "휠체어 접근성",
+          "바닥 상태"
+        ]
+      },
+      "validation": {
+        "total_checks": 11,
+        "passed_checks": 11,
+        "failed_checks": 0,
+        "checks": [
+          {
+            "area": "추천",
+            "name": "추천 장소 수",
+            "status": "통과",
+            "expected": "조건에 맞는 추천 장소가 1곳 이상 있어야 함",
+            "actual": "4곳: 제주문학관, 사려니숲길 무장애나눔길, 서귀포 치유의숲, 제주한란전시관"
+          },
+          {
+            "area": "추천",
+            "name": "총점 기준",
+            "status": "통과",
+            "expected": "85점 이상",
+            "actual": "94점"
+          },
+          {
+            "area": "추천",
+            "name": "추천 장소 차단 여부",
+            "status": "통과",
+            "expected": "차단 장소가 추천 결과에 없어야 함",
+            "actual": "차단 장소 없음"
+          },
+          {
+            "area": "추천",
+            "name": "도보 부담",
+            "status": "통과",
+            "expected": "낮음, 매우 낮음만 허용",
+            "actual": "매우 낮음, 낮음, 낮음, 낮음"
+          },
+          {
+            "area": "제외",
+            "name": "상위 추천 제외 유형",
+            "status": "통과",
+            "expected": "먹거리 시장, 식당 미포함",
+            "actual": "실내, 숲·산책, 숲·산책, 실내"
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 도보 부담",
+            "status": "통과",
+            "expected": "도보 부담 관련 근거가 있어야 함",
+            "actual": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다."
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 편의시설",
+            "status": "통과",
+            "expected": "편의시설 관련 근거가 있어야 함",
+            "actual": "필수 편의시설 정보가 비교적 잘 맞습니다."
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 개별 식사",
+            "status": "통과",
+            "expected": "개별 식사 관련 근거가 있어야 함",
+            "actual": "개별 식사 준비 가능 여부"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 식사",
+            "status": "통과",
+            "expected": "식사 관련 근거가 있어야 함",
+            "actual": "개별 식사 준비 가능 여부"
+          },
+          {
+            "area": "감점/제외",
+            "name": "정책 효과: 식사",
+            "status": "통과",
+            "expected": "식사 관련 근거가 있어야 함",
+            "actual": "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          },
+          {
+            "area": "감점/제외",
+            "name": "정책 효과: 음식",
+            "status": "통과",
+            "expected": "음식 관련 근거가 있어야 함",
+            "actual": "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          }
+        ]
+      },
+      "excluded_candidates": [
+        {
+          "spot_id": "jeju_other_dongmun_market_029",
+          "name": "동문재래시장",
+          "category": "food_market",
+          "score_total": 49,
+          "blocked": true,
+          "block_reasons": [
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          ],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다.",
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다.",
+            "혼잡 또는 감염 우려 조건이 있어 사람이 몰릴 수 있는 장소를 감점합니다.",
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_food_market_olle_035",
+          "name": "서귀포매일올레시장",
+          "category": "food_market",
+          "score_total": 49,
+          "blocked": true,
+          "block_reasons": [
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          ],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다.",
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다.",
+            "혼잡 또는 감염 우려 조건이 있어 사람이 몰릴 수 있는 장소를 감점합니다.",
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_restaurant_nangtteule_036",
+          "name": "낭뜰에쉼팡",
+          "category": "restaurant",
+          "score_total": 27,
+          "blocked": true,
+          "block_reasons": [
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          ],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다.",
+            "요청한 장애인 화장실 정보가 충분하지 않습니다.",
+            "요청한 주차 정보가 충분하지 않습니다.",
+            "장애인 화장실을 필수로 요청했지만 정보가 부족합니다.",
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다.",
+            "혼잡 또는 감염 우려 조건이 있어 사람이 몰릴 수 있는 장소를 감점합니다.",
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_restaurant_donsadon_037",
+          "name": "돈사돈 월정점",
+          "category": "restaurant",
+          "score_total": 27,
+          "blocked": true,
+          "block_reasons": [
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          ],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다.",
+            "요청한 장애인 화장실 정보가 충분하지 않습니다.",
+            "장애인 화장실을 필수로 요청했지만 정보가 부족합니다.",
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다.",
+            "혼잡 또는 감염 우려 조건이 있어 사람이 몰릴 수 있는 장소를 감점합니다.",
+            "음식 제한 조건이 있어 식사 중심 장소를 제외하거나 감점합니다. 이 장소 유형은 제외 대상입니다."
+          ]
+        }
+      ],
+      "deduction_samples": [
+        {
+          "spot_id": "jeju_indoor_icc_032",
+          "name": "제주국제컨벤션센터",
+          "category": "indoor",
+          "score_total": 90,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "혼잡 또는 감염 우려 조건이 있어 사람이 몰릴 수 있는 장소를 감점합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_mandeok_museum_009",
+          "name": "김만덕기념관",
+          "category": "indoor",
+          "score_total": 86,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "요청한 주차 정보가 충분하지 않습니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_rest_sinsan_015",
+          "name": "신산공원",
+          "category": "rest_area",
+          "score_total": 84,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "요청한 주차 정보가 충분하지 않습니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_forest_halla_005",
+          "name": "한라수목원",
+          "category": "forest",
+          "score_total": 83,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_forest_recreation_003",
+          "name": "서귀포 자연휴양림",
+          "category": "forest",
+          "score_total": 80,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_forest_red_oreum_004",
+          "name": "붉은오름자연휴양림",
+          "category": "forest",
+          "score_total": 78,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_forest_yeomiji_012",
+          "name": "여미지식물원",
+          "category": "forest",
+          "score_total": 78,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_haenyeo_024",
+          "name": "제주해녀박물관",
+          "category": "indoor",
+          "score_total": 78,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_culture_hangmong_026",
+          "name": "항몽유적지",
+          "category": "culture",
+          "score_total": 78,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_sumokwon_theme_028",
+          "name": "수목원테마파크",
+          "category": "indoor",
+          "score_total": 78,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wheelchair_access",
+      "label": "휠체어",
+      "title": "휠체어 접근 확인 코스",
+      "intent": "휠체어 접근, 장애인 화장실, 주차 정보를 우선 확인하고 경사·계단 변수를 노출하는 코스",
+      "status": "통과",
+      "traveler_summary": {
+        "traveler_type": [
+          "wheelchair_user"
+        ],
+        "mobility_conditions": [
+          "긴 걷기 어려움",
+          "경사와 계단 확인"
+        ],
+        "preferred_themes": [
+          "실내",
+          "문화"
+        ],
+        "required_accessibility": [
+          "장애인 화장실",
+          "주차",
+          "휠체어 접근"
+        ],
+        "avoid": [
+          "계단",
+          "정보 부족"
+        ]
+      },
+      "expected_policy": {
+        "recommendation_direction": "휠체어 접근과 필수 편의시설 근거가 있는 장소를 우선한다.",
+        "minimum_total_score": 80,
+        "selected_exclude_categories": [],
+        "required_check_terms": [
+          "경사",
+          "바닥",
+          "주차"
+        ],
+        "required_fit_terms": [
+          "도보 부담",
+          "편의시설"
+        ],
+        "policy_effect_terms": [
+          "경사"
+        ]
+      },
+      "recommendation": {
+        "score": {
+          "total": 87,
+          "grade": "A",
+          "confidence": "medium",
+          "breakdown": {
+            "source_trust": {
+              "score": 25,
+              "max": 25,
+              "reason": "정보 상태 verified, 출처 있음 기준"
+            },
+            "mobility_fit": {
+              "score": 20,
+              "max": 25,
+              "reason": "도보 부담 very_low 및 경사·바닥 상태 기준"
+            },
+            "facility_fit": {
+              "score": 18,
+              "max": 20,
+              "reason": "화장실, 주차, 휴식, 대여, 휠체어 접근성 기준"
+            },
+            "theme_fit": {
+              "score": 15,
+              "max": 15,
+              "reason": "선호 테마와 indoor 카테고리 일치"
+            },
+            "safety_clarity": {
+              "score": 15,
+              "max": 15,
+              "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
+            }
+          }
+        },
+        "route": [
+          {
+            "order": 1,
+            "spot_id": "jeju_indoor_literature_022",
+            "name": "제주문학관",
+            "category": "indoor",
+            "score_total": 93,
+            "walking_level": "very_low",
+            "weather_sensitivity": "low",
+            "verification_status": "verified"
+          },
+          {
+            "order": 2,
+            "spot_id": "jeju_indoor_icc_032",
+            "name": "제주국제컨벤션센터",
+            "category": "indoor",
+            "score_total": 91,
+            "walking_level": "low",
+            "weather_sensitivity": "low",
+            "verification_status": "verified"
+          },
+          {
+            "order": 3,
+            "spot_id": "jeju_indoor_hanran_016",
+            "name": "제주한란전시관",
+            "category": "indoor",
+            "score_total": 83,
+            "walking_level": "low",
+            "weather_sensitivity": "low",
+            "verification_status": "partial"
+          },
+          {
+            "order": 4,
+            "spot_id": "jeju_indoor_mandeok_museum_009",
+            "name": "김만덕기념관",
+            "category": "indoor",
+            "score_total": 81,
+            "walking_level": "very_low",
+            "weather_sensitivity": "low",
+            "verification_status": "partial"
+          }
+        ],
+        "fit_reasons": [
+          "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
+          "필수 편의시설 정보가 비교적 잘 맞습니다.",
+          "선호 테마와 장소 성격이 잘 맞습니다."
+        ],
+        "deduction_reasons": [
+          "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다.",
+          "요청한 주차 정보가 충분하지 않습니다."
+        ],
+        "check_before_visit": [
+          "경사로, 계단, 단차 상태",
+          "휴식 공간",
+          "혼잡도",
+          "바닥 재질과 요철 여부",
+          "휠체어 접근성",
+          "바닥 상태",
+          "주차"
+        ]
+      },
+      "validation": {
+        "total_checks": 11,
+        "passed_checks": 11,
+        "failed_checks": 0,
+        "checks": [
+          {
+            "area": "추천",
+            "name": "추천 장소 수",
+            "status": "통과",
+            "expected": "조건에 맞는 추천 장소가 1곳 이상 있어야 함",
+            "actual": "4곳: 제주문학관, 제주국제컨벤션센터, 제주한란전시관, 김만덕기념관"
+          },
+          {
+            "area": "추천",
+            "name": "총점 기준",
+            "status": "통과",
+            "expected": "80점 이상",
+            "actual": "87점"
+          },
+          {
+            "area": "추천",
+            "name": "추천 장소 차단 여부",
+            "status": "통과",
+            "expected": "차단 장소가 추천 결과에 없어야 함",
+            "actual": "차단 장소 없음"
+          },
+          {
+            "area": "추천",
+            "name": "도보 부담",
+            "status": "통과",
+            "expected": "낮음, 매우 낮음만 허용",
+            "actual": "매우 낮음, 낮음, 낮음, 매우 낮음"
+          },
+          {
+            "area": "근거",
+            "name": "필수 편의시설 상태",
+            "status": "통과",
+            "expected": "장애인 화장실, 주차, 휠체어 접근는 확인됨 또는 부분 확인이어야 함",
+            "actual": "모두 확인 범위"
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 도보 부담",
+            "status": "통과",
+            "expected": "도보 부담 관련 근거가 있어야 함",
+            "actual": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다."
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 편의시설",
+            "status": "통과",
+            "expected": "편의시설 관련 근거가 있어야 함",
+            "actual": "필수 편의시설 정보가 비교적 잘 맞습니다."
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 경사",
+            "status": "통과",
+            "expected": "경사 관련 근거가 있어야 함",
+            "actual": "경사로, 계단, 단차 상태"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 바닥",
+            "status": "통과",
+            "expected": "바닥 관련 근거가 있어야 함",
+            "actual": "바닥 재질과 요철 여부"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 주차",
+            "status": "통과",
+            "expected": "주차 관련 근거가 있어야 함",
+            "actual": "주차"
+          },
+          {
+            "area": "감점/제외",
+            "name": "정책 효과: 경사",
+            "status": "통과",
+            "expected": "경사 관련 근거가 있어야 함",
+            "actual": "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다."
+          }
+        ]
+      },
+      "excluded_candidates": [],
+      "deduction_samples": [
+        {
+          "spot_id": "jeju_indoor_literature_022",
+          "name": "제주문학관",
+          "category": "indoor",
+          "score_total": 93,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_icc_032",
+          "name": "제주국제컨벤션센터",
+          "category": "indoor",
+          "score_total": 91,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_hanran_016",
+          "name": "제주한란전시관",
+          "category": "indoor",
+          "score_total": 83,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_mandeok_museum_009",
+          "name": "김만덕기념관",
+          "category": "indoor",
+          "score_total": 81,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다.",
+            "요청한 주차 정보가 충분하지 않습니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_worldheritage_011",
+          "name": "제주세계자연유산센터",
+          "category": "indoor",
+          "score_total": 81,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_cafe_osulloc_013",
+          "name": "오설록 티 뮤지엄",
+          "category": "cafe",
+          "score_total": 81,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_starlight_025",
+          "name": "별빛누리공원",
+          "category": "indoor",
+          "score_total": 81,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_forest_saryeoni_002",
+          "name": "사려니숲길 무장애나눔길",
+          "category": "forest",
+          "score_total": 77,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_bunker_lumieres_010",
+          "name": "빛의 벙커",
+          "category": "indoor",
+          "score_total": 76,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다.",
+            "요청한 주차 정보가 충분하지 않습니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_forest_halla_005",
+          "name": "한라수목원",
+          "category": "forest",
+          "score_total": 75,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다.",
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stroller_family",
+      "label": "아이 동반",
+      "title": "아이 동반 짧은 코스",
+      "intent": "아이와 보호자가 쉬어갈 수 있고 계단·비포장 부담을 줄이는 짧은 코스",
+      "status": "통과",
+      "traveler_summary": {
+        "traveler_type": [
+          "stroller_family"
+        ],
+        "mobility_conditions": [
+          "계단 회피",
+          "짧은 이동",
+          "휴식 필요"
+        ],
+        "preferred_themes": [
+          "실내",
+          "공원",
+          "문화"
+        ],
+        "required_accessibility": [
+          "화장실",
+          "주차",
+          "휴식 공간"
+        ],
+        "avoid": [
+          "좁은 길",
+          "비포장"
+        ]
+      },
+      "expected_policy": {
+        "recommendation_direction": "실내 장소만 반복하지 않고 짧은 숲길·공원형 휴식 장소를 포함한다.",
+        "minimum_total_score": 80,
+        "selected_exclude_categories": [],
+        "required_check_terms": [
+          "경사",
+          "바닥",
+          "휴식"
+        ],
+        "required_fit_terms": [
+          "아이",
+          "유모차"
+        ],
+        "policy_effect_terms": [
+          "경사",
+          "날씨"
+        ]
+      },
+      "recommendation": {
+        "score": {
+          "total": 88,
+          "grade": "A",
+          "confidence": "medium",
+          "breakdown": {
+            "source_trust": {
+              "score": 25,
+              "max": 25,
+              "reason": "정보 상태 verified, 출처 있음 기준"
+            },
+            "mobility_fit": {
+              "score": 20,
+              "max": 25,
+              "reason": "도보 부담 very_low 및 경사·바닥 상태 기준"
+            },
+            "facility_fit": {
+              "score": 18,
+              "max": 20,
+              "reason": "화장실, 주차, 휴식, 대여, 휠체어 접근성 기준"
+            },
+            "theme_fit": {
+              "score": 15,
+              "max": 15,
+              "reason": "선호 테마와 indoor 카테고리 일치"
+            },
+            "safety_clarity": {
+              "score": 15,
+              "max": 15,
+              "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
+            }
+          }
+        },
+        "route": [
+          {
+            "order": 1,
+            "spot_id": "jeju_indoor_literature_022",
+            "name": "제주문학관",
+            "category": "indoor",
+            "score_total": 93,
+            "walking_level": "very_low",
+            "weather_sensitivity": "low",
+            "verification_status": "verified"
+          },
+          {
+            "order": 2,
+            "spot_id": "jeju_indoor_icc_032",
+            "name": "제주국제컨벤션센터",
+            "category": "indoor",
+            "score_total": 91,
+            "walking_level": "low",
+            "weather_sensitivity": "low",
+            "verification_status": "verified"
+          },
+          {
+            "order": 3,
+            "spot_id": "jeju_forest_saryeoni_002",
+            "name": "사려니숲길 무장애나눔길",
+            "category": "forest",
+            "score_total": 85,
+            "walking_level": "low",
+            "weather_sensitivity": "medium",
+            "verification_status": "verified"
+          },
+          {
+            "order": 4,
+            "spot_id": "jeju_rest_sinsan_015",
+            "name": "신산공원",
+            "category": "rest_area",
+            "score_total": 84,
+            "walking_level": "low",
+            "weather_sensitivity": "medium",
+            "verification_status": "partial"
+          }
+        ],
+        "fit_reasons": [
+          "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
+          "필수 편의시설 정보가 비교적 잘 맞습니다.",
+          "선호 테마와 장소 성격이 잘 맞습니다.",
+          "유모차 가족 조건에 맞는 짧은 휴식형 장소입니다.",
+          "아이와 보호자가 중간에 쉬기 좋은 장소 성격입니다."
+        ],
+        "deduction_reasons": [
+          "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다.",
+          "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다.",
+          "요청한 주차 정보가 충분하지 않습니다."
+        ],
+        "check_before_visit": [
+          "경사로, 계단, 단차 상태",
+          "휴식 공간",
+          "혼잡도",
+          "강풍 여부",
+          "방문 당일 날씨",
+          "그늘과 실내 대피 가능 여부",
+          "바닥 재질과 요철 여부",
+          "방문 당일 날씨와 바람",
+          "휠체어 접근성",
+          "주차",
+          "휠체어·유아차 대여"
+        ]
+      },
+      "validation": {
+        "total_checks": 13,
+        "passed_checks": 13,
+        "failed_checks": 0,
+        "checks": [
+          {
+            "area": "추천",
+            "name": "추천 장소 수",
+            "status": "통과",
+            "expected": "조건에 맞는 추천 장소가 1곳 이상 있어야 함",
+            "actual": "4곳: 제주문학관, 제주국제컨벤션센터, 사려니숲길 무장애나눔길, 신산공원"
+          },
+          {
+            "area": "추천",
+            "name": "총점 기준",
+            "status": "통과",
+            "expected": "80점 이상",
+            "actual": "88점"
+          },
+          {
+            "area": "추천",
+            "name": "추천 장소 차단 여부",
+            "status": "통과",
+            "expected": "차단 장소가 추천 결과에 없어야 함",
+            "actual": "차단 장소 없음"
+          },
+          {
+            "area": "추천",
+            "name": "도보 부담",
+            "status": "통과",
+            "expected": "낮음, 매우 낮음만 허용",
+            "actual": "매우 낮음, 낮음, 낮음, 낮음"
+          },
+          {
+            "area": "추천",
+            "name": "필수 장소 성격 포함",
+            "status": "통과",
+            "expected": "숲·산책, 공원·휴식 중 1개 이상 포함",
+            "actual": "실내, 실내, 숲·산책, 공원·휴식"
+          },
+          {
+            "area": "근거",
+            "name": "필수 편의시설 상태",
+            "status": "통과",
+            "expected": "장애인 화장실, 주차, 휴식 공간는 확인됨 또는 부분 확인이어야 함",
+            "actual": "모두 확인 범위"
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 아이",
+            "status": "통과",
+            "expected": "아이 관련 근거가 있어야 함",
+            "actual": "아이와 보호자가 중간에 쉬기 좋은 장소 성격입니다."
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 유모차",
+            "status": "통과",
+            "expected": "유모차 관련 근거가 있어야 함",
+            "actual": "유모차 가족 조건에 맞는 짧은 휴식형 장소입니다."
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 경사",
+            "status": "통과",
+            "expected": "경사 관련 근거가 있어야 함",
+            "actual": "경사로, 계단, 단차 상태"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 바닥",
+            "status": "통과",
+            "expected": "바닥 관련 근거가 있어야 함",
+            "actual": "바닥 재질과 요철 여부"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 휴식",
+            "status": "통과",
+            "expected": "휴식 관련 근거가 있어야 함",
+            "actual": "휴식 공간"
+          },
+          {
+            "area": "감점/제외",
+            "name": "정책 효과: 경사",
+            "status": "통과",
+            "expected": "경사 관련 근거가 있어야 함",
+            "actual": "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다."
+          },
+          {
+            "area": "감점/제외",
+            "name": "정책 효과: 날씨",
+            "status": "통과",
+            "expected": "날씨 관련 근거가 있어야 함",
+            "actual": "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
+          }
+        ]
+      },
+      "excluded_candidates": [],
+      "deduction_samples": [
+        {
+          "spot_id": "jeju_indoor_literature_022",
+          "name": "제주문학관",
+          "category": "indoor",
+          "score_total": 93,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_icc_032",
+          "name": "제주국제컨벤션센터",
+          "category": "indoor",
+          "score_total": 91,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_forest_saryeoni_002",
+          "name": "사려니숲길 무장애나눔길",
+          "category": "forest",
+          "score_total": 85,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다.",
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_rest_sinsan_015",
+          "name": "신산공원",
+          "category": "rest_area",
+          "score_total": 84,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다.",
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다.",
+            "요청한 주차 정보가 충분하지 않습니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_hanran_016",
+          "name": "제주한란전시관",
+          "category": "indoor",
+          "score_total": 83,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_forest_healing_001",
+          "name": "서귀포 치유의숲",
+          "category": "forest",
+          "score_total": 82,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다.",
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_mandeok_museum_009",
+          "name": "김만덕기념관",
+          "category": "indoor",
+          "score_total": 81,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다.",
+            "요청한 주차 정보가 충분하지 않습니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_worldheritage_011",
+          "name": "제주세계자연유산센터",
+          "category": "indoor",
+          "score_total": 81,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_rest_area_geolmae_038",
+          "name": "천지연 걸매생태공원",
+          "category": "rest_area",
+          "score_total": 81,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다.",
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다.",
+            "날씨 민감 조건이 있어 야외 노출 장소를 감점합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_cafe_osulloc_013",
+          "name": "오설록 티 뮤지엄",
+          "category": "cafe",
+          "score_total": 77,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다.",
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weather_sensitive",
+      "label": "날씨 민감",
+      "title": "날씨 영향을 줄인 코스",
+      "intent": "비·바람·더위 영향을 줄이고 실내 대피 가능성이 높은 장소를 우선하는 코스",
+      "status": "통과",
+      "traveler_summary": {
+        "traveler_type": [
+          "senior"
+        ],
+        "mobility_conditions": [
+          "비",
+          "바람",
+          "더위",
+          "짧은 이동"
+        ],
+        "preferred_themes": [
+          "실내",
+          "문화"
+        ],
+        "required_accessibility": [
+          "장애인 화장실",
+          "주차"
+        ],
+        "avoid": [
+          "장시간 야외 체류",
+          "강풍"
+        ]
+      },
+      "expected_policy": {
+        "recommendation_direction": "날씨 영향이 큰 바다·오름·고노출 야외 장소를 상위 추천에서 배제한다.",
+        "minimum_total_score": 85,
+        "selected_exclude_categories": [
+          "oreum",
+          "sea"
+        ],
+        "required_check_terms": [
+          "강풍",
+          "그늘",
+          "날씨"
+        ],
+        "required_fit_terms": [
+          "도보 부담",
+          "편의시설"
+        ],
+        "policy_effect_terms": [
+          "날씨"
+        ]
+      },
+      "recommendation": {
+        "score": {
+          "total": 94,
+          "grade": "A",
+          "confidence": "medium",
+          "breakdown": {
+            "source_trust": {
+              "score": 25,
+              "max": 25,
+              "reason": "정보 상태 verified, 출처 있음 기준"
+            },
+            "mobility_fit": {
+              "score": 25,
+              "max": 25,
+              "reason": "도보 부담 very_low 및 경사·바닥 상태 기준"
+            },
+            "facility_fit": {
+              "score": 18,
+              "max": 20,
+              "reason": "화장실, 주차, 휴식, 대여, 휠체어 접근성 기준"
+            },
+            "theme_fit": {
+              "score": 15,
+              "max": 15,
+              "reason": "선호 테마와 indoor 카테고리 일치"
+            },
+            "safety_clarity": {
+              "score": 15,
+              "max": 15,
+              "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
+            }
+          }
+        },
+        "route": [
+          {
+            "order": 1,
+            "spot_id": "jeju_indoor_literature_022",
+            "name": "제주문학관",
+            "category": "indoor",
+            "score_total": 98,
+            "walking_level": "very_low",
+            "weather_sensitivity": "low",
+            "verification_status": "verified"
+          },
+          {
+            "order": 2,
+            "spot_id": "jeju_indoor_icc_032",
+            "name": "제주국제컨벤션센터",
+            "category": "indoor",
+            "score_total": 96,
+            "walking_level": "low",
+            "weather_sensitivity": "low",
+            "verification_status": "verified"
+          },
+          {
+            "order": 3,
+            "spot_id": "jeju_indoor_hanran_016",
+            "name": "제주한란전시관",
+            "category": "indoor",
+            "score_total": 91,
+            "walking_level": "low",
+            "weather_sensitivity": "low",
+            "verification_status": "partial"
+          },
+          {
+            "order": 4,
+            "spot_id": "jeju_indoor_worldheritage_011",
+            "name": "제주세계자연유산센터",
+            "category": "indoor",
+            "score_total": 89,
+            "walking_level": "low",
+            "weather_sensitivity": "low",
+            "verification_status": "partial"
+          }
+        ],
+        "fit_reasons": [
+          "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
+          "필수 편의시설 정보가 비교적 잘 맞습니다.",
+          "선호 테마와 장소 성격이 잘 맞습니다."
+        ],
+        "deduction_reasons": [],
+        "check_before_visit": [
+          "휴식 공간",
+          "혼잡도",
+          "강풍 여부",
+          "방문 당일 날씨",
+          "그늘과 실내 대피 가능 여부",
+          "휠체어 접근성",
+          "바닥 상태"
+        ]
+      },
+      "validation": {
+        "total_checks": 12,
+        "passed_checks": 12,
+        "failed_checks": 0,
+        "checks": [
+          {
+            "area": "추천",
+            "name": "추천 장소 수",
+            "status": "통과",
+            "expected": "조건에 맞는 추천 장소가 1곳 이상 있어야 함",
+            "actual": "4곳: 제주문학관, 제주국제컨벤션센터, 제주한란전시관, 제주세계자연유산센터"
+          },
+          {
+            "area": "추천",
+            "name": "총점 기준",
+            "status": "통과",
+            "expected": "85점 이상",
+            "actual": "94점"
+          },
+          {
+            "area": "추천",
+            "name": "추천 장소 차단 여부",
+            "status": "통과",
+            "expected": "차단 장소가 추천 결과에 없어야 함",
+            "actual": "차단 장소 없음"
+          },
+          {
+            "area": "추천",
+            "name": "도보 부담",
+            "status": "통과",
+            "expected": "낮음, 매우 낮음만 허용",
+            "actual": "매우 낮음, 낮음, 낮음, 낮음"
+          },
+          {
+            "area": "제외",
+            "name": "상위 추천 제외 유형",
+            "status": "통과",
+            "expected": "오름, 해안 미포함",
+            "actual": "실내, 실내, 실내, 실내"
+          },
+          {
+            "area": "제외",
+            "name": "날씨 민감도",
+            "status": "통과",
+            "expected": "낮음, 보통만 허용",
+            "actual": "낮음, 낮음, 낮음, 낮음"
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 도보 부담",
+            "status": "통과",
+            "expected": "도보 부담 관련 근거가 있어야 함",
+            "actual": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다."
+          },
+          {
+            "area": "설명",
+            "name": "추천 근거: 편의시설",
+            "status": "통과",
+            "expected": "편의시설 관련 근거가 있어야 함",
+            "actual": "필수 편의시설 정보가 비교적 잘 맞습니다."
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 강풍",
+            "status": "통과",
+            "expected": "강풍 관련 근거가 있어야 함",
+            "actual": "강풍 여부"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 그늘",
+            "status": "통과",
+            "expected": "그늘 관련 근거가 있어야 함",
+            "actual": "그늘과 실내 대피 가능 여부"
+          },
+          {
+            "area": "설명",
+            "name": "방문 전 확인: 날씨",
+            "status": "통과",
+            "expected": "날씨 관련 근거가 있어야 함",
+            "actual": "방문 당일 날씨"
+          },
+          {
+            "area": "감점/제외",
+            "name": "정책 효과: 날씨",
+            "status": "통과",
+            "expected": "날씨 관련 근거가 있어야 함",
+            "actual": "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
+          }
+        ]
+      },
+      "excluded_candidates": [
+        {
+          "spot_id": "jeju_forest_cheonjiyeon_014",
+          "name": "천지연폭포",
+          "category": "forest",
+          "score_total": 49,
+          "blocked": true,
+          "block_reasons": [
+            "사용자가 피하고 싶은 조건과 장소 주의사항이 충돌합니다."
+          ],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다.",
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다.",
+            "요청한 장애인 화장실 정보가 충분하지 않습니다.",
+            "사용자가 피하고 싶은 조건과 장소 주의사항이 충돌합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_sea_saeyeongyo_039",
+          "name": "새연교",
+          "category": "sea",
+          "score_total": 49,
+          "blocked": true,
+          "block_reasons": [
+            "사용자가 피하고 싶은 조건과 장소 주의사항이 충돌합니다."
+          ],
+          "deduction_reasons": [
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다.",
+            "날씨 민감 조건이 있어 야외 노출 장소를 감점합니다.",
+            "사용자가 피하고 싶은 조건과 장소 주의사항이 충돌합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_sea_olle17_019",
+          "name": "올레길17코스 휠체어구간",
+          "category": "sea",
+          "score_total": 4,
+          "blocked": true,
+          "block_reasons": [
+            "사용자가 피하고 싶은 조건과 장소 주의사항이 충돌합니다."
+          ],
+          "deduction_reasons": [
+            "도보 부담이 높아 긴 걷기가 어려운 사용자에게 부담이 큽니다.",
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다.",
+            "요청한 주차 정보가 충분하지 않습니다.",
+            "가까운 주차를 요청했지만 주차 정보가 부족합니다.",
+            "긴 걷기가 어려운 조건과 높은 도보 부담이 충돌합니다.",
+            "날씨 민감 조건이 있어 야외 노출 장소를 감점합니다.",
+            "사용자가 피하고 싶은 조건과 장소 주의사항이 충돌합니다."
+          ]
+        }
+      ],
+      "deduction_samples": [
+        {
+          "spot_id": "jeju_indoor_mandeok_museum_009",
+          "name": "김만덕기념관",
+          "category": "indoor",
+          "score_total": 86,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "요청한 주차 정보가 충분하지 않습니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_cafe_osulloc_013",
+          "name": "오설록 티 뮤지엄",
+          "category": "cafe",
+          "score_total": 85,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_starlight_025",
+          "name": "별빛누리공원",
+          "category": "indoor",
+          "score_total": 85,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_forest_saryeoni_002",
+          "name": "사려니숲길 무장애나눔길",
+          "category": "forest",
+          "score_total": 81,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_bunker_lumieres_010",
+          "name": "빛의 벙커",
+          "category": "indoor",
+          "score_total": 81,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "요청한 주차 정보가 충분하지 않습니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_forest_halla_005",
+          "name": "한라수목원",
+          "category": "forest",
+          "score_total": 79,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다.",
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_culture_folk_village_007",
+          "name": "제주민속촌",
+          "category": "culture",
+          "score_total": 79,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다.",
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_forest_healing_001",
+          "name": "서귀포 치유의숲",
+          "category": "forest",
+          "score_total": 78,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_haenyeo_024",
+          "name": "제주해녀박물관",
+          "category": "indoor",
+          "score_total": 78,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다."
+          ]
+        },
+        {
+          "spot_id": "jeju_indoor_sumokwon_theme_028",
+          "name": "수목원테마파크",
+          "category": "indoor",
+          "score_total": 78,
+          "blocked": false,
+          "block_reasons": [],
+          "deduction_reasons": [
+            "도보 부담이 중간 수준이라 짧은 구간 중심으로 확인이 필요합니다."
+          ]
+        }
+      ]
+    }
+  ]
+}

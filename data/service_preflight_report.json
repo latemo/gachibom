@@ -1,0 +1,345 @@
+{
+  "generated_at": "2026-07-09",
+  "overall_status": "block",
+  "summary": {
+    "total_checks": 27,
+    "passed_checks": 24,
+    "warning_checks": 0,
+    "blocker_checks": 3,
+    "by_status": {
+      "block": 3,
+      "pass": 24
+    },
+    "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령을 제공기관에 요청"
+  },
+  "sections": [
+    {
+      "name": "environment",
+      "label": "환경 설정",
+      "status": "pass",
+      "checks": [
+        {
+          "check_id": "env_example_exists",
+          "status": "pass",
+          "label": "환경 예시 파일",
+          "actual": ".env.example",
+          "expected": "exists",
+          "detail": "팀원이 키만 입력할 수 있는 예시 파일 필요",
+          "next_action": ".env.example 파일을 추가"
+        },
+        {
+          "check_id": "env_file_exists",
+          "status": "pass",
+          "label": "로컬 환경 파일",
+          "actual": ".env exists",
+          "expected": "exists for local service",
+          "detail": "로컬 API 실행 시 .env에서 설정을 읽음",
+          "next_action": ".env.example을 복사해 .env 작성"
+        },
+        {
+          "check_id": "openai_api_key_configured",
+          "status": "pass",
+          "label": "AI 설명 키 설정",
+          "actual": "configured",
+          "expected": "configured",
+          "detail": "마음동행 AI 설명 생성에 필요한 키 설정 여부. 값은 기록하지 않음",
+          "next_action": "OPENAI_API_KEY 값을 .env 또는 실행 환경에 설정"
+        },
+        {
+          "check_id": "openai_model_configured",
+          "status": "pass",
+          "label": "AI 모델 설정",
+          "actual": "gpt-5-mini",
+          "expected": "gpt-5-mini",
+          "detail": "현재 서비스에서 쓰기로 한 모델명",
+          "next_action": "OPENAI_MODEL을 gpt-5-mini로 맞춤"
+        }
+      ]
+    },
+    {
+      "name": "runtime",
+      "label": "서버·앱 실행 파일",
+      "status": "pass",
+      "checks": [
+        {
+          "check_id": "api_server_script",
+          "status": "pass",
+          "label": "추천 API 실행 스크립트",
+          "actual": "scripts/serve_recommendation_api.py",
+          "expected": "exists",
+          "detail": "서비스 실행에 필요한 파일",
+          "next_action": "scripts/serve_recommendation_api.py 생성 또는 경로 수정"
+        },
+        {
+          "check_id": "api_handler",
+          "status": "pass",
+          "label": "추천 API 핸들러",
+          "actual": "src/recommendation_api.py",
+          "expected": "exists",
+          "detail": "서비스 실행에 필요한 파일",
+          "next_action": "src/recommendation_api.py 생성 또는 경로 수정"
+        },
+        {
+          "check_id": "web_index",
+          "status": "pass",
+          "label": "앱 첫 화면",
+          "actual": "web/index.html",
+          "expected": "exists",
+          "detail": "서비스 실행에 필요한 파일",
+          "next_action": "web/index.html 생성 또는 경로 수정"
+        },
+        {
+          "check_id": "map_asset",
+          "status": "pass",
+          "label": "중앙 지도 배경 이미지",
+          "actual": "web/assets/jeju-final-map-panel-cardless.png",
+          "expected": "exists",
+          "detail": "서비스 실행에 필요한 파일",
+          "next_action": "web/assets/jeju-final-map-panel-cardless.png 생성 또는 경로 수정"
+        },
+        {
+          "check_id": "place_catalog_loadable",
+          "status": "pass",
+          "label": "추천 장소 데이터",
+          "actual": "43개 장소",
+          "expected": ">= 30개 장소",
+          "detail": "추천 API와 정적 seed의 원천 장소 데이터",
+          "next_action": "장소 데이터 JSON을 재생성하거나 누락 파일 복구"
+        }
+      ]
+    },
+    {
+      "name": "map_location",
+      "label": "중앙 지도 위치 계약",
+      "status": "pass",
+      "checks": [
+        {
+          "check_id": "map_location_overrides",
+          "status": "pass",
+          "label": "수동 좌표 보강 파일",
+          "actual": "schema-valid",
+          "expected": "schema-valid JSON",
+          "detail": "로드뷰 메타데이터로 자동 매칭되지 않는 핵심 장소 좌표 보강",
+          "next_action": "data/place_location_overrides.json에 수동 좌표 보강값 추가"
+        },
+        {
+          "check_id": "app_seed_route_locations",
+          "status": "pass",
+          "label": "추천 경로 좌표",
+          "actual": "20/20곳",
+          "expected": "추천 노출 장소 전체 좌표 보유",
+          "detail": "중앙 지도에 표시되는 추천 장소가 실제 위도·경도를 갖는지 확인",
+          "next_action": "로드뷰 메타데이터 매칭 또는 수동 좌표 보강 후 앱 seed 재생성"
+        },
+        {
+          "check_id": "frontend_coordinate_projection",
+          "status": "pass",
+          "label": "중앙 지도 좌표 투영",
+          "actual": "configured",
+          "expected": "lat/lng projection",
+          "detail": "고정 픽셀 카드가 아니라 실제 좌표 기반으로 지도 핀과 카드를 배치",
+          "next_action": "web/app.js의 좌표 투영 로직 복구"
+        }
+      ]
+    },
+    {
+      "name": "api_contract",
+      "label": "추천 API 계약",
+      "status": "pass",
+      "checks": [
+        {
+          "check_id": "api_contract_tests",
+          "status": "pass",
+          "label": "추천 API 계약 테스트",
+          "actual": "tests/test_recommendation_api.py",
+          "expected": "exists",
+          "detail": "health, 추천 응답, 오류 응답, 내부 예외 비노출 테스트",
+          "next_action": "tests/test_recommendation_api.py를 추가하고 전체 테스트 실행"
+        },
+        {
+          "check_id": "api_recommendation_schema_contract",
+          "status": "pass",
+          "label": "추천 응답 스키마",
+          "actual": "loadable",
+          "expected": "schema-valid JSON",
+          "detail": "API 추천 결과가 검증할 JSON 스키마",
+          "next_action": "data/schemas/recommendation_result.schema.json 복구"
+        },
+        {
+          "check_id": "api_structured_error_contract",
+          "status": "pass",
+          "label": "API 오류 응답 형식",
+          "actual": "configured",
+          "expected": "JSON code/error",
+          "detail": "클라이언트가 오류 원인을 한글 메시지와 code로 구분할 수 있는 계약",
+          "next_action": "추천 API 핸들러의 JSON 오류 응답 계약 복구"
+        },
+        {
+          "check_id": "api_request_body_limit",
+          "status": "pass",
+          "label": "요청 본문 크기 제한",
+          "actual": "configured",
+          "expected": "413 on oversized body",
+          "detail": "비정상 대용량 요청으로 API가 멈추지 않도록 제한",
+          "next_action": "추천 API 본문 크기 제한과 413 응답 복구"
+        },
+        {
+          "check_id": "api_secret_safe_failure",
+          "status": "pass",
+          "label": "내부 오류 비노출",
+          "actual": "configured",
+          "expected": "no raw exception text",
+          "detail": "실패 응답에 API 키나 내부 예외 원문이 노출되지 않도록 제한",
+          "next_action": "추천 API 내부 예외 응답을 일반화"
+        }
+      ]
+    },
+    {
+      "name": "app_data",
+      "label": "앱용 데이터",
+      "status": "pass",
+      "checks": [
+        {
+          "check_id": "app_seed_schema",
+          "status": "pass",
+          "label": "앱 추천 기본 데이터",
+          "actual": "errors 0",
+          "expected": "errors 0",
+          "detail": "web/data/app_recommendation_seed.json 스키마 검증",
+          "next_action": "데이터 생성 스크립트와 스키마 불일치 수정"
+        },
+        {
+          "check_id": "case_validation_schema",
+          "status": "pass",
+          "label": "상황별 추천 검증표",
+          "actual": "errors 0",
+          "expected": "errors 0",
+          "detail": "web/data/recommendation_case_validation_report.json 스키마 검증",
+          "next_action": "데이터 생성 스크립트와 스키마 불일치 수정"
+        },
+        {
+          "check_id": "operations_readiness_schema",
+          "status": "pass",
+          "label": "앱용 운영 준비도",
+          "actual": "errors 0",
+          "expected": "errors 0",
+          "detail": "web/data/operations_readiness_report.json 스키마 검증",
+          "next_action": "데이터 생성 스크립트와 스키마 불일치 수정"
+        },
+        {
+          "check_id": "service_launch_action_plan_schema",
+          "status": "pass",
+          "label": "앱용 서비스 실행 계획",
+          "actual": "errors 0",
+          "expected": "errors 0",
+          "detail": "web/data/service_launch_action_plan.json 스키마 검증",
+          "next_action": "데이터 생성 스크립트와 스키마 불일치 수정"
+        },
+        {
+          "check_id": "operations_readiness_report_web_consistency",
+          "status": "pass",
+          "label": "operations_readiness_report.json 앱 복사본",
+          "actual": "blocked_for_full_service / blocked_for_full_service",
+          "expected": "data와 web/data 동일 상태",
+          "detail": "data/operations_readiness_report.json와 web/data/operations_readiness_report.json의 overall_status 일치 여부",
+          "next_action": "전체 파이프라인 또는 web-output 생성 옵션으로 앱용 JSON 재생성"
+        },
+        {
+          "check_id": "service_launch_action_plan_web_consistency",
+          "status": "pass",
+          "label": "service_launch_action_plan.json 앱 복사본",
+          "actual": "blocked_for_full_service / blocked_for_full_service",
+          "expected": "data와 web/data 동일 상태",
+          "detail": "data/service_launch_action_plan.json와 web/data/service_launch_action_plan.json의 overall_status 일치 여부",
+          "next_action": "전체 파이프라인 또는 web-output 생성 옵션으로 앱용 JSON 재생성"
+        }
+      ]
+    },
+    {
+      "name": "public_gate",
+      "label": "상용 공개 게이트",
+      "status": "block",
+      "checks": [
+        {
+          "check_id": "operations_public_gate",
+          "status": "block",
+          "label": "상용 공개 게이트",
+          "actual": "blocked_for_full_service",
+          "expected": "ready_for_full_service",
+          "detail": "운영 준비도 기준의 전체 공개 가능 여부",
+          "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령을 제공기관에 요청"
+        },
+        {
+          "check_id": "missing_roadview_images",
+          "status": "block",
+          "label": "누락 로드뷰 원본",
+          "actual": "70장",
+          "expected": "0장",
+          "detail": "로드뷰 원본 1,023장 중 제공기관 404 누락분 해소 여부",
+          "next_action": "누락 원본 수령 후 전체 파이프라인 재실행"
+        },
+        {
+          "check_id": "visual_review_open_places",
+          "status": "block",
+          "label": "시각 검수 대기 장소",
+          "actual": "17곳",
+          "expected": "0곳",
+          "detail": "서비스 시드 장소의 출입구·경사·바닥·주차장 동선 검수 완료 여부",
+          "next_action": "팀 검수 CSV 회수 후 전체 파이프라인 재실행"
+        }
+      ]
+    },
+    {
+      "name": "secret_exposure",
+      "label": "비밀값 노출 방지",
+      "status": "pass",
+      "checks": [
+        {
+          "check_id": "no_frontend_secret_literal",
+          "status": "pass",
+          "label": "비밀값 노출 검사",
+          "actual": "0개 의심 파일",
+          "expected": "0개",
+          "detail": "web/docs/src/scripts/.env.example 안에 실제 API 키 형태가 없는지 검사. .env 실제 값은 읽어 기록하지 않음",
+          "next_action": "의심 키를 제거하고 키를 폐기·재발급"
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "check_id": "operations_public_gate",
+      "status": "block",
+      "label": "상용 공개 게이트",
+      "actual": "blocked_for_full_service",
+      "expected": "ready_for_full_service",
+      "detail": "운영 준비도 기준의 전체 공개 가능 여부",
+      "next_action": "누락 원본 이미지 복구 또는 대체 원본 수령을 제공기관에 요청"
+    },
+    {
+      "check_id": "missing_roadview_images",
+      "status": "block",
+      "label": "누락 로드뷰 원본",
+      "actual": "70장",
+      "expected": "0장",
+      "detail": "로드뷰 원본 1,023장 중 제공기관 404 누락분 해소 여부",
+      "next_action": "누락 원본 수령 후 전체 파이프라인 재실행"
+    },
+    {
+      "check_id": "visual_review_open_places",
+      "status": "block",
+      "label": "시각 검수 대기 장소",
+      "actual": "17곳",
+      "expected": "0곳",
+      "detail": "서비스 시드 장소의 출입구·경사·바닥·주차장 동선 검수 완료 여부",
+      "next_action": "팀 검수 CSV 회수 후 전체 파이프라인 재실행"
+    }
+  ],
+  "warnings": [],
+  "next_actions": [
+    "누락 원본 이미지 복구 또는 대체 원본 수령을 제공기관에 요청",
+    "누락 원본 수령 후 전체 파이프라인 재실행",
+    "팀 검수 CSV 회수 후 전체 파이프라인 재실행"
+  ],
+  "secret_policy": "비밀값은 리포트에 기록하지 않고 설정 여부만 확인"
+}

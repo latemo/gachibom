@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/roadview_merge_report.schema.json",
+  "title": "Jeju Maeum Roadview Merge Review Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "generated_at",
+    "summary",
+    "matched_existing",
+    "new_candidate",
+    "needs_manual_review",
+    "field_updates_available"
+  ],
+  "properties": {
+    "generated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "existing_count",
+        "draft_count",
+        "matched_existing",
+        "new_candidate",
+        "needs_manual_review",
+        "field_updates_available"
+      ],
+      "properties": {
+        "existing_count": { "type": "integer", "minimum": 0 },
+        "draft_count": { "type": "integer", "minimum": 0 },
+        "matched_existing": { "type": "integer", "minimum": 0 },
+        "new_candidate": { "type": "integer", "minimum": 0 },
+        "needs_manual_review": { "type": "integer", "minimum": 0 },
+        "field_updates_available": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "matched_existing": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/matchedEntry" }
+    },
+    "new_candidate": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["draft", "recommended_action", "reason"],
+        "properties": {
+          "draft": { "$ref": "#/$defs/cardRef" },
+          "recommended_action": { "type": "string" },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "needs_manual_review": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "review_type",
+          "existing",
+          "draft",
+          "match_confidence",
+          "match_reasons",
+          "field_conflicts"
+        ],
+        "properties": {
+          "review_type": {
+            "type": "string",
+            "enum": ["uncertain_match", "field_conflict"]
+          },
+          "existing": { "$ref": "#/$defs/cardRef" },
+          "draft": { "$ref": "#/$defs/cardRef" },
+          "match_confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "match_reasons": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "field_conflicts": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/fieldUpdate" }
+          }
+        }
+      }
+    },
+    "field_updates_available": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/matchedEntry" }
+    }
+  },
+  "$defs": {
+    "cardRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "region", "category", "verification_status"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "region": { "type": "string" },
+        "category": { "type": "string" },
+        "verification_status": { "type": "string" }
+      }
+    },
+    "matchedEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "existing",
+        "draft",
+        "match_confidence",
+        "match_reasons",
+        "field_updates",
+        "field_conflicts"
+      ],
+      "properties": {
+        "existing": { "$ref": "#/$defs/cardRef" },
+        "draft": { "$ref": "#/$defs/cardRef" },
+        "match_confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "match_reasons": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "field_updates": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/fieldUpdate" }
+        },
+        "field_conflicts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/fieldUpdate" }
+        }
+      }
+    },
+    "fieldUpdate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field",
+        "existing_state",
+        "existing_note",
+        "draft_state",
+        "draft_note",
+        "draft_source_ref",
+        "recommended_action"
+      ],
+      "properties": {
+        "field": { "type": "string" },
+        "existing_state": { "type": ["string", "null"] },
+        "existing_note": { "type": "string" },
+        "draft_state": { "type": ["string", "null"] },
+        "draft_note": { "type": "string" },
+        "draft_source_ref": { "type": ["string", "null"] },
+        "recommended_action": { "type": "string" }
+      }
+    }
+  }
+}
