@@ -3,6 +3,10 @@
     "이 도움말은 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요.";
 
   const API_ENDPOINT = "/api/help-chat";
+  const HELP_PRESENCE_FIRST_DELAY = 15000;
+  const HELP_PRESENCE_DURATION = 7000;
+  const HELP_PRESENCE_MUTED_DATE_KEY = "gachibom:helpbot-presence-muted-date";
+  const HELP_PRESENCE_LAST_HOUR_KEY = "gachibom:helpbot-presence-last-hour";
   let activeHelpApi = null;
 
   const HELP_TOPICS = [
@@ -180,6 +184,45 @@
       element.textContent = text;
     }
     return element;
+  }
+
+  function helpbotPresenceDateKey(date = new Date()) {
+    return [
+      date.getFullYear(),
+      String(date.getMonth() + 1).padStart(2, "0"),
+      String(date.getDate()).padStart(2, "0")
+    ].join("-");
+  }
+
+  function helpbotPresenceHourKey(date = new Date()) {
+    return `${helpbotPresenceDateKey(date)}T${String(date.getHours()).padStart(2, "0")}`;
+  }
+
+  function helpbotPresenceMessage(date = new Date()) {
+    const hour = date.getHours();
+    if (hour < 12) {
+      return "오늘 제주 코스, 같이 찾아볼까요?";
+    }
+    if (hour < 15) {
+      return "쉬어가기 좋은 여행지를 찾아드릴까요?";
+    }
+    return "접근성 정보가 궁금하면 물어보세요.";
+  }
+
+  function readHelpbotPresenceStorage(key) {
+    try {
+      return window.localStorage.getItem(key) || "";
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function writeHelpbotPresenceStorage(key, value) {
+    try {
+      window.localStorage.setItem(key, value);
+    } catch (error) {
+      // Storage may be unavailable in private or restricted browser contexts.
+    }
   }
 
   function splitReadableParagraphs(text) {
@@ -629,23 +672,24 @@
     window.addEventListener("blur", finishWingDrag);
   }
 
-  function installWingIdleActivity(positionRoot, wingButton) {
-    if (!positionRoot || !wingButton) {
-      return;
-    }
-    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+  function installWingHourlyPresence(positionRoot, wingButton, presence, onOpen) {
+    if (!positionRoot || !wingButton || !presence) {
       return;
     }
 
-    const firstDelay = 800;
-    const interval = 5600;
-    const activeDuration = 5200;
-    let idleTimer = 0;
-    let clearTimer = 0;
+    const message = presence.querySelector(".helpbot-presence-message");
+    const openButton = presence.querySelector(".helpbot-presence-cta");
+    const dismissButton = presence.querySelector(".helpbot-presence-dismiss");
+    let availableAt = 0;
+    let availabilityTimer = 0;
+    let hourlyTimer = 0;
+    let hideTimer = 0;
 
     function isPaused() {
       return (
         document.hidden ||
+        document.body.classList.contains("modal-open") ||
+        document.body.classList.contains("site-intro-open") ||
         positionRoot.classList.contains("is-open") ||
         positionRoot.classList.contains("is-dragging") ||
         positionRoot.classList.contains("is-wing-dragging") ||
@@ -653,48 +697,150 @@
       );
     }
 
-    function clearIdleActivity() {
-      positionRoot.classList.remove("is-idle-active");
-      if (clearTimer) {
-        window.clearTimeout(clearTimer);
-        clearTimer = 0;
+    function isMutedToday(now = new Date()) {
+      return readHelpbotPresenceStorage(HELP_PRESENCE_MUTED_DATE_KEY) === helpbotPresenceDateKey(now);
+    }
+
+    function wasShownThisHour(now = new Date()) {
+      return readHelpbotPresenceStorage(HELP_PRESENCE_LAST_HOUR_KEY) === helpbotPresenceHourKey(now);
+    }
+
+    function hidePresence() {
+      positionRoot.classList.remove("is-presence-active");
+      presence.setAttribute("aria-hidden", "true");
+      if (hideTimer) {
+        window.clearTimeout(hideTimer);
+        hideTimer = 0;
       }
     }
 
-    function scheduleIdleActivity(delay = interval) {
-      if (idleTimer) {
-        window.clearTimeout(idleTimer);
+    function schedulePresenceHide(delay = HELP_PRESENCE_DURATION) {
+      if (hideTimer) {
+        window.clearTimeout(hideTimer);
       }
-      idleTimer = window.setTimeout(runIdleActivity, delay);
+      hideTimer = window.setTimeout(hidePresence, delay);
     }
 
-    function runIdleActivity() {
-      idleTimer = 0;
-      if (isPaused()) {
-        clearIdleActivity();
-        scheduleIdleActivity(interval);
+    function showPresence() {
+      const now = new Date();
+      if (isPaused() || isMutedToday(now) || wasShownThisHour(now)) {
+        return false;
+      }
+
+      const prompt = helpbotPresenceMessage(now);
+      if (message) {
+        message.textContent = prompt;
+      }
+      openButton?.setAttribute("aria-label", `${prompt} 가치봄 AI 챗봇 열기`);
+      writeHelpbotPresenceStorage(HELP_PRESENCE_LAST_HOUR_KEY, helpbotPresenceHourKey(now));
+      presence.setAttribute("aria-hidden", "false");
+      positionRoot.classList.add("is-presence-active");
+      schedulePresenceHide();
+      return true;
+    }
+
+    function showWhenAvailable() {
+      availabilityTimer = 0;
+      if (!availableAt || Date.now() < availableAt) {
         return;
       }
-
-      positionRoot.classList.add("is-idle-active");
-      clearTimer = window.setTimeout(() => {
-        clearIdleActivity();
-      }, activeDuration);
-      scheduleIdleActivity(interval);
+      showPresence();
     }
 
-    function resetIdleActivity(delay = interval) {
-      clearIdleActivity();
-      scheduleIdleActivity(delay);
+    function scheduleFirstPresence() {
+      if (document.body.classList.contains("site-intro-open")) {
+        availableAt = 0;
+        if (availabilityTimer) {
+          window.clearTimeout(availabilityTimer);
+          availabilityTimer = 0;
+        }
+        return;
+      }
+      if (!availableAt) {
+        availableAt = Date.now() + HELP_PRESENCE_FIRST_DELAY;
+      }
+      if (availabilityTimer) {
+        window.clearTimeout(availabilityTimer);
+      }
+      availabilityTimer = window.setTimeout(
+        showWhenAvailable,
+        Math.max(0, availableAt - Date.now())
+      );
     }
 
-    wingButton.addEventListener("pointerdown", () => resetIdleActivity());
-    wingButton.addEventListener("click", () => resetIdleActivity());
-    positionRoot.addEventListener("helpbot-wing-moved", () => resetIdleActivity(450));
-    positionRoot.addEventListener("helpbot-wing-closed", () => resetIdleActivity(450));
-    positionRoot.addEventListener("helpbot-wing-opened", clearIdleActivity);
-    document.addEventListener("visibilitychange", () => resetIdleActivity());
-    scheduleIdleActivity(firstDelay);
+    function scheduleNextHour() {
+      if (hourlyTimer) {
+        window.clearTimeout(hourlyTimer);
+      }
+      const now = new Date();
+      const nextHour = new Date(now);
+      nextHour.setHours(now.getHours() + 1, 0, 0, 100);
+      hourlyTimer = window.setTimeout(() => {
+        showWhenAvailable();
+        scheduleNextHour();
+      }, Math.max(1000, nextHour.getTime() - now.getTime()));
+    }
+
+    openButton?.addEventListener("click", () => {
+      hidePresence();
+      onOpen?.();
+    });
+    dismissButton?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      writeHelpbotPresenceStorage(HELP_PRESENCE_MUTED_DATE_KEY, helpbotPresenceDateKey());
+      hidePresence();
+    });
+    presence.addEventListener("pointerenter", () => {
+      if (hideTimer) {
+        window.clearTimeout(hideTimer);
+        hideTimer = 0;
+      }
+    });
+    presence.addEventListener("pointerleave", () => schedulePresenceHide(2400));
+    presence.addEventListener("focusin", () => {
+      if (hideTimer) {
+        window.clearTimeout(hideTimer);
+        hideTimer = 0;
+      }
+    });
+    presence.addEventListener("focusout", (event) => {
+      if (!presence.contains(event.relatedTarget)) {
+        schedulePresenceHide(2400);
+      }
+    });
+    wingButton.addEventListener("pointerdown", hidePresence);
+    positionRoot.addEventListener("helpbot-wing-moved", hidePresence);
+    positionRoot.addEventListener("helpbot-wing-opened", () => {
+      writeHelpbotPresenceStorage(HELP_PRESENCE_LAST_HOUR_KEY, helpbotPresenceHourKey());
+      hidePresence();
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden && availableAt && Date.now() >= availableAt) {
+        window.setTimeout(showWhenAvailable, 1200);
+      }
+    });
+    window.addEventListener("storage", (event) => {
+      if (
+        event.key === HELP_PRESENCE_MUTED_DATE_KEY ||
+        event.key === HELP_PRESENCE_LAST_HOUR_KEY
+      ) {
+        hidePresence();
+      }
+    });
+
+    const bodyObserver = new MutationObserver(() => {
+      if (document.body.classList.contains("modal-open")) {
+        hidePresence();
+      }
+      scheduleFirstPresence();
+      if (!isPaused() && availableAt && Date.now() >= availableAt) {
+        window.setTimeout(showWhenAvailable, 1200);
+      }
+    });
+    bodyObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
+    scheduleFirstPresence();
+    scheduleNextHour();
   }
 
   function installDraggable(shell, handle, options = {}) {
@@ -1092,6 +1238,7 @@
     const wingMode = mode === "wing";
     const wingWrap = wingMode ? createElement("div", "helpbot-wing-wrap") : null;
     const wingButton = wingMode ? createElement("button", "helpbot-wing-banner") : null;
+    const presence = wingMode ? createElement("div", "helpbot-presence") : null;
     const shell = createElement("section", "helpbot");
     shell.dataset.mode = mode;
     shell.setAttribute("aria-label", "가치봄 제주 도움말 챗봇");
@@ -1196,7 +1343,20 @@
     shell.appendChild(sidebar);
     shell.appendChild(main);
 
-    if (wingMode && wingWrap && wingButton) {
+    if (wingMode && wingWrap && wingButton && presence) {
+      const presenceCta = createElement("button", "helpbot-presence-cta");
+      presenceCta.type = "button";
+      presenceCta.appendChild(createElement("strong", "", "가치봄 AI"));
+      presenceCta.appendChild(createElement("span", "helpbot-presence-message", "접근성 정보가 궁금하면 물어보세요."));
+      const presenceDismiss = createElement("button", "helpbot-presence-dismiss", "×");
+      presenceDismiss.type = "button";
+      presenceDismiss.setAttribute("aria-label", "오늘은 챗봇 안내 그만 보기");
+      presenceDismiss.title = "오늘은 그만 보기";
+      presence.setAttribute("aria-live", "polite");
+      presence.setAttribute("aria-atomic", "true");
+      presence.setAttribute("aria-hidden", "true");
+      presence.appendChild(presenceCta);
+      presence.appendChild(presenceDismiss);
       wingButton.type = "button";
       wingButton.setAttribute("aria-expanded", "false");
       wingButton.setAttribute("aria-label", "가치봄 AI 챗봇 열기");
@@ -1206,6 +1366,7 @@
       wingImage.alt = "";
       wingImage.draggable = false;
       wingButton.appendChild(wingImage);
+      wingWrap.appendChild(presence);
       wingWrap.appendChild(wingButton);
       wingWrap.appendChild(shell);
       document.body.appendChild(wingWrap);
@@ -1229,7 +1390,7 @@
       applyInitialWingPosition(wingWrap, wingButton, shell);
     });
     installWingBannerDraggable(wingWrap, wingButton, shell);
-    installWingIdleActivity(wingWrap, wingButton);
+    installWingHourlyPresence(wingWrap, wingButton, presence, openWing);
 
     async function addBotResponse(question) {
       const userText = question.trim();
