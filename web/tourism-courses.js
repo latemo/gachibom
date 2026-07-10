@@ -292,9 +292,10 @@ function renderCourse() {
 
   const index = tourismState.filteredCourses.findIndex((item) => item.id === course.id);
   const stops = course.stops || [];
+  const travelerLabel = travelerOptions.find((option) => option.id === tourismState.travelerType)?.label || "전체";
   document.title = `${course.title} | 제주관광공사 추천 코스`;
   document.getElementById("coursePosition").textContent =
-    `코스 ${String(index + 1).padStart(2, "0")} / ${String(tourismState.filteredCourses.length).padStart(2, "0")}`;
+    `${travelerLabel} 추천 · 코스 ${String(index + 1).padStart(2, "0")} / ${String(tourismState.filteredCourses.length).padStart(2, "0")}`;
   document.getElementById("courseTitle").textContent = course.title;
   document.getElementById("courseRoute").textContent = stops.map((stop) => stop.name).join(" → ");
   document.getElementById("courseStopCount").textContent = `${stops.length}곳`;
@@ -312,7 +313,7 @@ function renderCourse() {
   renderPager();
 }
 
-function refreshFilteredCourses({ syncUrl = true, replaceUrl = true } = {}) {
+function refreshFilteredCourses({ syncUrl = true, replaceUrl = true, selectFirst = false } = {}) {
   const query = normalizeSearchValue(tourismState.query);
   tourismState.filteredCourses = tourismState.courses
     .filter(courseMatchesTraveler)
@@ -321,7 +322,7 @@ function refreshFilteredCourses({ syncUrl = true, replaceUrl = true } = {}) {
     .sort((left, right) => right.score - left.score || left.index - right.index)
     .map((item) => item.course);
 
-  if (!tourismState.filteredCourses.some((course) => course.id === tourismState.selectedCourseId)) {
+  if (selectFirst || !tourismState.filteredCourses.some((course) => course.id === tourismState.selectedCourseId)) {
     tourismState.selectedCourseId = tourismState.filteredCourses[0]?.id || "";
   }
 
@@ -370,9 +371,12 @@ function bindTourismEvents() {
     if (!button) {
       return;
     }
+    if (tourismState.travelerType === button.dataset.travelerType) {
+      return;
+    }
     tourismState.travelerType = button.dataset.travelerType;
     renderTravelerFilters();
-    refreshFilteredCourses();
+    refreshFilteredCourses({ selectFirst: true });
   });
 
   document.getElementById("previousCourse").addEventListener("click", (event) => {
