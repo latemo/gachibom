@@ -2,12 +2,21 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "functions": {
     "api/**/*.py": {
-      "includeFiles": "data/**",
-      "excludeFiles": "{tests/**,docs/**,web/assets/**,.playwright-mcp/**,.serena/**,*.png,*.jpg,*.jpeg,*.mp4,*.pptx,*.docx}"
+      "includeFiles": "{data/jeju_accessible_spots.json,data/place_location_overrides.json,data/roadview_image_metadata.json,data/tourism_weak_recommendation_courses.json}",
+      "excludeFiles": "{tests/**,docs/**,scripts/**,web/assets/**,data/raw/**,.playwright-mcp/**,.serena/**,.tmp-*/**,.vercel/**,*.png,*.jpg,*.jpeg,*.mp4,*.pptx,*.docx}"
     }
   },
   "routes": [
     { "src": "/\\.env(.*)", "status": 404 },
+    { "src": "/src(.*)", "status": 404 },
+    { "src": "/scripts(.*)", "status": 404 },
+    { "src": "/tests(.*)", "status": 404 },
+    { "src": "/docs(.*)", "status": 404 },
+    { "src": "/api/(.*)\\.py", "status": 404 },
+    { "src": "/README\\.md", "status": 404 },
+    { "src": "/design-qa\\.md", "status": 404 },
+    { "src": "/help-chatbot\\.html", "status": 404 },
+    { "src": "/miro_service_concept\\.html", "status": 404 },
     { "src": "/api/help-chat", "dest": "/api/help_chat.py" },
     { "src": "/api/(.*)", "dest": "/api/$1.py" },
     { "src": "/data/(.*)", "dest": "/web/data/$1" },
