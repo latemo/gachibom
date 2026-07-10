@@ -2620,6 +2620,9 @@ function markSiteIntroSeen() {
 
 function shouldSkipSiteIntro() {
   const params = new URLSearchParams(window.location.search);
+  if (params.get("intro") === "1") {
+    return false;
+  }
   if (params.get("intro") === "0") {
     return true;
   }

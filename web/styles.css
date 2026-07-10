@@ -439,7 +439,6 @@ body.concept-result-open .concept-main {
 }
 
 .concept-main h1 {
-  max-width: 540px;
   margin: 0;
   color: #17202d;
   font-family: "EF Jeju Doldam", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
@@ -450,7 +449,6 @@ body.concept-result-open .concept-main {
 }
 
 .concept-main p {
-  max-width: 430px;
   margin: 0;
   color: #2f3a48;
   font-size: 15px;

@@ -1127,9 +1127,18 @@
 
     const main = createElement("div", "helpbot-main");
     const head = createElement("header", "helpbot-head");
-    const titleBlock = createElement("div");
+    const headBrand = createElement("div", "helpbot-head-brand");
+    const headAvatar = createElement("span", "helpbot-head-avatar");
+    const headAvatarImage = createElement("img");
+    headAvatarImage.src = "assets/help-chatbot-wing-badge.png";
+    headAvatarImage.alt = "";
+    headAvatarImage.draggable = false;
+    headAvatar.appendChild(headAvatarImage);
+    const titleBlock = createElement("div", "helpbot-head-copy");
     titleBlock.appendChild(createElement("strong", "", "가치봄 도움말"));
     titleBlock.appendChild(createElement("span", "", "서버 LLM 기반 답변"));
+    headBrand.appendChild(headAvatar);
+    headBrand.appendChild(titleBlock);
     const headActions = createElement("div", "helpbot-head-actions");
     const dragHandle = createElement("button", "helpbot-drag-handle", "이동");
     dragHandle.type = "button";
@@ -1147,7 +1156,7 @@
       headActions.appendChild(closeButton);
     }
 
-    head.appendChild(titleBlock);
+    head.appendChild(headBrand);
     head.appendChild(headActions);
 
     const log = createElement("div", "helpbot-log");
@@ -1190,8 +1199,13 @@
     if (wingMode && wingWrap && wingButton) {
       wingButton.type = "button";
       wingButton.setAttribute("aria-expanded", "false");
-      wingButton.appendChild(createElement("small", "helpbot-wing-badge", "AI"));
-      wingButton.appendChild(createElement("span", "helpbot-wing-label", "도움말 챗봇"));
+      wingButton.setAttribute("aria-label", "가치봄 AI 챗봇 열기");
+      wingButton.title = "가치봄 AI 챗봇";
+      const wingImage = createElement("img", "helpbot-wing-image");
+      wingImage.src = "assets/help-chatbot-wing-badge.png";
+      wingImage.alt = "";
+      wingImage.draggable = false;
+      wingButton.appendChild(wingImage);
       wingWrap.appendChild(wingButton);
       wingWrap.appendChild(shell);
       document.body.appendChild(wingWrap);
@@ -1265,6 +1279,7 @@
       }
       wingWrap.classList.add("is-open");
       wingButton.setAttribute("aria-expanded", "true");
+      wingButton.setAttribute("aria-label", "가치봄 AI 챗봇 닫기");
       wingWrap.dispatchEvent(new CustomEvent("helpbot-wing-opened"));
       input.focus();
     }
@@ -1275,6 +1290,7 @@
       }
       wingWrap.classList.remove("is-open");
       wingButton.setAttribute("aria-expanded", "false");
+      wingButton.setAttribute("aria-label", "가치봄 AI 챗봇 열기");
       wingWrap.dispatchEvent(new CustomEvent("helpbot-wing-closed"));
     }
 

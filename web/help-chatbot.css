@@ -221,6 +221,7 @@
   --helpbot-panel-width: min(440px, calc(100vw - 36px));
   --helpbot-panel-height: min(660px, calc(100vh - 116px));
   --helpbot-tab-top: calc(var(--helpbot-panel-top) + 56px);
+  --helpbot-wing-size: 96px;
   pointer-events: none;
 }
 
@@ -242,20 +243,22 @@
 
 .helpbot-wing-banner {
   position: fixed;
-  right: 0;
+  right: calc(var(--helpbot-wing-size) * -0.48);
   left: auto;
   top: var(--helpbot-tab-top);
   z-index: 2147483002;
-  width: 50px;
-  min-height: 176px;
+  width: var(--helpbot-wing-size);
+  height: var(--helpbot-wing-size);
+  min-height: 0;
   display: block !important;
   padding: 0;
-  border-radius: 8px 0 0 8px;
-  box-shadow: var(--shadow);
-  background: var(--ink);
+  border: 2px solid rgba(255, 255, 255, 0.96);
+  border-radius: 50%;
+  box-shadow: 0 18px 44px rgba(240, 126, 16, 0.28);
+  background: #fff;
   color: #fff;
   opacity: 1;
-  overflow: visible;
+  overflow: hidden;
   font-size: 14px;
   font-weight: 950;
   letter-spacing: 0;
@@ -268,6 +271,7 @@
     right 240ms cubic-bezier(0.2, 0.82, 0.2, 1),
     top 120ms ease-out,
     transform 220ms ease,
+    opacity 180ms ease,
     background-color 180ms ease,
     filter 220ms ease,
     box-shadow 220ms ease;
@@ -275,52 +279,39 @@
 }
 
 .helpbot-wing-wrap:not(.is-open) .helpbot-wing-banner {
-  background: rgba(17, 24, 39, 0.52);
-  backdrop-filter: blur(2px);
-  box-shadow: 0 14px 34px rgba(10, 18, 32, 0.14);
+  background: #fff;
+  box-shadow: 0 18px 44px rgba(240, 126, 16, 0.26);
   cursor: grab;
 }
 
 .helpbot-wing-wrap:not(.is-open) .helpbot-wing-banner:hover,
 .helpbot-wing-wrap:not(.is-open) .helpbot-wing-banner:focus-visible {
-  background: rgba(17, 24, 39, 0.86);
-  box-shadow: var(--shadow);
+  right: 8px;
+  background: #fff;
+  box-shadow: 0 22px 54px rgba(240, 126, 16, 0.36);
 }
 
 .helpbot-wing-wrap.is-idle-active:not(.is-open) .helpbot-wing-banner {
   animation:
     helpbot-wing-idle-breathe 2.8s ease-in-out infinite,
     helpbot-wing-idle-nudge 5.6s ease-in-out infinite;
-  background: rgba(17, 24, 39, 0.72);
+  background: #fff;
   box-shadow:
-    0 22px 56px rgba(10, 18, 32, 0.22),
-    0 0 0 1px rgba(49, 210, 154, 0.18),
-    0 0 22px rgba(49, 210, 154, 0.2);
+    0 22px 56px rgba(240, 126, 16, 0.3),
+    0 0 0 1px rgba(255, 174, 31, 0.22),
+    0 0 22px rgba(255, 174, 31, 0.2);
   filter: saturate(1.14);
 }
 
 .helpbot-wing-wrap.is-wing-dragging .helpbot-wing-banner {
-  background: var(--ink);
+  right: 8px;
+  background: #fff;
   cursor: grabbing;
   box-shadow: 0 28px 70px rgba(10, 18, 32, 0.28), 0 0 0 2px rgba(255, 210, 31, 0.2);
 }
 
 .helpbot-wing-banner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background:
-    linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(255, 210, 31, 0.18) 28%,
-      rgba(49, 210, 154, 0.24) 50%,
-      transparent 74%
-    );
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-100%);
+  display: none;
 }
 
 .helpbot-wing-wrap.is-idle-active:not(.is-open) .helpbot-wing-banner::before {
@@ -328,58 +319,33 @@
   opacity: 1;
 }
 
-.helpbot-wing-badge {
-  position: absolute;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 28px;
-  height: 24px;
-  border-radius: 7px;
-  background: rgba(255, 210, 31, 0.14);
-  color: #ffd21f;
-  font-size: 11px;
-  font-weight: 950;
-  z-index: 1;
-}
-
-.helpbot-wing-wrap.is-idle-active:not(.is-open) .helpbot-wing-badge {
-  animation: helpbot-wing-badge-pulse 2.8s ease-in-out infinite;
-}
-
-.helpbot-wing-label {
+.helpbot-wing-image {
   position: absolute;
   left: 50%;
-  top: 56%;
-  transform: translate(-50%, -50%) rotate(90deg);
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1.3);
   display: block;
-  width: 118px;
-  color: #fff;
-  text-align: center;
-  white-space: nowrap;
-  line-height: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
   z-index: 1;
-}
-
-.helpbot-wing-wrap.is-idle-active:not(.is-open) .helpbot-wing-label {
-  text-shadow: 0 0 12px rgba(255, 255, 255, 0.58);
 }
 
 .helpbot-wing-banner::after {
   content: "";
   position: absolute;
-  left: 50%;
-  bottom: 16px;
-  width: 7px;
-  height: 7px;
+  right: 8px;
+  bottom: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 999px;
   background: #31d29a;
   box-shadow: 0 0 0 5px rgba(49, 210, 154, 0.16);
-  transform: translateX(-50%);
-  z-index: 1;
+  border: 2px solid #fff;
+  transform: none;
+  z-index: 2;
 }
 
 .helpbot-wing-wrap.is-idle-active:not(.is-open) .helpbot-wing-banner::after {
@@ -420,10 +386,13 @@
 }
 
 .helpbot-wing-wrap.is-open .helpbot-wing-banner {
-  right: min(calc(var(--helpbot-panel-width) + var(--helpbot-panel-right)), calc(100vw - 50px));
+  right: calc(var(--helpbot-wing-size) * -0.48);
   left: auto;
-  background: var(--ink);
-  box-shadow: var(--shadow);
+  background: #fff;
+  box-shadow: 0 18px 44px rgba(240, 126, 16, 0.26);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.82);
 }
 
 .helpbot-wing-wrap.is-dragging .helpbot[data-mode="wing"],
@@ -537,17 +506,52 @@
   cursor: default;
 }
 
-.helpbot-head strong,
-.helpbot-head span {
-  display: block;
+.helpbot-head-brand {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
 }
 
-.helpbot-head strong {
+.helpbot-head-avatar {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  display: block;
+  overflow: hidden;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 7px 18px rgba(240, 126, 16, 0.2);
+}
+
+.helpbot-head-avatar img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scale(1.3);
+}
+
+.helpbot-head-copy {
+  min-width: 0;
+}
+
+.helpbot-head-copy strong,
+.helpbot-head-copy span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.helpbot-head-copy strong {
   font-size: 16px;
   font-weight: 950;
 }
 
-.helpbot-head span {
+.helpbot-head-copy span {
   margin-top: 3px;
   color: #747b88;
   font-size: 12px;
@@ -1174,6 +1178,7 @@
     --helpbot-panel-width: min(420px, calc(100vw - 24px));
     --helpbot-panel-height: calc(100vh - 88px);
     --helpbot-tab-top: calc(var(--helpbot-panel-top) + 46px);
+    --helpbot-wing-size: 82px;
   }
 
   .helpbot[data-mode="wing"] {
@@ -1204,6 +1209,40 @@
   .helpbot-form {
     padding-left: 14px;
     padding-right: 14px;
+  }
+
+  .helpbot-head {
+    gap: 8px;
+  }
+
+  .helpbot-head-brand {
+    gap: 8px;
+  }
+
+  .helpbot-head-avatar {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  .helpbot-head-actions {
+    flex: 0 0 auto;
+    gap: 6px;
+  }
+
+  .helpbot-drag-handle {
+    display: none;
+  }
+
+  .helpbot-reset {
+    min-height: 34px;
+    padding: 0 8px;
+    font-size: 11px;
+  }
+
+  .helpbot-close {
+    width: 34px;
+    min-height: 34px;
   }
 
   .helpbot-log {
