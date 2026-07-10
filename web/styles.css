@@ -2684,6 +2684,19 @@ body.concept-result-open .concept-result-panel {
   font-weight: 750;
 }
 
+.image-credit a,
+.image-modal-foot a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(61, 114, 255, 0.38);
+  text-underline-offset: 2px;
+}
+
+.image-credit a:hover,
+.image-modal-foot a:hover {
+  color: #174ac5;
+}
+
 .route-cta-button {
   width: 100%;
   display: grid;

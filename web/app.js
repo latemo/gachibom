@@ -233,60 +233,78 @@ const DEFAULT_PLACE_IMAGE = {
   policy: "대표 이미지 미수급"
 };
 
+const PLACE_IMAGE_VERSION = "20260710-1";
+
 const PLACE_IMAGE_POLICY = {
   jeju_indoor_literature_022: {
-    src: "assets/JEJULITERMU-1-001.jpg",
-    caption: "제주문학관 진입 동선",
-    source: "제주특별자치도 로드뷰",
-    policy: "장소별 접근성 이미지"
+    src: `assets/JEJULITERMU-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
+    caption: "제주문학관 외관",
+    source: "제주특별자치도 공식 블로그",
+    sourceUrl: "https://blog.naver.com/happyjejudo/223187158714",
+    policy: "실제 장소 대표 이미지"
   },
   jeju_indoor_hanran_016: {
-    src: "assets/HALLANEX-1-001.jpg",
-    caption: "제주한란전시관 장애인 주차 동선",
-    source: "제주특별자치도 로드뷰",
-    policy: "장소별 접근성 이미지"
+    src: `assets/HALLANEX-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
+    caption: "제주한란전시관 외관",
+    source: "제주특별자치도 공식 블로그",
+    sourceUrl: "https://blog.naver.com/happyjejudo/223391669826",
+    policy: "실제 장소 대표 이미지"
   },
   jeju_indoor_icc_032: {
-    src: "assets/ICCJEJU-accessible-tourism.jpg",
-    caption: "제주국제컨벤션센터 전경",
-    source: "열린관광 모두의 여행",
-    policy: "장소별 대표 이미지"
+    src: `assets/ICCJEJU-accessible-tourism.jpg?v=${PLACE_IMAGE_VERSION}`,
+    caption: "제주국제컨벤션센터와 중문 해안 전경",
+    source: "대한민국역사박물관 현대사아카이브",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:%EC%A0%9C%EC%A3%BC_%EC%A4%91%EB%AC%B8%EA%B4%80%EA%B4%91%EB%8B%A8%EC%A7%80_%EA%B5%AD%EC%A0%9C%EC%BB%A8%EB%B2%A4%EC%85%98%EC%84%BC%ED%84%B0.jpg",
+    license: "공공누리 제1유형",
+    policy: "실제 장소 대표 이미지"
   },
   jeju_indoor_mandeok_museum_009: {
-    src: "assets/MANDEOK-1-001.jpg",
-    caption: "김만덕기념관 장애인 주차 동선",
-    source: "제주특별자치도 로드뷰",
-    policy: "장소별 접근성 이미지"
+    src: `assets/MANDEOK-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
+    caption: "김만덕기념관과 야외 정원",
+    source: "제주특별자치도 공공데이터",
+    sourceUrl: "https://www.data.go.kr/data/15109158/fileData.do",
+    license: "이용허락범위 제한 없음",
+    policy: "실제 장소 대표 이미지"
   },
   jeju_indoor_worldheritage_011: {
-    src: "assets/WNHCENTER-1-001.jpg",
-    caption: "제주세계자연유산센터 장애인 주차 동선",
-    source: "제주특별자치도 로드뷰",
-    policy: "장소별 접근성 이미지"
+    src: `assets/WNHCENTER-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
+    caption: "제주세계자연유산센터 전경",
+    source: "제주특별자치도 공공데이터",
+    sourceUrl: "https://www.data.go.kr/data/15109158/fileData.do",
+    license: "이용허락범위 제한 없음",
+    policy: "실제 장소 대표 이미지"
   },
   jeju_forest_saryeoni_002: {
-    src: "assets/SARANI-1-001.jpg",
-    caption: "사려니숲길 무장애 주차 동선",
-    source: "제주특별자치도 로드뷰",
-    policy: "장소별 접근성 이미지"
+    src: `assets/SARANI-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
+    caption: "사려니숲길 무장애 데크길",
+    source: "제주특별자치도 공공데이터",
+    sourceUrl: "https://www.data.go.kr/data/15109158/fileData.do",
+    license: "이용허락범위 제한 없음",
+    policy: "실제 장소 대표 이미지"
   },
   jeju_forest_healing_001: {
-    src: "assets/HEALING-1-001.jpg",
-    caption: "서귀포 치유의숲 장애인 화장실 진입 동선",
-    source: "제주특별자치도 로드뷰",
-    policy: "장소별 접근성 이미지"
+    src: `assets/HEALING-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
+    caption: "서귀포 치유의숲 무장애 데크길",
+    source: "제주특별자치도 공공데이터",
+    sourceUrl: "https://www.data.go.kr/data/15109158/fileData.do",
+    license: "이용허락범위 제한 없음",
+    policy: "실제 장소 대표 이미지"
   },
   jeju_cafe_osulloc_013: {
-    src: "assets/OSULLOC-easyjeju.jpg",
-    caption: "오설록 티 뮤지엄 실내 전경",
-    source: "이지제주",
-    policy: "장소별 대표 이미지"
+    src: `assets/OSULLOC-easyjeju.jpg?v=${PLACE_IMAGE_VERSION}`,
+    caption: "오설록 티 뮤지엄 외관",
+    source: "Wikimedia Commons · 골뱅이",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:O%27Sulloc_Tea_Museum,_Jeju_(%EC%98%A4%EC%84%A4%EB%A1%9D_%EB%85%B9%EC%B0%A8%EB%B0%95%EB%AC%BC%EA%B4%80,_%EC%A0%9C%EC%A3%BC)_-_panoramio.jpg",
+    license: "CC BY-SA 3.0",
+    policy: "실제 장소 대표 이미지"
   },
   jeju_rest_sinsan_015: {
-    src: "assets/SHINSANPA-1-001.jpg",
-    caption: "신산공원 장애인 주차 동선",
-    source: "제주특별자치도 로드뷰",
-    policy: "장소별 접근성 이미지"
+    src: `assets/SHINSANPA-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
+    caption: "신산공원 산책 광장",
+    source: "제주특별자치도 공공데이터",
+    sourceUrl: "https://www.data.go.kr/data/15109158/fileData.do",
+    license: "이용허락범위 제한 없음",
+    policy: "실제 장소 대표 이미지"
   }
 };
 
@@ -779,11 +797,21 @@ function visualForPlace(place, usedSources = null) {
     alt: `${place?.name || "추천 장소"} 대표 이미지`,
     caption: policy.caption,
     source: policy.source,
+    sourceUrl: policy.sourceUrl || "",
+    license: policy.license || "",
     policy: policy.policy,
     fallbackSrc: placeholder.src,
     fallbackCaption: placeholder.caption,
     fallbackSource: placeholder.source
   };
+}
+
+function imageSourceMarkup(source, sourceUrl, license) {
+  const sourceLabel = escapeHtml(source || "이미지 출처 확인 중");
+  const sourceMarkup = sourceUrl
+    ? `<a href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer">${sourceLabel}</a>`
+    : sourceLabel;
+  return `${sourceMarkup}${license ? ` · ${escapeHtml(license)}` : ""}`;
 }
 
 function scoreForPlace(place, fallbackScore) {
@@ -2316,13 +2344,13 @@ function renderDetail(scenario) {
       </div>
       <button class="close-button" type="button" data-close-detail aria-label="선택 장소 상세 닫기">×</button>
     </div>
-    <button class="detail-photo" type="button" data-open-image-modal data-image-src="${escapeHtml(visual.src)}" data-image-alt="${escapeHtml(visual.alt)}" data-image-caption="${escapeHtml(visual.caption)}" data-image-source="${escapeHtml(visual.source)}" data-image-policy="${escapeHtml(visual.policy)}">
+    <button class="detail-photo" type="button" data-open-image-modal data-image-src="${escapeHtml(visual.src)}" data-image-alt="${escapeHtml(visual.alt)}" data-image-caption="${escapeHtml(visual.caption)}" data-image-source="${escapeHtml(visual.source)}" data-image-source-url="${escapeHtml(visual.sourceUrl)}" data-image-license="${escapeHtml(visual.license)}" data-image-policy="${escapeHtml(visual.policy)}">
       <img class="detail-photo-image" src="${escapeHtml(visual.src)}" alt="${escapeHtml(visual.alt)}" loading="lazy" decoding="async" data-fallback-src="${escapeHtml(visual.fallbackSrc)}" data-fallback-caption="${escapeHtml(visual.fallbackCaption)}" data-fallback-source="${escapeHtml(visual.fallbackSource)}">
       <span>${escapeHtml(visual.policy)}</span>
     </button>
     <div class="image-credit">
       <strong>${escapeHtml(visual.caption)}</strong>
-      <small>${escapeHtml(visual.source)} · 접근성 확인 자료와 대표 이미지를 함께 참고합니다.</small>
+      <small>${imageSourceMarkup(visual.source, visual.sourceUrl, visual.license)}</small>
     </div>
     <button class="route-cta-button" type="button" data-open-route-modal>
       <span>실제 경로 보기</span>
@@ -2527,7 +2555,11 @@ function openImageModal(trigger) {
   document.getElementById("imageModalTitle").textContent = trigger.dataset.imageAlt || "장소 이미지";
   document.getElementById("imageModalPolicy").textContent = trigger.dataset.imagePolicy || "대표 이미지";
   document.getElementById("imageModalCaption").textContent = trigger.dataset.imageCaption || "";
-  document.getElementById("imageModalSource").textContent = trigger.dataset.imageSource || "";
+  document.getElementById("imageModalSource").innerHTML = imageSourceMarkup(
+    trigger.dataset.imageSource,
+    trigger.dataset.imageSourceUrl,
+    trigger.dataset.imageLicense
+  );
   image.src = trigger.dataset.imageSrc || DEFAULT_PLACE_IMAGE.src;
   image.alt = trigger.dataset.imageAlt || "장소 이미지";
   modal.hidden = false;
@@ -2914,6 +2946,8 @@ function applyImageFallback(image) {
     photo.dataset.imageSrc = fallbackSrc;
     photo.dataset.imageCaption = image.dataset.fallbackCaption || DEFAULT_PLACE_IMAGE.caption;
     photo.dataset.imageSource = image.dataset.fallbackSource || DEFAULT_PLACE_IMAGE.source;
+    photo.dataset.imageSourceUrl = "";
+    photo.dataset.imageLicense = "";
     photo.dataset.imagePolicy = "이미지 로딩 실패";
     photo.querySelector("span").textContent = "이미지 로딩 실패";
     photo.nextElementSibling?.querySelector("strong")?.replaceChildren(document.createTextNode(photo.dataset.imageCaption));
