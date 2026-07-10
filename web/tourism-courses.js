@@ -156,13 +156,19 @@ function renderTravelerFilters() {
   }).join("");
 }
 
+function officialCourseNumber(course) {
+  const index = tourismState.courses.findIndex((item) => item.id === course?.id);
+  return index >= 0 ? index + 1 : 0;
+}
+
 function renderCourseSelector() {
   const select = document.getElementById("courseSelect");
   select.replaceChildren();
   tourismState.filteredCourses.forEach((course, index) => {
     const option = document.createElement("option");
     option.value = course.id;
-    option.textContent = `${String(index + 1).padStart(2, "0")}. ${course.title}`;
+    const courseNumber = officialCourseNumber(course) || index + 1;
+    option.textContent = `${String(courseNumber).padStart(2, "0")}. ${course.title}`;
     select.append(option);
   });
   select.value = tourismState.selectedCourseId;
@@ -290,12 +296,12 @@ function renderCourse() {
   detail.hidden = false;
   document.getElementById("courseSelect").value = course.id;
 
-  const index = tourismState.filteredCourses.findIndex((item) => item.id === course.id);
   const stops = course.stops || [];
+  const courseNumber = officialCourseNumber(course) || 1;
   const travelerLabel = travelerOptions.find((option) => option.id === tourismState.travelerType)?.label || "전체";
   document.title = `${course.title} | 제주관광공사 추천 코스`;
   document.getElementById("coursePosition").textContent =
-    `${travelerLabel} 추천 · 코스 ${String(index + 1).padStart(2, "0")} / ${String(tourismState.filteredCourses.length).padStart(2, "0")}`;
+    `${travelerLabel} 추천 · 코스 ${String(courseNumber).padStart(2, "0")} / ${String(tourismState.courses.length).padStart(2, "0")}`;
   document.getElementById("courseTitle").textContent = course.title;
   document.getElementById("courseRoute").textContent = stops.map((stop) => stop.name).join(" → ");
   document.getElementById("courseStopCount").textContent = `${stops.length}곳`;

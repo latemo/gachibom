@@ -28,6 +28,9 @@ refreshFilteredCourses({ syncUrl: false, selectFirst: true });
 if (tourismState.selectedCourseId !== "best") {
   throw new Error("traveler filter did not select the highest-ranked course");
 }
+if (officialCourseNumber(tourismState.filteredCourses[0]) !== 2) {
+  throw new Error("displayed course number did not preserve the official course order");
+}
 `;
 vm.runInNewContext(source, { console, URL, URLSearchParams });
 """
