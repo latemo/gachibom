@@ -7,6 +7,7 @@
   const HELP_PRESENCE_DURATION = 7000;
   const HELP_PRESENCE_MUTED_DATE_KEY = "gachibom:helpbot-presence-muted-date";
   const HELP_PRESENCE_LAST_HOUR_KEY = "gachibom:helpbot-presence-last-hour";
+  const HELP_PRESENCE_TEST_MODE = new URLSearchParams(window.location?.search || "").get("helpbotTest") === "1";
   let activeHelpApi = null;
 
   const HELP_TOPICS = [
@@ -698,10 +699,16 @@
     }
 
     function isMutedToday(now = new Date()) {
+      if (HELP_PRESENCE_TEST_MODE) {
+        return false;
+      }
       return readHelpbotPresenceStorage(HELP_PRESENCE_MUTED_DATE_KEY) === helpbotPresenceDateKey(now);
     }
 
     function wasShownThisHour(now = new Date()) {
+      if (HELP_PRESENCE_TEST_MODE) {
+        return false;
+      }
       return readHelpbotPresenceStorage(HELP_PRESENCE_LAST_HOUR_KEY) === helpbotPresenceHourKey(now);
     }
 
@@ -732,7 +739,9 @@
         message.textContent = prompt;
       }
       openButton?.setAttribute("aria-label", `${prompt} 가치봄 AI 챗봇 열기`);
-      writeHelpbotPresenceStorage(HELP_PRESENCE_LAST_HOUR_KEY, helpbotPresenceHourKey(now));
+      if (!HELP_PRESENCE_TEST_MODE) {
+        writeHelpbotPresenceStorage(HELP_PRESENCE_LAST_HOUR_KEY, helpbotPresenceHourKey(now));
+      }
       presence.setAttribute("aria-hidden", "false");
       positionRoot.classList.add("is-presence-active");
       schedulePresenceHide();
@@ -757,7 +766,7 @@
         return;
       }
       if (!availableAt) {
-        availableAt = Date.now() + HELP_PRESENCE_FIRST_DELAY;
+        availableAt = Date.now() + (HELP_PRESENCE_TEST_MODE ? 800 : HELP_PRESENCE_FIRST_DELAY);
       }
       if (availabilityTimer) {
         window.clearTimeout(availabilityTimer);
@@ -787,7 +796,9 @@
     });
     dismissButton?.addEventListener("click", (event) => {
       event.stopPropagation();
-      writeHelpbotPresenceStorage(HELP_PRESENCE_MUTED_DATE_KEY, helpbotPresenceDateKey());
+      if (!HELP_PRESENCE_TEST_MODE) {
+        writeHelpbotPresenceStorage(HELP_PRESENCE_MUTED_DATE_KEY, helpbotPresenceDateKey());
+      }
       hidePresence();
     });
     presence.addEventListener("pointerenter", () => {
@@ -811,7 +822,9 @@
     wingButton.addEventListener("pointerdown", hidePresence);
     positionRoot.addEventListener("helpbot-wing-moved", hidePresence);
     positionRoot.addEventListener("helpbot-wing-opened", () => {
-      writeHelpbotPresenceStorage(HELP_PRESENCE_LAST_HOUR_KEY, helpbotPresenceHourKey());
+      if (!HELP_PRESENCE_TEST_MODE) {
+        writeHelpbotPresenceStorage(HELP_PRESENCE_LAST_HOUR_KEY, helpbotPresenceHourKey());
+      }
       hidePresence();
     });
     document.addEventListener("visibilitychange", () => {
@@ -840,7 +853,9 @@
     bodyObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] });
 
     scheduleFirstPresence();
-    scheduleNextHour();
+    if (!HELP_PRESENCE_TEST_MODE) {
+      scheduleNextHour();
+    }
   }
 
   function installDraggable(shell, handle, options = {}) {

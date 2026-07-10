@@ -9,7 +9,7 @@ STYLES = ROOT / "web" / "help-chatbot.css"
 
 
 class HelpChatbotPresenceTests(unittest.TestCase):
-    def test_hourly_presence_configuration_replaces_continuous_nudge(self):
+    def test_hourly_presence_configuration_keeps_css_idle_nudge(self):
         script = SCRIPT.read_text(encoding="utf-8")
         styles = STYLES.read_text(encoding="utf-8")
 
@@ -17,9 +17,12 @@ class HelpChatbotPresenceTests(unittest.TestCase):
         self.assertIn("const HELP_PRESENCE_DURATION = 7000", script)
         self.assertIn('nextHour.setHours(now.getHours() + 1, 0, 0, 100)', script)
         self.assertIn("gachibom:helpbot-presence-muted-date", script)
+        self.assertIn('get("helpbotTest") === "1"', script)
+        self.assertIn("HELP_PRESENCE_TEST_MODE ? 800 : HELP_PRESENCE_FIRST_DELAY", script)
         self.assertNotIn("interval = 5600", script)
         self.assertNotIn("is-idle-active", styles)
         self.assertIn("is-presence-active", styles)
+        self.assertIn("helpbot-wing-idle-nudge 5.6s", styles)
 
     def test_time_based_presence_messages_and_storage_keys(self):
         harness = r"""

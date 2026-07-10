@@ -291,6 +291,16 @@
   box-shadow: 0 22px 54px rgba(240, 126, 16, 0.36);
 }
 
+.helpbot-wing-wrap:not(.is-open):not(.is-presence-active):not(.is-wing-dragging) .helpbot-wing-banner {
+  animation:
+    helpbot-wing-idle-breathe 2.8s ease-in-out infinite,
+    helpbot-wing-idle-nudge 5.6s ease-in-out infinite;
+}
+
+.helpbot-wing-wrap:not(.is-open):not(.is-presence-active):not(.is-wing-dragging) .helpbot-wing-banner::after {
+  animation: helpbot-wing-status-ping 2.8s ease-in-out infinite;
+}
+
 .helpbot-presence {
   position: fixed;
   top: calc(var(--helpbot-tab-top) + 10px);
@@ -1125,6 +1135,47 @@
   }
 }
 
+@keyframes helpbot-wing-idle-breathe {
+  0%,
+  100% {
+    filter: saturate(1.08) brightness(1);
+  }
+
+  46% {
+    filter: saturate(1.24) brightness(1.14);
+  }
+}
+
+@keyframes helpbot-wing-idle-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  16% {
+    transform: translateX(-5px);
+  }
+
+  32% {
+    transform: translateX(-2px);
+  }
+
+  48% {
+    transform: translateX(-4px);
+  }
+}
+
+@keyframes helpbot-wing-status-ping {
+  0%,
+  100% {
+    box-shadow: 0 0 0 5px rgba(49, 210, 154, 0.16);
+  }
+
+  34% {
+    box-shadow: 0 0 0 10px rgba(49, 210, 154, 0.12), 0 0 18px rgba(49, 210, 154, 0.56);
+  }
+}
+
 @keyframes helpbot-presence-arrive {
   0% {
     transform: translateX(18px) scale(0.92);
@@ -1153,6 +1204,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .helpbot-wing-wrap:not(.is-open):not(.is-presence-active) .helpbot-wing-banner,
+  .helpbot-wing-wrap:not(.is-open):not(.is-presence-active) .helpbot-wing-banner::after,
   .helpbot-presence,
   .helpbot-wing-wrap.is-presence-active:not(.is-open) .helpbot-wing-banner {
     animation: none;
