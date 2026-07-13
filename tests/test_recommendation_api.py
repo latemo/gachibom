@@ -12,8 +12,14 @@ from unittest.mock import patch
 
 from jsonschema import Draft202012Validator
 
-from src.recommendation_api import MAX_REQUEST_BODY_BYTES, create_server, load_optional_json_list
+from src.recommendation_api import (
+    MAX_RECOMMENDATION_QUERY_BYTES,
+    MAX_REQUEST_BODY_BYTES,
+    create_server,
+    load_optional_json_list,
+)
 from src.vercel_api import handle_help_chat as handle_vercel_help_chat
+from src.vercel_api import handle_recommendations as handle_vercel_recommendations
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -83,6 +89,7 @@ class RecommendationApiContractTests(unittest.TestCase):
         self.assertEqual(payload["ai_model"], "gpt-5-mini")
         self.assertGreater(payload["places"], 30)
         self.assertTrue(payload["features"]["help_chatbot"])
+        self.assertTrue(payload["features"]["grounded_rag"])
 
     def test_server_loads_manually_reviewed_visit_information(self):
         places = self.server.RequestHandlerClass.func.places
@@ -163,6 +170,34 @@ class RecommendationApiContractTests(unittest.TestCase):
         self.assertTrue(
             all(not list(place_validator.iter_errors(place)) for place in payload["places"])
         )
+
+    def test_recommendations_endpoint_applies_grounded_natural_language_query(self):
+        query = "제주시에서 휠체어로 이용할 실내 문학관과 장애인 화장실"
+        status, payload = self.post_json(
+            "/api/recommendations",
+            {"query": query, "use_ai": False},
+        )
+
+        self.assertEqual(status, 200)
+        self.assertEqual(payload["retrieval"]["status"], "applied")
+        self.assertEqual(payload["engine"]["retrieval"], "deterministic_bm25_structured_v1")
+        self.assertIn("제주문학관", [place["name"] for place in payload["places"]])
+        self.assertNotIn(query, json.dumps(payload, ensure_ascii=False))
+        self.assertTrue(payload["retrieval"]["matches"])
+        evidence = payload["retrieval"]["matches"][0]["evidence_bundle"]["sources"][0]
+        self.assertRegex(evidence["evidence_id"], r"^ev_[0-9a-f]{16}$")
+        self.assertTrue(evidence["url"].startswith(("https://", "http://")))
+
+    def test_recommendations_endpoint_reports_resource_data_gap_without_fallback(self):
+        status, payload = self.post_json(
+            "/api/recommendations",
+            {"query": "전동휠체어 급속충전기 위치를 알려줘", "use_ai": False},
+        )
+
+        self.assertEqual(status, 200)
+        self.assertEqual(payload["retrieval"]["status"], "resource_data_gap")
+        self.assertIn("power_wheelchair_fast_charger", payload["retrieval"]["data_gaps"])
+        self.assertEqual(payload["places"], [])
 
     def test_routes_endpoint_returns_proxy_route_with_mocked_provider(self):
         provider_payload = {
@@ -279,6 +314,24 @@ class RecommendationApiContractTests(unittest.TestCase):
         self.assertEqual(context.exception.code, 400)
         self.assertEqual(payload["code"], "invalid_limit")
 
+    def test_recommendations_endpoint_rejects_invalid_and_oversized_query(self):
+        with self.assertRaises(urllib.error.HTTPError) as invalid_context:
+            self.post_json("/api/recommendations", {"query": ["제주"], "use_ai": False})
+
+        invalid_payload = json.loads(invalid_context.exception.read().decode("utf-8"))
+        self.assertEqual(invalid_context.exception.code, 400)
+        self.assertEqual(invalid_payload["code"], "invalid_query")
+
+        with self.assertRaises(urllib.error.HTTPError) as oversized_context:
+            self.post_json(
+                "/api/recommendations",
+                {"query": "가" * (MAX_RECOMMENDATION_QUERY_BYTES + 1), "use_ai": False},
+            )
+
+        oversized_payload = json.loads(oversized_context.exception.read().decode("utf-8"))
+        self.assertEqual(oversized_context.exception.code, 413)
+        self.assertEqual(oversized_payload["code"], "query_too_large")
+
     def test_recommendations_endpoint_rejects_oversized_body(self):
         connection = http.client.HTTPConnection(self.host, self.port, timeout=5)
         connection.putrequest("POST", "/api/recommendations")
@@ -348,6 +401,21 @@ class VercelHelpChatContractTests(unittest.TestCase):
         response = json.loads(request.wfile.getvalue().decode("utf-8"))
         self.assertEqual(response["status"], "success")
         self.assertEqual(client.context["recommendation_context"]["selected_place"]["name"], "제주문학관")
+
+    def test_vercel_recommendation_adapter_passes_optional_query(self):
+        request = FakeVercelRequest(
+            {"query": "제주시 휠체어 실내 문학관", "use_ai": False}
+        )
+        state = {"places": [], "location_index": {}, "tourism_weak_course_summary": {}}
+
+        with patch("src.vercel_api.runtime_state", return_value=state), patch(
+            "src.vercel_api.build_runtime_recommendation",
+            return_value={"status": "ok"},
+        ) as build:
+            handle_vercel_recommendations(request)
+
+        self.assertEqual(request.status, 200)
+        self.assertEqual(build.call_args.kwargs["query"], "제주시 휠체어 실내 문학관")
 
 
 class FakeVercelRequest:

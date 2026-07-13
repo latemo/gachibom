@@ -38,6 +38,7 @@ MAX_REQUEST_BODY_BYTES = 1_000_000
 MAX_ROUTE_POINTS = 8
 ROUTE_PROVIDER_TIMEOUT_SECONDS = 7
 MAX_HELP_CHAT_QUESTION_BYTES = 2_000
+MAX_RECOMMENDATION_QUERY_BYTES = 2_000
 
 
 LOGGER = logging.getLogger(__name__)
@@ -102,6 +103,7 @@ class RecommendationApiHandler(SimpleHTTPRequestHandler):
                     "features": {
                         "route_proxy": True,
                         "help_chatbot": True,
+                        "grounded_rag": True,
                         "tourism_weak_courses": bool(self.tourism_weak_course_summary),
                     },
                     "tourism_weak_courses": self.tourism_weak_course_summary,
@@ -127,6 +129,7 @@ class RecommendationApiHandler(SimpleHTTPRequestHandler):
         try:
             payload = self.read_json_body()
             traveler_summary = payload.get("traveler_summary") or payload.get("profile") or {}
+            query = parse_recommendation_query(payload.get("query"))
             limit = parse_limit(payload.get("limit", 4))
             use_ai = parse_bool(payload.get("use_ai", True))
             model = parse_model(payload.get("model") or openai_model_from_env(DEFAULT_OPENAI_MODEL))
@@ -135,6 +138,7 @@ class RecommendationApiHandler(SimpleHTTPRequestHandler):
                 self.places,
                 traveler_summary,
                 today=self.generated_at,
+                query=query,
                 limit=limit,
                 use_ai=use_ai,
                 ai_model=model,
@@ -282,6 +286,21 @@ def parse_help_chat_question(value: Any) -> str:
             code="question_too_large",
         )
     return question
+
+
+def parse_recommendation_query(value: Any) -> str:
+    if value is None:
+        return ""
+    if not isinstance(value, str):
+        raise ApiRequestError("query는 문자열이어야 합니다.", code="invalid_query")
+    query = value.strip()
+    if len(query.encode("utf-8")) > MAX_RECOMMENDATION_QUERY_BYTES:
+        raise ApiRequestError(
+            "query가 너무 깁니다.",
+            status=HTTPStatus.REQUEST_ENTITY_TOO_LARGE,
+            code="query_too_large",
+        )
+    return query
 
 
 def parse_route_points(value: Any) -> list[dict[str, Any]]:

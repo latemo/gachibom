@@ -29,6 +29,7 @@ from src.recommendation_api import (
     parse_help_chat_question,
     parse_limit,
     parse_model,
+    parse_recommendation_query,
     parse_route_points,
 )
 from src.recommendation_service import (
@@ -78,6 +79,7 @@ def build_health_payload() -> dict[str, Any]:
         "features": {
             "route_proxy": True,
             "help_chatbot": True,
+            "grounded_rag": True,
             "tourism_weak_courses": bool(state["tourism_weak_course_summary"]),
         },
         "tourism_weak_courses": state["tourism_weak_course_summary"],
@@ -93,6 +95,7 @@ def handle_recommendations(request: BaseHTTPRequestHandler) -> None:
         payload = read_json_body(request)
         state = runtime_state()
         traveler_summary = payload.get("traveler_summary") or payload.get("profile") or {}
+        query = parse_recommendation_query(payload.get("query"))
         limit = parse_limit(payload.get("limit", 4))
         use_ai = parse_bool(payload.get("use_ai", True))
         model = parse_model(payload.get("model") or openai_model_from_env(DEFAULT_OPENAI_MODEL))
@@ -101,6 +104,7 @@ def handle_recommendations(request: BaseHTTPRequestHandler) -> None:
             state["places"],
             traveler_summary,
             today=generated_at(),
+            query=query,
             limit=limit,
             use_ai=use_ai,
             ai_model=model,

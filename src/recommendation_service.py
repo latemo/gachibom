@@ -11,6 +11,8 @@ from datetime import date
 from typing import Any, Protocol
 
 from src.app_recommendations import SAFETY_NOTICE, app_place_result
+from src.rag_query import parse_query_intent
+from src.rag_retrieval import retrieve_place_candidates
 from src.scoring import build_recommendation_result, rank_places
 
 
@@ -28,6 +30,8 @@ OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses"
 AI_HEADLINE_MAX_LENGTH = 80
 AI_LIST_ITEM_MAX_LENGTH = 100
 CLOSED_SERVICE_STATUSES = frozenset({"permanently_closed", "temporarily_closed"})
+RAG_RETRIEVAL_LIMIT = 12
+RAG_RETRIEVER_NAME = "deterministic_bm25_structured_v1"
 
 
 AI_SUMMARY_TEXT_FORMAT = {
@@ -37,7 +41,7 @@ AI_SUMMARY_TEXT_FORMAT = {
     "schema": {
         "type": "object",
         "additionalProperties": False,
-        "required": ["headline", "rationale", "cautions", "next_checks"],
+        "required": ["headline", "rationale", "cautions", "next_checks", "evidence_ids"],
         "properties": {
             "headline": {"type": "string"},
             "rationale": {
@@ -54,6 +58,11 @@ AI_SUMMARY_TEXT_FORMAT = {
                 "type": "array",
                 "items": {"type": "string"},
                 "maxItems": 4,
+            },
+            "evidence_ids": {
+                "type": "array",
+                "items": {"type": "string"},
+                "maxItems": 8,
             },
         },
     },
@@ -83,15 +92,45 @@ def build_runtime_recommendation(
     traveler_summary: dict[str, Any],
     *,
     today: date,
+    query: str = "",
     limit: int = 4,
     use_ai: bool = True,
     ai_model: str = DEFAULT_OPENAI_MODEL,
     explanation_client: RecommendationExplanationClient | None = None,
     location_index: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
-    normalized_summary = normalize_traveler_summary(traveler_summary)
+    base_summary = normalize_traveler_summary(traveler_summary)
+    query_intent = parse_query_intent(query, base_summary)
+    query_text = query_intent["query_text"]
+    normalized_summary = (
+        normalize_traveler_summary(query_intent["traveler_summary"])
+        if query_text
+        else base_summary
+    )
     safe_limit = max(1, min(int(limit or 4), 4))
-    candidate_places = [place for place in places if _is_open_service_candidate(place)]
+    open_candidates = [place for place in places if _is_open_service_candidate(place)]
+    candidate_places = open_candidates
+    retrieval_hits: list[dict[str, Any]] = []
+    retrieval_status = "not_requested"
+    data_gaps: list[str] = []
+
+    if query_text:
+        resource_types = query_intent.get("resource_types", [])
+        if resource_types:
+            retrieval_status = "resource_data_gap"
+            data_gaps = list(resource_types)
+            candidate_places = []
+        else:
+            retrieval_hits = retrieve_place_candidates(
+                open_candidates,
+                query=query_text,
+                intent=_retrieval_constraints(query_intent),
+                limit=max(RAG_RETRIEVAL_LIMIT, safe_limit * 4),
+                as_of=today,
+            )
+            candidate_places = [hit["place"] for hit in retrieval_hits]
+            retrieval_status = "applied" if candidate_places else "no_match"
+
     place_index = {place.get("id", ""): place for place in candidate_places}
     scores = rank_places(candidate_places, normalized_summary, limit=safe_limit, today=today)
     recommendation = build_recommendation_result(
@@ -100,10 +139,20 @@ def build_runtime_recommendation(
         safety_notice=SAFETY_NOTICE,
         title="맞춤 접근성 추천 코스",
     )
+    if retrieval_status in {"resource_data_gap", "no_match"}:
+        recommendation["course"]["route"] = []
     result_places = [
         app_place_result(score, place_index.get(score.spot_id, {}), location_index=location_index or {})
         for score in scores
     ]
+    retrieval = _build_retrieval_response(
+        status=retrieval_status,
+        query_intent=query_intent if query_text else None,
+        hits=retrieval_hits,
+        selected_spot_ids=[score.spot_id for score in scores],
+        corpus_count=len(open_candidates),
+        data_gaps=data_gaps,
+    )
     ai_summary = build_ai_summary(
         recommendation,
         result_places,
@@ -111,17 +160,20 @@ def build_runtime_recommendation(
         use_ai=use_ai,
         ai_model=ai_model,
         explanation_client=explanation_client,
+        retrieval=retrieval,
     )
     return {
         "generated_at": today.isoformat(),
         "engine": {
             "scoring": "local_accessibility_score_v1",
+            "retrieval": retrieval["engine"],
             "ai_model": ai_model,
             "ai_status": ai_summary["status"],
         },
         "traveler_summary": normalized_summary,
         "recommendation": recommendation,
         "places": result_places,
+        "retrieval": retrieval,
         "ai_summary": ai_summary,
         "safety_notice": SAFETY_NOTICE,
     }
@@ -134,6 +186,66 @@ def _is_open_service_candidate(place: dict[str, Any]) -> bool:
     return visit_info.get("service_status") not in CLOSED_SERVICE_STATUSES
 
 
+def _retrieval_constraints(query_intent: dict[str, Any]) -> dict[str, Any]:
+    """Use only coarse, high-confidence fields as retrieval hard filters."""
+
+    return {
+        "regions": query_intent.get("regions", []),
+        "categories": query_intent.get("categories", []),
+    }
+
+
+def _build_retrieval_response(
+    *,
+    status: str,
+    query_intent: dict[str, Any] | None,
+    hits: list[dict[str, Any]],
+    selected_spot_ids: list[str],
+    corpus_count: int,
+    data_gaps: list[str],
+) -> dict[str, Any]:
+    hit_index = {
+        str(hit.get("place", {}).get("id") or ""): hit
+        for hit in hits
+        if isinstance(hit, dict) and isinstance(hit.get("place"), dict)
+    }
+    matches: list[dict[str, Any]] = []
+    for spot_id in selected_spot_ids:
+        hit = hit_index.get(spot_id)
+        if not hit:
+            continue
+        evidence = hit.get("evidence_bundle") if isinstance(hit.get("evidence_bundle"), dict) else {}
+        matches.append(
+            {
+                "spot_id": spot_id,
+                "retrieval_score": hit.get("retrieval_score", 0),
+                "retrieval_reasons": list(hit.get("retrieval_reasons") or [])[:8],
+                "evidence_bundle": evidence,
+                "trace": dict(hit.get("trace") or {}),
+            }
+        )
+
+    public_intent = None
+    if query_intent is not None:
+        public_intent = {
+            "intent": query_intent.get("intent", "unknown"),
+            "regions": list(query_intent.get("regions") or []),
+            "categories": list(query_intent.get("categories") or []),
+            "resource_types": list(query_intent.get("resource_types") or []),
+            "signals": dict(query_intent.get("signals") or {}),
+        }
+
+    return {
+        "status": status,
+        "engine": RAG_RETRIEVER_NAME if query_intent is not None else "not_requested",
+        "corpus_count": corpus_count,
+        "retrieved_count": len(hits),
+        "query_intent": public_intent,
+        "data_gaps": list(data_gaps),
+        "matches": matches,
+    }
+
+
 def build_ai_summary(
     recommendation: dict[str, Any],
     places: list[dict[str, Any]],
@@ -142,19 +254,24 @@ def build_ai_summary(
     use_ai: bool,
     ai_model: str,
     explanation_client: RecommendationExplanationClient | None,
+    retrieval: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     if not use_ai:
         return empty_ai_summary("skipped", ai_model, "요청에서 AI 설명 생성을 끄도록 지정했습니다.")
     if explanation_client is None:
         return empty_ai_summary("disabled_no_key", ai_model, "OPENAI_API_KEY가 설정되지 않아 로컬 점수 근거만 사용했습니다.")
 
-    context = ai_prompt_context(recommendation, places, traveler_summary)
+    context = ai_prompt_context(recommendation, places, traveler_summary, retrieval=retrieval)
     try:
         generated = explanation_client.generate_summary(context, model=ai_model)
     except Exception as exc:
         return empty_ai_summary("error", ai_model, f"AI 설명 생성 실패: {exc.__class__.__name__}")
 
-    return normalize_ai_summary(generated, ai_model)
+    return normalize_ai_summary(
+        generated,
+        ai_model,
+        evidence_index=_retrieval_evidence_index(retrieval),
+    )
 
 
 def empty_ai_summary(status: str, model: str, note: str) -> dict[str, Any]:
@@ -165,11 +282,17 @@ def empty_ai_summary(status: str, model: str, note: str) -> dict[str, Any]:
         "rationale": [],
         "cautions": [],
         "next_checks": [],
+        "citations": [],
         "note": note,
     }
 
 
-def normalize_ai_summary(value: dict[str, Any], model: str) -> dict[str, Any]:
+def normalize_ai_summary(
+    value: dict[str, Any],
+    model: str,
+    *,
+    evidence_index: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
     return {
         "status": "success",
         "model": model,
@@ -177,6 +300,7 @@ def normalize_ai_summary(value: dict[str, Any], model: str) -> dict[str, Any]:
         "rationale": clean_ai_text_list(value.get("rationale", []))[:4],
         "cautions": clean_ai_text_list(value.get("cautions", []))[:4],
         "next_checks": clean_ai_text_list(value.get("next_checks", []))[:4],
+        "citations": _resolve_ai_citations(value.get("evidence_ids"), evidence_index or {}),
         "note": clean_ai_text(value.get("note") or "", AI_LIST_ITEM_MAX_LENGTH),
     }
 
@@ -210,6 +334,8 @@ def ai_prompt_context(
     recommendation: dict[str, Any],
     places: list[dict[str, Any]],
     traveler_summary: dict[str, list[str]],
+    *,
+    retrieval: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     return {
         "traveler_summary": traveler_summary,
@@ -218,6 +344,10 @@ def ai_prompt_context(
         "fit_reasons": recommendation.get("fit_reasons", [])[:8],
         "deduction_reasons": recommendation.get("deduction_reasons", [])[:8],
         "check_before_visit": recommendation.get("check_before_visit", [])[:8],
+        "retrieval": {
+            "status": (retrieval or {}).get("status", "not_requested"),
+            "evidence": list(_retrieval_evidence_index(retrieval).values())[:8],
+        },
         "places": [
             {
                 "name": place.get("name"),
@@ -232,6 +362,59 @@ def ai_prompt_context(
             for place in places[:4]
         ],
     }
+
+
+def _retrieval_evidence_index(
+    retrieval: dict[str, Any] | None,
+) -> dict[str, dict[str, Any]]:
+    index: dict[str, dict[str, Any]] = {}
+    if not isinstance(retrieval, dict):
+        return index
+    for match in retrieval.get("matches") or []:
+        if not isinstance(match, dict):
+            continue
+        spot_id = str(match.get("spot_id") or "")
+        evidence = match.get("evidence_bundle")
+        if not isinstance(evidence, dict):
+            continue
+        verification = evidence.get("verification") if isinstance(evidence.get("verification"), dict) else {}
+        for source in evidence.get("sources") or []:
+            if not isinstance(source, dict):
+                continue
+            evidence_id = str(source.get("evidence_id") or "")
+            source_url = str(source.get("url") or "")
+            if not evidence_id or not source_url.startswith(("https://", "http://")):
+                continue
+            index[evidence_id] = {
+                "evidence_id": evidence_id,
+                "spot_id": spot_id,
+                "source_title": str(source.get("title") or "")[:240],
+                "source_url": source_url[:2048],
+                "checked_at": source.get("checked_at") or verification.get("checked_at"),
+                "verification_status": source.get("status") or verification.get("status") or "needs_check",
+            }
+    return index
+
+
+def _resolve_ai_citations(
+    values: Any,
+    evidence_index: dict[str, dict[str, Any]],
+) -> list[dict[str, Any]]:
+    if isinstance(values, str):
+        values = [values]
+    if not isinstance(values, list):
+        return []
+    citations: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for value in values:
+        evidence_id = str(value or "").strip()
+        if evidence_id in seen or evidence_id not in evidence_index:
+            continue
+        citations.append(dict(evidence_index[evidence_id]))
+        seen.add(evidence_id)
+        if len(citations) >= 8:
+            break
+    return citations
 
 
 class OpenAIResponsesExplanationClient:
@@ -253,6 +436,7 @@ class OpenAIResponsesExplanationClient:
                         "너는 제주 접근성 여행 추천 서비스의 설명 생성기다. "
                         "의료 판단이나 방문 가능 보장을 하지 말고, 제공된 점수와 근거만 사용한다. "
                         "장소가 안전하다고 단정하지 말고, 점수·시설·검수 상태를 근거로 설명한다. "
+                        "검색 근거를 언급할 때는 retrieval.evidence에 있는 evidence_id만 사용한다. "
                         "모든 문장은 한국어로 작성한다."
                     ),
                 },
@@ -265,8 +449,10 @@ class OpenAIResponsesExplanationClient:
                         "cautions에는 현장 변수, 운영 여부, 혼잡, 음식 제한, 날씨 민감 요소처럼 확정할 수 없는 부분을 쓴다. "
                         "next_checks에는 방문 전 실제로 확인할 항목만 쓴다. "
                         "새로운 장소명, 없는 시설, 의학적 조언은 만들지 않는다. "
+                        "evidence_ids에는 실제 설명에 사용한 retrieval.evidence의 ID만 넣고, "
+                        "근거가 없으면 빈 배열로 둔다. URL이나 ID를 새로 만들지 않는다. "
                         "반환 형식은 headline 문자열, rationale 문자열 배열, cautions 문자열 배열, "
-                        "next_checks 문자열 배열이다.\n"
+                        "next_checks 문자열 배열, evidence_ids 문자열 배열이다.\n"
                         + json.dumps(context, ensure_ascii=False)
                     ),
                 },
