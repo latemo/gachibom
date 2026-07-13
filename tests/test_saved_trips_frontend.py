@@ -716,6 +716,129 @@ equal(storedDocument.items, [], "confirmed delete should update localStorage");
         )
         self.assertEqual(result.returncode, 0, result.stderr)
 
+    def test_route_geometry_anchors_every_stop_and_both_maps_use_it(self):
+        app = APP_SCRIPT.read_text(encoding="utf-8")
+        styles = STYLES_FILE.read_text(encoding="utf-8")
+        center_map_source = app[
+            app.index("function drawCenterMap") : app.index("function renderLiveMapStats")
+        ]
+        route_map_source = app[
+            app.index("function drawRouteMap") : app.index("function applyImageFallback")
+        ]
+        self.assertIn("routeGeometryWithStopAnchors(", center_map_source)
+        self.assertIn("routeGeometryWithStopAnchors(", route_map_source)
+        self.assertGreaterEqual(center_map_source.count("smoothFactor: 0"), 2)
+        self.assertGreaterEqual(route_map_source.count("smoothFactor: 0"), 2)
+        live_marker_source = styles[
+            styles.index(".live-marker-icon {") : styles.index(".live-marker-icon span")
+        ]
+        route_marker_source = styles[
+            styles.index(".route-marker-icon {") : styles.index(".route-marker-icon span")
+        ]
+        self.assertIn("position: absolute", live_marker_source)
+        self.assertIn("position: absolute", route_marker_source)
+        active_marker_source = styles[
+            styles.index(".live-marker-icon.active span") : styles.index(".live-marker-role")
+        ]
+        self.assertNotIn("translateY(", active_marker_source)
+
+        harness = r"""
+const fs = require("fs");
+const vm = require("vm");
+let source = fs.readFileSync(process.argv[1], "utf8");
+source = source.replace(/\ninit\(\);\s*$/, `
+globalThis.__routeAnchorTest = { routeGeometryWithStopAnchors };
+`);
+
+function assert(condition, message) {
+  if (!condition) throw new Error(message);
+}
+
+function samePoint(left, right) {
+  return Number(left?.latitude) === Number(right?.latitude)
+    && Number(left?.longitude) === Number(right?.longitude);
+}
+
+const context = {
+  window: {
+    GachibomSavedTrips: null,
+    location: { search: "", hash: "", href: "https://example.test/" },
+    history: {}
+  },
+  document: {},
+  navigator: {},
+  URL,
+  URLSearchParams,
+  TextEncoder,
+  setTimeout,
+  clearTimeout,
+  console
+};
+context.globalThis = context;
+vm.createContext(context);
+vm.runInContext(source, context);
+
+const api = context.__routeAnchorTest;
+assert(api && typeof api.routeGeometryWithStopAnchors === "function", "anchor helper must be exposed");
+
+const entries = [
+  { place: { spot_id: "stop_a" }, location: { latitude: 33.5, longitude: 126.5 } },
+  { place: { spot_id: "stop_b" }, location: { latitude: 33.4, longitude: 126.6 } },
+  { place: { spot_id: "stop_c" }, location: { latitude: 33.3, longitude: 126.7 } }
+];
+const roadGeometry = [
+  { latitude: 33.499, longitude: 126.501 },
+  { latitude: 33.45, longitude: 126.55 },
+  { latitude: 33.401, longitude: 126.599 },
+  { latitude: 33.35, longitude: 126.65 },
+  { latitude: 33.301, longitude: 126.699 }
+];
+const entriesBefore = JSON.stringify(entries);
+const geometryBefore = JSON.stringify(roadGeometry);
+const anchored = api.routeGeometryWithStopAnchors(entries, roadGeometry);
+
+assert(Array.isArray(anchored), "anchored geometry must be an array");
+assert(JSON.stringify(entries) === entriesBefore, "entries must not be mutated");
+assert(JSON.stringify(roadGeometry) === geometryBefore, "road geometry must not be mutated");
+
+let stopCursor = -1;
+for (const entry of entries) {
+  const nextIndex = anchored.findIndex((point, index) => index > stopCursor && samePoint(point, entry.location));
+  assert(nextIndex > stopCursor, `stop ${entry.place.spot_id} must appear in route order`);
+  const occurrences = anchored.filter((point) => samePoint(point, entry.location)).length;
+  assert(occurrences === 1, `stop ${entry.place.spot_id} must be inserted exactly once`);
+  stopCursor = nextIndex;
+}
+
+let roadCursor = -1;
+for (const roadPoint of roadGeometry) {
+  const nextIndex = anchored.findIndex((point, index) => index > roadCursor && samePoint(point, roadPoint));
+  assert(nextIndex > roadCursor, "road geometry order must be preserved");
+  roadCursor = nextIndex;
+}
+
+const alreadyAnchoredGeometry = [
+  entries[0].location,
+  { latitude: 33.45, longitude: 126.55 },
+  entries[1].location,
+  { latitude: 33.35, longitude: 126.65 },
+  entries[2].location
+];
+const withoutDuplicates = api.routeGeometryWithStopAnchors(entries, alreadyAnchoredGeometry);
+for (const entry of entries) {
+  const occurrences = withoutDuplicates.filter((point) => samePoint(point, entry.location)).length;
+  assert(occurrences === 1, `existing stop ${entry.place.spot_id} must not be duplicated`);
+}
+"""
+        result = subprocess.run(
+            ["node", "-e", harness, str(APP_SCRIPT)],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+
     def test_site_wires_saved_routes_before_the_main_app(self):
         index = INDEX_FILE.read_text(encoding="utf-8")
         app = APP_SCRIPT.read_text(encoding="utf-8")
@@ -725,8 +848,8 @@ equal(storedDocument.items, [], "confirmed delete should update localStorage");
         self.assertIn('id="savedRoutesModal"', index)
         self.assertIn("data-open-saved-routes", index)
         self.assertGreaterEqual(index.count("data-save-current-route"), 2)
-        self.assertIn("styles.css?v=20260713-9", index)
-        self.assertIn("app.js?v=20260713-9", index)
+        self.assertIn("styles.css?v=20260714-2", index)
+        self.assertIn("app.js?v=20260714-2", index)
         self.assertIn("top-save-route-button", index)
         self.assertIn("live-map-save-button", index)
         self.assertIn("loadSavedRouteState();", app)

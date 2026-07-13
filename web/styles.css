@@ -2050,7 +2050,7 @@ body.concept-result-open .concept-result-panel {
 }
 
 .live-marker-icon {
-  position: relative;
+  position: absolute;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -2091,7 +2091,7 @@ body.concept-result-open .concept-result-panel {
 
 .live-marker-icon.active span,
 .live-marker-icon:hover span {
-  transform: translateY(-2px) scale(1.05);
+  transform: scale(1.05);
   box-shadow:
     0 20px 36px rgba(18, 28, 42, 0.28),
     0 0 0 10px rgba(255, 255, 255, 0.62);
@@ -4668,7 +4668,7 @@ body.saved-routes-modal-open .helpbot-wing-wrap {
 }
 
 .route-marker-icon {
-  position: relative;
+  position: absolute;
   display: grid;
   place-items: center;
   overflow: visible;

@@ -2334,15 +2334,72 @@ function liveMarkerIcon(index, active, location) {
   });
 }
 
+function routeGeometryWithStopAnchors(entries, geometry) {
+  const routeGeometry = (Array.isArray(geometry) ? geometry : [])
+    .filter((location) => Number.isFinite(Number(location?.latitude)) && Number.isFinite(Number(location?.longitude)));
+  const stopLocations = (Array.isArray(entries) ? entries : [])
+    .map((entry) => entry?.location)
+    .filter((location) => Number.isFinite(Number(location?.latitude)) && Number.isFinite(Number(location?.longitude)));
+
+  if (routeGeometry.length < 2) {
+    return stopLocations;
+  }
+  if (stopLocations.length < 2) {
+    return routeGeometry;
+  }
+
+  // Road providers snap waypoints to nearby roads. Keep the reviewed place
+  // coordinates as markers and add short access legs so the route meets them.
+  const anchorsByGeometryIndex = new Map();
+  let searchStartIndex = 0;
+  stopLocations.slice(1, -1).forEach((stop) => {
+    let nearestIndex = searchStartIndex;
+    let nearestDistance = Number.POSITIVE_INFINITY;
+    for (let index = searchStartIndex; index < routeGeometry.length; index += 1) {
+      const distance = haversineKm(stop, routeGeometry[index]);
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        nearestIndex = index;
+      }
+    }
+    if (!anchorsByGeometryIndex.has(nearestIndex)) {
+      anchorsByGeometryIndex.set(nearestIndex, []);
+    }
+    anchorsByGeometryIndex.get(nearestIndex).push(stop);
+    searchStartIndex = nearestIndex;
+  });
+
+  const alignedGeometry = [];
+  const appendDistinct = (location) => {
+    const previous = alignedGeometry[alignedGeometry.length - 1];
+    if (
+      previous
+      && Number(previous.latitude) === Number(location.latitude)
+      && Number(previous.longitude) === Number(location.longitude)
+    ) {
+      return;
+    }
+    alignedGeometry.push(location);
+  };
+
+  appendDistinct(stopLocations[0]);
+  routeGeometry.forEach((location, index) => {
+    appendDistinct(location);
+    (anchorsByGeometryIndex.get(index) || []).forEach((stop) => {
+      appendDistinct(stop);
+    });
+  });
+  appendDistinct(stopLocations[stopLocations.length - 1]);
+  return alignedGeometry;
+}
+
 function drawCenterMap(entries, summary, options = {}) {
   const map = ensureCenterMap();
   if (!map || !centerLayerGroup || entries.length === 0) {
     return;
   }
   centerLayerGroup.clearLayers();
-  const geometry = summary.geometry?.length >= 2
-    ? summary.geometry
-    : entries.map((entry) => entry.location).filter(Boolean);
+  const geometry = routeGeometryWithStopAnchors(entries, summary.geometry);
   const lineLatLngs = geometry.map((location) => [Number(location.latitude), Number(location.longitude)]);
   const markerLatLngs = entries.map((entry) => [Number(entry.location.latitude), Number(entry.location.longitude)]);
 
@@ -2351,6 +2408,7 @@ function drawCenterMap(entries, summary, options = {}) {
       color: "#ffffff",
       weight: 13,
       opacity: 0.94,
+      smoothFactor: 0,
       lineCap: "round",
       lineJoin: "round"
     }).addTo(centerLayerGroup);
@@ -2358,6 +2416,7 @@ function drawCenterMap(entries, summary, options = {}) {
       color: ROUTE_KEY_COLOR,
       weight: 6,
       opacity: 0.96,
+      smoothFactor: 0,
       lineCap: "round",
       lineJoin: "round"
     }).addTo(centerLayerGroup);
@@ -4146,9 +4205,7 @@ function drawRouteMap(entries, summary) {
     activateRouteMapFallback("로컬 경로 지도", "외부 지도 연결 없이 실제 좌표 순서를 표시합니다.");
     return;
   }
-  const geometry = summary.geometry?.length >= 2
-    ? summary.geometry
-    : entries.map((entry) => entry.location).filter(Boolean);
+  const geometry = routeGeometryWithStopAnchors(entries, summary.geometry);
   const lineLatLngs = geometry.map((location) => [Number(location.latitude), Number(location.longitude)]);
   const markerLatLngs = entries.map((entry) => [Number(entry.location.latitude), Number(entry.location.longitude)]);
 
@@ -4156,6 +4213,7 @@ function drawRouteMap(entries, summary) {
     color: "#ffffff",
     weight: 12,
     opacity: 0.96,
+    smoothFactor: 0,
     lineCap: "round",
     lineJoin: "round"
   }).addTo(routeLayerGroup);
@@ -4163,6 +4221,7 @@ function drawRouteMap(entries, summary) {
     color: ROUTE_KEY_COLOR,
     weight: 6,
     opacity: 0.95,
+    smoothFactor: 0,
     lineCap: "round",
     lineJoin: "round"
   }).addTo(routeLayerGroup);
