@@ -76,6 +76,37 @@ class ScoringTests(unittest.TestCase):
         self.assertEqual(score.confidence, "low")
         self.assertGreater(len(score.deduction_reasons), 0)
 
+    def test_calculation_trace_reconstructs_final_place_score(self):
+        traveler = {
+            "traveler_type": ["recovery_traveler", "diet_restricted_traveler"],
+            "mobility_conditions": ["체력 저하"],
+            "preferred_themes": ["실내", "휴식"],
+            "required_accessibility": ["장애인 화장실", "주차"],
+            "avoid": ["식당 제외", "외부 음식 제한"],
+        }
+        score = score_place(
+            place_by_id("jeju_other_dongmun_market_029"),
+            traveler,
+            today=date(2026, 7, 7),
+        )
+        trace = score.to_dict()["score"]["calculation_trace"]
+
+        self.assertEqual(
+            trace["base_total"],
+            sum(item["score"] for item in score.breakdown.values()),
+        )
+        reconstructed = trace["base_total"]
+        reconstructed += sum(item["delta"] for item in trace["bonuses"])
+        reconstructed += sum(item["delta"] for item in trace["deductions"])
+        for cap in trace["caps"]:
+            self.assertEqual(cap["before"], reconstructed)
+            reconstructed = cap["after"]
+
+        self.assertEqual(reconstructed, trace["final_total"])
+        self.assertEqual(trace["final_total"], score.total)
+        self.assertTrue(all(item["delta"] < 0 for item in trace["deductions"]))
+        self.assertTrue(any(cap["id"] == "blocked" for cap in trace["caps"]))
+
     def test_high_walking_course_is_penalized_for_recovery_traveler(self):
         traveler = {
             "traveler_type": ["recovery_traveler"],
@@ -111,6 +142,47 @@ class ScoringTests(unittest.TestCase):
         )
         errors = list(Draft202012Validator(schema).iter_errors(result))
         self.assertEqual(errors, [])
+
+    def test_course_breakdown_averages_selected_place_components(self):
+        traveler = {
+            "traveler_type": ["wheelchair_user"],
+            "mobility_conditions": ["긴 걷기 어려움"],
+            "preferred_themes": ["바다"],
+            "required_accessibility": ["장애인 화장실", "주차"],
+            "avoid": [],
+        }
+        scores = [
+            score_place(place_by_id(spot_id), traveler, today=date(2026, 7, 7))
+            for spot_id in (
+                "jeju_indoor_literature_022",
+                "jeju_sea_songaksan_023",
+                "jeju_sea_olle17_019",
+                "jeju_other_dongmun_market_029",
+            )
+        ]
+        result = build_recommendation_result(
+            scores,
+            traveler,
+            safety_notice="이 서비스는 의료 판단이나 여행 가능성을 보장하지 않습니다.",
+        )
+
+        for component, item in result["score"]["breakdown"].items():
+            expected = int(
+                round(
+                    sum(score.breakdown[component]["score"] for score in scores)
+                    / len(scores)
+                )
+            )
+            self.assertEqual(item["score"], expected)
+            self.assertIn("4곳", item["reason"])
+
+        self.assertTrue(
+            any(
+                result["score"]["breakdown"][component]["score"]
+                != scores[0].breakdown[component]["score"]
+                for component in result["score"]["breakdown"]
+            )
+        )
 
     def test_food_restriction_blocks_food_market_and_penalizes_cafe(self):
         traveler = {
@@ -167,6 +239,12 @@ class ScoringTests(unittest.TestCase):
 
         self.assertGreater(referenced_score.total, base_score.total)
         self.assertTrue(any("제주관광공사 관광약자 추천코스" in reason for reason in referenced_score.fit_reasons))
+        tourism_bonus = next(
+            item
+            for item in referenced_score.calculation_trace["bonuses"]
+            if item["id"] == "tourism_weak_course"
+        )
+        self.assertEqual(tourism_bonus["delta"], 6)
 
     def test_sensory_sensitive_user_gets_media_art_penalty(self):
         traveler = {

@@ -1,0 +1,583 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-07-11T18:18:25Z",
+  "human_review_status": "pending",
+  "methodology": {
+    "blinding": "randomized label-blind, single master assignment",
+    "rating_aggregation": "각 case_id×variant의 리뷰어 중앙값을 먼저 계산한 뒤 케이스 간 평균",
+    "preference_aggregation": "케이스별 A/B/tie 다수결을 Before/After/tie로 복원한 뒤 non-tie 승률 계산",
+    "previsit_scope": "pre_visit_check 또는 previsit_check 질문에만 적용",
+    "minimum_reviewers_per_case": 3,
+    "limitations": [
+      "모든 리뷰어가 같은 master A/B 배치를 사용하므로 케이스별 위치 편향은 완전히 상쇄되지 않음",
+      "리뷰어에게 원본 results, 기존 비블라인드 CSV 또는 deblind key를 제공하면 블라인드가 해제될 수 있음"
+    ]
+  },
+  "source": {
+    "source_fingerprint": "sha256:4e8cb5212e3527ec904b96cf66fb138ad20a30c3bd076ce2dab5da5b8c60ce3e",
+    "fingerprint_validation": "passed",
+    "row_fingerprint_validation": "recomputed"
+  },
+  "coverage": {
+    "input_review_row_count": 90,
+    "completed_review_count": 0,
+    "incomplete_review_row_count": 90,
+    "assignment_count": 30,
+    "required_assignment_count": 30,
+    "assignment_count_matches_requirement": true,
+    "reviewed_assignment_count": 0,
+    "assignment_coverage_rate": 0.0,
+    "min_reviewers_per_case": 3,
+    "cases_meeting_min_reviewers": 0,
+    "min_reviewer_coverage_rate": 0.0,
+    "reviewer_counts_by_case": {
+      "weather_sensitive__score_calculation": 0,
+      "stroller_family__exclusion_or_alternative": 0,
+      "recovery_quiet__mode_distinction": 0,
+      "wheelchair_access__deduction_reason": 0,
+      "weather_sensitive__pre_visit_check": 0,
+      "diet_restricted__score_calculation": 0,
+      "weather_sensitive__deduction_reason": 0,
+      "diet_restricted__deduction_reason": 0,
+      "wheelchair_access__score_calculation": 0,
+      "recovery_quiet__score_calculation": 0,
+      "recovery_quiet__pre_visit_check": 0,
+      "stroller_family__score_calculation": 0,
+      "weather_sensitive__recommendation_reason": 0,
+      "stroller_family__recommendation_reason": 0,
+      "wheelchair_access__mode_distinction": 0,
+      "recovery_quiet__exclusion_or_alternative": 0,
+      "wheelchair_access__pre_visit_check": 0,
+      "diet_restricted__pre_visit_check": 0,
+      "recovery_quiet__deduction_reason": 0,
+      "wheelchair_access__exclusion_or_alternative": 0,
+      "weather_sensitive__exclusion_or_alternative": 0,
+      "weather_sensitive__mode_distinction": 0,
+      "stroller_family__mode_distinction": 0,
+      "diet_restricted__mode_distinction": 0,
+      "wheelchair_access__recommendation_reason": 0,
+      "diet_restricted__recommendation_reason": 0,
+      "diet_restricted__exclusion_or_alternative": 0,
+      "recovery_quiet__recommendation_reason": 0,
+      "stroller_family__pre_visit_check": 0,
+      "stroller_family__deduction_reason": 0
+    },
+    "complete": false
+  },
+  "summary": {
+    "variants": {
+      "before": {
+        "review_count": 0,
+        "case_count": 0,
+        "reviewer_count": 0,
+        "ratings": {
+          "correctness": null,
+          "understanding": null,
+          "decision_help": null
+        },
+        "rates": {
+          "previsit_clarity_yes_rate": null,
+          "hallucination_yes_rate": null,
+          "safety_issue_yes_rate": null
+        },
+        "raw_reviewer_means": {
+          "ratings": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null
+          },
+          "rates": {
+            "previsit_clarity_yes_rate": null,
+            "hallucination_yes_rate": null,
+            "safety_issue_yes_rate": null
+          }
+        },
+        "case_medians": {},
+        "case_rates": {}
+      },
+      "after": {
+        "review_count": 0,
+        "case_count": 0,
+        "reviewer_count": 0,
+        "ratings": {
+          "correctness": null,
+          "understanding": null,
+          "decision_help": null
+        },
+        "rates": {
+          "previsit_clarity_yes_rate": null,
+          "hallucination_yes_rate": null,
+          "safety_issue_yes_rate": null
+        },
+        "raw_reviewer_means": {
+          "ratings": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null
+          },
+          "rates": {
+            "previsit_clarity_yes_rate": null,
+            "hallucination_yes_rate": null,
+            "safety_issue_yes_rate": null
+          }
+        },
+        "case_medians": {},
+        "case_rates": {}
+      }
+    },
+    "deltas": {
+      "correctness": null,
+      "understanding": null,
+      "decision_help": null,
+      "previsit_clarity_yes_rate": null,
+      "hallucination_yes_rate": null,
+      "safety_issue_yes_rate": null
+    },
+    "preference": {
+      "reviewed_case_count": 0,
+      "case_decisions": {},
+      "case_vote_counts": {},
+      "case_counts": {
+        "before": 0,
+        "after": 0,
+        "tie": 0
+      },
+      "after_non_tie_win_rate": null,
+      "tie_rate": null,
+      "raw_reviewer_votes": {
+        "counts": {
+          "before": 0,
+          "after": 0,
+          "tie": 0
+        },
+        "after_non_tie_win_rate": null,
+        "tie_rate": null
+      }
+    },
+    "inter_rater": {
+      "eligible_case_count": 0,
+      "reviewer_pair_count": 0,
+      "preference_exact_agreement": null,
+      "preference_case_mean_exact_agreement": null,
+      "rating_mean_absolute_difference": {
+        "correctness": null,
+        "understanding": null,
+        "decision_help": null,
+        "overall": null
+      },
+      "case_metrics": {
+        "weather_sensitive__score_calculation": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "stroller_family__exclusion_or_alternative": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "recovery_quiet__mode_distinction": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "wheelchair_access__deduction_reason": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "weather_sensitive__pre_visit_check": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "diet_restricted__score_calculation": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "weather_sensitive__deduction_reason": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "diet_restricted__deduction_reason": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "wheelchair_access__score_calculation": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "recovery_quiet__score_calculation": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "recovery_quiet__pre_visit_check": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "stroller_family__score_calculation": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "weather_sensitive__recommendation_reason": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "stroller_family__recommendation_reason": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "wheelchair_access__mode_distinction": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "recovery_quiet__exclusion_or_alternative": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "wheelchair_access__pre_visit_check": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "diet_restricted__pre_visit_check": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "recovery_quiet__deduction_reason": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "wheelchair_access__exclusion_or_alternative": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "weather_sensitive__exclusion_or_alternative": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "weather_sensitive__mode_distinction": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "stroller_family__mode_distinction": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "diet_restricted__mode_distinction": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "wheelchair_access__recommendation_reason": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "diet_restricted__recommendation_reason": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "diet_restricted__exclusion_or_alternative": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "recovery_quiet__recommendation_reason": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "stroller_family__pre_visit_check": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        },
+        "stroller_family__deduction_reason": {
+          "reviewer_count": 0,
+          "reviewer_pair_count": 0,
+          "preference_exact_agreement": null,
+          "rating_mean_absolute_difference": {
+            "correctness": null,
+            "understanding": null,
+            "decision_help": null,
+            "overall": null
+          }
+        }
+      }
+    }
+  },
+  "automatic_metrics": {
+    "after_score_trace_numeric_accuracy": 1.0
+  },
+  "gate": {
+    "status": "pending",
+    "passed": null,
+    "checks": [
+      {
+        "id": "complete_coverage",
+        "label": "전체 검토 커버리지",
+        "value": false,
+        "threshold": true,
+        "threshold_text": "충족",
+        "format": "boolean",
+        "passed": false
+      },
+      {
+        "id": "after_preference_win_rate",
+        "label": "After non-tie 선호 승률",
+        "value": null,
+        "threshold": 0.7,
+        "threshold_text": ">= 70%",
+        "format": "rate",
+        "passed": null
+      },
+      {
+        "id": "after_correctness",
+        "label": "After 정확성",
+        "value": null,
+        "threshold": 4.0,
+        "threshold_text": ">= 4.0/5",
+        "format": "rating",
+        "passed": null
+      },
+      {
+        "id": "after_understanding",
+        "label": "After 이해도",
+        "value": null,
+        "threshold": 4.0,
+        "threshold_text": ">= 4.0/5",
+        "format": "rating",
+        "passed": null
+      },
+      {
+        "id": "decision_help_delta",
+        "label": "의사결정 도움 변화",
+        "value": null,
+        "threshold": 0.5,
+        "threshold_text": ">= +0.5",
+        "format": "rating",
+        "passed": null
+      },
+      {
+        "id": "after_hallucination_issue_rate",
+        "label": "After 환각 이슈율",
+        "value": null,
+        "threshold": 0.0,
+        "threshold_text": "= 0%",
+        "format": "rate",
+        "passed": null
+      },
+      {
+        "id": "after_safety_issue_rate",
+        "label": "After 안전 이슈율",
+        "value": null,
+        "threshold": 0.0,
+        "threshold_text": "= 0%",
+        "format": "rate",
+        "passed": null
+      },
+      {
+        "id": "automatic_after_score_trace_accuracy",
+        "label": "자동 점수 계산 정확성",
+        "value": 1.0,
+        "threshold": 1.0,
+        "threshold_text": "= 100%",
+        "format": "rate",
+        "passed": null
+      }
+    ]
+  }
+}
