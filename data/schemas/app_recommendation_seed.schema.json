@@ -4,7 +4,7 @@
   "title": "Jeju Maeum App Recommendation Seed",
   "type": "object",
   "additionalProperties": false,
-  "required": ["generated_at", "safety_notice", "public_gate", "visual_assets", "official_courses", "scenarios"],
+  "required": ["generated_at", "safety_notice", "public_gate", "saved_route_places", "visual_assets", "official_courses", "scenarios"],
   "properties": {
     "generated_at": { "type": "string", "format": "date" },
     "safety_notice": { "type": "string", "minLength": 1 },
@@ -35,6 +35,42 @@
           "items": { "type": "string" }
         },
         "pending_gate_note": { "type": "string", "minLength": 1 }
+      }
+    },
+    "saved_route_places": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["spot_id", "name", "region", "category", "available", "duration_minutes", "info_url", "location", "visit_info"],
+        "properties": {
+          "spot_id": { "type": "string", "pattern": "^[A-Za-z0-9_-]{1,80}$" },
+          "name": { "type": "string", "minLength": 1, "maxLength": 100 },
+          "region": { "type": "string", "maxLength": 120 },
+          "category": { "type": "string", "minLength": 1, "maxLength": 80 },
+          "available": { "type": "boolean" },
+          "duration_minutes": { "type": ["integer", "null"], "minimum": 1, "maximum": 600 },
+          "info_url": { "type": "string", "maxLength": 2048, "pattern": "^(?:https?://.*)?$" },
+          "location": {
+            "oneOf": [
+              { "type": "null" },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["latitude", "longitude", "point_role"],
+                "properties": {
+                  "latitude": { "type": "number", "minimum": -90, "maximum": 90 },
+                  "longitude": { "type": "number", "minimum": -180, "maximum": 180 },
+                  "point_role": {
+                    "type": "string",
+                    "enum": ["poi", "facility", "route_start", "route_start_end", "route_end_reference", "viewpoint"]
+                  }
+                }
+              }
+            ]
+          },
+          "visit_info": { "$ref": "#/$defs/visitInfo" }
+        }
       }
     },
     "visual_assets": {
@@ -213,7 +249,8 @@
         "effort",
         "location",
         "safety_notes",
-        "avoid_for"
+        "avoid_for",
+        "visit_info"
       ],
       "properties": {
         "spot_id": { "type": "string" },
@@ -303,7 +340,8 @@
             "source_url",
             "matched_name",
             "match_method",
-            "evidence_count"
+            "evidence_count",
+            "point_role"
           ],
           "properties": {
             "latitude": { "type": "number", "minimum": -90, "maximum": 90 },
@@ -313,11 +351,96 @@
             "source_url": { "type": "string" },
             "matched_name": { "type": "string" },
             "match_method": { "type": "string" },
-            "evidence_count": { "type": "integer", "minimum": 1 }
+            "evidence_count": { "type": "integer", "minimum": 1 },
+            "point_role": {
+              "type": "string",
+              "enum": ["poi", "facility", "route_start", "route_start_end", "route_end_reference", "viewpoint"]
+            }
           }
         },
         "safety_notes": { "type": "array", "items": { "type": "string" } },
-        "avoid_for": { "type": "array", "items": { "type": "string" } }
+        "avoid_for": { "type": "array", "items": { "type": "string" } },
+        "visit_info": { "$ref": "#/$defs/visitInfo" }
+      }
+    },
+    "visitInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "address",
+        "phone",
+        "operating_hours",
+        "official_url",
+        "reservation_url",
+        "service_status",
+        "notice",
+        "verification_status",
+        "last_verified_at",
+        "source_updated_at",
+        "missing_fields",
+        "evidence"
+      ],
+      "properties": {
+        "address": { "type": ["string", "null"] },
+        "phone": { "type": ["string", "null"] },
+        "operating_hours": { "type": ["string", "null"] },
+        "official_url": { "type": ["string", "null"], "pattern": "^https?://" },
+        "reservation_url": { "type": ["string", "null"], "pattern": "^https?://" },
+        "service_status": {
+          "type": "string",
+          "enum": ["active", "temporarily_closed", "permanently_closed", "unknown"]
+        },
+        "notice": { "type": ["string", "null"] },
+        "verification_status": {
+          "type": "string",
+          "enum": ["verified", "partial", "needs_check"]
+        },
+        "last_verified_at": { "type": ["string", "null"], "format": "date" },
+        "source_updated_at": { "type": ["string", "null"], "format": "date" },
+        "missing_fields": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "evidence": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/visitInfoEvidence" }
+        }
+      }
+    },
+    "visitInfoEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fields",
+        "status",
+        "source_title",
+        "source_url",
+        "source_type",
+        "checked_at",
+        "observed_at",
+        "note"
+      ],
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "status": {
+          "type": "string",
+          "enum": ["verified", "partial", "needs_check", "not_applicable"]
+        },
+        "source_title": { "type": "string", "minLength": 1 },
+        "source_url": { "type": "string", "pattern": "^https?://" },
+        "source_type": {
+          "type": "string",
+          "enum": ["official", "public_agency", "operator_verified", "partner_verified", "user_feedback", "unknown"]
+        },
+        "checked_at": { "type": ["string", "null"], "format": "date" },
+        "observed_at": { "type": ["string", "null"], "format": "date" },
+        "note": { "type": "string" }
       }
     }
   }

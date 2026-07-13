@@ -1,3 +1,4 @@
+import copy
 import json
 import os
 import unittest
@@ -100,6 +101,51 @@ class RecommendationServiceTests(unittest.TestCase):
         self.assertEqual(result["engine"]["ai_status"], "success")
         self.assertEqual(result["ai_summary"]["model"], DEFAULT_OPENAI_MODEL)
         self.assertEqual(len(result["ai_summary"]["rationale"]), 1)
+
+    def test_build_runtime_recommendation_excludes_closed_services_without_mutating_input(
+        self,
+    ):
+        places = copy.deepcopy(load_places()[:4])
+        statuses = ("permanently_closed", "temporarily_closed", "unknown", "active")
+        for place, status in zip(places, statuses):
+            place["visit_info"] = {"service_status": status}
+        original_places = copy.deepcopy(places)
+
+        result = build_runtime_recommendation(
+            places,
+            {},
+            today=date(2026, 7, 13),
+            limit=4,
+            use_ai=False,
+        )
+
+        self.assertEqual(
+            {place["spot_id"] for place in result["places"]},
+            {places[2]["id"], places[3]["id"]},
+        )
+        self.assertEqual(places, original_places)
+
+    def test_build_runtime_recommendation_handles_no_candidates_after_service_status_gate(
+        self,
+    ):
+        places = copy.deepcopy(load_places()[:2])
+        places[0]["visit_info"] = {"service_status": "permanently_closed"}
+        places[1]["visit_info"] = {"service_status": "temporarily_closed"}
+
+        result = build_runtime_recommendation(
+            places,
+            {},
+            today=date(2026, 7, 13),
+            limit=4,
+            use_ai=False,
+        )
+
+        self.assertEqual(result["places"], [])
+        self.assertEqual(result["recommendation"]["recommended_spots"], [])
+        self.assertEqual(
+            result["recommendation"]["course"]["route"][0]["spot_id"],
+            "no_recommendation",
+        )
 
     def test_normalize_ai_summary_limits_overlong_generated_text(self):
         long_repeated = "제주한란전시관 방문 전 확인 " * 20

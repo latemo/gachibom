@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 from datetime import date
 from functools import partial
 from http import HTTPStatus
@@ -15,6 +16,7 @@ from urllib.request import Request, urlopen
 
 from src.help_chatbot_service import build_help_chatbot_reply, openai_help_chatbot_client_from_env
 from src.place_locations import load_place_location_index
+from src.place_visit_info import enrich_places_with_visit_info
 from src.recommendation_service import (
     DEFAULT_OPENAI_MODEL,
     build_runtime_recommendation,
@@ -30,10 +32,15 @@ DEFAULT_PLACES_PATH = ROOT / "data" / "jeju_accessible_spots.json"
 DEFAULT_ROADVIEW_METADATA_PATH = ROOT / "data" / "roadview_image_metadata.json"
 DEFAULT_LOCATION_OVERRIDES_PATH = ROOT / "data" / "place_location_overrides.json"
 DEFAULT_TOURISM_WEAK_COURSES_PATH = ROOT / "data" / "tourism_weak_recommendation_courses.json"
+DEFAULT_PLACE_CATALOG_PATH = ROOT / "data" / "place_catalog.roadview_facility.json"
+DEFAULT_VISIT_INFO_OVERRIDES_PATH = ROOT / "data" / "place_visit_info_overrides.json"
 MAX_REQUEST_BODY_BYTES = 1_000_000
 MAX_ROUTE_POINTS = 8
 ROUTE_PROVIDER_TIMEOUT_SECONDS = 7
 MAX_HELP_CHAT_QUESTION_BYTES = 2_000
+
+
+LOGGER = logging.getLogger(__name__)
 
 
 class ApiRequestError(ValueError):
@@ -45,6 +52,36 @@ class ApiRequestError(ValueError):
 
 def load_places(path: Path = DEFAULT_PLACES_PATH) -> list[dict[str, Any]]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_optional_json_list(path: Path, *, label: str = "optional data") -> list[dict[str, Any]]:
+    """Load an optional JSON object array without blocking service startup."""
+
+    if not path.exists():
+        return []
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        LOGGER.warning(
+            "%s could not be loaded from %s (%s); continuing without it",
+            label,
+            path,
+            exc.__class__.__name__,
+        )
+        return []
+    if not isinstance(value, list):
+        LOGGER.warning("%s at %s is not a JSON array; continuing without it", label, path)
+        return []
+
+    rows = [item for item in value if isinstance(item, dict)]
+    if len(rows) != len(value):
+        LOGGER.warning(
+            "%s at %s contains %d non-object row(s); ignoring those rows",
+            label,
+            path,
+            len(value) - len(rows),
+        )
+    return rows
 
 
 class RecommendationApiHandler(SimpleHTTPRequestHandler):
@@ -130,6 +167,7 @@ class RecommendationApiHandler(SimpleHTTPRequestHandler):
             result = build_help_chatbot_reply(
                 question,
                 history=payload.get("history") or payload.get("messages") or [],
+                recommendation_context=payload.get("recommendation_context"),
                 model=model,
                 client=client,
             )
@@ -326,12 +364,19 @@ def create_server(
     roadview_metadata_path: Path = DEFAULT_ROADVIEW_METADATA_PATH,
     location_overrides_path: Path = DEFAULT_LOCATION_OVERRIDES_PATH,
     tourism_weak_courses_path: Path = DEFAULT_TOURISM_WEAK_COURSES_PATH,
+    place_catalog_path: Path = DEFAULT_PLACE_CATALOG_PATH,
+    visit_info_overrides_path: Path = DEFAULT_VISIT_INFO_OVERRIDES_PATH,
     generated_at: date | None = None,
 ) -> ThreadingHTTPServer:
     handler_class = partial(RecommendationApiHandler, directory=str(web_dir))
     places = load_places(places_path)
     course_dataset = load_tourism_weak_courses(tourism_weak_courses_path) if tourism_weak_courses_path.exists() else {}
     places = augment_places_with_tourism_weak_courses(places, course_dataset)
+    catalog_rows = load_optional_json_list(place_catalog_path, label="place catalog")
+    reviewed_rows = load_optional_json_list(
+        visit_info_overrides_path, label="reviewed visit information"
+    )
+    places = enrich_places_with_visit_info(places, catalog_rows, reviewed_rows)
     RecommendationApiHandler.places = places
     RecommendationApiHandler.tourism_weak_course_summary = course_dataset.get("summary", {}) if course_dataset else {}
     RecommendationApiHandler.location_index = load_place_location_index(
@@ -352,6 +397,8 @@ def run_server(
     roadview_metadata_path: Path = DEFAULT_ROADVIEW_METADATA_PATH,
     location_overrides_path: Path = DEFAULT_LOCATION_OVERRIDES_PATH,
     tourism_weak_courses_path: Path = DEFAULT_TOURISM_WEAK_COURSES_PATH,
+    place_catalog_path: Path = DEFAULT_PLACE_CATALOG_PATH,
+    visit_info_overrides_path: Path = DEFAULT_VISIT_INFO_OVERRIDES_PATH,
     generated_at: date | None = None,
 ) -> None:
     server = create_server(
@@ -362,6 +409,8 @@ def run_server(
         roadview_metadata_path=roadview_metadata_path,
         location_overrides_path=location_overrides_path,
         tourism_weak_courses_path=tourism_weak_courses_path,
+        place_catalog_path=place_catalog_path,
+        visit_info_overrides_path=visit_info_overrides_path,
         generated_at=generated_at,
     )
     with server:

@@ -9,6 +9,24 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping
 
 
+POINT_ROLES = frozenset(
+    {
+        "poi",
+        "facility",
+        "route_start",
+        "route_start_end",
+        "route_end_reference",
+        "viewpoint",
+    }
+)
+DEFAULT_POINT_ROLE = "poi"
+
+
+def normalize_point_role(value: Any) -> str:
+    point_role = str(value or "").strip()
+    return point_role if point_role in POINT_ROLES else DEFAULT_POINT_ROLE
+
+
 def load_json_list(path: str | Path) -> list[dict[str, Any]]:
     target = Path(path)
     if not target.exists():
@@ -116,6 +134,7 @@ def location_from_roadview(
         "matched_name": matched_name,
         "match_method": match_method,
         "evidence_count": len(coordinates),
+        "point_role": DEFAULT_POINT_ROLE,
     }
 
 
@@ -131,6 +150,7 @@ def location_from_override(item: Mapping[str, Any]) -> dict[str, Any] | None:
         "matched_name": str(item.get("name") or item.get("spot_id") or ""),
         "match_method": "manual_override",
         "evidence_count": int(item.get("evidence_count") or 1),
+        "point_role": normalize_point_role(item.get("point_role")),
     }
 
 

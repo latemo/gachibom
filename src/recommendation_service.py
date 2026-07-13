@@ -27,6 +27,7 @@ DEFAULT_OPENAI_MODEL = "gpt-5-mini"
 OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses"
 AI_HEADLINE_MAX_LENGTH = 80
 AI_LIST_ITEM_MAX_LENGTH = 100
+CLOSED_SERVICE_STATUSES = frozenset({"permanently_closed", "temporarily_closed"})
 
 
 AI_SUMMARY_TEXT_FORMAT = {
@@ -90,8 +91,9 @@ def build_runtime_recommendation(
 ) -> dict[str, Any]:
     normalized_summary = normalize_traveler_summary(traveler_summary)
     safe_limit = max(1, min(int(limit or 4), 4))
-    place_index = {place.get("id", ""): place for place in places}
-    scores = rank_places(places, normalized_summary, limit=safe_limit, today=today)
+    candidate_places = [place for place in places if _is_open_service_candidate(place)]
+    place_index = {place.get("id", ""): place for place in candidate_places}
+    scores = rank_places(candidate_places, normalized_summary, limit=safe_limit, today=today)
     recommendation = build_recommendation_result(
         scores,
         normalized_summary,
@@ -123,6 +125,13 @@ def build_runtime_recommendation(
         "ai_summary": ai_summary,
         "safety_notice": SAFETY_NOTICE,
     }
+
+
+def _is_open_service_candidate(place: dict[str, Any]) -> bool:
+    visit_info = place.get("visit_info")
+    if not isinstance(visit_info, dict):
+        return True
+    return visit_info.get("service_status") not in CLOSED_SERVICE_STATUSES
 
 
 def build_ai_summary(

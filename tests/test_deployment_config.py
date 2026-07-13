@@ -10,6 +10,8 @@ RUNTIME_DATA_FILES = {
     "data/place_location_overrides.json",
     "data/roadview_image_metadata.json",
     "data/tourism_weak_recommendation_courses.json",
+    "data/place_catalog.roadview_facility.json",
+    "data/place_visit_info_overrides.json",
 }
 
 BLOCKED_ROUTES = {

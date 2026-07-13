@@ -1,19 +1,57 @@
 import http.client
 import json
+import tempfile
 import threading
 import unittest
 import urllib.error
 import urllib.request
 from datetime import date
+from io import BytesIO
 from pathlib import Path
 from unittest.mock import patch
 
 from jsonschema import Draft202012Validator
 
-from src.recommendation_api import MAX_REQUEST_BODY_BYTES, create_server
+from src.recommendation_api import MAX_REQUEST_BODY_BYTES, create_server, load_optional_json_list
+from src.vercel_api import handle_help_chat as handle_vercel_help_chat
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+class OptionalJsonListTests(unittest.TestCase):
+    def test_missing_file_is_empty_without_warning(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "missing.json"
+
+            self.assertEqual(load_optional_json_list(path, label="place catalog"), [])
+
+    def test_invalid_json_and_non_array_fail_open_with_warning(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            invalid_path = Path(temp_dir) / "invalid.json"
+            invalid_path.write_text("{bad", encoding="utf-8")
+            invalid_encoding_path = Path(temp_dir) / "invalid-encoding.json"
+            invalid_encoding_path.write_bytes(b"\xff\xfe")
+            object_path = Path(temp_dir) / "object.json"
+            object_path.write_text('{"items": []}', encoding="utf-8")
+
+            with self.assertLogs("src.recommendation_api", level="WARNING") as logs:
+                self.assertEqual(load_optional_json_list(invalid_path, label="place catalog"), [])
+                self.assertEqual(load_optional_json_list(invalid_encoding_path, label="place catalog"), [])
+                self.assertEqual(load_optional_json_list(object_path, label="place catalog"), [])
+
+            self.assertTrue(any("could not be loaded" in message for message in logs.output))
+            self.assertTrue(any("is not a JSON array" in message for message in logs.output))
+
+    def test_valid_array_keeps_only_object_rows(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "catalog.json"
+            path.write_text('[{"catalog_id": "one"}, null, "invalid"]', encoding="utf-8")
+
+            with self.assertLogs("src.recommendation_api", level="WARNING"):
+                rows = load_optional_json_list(path, label="place catalog")
+
+            self.assertEqual(rows, [{"catalog_id": "one"}])
 
 
 class RecommendationApiContractTests(unittest.TestCase):
@@ -46,6 +84,44 @@ class RecommendationApiContractTests(unittest.TestCase):
         self.assertGreater(payload["places"], 30)
         self.assertTrue(payload["features"]["help_chatbot"])
 
+    def test_server_loads_manually_reviewed_visit_information(self):
+        places = self.server.RequestHandlerClass.func.places
+        bunker = next(place for place in places if place["id"] == "jeju_indoor_bunker_lumieres_010")
+
+        self.assertEqual(
+            bunker["visit_info"]["address"],
+            "제주특별자치도 서귀포시 성산읍 서성일로1168번길 89-17",
+        )
+        self.assertEqual(bunker["visit_info"]["service_status"], "active")
+        self.assertEqual(bunker["visit_info"]["last_verified_at"], "2026-07-13")
+        self.assertTrue(bunker["visit_info"]["evidence"])
+
+    def test_server_starts_when_optional_place_catalog_is_malformed(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            catalog_path = Path(temp_dir) / "catalog.json"
+            catalog_path.write_text("{bad", encoding="utf-8")
+
+            with self.assertLogs("src.recommendation_api", level="WARNING"):
+                server = create_server(
+                    host="127.0.0.1",
+                    port=0,
+                    web_dir=ROOT / "web",
+                    places_path=ROOT / "data" / "jeju_accessible_spots.json",
+                    place_catalog_path=catalog_path,
+                    visit_info_overrides_path=Path(temp_dir) / "missing-reviewed.json",
+                    generated_at=date(2026, 7, 9),
+                )
+            try:
+                self.assertGreater(len(server.RequestHandlerClass.func.places), 30)
+                self.assertTrue(
+                    all(
+                        place["visit_info"]["address"] is None
+                        for place in server.RequestHandlerClass.func.places
+                    )
+                )
+            finally:
+                server.server_close()
+
     def test_recommendations_endpoint_returns_schema_valid_recommendation_without_ai(self):
         status, payload = self.post_json(
             "/api/recommendations",
@@ -67,9 +143,26 @@ class RecommendationApiContractTests(unittest.TestCase):
         self.assertEqual(payload["engine"]["ai_status"], "skipped")
         self.assertLessEqual(len(payload["places"]), 4)
         self.assertFalse(any(place["location"] is None for place in payload["places"]))
+        self.assertTrue(all(place["location"]["point_role"] for place in payload["places"]))
+        self.assertTrue(all("visit_info" in place for place in payload["places"]))
+        self.assertTrue(all(place["visit_info"]["verification_status"] == "needs_check" for place in payload["places"]))
+        self.assertTrue(any(place["visit_info"]["address"] for place in payload["places"]))
 
         schema = json.loads((ROOT / "data" / "schemas" / "recommendation_result.schema.json").read_text(encoding="utf-8"))
         self.assertEqual(list(Draft202012Validator(schema).iter_errors(payload["recommendation"])), [])
+
+        seed_schema = json.loads(
+            (ROOT / "data" / "schemas" / "app_recommendation_seed.schema.json").read_text(encoding="utf-8")
+        )
+        place_contract = {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$ref": "#/$defs/placeResult",
+            "$defs": seed_schema["$defs"],
+        }
+        place_validator = Draft202012Validator(place_contract)
+        self.assertTrue(
+            all(not list(place_validator.iter_errors(place)) for place in payload["places"])
+        )
 
     def test_routes_endpoint_returns_proxy_route_with_mocked_provider(self):
         provider_payload = {
@@ -117,20 +210,42 @@ class RecommendationApiContractTests(unittest.TestCase):
 
     def test_help_chat_endpoint_returns_llm_backed_reply_with_mocked_client(self):
         class FakeHelpClient:
+            def __init__(self):
+                self.context = None
+
             def generate_reply(self, context, *, model):
+                self.context = context
                 return {
                     "answer": f"{context['question']} 답변",
                     "followups": ["방문 전 확인은?"],
                     "handoff_checklist": ["공식 정보 확인"],
                 }
 
-        with patch("src.recommendation_api.openai_help_chatbot_client_from_env", return_value=FakeHelpClient()):
-            status, payload = self.post_json("/api/help-chat", {"question": "점수는 어떻게 읽나요?"})
+        client = FakeHelpClient()
+        with patch("src.recommendation_api.openai_help_chatbot_client_from_env", return_value=client):
+            status, payload = self.post_json(
+                "/api/help-chat",
+                {
+                    "question": "점수는 어떻게 읽나요?",
+                    "recommendation_context": {
+                        "mode": "runtime",
+                        "selected_place": {
+                            "spot_id": "spot-1",
+                            "name": "제주문학관",
+                            "score": {"total": 84, "grade": "B"},
+                            "internal_note": "제외됨",
+                        },
+                    },
+                },
+            )
 
         self.assertEqual(status, 200)
         self.assertEqual(payload["status"], "success")
         self.assertEqual(payload["model"], "gpt-5-mini")
         self.assertIn("점수는 어떻게 읽나요?", payload["answer"])
+        recommendation_context = client.context["recommendation_context"]
+        self.assertEqual(recommendation_context["selected_place"]["score"]["total"], 84)
+        self.assertNotIn("internal_note", recommendation_context["selected_place"])
 
     def test_help_chat_endpoint_rejects_blank_question(self):
         with self.assertRaises(urllib.error.HTTPError) as context:
@@ -204,6 +319,54 @@ class RecommendationApiContractTests(unittest.TestCase):
         )
         with urllib.request.urlopen(request, timeout=5) as response:
             return response.status, json.loads(response.read().decode("utf-8"))
+
+
+class VercelHelpChatContractTests(unittest.TestCase):
+    def test_vercel_adapter_passes_recommendation_context(self):
+        class FakeHelpClient:
+            def __init__(self):
+                self.context = None
+
+            def generate_reply(self, context, *, model):
+                self.context = context
+                return {"answer": "추천 근거 답변", "followups": [], "handoff_checklist": []}
+
+        request_payload = {
+            "question": "왜 이 장소가 추천됐나요?",
+            "recommendation_context": {
+                "mode": "runtime",
+                "selected_place": {"spot_id": "spot-1", "name": "제주문학관"},
+            },
+        }
+        request = FakeVercelRequest(request_payload)
+        client = FakeHelpClient()
+
+        with patch("src.vercel_api.openai_help_chatbot_client_from_env", return_value=client):
+            handle_vercel_help_chat(request)
+
+        self.assertEqual(request.status, 200)
+        response = json.loads(request.wfile.getvalue().decode("utf-8"))
+        self.assertEqual(response["status"], "success")
+        self.assertEqual(client.context["recommendation_context"]["selected_place"]["name"], "제주문학관")
+
+
+class FakeVercelRequest:
+    def __init__(self, payload: dict):
+        raw = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+        self.headers = {"Content-Length": str(len(raw))}
+        self.rfile = BytesIO(raw)
+        self.wfile = BytesIO()
+        self.status = None
+        self.response_headers = []
+
+    def send_response(self, status):
+        self.status = status
+
+    def send_header(self, name, value):
+        self.response_headers.append((name, value))
+
+    def end_headers(self):
+        pass
 
 
 if __name__ == "__main__":

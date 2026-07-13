@@ -30,7 +30,11 @@
           "source": { "type": "string", "minLength": 1 },
           "source_title": { "type": "string", "minLength": 1 },
           "source_url": { "type": "string", "format": "uri" },
-          "evidence_count": { "type": "integer", "minimum": 1 }
+          "evidence_count": { "type": "integer", "minimum": 1 },
+          "point_role": {
+            "type": "string",
+            "enum": ["poi", "facility", "route_start", "route_start_end", "route_end_reference", "viewpoint"]
+          }
         }
       }
     }

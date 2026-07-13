@@ -12,7 +12,10 @@ from typing import Any
 
 from src.help_chatbot_service import build_help_chatbot_reply, openai_help_chatbot_client_from_env
 from src.place_locations import load_place_location_index
+from src.place_visit_info import enrich_places_with_visit_info
 from src.recommendation_api import (
+    DEFAULT_PLACE_CATALOG_PATH,
+    DEFAULT_VISIT_INFO_OVERRIDES_PATH,
     DEFAULT_LOCATION_OVERRIDES_PATH,
     DEFAULT_PLACES_PATH,
     DEFAULT_ROADVIEW_METADATA_PATH,
@@ -20,6 +23,7 @@ from src.recommendation_api import (
     MAX_REQUEST_BODY_BYTES,
     ApiRequestError,
     fetch_route_directions,
+    load_optional_json_list,
     load_places,
     parse_bool,
     parse_help_chat_question,
@@ -45,6 +49,11 @@ def runtime_state() -> dict[str, Any]:
         else {}
     )
     places = augment_places_with_tourism_weak_courses(places, course_dataset)
+    catalog_rows = load_optional_json_list(DEFAULT_PLACE_CATALOG_PATH, label="place catalog")
+    reviewed_rows = load_optional_json_list(
+        DEFAULT_VISIT_INFO_OVERRIDES_PATH, label="reviewed visit information"
+    )
+    places = enrich_places_with_visit_info(places, catalog_rows, reviewed_rows)
     location_index = load_place_location_index(
         places,
         roadview_metadata_path=DEFAULT_ROADVIEW_METADATA_PATH,
@@ -126,6 +135,7 @@ def handle_help_chat(request: BaseHTTPRequestHandler) -> None:
         result = build_help_chatbot_reply(
             question,
             history=payload.get("history") or payload.get("messages") or [],
+            recommendation_context=payload.get("recommendation_context"),
             model=model,
             client=client,
         )

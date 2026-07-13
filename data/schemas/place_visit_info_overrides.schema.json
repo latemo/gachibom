@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/place_visit_info_overrides.schema.json",
+  "title": "Jeju Maeum Manually Reviewed Visit Information",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["spot_id", "name", "visit_info"],
+    "properties": {
+      "spot_id": { "type": "string", "minLength": 1 },
+      "name": { "type": "string", "minLength": 1 },
+      "visit_info": { "$ref": "#/$defs/visitInfo" }
+    }
+  },
+  "$defs": {
+    "visitInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "address",
+        "phone",
+        "operating_hours",
+        "official_url",
+        "reservation_url",
+        "service_status",
+        "notice",
+        "verification_status",
+        "last_verified_at",
+        "source_updated_at",
+        "missing_fields",
+        "evidence"
+      ],
+      "properties": {
+        "address": { "type": ["string", "null"] },
+        "phone": { "type": ["string", "null"] },
+        "operating_hours": { "type": ["string", "null"] },
+        "official_url": { "type": ["string", "null"], "pattern": "^https?://" },
+        "reservation_url": { "type": ["string", "null"], "pattern": "^https?://" },
+        "service_status": {
+          "type": "string",
+          "enum": ["active", "temporarily_closed", "permanently_closed", "unknown"]
+        },
+        "notice": { "type": ["string", "null"] },
+        "verification_status": {
+          "type": "string",
+          "enum": ["verified", "partial", "needs_check"]
+        },
+        "last_verified_at": { "type": ["string", "null"], "format": "date" },
+        "source_updated_at": { "type": ["string", "null"], "format": "date" },
+        "missing_fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["address", "phone", "operating_hours", "official_url", "reservation_url"]
+          },
+          "uniqueItems": true
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/visitInfoEvidence" }
+        }
+      }
+    },
+    "visitInfoEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fields",
+        "status",
+        "source_title",
+        "source_url",
+        "source_type",
+        "checked_at",
+        "observed_at",
+        "note"
+      ],
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["address", "phone", "operating_hours", "official_url", "reservation_url", "service_status"]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "status": {
+          "type": "string",
+          "enum": ["verified", "partial", "needs_check", "not_applicable"]
+        },
+        "source_title": { "type": "string", "minLength": 1 },
+        "source_url": { "type": "string", "pattern": "^https?://" },
+        "source_type": {
+          "type": "string",
+          "enum": ["official", "public_agency", "operator_verified", "partner_verified", "user_feedback", "unknown"]
+        },
+        "checked_at": { "type": ["string", "null"], "format": "date" },
+        "observed_at": { "type": ["string", "null"], "format": "date" },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}
