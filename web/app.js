@@ -218,14 +218,6 @@ const optionItems = [
   { key: "avoid", value: "식당 제외", label: "식당 제외" }
 ];
 
-const scenarioMatchWeights = {
-  traveler_type: 4,
-  mobility_conditions: 3,
-  preferred_themes: 2,
-  required_accessibility: 3,
-  avoid: 4
-};
-
 const officialRecommendationWeights = {
   "적극추천": 3,
   "추천": 2,
@@ -405,50 +397,15 @@ function hasProfileValue(profile, key, values) {
   return values.some((value) => selected.has(value));
 }
 
-function overlapCount(leftValues, rightValues) {
-  const right = new Set(rightValues || []);
-  return (leftValues || []).filter((value) => right.has(value)).length;
-}
-
-function scenarioPriorityBoost(scenarioId, profile) {
-  let boost = 0;
-  if (scenarioId === "diet_restricted" && (
-    hasProfileValue(profile, "traveler_type", ["diet_restricted_traveler"])
-    || hasProfileValue(profile, "avoid", ["식당 제외", "외부 음식 제한"])
-  )) {
-    boost += 60;
-  }
-  if (scenarioId === "wheelchair_access" && (
-    hasProfileValue(profile, "traveler_type", ["wheelchair_user"])
-    || hasProfileValue(profile, "required_accessibility", ["휠체어 접근"])
-  )) {
-    boost += 55;
-  }
-  if (scenarioId === "weather_sensitive" && (
-    hasProfileValue(profile, "mobility_conditions", ["비", "바람", "더위"])
-    || hasProfileValue(profile, "avoid", ["강풍"])
-  )) {
-    boost += 50;
-  }
-  return boost;
-}
-
-function scoreScenarioForProfile(scenario, profile) {
-  const summary = scenario.traveler_summary || {};
-  const baseScore = Object.entries(scenarioMatchWeights).reduce((total, [key, weight]) => (
-    total + overlapCount(profile[key], summary[key]) * weight
-  ), 0);
-  return baseScore + scenarioPriorityBoost(scenario.id, profile);
-}
-
-function matchedScenarioFromProfile(profile) {
-  return state.data.scenarios.reduce((best, scenario) => {
-    const score = scoreScenarioForProfile(scenario, profile);
-    if (!best || score > best.score) {
-      return { scenario, score };
-    }
-    return best;
-  }, null)?.scenario || state.data.scenarios[0];
+function profilesHaveSameConditions(leftProfile, rightProfile) {
+  const left = normalizeProfile(leftProfile);
+  const right = normalizeProfile(rightProfile);
+  return Object.keys(left).every((key) => {
+    const leftValues = new Set(left[key]);
+    const rightValues = new Set(right[key]);
+    return leftValues.size === rightValues.size
+      && [...leftValues].every((value) => rightValues.has(value));
+  });
 }
 
 function profileWithToggledValue(sourceProfile, key, value) {
@@ -495,7 +452,6 @@ function toggleProfileModalValue(key, value) {
   }
   const profile = profileWithToggledValue(state.profileModalDraft.profile, key, value);
   state.profileModalDraft.profile = profile;
-  state.profileModalDraft.scenarioId = matchedScenarioFromProfile(profile).id;
   return true;
 }
 
@@ -804,7 +760,12 @@ function shouldRequestRuntimeApi() {
   if (params.get("api") === "0") {
     return false;
   }
-  return Boolean(normalizeRagQuery(state.ragQuery));
+  const selectedScenario = state.data?.scenarios?.find((scenario) => scenario.id === state.scenarioId);
+  const hasCustomProfile = Boolean(
+    selectedScenario
+    && !profilesHaveSameConditions(state.profile, profileFromScenario(selectedScenario))
+  );
+  return Boolean(normalizeRagQuery(state.ragQuery)) || hasCustomProfile;
 }
 
 function shouldRequestRouteProxy() {
@@ -866,8 +827,6 @@ async function refreshScenarioRecommendation({ renderLoading = false } = {}) {
 }
 
 async function refreshRuntimeRecommendation(options = {}) {
-  const matchedScenario = matchedScenarioFromProfile(state.profile);
-  state.scenarioId = matchedScenario.id;
   state.selectedSpotId = null;
   state.mapPopupSpotId = null;
   state.detailCollapsed = false;

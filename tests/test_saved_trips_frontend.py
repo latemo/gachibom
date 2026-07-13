@@ -849,7 +849,7 @@ for (const entry of entries) {
         self.assertIn("data-open-saved-routes", index)
         self.assertGreaterEqual(index.count("data-save-current-route"), 2)
         self.assertIn("styles.css?v=20260714-3", index)
-        self.assertIn("app.js?v=20260714-4", index)
+        self.assertIn("app.js?v=20260714-6", index)
         self.assertIn("top-save-route-button", index)
         self.assertIn("live-map-save-button", index)
         self.assertIn("loadSavedRouteState();", app)
@@ -1326,6 +1326,96 @@ app.bindEvents();
   equal(request.body.traveler_summary, expectedProfile, "request should include the same committed profile");
   equal(app.recommendationPayload().traveler_summary, expectedProfile, "payload helper should use committed profile");
   assert(app.recommendationPayload().query === request.body.query, "payload helper should keep query and profile in sync");
+
+  await click(clickTarget("[data-open-profile-modal]"));
+  assert(
+    ragQueryInput.value === "제주시에서 휠체어로 갈 곳",
+    "reopening should retain the previously committed natural-language query"
+  );
+  await click(clickTarget("[data-scenario-id]", { scenarioId: initialScenario.id }, true));
+  assert(app.state.scenarioId === targetScenario.id, "a new scenario choice must remain a draft before apply");
+  equal(app.currentRouteSpotIds(), targetRoute, "the wheelchair course must remain visible before the second apply");
+  assert(recommendationRequests.length === 1, "the second draft scenario choice must not request early");
+
+  recommendationResponse = {
+    recommendation: initialScenario.recommendation,
+    places: initialScenario.places,
+    retrieval: { status: "applied" },
+    engine: { scoring: "test" },
+    generated_at: "2026-07-14T00:01:00.000Z"
+  };
+  await click(clickTarget("[data-apply-profile-modal]"));
+
+  const recoveryProfile = app.profileFromScenario(initialScenario);
+  assert(recommendationRequests.length === 2, "the second apply should make one additional recommendation request");
+  assert(
+    app.state.scenarioId === initialScenario.id,
+    "the explicitly selected recovery scenario must not be reclassified from its profile"
+  );
+  equal(app.state.profile, recoveryProfile, "the recovery scenario should commit its complete profile");
+  assert(
+    app.state.ragQuery === "제주시에서 휠체어로 갈 곳",
+    "changing only the scenario should preserve the committed natural-language query"
+  );
+  assert(app.state.profileModalDraft == null, "the second apply should clear the modal draft");
+  equal(app.currentRouteSpotIds(), initialRoute, "the recovery course should appear after the second apply");
+
+  const recoveryRequest = recommendationRequests[1];
+  assert(
+    recoveryRequest.body.query === "제주시에서 휠체어로 갈 곳",
+    "the recovery request should retain the existing natural-language query"
+  );
+  equal(
+    recoveryRequest.body.traveler_summary,
+    recoveryProfile,
+    "the recovery request should use the explicitly selected scenario profile"
+  );
+
+  await click(clickTarget("[data-open-profile-modal]"));
+  assert(
+    ragQueryInput.value === "제주시에서 휠체어로 갈 곳",
+    "the custom-profile edit should start from the latest committed query"
+  );
+  typeQuery("");
+  await click(clickTarget("[data-profile-key]", {
+    profileKey: "mobility_conditions",
+    profileValue: "계단 회피"
+  }, true));
+  assert(app.state.scenarioId === initialScenario.id, "a detailed draft edit must preserve the recovery scenario");
+  equal(app.state.profile, recoveryProfile, "a detailed draft edit must not mutate the live recovery profile");
+  assert(
+    app.state.ragQuery === "제주시에서 휠체어로 갈 곳",
+    "clearing the draft query must not mutate the live query before apply"
+  );
+  assert(recommendationRequests.length === 2, "a custom-profile draft must not request before apply");
+
+  const customRecoveryProfile = app.profileFromScenario(initialScenario);
+  customRecoveryProfile.mobility_conditions.push("계단 회피");
+  recommendationResponse = {
+    recommendation: initialScenario.recommendation,
+    places: initialScenario.places,
+    retrieval: { status: "applied" },
+    engine: { scoring: "test" },
+    generated_at: "2026-07-14T00:02:00.000Z"
+  };
+  await click(clickTarget("[data-apply-profile-modal]"));
+
+  assert(
+    recommendationRequests.length === 3,
+    "an empty query with a custom profile should make exactly one additional recommendation request"
+  );
+  assert(app.state.scenarioId === initialScenario.id, "a custom profile must keep its explicitly selected scenario");
+  equal(app.state.profile, customRecoveryProfile, "apply should commit the toggled recovery condition");
+  assert(app.state.ragQuery === "", "apply should commit the cleared query");
+  assert(app.state.profileModalDraft == null, "the custom-profile apply should clear the modal draft");
+
+  const customRecoveryRequest = recommendationRequests[2];
+  assert(customRecoveryRequest.body.query === "", "the custom-profile request should contain an empty query");
+  equal(
+    customRecoveryRequest.body.traveler_summary,
+    customRecoveryProfile,
+    "the custom-profile request should include the toggled condition"
+  );
 })().catch((error) => {
   console.error(error);
   process.exitCode = 1;
