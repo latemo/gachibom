@@ -18,6 +18,7 @@ const state = {
   savedRouteMessage: "",
   pendingSavedRouteDeleteId: null,
   profile: null,
+  profileModalDraft: null,
   ragQuery: "",
   runtimeScenario: null,
   apiStatus: "추천 준비 완료",
@@ -450,8 +451,11 @@ function matchedScenarioFromProfile(profile) {
   }, null)?.scenario || state.data.scenarios[0];
 }
 
-function toggleProfileValue(key, value) {
-  const profile = normalizeProfile(state.profile);
+function profileWithToggledValue(sourceProfile, key, value) {
+  const profile = normalizeProfile(sourceProfile);
+  if (!Object.prototype.hasOwnProperty.call(profile, key) || !value) {
+    return profile;
+  }
   const selected = new Set(profile[key] || []);
   if (selected.has(value)) {
     selected.delete(value);
@@ -459,7 +463,65 @@ function toggleProfileValue(key, value) {
     selected.add(value);
   }
   profile[key] = Array.from(selected);
-  state.profile = profile;
+  return profile;
+}
+
+function toggleProfileValue(key, value) {
+  state.profile = profileWithToggledValue(state.profile, key, value);
+}
+
+function beginProfileModalEdit() {
+  state.profileModalDraft = {
+    scenarioId: state.scenarioId,
+    profile: normalizeProfile(state.profile),
+    ragQuery: normalizeRagQuery(state.ragQuery)
+  };
+  return state.profileModalDraft;
+}
+
+function selectProfileModalScenario(scenarioId) {
+  const scenario = state.data?.scenarios?.find((item) => item.id === scenarioId);
+  if (!state.profileModalDraft || !scenario) {
+    return false;
+  }
+  state.profileModalDraft.scenarioId = scenarioId;
+  state.profileModalDraft.profile = profileFromScenario(scenario);
+  return true;
+}
+
+function toggleProfileModalValue(key, value) {
+  if (!state.profileModalDraft) {
+    return false;
+  }
+  const profile = profileWithToggledValue(state.profileModalDraft.profile, key, value);
+  state.profileModalDraft.profile = profile;
+  state.profileModalDraft.scenarioId = matchedScenarioFromProfile(profile).id;
+  return true;
+}
+
+function updateProfileModalQuery(value) {
+  if (!state.profileModalDraft) {
+    return false;
+  }
+  state.profileModalDraft.ragQuery = normalizeRagQuery(value);
+  return true;
+}
+
+function commitProfileModalEdit(queryValue) {
+  if (!state.profileModalDraft) {
+    return false;
+  }
+  updateProfileModalQuery(queryValue);
+  const draft = state.profileModalDraft;
+  state.scenarioId = draft.scenarioId;
+  state.profile = normalizeProfile(draft.profile);
+  state.ragQuery = draft.ragQuery;
+  state.profileModalDraft = null;
+  return true;
+}
+
+function discardProfileModalEdit() {
+  state.profileModalDraft = null;
 }
 
 async function loadData() {
@@ -3237,9 +3299,9 @@ function signedScore(value) {
   return value > 0 ? `+${value}` : String(value);
 }
 
-function scenarioCardsMarkup() {
+function scenarioCardsMarkup(selectedScenarioId = state.scenarioId) {
   return scenarioCards.map((card) => `
-    <button class="scenario-tile ${card.tone} ${card.id === state.scenarioId ? "active" : ""}" type="button" data-scenario-id="${escapeHtml(card.id)}">
+    <button class="scenario-tile ${card.tone} ${card.id === selectedScenarioId ? "active" : ""}" type="button" data-scenario-id="${escapeHtml(card.id)}">
       <span>${escapeHtml(card.icon)}</span>
       <strong>${escapeHtml(card.title)}</strong>
       <small>${escapeHtml(card.body)}</small>
@@ -3248,16 +3310,19 @@ function scenarioCardsMarkup() {
 }
 
 function renderScenarioCards() {
-  ["scenarioList", "modalScenarioList"].forEach((id) => {
+  [
+    ["scenarioList", state.scenarioId],
+    ["modalScenarioList", state.profileModalDraft?.scenarioId || state.scenarioId]
+  ].forEach(([id, selectedScenarioId]) => {
     const container = document.getElementById(id);
     if (container) {
-      container.innerHTML = scenarioCardsMarkup();
+      container.innerHTML = scenarioCardsMarkup(selectedScenarioId);
     }
   });
 }
 
-function profileOptionsMarkup() {
-  const profile = normalizeProfile(state.profile);
+function profileOptionsMarkup(sourceProfile = state.profile) {
+  const profile = normalizeProfile(sourceProfile);
   return optionItems.map((option) => {
     const selected = hasProfileValue(profile, option.key, [option.value]);
     return `
@@ -3272,7 +3337,7 @@ function renderProfileOptions() {
   ["modalProfileForm"].forEach((id) => {
     const container = document.getElementById(id);
     if (container) {
-      container.innerHTML = profileOptionsMarkup();
+      container.innerHTML = profileOptionsMarkup(state.profileModalDraft?.profile || state.profile);
     }
   });
 }
@@ -3785,11 +3850,14 @@ function openProfileModal() {
   if (!modal) {
     return;
   }
+  const draft = beginProfileModalEdit();
+  renderScenarioCards();
+  renderProfileOptions();
   modal.hidden = false;
   document.body.classList.add("modal-open");
   const queryInput = document.getElementById("ragQueryInput");
   if (queryInput) {
-    queryInput.value = state.ragQuery || "";
+    queryInput.value = draft.ragQuery;
   }
   window.requestAnimationFrame(() => {
     queryInput?.focus();
@@ -3803,6 +3871,7 @@ function closeProfileModal() {
   }
   modal.hidden = true;
   document.body.classList.remove("modal-open");
+  discardProfileModalEdit();
 }
 
 function openImageModal(trigger) {
@@ -4523,7 +4592,7 @@ function navigateToSection(target, href, { updateLocation = false, behavior = "s
   });
 }
 
-async function selectScenarioForResult(scenarioId, { navigateToResults = false, fromModal = false } = {}) {
+async function selectScenarioForResult(scenarioId, { navigateToResults = false } = {}) {
   if (!scenarioById(scenarioId)) {
     return;
   }
@@ -4536,12 +4605,6 @@ async function selectScenarioForResult(scenarioId, { navigateToResults = false, 
 
   if (navigateToResults) {
     navigateToSection("recommend", "#recommendations", { updateLocation: true });
-  }
-
-  if (fromModal) {
-    setApiState(shouldRequestRuntimeApi() ? "idle" : "static", shouldRequestRuntimeApi() ? "적용 전 조건 편집 중" : "사전 계산 추천 사용");
-    render();
-    return;
   }
 
   if (!navigateToResults) {
@@ -4706,7 +4769,7 @@ function bindEvents() {
 
     const applyModalButton = event.target.closest("[data-apply-profile-modal]");
     if (applyModalButton) {
-      state.ragQuery = normalizeRagQuery(document.getElementById("ragQueryInput")?.value);
+      commitProfileModalEdit(document.getElementById("ragQueryInput")?.value);
       closeProfileModal();
       await refreshRuntimeRecommendation({ renderLoading: true });
       render();
@@ -4745,7 +4808,10 @@ function bindEvents() {
     const scenarioButton = event.target.closest("[data-scenario-id]");
     if (scenarioButton) {
       if (scenarioButton.closest("#profileModal")) {
-        await selectScenarioForResult(scenarioButton.dataset.scenarioId, { fromModal: true });
+        if (selectProfileModalScenario(scenarioButton.dataset.scenarioId)) {
+          renderScenarioCards();
+          renderProfileOptions();
+        }
         return;
       }
       await selectScenarioForResult(scenarioButton.dataset.scenarioId);
@@ -4754,18 +4820,14 @@ function bindEvents() {
 
     const profileButton = event.target.closest("[data-profile-key]");
     if (profileButton) {
-      toggleProfileValue(profileButton.dataset.profileKey, profileButton.dataset.profileValue);
       if (profileButton.closest("#profileModal")) {
-        const matchedScenario = matchedScenarioFromProfile(state.profile);
-        state.scenarioId = matchedScenario.id;
-        state.runtimeScenario = null;
-        state.selectedSpotId = null;
-        state.mapPopupSpotId = null;
-        state.detailCollapsed = false;
-        setApiState(shouldRequestRuntimeApi() ? "idle" : "static", shouldRequestRuntimeApi() ? "적용 전 조건 편집 중" : "사전 계산 추천 사용");
-        render();
+        if (toggleProfileModalValue(profileButton.dataset.profileKey, profileButton.dataset.profileValue)) {
+          renderScenarioCards();
+          renderProfileOptions();
+        }
         return;
       }
+      toggleProfileValue(profileButton.dataset.profileKey, profileButton.dataset.profileValue);
       await refreshRuntimeRecommendation({ renderLoading: true });
       render();
       return;
@@ -4801,6 +4863,10 @@ function bindEvents() {
     ) {
       closeMapPopup();
     }
+  });
+
+  document.getElementById("ragQueryInput")?.addEventListener("input", (event) => {
+    updateProfileModalQuery(event.target.value);
   });
 
   document.addEventListener("change", (event) => {

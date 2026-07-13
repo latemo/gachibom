@@ -849,7 +849,7 @@ for (const entry of entries) {
         self.assertIn("data-open-saved-routes", index)
         self.assertGreaterEqual(index.count("data-save-current-route"), 2)
         self.assertIn("styles.css?v=20260714-3", index)
-        self.assertIn("app.js?v=20260714-3", index)
+        self.assertIn("app.js?v=20260714-4", index)
         self.assertIn("top-save-route-button", index)
         self.assertIn("live-map-save-button", index)
         self.assertIn("loadSavedRouteState();", app)
@@ -1077,6 +1077,268 @@ if (classes.has("map-fallback-active")) throw new Error("successful tile load mu
         self.assertIn("ai-citation-list", styles)
         self.assertIn("rag-query-section", styles)
         self.assertIn("rag-status-detail", styles)
+
+    def test_profile_modal_edits_are_transactional_and_apply_atomically(self):
+        harness = r"""
+const fs = require("fs");
+const vm = require("vm");
+
+function assert(condition, message) {
+  if (!condition) throw new Error(message);
+}
+
+function equal(actual, expected, message) {
+  const actualJson = JSON.stringify(actual);
+  const expectedJson = JSON.stringify(expected);
+  if (actualJson !== expectedJson) {
+    throw new Error(`${message}: expected ${expectedJson}, got ${actualJson}`);
+  }
+}
+
+const documentListeners = new Map();
+const queryInputListeners = new Map();
+const bodyClasses = new Set();
+const profileModal = {
+  hidden: true,
+  contains() { return false; },
+  querySelector() { return null; }
+};
+const ragQueryInput = {
+  value: "",
+  focus() {},
+  addEventListener(type, listener) {
+    queryInputListeners.set(type, listener);
+  }
+};
+const modalScenarioList = { innerHTML: "" };
+const modalProfileForm = { innerHTML: "" };
+const document = {
+  activeElement: null,
+  body: {
+    classList: {
+      add(name) { bodyClasses.add(name); },
+      remove(name) { bodyClasses.delete(name); },
+      contains(name) { return bodyClasses.has(name); }
+    }
+  },
+  getElementById(id) {
+    return {
+      profileModal,
+      ragQueryInput,
+      modalScenarioList,
+      modalProfileForm
+    }[id] || null;
+  },
+  querySelector() { return null; },
+  querySelectorAll() { return []; },
+  addEventListener(type, listener) {
+    const listeners = documentListeners.get(type) || [];
+    listeners.push(listener);
+    documentListeners.set(type, listeners);
+  }
+};
+
+const recommendationRequests = [];
+let recommendationResponse = null;
+async function fetch(url, options = {}) {
+  if (url !== "api/recommendations") {
+    throw new Error(`unexpected fetch: ${url}`);
+  }
+  const body = JSON.parse(options.body || "{}");
+  recommendationRequests.push({ url, options, body });
+  return {
+    ok: true,
+    async json() {
+      return {
+        ...recommendationResponse,
+        traveler_summary: body.traveler_summary
+      };
+    }
+  };
+}
+
+const window = {
+  GachibomSavedTrips: null,
+  location: {
+    href: "https://example.test/#recommendations",
+    search: "",
+    hash: "#recommendations"
+  },
+  history: {},
+  requestAnimationFrame(callback) { callback(); },
+  setTimeout,
+  clearTimeout,
+  addEventListener() {}
+};
+const context = {
+  window,
+  document,
+  navigator: {},
+  fetch,
+  URL,
+  URLSearchParams,
+  TextEncoder,
+  setTimeout,
+  clearTimeout,
+  console
+};
+context.globalThis = context;
+
+let source = fs.readFileSync(process.argv[1], "utf8");
+source = source.replace(/\ninit\(\);\s*$/, `
+render = () => {};
+globalThis.__profileModalFlowTest = {
+  state,
+  bindEvents,
+  currentRouteSpotIds,
+  profileFromScenario,
+  recommendationPayload
+};
+`);
+vm.createContext(context);
+vm.runInContext(source, context);
+
+const app = context.__profileModalFlowTest;
+const seed = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
+const initialScenario = seed.scenarios.find((scenario) => scenario.id === "recovery_quiet");
+const targetScenario = seed.scenarios.find((scenario) => scenario.id === "wheelchair_access");
+assert(initialScenario && targetScenario, "transaction fixture scenarios must exist");
+
+app.state.data = seed;
+app.state.scenarioId = initialScenario.id;
+app.state.profile = app.profileFromScenario(initialScenario);
+app.state.ragQuery = "기존 검색어";
+app.state.runtimeScenario = null;
+app.state.selectedSpotId = app.currentRouteSpotIds(initialScenario)[0];
+app.state.mapPopupSpotId = null;
+app.state.detailCollapsed = false;
+
+const initialRoute = app.currentRouteSpotIds();
+const targetRoute = app.currentRouteSpotIds(targetScenario);
+assert(initialRoute.length > 0, "initial scenario must expose a route");
+assert(JSON.stringify(initialRoute) !== JSON.stringify(targetRoute), "fixture routes must differ");
+
+const baseline = {
+  scenarioId: app.state.scenarioId,
+  profile: JSON.parse(JSON.stringify(app.state.profile)),
+  ragQuery: app.state.ragQuery,
+  runtimeScenario: app.state.runtimeScenario,
+  selectedSpotId: app.state.selectedSpotId,
+  route: initialRoute
+};
+
+function assertLiveStateMatchesBaseline(message) {
+  assert(app.state.scenarioId === baseline.scenarioId, `${message}: scenario changed`);
+  equal(app.state.profile, baseline.profile, `${message}: profile changed`);
+  assert(app.state.ragQuery === baseline.ragQuery, `${message}: query changed`);
+  assert(app.state.runtimeScenario === baseline.runtimeScenario, `${message}: runtime result changed`);
+  assert(app.state.selectedSpotId === baseline.selectedSpotId, `${message}: selected place changed`);
+  equal(app.currentRouteSpotIds(), baseline.route, `${message}: parent course changed`);
+}
+
+function clickTarget(selector, dataset = {}, insideProfileModal = false) {
+  const target = {
+    dataset,
+    classList: { contains() { return false; } },
+    getAttribute() { return null; },
+    closest(candidate) {
+      if (candidate === selector) return target;
+      if (candidate === "#profileModal" && insideProfileModal) return profileModal;
+      return null;
+    }
+  };
+  return target;
+}
+
+async function click(target) {
+  const listeners = documentListeners.get("click") || [];
+  assert(listeners.length === 1, "one delegated click listener should be registered");
+  const event = { target, preventDefault() {} };
+  for (const listener of listeners) {
+    await listener(event);
+  }
+}
+
+function typeQuery(value) {
+  ragQueryInput.value = value;
+  const listener = queryInputListeners.get("input");
+  assert(listener, "query input listener should be registered");
+  listener({ target: ragQueryInput });
+}
+
+app.bindEvents();
+
+(async () => {
+  await click(clickTarget("[data-open-profile-modal]"));
+  assert(!profileModal.hidden, "profile modal should open");
+  assert(ragQueryInput.value === baseline.ragQuery, "modal should start with the committed query");
+
+  typeQuery("폐기할 검색어");
+  await click(clickTarget("[data-scenario-id]", { scenarioId: targetScenario.id }, true));
+  await click(clickTarget("[data-profile-key]", {
+    profileKey: "required_accessibility",
+    profileValue: "장애인 화장실"
+  }, true));
+
+  assertLiveStateMatchesBaseline("editing the modal");
+  assert(recommendationRequests.length === 0, "draft edits must not request a recommendation");
+
+  await click(clickTarget("[data-close-profile-modal]"));
+  assert(profileModal.hidden, "profile modal should close");
+  assert(app.state.profileModalDraft == null, "closing without apply should discard the modal draft");
+  assertLiveStateMatchesBaseline("closing without apply");
+  assert(recommendationRequests.length === 0, "discarding must not request a recommendation");
+
+  await click(clickTarget("[data-open-profile-modal]"));
+  assert(ragQueryInput.value === baseline.ragQuery, "discarded query must not return on reopen");
+  await click(clickTarget("[data-scenario-id]", { scenarioId: targetScenario.id }, true));
+  await click(clickTarget("[data-profile-key]", {
+    profileKey: "required_accessibility",
+    profileValue: "장애인 화장실"
+  }, true));
+  typeQuery("  제주시에서\n 휠체어로  갈 곳  ");
+
+  const expectedProfile = app.profileFromScenario(targetScenario);
+  expectedProfile.required_accessibility = expectedProfile.required_accessibility.filter(
+    (value) => value !== "장애인 화장실"
+  );
+  recommendationResponse = {
+    recommendation: targetScenario.recommendation,
+    places: targetScenario.places,
+    retrieval: { status: "applied" },
+    engine: { scoring: "test" },
+    generated_at: "2026-07-14T00:00:00.000Z"
+  };
+
+  await click(clickTarget("[data-apply-profile-modal]"));
+
+  assert(profileModal.hidden, "apply should close the profile modal");
+  assert(recommendationRequests.length === 1, "one apply click must make exactly one recommendation request");
+  assert(app.state.scenarioId === targetScenario.id, "apply should commit the selected scenario");
+  equal(app.state.profile, expectedProfile, "apply should commit all detailed conditions together");
+  assert(app.state.ragQuery === "제주시에서 휠체어로 갈 곳", "apply should normalize and commit the query");
+  assert(app.state.profileModalDraft == null, "apply should clear the modal draft");
+  equal(app.currentRouteSpotIds(), targetRoute, "parent course should change only after apply");
+
+  const request = recommendationRequests[0];
+  assert(request.options.method === "POST", "recommendation should use POST");
+  assert(request.body.query === "제주시에서 휠체어로 갈 곳", "request should include the committed query");
+  equal(request.body.traveler_summary, expectedProfile, "request should include the same committed profile");
+  equal(app.recommendationPayload().traveler_summary, expectedProfile, "payload helper should use committed profile");
+  assert(app.recommendationPayload().query === request.body.query, "payload helper should keep query and profile in sync");
+})().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+"""
+        result = subprocess.run(
+            ["node", "-e", harness, str(APP_SCRIPT), str(SEED_FILE)],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_runtime_routes_use_the_full_public_place_index(self):
         harness = r"""
