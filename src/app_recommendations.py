@@ -8,6 +8,7 @@ from typing import Any
 
 from src.place_locations import normalize_point_role
 from src.place_visit_info import visit_info_for_place
+from src.route_optimization import optimize_course_route
 from src.scoring import PlaceScore, build_recommendation_result, rank_places
 
 
@@ -229,6 +230,10 @@ def build_app_scenario(
         traveler_summary,
         safety_notice=SAFETY_NOTICE,
         title=scenario["title"],
+    )
+    recommendation["course"]["route"] = optimize_course_route(
+        recommendation["course"]["route"],
+        location_index,
     )
     return {
         "id": scenario["id"],

@@ -5025,17 +5025,17 @@
             },
             {
               "order": 2,
-              "spot_id": "jeju_indoor_hanran_016",
-              "name": "제주한란전시관",
-              "purpose": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
-              "stay_tip": "휠체어 접근성"
-            },
-            {
-              "order": 3,
               "spot_id": "jeju_forest_saryeoni_002",
               "name": "사려니숲길 무장애나눔길",
               "purpose": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
               "stay_tip": "방문 당일 날씨와 바람"
+            },
+            {
+              "order": 3,
+              "spot_id": "jeju_indoor_hanran_016",
+              "name": "제주한란전시관",
+              "purpose": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
+              "stay_tip": "휠체어 접근성"
             },
             {
               "order": 4,
@@ -5976,22 +5976,22 @@
             },
             {
               "order": 2,
+              "spot_id": "jeju_indoor_hanran_016",
+              "name": "제주한란전시관",
+              "purpose": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
+              "stay_tip": "경사로, 계단, 단차 상태"
+            },
+            {
+              "order": 3,
               "spot_id": "jeju_indoor_icc_032",
               "name": "제주국제컨벤션센터",
               "purpose": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
               "stay_tip": "경사로, 계단, 단차 상태"
             },
             {
-              "order": 3,
+              "order": 4,
               "spot_id": "jeju_cafe_osulloc_013",
               "name": "오설록 티 뮤지엄",
-              "purpose": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
-              "stay_tip": "경사로, 계단, 단차 상태"
-            },
-            {
-              "order": 4,
-              "spot_id": "jeju_indoor_hanran_016",
-              "name": "제주한란전시관",
               "purpose": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
               "stay_tip": "경사로, 계단, 단차 상태"
             }
@@ -6925,8 +6925,8 @@
             },
             {
               "order": 2,
-              "spot_id": "jeju_indoor_icc_032",
-              "name": "제주국제컨벤션센터",
+              "spot_id": "jeju_forest_saryeoni_002",
+              "name": "사려니숲길 무장애나눔길",
               "purpose": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
               "stay_tip": "경사로, 계단, 단차 상태"
             },
@@ -6939,8 +6939,8 @@
             },
             {
               "order": 4,
-              "spot_id": "jeju_forest_saryeoni_002",
-              "name": "사려니숲길 무장애나눔길",
+              "spot_id": "jeju_indoor_icc_032",
+              "name": "제주국제컨벤션센터",
               "purpose": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
               "stay_tip": "경사로, 계단, 단차 상태"
             }
@@ -7920,8 +7920,8 @@
             },
             {
               "order": 2,
-              "spot_id": "jeju_indoor_icc_032",
-              "name": "제주국제컨벤션센터",
+              "spot_id": "jeju_indoor_worldheritage_011",
+              "name": "제주세계자연유산센터",
               "purpose": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
               "stay_tip": "휴식 공간"
             },
@@ -7934,8 +7934,8 @@
             },
             {
               "order": 4,
-              "spot_id": "jeju_indoor_worldheritage_011",
-              "name": "제주세계자연유산센터",
+              "spot_id": "jeju_indoor_icc_032",
+              "name": "제주국제컨벤션센터",
               "purpose": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
               "stay_tip": "휴식 공간"
             }
@@ -8862,15 +8862,15 @@
             },
             {
               "order": 3,
-              "spot_id": "jeju_forest_healing_001",
-              "name": "서귀포 치유의숲",
+              "spot_id": "jeju_indoor_hanran_016",
+              "name": "제주한란전시관",
               "purpose": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
               "stay_tip": "휠체어 접근성"
             },
             {
               "order": 4,
-              "spot_id": "jeju_indoor_hanran_016",
-              "name": "제주한란전시관",
+              "spot_id": "jeju_forest_healing_001",
+              "name": "서귀포 치유의숲",
               "purpose": "도보 부담이 낮은 편으로 사용자의 이동 조건과 맞습니다.",
               "stay_tip": "휠체어 접근성"
             }

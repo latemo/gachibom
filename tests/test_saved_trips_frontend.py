@@ -849,7 +849,7 @@ for (const entry of entries) {
         self.assertIn("data-open-saved-routes", index)
         self.assertGreaterEqual(index.count("data-save-current-route"), 2)
         self.assertIn("styles.css?v=20260714-4", index)
-        self.assertIn("app.js?v=20260714-7", index)
+        self.assertIn("app.js?v=20260714-8", index)
         self.assertIn("top-save-route-button", index)
         self.assertIn("live-map-save-button", index)
         self.assertIn("loadSavedRouteState();", app)
@@ -1481,6 +1481,409 @@ app.bindEvents();
 """
         result = subprocess.run(
             ["node", "-e", harness, str(APP_SCRIPT), str(SEED_FILE)],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_fast_recommendation_payload_and_scenario_selection_render_order(self):
+        harness = r"""
+const fs = require("fs");
+const vm = require("vm");
+
+function assert(condition, message) {
+  if (!condition) throw new Error(message);
+}
+
+let source = fs.readFileSync(process.argv[1], "utf8");
+source = source.replace(/\ninit\(\);\s*$/, `
+const __scenarioRenderCalls = [];
+let __refreshStarted = 0;
+let __resolveRefresh;
+const __refreshPromise = new Promise((resolve) => {
+  __resolveRefresh = resolve;
+});
+render = () => {
+  __scenarioRenderCalls.push(state.scenarioId);
+};
+openConceptResultPanel = () => {};
+syncStepViewState = () => {};
+refreshScenarioRecommendation = () => {
+  __refreshStarted += 1;
+  return __refreshPromise;
+};
+globalThis.__fastScenarioTest = {
+  state,
+  recommendationPayload,
+  selectScenarioForResult,
+  renderCalls: __scenarioRenderCalls,
+  refreshStarted: () => __refreshStarted,
+  resolveRefresh: __resolveRefresh
+};
+`);
+
+const window = {
+  GachibomSavedTrips: null,
+  location: {
+    href: "https://example.test/#recommendations",
+    search: "",
+    hash: "#recommendations"
+  },
+  history: { pushState() {} },
+  requestAnimationFrame(callback) { callback(); },
+  setTimeout,
+  clearTimeout,
+  addEventListener() {}
+};
+const document = {
+  documentElement: { clientHeight: 900 },
+  getElementById() { return null; },
+  querySelector() { return null; },
+  querySelectorAll() { return []; },
+  addEventListener() {}
+};
+const context = {
+  window,
+  document,
+  navigator: {},
+  URL,
+  URLSearchParams,
+  TextEncoder,
+  setTimeout,
+  clearTimeout,
+  console
+};
+context.globalThis = context;
+vm.createContext(context);
+vm.runInContext(source, context);
+
+const app = context.__fastScenarioTest;
+const emptyProfile = {
+  traveler_type: [],
+  mobility_conditions: [],
+  preferred_themes: [],
+  required_accessibility: [],
+  avoid: []
+};
+const scenarioA = {
+  id: "scenario_a",
+  title: "기존 코스",
+  traveler_summary: emptyProfile,
+  recommendation: { course: { route: [] } },
+  places: []
+};
+const scenarioB = {
+  id: "scenario_b",
+  title: "새 코스",
+  traveler_summary: {
+    ...emptyProfile,
+    preferred_themes: ["실내"]
+  },
+  recommendation: { course: { route: [] } },
+  places: []
+};
+app.state.data = { scenarios: [scenarioA, scenarioB] };
+app.state.scenarioId = scenarioA.id;
+app.state.profile = emptyProfile;
+app.state.ragQuery = "제주시 실내";
+
+assert(
+  app.recommendationPayload().use_ai === false,
+  "interactive recommendation payload must disable slow AI explanation generation"
+);
+
+(async () => {
+  const pendingSelection = app.selectScenarioForResult(scenarioB.id);
+
+  assert(app.refreshStarted() === 1, "scenario selection should start one recommendation refresh");
+  assert(
+    app.renderCalls.length === 1 && app.renderCalls[0] === scenarioB.id,
+    "the newly selected scenario must render before the slow refresh resolves"
+  );
+
+  let settled = false;
+  pendingSelection.then(() => { settled = true; });
+  await Promise.resolve();
+  assert(!settled, "the controlled recommendation refresh must still be pending");
+
+  app.resolveRefresh();
+  await pendingSelection;
+  assert(
+    app.renderCalls.length === 2 && app.renderCalls[1] === scenarioB.id,
+    "the selected scenario should render once more after refresh completion"
+  );
+})().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+"""
+        result = subprocess.run(
+            ["node", "-e", harness, str(APP_SCRIPT)],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_center_map_clears_stale_routes_and_reuses_identical_route_layers(self):
+        harness = r"""
+const fs = require("fs");
+const vm = require("vm");
+
+function assert(condition, message) {
+  if (!condition) throw new Error(message);
+}
+
+let source = fs.readFileSync(process.argv[1], "utf8");
+source = source.replace(/\ninit\(\);\s*$/, `
+const __roadResolvers = new Map();
+globalThis.__centerMapLifecycleTest = {
+  state,
+  renderCenterMap,
+  configure(dependencies) {
+    centerMap = dependencies.map;
+    centerRouteLayerGroup = dependencies.routeLayerGroup;
+    centerMarkerLayerGroup = dependencies.markerLayerGroup;
+    centerMarkersBySpotId.clear();
+    centerMapRenderSequence = 0;
+    centerMapLastFitKey = null;
+    centerMapRenderedRouteKey = null;
+    ensureCenterMap = () => dependencies.map;
+    renderLiveMapStats = () => {};
+    scheduleMapHitBoundsSync = () => {};
+    runWhenBrowserIdle = (callback) => callback();
+    shouldRequestRouteProxy = () => true;
+    cachedRouteSummaryWithRoadGeometry = (entries) => {
+      const key = routeEntriesCacheKey(entries);
+      return new Promise((resolve) => {
+        __roadResolvers.set(key, resolve);
+      });
+    };
+  },
+  setScenario(scenario) {
+    state.data = { scenarios: [scenario] };
+    state.scenarioId = scenario.id;
+    state.runtimeScenario = null;
+    state.mapPopupSpotId = null;
+  },
+  keyForScenario(scenario) {
+    return routeEntriesCacheKey(routeCoordinateEntries(scenario));
+  },
+  resolveRoadSummary(key, summary) {
+    const resolve = __roadResolvers.get(key);
+    if (!resolve) {
+      throw new Error(\`missing pending road summary for \${key}\`);
+    }
+    __roadResolvers.delete(key);
+    resolve(summary);
+  },
+  renderedRouteKey: () => centerMapRenderedRouteKey,
+  markerIndexSize: () => centerMarkersBySpotId.size
+};
+`);
+
+const calls = {
+  routeClears: 0,
+  markerClears: 0,
+  polylines: 0,
+  markers: 0,
+  markerIconUpdates: 0,
+  fits: 0,
+  invalidates: 0
+};
+const mapSyncStatus = { textContent: "" };
+const routeLayerGroup = {
+  clearLayers() { calls.routeClears += 1; }
+};
+const markerLayerGroup = {
+  clearLayers() { calls.markerClears += 1; }
+};
+const fakeMap = {
+  fitBounds() { calls.fits += 1; },
+  invalidateSize() { calls.invalidates += 1; }
+};
+const L = {
+  polyline() {
+    calls.polylines += 1;
+    return { addTo() { return this; } };
+  },
+  marker() {
+    calls.markers += 1;
+    return {
+      addTo() { return this; },
+      on() { return this; },
+      setIcon() { calls.markerIconUpdates += 1; return this; }
+    };
+  },
+  divIcon(options) { return options; },
+  latLngBounds(points) { return { points }; },
+  DomEvent: { stop() {} }
+};
+const window = {
+  GachibomSavedTrips: null,
+  L,
+  location: {
+    href: "https://example.test/#recommendations",
+    search: "",
+    hash: "#recommendations"
+  },
+  history: {},
+  requestAnimationFrame(callback) { callback(); },
+  setTimeout(callback) { callback(); return 1; },
+  clearTimeout() {},
+  addEventListener() {}
+};
+const document = {
+  documentElement: { clientHeight: 900 },
+  getElementById(id) {
+    if (id === "mapSyncStatus") return mapSyncStatus;
+    return null;
+  },
+  querySelector() { return null; },
+  querySelectorAll() { return []; },
+  addEventListener() {}
+};
+const context = {
+  window,
+  document,
+  navigator: {},
+  L,
+  URL,
+  URLSearchParams,
+  TextEncoder,
+  setTimeout,
+  clearTimeout,
+  console
+};
+context.globalThis = context;
+vm.createContext(context);
+vm.runInContext(source, context);
+
+const app = context.__centerMapLifecycleTest;
+app.configure({ map: fakeMap, routeLayerGroup, markerLayerGroup });
+
+function scenario(id, points) {
+  return {
+    id,
+    title: id,
+    traveler_summary: {},
+    recommendation: {
+      score: { total: 90 },
+      course: {
+        route: points.map((point, index) => ({
+          order: index + 1,
+          spot_id: point.id,
+          name: point.id
+        }))
+      }
+    },
+    places: points.map((point) => ({
+      spot_id: point.id,
+      name: point.id,
+      category: "indoor",
+      accessibility: {},
+      location: point.location
+    }))
+  };
+}
+
+const routeA = scenario("route_a", [
+  { id: "a1", location: { latitude: 33.50, longitude: 126.50 } },
+  { id: "a2", location: { latitude: 33.40, longitude: 126.60 } },
+  { id: "a3", location: { latitude: 33.30, longitude: 126.70 } }
+]);
+const routeC = scenario("route_c", [
+  { id: "c1", location: { latitude: 33.48, longitude: 126.49 } },
+  { id: "c2", location: { latitude: 33.28, longitude: 126.62 } }
+]);
+const emptyRoute = scenario("route_empty", []);
+const onePointRoute = scenario("route_one", [
+  { id: "only", location: { latitude: 33.45, longitude: 126.55 } }
+]);
+
+(async () => {
+  app.setScenario(routeA);
+  const routeAKey = app.keyForScenario(routeA);
+  app.renderCenterMap(routeA);
+  const firstDrawCounts = {
+    polylines: calls.polylines,
+    markers: calls.markers,
+    fits: calls.fits,
+    routeClears: calls.routeClears,
+    markerClears: calls.markerClears
+  };
+  assert(firstDrawCounts.polylines === 2, "the first route should create two styled polylines");
+  assert(firstDrawCounts.markers === 3, "the first route should create one marker per stop");
+
+  app.renderCenterMap(routeA);
+  assert(calls.polylines === firstDrawCounts.polylines, "same route key must not recreate polylines");
+  assert(calls.markers === firstDrawCounts.markers, "same route key must not recreate markers");
+  assert(calls.fits === firstDrawCounts.fits, "same route key must not refit the map");
+  assert(calls.routeClears === firstDrawCounts.routeClears, "same route key must not clear the route layer");
+  assert(calls.markerClears === firstDrawCounts.markerClears, "same route key must not clear the marker layer");
+  assert(calls.markerIconUpdates === 3, "same route key may update only existing marker icons");
+
+  app.setScenario(emptyRoute);
+  app.renderCenterMap(emptyRoute);
+  assert(calls.routeClears === firstDrawCounts.routeClears + 1, "an empty route must clear the old polyline layer");
+  assert(calls.markerClears === firstDrawCounts.markerClears + 1, "an empty route must clear the old marker layer");
+  assert(app.renderedRouteKey() === null, "an empty route must reset the rendered route key");
+  assert(app.markerIndexSize() === 0, "an empty route must clear the marker index");
+
+  const afterEmptyCounts = { polylines: calls.polylines, markers: calls.markers };
+  app.resolveRoadSummary(routeAKey, {
+    provider: "road_route",
+    distanceKm: 30,
+    durationMinutes: 60,
+    geometry: routeA.places.map((place) => place.location)
+  });
+  await Promise.resolve();
+  await Promise.resolve();
+  assert(calls.polylines === afterEmptyCounts.polylines, "a delayed old route must not redraw after an empty result");
+  assert(calls.markers === afterEmptyCounts.markers, "a delayed old route must not restore old markers after an empty result");
+
+  app.setScenario(routeC);
+  const routeCKey = app.keyForScenario(routeC);
+  app.renderCenterMap(routeC);
+  const beforeOnePointCounts = {
+    polylines: calls.polylines,
+    markers: calls.markers,
+    routeClears: calls.routeClears,
+    markerClears: calls.markerClears
+  };
+
+  app.setScenario(onePointRoute);
+  app.renderCenterMap(onePointRoute);
+  assert(calls.routeClears === beforeOnePointCounts.routeClears + 1, "a one-point route must clear the old polyline layer");
+  assert(calls.markerClears === beforeOnePointCounts.markerClears + 1, "a one-point route must clear the old marker layer");
+  assert(app.renderedRouteKey() === null, "a one-point route must reset the rendered route key");
+  assert(app.markerIndexSize() === 0, "a one-point route must clear the marker index");
+
+  const afterOnePointCounts = { polylines: calls.polylines, markers: calls.markers };
+  app.resolveRoadSummary(routeCKey, {
+    provider: "road_route",
+    distanceKm: 20,
+    durationMinutes: 40,
+    geometry: routeC.places.map((place) => place.location)
+  });
+  await Promise.resolve();
+  await Promise.resolve();
+  assert(calls.polylines === afterOnePointCounts.polylines, "a delayed old route must not redraw after a one-point result");
+  assert(calls.markers === afterOnePointCounts.markers, "a delayed old route must not restore markers after a one-point result");
+  assert(
+    mapSyncStatus.textContent.includes("두 곳 이상의 좌표"),
+    "the map should explain why a one-point route cannot be displayed"
+  );
+})().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+"""
+        result = subprocess.run(
+            ["node", "-e", harness, str(APP_SCRIPT)],
             cwd=ROOT,
             capture_output=True,
             text=True,

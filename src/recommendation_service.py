@@ -13,6 +13,7 @@ from typing import Any, Protocol
 from src.app_recommendations import SAFETY_NOTICE, app_place_result
 from src.rag_query import parse_query_intent
 from src.rag_retrieval import retrieve_place_candidates
+from src.route_optimization import optimize_course_route
 from src.scoring import build_recommendation_result, rank_places
 
 
@@ -141,6 +142,11 @@ def build_runtime_recommendation(
     )
     if retrieval_status in {"resource_data_gap", "no_match"}:
         recommendation["course"]["route"] = []
+    else:
+        recommendation["course"]["route"] = optimize_course_route(
+            recommendation["course"]["route"],
+            location_index or {},
+        )
     result_places = [
         app_place_result(score, place_index.get(score.spot_id, {}), location_index=location_index or {})
         for score in scores

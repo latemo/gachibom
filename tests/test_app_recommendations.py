@@ -10,6 +10,7 @@ from jsonschema import Draft202012Validator
 
 from src.app_recommendations import build_app_recommendation_seed
 from src.place_locations import build_place_location_index
+from src.route_optimization import optimize_course_route
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -162,6 +163,31 @@ class AppRecommendationSeedTests(unittest.TestCase):
         self.assertTrue(
             any(place["category"] in {"forest", "rest_area"} for place in scenarios["stroller_family"]["places"])
         )
+
+    def test_seed_keeps_score_ranked_places_and_optimizes_only_course_route(self):
+        location_index = load_location_index()
+        seed = build_app_recommendation_seed(
+            load_places(),
+            generated_at=date(2026, 7, 8),
+            location_index=location_index,
+        )
+        reordered_scenarios = 0
+
+        for scenario in seed["scenarios"]:
+            score_order = [place["spot_id"] for place in scenario["places"]]
+            route = scenario["recommendation"]["course"]["route"]
+            route_order = [item["spot_id"] for item in route]
+
+            self.assertEqual(set(route_order), set(score_order))
+            self.assertEqual(
+                scenario["recommendation"]["recommended_spots"],
+                [place["name"] for place in scenario["places"]],
+            )
+            self.assertEqual(route, optimize_course_route(route, location_index))
+            self.assertEqual([item["order"] for item in route], list(range(1, len(route) + 1)))
+            reordered_scenarios += route_order != score_order
+
+        self.assertGreater(reordered_scenarios, 0)
 
     def test_committed_seed_contains_reconstructible_score_traces(self):
         seed = json.loads((ROOT / "web" / "data" / "app_recommendation_seed.json").read_text(encoding="utf-8"))

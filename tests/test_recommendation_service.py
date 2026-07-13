@@ -139,6 +139,44 @@ class RecommendationServiceTests(unittest.TestCase):
         self.assertEqual(blank_query["retrieval"]["status"], "not_requested")
         self.assertEqual(blank_query["engine"]["retrieval"], "not_requested")
 
+    def test_runtime_recommendation_optimizes_route_without_changing_score_order(self):
+        places = load_places()
+        baseline = build_runtime_recommendation(
+            places,
+            {},
+            today=date(2026, 7, 8),
+            use_ai=False,
+        )
+        score_order = [place["spot_id"] for place in baseline["places"]]
+        self.assertEqual(len(score_order), 4)
+        coordinate_order = (126.0, 126.3, 126.1, 126.2)
+        location_index = {
+            spot_id: {
+                "latitude": 33.4,
+                "longitude": longitude,
+                "point_role": "poi",
+            }
+            for spot_id, longitude in zip(score_order, coordinate_order)
+        }
+
+        optimized = build_runtime_recommendation(
+            places,
+            {},
+            today=date(2026, 7, 8),
+            use_ai=False,
+            location_index=location_index,
+        )
+
+        self.assertEqual([place["spot_id"] for place in optimized["places"]], score_order)
+        self.assertEqual(
+            optimized["recommendation"]["recommended_spots"],
+            baseline["recommendation"]["recommended_spots"],
+        )
+        self.assertEqual(
+            [item["spot_id"] for item in optimized["recommendation"]["course"]["route"]],
+            [score_order[0], score_order[2], score_order[3], score_order[1]],
+        )
+
     def test_natural_language_query_retrieves_then_scores_grounded_places(self):
         result = build_runtime_recommendation(
             load_places(),

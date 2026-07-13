@@ -36,6 +36,7 @@ const AI_HEADLINE_MAX_LENGTH = 90;
 const AI_LIST_ITEM_MAX_LENGTH = 86;
 const ROUTE_PROVIDER_TIMEOUT_MS = 7000;
 const ROUTE_SPEED_FALLBACK_KMH = 32;
+const ROUTE_SUMMARY_CACHE_LIMIT = 24;
 const ROUTE_KEY_COLOR = "#126fb5";
 const SITE_INTRO_SEEN_KEY = "gachibom:site-intro-seen";
 const SAVED_TRIPS = window.GachibomSavedTrips || null;
@@ -44,12 +45,16 @@ let savedRouteDeleteTimer = null;
 let savedRoutesReturnFocus = null;
 let centerMap = null;
 let centerTileLayer = null;
-let centerLayerGroup = null;
+let centerRouteLayerGroup = null;
+let centerMarkerLayerGroup = null;
+const centerMarkersBySpotId = new Map();
 let centerMapLayerMode = "soft";
 let centerMapRenderSequence = 0;
 let centerMapLastFitKey = null;
+let centerMapRenderedRouteKey = null;
 let centerMapObserver = null;
 let pendingCenterMapScenario = null;
+let mapHitBoundsFrame = null;
 let centerTileErrorCount = 0;
 let routeMap = null;
 let routeLayerGroup = null;
@@ -57,7 +62,9 @@ let routeTileLayer = null;
 let routeTileErrorCount = 0;
 let routeProxySupportPromise = null;
 const routeSummaryCache = new Map();
+let routeModalRenderSequence = 0;
 let recommendationRequestSequence = 0;
+let recommendationAbortController = null;
 let siteIntroStarted = false;
 
 const centerMapLayerDefinitions = {
@@ -812,7 +819,7 @@ function recommendationPayload() {
     traveler_summary: normalizeProfile(state.profile),
     query: normalizeRagQuery(state.ragQuery),
     limit: RECOMMENDATION_LIMIT,
-    use_ai: true,
+    use_ai: false,
     model: RECOMMENDATION_MODEL
   };
 }
@@ -937,6 +944,8 @@ function shouldRequestRouteProxy() {
 async function requestRuntimeRecommendation(sequence) {
   const requestSequence = sequence || ++recommendationRequestSequence;
   if (!shouldRequestRuntimeApi()) {
+    recommendationAbortController?.abort?.();
+    recommendationAbortController = null;
     if (requestSequence === recommendationRequestSequence) {
       state.runtimeScenario = null;
       setApiState("static", "사전 계산 추천 사용");
@@ -944,11 +953,17 @@ async function requestRuntimeRecommendation(sequence) {
     return false;
   }
 
+  recommendationAbortController?.abort?.();
+  const AbortControllerClass = window.AbortController || globalThis.AbortController;
+  const controller = AbortControllerClass ? new AbortControllerClass() : null;
+  recommendationAbortController = controller;
+
   try {
     const response = await fetch("api/recommendations", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(recommendationPayload())
+      body: JSON.stringify(recommendationPayload()),
+      ...(controller ? { signal: controller.signal } : {})
     });
     if (!response.ok) {
       throw new Error("추천 서버 미응답");
@@ -961,6 +976,9 @@ async function requestRuntimeRecommendation(sequence) {
     setApiState("success", recommendationStatusText(payload));
     return true;
   } catch (error) {
+    if (controller?.signal?.aborted || error?.name === "AbortError") {
+      return false;
+    }
     if (requestSequence !== recommendationRequestSequence) {
       return false;
     }
@@ -968,6 +986,10 @@ async function requestRuntimeRecommendation(sequence) {
     setApiState("error", "실시간 계산 실패, 사전 계산 추천 유지", { canRetry: true });
     state.apiState.detail = error?.message || "추천 요청에 실패했습니다.";
     return false;
+  } finally {
+    if (recommendationAbortController === controller) {
+      recommendationAbortController = null;
+    }
   }
 }
 
@@ -2482,7 +2504,7 @@ function activateCenterMapFallback(message = "외부 지도 연결 없이 로컬
       notice.textContent = message;
     }
   }
-  const sync = () => window.requestAnimationFrame(syncMapHitBounds);
+  const sync = () => scheduleMapHitBoundsSync();
   if (art.complete && art.naturalWidth > 0) {
     sync();
   } else {
@@ -2499,6 +2521,17 @@ function deactivateCenterMapFallback() {
   if (notice) {
     notice.hidden = true;
   }
+}
+
+function scheduleMapHitBoundsSync() {
+  if (mapHitBoundsFrame) {
+    return;
+  }
+  mapHitBoundsFrame = true;
+  window.requestAnimationFrame(() => {
+    mapHitBoundsFrame = false;
+    syncMapHitBounds();
+  });
 }
 
 function ensureCenterMap() {
@@ -2519,11 +2552,15 @@ function ensureCenterMap() {
       zoomDelta: 0.5
     });
     L.control.zoom({ position: "topleft" }).addTo(centerMap);
-    centerLayerGroup = L.layerGroup().addTo(centerMap);
-    centerMap.on("zoom move", syncMapHitBounds);
+    centerRouteLayerGroup = L.layerGroup().addTo(centerMap);
+    centerMarkerLayerGroup = L.layerGroup().addTo(centerMap);
+    centerMap.on("zoom move", scheduleMapHitBoundsSync);
+    setCenterMapTileLayer(centerMapLayerMode);
+    window.setTimeout(() => {
+      centerMap?.invalidateSize();
+      scheduleMapHitBoundsSync();
+    }, 80);
   }
-  setCenterMapTileLayer(centerMapLayerMode);
-  window.setTimeout(() => centerMap?.invalidateSize(), 80);
   return centerMap;
 }
 
@@ -2643,12 +2680,32 @@ function routeGeometryWithStopAnchors(entries, geometry) {
   return alignedGeometry;
 }
 
+function clearCenterMapLayers() {
+  centerRouteLayerGroup?.clearLayers();
+  centerMarkerLayerGroup?.clearLayers();
+  centerMarkersBySpotId.clear();
+  centerMapRenderedRouteKey = null;
+  centerMapLastFitKey = null;
+}
+
+function syncCenterMapMarkerSelection(entries) {
+  entries.forEach((entry, index) => {
+    const marker = centerMarkersBySpotId.get(entry.place.spot_id);
+    marker?.setIcon?.(liveMarkerIcon(
+      index,
+      entry.place.spot_id === state.mapPopupSpotId,
+      entry.location
+    ));
+  });
+}
+
 function drawCenterMap(entries, summary, options = {}) {
-  const map = ensureCenterMap();
-  if (!map || !centerLayerGroup || entries.length === 0) {
+  const map = centerMap;
+  if (!map || !centerRouteLayerGroup || !centerMarkerLayerGroup || entries.length === 0) {
     return;
   }
-  centerLayerGroup.clearLayers();
+  const routeKey = options.routeKey || routeEntriesCacheKey(entries);
+  centerRouteLayerGroup.clearLayers();
   const geometry = routeGeometryWithStopAnchors(entries, summary.geometry);
   const lineLatLngs = geometry.map((location) => [Number(location.latitude), Number(location.longitude)]);
   const markerLatLngs = entries.map((entry) => [Number(entry.location.latitude), Number(entry.location.longitude)]);
@@ -2661,7 +2718,7 @@ function drawCenterMap(entries, summary, options = {}) {
       smoothFactor: 0,
       lineCap: "round",
       lineJoin: "round"
-    }).addTo(centerLayerGroup);
+    }).addTo(centerRouteLayerGroup);
     L.polyline(lineLatLngs, {
       color: ROUTE_KEY_COLOR,
       weight: 6,
@@ -2669,26 +2726,34 @@ function drawCenterMap(entries, summary, options = {}) {
       smoothFactor: 0,
       lineCap: "round",
       lineJoin: "round"
-    }).addTo(centerLayerGroup);
+    }).addTo(centerRouteLayerGroup);
   }
 
-  entries.forEach((entry, index) => {
-    const marker = L.marker([Number(entry.location.latitude), Number(entry.location.longitude)], {
-      icon: liveMarkerIcon(index, entry.place.spot_id === state.mapPopupSpotId, entry.location),
-      keyboard: true,
-      title: mapPointDisplayName(entry.place),
-      bubblingMouseEvents: false
-    }).addTo(centerLayerGroup);
-    marker.on("click", (event) => {
-      if (event.originalEvent) {
-        L.DomEvent.stop(event.originalEvent);
-      }
-      state.selectedSpotId = entry.place.spot_id;
-      state.mapPopupSpotId = entry.place.spot_id;
-      state.detailCollapsed = false;
-      render();
+  if (centerMapRenderedRouteKey !== routeKey) {
+    centerMarkerLayerGroup.clearLayers();
+    centerMarkersBySpotId.clear();
+    entries.forEach((entry, index) => {
+      const marker = L.marker([Number(entry.location.latitude), Number(entry.location.longitude)], {
+        icon: liveMarkerIcon(index, entry.place.spot_id === state.mapPopupSpotId, entry.location),
+        keyboard: true,
+        title: mapPointDisplayName(entry.place),
+        bubblingMouseEvents: false
+      }).addTo(centerMarkerLayerGroup);
+      centerMarkersBySpotId.set(entry.place.spot_id, marker);
+      marker.on("click", (event) => {
+        if (event.originalEvent) {
+          L.DomEvent.stop(event.originalEvent);
+        }
+        state.selectedSpotId = entry.place.spot_id;
+        state.mapPopupSpotId = entry.place.spot_id;
+        state.detailCollapsed = false;
+        render();
+      });
     });
-  });
+    centerMapRenderedRouteKey = routeKey;
+  } else {
+    syncCenterMapMarkerSelection(entries);
+  }
 
   if (options.fit) {
     const bounds = L.latLngBounds(markerLatLngs);
@@ -2701,7 +2766,7 @@ function drawCenterMap(entries, summary, options = {}) {
   }
   window.setTimeout(() => {
     map.invalidateSize();
-    syncMapHitBounds();
+    scheduleMapHitBoundsSync();
   }, 80);
 }
 
@@ -2807,35 +2872,64 @@ function scheduleCenterMapRender(scenario) {
 
 function renderCenterMap(scenario) {
   const entries = routeCoordinateEntries(scenario);
-  const map = ensureCenterMap();
+  const key = routeEntriesCacheKey(entries);
+
   if (entries.length < 2) {
-    document.getElementById("mapSyncStatus").textContent = "실제 지도를 표시하려면 두 곳 이상의 좌표가 필요합니다.";
-    window.requestAnimationFrame(syncMapHitBounds);
+    centerMapRenderSequence += 1;
+    clearCenterMapLayers();
+    renderLiveMapStats(entries, fallbackRouteSummary(entries), "좌표 확인 필요");
+    const status = document.getElementById("mapSyncStatus");
+    if (status) {
+      status.textContent = "실제 지도를 표시하려면 두 곳 이상의 좌표가 필요합니다.";
+    }
+    scheduleMapHitBoundsSync();
     return;
   }
+
+  const map = ensureCenterMap();
   const fallback = fallbackRouteSummary(entries);
   if (!map) {
+    centerMapRenderSequence += 1;
     renderLiveMapStats(entries, fallback, "로컬 지도");
     document.getElementById("mapSyncStatus").textContent = `로컬 지도: ${entries.length}개 좌표 연결, ${formatDistanceKm(fallback.distanceKm)}, ${formatDurationMinutes(fallback.durationMinutes)}`;
-    window.requestAnimationFrame(syncMapHitBounds);
+    scheduleMapHitBoundsSync();
     return;
   }
-  const key = routeEntriesCacheKey(entries);
+
+  if (centerMapRenderedRouteKey === key) {
+    syncCenterMapMarkerSelection(entries);
+    scheduleMapHitBoundsSync();
+    return;
+  }
+
   const shouldFit = centerMapLastFitKey !== key;
   centerMapLastFitKey = key;
   const sequence = ++centerMapRenderSequence;
 
-  drawCenterMap(entries, fallback, { fit: shouldFit });
-  renderLiveMapStats(entries, fallback, "경로 계산 중");
+  drawCenterMap(entries, fallback, { fit: shouldFit, routeKey: key });
+  renderLiveMapStats(entries, fallback, shouldRequestRouteProxy() ? "경로 계산 중" : "좌표 기반");
   document.getElementById("mapSyncStatus").textContent = `실제 지도: ${entries.length}개 좌표 연결, ${formatDistanceKm(fallback.distanceKm)}, ${formatDurationMinutes(fallback.durationMinutes)}`;
 
+  if (!shouldRequestRouteProxy()) {
+    return;
+  }
+
   runWhenBrowserIdle(() => {
+    const activeKey = routeEntriesCacheKey(routeCoordinateEntries(currentScenario()));
+    if (sequence !== centerMapRenderSequence || activeKey !== key) {
+      return;
+    }
     cachedRouteSummaryWithRoadGeometry(entries).then((summary) => {
-      if (sequence !== centerMapRenderSequence) {
+      const latestKey = routeEntriesCacheKey(routeCoordinateEntries(currentScenario()));
+      if (
+        sequence !== centerMapRenderSequence
+        || latestKey !== key
+        || centerMapRenderedRouteKey !== key
+      ) {
         return;
       }
       const statusLabel = summary.provider === "coordinate_fallback" ? "좌표 기반" : "도로 경로";
-      drawCenterMap(entries, summary, { fit: false });
+      drawCenterMap(entries, summary, { fit: false, routeKey: key });
       renderLiveMapStats(entries, summary, statusLabel);
       document.getElementById("mapSyncStatus").textContent = `실제 지도: ${statusLabel}, ${formatDistanceKm(summary.distanceKm)}, ${formatDurationMinutes(summary.durationMinutes)}`;
     });
@@ -3077,7 +3171,7 @@ function fallbackRouteSummary(entries) {
 
 async function routeSummaryWithRoadGeometry(entries) {
   const fallback = fallbackRouteSummary(entries);
-  if (entries.length < 2) {
+  if (entries.length < 2 || !shouldRequestRouteProxy()) {
     return fallback;
   }
   const proxied = await fetchProxiedRoute(entries).catch(() => null);
@@ -3096,10 +3190,19 @@ function routeEntriesCacheKey(entries) {
 
 async function cachedRouteSummaryWithRoadGeometry(entries) {
   const key = routeEntriesCacheKey(entries);
-  if (!routeSummaryCache.has(key)) {
-    routeSummaryCache.set(key, routeSummaryWithRoadGeometry(entries));
+  if (routeSummaryCache.has(key)) {
+    const cached = routeSummaryCache.get(key);
+    routeSummaryCache.delete(key);
+    routeSummaryCache.set(key, cached);
+    return cached;
   }
-  return routeSummaryCache.get(key);
+  if (routeSummaryCache.size >= ROUTE_SUMMARY_CACHE_LIMIT) {
+    const oldestKey = routeSummaryCache.keys().next().value;
+    routeSummaryCache.delete(oldestKey);
+  }
+  const pending = routeSummaryWithRoadGeometry(entries);
+  routeSummaryCache.set(key, pending);
+  return pending;
 }
 
 async function fetchProxiedRoute(entries) {
@@ -3549,7 +3652,6 @@ function renderMapHits(scenario) {
   mapHits.dataset.routeSpots = route.map((item) => item.spot_id).join(",");
   mapHits.dataset.routeNames = names.join(" | ");
   document.getElementById("mapSyncStatus").textContent = `${scenario.title || "추천 코스"}: ${names.join(", ")} · 실제 좌표 ${locatedCount}/${route.length} · 실제 지도 ${locatedCount >= 2 ? "표시" : "대기"}`;
-  scheduleCenterMapRender(scenario);
   const cardMarkup = route.map((routeItem, index) => {
     const place = routePlace(scenario, routeItem);
     const bound = mapCardBounds[index] || mapCardBounds[0];
@@ -3592,7 +3694,8 @@ function renderMapHits(scenario) {
   }).join("");
   const popup = renderMapPopupCard(scenario, route, scoreTotal);
   mapHits.innerHTML = popup + pinMarkup + cardMarkup;
-  window.requestAnimationFrame(syncMapHitBounds);
+  scheduleCenterMapRender(scenario);
+  scheduleMapHitBoundsSync();
 }
 
 function renderMapPopupCard(scenario, route, scoreTotal) {
@@ -4046,6 +4149,7 @@ function closeRouteModal() {
     return;
   }
   state.routeModalOpen = false;
+  routeModalRenderSequence += 1;
   modal.hidden = true;
   document.body.classList.remove("modal-open");
 }
@@ -4294,6 +4398,8 @@ function renderRouteModal() {
   const routeTitle = scenario.recommendation?.course?.title || scenario.title || "오늘의 동행 경로";
   const entries = routeCoordinateEntries(scenario);
   const allEntries = routeEntriesForScenario(scenario);
+  const routeKey = routeEntriesCacheKey(entries);
+  const sequence = ++routeModalRenderSequence;
   document.getElementById("routeModalTitle").textContent = routeTitle;
   document.getElementById("routeModalSubtitle").textContent = `${routeNames(scenario).join(" → ")} 순서로 실제 위치를 연결합니다.`;
 
@@ -4305,11 +4411,21 @@ function renderRouteModal() {
   }
 
   const fallback = fallbackRouteSummary(entries);
+  drawRouteMap(entries, fallback);
+  renderRouteItinerary(allEntries, fallback, shouldRequestRouteProxy() ? "계산 중" : "좌표 기반");
+  if (!shouldRequestRouteProxy()) {
+    setRouteMapStatus(
+      "좌표 기반 경로",
+      `${formatDistanceKm(fallback.distanceKm)} · ${formatDurationMinutes(fallback.durationMinutes)}`
+    );
+    return;
+  }
+
   setRouteMapStatus("경로 계산 중", "실제 도로형 경로를 가져오는 중입니다.");
-  renderRouteItinerary(allEntries, fallback, "계산 중");
   window.requestAnimationFrame(async () => {
-    const summary = await routeSummaryWithRoadGeometry(entries);
-    if (!state.routeModalOpen) {
+    const summary = await cachedRouteSummaryWithRoadGeometry(entries);
+    const currentKey = routeEntriesCacheKey(routeCoordinateEntries(currentScenario()));
+    if (!state.routeModalOpen || sequence !== routeModalRenderSequence || currentKey !== routeKey) {
       return;
     }
     drawRouteMap(entries, summary);
@@ -4706,7 +4822,7 @@ function navigateToSection(target, href, { updateLocation = false, behavior = "s
   window.requestAnimationFrame(() => {
     scrollToSelector(href || "#conceptPage", behavior);
     centerMap?.invalidateSize();
-    syncMapHitBounds();
+    scheduleMapHitBoundsSync();
     syncStepViewState();
   });
 }
@@ -4724,12 +4840,10 @@ async function selectScenarioForResult(scenarioId, { navigateToResults = false }
 
   if (navigateToResults) {
     navigateToSection("recommend", "#recommendations", { updateLocation: true });
-  }
-
-  if (!navigateToResults) {
+  } else {
     openConceptResultPanel();
-    render();
   }
+  render();
 
   await refreshScenarioRecommendation({ renderLoading: true });
   render();
@@ -5051,7 +5165,7 @@ function bindEvents() {
 
   window.addEventListener("resize", () => {
     centerMap?.invalidateSize();
-    syncMapHitBounds();
+    scheduleMapHitBoundsSync();
     syncStepViewState();
   });
 
