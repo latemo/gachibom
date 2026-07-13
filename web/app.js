@@ -206,6 +206,7 @@ const scenarioCards = [
 ];
 
 let themeMotionTimer = null;
+let ragQueryAssistTimer = null;
 
 const optionItems = [
   { key: "traveler_type", value: "stroller_family", label: "아이 동반" },
@@ -216,6 +217,42 @@ const optionItems = [
   { key: "required_accessibility", value: "주차", label: "주차" },
   { key: "preferred_themes", value: "실내", label: "실내" },
   { key: "avoid", value: "식당 제외", label: "식당 제외" }
+];
+
+const ragQueryConditionRules = [
+  { label: "지역 · 제주시", aliases: ["제주시", "제주 시내", "제주공항"] },
+  { label: "지역 · 서귀포시", aliases: ["서귀포시", "서귀포"] },
+  { label: "테마 · 실내", aliases: ["실내", "박물관", "미술관", "전시관", "기념관"] },
+  { label: "테마 · 문화", aliases: ["문화", "역사", "유적", "박물관", "미술관"] },
+  { label: "테마 · 숲", aliases: ["숲", "수목원", "정원"] },
+  { label: "테마 · 바다", aliases: ["바다", "해변", "해안"] },
+  { label: "테마 · 공원", aliases: ["공원", "산책로"] },
+  { label: "테마 · 휴식", aliases: ["휴식", "조용한", "한적한", "쉼"] },
+  { label: "접근 · 휠체어", aliases: ["휠체어", "전동휠체어", "전동 휠체어"] },
+  { label: "접근 · 장애인 화장실", aliases: ["장애인 화장실", "휠체어 화장실", "무장애 화장실"] },
+  { label: "접근 · 주차", aliases: ["장애인 주차", "주차장", "주차 필요", "주차 가능"] },
+  { label: "동행 · 아이", aliases: ["유모차", "유아차", "영유아", "아이 동반"] },
+  { label: "동행 · 고령자", aliases: ["어르신", "노인", "고령자", "노약자"] },
+  { label: "이동 · 짧은 이동", aliases: ["짧은 이동", "이동 거리가 짧", "가까운 곳", "근처"] },
+  { label: "이동 · 휴식 필요", aliases: ["휴식 필요", "자주 쉬", "벤치", "쉼터"] },
+  { label: "이동 · 계단 회피", aliases: ["계단 회피", "계단 피", "계단 제외"] },
+  { label: "날씨 · 비", aliases: ["비 오는", "우천"] },
+  { label: "지원 · 병원", aliases: ["종합병원", "대형병원", "응급실", "병원"] },
+  { label: "지원 · 약국", aliases: ["약국"] },
+  { label: "지원 · 급속충전기", aliases: ["급속충전기", "급속 충전기", "휠체어 충전", "보장구 충전"] },
+  { label: "지원 · 이동지원센터", aliases: ["이동지원센터", "이동 지원 센터", "콜택시", "콜 택시"] },
+  { label: "지원 · 관광 복지", aliases: ["관광복지서비스", "관광 복지 서비스", "관광 관련 복지", "복지서비스"] }
+];
+
+const ragQueryConflictRules = [
+  { label: "음식·식당", avoidAliases: ["식당 제외"], queryAliases: ["음식", "식당", "음식점", "맛집", "먹거리"] },
+  { label: "바다", avoidAliases: ["바다"], queryAliases: ["바다", "해변", "해안"] },
+  { label: "숲", avoidAliases: ["숲"], queryAliases: ["숲", "수목원", "정원"] },
+  { label: "실내", avoidAliases: ["실내"], queryAliases: ["실내", "박물관", "미술관", "전시관", "기념관"] }
+];
+
+const ragQueryAvoidAfterMarkers = [
+  "회피", "피하", "피해", "피하고", "빼", "제외", "말고", "싫", "없", "어렵", "힘들", "불편", "원하지", "안 가", "가지 않", "못 가"
 ];
 
 const officialRecommendationWeights = {
@@ -461,6 +498,124 @@ function updateProfileModalQuery(value) {
   }
   state.profileModalDraft.ragQuery = normalizeRagQuery(value);
   return true;
+}
+
+function ragQueryAliasIsAvoided(query, alias) {
+  let start = 0;
+  while (start < query.length) {
+    const index = query.indexOf(alias, start);
+    if (index < 0) {
+      return false;
+    }
+    const after = query.slice(index + alias.length, index + alias.length + 18);
+    const before = query.slice(Math.max(0, index - 16), index);
+    if (
+      ragQueryAvoidAfterMarkers.some((marker) => after.includes(marker))
+      || /(?:피할|피하고 싶은|빼고 싶은|제외할|원하지 않는|싫은|안 갈|가지 않을)\s*$/.test(before)
+    ) {
+      return true;
+    }
+    start = index + alias.length;
+  }
+  return false;
+}
+
+function ragQueryHasPositiveAlias(query, aliases) {
+  return aliases.some((alias) => query.includes(alias) && !ragQueryAliasIsAvoided(query, alias));
+}
+
+function detectRagQueryConditions(value) {
+  const query = normalizeRagQuery(value);
+  if (!query) {
+    return [];
+  }
+  return ragQueryConditionRules
+    .flatMap((rule) => {
+      if (!rule.aliases.some((alias) => query.includes(alias))) {
+        return [];
+      }
+      const negationAware = rule.label.startsWith("테마 ·") || rule.label.startsWith("지원 ·");
+      if (negationAware && !ragQueryHasPositiveAlias(query, rule.aliases)) {
+        return [`제외 · ${rule.label.split(" · ").slice(1).join(" · ")}`];
+      }
+      return [rule.label];
+    })
+    .slice(0, 8);
+}
+
+function detectRagQueryConflicts(value, profile) {
+  const query = normalizeRagQuery(value);
+  const avoid = normalizeProfile(profile).avoid;
+  if (!query || !avoid.length) {
+    return [];
+  }
+  return ragQueryConflictRules
+    .filter((rule) => (
+      avoid.some((value) => rule.avoidAliases.some((alias) => value.includes(alias)))
+      && ragQueryHasPositiveAlias(query, rule.queryAliases)
+    ))
+    .map((rule) => rule.label);
+}
+
+function renderRagQueryAssist(value) {
+  if (ragQueryAssistTimer) {
+    clearTimeout(ragQueryAssistTimer);
+    ragQueryAssistTimer = null;
+  }
+  const input = document.getElementById("ragQueryInput");
+  const query = normalizeRagQuery(value ?? input?.value ?? state.profileModalDraft?.ragQuery);
+  const clearButton = document.getElementById("ragQueryClear");
+  const recognized = document.getElementById("ragRecognizedConditions");
+  const conflict = document.getElementById("ragQueryConflict");
+  if (clearButton) {
+    clearButton.hidden = !query;
+  }
+  if (conflict) {
+    const conflicts = detectRagQueryConflicts(query, state.profileModalDraft?.profile);
+    conflict.hidden = !conflicts.length;
+    conflict.textContent = conflicts.length
+      ? `${conflicts.join(", ")} 요청이 아래 제외 조건과 겹쳐요. 검색어나 상세 조건 중 하나를 조정해 주세요.`
+      : "";
+  }
+  if (!recognized) {
+    return;
+  }
+  const conditions = detectRagQueryConditions(query);
+  if (!query) {
+    recognized.innerHTML = '<span class="rag-recognized-empty">입력하지 않아도 아래 선택 조건만으로 추천할 수 있어요.</span>';
+    return;
+  }
+  if (!conditions.length) {
+    recognized.innerHTML = '<span class="rag-recognized-empty">입력한 표현 그대로 검색에 반영해요.</span>';
+    return;
+  }
+  recognized.innerHTML = conditions
+    .map((condition) => `<span class="rag-recognized-chip">${escapeHtml(condition)}</span>`)
+    .join("");
+}
+
+function scheduleRagQueryAssist(value) {
+  if (ragQueryAssistTimer) {
+    clearTimeout(ragQueryAssistTimer);
+  }
+  const query = normalizeRagQuery(value);
+  ragQueryAssistTimer = setTimeout(() => {
+    renderRagQueryAssist(query);
+  }, 300);
+}
+
+function setRagQueryValue(value, { focus = true } = {}) {
+  const input = document.getElementById("ragQueryInput");
+  const query = normalizeRagQuery(value);
+  if (input) {
+    input.value = query;
+  }
+  updateProfileModalQuery(query);
+  renderRagQueryAssist(query);
+  if (focus) {
+    input?.focus();
+  }
+  return query;
 }
 
 function commitProfileModalEdit(queryValue) {
@@ -3818,8 +3973,13 @@ function openProfileModal() {
   if (queryInput) {
     queryInput.value = draft.ragQuery;
   }
+  const panel = modal.querySelector(".profile-modal-panel");
+  if (panel) {
+    panel.scrollTop = 0;
+  }
+  renderRagQueryAssist(draft.ragQuery);
   window.requestAnimationFrame(() => {
-    queryInput?.focus();
+    (modal.querySelector("[data-rag-example]") || queryInput)?.focus({ preventScroll: true });
   });
 }
 
@@ -4726,6 +4886,18 @@ function bindEvents() {
       return;
     }
 
+    const ragExampleButton = event.target.closest("[data-rag-example]");
+    if (ragExampleButton) {
+      setRagQueryValue(ragExampleButton.dataset.ragExample);
+      return;
+    }
+
+    const clearRagQueryButton = event.target.closest("[data-clear-rag-query]");
+    if (clearRagQueryButton) {
+      setRagQueryValue("");
+      return;
+    }
+
     const applyModalButton = event.target.closest("[data-apply-profile-modal]");
     if (applyModalButton) {
       commitProfileModalEdit(document.getElementById("ragQueryInput")?.value);
@@ -4770,6 +4942,7 @@ function bindEvents() {
         if (selectProfileModalScenario(scenarioButton.dataset.scenarioId)) {
           renderScenarioCards();
           renderProfileOptions();
+          renderRagQueryAssist();
         }
         return;
       }
@@ -4783,6 +4956,7 @@ function bindEvents() {
         if (toggleProfileModalValue(profileButton.dataset.profileKey, profileButton.dataset.profileValue)) {
           renderScenarioCards();
           renderProfileOptions();
+          renderRagQueryAssist();
         }
         return;
       }
@@ -4826,6 +5000,7 @@ function bindEvents() {
 
   document.getElementById("ragQueryInput")?.addEventListener("input", (event) => {
     updateProfileModalQuery(event.target.value);
+    scheduleRagQueryAssist(event.target.value);
   });
 
   document.addEventListener("change", (event) => {

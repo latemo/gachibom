@@ -848,8 +848,8 @@ for (const entry of entries) {
         self.assertIn('id="savedRoutesModal"', index)
         self.assertIn("data-open-saved-routes", index)
         self.assertGreaterEqual(index.count("data-save-current-route"), 2)
-        self.assertIn("styles.css?v=20260714-3", index)
-        self.assertIn("app.js?v=20260714-6", index)
+        self.assertIn("styles.css?v=20260714-4", index)
+        self.assertIn("app.js?v=20260714-7", index)
         self.assertIn("top-save-route-button", index)
         self.assertIn("live-map-save-button", index)
         self.assertIn("loadSavedRouteState();", app)
@@ -1050,8 +1050,16 @@ if (classes.has("map-fallback-active")) throw new Error("successful tile load mu
 
         self.assertIn('id="ragQueryInput"', index)
         self.assertIn('maxlength="500"', index)
+        self.assertIn('id="ragQueryHelp"', index)
+        self.assertIn('id="ragRecognizedConditions"', index)
+        self.assertIn('id="ragQueryConflict"', index)
+        self.assertIn('aria-live="polite"', index)
+        self.assertIn("data-rag-example", index)
+        self.assertIn("data-clear-rag-query", index)
         self.assertIn("저장 코스나 공유 링크에는 포함하지 않습니다", index)
         self.assertIn('ragQuery: ""', app)
+        self.assertIn("function detectRagQueryConditions", app)
+        self.assertIn("function renderRagQueryAssist", app)
         payload_source = app[
             app.index("function recommendationPayload") : app.index("function helpRecommendationContext")
         ]
@@ -1076,6 +1084,7 @@ if (classes.has("map-fallback-active")) throw new Error("successful tile load mu
         self.assertIn("return [];", selected_route_source)
         self.assertIn("ai-citation-list", styles)
         self.assertIn("rag-query-section", styles)
+        self.assertIn("rag-recognized-chip", styles)
         self.assertIn("rag-status-detail", styles)
 
     def test_profile_modal_edits_are_transactional_and_apply_atomically(self):
@@ -1110,6 +1119,9 @@ const ragQueryInput = {
     queryInputListeners.set(type, listener);
   }
 };
+const ragQueryClear = { hidden: true };
+const ragRecognizedConditions = { innerHTML: "" };
+const ragQueryConflict = { hidden: true, textContent: "" };
 const modalScenarioList = { innerHTML: "" };
 const modalProfileForm = { innerHTML: "" };
 const document = {
@@ -1125,6 +1137,9 @@ const document = {
     return {
       profileModal,
       ragQueryInput,
+      ragQueryClear,
+      ragRecognizedConditions,
+      ragQueryConflict,
       modalScenarioList,
       modalProfileForm
     }[id] || null;
@@ -1192,7 +1207,9 @@ globalThis.__profileModalFlowTest = {
   bindEvents,
   currentRouteSpotIds,
   profileFromScenario,
-  recommendationPayload
+  recommendationPayload,
+  detectRagQueryConditions,
+  detectRagQueryConflicts
 };
 `);
 vm.createContext(context);
@@ -1269,9 +1286,42 @@ function typeQuery(value) {
 app.bindEvents();
 
 (async () => {
+  const exampleQuery = "제주시 실내 조용한 곳";
+  equal(
+    app.detectRagQueryConditions("병원은 필요 없고 바다는 피하고 싶어요"),
+    ["제외 · 바다", "제외 · 병원"],
+    "negated category terms should be presented as exclusions"
+  );
+  equal(
+    app.detectRagQueryConflicts("박물관과 정원, 음식을 원해요", { avoid: ["실내", "숲", "식당 제외"] }),
+    ["음식·식당", "숲", "실내"],
+    "conflict detection should use the same common aliases as condition recognition"
+  );
   await click(clickTarget("[data-open-profile-modal]"));
   assert(!profileModal.hidden, "profile modal should open");
   assert(ragQueryInput.value === baseline.ragQuery, "modal should start with the committed query");
+
+  await click(clickTarget("[data-rag-example]", { ragExample: exampleQuery }, true));
+  assert(ragQueryInput.value === exampleQuery, "a quick example should fill the query input");
+  assert(app.state.profileModalDraft.ragQuery === exampleQuery, "a quick example should update only the modal draft");
+  assert(ragRecognizedConditions.innerHTML.includes("지역 · 제주시"), "the example should recognize its region");
+  assert(ragRecognizedConditions.innerHTML.includes("테마 · 실내"), "the example should recognize its indoor theme");
+  assert(ragRecognizedConditions.innerHTML.includes("테마 · 휴식"), "the example should recognize its quiet-rest theme");
+  assertLiveStateMatchesBaseline("choosing a quick example");
+  assert(recommendationRequests.length === 0, "a quick example must not request a recommendation before apply");
+
+  typeQuery("  제주시에서\n 휠체어로  갈 곳  ");
+  assert(
+    app.state.profileModalDraft.ragQuery === "제주시에서 휠체어로 갈 곳",
+    "direct input should normalize whitespace in the modal draft"
+  );
+  typeQuery("맛집");
+  await new Promise((resolve) => setTimeout(resolve, 350));
+  assert(!ragQueryClear.hidden, "direct input should reveal the clear button");
+  assert(!ragQueryConflict.hidden, "a natural-language request should warn when it conflicts with exclusions");
+  assert(ragQueryConflict.textContent.includes("음식·식당"), "the conflict warning should identify food requests");
+  assertLiveStateMatchesBaseline("typing a conflicting request");
+  assert(recommendationRequests.length === 0, "typing a conflict must not request before apply");
 
   typeQuery("폐기할 검색어");
   await click(clickTarget("[data-scenario-id]", { scenarioId: targetScenario.id }, true));
@@ -1296,7 +1346,7 @@ app.bindEvents();
     profileKey: "required_accessibility",
     profileValue: "장애인 화장실"
   }, true));
-  typeQuery("  제주시에서\n 휠체어로  갈 곳  ");
+  await click(clickTarget("[data-rag-example]", { ragExample: exampleQuery }, true));
 
   const expectedProfile = app.profileFromScenario(targetScenario);
   expectedProfile.required_accessibility = expectedProfile.required_accessibility.filter(
@@ -1316,20 +1366,20 @@ app.bindEvents();
   assert(recommendationRequests.length === 1, "one apply click must make exactly one recommendation request");
   assert(app.state.scenarioId === targetScenario.id, "apply should commit the selected scenario");
   equal(app.state.profile, expectedProfile, "apply should commit all detailed conditions together");
-  assert(app.state.ragQuery === "제주시에서 휠체어로 갈 곳", "apply should normalize and commit the query");
+  assert(app.state.ragQuery === exampleQuery, "apply should commit the quick example query");
   assert(app.state.profileModalDraft == null, "apply should clear the modal draft");
   equal(app.currentRouteSpotIds(), targetRoute, "parent course should change only after apply");
 
   const request = recommendationRequests[0];
   assert(request.options.method === "POST", "recommendation should use POST");
-  assert(request.body.query === "제주시에서 휠체어로 갈 곳", "request should include the committed query");
+  assert(request.body.query === exampleQuery, "request should include the committed quick example query");
   equal(request.body.traveler_summary, expectedProfile, "request should include the same committed profile");
   equal(app.recommendationPayload().traveler_summary, expectedProfile, "payload helper should use committed profile");
   assert(app.recommendationPayload().query === request.body.query, "payload helper should keep query and profile in sync");
 
   await click(clickTarget("[data-open-profile-modal]"));
   assert(
-    ragQueryInput.value === "제주시에서 휠체어로 갈 곳",
+    ragQueryInput.value === exampleQuery,
     "reopening should retain the previously committed natural-language query"
   );
   await click(clickTarget("[data-scenario-id]", { scenarioId: initialScenario.id }, true));
@@ -1354,7 +1404,7 @@ app.bindEvents();
   );
   equal(app.state.profile, recoveryProfile, "the recovery scenario should commit its complete profile");
   assert(
-    app.state.ragQuery === "제주시에서 휠체어로 갈 곳",
+    app.state.ragQuery === exampleQuery,
     "changing only the scenario should preserve the committed natural-language query"
   );
   assert(app.state.profileModalDraft == null, "the second apply should clear the modal draft");
@@ -1362,7 +1412,7 @@ app.bindEvents();
 
   const recoveryRequest = recommendationRequests[1];
   assert(
-    recoveryRequest.body.query === "제주시에서 휠체어로 갈 곳",
+    recoveryRequest.body.query === exampleQuery,
     "the recovery request should retain the existing natural-language query"
   );
   equal(
@@ -1373,10 +1423,18 @@ app.bindEvents();
 
   await click(clickTarget("[data-open-profile-modal]"));
   assert(
-    ragQueryInput.value === "제주시에서 휠체어로 갈 곳",
+    ragQueryInput.value === exampleQuery,
     "the custom-profile edit should start from the latest committed query"
   );
-  typeQuery("");
+  await click(clickTarget("[data-clear-rag-query]", {}, true));
+  assert(ragQueryInput.value === "", "clear should empty the query input");
+  assert(app.state.profileModalDraft.ragQuery === "", "clear should empty only the modal draft query");
+  assert(ragQueryClear.hidden, "clear should hide its button once the query is empty");
+  assert(
+    ragRecognizedConditions.innerHTML.includes("입력하지 않아도 아래 선택 조건만으로 추천할 수 있어요"),
+    "clear should restore the empty-query guidance"
+  );
+  assert(!ragRecognizedConditions.innerHTML.includes("지역 · 제주시"), "clear should remove old recognized conditions");
   await click(clickTarget("[data-profile-key]", {
     profileKey: "mobility_conditions",
     profileValue: "계단 회피"
@@ -1384,7 +1442,7 @@ app.bindEvents();
   assert(app.state.scenarioId === initialScenario.id, "a detailed draft edit must preserve the recovery scenario");
   equal(app.state.profile, recoveryProfile, "a detailed draft edit must not mutate the live recovery profile");
   assert(
-    app.state.ragQuery === "제주시에서 휠체어로 갈 곳",
+    app.state.ragQuery === exampleQuery,
     "clearing the draft query must not mutate the live query before apply"
   );
   assert(recommendationRequests.length === 2, "a custom-profile draft must not request before apply");

@@ -23,7 +23,7 @@
   </script>
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css?v=1.9.4">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="styles.css?v=20260714-3">
+  <link rel="stylesheet" href="styles.css?v=20260714-4">
   <link rel="stylesheet" href="help-chatbot.css?v=20260710-12">
 </head>
 <body class="modal-open site-intro-open">
@@ -189,11 +189,29 @@
       <div class="profile-modal-body">
         <section class="rag-query-section">
           <div class="section-row">
-            <label for="ragQueryInput">원하는 여행을 문장으로 알려주세요</label>
-            <span>근거 기반 검색</span>
+            <label for="ragQueryInput">추가로 원하는 조건이 있나요?</label>
+            <span>선택 입력</span>
           </div>
-          <textarea id="ragQueryInput" maxlength="500" rows="2" placeholder="예: 제주시에서 휠체어로 이용할 수 있는 조용한 실내 문화 공간을 찾아줘"></textarea>
-          <p>입력 문장은 추천 요청에만 사용하며 저장 코스나 공유 링크에는 포함하지 않습니다.</p>
+          <p class="rag-query-help" id="ragQueryHelp">문장이 아니어도 돼요. 지역·장소·필요한 조건을 단어로 적어주세요.</p>
+          <div class="rag-query-examples" role="group" aria-label="여행 조건 빠른 예시">
+            <span>예시로 시작하기</span>
+            <button class="rag-query-example" type="button" data-rag-example="제주시 실내 조용한 곳">제주시 · 실내 · 조용한 곳</button>
+            <button class="rag-query-example" type="button" data-rag-example="서귀포 숲 휴식">서귀포 · 숲 · 휴식</button>
+            <button class="rag-query-example" type="button" data-rag-example="휠체어 장애인 화장실 주차장">휠체어 · 화장실 · 주차장</button>
+            <button class="rag-query-example" type="button" data-rag-example="아이 동반 짧은 이동">아이 동반 · 짧은 이동</button>
+          </div>
+          <div class="rag-query-field">
+            <textarea id="ragQueryInput" maxlength="500" rows="2" aria-describedby="ragQueryHelp ragQueryPrivacy" placeholder="예: 제주시 실내 휠체어 화장실"></textarea>
+            <button class="rag-query-clear" id="ragQueryClear" type="button" data-clear-rag-query hidden>입력 지우기</button>
+          </div>
+          <div class="rag-recognized-conditions">
+            <strong>입력에서 찾은 조건</strong>
+            <div id="ragRecognizedConditions" role="status" aria-live="polite" aria-atomic="false">
+              <span class="rag-recognized-empty">입력하지 않아도 아래 선택 조건만으로 추천할 수 있어요.</span>
+            </div>
+          </div>
+          <p class="rag-query-conflict" id="ragQueryConflict" role="alert" hidden></p>
+          <p class="rag-query-privacy" id="ragQueryPrivacy">입력 내용은 추천 요청에만 사용하며 저장 코스나 공유 링크에는 포함하지 않습니다.</p>
         </section>
         <section>
           <div class="section-row">
@@ -211,7 +229,7 @@
         </section>
       </div>
       <footer class="profile-modal-foot">
-        <p>상황·상세 조건·자연어 요청은 ‘적용하고 보기’를 누르면 한 번에 반영됩니다.</p>
+        <p>자연어 입력은 선택 사항입니다. ‘적용하고 보기’를 누르면 선택한 조건과 함께 반영됩니다.</p>
         <button class="primary-button" type="button" data-apply-profile-modal>적용하고 보기</button>
       </footer>
     </section>
@@ -301,7 +319,7 @@
 
   <script src="vendor/leaflet/leaflet.js?v=1.9.4"></script>
   <script src="saved-trips.js?v=20260712-3"></script>
-  <script src="app.js?v=20260714-6"></script>
+  <script src="app.js?v=20260714-7"></script>
   <script src="help-chatbot.js?v=20260711-1"></script>
 </body>
 </html>
