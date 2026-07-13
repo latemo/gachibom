@@ -21,9 +21,9 @@
       // Continue with the standard intro when browser storage is unavailable.
     }
   </script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css?v=1.9.4">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="styles.css?v=20260710-17">
+  <link rel="stylesheet" href="styles.css?v=20260713-9">
   <link rel="stylesheet" href="help-chatbot.css?v=20260710-12">
 </head>
 <body class="modal-open site-intro-open">
@@ -70,7 +70,17 @@
       <div class="top-actions">
         <button class="outline-button" type="button" data-open-route-modal>실제 경로</button>
         <button class="outline-button" type="button" data-share-app>공유</button>
+        <button class="primary-button top-save-route-button" type="button" data-save-current-route aria-pressed="false">
+          <i class="bi bi-bookmark-plus" aria-hidden="true"></i>
+          <span data-save-current-route-label>코스 저장</span>
+        </button>
+        <button class="outline-button saved-routes-button" type="button" data-open-saved-routes aria-haspopup="dialog">
+          <i class="bi bi-bookmark-heart" aria-hidden="true"></i>
+          <span>저장함</span>
+          <b id="savedRoutesCount">0</b>
+        </button>
         <button class="primary-button" type="button" data-go-concepts>테마 선택</button>
+        <span class="sr-only" id="savedRouteGlobalStatus" aria-live="polite"></span>
       </div>
     </header>
 
@@ -136,12 +146,22 @@
       <section class="map-card" id="mapPanel" aria-label="살아있는 제주 지도">
         <div class="map-frame">
           <div class="live-map" id="liveMap" aria-label="실제 좌표 기반 제주 추천 지도"></div>
+          <img class="map-art" id="mapFallbackArt" src="assets/jeju-map-fallback.svg?v=20260713-1" alt="제주도 로컬 지도 배경" decoding="async">
+          <svg class="map-route-layer" id="mapRouteLayer" aria-hidden="true"></svg>
+          <p class="map-fallback-notice" id="mapFallbackNotice" role="status" hidden>
+            <span data-map-fallback-message>로컬 지도로 추천 위치를 표시합니다.</span>
+            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>
+          </p>
           <div class="live-map-header">
             <div>
               <h2>추천 지도</h2>
               <p>실제 위치와 이동 경로를 기준으로 코스를 확인합니다.</p>
             </div>
             <div class="live-map-actions">
+              <button class="live-map-button live-map-save-button" type="button" data-save-current-route aria-pressed="false">
+                <i class="bi bi-bookmark-plus" aria-hidden="true"></i>
+                <span data-save-current-route-label>코스 저장</span>
+              </button>
               <button class="live-map-button" type="button" data-map-layer-toggle>지도 레이어</button>
               <button class="live-map-button" type="button" data-map-fit-route>코스 맞춤</button>
             </div>
@@ -225,8 +245,28 @@
             <span id="routeMapStatus">실제 좌표를 지도에 올리는 중입니다.</span>
           </div>
           <div class="route-map" id="routeMap"></div>
+          <svg class="route-map-fallback-layer" id="routeMapFallbackLayer" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <a class="route-map-data-attribution" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">지도 데이터 © OpenStreetMap contributors</a>
         </section>
         <aside class="route-itinerary" id="routeItinerary" aria-label="추천 경로 일정"></aside>
+      </div>
+    </section>
+  </div>
+
+  <div class="saved-routes-modal" id="savedRoutesModal" role="dialog" aria-modal="true" aria-labelledby="savedRoutesTitle" aria-describedby="savedRoutesPrivacy" hidden>
+    <button class="saved-routes-modal-backdrop" type="button" data-close-saved-routes aria-label="저장함 닫기"></button>
+    <section class="saved-routes-modal-panel">
+      <header class="saved-routes-modal-head">
+        <div>
+          <span>이 기기에만 저장</span>
+          <h2 id="savedRoutesTitle">저장한 추천 코스</h2>
+          <p id="savedRoutesPrivacy">개인 조건·여행 일정·체크 상태는 공유 링크에 포함되지 않습니다.</p>
+        </div>
+        <button class="modal-close-button" type="button" data-close-saved-routes aria-label="저장함 닫기">×</button>
+      </header>
+      <div class="saved-routes-modal-body">
+        <p class="saved-routes-status" id="savedRoutesStatus" aria-live="polite"></p>
+        <div class="saved-routes-list" id="savedRoutesList"></div>
       </div>
     </section>
   </div>
@@ -251,8 +291,9 @@
     </section>
   </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="app.js?v=20260710-19"></script>
-  <script src="help-chatbot.js?v=20260710-12"></script>
+  <script src="vendor/leaflet/leaflet.js?v=1.9.4"></script>
+  <script src="saved-trips.js?v=20260712-3"></script>
+  <script src="app.js?v=20260713-9"></script>
+  <script src="help-chatbot.js?v=20260711-1"></script>
 </body>
 </html>

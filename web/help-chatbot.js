@@ -1206,16 +1206,35 @@
       .filter((item) => item.content);
   }
 
+  function currentRecommendationContext() {
+    const provider = window.GachibomRecommendationContext;
+    if (typeof provider !== "function") {
+      return null;
+    }
+    try {
+      const context = provider();
+      return context && typeof context === "object" ? context : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function buildHelpRequestBody(question, history) {
+    const body = { question, history };
+    const recommendationContext = currentRecommendationContext();
+    if (recommendationContext) {
+      body.recommendation_context = recommendationContext;
+    }
+    return body;
+  }
+
   async function requestLlmAnswer(question, history) {
     const response = await fetch(API_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        question,
-        history
-      })
+      body: JSON.stringify(buildHelpRequestBody(question, history))
     });
 
     if (!response.ok) {

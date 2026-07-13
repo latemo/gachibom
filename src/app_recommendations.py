@@ -6,6 +6,8 @@ from collections import Counter
 from datetime import date
 from typing import Any
 
+from src.place_locations import normalize_point_role
+from src.place_visit_info import visit_info_for_place
 from src.scoring import PlaceScore, build_recommendation_result, rank_places
 
 
@@ -145,6 +147,7 @@ def build_app_recommendation_seed(
         "generated_at": generated_at.isoformat(),
         "safety_notice": SAFETY_NOTICE,
         "public_gate": public_gate_summary(places),
+        "saved_route_places": saved_route_place_index(places, location_index=location_index),
         "visual_assets": list(VISUAL_ASSETS),
         "official_courses": official_course_exposure(
             tourism_weak_course_dataset or {},
@@ -153,6 +156,61 @@ def build_app_recommendation_seed(
         ),
         "scenarios": scenarios,
     }
+
+
+def saved_route_place_index(
+    places: list[dict[str, Any]],
+    *,
+    location_index: dict[str, dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Return the public fields needed to reopen a saved or shared route."""
+    result: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for place in places:
+        spot_id = str(place.get("id") or "").strip()
+        name = str(place.get("name") or "").strip()
+        if not spot_id or not name or spot_id in seen:
+            continue
+        seen.add(spot_id)
+        effort = place.get("effort") if isinstance(place.get("effort"), dict) else {}
+        duration = effort.get("recommended_duration_minutes")
+        duration_minutes = int(duration) if isinstance(duration, (int, float)) and 0 < duration <= 600 else None
+        info_url = ""
+        for source in place.get("sources") or []:
+            if not isinstance(source, dict):
+                continue
+            candidate = str(source.get("url") or "").strip()
+            if candidate.startswith(("https://", "http://")):
+                info_url = candidate[:2048]
+                break
+        location = place_location(spot_id, place, location_index)
+        public_location = None
+        if location:
+            latitude = location.get("latitude")
+            longitude = location.get("longitude")
+            if isinstance(latitude, (int, float)) and isinstance(longitude, (int, float)):
+                public_location = {
+                    "latitude": float(latitude),
+                    "longitude": float(longitude),
+                    "point_role": normalize_point_role(location.get("point_role")),
+                }
+        result.append(
+            {
+                "spot_id": spot_id,
+                "name": name,
+                "region": str(place.get("region") or "")[:120],
+                "category": str(place.get("category") or "other")[:80],
+                "available": (
+                    place.get("status") == "active"
+                    and place.get("verification", {}).get("status") in {"verified", "partial"}
+                ),
+                "duration_minutes": duration_minutes,
+                "info_url": info_url,
+                "location": public_location,
+                "visit_info": visit_info_for_place(place),
+            }
+        )
+    return result
 
 
 def build_app_scenario(
@@ -269,6 +327,7 @@ def app_place_result(
         "location": location,
         "safety_notes": string_list(place.get("safety_notes")),
         "avoid_for": string_list(place.get("avoid_for")),
+        "visit_info": visit_info_for_place(place),
     }
 
 
@@ -323,13 +382,17 @@ def place_location(
 ) -> dict[str, Any] | None:
     indexed = location_index.get(spot_id)
     if indexed:
-        return dict(indexed)
+        result = dict(indexed)
+        result["point_role"] = normalize_point_role(result.get("point_role"))
+        return result
     location = place.get("location")
     if isinstance(location, dict):
         latitude = location.get("latitude")
         longitude = location.get("longitude")
         if isinstance(latitude, (int, float)) and isinstance(longitude, (int, float)):
-            return dict(location)
+            result = dict(location)
+            result["point_role"] = normalize_point_role(result.get("point_role"))
+            return result
     return None
 
 

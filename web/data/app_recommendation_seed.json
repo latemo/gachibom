@@ -1,15 +1,16 @@
 {
-  "generated_at": "2026-07-09",
+  "generated_at": "2026-07-13",
   "safety_notice": "이 서비스는 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요.",
   "public_gate": {
     "total_places": 91,
-    "app_candidate_places": 45,
+    "app_candidate_places": 44,
     "status_counts": {
-      "active": 91
+      "active": 90,
+      "hidden": 1
     },
     "verification_counts": {
-      "needs_check": 46,
-      "partial": 40,
+      "needs_check": 47,
+      "partial": 39,
       "verified": 5
     },
     "excluded_statuses": [
@@ -19,6 +20,3907 @@
     ],
     "pending_gate_note": "로드뷰 기반 신규 장소는 사람 최종 검수 전까지 사용자 추천에 사용하지 않습니다."
   },
+  "saved_route_places": [
+    {
+      "spot_id": "jeju_forest_healing_001",
+      "name": "서귀포 치유의숲",
+      "region": "서귀포시",
+      "category": "forest",
+      "available": true,
+      "duration_minutes": 60,
+      "info_url": "https://easyjeju.net/pages.php?no=105&p=tourist",
+      "location": {
+        "latitude": 33.2935506,
+        "longitude": 126.5277232,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 서귀포시 산록남로 2271",
+        "phone": "064-760-3067",
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": "2025-07-30",
+        "missing_fields": [
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "needs_check",
+            "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+            "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+            "source_type": "public_agency",
+            "checked_at": null,
+            "observed_at": null,
+            "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_forest_saryeoni_002",
+      "name": "사려니숲길 무장애나눔길",
+      "region": "제주시 조천읍 / 서귀포시 표선면",
+      "category": "forest",
+      "available": true,
+      "duration_minutes": 60,
+      "info_url": "https://easyjeju.net/pages.php?no=1000&p=tourist",
+      "location": {
+        "latitude": 33.395123,
+        "longitude": 126.6838507,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_forest_recreation_003",
+      "name": "서귀포 자연휴양림",
+      "region": "서귀포시",
+      "category": "forest",
+      "available": true,
+      "duration_minutes": 60,
+      "info_url": "https://easyjeju.net/pages.php?no=109&p=tourist",
+      "location": {
+        "latitude": 33.3104937,
+        "longitude": 126.4582802,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 서귀포시 1100로 882",
+        "phone": "064-738-4544",
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": "2025-07-30",
+        "missing_fields": [
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "needs_check",
+            "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+            "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+            "source_type": "public_agency",
+            "checked_at": null,
+            "observed_at": null,
+            "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_forest_red_oreum_004",
+      "name": "붉은오름자연휴양림",
+      "region": "서귀포시 표선면",
+      "category": "forest",
+      "available": true,
+      "duration_minutes": 60,
+      "info_url": "https://easyjeju.net/pages.php?no=59&p=tourist",
+      "location": {
+        "latitude": 33.4026841,
+        "longitude": 126.6774028,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_forest_halla_005",
+      "name": "한라수목원",
+      "region": "제주시",
+      "category": "forest",
+      "available": true,
+      "duration_minutes": 60,
+      "info_url": "https://easyjeju.net/pages.php?no=32&p=tourist",
+      "location": {
+        "latitude": 33.4694708,
+        "longitude": 126.4922531,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 수목원길 72",
+        "phone": "064-710-7575",
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": "2025-07-30",
+        "missing_fields": [
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "needs_check",
+            "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+            "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+            "source_type": "public_agency",
+            "checked_at": null,
+            "observed_at": null,
+            "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_forest_ecoforest_006",
+      "name": "한라생태숲",
+      "region": "제주시",
+      "category": "forest",
+      "available": false,
+      "duration_minutes": 50,
+      "info_url": "https://easyjeju.net/pages.php?no=76&p=tourist",
+      "location": {
+        "latitude": 33.4308923,
+        "longitude": 126.5983867,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_culture_folk_village_007",
+      "name": "제주민속촌",
+      "region": "서귀포시 표선면",
+      "category": "culture",
+      "available": true,
+      "duration_minutes": 70,
+      "info_url": "https://easyjeju.net/pages.php?no=73&p=tourist",
+      "location": {
+        "latitude": 33.3224242,
+        "longitude": 126.8417961,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 서귀포시 표선면 민속해안로 631-34",
+        "phone": "064-787-4501",
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": "2025-07-30",
+        "missing_fields": [
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "needs_check",
+            "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+            "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+            "source_type": "public_agency",
+            "checked_at": null,
+            "observed_at": null,
+            "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_culture_mokgwana_008",
+      "name": "제주목관아",
+      "region": "제주시",
+      "category": "culture",
+      "available": true,
+      "duration_minutes": 40,
+      "info_url": "https://easyjeju.net/pages.php?no=20&p=tourist",
+      "location": {
+        "latitude": 33.5138478,
+        "longitude": 126.5221126,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 관덕로 25",
+        "phone": "064-710-6714",
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": "2025-07-30",
+        "missing_fields": [
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "needs_check",
+            "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+            "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+            "source_type": "public_agency",
+            "checked_at": null,
+            "observed_at": null,
+            "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_indoor_mandeok_museum_009",
+      "name": "김만덕기념관",
+      "region": "제주시",
+      "category": "indoor",
+      "available": true,
+      "duration_minutes": 45,
+      "info_url": "https://easyjeju.net/pages.php?no=5&p=tourist",
+      "location": {
+        "latitude": 33.5159564,
+        "longitude": 126.5303531,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 산지로 7",
+        "phone": "064-759-6090",
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": "2025-07-30",
+        "missing_fields": [
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "needs_check",
+            "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+            "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+            "source_type": "public_agency",
+            "checked_at": null,
+            "observed_at": null,
+            "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_indoor_bunker_lumieres_010",
+      "name": "빛의 벙커",
+      "region": "서귀포시 성산읍",
+      "category": "indoor",
+      "available": true,
+      "duration_minutes": 50,
+      "info_url": "https://easyjeju.net/pages.php?no=1010&p=tourist",
+      "location": {
+        "latitude": 33.4397662,
+        "longitude": 126.8992758,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 서귀포시 성산읍 서성일로1168번길 89-17",
+        "phone": "1522-2653",
+        "operating_hours": "매일 10:00~18:20 · 입장 마감 17:30",
+        "official_url": "https://www.deslumieres.co.kr/bunker",
+        "reservation_url": null,
+        "service_status": "active",
+        "notice": "전시 교체·임시 휴관 여부와 최종 입장 시간은 방문 당일 공식 홈페이지에서 다시 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone",
+              "operating_hours",
+              "official_url",
+              "service_status"
+            ],
+            "status": "verified",
+            "source_title": "빛의 벙커 공식 홈페이지",
+            "source_url": "https://www.deslumieres.co.kr/bunker",
+            "source_type": "official",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "운영사 공식 페이지에서 현재 전시, 주소, 대표전화와 관람시간을 확인했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_indoor_worldheritage_011",
+      "name": "제주세계자연유산센터",
+      "region": "제주시",
+      "category": "indoor",
+      "available": true,
+      "duration_minutes": 60,
+      "info_url": "https://easyjeju.net/pages.php?no=767&p=tourist",
+      "location": {
+        "latitude": 33.456753,
+        "longitude": 126.7145193,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 조천읍 선교로 569-36",
+        "phone": "064-710-6959",
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": "2025-07-30",
+        "missing_fields": [
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "needs_check",
+            "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+            "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+            "source_type": "public_agency",
+            "checked_at": null,
+            "observed_at": null,
+            "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_forest_yeomiji_012",
+      "name": "여미지식물원",
+      "region": "서귀포시 중문",
+      "category": "forest",
+      "available": true,
+      "duration_minutes": 70,
+      "info_url": "https://easyjeju.net/pages.php?no=41&p=tourist",
+      "location": {
+        "latitude": 33.2526904,
+        "longitude": 126.4144499,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 서귀포시 중문관광로 93",
+        "phone": "064-735-1100",
+        "operating_hours": "09:00~18:00 · 매표 마감 17:30 · 연중무휴",
+        "official_url": "https://www.yeomiji.or.kr/guide/guide_01.jsp",
+        "reservation_url": null,
+        "service_status": "active",
+        "notice": "기상·시설 점검에 따른 변동 가능성이 있으므로 방문 당일 공식 이용안내를 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone",
+              "operating_hours",
+              "official_url",
+              "service_status"
+            ],
+            "status": "verified",
+            "source_title": "여미지식물원 공식 이용안내",
+            "source_url": "https://www.yeomiji.or.kr/guide/guide_01.jsp",
+            "source_type": "official",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "공식 이용안내에서 주소, 대표전화, 관람시간과 연중무휴 안내를 확인했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_cafe_osulloc_013",
+      "name": "오설록 티 뮤지엄",
+      "region": "서귀포시 안덕면",
+      "category": "cafe",
+      "available": true,
+      "duration_minutes": 50,
+      "info_url": "https://easyjeju.net/pages.php?no=89&p=tourist",
+      "location": {
+        "latitude": 33.3058528,
+        "longitude": 126.2894694,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_forest_cheonjiyeon_014",
+      "name": "천지연폭포",
+      "region": "서귀포시",
+      "category": "forest",
+      "available": true,
+      "duration_minutes": 50,
+      "info_url": "https://easyjeju.net/pages.php?no=753&p=tourist",
+      "location": {
+        "latitude": 33.2449581,
+        "longitude": 126.5587929,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 서귀포시 서홍동 2565",
+        "phone": "064-733-1528",
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": "2025-07-30",
+        "missing_fields": [
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "needs_check",
+            "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+            "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+            "source_type": "public_agency",
+            "checked_at": null,
+            "observed_at": null,
+            "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_rest_sinsan_015",
+      "name": "신산공원",
+      "region": "제주시",
+      "category": "rest_area",
+      "available": true,
+      "duration_minutes": 40,
+      "info_url": "https://easyjeju.net/pages.php?no=1060&p=tourist",
+      "location": {
+        "latitude": 33.5050337,
+        "longitude": 126.533138,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 일도이동 830",
+        "phone": "064-728-3604",
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": "2025-07-30",
+        "missing_fields": [
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "needs_check",
+            "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+            "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+            "source_type": "public_agency",
+            "checked_at": null,
+            "observed_at": null,
+            "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_indoor_hanran_016",
+      "name": "제주한란전시관",
+      "region": "서귀포시",
+      "category": "indoor",
+      "available": true,
+      "duration_minutes": 40,
+      "info_url": "https://easyjeju.net/pages.php?no=116&p=tourist",
+      "location": {
+        "latitude": 33.2966815,
+        "longitude": 126.5902364,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 서귀포시 돈내코로 67번길 19",
+        "phone": "064-710-6861",
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": "2025-07-30",
+        "missing_fields": [
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "needs_check",
+            "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+            "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+            "source_type": "public_agency",
+            "checked_at": null,
+            "observed_at": null,
+            "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_sea_olle6_017",
+      "name": "올레길6코스 휠체어구간",
+      "region": "서귀포시",
+      "category": "sea",
+      "available": true,
+      "duration_minutes": 90,
+      "info_url": "https://easyjeju.net/pages.php?no=966&p=tourist",
+      "location": {
+        "latitude": 33.2516081,
+        "longitude": 126.6227652,
+        "point_role": "route_start"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 서귀포시 쇠소깍로 138",
+        "phone": null,
+        "operating_hours": null,
+        "official_url": "https://www.jejuolle.org/trail/kor/",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "표시 위치는 쇠소깍 안내센터 쪽 휠체어 구간 시작점입니다. 노면·통제 상태는 출발 전에 확인해 주세요.",
+        "verification_status": "needs_check",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "phone",
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "official_url"
+            ],
+            "status": "needs_check",
+            "source_title": "이지제주 올레 6코스 휠체어 구간 안내",
+            "source_url": "https://easyjeju.net/pages.php?no=966&p=tourist",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "공공 무장애 안내의 2020년 조사 구간 시작점이므로 현재 노면과 운영 상태는 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_sea_olle14_018",
+      "name": "올레길14코스 휠체어구간",
+      "region": "제주시 한림읍",
+      "category": "sea",
+      "available": true,
+      "duration_minutes": 70,
+      "info_url": "https://easyjeju.net/pages.php?no=970&p=tourist",
+      "location": {
+        "latitude": 33.3867101,
+        "longitude": 126.2215556,
+        "point_role": "route_start"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 한림읍 한림로 127",
+        "phone": null,
+        "operating_hours": null,
+        "official_url": "https://www.jejuolle.org/trail/kor/",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "표시 위치는 일성제주비치콘도 쪽 휠체어 구간 시작점입니다. 노면·통제 상태는 출발 전에 확인해 주세요.",
+        "verification_status": "needs_check",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "phone",
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "official_url"
+            ],
+            "status": "needs_check",
+            "source_title": "이지제주 올레 14코스 휠체어 구간 안내",
+            "source_url": "https://easyjeju.net/pages.php?no=970&p=tourist",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "공공 무장애 안내의 2020년 조사 구간 시작점이므로 현재 노면과 운영 상태는 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_sea_olle17_019",
+      "name": "올레길17코스 휠체어구간",
+      "region": "제주시 용담",
+      "category": "sea",
+      "available": true,
+      "duration_minutes": 100,
+      "info_url": "https://easyjeju.net/pages.php?no=971&p=tourist",
+      "location": {
+        "latitude": 33.5086982,
+        "longitude": 126.4762885,
+        "point_role": "route_start"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 서해안로 289",
+        "phone": null,
+        "operating_hours": null,
+        "official_url": "https://www.jejuolle.org/trail/kor/",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "표시 위치는 도두봉 하산로 쪽 휠체어 구간 시작점입니다. 노면·통제 상태는 출발 전에 확인해 주세요.",
+        "verification_status": "needs_check",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "phone",
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "official_url"
+            ],
+            "status": "needs_check",
+            "source_title": "이지제주 올레 17코스 휠체어 구간 안내",
+            "source_url": "https://easyjeju.net/pages.php?no=971&p=tourist",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "공공 무장애 안내의 2020년 조사 구간 시작점이므로 현재 노면과 운영 상태는 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_sea_eoyeong_020",
+      "name": "어영해안공원 인근 해안도로",
+      "region": "제주시 용담",
+      "category": "sea",
+      "available": false,
+      "duration_minutes": 30,
+      "info_url": "https://easyjeju.net/pages.php?no=731&p=tourist",
+      "location": {
+        "latitude": 33.5197986,
+        "longitude": 126.4941757,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 서해안로 516",
+        "phone": null,
+        "operating_hours": "이용시간 제한 없음 · 연중무휴",
+        "official_url": "https://easyjeju.net/pages.php?no=731&p=tourist",
+        "reservation_url": null,
+        "service_status": "active",
+        "notice": "해안 기상과 공사·통제 여부는 출발 전에 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "phone",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "operating_hours",
+              "official_url",
+              "service_status"
+            ],
+            "status": "verified",
+            "source_title": "이지제주 어영해안공원 인근 해안도로 안내",
+            "source_url": "https://easyjeju.net/pages.php?no=731&p=tourist",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "공공 무장애 페이지의 2025년 7월 조사 표시와 이용시간 안내를 확인했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_culture_tapdong_021",
+      "name": "탑동해변공연장",
+      "region": "제주시",
+      "category": "culture",
+      "available": false,
+      "duration_minutes": 40,
+      "info_url": "https://easyjeju.net/pages.php?no=727&p=tourist",
+      "location": {
+        "latitude": 33.518116,
+        "longitude": 126.5241853,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 중앙로 2",
+        "phone": "064-728-3453",
+        "operating_hours": null,
+        "official_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000020012",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "행사 일정과 일반 이용 가능 여부는 방문 전에 운영기관에 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone",
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "VISIT JEJU 탑동해변공연장",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000020012",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "제주관광공사 페이지에서 위치, 주소와 전화번호를 확인했지만 현재 행사 운영 여부는 확인하지 못했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_indoor_literature_022",
+      "name": "제주문학관",
+      "region": "제주시",
+      "category": "indoor",
+      "available": true,
+      "duration_minutes": 50,
+      "info_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=20b6c4bf-48c4-4595-8a3b-04b3ca8617be",
+      "location": {
+        "latitude": 33.4813072,
+        "longitude": 126.5179884,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 연북로 339",
+        "phone": "064-710-3490",
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": "2025-07-30",
+        "missing_fields": [
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "needs_check",
+            "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+            "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+            "source_type": "public_agency",
+            "checked_at": null,
+            "observed_at": null,
+            "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_sea_songaksan_023",
+      "name": "송악산",
+      "region": "서귀포시 대정읍",
+      "category": "sea",
+      "available": false,
+      "duration_minutes": 40,
+      "info_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=1b5929e2-60a3-4de4-8616-9451b2cdabfa",
+      "location": {
+        "latitude": 33.2019294,
+        "longitude": 126.290614,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_indoor_haenyeo_024",
+      "name": "제주해녀박물관",
+      "region": "제주시 구좌읍",
+      "category": "indoor",
+      "available": true,
+      "duration_minutes": 60,
+      "info_url": "https://easyjeju.net/pages.php?no=35&p=tourist",
+      "location": {
+        "latitude": 33.5232122,
+        "longitude": 126.8633035,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_indoor_starlight_025",
+      "name": "별빛누리공원",
+      "region": "제주시",
+      "category": "indoor",
+      "available": true,
+      "duration_minutes": 60,
+      "info_url": "https://easyjeju.net/pages.php?no=768&p=tourist",
+      "location": {
+        "latitude": 33.4446446,
+        "longitude": 126.5490773,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_culture_hangmong_026",
+      "name": "항몽유적지",
+      "region": "제주시 애월읍",
+      "category": "culture",
+      "available": true,
+      "duration_minutes": 45,
+      "info_url": "https://easyjeju.net/pages.php?no=75&p=tourist",
+      "location": {
+        "latitude": 33.4524775,
+        "longitude": 126.4081003,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 애월읍 항파두리로 50",
+        "phone": "064-710-6720",
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": "2025-07-30",
+        "missing_fields": [
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "needs_check",
+            "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+            "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+            "source_type": "public_agency",
+            "checked_at": null,
+            "observed_at": null,
+            "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_forest_thinking_garden_027",
+      "name": "생각하는 정원",
+      "region": "제주시 한경면",
+      "category": "forest",
+      "available": true,
+      "duration_minutes": 50,
+      "info_url": "https://easyjeju.net/pages.php?no=72&p=tourist",
+      "location": {
+        "latitude": 33.325263,
+        "longitude": 126.2549289,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_indoor_sumokwon_theme_028",
+      "name": "테마파크 툰(구 수목원테마파크)",
+      "region": "제주시",
+      "category": "indoor",
+      "available": false,
+      "duration_minutes": 60,
+      "info_url": "https://easyjeju.net/pages.php?no=52&p=tourist",
+      "location": {
+        "latitude": 33.4701135,
+        "longitude": 126.4875915,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 은수길 69",
+        "phone": "064-742-3700",
+        "operating_hours": null,
+        "official_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_200000000010341&menuId=DOM_000001720005000000",
+        "reservation_url": null,
+        "service_status": "active",
+        "notice": "기존 수목원테마파크가 전면 개편된 시설입니다. 개편 후 접근성 정보가 재검증되기 전까지 추천 결과에서는 제외합니다.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone",
+              "official_url",
+              "service_status"
+            ],
+            "status": "verified",
+            "source_title": "VISIT JEJU 테마파크 툰 및 제주도관광협회 회원사 안내",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_200000000010341&menuId=DOM_000001720005000000",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "새 명칭과 현재 운영, 동일 주소·전화 등재를 확인했습니다. 기존 시설의 접근성 조사는 새 시설에 승계하지 않습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_other_dongmun_market_029",
+      "name": "동문재래시장",
+      "region": "제주시",
+      "category": "food_market",
+      "available": true,
+      "duration_minutes": 40,
+      "info_url": "https://easyjeju.net/pages.php?no=724&p=tourist",
+      "location": {
+        "latitude": 33.5122386,
+        "longitude": 126.5275862,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_culture_seotal_oreum_030",
+      "name": "섯알오름학살터",
+      "region": "서귀포시 대정읍",
+      "category": "culture",
+      "available": true,
+      "duration_minutes": 30,
+      "info_url": "https://easyjeju.net/pages.php?no=493&p=tourist",
+      "location": {
+        "latitude": 33.2055476,
+        "longitude": 126.2808534,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 서귀포시 대정읍 상모리 1618",
+        "phone": null,
+        "operating_hours": "상시 개방",
+        "official_url": "https://easyjeju.net/pages.php?no=493&p=tourist",
+        "reservation_url": null,
+        "service_status": "active",
+        "notice": "야외 유적지이므로 기상, 현장 공사와 이동로 상태를 출발 전에 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "phone",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "operating_hours",
+              "official_url",
+              "service_status"
+            ],
+            "status": "verified",
+            "source_title": "이지제주 섯알오름학살터 안내",
+            "source_url": "https://easyjeju.net/pages.php?no=493&p=tourist",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "공공 무장애 안내에서 주소와 상시 개방 정보를 확인했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_transport_airport_031",
+      "name": "제주국제공항 교통약자 서비스 거점",
+      "region": "제주시 용담동",
+      "category": "transport",
+      "available": true,
+      "duration_minutes": 60,
+      "info_url": "https://www.airport.co.kr/jeju/cms/frCon/index.do?MENU_ID=220",
+      "location": {
+        "latitude": 33.50703,
+        "longitude": 126.492951,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 공항로 2",
+        "phone": "1661-2626",
+        "operating_hours": null,
+        "official_url": "https://www.airport.co.kr/jeju/cms/frCon/index.do?MENU_ID=220",
+        "reservation_url": null,
+        "service_status": "active",
+        "notice": "서비스별 접수 위치와 이용 가능 시간은 공항 이용 당일 한국공항공사 안내를 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone",
+              "official_url",
+              "service_status"
+            ],
+            "status": "verified",
+            "source_title": "한국공항공사 제주공항 교통약자 서비스 안내",
+            "source_url": "https://www.airport.co.kr/jeju/cms/frCon/index.do?MENU_ID=220",
+            "source_type": "official",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "공항 공식 페이지에서 휠체어·전동키트 대여, 수어통역과 Help Point 안내를 확인했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_indoor_icc_032",
+      "name": "제주국제컨벤션센터",
+      "region": "서귀포시 중문",
+      "category": "indoor",
+      "available": true,
+      "duration_minutes": 50,
+      "info_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=c584055a-7100-4e8d-a171-e671a9c47436",
+      "location": {
+        "latitude": 33.241364,
+        "longitude": 126.424515,
+        "point_role": "facility"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_indoor_art_museum_033",
+      "name": "제주특별자치도립미술관",
+      "region": "제주시 연동",
+      "category": "indoor",
+      "available": true,
+      "duration_minutes": 50,
+      "info_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=579a2679-468a-4abe-8c19-e0b8dcaa173a",
+      "location": {
+        "latitude": 33.4525957,
+        "longitude": 126.4896313,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 1100로 2894-78",
+        "phone": "064-710-4300",
+        "operating_hours": "09:00~18:00 · 7~9월 09:00~20:00 · 월요일 휴관",
+        "official_url": "https://www.jeju.go.kr/jmoa/",
+        "reservation_url": null,
+        "service_status": "active",
+        "notice": "전시 교체와 임시 휴관 여부는 방문 전에 공식 홈페이지 또는 대표전화로 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "service_status"
+            ],
+            "status": "verified",
+            "source_title": "문화체육관광부 문화포털 제주도립미술관 프로그램",
+            "source_url": "https://www.culture.go.kr/portal/cltKnw/cltEdu/view.do?indRow=75&menuNo=200144&rcrtSn=219841&selectType=&viewTp=3",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "2026년 진행 중인 프로그램과 전시 정보를 확인해 현재 운영 근거로 사용했습니다."
+          },
+          {
+            "fields": [
+              "address",
+              "phone",
+              "operating_hours",
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "VISIT JEJU 제주특별자치도립미술관",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500544",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "제주관광공사 페이지에서 주소, 전화와 관람시간을 확인했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_indoor_lee_jung_seop_034",
+      "name": "이중섭미술관",
+      "region": "서귀포시",
+      "category": "indoor",
+      "available": false,
+      "duration_minutes": 40,
+      "info_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=96b662f9-03cf-4c2f-a2c2-69c9582665c9",
+      "location": {
+        "latitude": 33.2458323,
+        "longitude": 126.5647412,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 서귀포시 이중섭로 27-3",
+        "phone": "064-760-3567",
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": "2025-07-30",
+        "missing_fields": [
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "needs_check",
+            "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+            "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+            "source_type": "public_agency",
+            "checked_at": null,
+            "observed_at": null,
+            "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_food_market_olle_035",
+      "name": "서귀포매일올레시장",
+      "region": "서귀포시",
+      "category": "food_market",
+      "available": true,
+      "duration_minutes": 40,
+      "info_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=a63eb571-d505-4743-93cc-ce2ee4c25ea7",
+      "location": {
+        "latitude": 33.2501766,
+        "longitude": 126.5635697,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_restaurant_nangtteule_036",
+      "name": "낭뜰에쉼팡",
+      "region": "제주시 조천읍",
+      "category": "restaurant",
+      "available": true,
+      "duration_minutes": 60,
+      "info_url": "https://easyjeju.net/pages.php?no=706&p=tourist",
+      "location": {
+        "latitude": 33.4735994,
+        "longitude": 126.6571836,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_restaurant_donsadon_037",
+      "name": "돈사돈 월정점",
+      "region": "제주시 구좌읍",
+      "category": "restaurant",
+      "available": false,
+      "duration_minutes": 60,
+      "info_url": "https://easyjeju.net/pages.php?no=1080&p=tourist",
+      "location": {
+        "latitude": 33.5413599,
+        "longitude": 126.8271476,
+        "point_role": "facility"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 구좌읍 한동북1길 29-3, 1층",
+        "phone": null,
+        "operating_hours": null,
+        "official_url": "https://www.instagram.com/donsadondon/",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "공식 계정의 최신 게시물이 2022년이고 공개 출처별 전화번호가 달라 현재 운영·전화·영업시간은 확인이 필요합니다.",
+        "verification_status": "needs_check",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2022-07-17",
+        "missing_fields": [
+          "phone",
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address"
+            ],
+            "status": "partial",
+            "source_title": "이지제주 돈사돈 월정점",
+            "source_url": "https://easyjeju.net/pages.php?no=1080&p=tourist",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2021-11-07",
+            "note": "시설 주소와 대표 위치만 교차 확인했으며 오래된 전화·운영시간은 반영하지 않았습니다."
+          },
+          {
+            "fields": [
+              "address",
+              "official_url",
+              "service_status"
+            ],
+            "status": "needs_check",
+            "source_title": "돈사돈 월정점 공식 인스타그램",
+            "source_url": "https://www.instagram.com/donsadondon/",
+            "source_type": "official",
+            "checked_at": "2026-07-13",
+            "observed_at": "2022-07-17",
+            "note": "공식 프로필의 주소는 확인했지만 최신 운영 게시물이 오래되어 현재 영업 상태를 확정하지 않았습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_rest_area_geolmae_038",
+      "name": "천지연 걸매생태공원",
+      "region": "서귀포시",
+      "category": "rest_area",
+      "available": true,
+      "duration_minutes": 35,
+      "info_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=c1ee8bad-1453-4dd7-a920-5b62f267aeef",
+      "location": {
+        "latitude": 33.2499342,
+        "longitude": 126.5551049,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 서귀포시 서홍로 4-42",
+        "phone": "064-760-3191",
+        "operating_hours": "상시 개방 · 연중무휴",
+        "official_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=c1ee8bad-1453-4dd7-a920-5b62f267aeef",
+        "reservation_url": null,
+        "service_status": "active",
+        "notice": "야외 공원이므로 기상, 공사와 산책로 통제 여부는 방문 전에 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2025-12-24",
+        "missing_fields": [
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone",
+              "operating_hours",
+              "official_url",
+              "service_status"
+            ],
+            "status": "verified",
+            "source_title": "한국관광공사 열린관광 천지연 걸매생태공원",
+            "source_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=c1ee8bad-1453-4dd7-a920-5b62f267aeef",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2025-12-24",
+            "note": "공공 무장애 관광 페이지의 주소, 전화, 이용시간과 2025-12-24 수정 정보를 확인했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_sea_saeyeongyo_039",
+      "name": "새연교",
+      "region": "서귀포시",
+      "category": "sea",
+      "available": true,
+      "duration_minutes": 30,
+      "info_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=650ac09c-0fe1-4f50-bdbe-2ca7f313e4a1",
+      "location": {
+        "latitude": 33.2386339,
+        "longitude": 126.5591177,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 서귀포시 서홍동 707-4",
+        "phone": "064-760-2654",
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": "2025-07-30",
+        "missing_fields": [
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "needs_check",
+            "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+            "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+            "source_type": "public_agency",
+            "checked_at": null,
+            "observed_at": null,
+            "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_shopping_donghwa_040",
+      "name": "제주동화마을",
+      "region": "제주시 구좌읍",
+      "category": "shopping",
+      "available": true,
+      "duration_minutes": 60,
+      "info_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=f3189c14-9149-4a02-8c11-03d798c11c9c",
+      "location": {
+        "latitude": 33.435433,
+        "longitude": 126.7320377,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 구좌읍 비자림로 1191",
+        "phone": "064-743-5000",
+        "operating_hours": "09:00~20:00 · 연중무휴",
+        "official_url": "https://jejudonghwa.com/",
+        "reservation_url": null,
+        "service_status": "active",
+        "notice": "입점 시설별 영업시간은 다를 수 있으므로 방문 당일 공식 안내를 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2026-06-18",
+        "missing_fields": [
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone",
+              "operating_hours",
+              "service_status"
+            ],
+            "status": "verified",
+            "source_title": "한국관광공사 열린관광 제주동화마을",
+            "source_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=f3189c14-9149-4a02-8c11-03d798c11c9c",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2026-06-18",
+            "note": "공공 무장애 관광 페이지의 주소, 전화, 이용시간과 2026-06-18 수정 정보를 확인했습니다."
+          },
+          {
+            "fields": [
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "제주동화마을 공식 홈페이지",
+            "source_url": "https://jejudonghwa.com/",
+            "source_type": "official",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "운영사 공식 홈페이지 주소를 확인했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_cafe_uyubudan_041",
+      "name": "우유부단 카페",
+      "region": "제주시 한림읍",
+      "category": "cafe",
+      "available": false,
+      "duration_minutes": 40,
+      "info_url": "https://easyjeju.net/pages.php?no=925&p=tourist",
+      "location": {
+        "latitude": 33.3476667,
+        "longitude": 126.3282377,
+        "point_role": "facility"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 한림읍 금악동길 38",
+        "phone": "0507-1460-2053",
+        "operating_hours": "매일 10:00~18:00 · 설·추석 당일 휴무",
+        "official_url": "https://www.instagram.com/uyubudan/",
+        "reservation_url": null,
+        "service_status": "active",
+        "notice": "공식 계정에서 현재 운영을 확인했습니다. 접근성 정보는 2023년 공공 조사 이후 갱신되지 않아 방문 전에 출입 동선을 다시 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2026-07-02",
+        "missing_fields": [
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "operating_hours",
+              "official_url",
+              "service_status"
+            ],
+            "status": "verified",
+            "source_title": "우유부단 공식 인스타그램",
+            "source_url": "https://www.instagram.com/uyubudan/",
+            "source_type": "official",
+            "checked_at": "2026-07-13",
+            "observed_at": "2026-07-02",
+            "note": "공식 프로필의 운영시간과 2026년 7월 최신 게시물을 함께 확인했습니다."
+          },
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "verified",
+            "source_title": "VISIT JEJU 우유부단",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000018301",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "공공 관광정보의 주소와 현재 표기 전화번호를 확인했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_sea_cruise_042",
+      "name": "서귀포유람선",
+      "region": "서귀포시",
+      "category": "sea",
+      "available": true,
+      "duration_minutes": 80,
+      "info_url": "https://access.visitkorea.or.kr/ms/detail.do?cotId=7226947e-054d-4200-98bb-92048df10d4e",
+      "location": {
+        "latitude": 33.2391633,
+        "longitude": 126.5584493,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 서귀포시 남성중로 40",
+        "phone": "064-732-1717",
+        "operating_hours": "공식 운항 시각 11:20 · 14:00",
+        "official_url": "https://seogwipocruise.com/",
+        "reservation_url": "https://booking.naver.com/booking/5/bizes/28694/items/4350950",
+        "service_status": "active",
+        "notice": "기상과 현지 사정에 따라 운항 시각이 바뀌거나 결항될 수 있으므로 예약 전 운영사에 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone",
+              "operating_hours",
+              "official_url",
+              "reservation_url",
+              "service_status"
+            ],
+            "status": "verified",
+            "source_title": "서귀포유람선 공식 홈페이지",
+            "source_url": "https://seogwipocruise.com/",
+            "source_type": "official",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "운영사 공식 홈페이지에서 현재 운항 시각, 주소, 전화와 공식 예약 연결을 확인했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_medical_airport_clinic_043",
+      "name": "제주국제공항 공항의원·약국",
+      "region": "제주시 용담동",
+      "category": "medical_support",
+      "available": false,
+      "duration_minutes": 20,
+      "info_url": "https://www.airport.co.kr/jeju/cms/frCon/index.do?MENU_ID=220",
+      "location": {
+        "latitude": 33.50703,
+        "longitude": 126.492951,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 공항로 2",
+        "phone": "064-797-2595",
+        "operating_hours": null,
+        "official_url": "https://www.airport.co.kr/jeju/cms/frCon/index.do?MENU_ID=220",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "시설 위치와 전화는 확인했지만 당일 운영시간은 확인되지 않았습니다. 이용 전에 공항 안내로 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone",
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "한국공항공사 제주공항 시설 안내",
+            "source_url": "https://www.airport.co.kr/jeju/cms/frCon/index.do?MENU_ID=220",
+            "source_type": "official",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "공항 공식 시설 안내에서 의원·약국 위치와 전화번호를 확인했지만 현재 운영시간은 확인하지 못했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_001",
+      "name": "4.3 평화공원",
+      "region": "제주특별자치도",
+      "category": "culture",
+      "available": true,
+      "duration_minutes": 56,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.4516971,
+        "longitude": 126.6198717,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_002",
+      "name": "검멀레해변",
+      "region": "제주특별자치도",
+      "category": "sea",
+      "available": false,
+      "duration_minutes": 70,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.497279,
+        "longitude": 126.967248,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 우도면 연평리",
+        "phone": "064-728-3394",
+        "operating_hours": "상시 개방 · 연중무휴",
+        "official_url": "https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=9e32f858-e199-4e5a-9775-13f3b45dc557",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "공공 관광정보에 표시된 이용 안내입니다. 기상과 선박 운항 상황을 방문 전에 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone",
+              "operating_hours",
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "한국관광공사 대한민국 구석구석 검멀레해변",
+            "source_url": "https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=9e32f858-e199-4e5a-9775-13f3b45dc557",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "공공기관 페이지의 주소·전화·이용 안내를 확인했으며 실시간 현장 운영 확인은 아닙니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_003",
+      "name": "곽지해수욕장",
+      "region": "제주특별자치도",
+      "category": "sea",
+      "available": false,
+      "duration_minutes": 70,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.4485059,
+        "longitude": 126.3030938,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 애월읍 곽지리 1565",
+        "phone": "064-728-3985",
+        "operating_hours": "상시 개방 · 연중무휴",
+        "official_url": "https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=e0dedcb5-dab5-4c65-ab30-27c5be8f8332",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "해수욕장 개장·입수 가능 시간과 기상 통제 여부는 계절별로 달라질 수 있습니다.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone",
+              "operating_hours",
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "한국관광공사 대한민국 구석구석 곽지해수욕장",
+            "source_url": "https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=e0dedcb5-dab5-4c65-ab30-27c5be8f8332",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "공공기관 페이지의 주소·전화·이용 안내를 확인했으며 실시간 현장 운영 확인은 아닙니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_004",
+      "name": "금악리마을",
+      "region": "제주특별자치도",
+      "category": "rest_area",
+      "available": false,
+      "duration_minutes": 73,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.3574551,
+        "longitude": 126.2960912,
+        "point_role": "route_start_end"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 한림읍 금악로 2 금악리사무소",
+        "phone": "064-796-6368",
+        "operating_hours": null,
+        "official_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_200000000012146",
+        "reservation_url": null,
+        "service_status": "active",
+        "notice": "표시 위치와 전화는 마을길 시작·종점인 금악리사무소 기준입니다. 전화는 관광안내 전용 번호가 아니며 코스 노면은 방문 전에 확인해 주세요.",
+        "verification_status": "needs_check",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2026-05-28",
+        "missing_fields": [
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "verified",
+            "source_title": "제주특별자치도 마을만들기종합지원센터 금악리 정보",
+            "source_url": "https://jejumaeul.or.kr/village/",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "코스 시작점인 금악리사무소의 주소와 마을사무소 전화번호를 확인했습니다."
+          },
+          {
+            "fields": [
+              "service_status"
+            ],
+            "status": "verified",
+            "source_title": "공공데이터포털 제주 여행 추천코스",
+            "source_url": "https://www.data.go.kr/data/15117357/fileData.do",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2026-05-28",
+            "note": "2026년 갱신된 공공 추천코스 목록에서 코스가 유지되는 것을 확인했습니다."
+          },
+          {
+            "fields": [
+              "official_url",
+              "service_status"
+            ],
+            "status": "partial",
+            "source_title": "VISIT JEJU 금악리 마을길 코스",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_200000000012146",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2021-10-22",
+            "note": "금악리사무소에서 출발해 돌아오는 공식 코스임을 확인했습니다. 접근성 설명은 오래되어 재확인이 필요합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_005",
+      "name": "기당미술관",
+      "region": "제주특별자치도",
+      "category": "indoor",
+      "available": true,
+      "duration_minutes": 70,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.2450627,
+        "longitude": 126.5513915,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_006",
+      "name": "김창열미술관",
+      "region": "제주특별자치도",
+      "category": "indoor",
+      "available": true,
+      "duration_minutes": 73,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.338822,
+        "longitude": 126.2689794,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_007",
+      "name": "낙천리 아홉굿마을",
+      "region": "제주특별자치도",
+      "category": "rest_area",
+      "available": false,
+      "duration_minutes": 70,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.3278172,
+        "longitude": 126.2264114,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 한경면 낙수로 97",
+        "phone": null,
+        "operating_hours": "09:00~17:00 · 토요일·일요일 휴무",
+        "official_url": "https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=dd48d66b-44eb-4258-a2d0-699591895727",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "공공 출처 사이에 전화번호가 달라 번호는 노출하지 않습니다. 방문 전 공식 페이지에서 다시 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "phone",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "operating_hours",
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "한국관광공사 대한민국 구석구석 낙천리 아홉굿마을",
+            "source_url": "https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=dd48d66b-44eb-4258-a2d0-699591895727",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "주소와 운영시간만 반영했으며 상충하는 전화번호는 보류했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_008",
+      "name": "너븐숭이기념관",
+      "region": "제주특별자치도",
+      "category": "indoor",
+      "available": false,
+      "duration_minutes": 56,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.5460122,
+        "longitude": 126.6886561,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 조천읍 북촌3길 3",
+        "phone": "064-783-4303",
+        "operating_hours": "09:00~18:00 · 입장 마감 17:00 · 매월 둘째·넷째 월요일, 1월 1일, 설·추석 연휴 휴관",
+        "official_url": "https://jeju43peace.or.kr/kor/ruins/list.do",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "휴관일과 단체 관람 가능 여부는 방문 전에 운영기관으로 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "제주4·3평화재단 유적지 안내",
+            "source_url": "https://jeju43peace.or.kr/kor/ruins/list.do",
+            "source_type": "official",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "운영기관의 유적지 안내 페이지를 공식 링크로 사용합니다."
+          },
+          {
+            "fields": [
+              "address",
+              "phone",
+              "operating_hours"
+            ],
+            "status": "verified",
+            "source_title": "한국관광공사 대한민국 구석구석 너븐숭이 4·3기념관",
+            "source_url": "https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=b9e2d22e-1417-48c7-8767-458c8f185a16",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "공공 관광정보에서 주소·전화·관람시간을 확인했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_009",
+      "name": "도두봉",
+      "region": "제주특별자치도",
+      "category": "oreum",
+      "available": false,
+      "duration_minutes": 73,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.507564,
+        "longitude": 126.4688948,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_010",
+      "name": "돈내코유원지",
+      "region": "제주특별자치도",
+      "category": "other",
+      "available": false,
+      "duration_minutes": 46,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.3002564,
+        "longitude": 126.5825222,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_011",
+      "name": "돌문화공원",
+      "region": "제주특별자치도",
+      "category": "rest_area",
+      "available": true,
+      "duration_minutes": 90,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.4488617,
+        "longitude": 126.6562194,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_012",
+      "name": "등대공원",
+      "region": "제주특별자치도",
+      "category": "rest_area",
+      "available": false,
+      "duration_minutes": 70,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.50332,
+        "longitude": 126.95568,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 우도면 우도봉길 105",
+        "phone": "064-783-0180",
+        "operating_hours": null,
+        "official_url": "https://busan.mof.go.kr/ko/page.do?menuIdx=4553",
+        "reservation_url": null,
+        "service_status": "active",
+        "notice": "우도등대와 등대공원 시설 대표 위치입니다. 운영시간은 공식 페이지에 고정값이 없어 방문 전 전화로 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2026-05-22",
+        "missing_fields": [
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "service_status"
+            ],
+            "status": "verified",
+            "source_title": "부산지방해양수산청 우도등대 안전점검 소식",
+            "source_url": "https://busan.mof.go.kr/ko/board.do?bbsIdx=132079&menuIdx=4474",
+            "source_type": "official",
+            "checked_at": "2026-07-13",
+            "observed_at": "2026-05-22",
+            "note": "2026년 5월 현장 안전점검과 연간 방문 현황이 게시되어 시설 운영을 확인했습니다."
+          },
+          {
+            "fields": [
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "부산지방해양수산청 우도등대 공식 시설 안내",
+            "source_url": "https://busan.mof.go.kr/ko/page.do?menuIdx=4553",
+            "source_type": "official",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "사용자에게 제공하는 공식 시설 안내 URL 자체를 확인했습니다."
+          },
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "verified",
+            "source_title": "부산지방해양수산청 우도등대 안내",
+            "source_url": "https://busan.mof.go.kr/ko/page.do?menuIdx=4620",
+            "source_type": "official",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "공식 등대 안내의 주소·전화와 시설 안내 경로를 확인했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_013",
+      "name": "만장굴",
+      "region": "제주특별자치도",
+      "category": "sea",
+      "available": true,
+      "duration_minutes": 60,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.5287254,
+        "longitude": 126.7711977,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_014",
+      "name": "명이동못",
+      "region": "제주특별자치도",
+      "category": "rest_area",
+      "available": false,
+      "duration_minutes": 50,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.31935,
+        "longitude": 126.2682222,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 한경면 저지리 3033-6",
+        "phone": null,
+        "operating_hours": null,
+        "official_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_200000000011139&menuId=DOM_200000000010740",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "습지 대표 위치와 주소만 확인됐습니다. 현재 진입 가능 여부와 탐방로 상태는 출발 전에 다시 확인해 주세요.",
+        "verification_status": "needs_check",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2022-11-18",
+        "missing_fields": [
+          "phone",
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address"
+            ],
+            "status": "verified",
+            "source_title": "환경부·람사르 습지정보 명이동못 위치 자료",
+            "source_url": "https://rsis.ramsar.org/RISapp/files/28411793/documents/KR1648_mgt1605.pdf?language=es",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2016-05-31",
+            "note": "공공 습지자료의 지번과 위경도를 대표 위치 근거로 사용했습니다."
+          },
+          {
+            "fields": [
+              "address",
+              "official_url",
+              "service_status"
+            ],
+            "status": "needs_check",
+            "source_title": "VISIT JEJU 저지리 생태관광 안내",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_200000000011139&menuId=DOM_200000000010740",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2022-11-18",
+            "note": "관광 안내에 명이동못이 포함되어 있지만 현재 현장 운영 상태는 별도 확인되지 않았습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_015",
+      "name": "방림원",
+      "region": "제주특별자치도",
+      "category": "rest_area",
+      "available": false,
+      "duration_minutes": 90,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.3371399,
+        "longitude": 126.268464,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_016",
+      "name": "보롬왓",
+      "region": "제주특별자치도",
+      "category": "rest_area",
+      "available": false,
+      "duration_minutes": 86,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.4128543,
+        "longitude": 126.752623,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_017",
+      "name": "보목포구",
+      "region": "제주특별자치도",
+      "category": "sea",
+      "available": false,
+      "duration_minutes": 46,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.2391235,
+        "longitude": 126.6077209,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_018",
+      "name": "북촌리 마을",
+      "region": "제주특별자치도",
+      "category": "rest_area",
+      "available": false,
+      "duration_minutes": 56,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.5460214,
+        "longitude": 126.6886829,
+        "point_role": "route_start_end"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 조천읍 북촌3길 3",
+        "phone": null,
+        "operating_hours": "상시 개방 · 연중무휴",
+        "official_url": "https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=e2910a29-51d3-45f2-b1ae-b6794863d27b",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "표시 주소는 북촌리 4·3길의 공식 출발·도착점인 너븐숭이기념관입니다.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "phone",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "operating_hours",
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "한국관광공사 대한민국 구석구석 북촌리 4·3길",
+            "source_url": "https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=e2910a29-51d3-45f2-b1ae-b6794863d27b",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "마을 중심점이 아니라 공식 코스 출발·도착점의 정보를 반영했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_019",
+      "name": "비자림",
+      "region": "제주특별자치도",
+      "category": "forest",
+      "available": true,
+      "duration_minutes": 60,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.4872949,
+        "longitude": 126.8084804,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_020",
+      "name": "산굼부리",
+      "region": "제주특별자치도",
+      "category": "oreum",
+      "available": false,
+      "duration_minutes": 86,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.4316207,
+        "longitude": 126.6900058,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_021",
+      "name": "서귀다원",
+      "region": "제주특별자치도",
+      "category": "rest_area",
+      "available": false,
+      "duration_minutes": 70,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.3128493,
+        "longitude": 126.5967915,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_022",
+      "name": "서빈백사",
+      "region": "제주특별자치도",
+      "category": "sea",
+      "available": false,
+      "duration_minutes": 70,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.50265,
+        "longitude": 126.943738,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 우도면 우도해안길 252",
+        "phone": null,
+        "operating_hours": "상시 개방 · 연중무휴",
+        "official_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500474",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "우도 선박 운항과 기상 통제 여부는 출발 전에 별도로 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "phone",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "operating_hours"
+            ],
+            "status": "verified",
+            "source_title": "한국관광공사 대한민국 구석구석 서빈백사",
+            "source_url": "https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=7d2e99ac-5625-4c6d-b524-1913737cbe6e",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "공공 관광정보에서 주소와 이용 안내를 확인했습니다."
+          },
+          {
+            "fields": [
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "VISIT JEJU 서빈백사",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500474",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "제주관광공사 관광지 상세 페이지를 공식 정보 링크로 사용합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_023",
+      "name": "섭지코지",
+      "region": "제주특별자치도",
+      "category": "sea",
+      "available": true,
+      "duration_minutes": 63,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.4245683,
+        "longitude": 126.9181558,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_024",
+      "name": "성산일출봉",
+      "region": "제주특별자치도",
+      "category": "oreum",
+      "available": false,
+      "duration_minutes": 63,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.462147,
+        "longitude": 126.936424,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_025",
+      "name": "성이시돌목장",
+      "region": "제주특별자치도",
+      "category": "rest_area",
+      "available": false,
+      "duration_minutes": 70,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.3471459,
+        "longitude": 126.3267533,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_026",
+      "name": "쇠소깍",
+      "region": "제주특별자치도",
+      "category": "sea",
+      "available": false,
+      "duration_minutes": 46,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.2525937,
+        "longitude": 126.6234661,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_027",
+      "name": "싱계물공원",
+      "region": "제주특별자치도",
+      "category": "sea",
+      "available": false,
+      "duration_minutes": 40,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.3432354,
+        "longitude": 126.1739497,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_028",
+      "name": "영등할망 밭담길",
+      "region": "제주특별자치도",
+      "category": "rest_area",
+      "available": false,
+      "duration_minutes": 70,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.4360776,
+        "longitude": 126.2980565,
+        "point_role": "route_start"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 한림읍 귀덕로 97-2",
+        "phone": "064-796-3438",
+        "operating_hours": null,
+        "official_url": "https://www.visitjeju.net/kr/themtour/view?contentsid=CNTS_300000000013778&menuId=DOM_700000000010853",
+        "reservation_url": null,
+        "service_status": "active",
+        "notice": "표시 위치와 전화는 4km 코스 시작점인 귀덕1리사무소 기준입니다. 전화는 관광안내 전용 번호가 아니며 노면·기상 상황은 방문 전에 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2026-03-20",
+        "missing_fields": [
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "phone"
+            ],
+            "status": "verified",
+            "source_title": "제주특별자치도 마을만들기종합지원센터 귀덕1리 정보",
+            "source_url": "https://jejumaeul.or.kr/village?category=HUh4O488Rv",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "공식 코스 시작점인 귀덕1리사무소의 주소와 마을사무소 전화번호를 확인했습니다."
+          },
+          {
+            "fields": [
+              "official_url",
+              "service_status"
+            ],
+            "status": "verified",
+            "source_title": "VISIT JEJU 영등할망 밭담길",
+            "source_url": "https://www.visitjeju.net/kr/themtour/view?contentsid=CNTS_300000000013778&menuId=DOM_700000000010853",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2026-03-20",
+            "note": "2026년 갱신된 공공 관광정보에서 4km·약 60분 코스와 시작점을 확인했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_029",
+      "name": "오조포구",
+      "region": "제주특별자치도",
+      "category": "sea",
+      "available": false,
+      "duration_minutes": 63,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.462772,
+        "longitude": 126.92111,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 서귀포시 성산읍 오조리",
+        "phone": null,
+        "operating_hours": null,
+        "official_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000020987&menuId=DOM_000001718002000000",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "주소와 대표 위치만 확인했습니다. 포구 접근·통제 상태는 방문 전에 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2016-12-14",
+        "missing_fields": [
+          "phone",
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "VISIT JEJU 오조포구",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000020987&menuId=DOM_000001718002000000",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2016-12-14",
+            "note": "안정적인 지리 정보인 주소와 대표 위치만 반영하고 오래된 연중무휴 표시는 운영시간으로 승격하지 않았습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_030",
+      "name": "용눈이오름",
+      "region": "제주특별자치도",
+      "category": "oreum",
+      "available": false,
+      "duration_minutes": 60,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.4599065,
+        "longitude": 126.8325016,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_031",
+      "name": "우도봉",
+      "region": "제주특별자치도",
+      "category": "oreum",
+      "available": false,
+      "duration_minutes": 70,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.5043,
+        "longitude": 126.95405,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 우도면 연평리 1",
+        "phone": null,
+        "operating_hours": null,
+        "official_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000022519&menuId=DOM_000002016005000000",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "우도 도항선 운항과 기상에 따라 접근이 달라질 수 있으므로 출발 전에 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2017-08-21",
+        "missing_fields": [
+          "phone",
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "VISIT JEJU 우도봉",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000022519&menuId=DOM_000002016005000000",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2017-08-21",
+            "note": "주소와 대표 위치만 반영했으며 현재 연락처와 운영시간은 공식 페이지에 없어 비워 두었습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_032",
+      "name": "월령선인장군락지",
+      "region": "제주특별자치도",
+      "category": "other",
+      "available": false,
+      "duration_minutes": 40,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.377865,
+        "longitude": 126.21586,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 한림읍 월령리 359-4",
+        "phone": null,
+        "operating_hours": null,
+        "official_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500494",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "주소와 대표 위치만 확인했습니다. 해안 산책로 상태와 현장 통제 여부는 출발 전에 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2016-05-30",
+        "missing_fields": [
+          "phone",
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "VISIT JEJU 월령선인장군락지",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500494",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2016-05-30",
+            "note": "안정적인 주소 정보만 반영하고 무효 운영시간 값은 제외했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_033",
+      "name": "월평포구",
+      "region": "제주특별자치도",
+      "category": "sea",
+      "available": false,
+      "duration_minutes": 70,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.2340548,
+        "longitude": 126.4632412,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_034",
+      "name": "이호테우해변",
+      "region": "제주특별자치도",
+      "category": "sea",
+      "available": false,
+      "duration_minutes": 73,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.4976642,
+        "longitude": 126.4527722,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_035",
+      "name": "저지곶자왈",
+      "region": "제주특별자치도",
+      "category": "forest",
+      "available": false,
+      "duration_minutes": 50,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": null,
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_200000000011139&menuId=DOM_200000000010740",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "공식 관광정보는 '저지곶자왈 폭낭쉼터'를 탐방 기준점으로 안내하지만 정확한 대표 좌표는 확인되지 않았습니다. 2026년 안내시설 확충 계획도 있어 현장 통제 여부를 확인해 주세요.",
+        "verification_status": "needs_check",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2026-03-31",
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "service_status"
+            ],
+            "status": "needs_check",
+            "source_title": "저지곶자왈 2026년 탐방 안내시설 확충 계획 보도",
+            "source_url": "https://www.headlinejeju.co.kr/news/articleView.html?idxno=589726",
+            "source_type": "unknown",
+            "checked_at": "2026-07-13",
+            "observed_at": "2026-03-31",
+            "note": "시설 확충 계획은 확인되지만 공사 일정과 현재 진입 가능 여부를 확정할 공식 운영 공지는 찾지 못했습니다."
+          },
+          {
+            "fields": [
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "VISIT JEJU 저지곶자왈 탐방 안내",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_200000000011139&menuId=DOM_200000000010740",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2022-11-18",
+            "note": "올레 14-1 코스 구간과 내비게이션 검색 기준점은 확인했지만 대표 주소·좌표는 확정하지 않았습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_036",
+      "name": "저지문화예술인마을",
+      "region": "제주특별자치도",
+      "category": "culture",
+      "available": false,
+      "duration_minutes": 50,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.3392987,
+        "longitude": 126.2663755,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_037",
+      "name": "절물자연휴양림",
+      "region": "제주특별자치도",
+      "category": "forest",
+      "available": true,
+      "duration_minutes": 90,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.4381011,
+        "longitude": 126.6285083,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_038",
+      "name": "제주항공우주박물관",
+      "region": "제주특별자치도",
+      "category": "indoor",
+      "available": true,
+      "duration_minutes": 73,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.3043017,
+        "longitude": 126.2998829,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_039",
+      "name": "제주현대미술관",
+      "region": "제주특별자치도",
+      "category": "indoor",
+      "available": true,
+      "duration_minutes": 50,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.3385725,
+        "longitude": 126.2661332,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_040",
+      "name": "지미봉밭길",
+      "region": "제주특별자치도",
+      "category": "other",
+      "available": false,
+      "duration_minutes": 63,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.4895347,
+        "longitude": 126.8779419,
+        "point_role": "route_end_reference"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 구좌읍 종달로1길 91-16",
+        "phone": null,
+        "operating_hours": null,
+        "official_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_200000000011138&menuId=DOM_000001823008007000",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "표시 위치와 주소는 선형 밭길의 종점 측 지미오름 공식 대표점입니다. 공식 안내의 시작점 주변은 주차가 어려워 약 30m 떨어진 종달리 153 일대 주차 지점을 확인해 주세요.",
+        "verification_status": "needs_check",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2022-11-18",
+        "missing_fields": [
+          "phone",
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "official_url",
+              "service_status"
+            ],
+            "status": "needs_check",
+            "source_title": "VISIT JEJU 지미봉밭길",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_200000000011138&menuId=DOM_000001823008007000",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2022-11-18",
+            "note": "코스와 시작점 접근 주의사항은 확인했지만 현재 노면·진입 상태는 재확인이 필요합니다."
+          },
+          {
+            "fields": [
+              "address"
+            ],
+            "status": "partial",
+            "source_title": "VISIT JEJU 지미오름",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500610",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2016-05-30",
+            "note": "밭길 종점 측 대표 위치와 지미오름 주소를 사용했으며 밭길 시작점 주소는 아닙니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_041",
+      "name": "청수곶자왈",
+      "region": "제주특별자치도",
+      "category": "forest",
+      "available": false,
+      "duration_minutes": 70,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.305817,
+        "longitude": 126.26187,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 한경면 연명로 348",
+        "phone": "064-772-1303",
+        "operating_hours": null,
+        "official_url": "https://www.cheongsuri.kr/index.php",
+        "reservation_url": "https://www.cheongsuri.kr/bbs/board.php?bo_table=booking",
+        "service_status": "unknown",
+        "notice": "안내 탐방은 전화 또는 예약 확인이 필요하며, 고정 운영시간은 공식 사이트에 게시되지 않았습니다.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": null,
+        "missing_fields": [
+          "operating_hours"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "phone",
+              "official_url",
+              "reservation_url"
+            ],
+            "status": "verified",
+            "source_title": "청수리 공식 청수곶자왈 탐방 안내",
+            "source_url": "https://www.cheongsuri.kr/bbs/content.php?co_id=gotjawal01",
+            "source_type": "official",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "2026년 공지가 있는 운영자 사이트에서 전화번호, 공식 사이트와 예약 경로를 확인했습니다."
+          },
+          {
+            "fields": [
+              "address"
+            ],
+            "status": "verified",
+            "source_title": "VISIT JEJU 청수곶자왈",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000021103",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": null,
+            "note": "관광지 대표 주소와 위치를 확인했습니다. 운영자 사업장 주소와 혼동하지 않도록 관광지 주소를 유지합니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_042",
+      "name": "카멜리아힐",
+      "region": "제주특별자치도",
+      "category": "rest_area",
+      "available": false,
+      "duration_minutes": 90,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.2896315,
+        "longitude": 126.3698892,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_043",
+      "name": "표선해수욕장",
+      "region": "제주특별자치도",
+      "category": "sea",
+      "available": false,
+      "duration_minutes": 86,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.3272307,
+        "longitude": 126.8381014,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_044",
+      "name": "한담해변",
+      "region": "제주특별자치도",
+      "category": "sea",
+      "available": false,
+      "duration_minutes": 70,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.4600418,
+        "longitude": 126.3105424,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 애월읍 애월로1길 26-4",
+        "phone": null,
+        "operating_hours": null,
+        "official_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500682&menuId=DOM_000001718000000000",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "표시 위치는 약 1.2km 해안 산책로의 대표 지점입니다. 노면과 현장 통제 여부는 출발 전에 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2016-05-30",
+        "missing_fields": [
+          "phone",
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "VISIT JEJU 한담해변",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500682&menuId=DOM_000001718000000000",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2016-05-30",
+            "note": "주소와 대표 위치만 반영하고 오래된 행정 연락처는 현재 전화번호로 노출하지 않았습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_045",
+      "name": "한림오일장",
+      "region": "제주특별자치도",
+      "category": "food_market",
+      "available": false,
+      "duration_minutes": 70,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.4201519,
+        "longitude": 126.2742341,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 한림읍 한수풀로4길 10",
+        "phone": null,
+        "operating_hours": null,
+        "official_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500759&menuId=DOM_000001920004000000",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "장날은 매월 4일·9일·14일·19일·24일·29일입니다. 점포별 시간과 당일 개장 여부는 방문 전에 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2016-05-30",
+        "missing_fields": [
+          "phone",
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "VISIT JEJU 한림오일장",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500759&menuId=DOM_000001920004000000",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2016-05-30",
+            "note": "주소와 현재 공공 목록에서도 일치하는 장날만 안내하고 오래된 전화·영업시간은 비워 두었습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_046",
+      "name": "함덕해수욕장",
+      "region": "제주특별자치도",
+      "category": "sea",
+      "available": false,
+      "duration_minutes": 56,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.5431881,
+        "longitude": 126.6698794,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": null,
+        "phone": null,
+        "operating_hours": null,
+        "official_url": null,
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": null,
+        "verification_status": "needs_check",
+        "last_verified_at": null,
+        "source_updated_at": null,
+        "missing_fields": [
+          "address",
+          "phone",
+          "operating_hours",
+          "official_url",
+          "reservation_url"
+        ],
+        "evidence": []
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_047",
+      "name": "행원풍력단지",
+      "region": "제주특별자치도",
+      "category": "sea",
+      "available": false,
+      "duration_minutes": 90,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.5595727,
+        "longitude": 126.8162673,
+        "point_role": "viewpoint"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 구좌읍 해맞이해안로 680-13",
+        "phone": null,
+        "operating_hours": null,
+        "official_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_200000000007919",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "표시 위치는 풍력발전 설비 내부가 아니라 풍차를 볼 수 있는 행원 해안 산책 구간의 공공 관광 대표점입니다. 현재 노면·출입 상태는 방문 전에 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2022-11-18",
+        "missing_fields": [
+          "phone",
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "official_url"
+            ],
+            "status": "partial",
+            "source_title": "VISIT JEJU 행원육상양식단지·풍력단지 조망 안내",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_200000000007919",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2018-11-20",
+            "note": "풍차 조망 해안 산책 구간의 주소와 대표 위치를 확인했습니다. 발전시설 운영 주소로 사용하지 않습니다."
+          },
+          {
+            "fields": [
+              "service_status"
+            ],
+            "status": "needs_check",
+            "source_title": "VISIT JEJU 행원풍력단지 포함 관광코스",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_200000000012141",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2022-11-18",
+            "note": "공공 관광코스에 장소가 포함되지만 최신 현장 출입 상태를 확인할 운영 공지는 찾지 못했습니다."
+          }
+        ]
+      }
+    },
+    {
+      "spot_id": "jeju_tourism_weak_048",
+      "name": "협재해수욕장",
+      "region": "제주특별자치도",
+      "category": "sea",
+      "available": false,
+      "duration_minutes": 55,
+      "info_url": "https://www.data.go.kr/data/15117357/fileData.do",
+      "location": {
+        "latitude": 33.393845,
+        "longitude": 126.239716,
+        "point_role": "poi"
+      },
+      "visit_info": {
+        "address": "제주특별자치도 제주시 한림읍 한림로 329-10",
+        "phone": null,
+        "operating_hours": null,
+        "official_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500697&menuId=DOM_000001718002000000",
+        "reservation_url": null,
+        "service_status": "unknown",
+        "notice": "해수욕장 개장·입수 가능 시간과 기상 통제 여부는 계절별로 달라질 수 있으므로 출발 전에 확인해 주세요.",
+        "verification_status": "partial",
+        "last_verified_at": "2026-07-13",
+        "source_updated_at": "2016-05-30",
+        "missing_fields": [
+          "phone",
+          "operating_hours",
+          "reservation_url"
+        ],
+        "evidence": [
+          {
+            "fields": [
+              "address",
+              "official_url"
+            ],
+            "status": "verified",
+            "source_title": "VISIT JEJU 협재해수욕장",
+            "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500697&menuId=DOM_000001718002000000",
+            "source_type": "public_agency",
+            "checked_at": "2026-07-13",
+            "observed_at": "2016-05-30",
+            "note": "주소와 대표 위치만 반영하고 계절성 전화번호와 최신 근거가 없는 운영시간은 비워 두었습니다."
+          }
+        ]
+      }
+    }
+  ],
   "visual_assets": [
     {
       "src": "assets/WELCOME-1-001.jpg",
@@ -68,7 +3970,7 @@
           "matched_name": "서귀다원",
           "category": "rest_area",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "곧게 뻗은 메타세쿼이아 나무와 넓은 녹차밭이 조화롭게 공존하는 곳, 중간 경사로가 가파르나 올라가지 않고 밑의 녹차밭을 즐길 수 있다.",
           "cautions": "① 중간 경사로가 약 5도 이상으로 가팔라 주의가 필요함② 녹차밭 안으로의 출입을 금지하고 있음③ 일반 화장실만 있으며, 입구에 단차가 있어 보장구 이용시 도움 필요"
@@ -133,7 +4035,7 @@
           "matched_name": "산굼부리",
           "category": "oreum",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "천연기념물 제263호로 그 가치가 보존되어 있으며, 한라산의 백록담보다 더 깊은 분화구가 있는 곳,산책로에 휠체어, 유아차를 위한 보행로가 별도로 조성되어 있어 탐방이 용이하다.",
           "cautions": "① 화장실 세면대에 하부 공간이 없어 보장구 이용시 불편할 수 있음② 매점 이용시, 얕은 단차가 있으며 매대의 하부 공간이 없음"
@@ -145,7 +4047,7 @@
           "matched_name": "보롬왓",
           "category": "rest_area",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "계절에 관계없이, 실내외에 조성된 다채로운 색채의 꽃과 식물들을 만날 수 있는 곳, 보행로가 야자매트, 흙길 등으로 구성되어있어 동행자의 도움만 있다면 보장구 이용도 가능하다.",
           "cautions": "① 실내외 이동시 보행로의 포장상태가 바뀌어 주의 필요함② 화장실 이용시 단차가 있고 입구 폭이 좁아 보장구 이용시 도움 필요함③ 보행로 폭이 좁아 통행인이 많을 시 불편할 수 있음"
@@ -157,7 +4059,7 @@
           "matched_name": "표선해수욕장",
           "category": "sea",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "모래가 곱고, 썰물이면 원형으로 드러나는 백사장이 아름다운 해수욕장, 화장실, 주차장 등 주변 편의시설이 정비되어 있으며, 정돈된 산책로 보행이 가능하다.",
           "cautions": "① 주차장에 해수욕장 건너편에 위치해 있으나, 신호등이 없어 진입이 주의 필요② 제주민속촌 맞은편 주차시 주출입구 진입 어려움 (네비게이션 검색: 제주특별자치도 서귀포시 표선면 표선리 44-4)"
@@ -198,7 +4100,7 @@
           "matched_name": "영등할망 밭담길",
           "category": "rest_area",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "바람의 신 ‘영등할망’이 들어오는 지역의 대표적인 밭담과 바다 조망을 즐길 수 있는 곳,정돈된 밭담길로, 귀덕1리사무소의 편의시설 이용이 가능하다.",
           "cautions": "① 에코그린 리조트 뒤쪽 밭담길 진입시, 교차로의 자동차 통행 주의 필요함② 귀덕1리 사무소, 일반화장실은 있으나 장애인전용 화장실(칸) 없음"
@@ -210,7 +4112,7 @@
           "matched_name": "낙천리 아홉굿마을",
           "category": "rest_area",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "제주 서부에 위치한 천혜의 청정마을로, 아홉개의 샘(굿)과 이야기가 있는 마을,일부 차도와 인접한 보행로를 제외하면 정돈된 마을 길로 마을 탐방이 가능하다.",
           "cautions": "① 세미왓물로 이어지는 보호수 근접한 초입 및 마을 길 통행 차량 주의 필요② 마을길 일부 구간의 배수로 주의 필요"
@@ -222,7 +4124,7 @@
           "matched_name": "청수곶자왈",
           "category": "forest",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "별 흐르는 마을 청수리에 위치한 숲으로 반딧불이 이야기가 있는 곶자왈,반딧불이 탐방로 초입이 정돈되어 도움만 있다면 보장구 이용도 탐방 가능하다.",
           "cautions": "① 청수 곶자왈 탐방은 웃뜨르빛센터의 A코스 출입구로 출입하여야 함② 안쪽 깊은 탐방로의 경우 단차 있는 숲길이라 보장구 이용 어려움③ 주차시설이 미흡하여 주의 필요함"
@@ -275,7 +4177,7 @@
           "matched_name": "행원풍력단지",
           "category": "sea",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "국내에서 가장 큰 규모의 풍력 발전 단지가 있는 해안도로,해안가를 따라 포장된 보행로를 이용하여 바다 바람을 느끼기에 좋다.",
           "cautions": "① 해안가의 풍력단지로 공용화장실 등의 편의시설이 없음② 해안도로의 통행차량 주의 필요③ 공영주차장 이용시 인도 차도 구분 미흡으로 주의 필요"
@@ -316,7 +4218,7 @@
           "matched_name": "성이시돌목장",
           "category": "rest_area",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "넓게 펼쳐진 초원과 말, 그 뒤로 보이는 오름들이 제주 향기를 물씬 풍기는 여행지,테쉬폰으로 가는 오르막길을 제외한 모든 곳이 평탄하여 위험요소가 적다.",
           "cautions": "① 우유부단 카페 입구 단차 약 10cm로 진입 불가능함② 테쉬폰으로 가는 언덕길에 큰 돌, 못 등이 있어 동행자의 도움이 필요함③ 주차장에서 목장 진입시 짚길로 되어있어 휠체어 진입이 어려움"
@@ -328,7 +4230,7 @@
           "matched_name": "여미지식물원",
           "category": "forest",
           "verification_status": "partial",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": false,
           "description": "다양한 테마의 실외공원과 잘 조성된 실내공원으로 쾌적한 여행을 제공하는 곳,4~7도 정도의 급경사를 제외하면 관람로를 따라 관광약자 단독이동이 가능하다.",
           "cautions": "① 실외 프랑스공원 좌측으로 경사가 급해 이동시 주의가 필요함② 실외 통행로에 관리차량이 운행해 관람시 주의가 필요함"
@@ -340,7 +4242,7 @@
           "matched_name": "월평포구",
           "category": "sea",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "널리 알려지지 않았지만 탁트인 제주바다를 느긋하게 감상할 수 있는 여행지,포구 위쪽으로 뻗은 데크를 따라 절벽 끝까지 이동이 가능하다.",
           "cautions": "① 포구로 내려가는 길의 경사가 가팔라 관광약자 접근을 추천하지 않음② 데크에 미세한 경사가 있어 휠체어가 절벽까지 흐를 수 있어 주의가 필요함"
@@ -405,7 +4307,7 @@
           "matched_name": "용눈이오름",
           "category": "oreum",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "많은 이들이 찾는 제주 동부의 오름. 용의 눈을 닮았다 하여 용와악이라 불렸던 김영갑작가가 사랑했던 오름 오르막이 가파른 구간이 있지만 탐방로 정비가 잘 되어있는 보기 드문 오름이다.",
           "cautions": "① 입구가 말의 도주를 방지하기 위해 설계 되어있으며, 나무가시와 못이 튀어나와 있으므로 주의가 필요함 ② 정상 일부 구간에 흙을 패어 불규칙적인 층을 만들어놔 부상의 위험이 있음"
@@ -434,7 +4336,7 @@
           "matched_name": "협재해수욕장",
           "category": "sea",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "비양도를 품은 제주 서쪽 바다의 최고 인기 해수욕장 휠체어로 모래사장 이동은 어렵지만 접근로를 통해 진입이 가능한 곳이다.",
           "cautions": "① 해수욕장 진입로 안전바가 노후되어 있음"
@@ -446,7 +4348,7 @@
           "matched_name": "월령선인장군락지",
           "category": "other",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "현무암 속에 피어난 이국적인 선인장과 백년초 열매를 관람할 수 있는 ‘강식당’ 촬영지로 알려지기 시작한 곳 평탄한 데크로 길이 이어져 있어 이동이 편리하며 탁트인 바다를 볼 수 있는 곳이다.",
           "cautions": "① 보행로 일부 경사가 급해 동행자의 도움이 필요함"
@@ -487,7 +4389,7 @@
           "matched_name": "서빈백사",
           "category": "sea",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "우도 8경에 빛나는 곳으로 국내에서 유일하게 산호로 이뤄진 백사장으로 우도 여행의 백미이며 지중해 못지 않는 아름다움을 자랑한다. 계단으로 보장구 이용자의 진입이 어려우나 해안도로에서 전체적인 조망이 가능하다.",
           "cautions": "① 해변 산책로 진입시 좁은 흙길 또는 돌계단 주의가 필요함 ② 해수욕장 진입시 돌계단 모래 미끄러워 주의가 필요함"
@@ -499,7 +4401,7 @@
           "matched_name": "우도봉",
           "category": "oreum",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "우도봉 정상에서 내려보는 우도 전역의 모습과 가까이서 보이는 성산일출봉의 모습까지 탁 트인 시야를 제공해주는 우도의 천장 정상까지의 경사는 가파르나 지두청사까지는 완만하며 우도봉 정상을 조망할 수 있다.",
           "cautions": "① 휠체어 이용자는 천진항쪽 입구로만 진입이 가능하며 지두청사 탐방 가능함 ② 말이 방목되고 있어 탐방로에 배설물이 있으니 주의가 필요함"
@@ -511,7 +4413,7 @@
           "matched_name": "등대공원",
           "category": "rest_area",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "우리나라와 외국의 유명한 등대 모형이 전시된 우도의 신흥 관광명소로 떠오르고 있는 곳. 가파른 경사를 올라야한다는 부담이 있으나 우도를 동서남북으로 관람할 수 있다.",
           "cautions": "① 우도봉 정상 부근에 위치해 경사가 가팔라 고려사항이 될 수 있음 ② 정상 바닥이 다소 미끄러워 넘어질 우려가 있음"
@@ -523,7 +4425,7 @@
           "matched_name": "검멀레해변",
           "category": "sea",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "우도 8경 중 하나인, 고래가 살았다는 전설이 있는 동안경굴을 이어주는 검은 모래 해변 해변으로 내려가지 않는다면 절벽에 조성된 벤치에서 관람이 가능하다.",
           "cautions": "① 검멀레 해변 진입시 급경사의 계단이 있으며 모래로 인해 미끄러움 ② 검멀레 해변 위가 우도봉 탐방로여서 낙석의 우려가 있음"
@@ -564,7 +4466,7 @@
           "matched_name": "함덕해수욕장",
           "category": "sea",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "고운 백사장과 아름다운 바다의 빛을 볼 수 있는 도민과 관광객 모두가 사랑하는 해변. 해변 특성상 보장구 이용이 어려우나, 야영장으로 이어진 산책로 진입시 절경 관람 가능.",
           "cautions": "① 주차장에서 해수욕장 진입시 횡단보도 단차가 있어 주의 필요함 ② 종합관리센터 내 장애인화장실에 세면대 미설치 유의 필요함 ③ 종합관리센터 맞은편 공용화장실의 문 고장으로 주의 필요함"
@@ -576,7 +4478,7 @@
           "matched_name": "북촌리 마을",
           "category": "rest_area",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "제주의 다양한 4.3길을 걸으며 참혹했던 그 날의 기억을 공유해 볼 수 있는 길. 작은 마을이지만, 여행 중간에 이용 가능한 공용 화장실과 안내 표식 등이 있다.",
           "cautions": "① 해동포구에서 일본군진지동굴까지 오를 시 경사로 가파름 ② 마을길, 돌다리 등 통행차량 주의 필요"
@@ -588,7 +4490,7 @@
           "matched_name": "너븐숭이기념관",
           "category": "indoor",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "4.3 관련 소설 순이삼춘의 모티브가 되었던 집단학살이 가장 크게 진행됐던 곳. 실내 시설은 어려움 없이 누구나 관람 가능하나, 외부 위령탑쪽은 보장구 이용이 어렵다.",
           "cautions": "① 외부 위령탑 진입시 단차 있음"
@@ -617,7 +4519,7 @@
           "matched_name": "금악리마을",
           "category": "rest_area",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "멧돼지들이 내려와 땅을 헤쳐 만들어졌다는 뱅듸못과 금오름을 배경으로 자리한 마을. 붉은대왓과 벵듸못을 두르는 평탄한 마을 길을 따라 관광약자 단독 이동이 가능하다.",
           "cautions": "① 보행로 일부 바닥 패여 있으므로 주의 필요 ② 차도와 통행로의 구분이 없어 이동시 주의가 필요함 ③ 저류지는 안전상 경사로의 보행이 어려움"
@@ -682,7 +4584,7 @@
           "matched_name": "방림원",
           "category": "rest_area",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "사계절 즐기는 계절꽃과 풀, 나무의 조화로운 내음이 베어있는 식물원. 평탄한 관람로를 따라 여유롭게 이동할 수 있다.",
           "cautions": "① 일부 관람로 옆 턱이나 난간이 없어 추락의 위험이 있음 ② 식물원 특성상 물을 뿌리기 때문에 돌길이 다소 미끄러워 위험할 수 있음"
@@ -694,7 +4596,7 @@
           "matched_name": "생각하는 정원",
           "category": "forest",
           "verification_status": "partial",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": false,
           "description": "다양한 테마의 정원과 조형, 건축물이 조화로워 자연의 미를 느낄 수 있는 정원. 7도 정도의 급경사 구간을 제외한 모든 관람로가 평탄하다.",
           "cautions": "① 주차장과 관광지가 도로로 분리되어 있어 이동에 주의가 필요함"
@@ -706,7 +4608,7 @@
           "matched_name": "카멜리아힐",
           "category": "rest_area",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "동백으로도 유명하지만 아기자기 조성된 자연의 아름다움을 느낄 수 있는 곳. 일부 관람로의 짚길 등을 제외하면 보장구 이용이 어렵지 않다.",
           "cautions": "① 주차장에서 입구까지 차량 이동이 많아 주의가 필요함 ② 휠체어 이동이 쉽지 않은 짚길로 되어있어 동행자의 도움이 필요함"
@@ -747,7 +4649,7 @@
           "matched_name": "한담해변",
           "category": "sea",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "애월 카페거리에 인접한 에메랄드 빛 해변을 따르는 산책로로 조성되어 있다. 주출입구 경사로 및 계단을 주의하면, 정돈된 데크 및 포장도로로 해안 산책이 가능하다.",
           "cautions": "① 주 출입구 경사로가 가팔라 휠체어 이용자 주의가 필요함 ② 주차공간 공사 중으로 주의 필요하며, 주차공간 많지 않아 근접 도로에 통행 및 주정차 차량 주의 필요"
@@ -759,7 +4661,7 @@
           "matched_name": "곽지해수욕장",
           "category": "sea",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "파고가 낮고 대합 등의 조개류가 많이 서식하는 곳으로, 체험 및 해수욕에 좋은 해변이다. 해수욕장 특성상 모래사장에 보장구 진입은 어려우나, 광장을 통해 바닷가 근접 가능",
           "cautions": "① 광장 및 해변길 진입시 단차 및 바닥 주의 필요 ② 일부 구간 돌길로 휠체어 이동 힘듦 및 발목부상 주의"
@@ -771,7 +4673,7 @@
           "matched_name": "한림오일장",
           "category": "food_market",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "제주민속오일장보다는 작지만, 편의시설 및 통행로가 정돈된 제주 서부의 재래시장 매월 4일 9일 열리는 민속 오일장으로, 주차 및 화장실 등의 편의시설 이용이 용이하다.",
           "cautions": "① 화장실 진입로 폭 및 짧은 경사로 주의 필요함 ② 이용객이 많아, 보장구 이용시 통행 주의 필요함"
@@ -783,7 +4685,7 @@
           "matched_name": "협재해수욕장",
           "category": "sea",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "비양도를 품은 제주 서쪽 바다의 최고 인기 해수욕장. 휠체어로 모래사장 이동은 어렵지만 접근로를 통해 진입이 가능한 곳이다.",
           "cautions": "① 해수욕장 진입로 안전바가 노후되어 있음 ② 11월 30일까지 해수욕장 주변 통행로 공사 진행중이어서 주의 필요함"
@@ -812,7 +4714,7 @@
           "matched_name": "탑동해변공연장",
           "category": "culture",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": false,
           "description": "제주 시민들의 휴식처로 바닷가를 따라 조성된 수변공원 경사가 거의 없이 평탄해 편리한 이동이 가능하다.",
           "cautions": "① 운동시설이 많아 날라오는 공, 자전거 등에 대한 주의가 필요함 ② 통행로 옆 벽이 높아 휠체어 이용자는 바다 관람이 힘듬"
@@ -824,7 +4726,7 @@
           "matched_name": "동문재래시장",
           "category": "food_market",
           "verification_status": "partial",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": false,
           "description": "제주에서 가장 큰 규모의 재래시장으로 다양한 전통 먹거리가 있는 곳 사람이 많이 이동에 어려움이 있으나 교통수단 접근성이 좋다.",
           "cautions": "① 사람이 많아 여유로운 이동이 힘들 수 있음 ② 일부 편의시설로 이어지는 통행로의 경사로 주의 필요"
@@ -848,7 +4750,7 @@
           "matched_name": "이호테우해변",
           "category": "sea",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "시내에서 가까워 접근성이 높으며 말 등대로 유명한 해수욕장. 모래 해변을 둘러 걸을 수 있는 평탄한 산책길이 조성되어 있는 곳",
           "cautions": "① 주차장과 진입로가 이어져있어 이동시 주의가 필요함 ② 주 접근로 경사로 주의 필요"
@@ -877,7 +4779,7 @@
           "matched_name": "돈내코유원지",
           "category": "other",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "풀 내음 가득한 여름철에 계곡에서의 물놀이 장소와 캠핑으로 애용되는 곳. 계단 이용해야 하는 원앙폭포 이외에, 정돈된 데크길로 탐방이 가능한 유원지이다.",
           "cautions": "① 원앙폭포 접근 시 계단 주의 필요하며, 보장구 이용시 진입 어려움 ② 일부 구간 경사 가파른 계단 등, 영유아 동반시 보호자의 도움 필요함"
@@ -889,7 +4791,7 @@
           "matched_name": "쇠소깍",
           "category": "sea",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "계곡이 아름다운 명승지 78호로 카약과 테우를 탈 수 있는 물놀이 명소. 한라산부터 내려는 효돈천이 바다와 만나는 지점을 조망하는 데크길 산책이 가능하다.",
           "cautions": "① 장애인 전용 화장실 시설이 낙후되어 주의 필요함 ② 탐방로 일부 계단 미끄러움 주의"
@@ -901,7 +4803,7 @@
           "matched_name": "올레길6코스 휠체어구간",
           "category": "sea",
           "verification_status": "partial",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": false,
           "description": "쇠소깍으로 부터 시작되는 구간으로 섶섬과 생이돌의 전경이 아름다운 곳. 올레길 코스 내 휠체어 구간으로 가파른 경사/단차 없이 차량 및 도보로 탐방 가능하다.",
           "cautions": "① 휠체어 구간 도로 폭이 좁아 주의 필요 ② 인도 구분 미흡하여 통행하는 차량 주의 필요"
@@ -913,7 +4815,7 @@
           "matched_name": "보목포구",
           "category": "sea",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "제지기오름과 섶섬을 품은 바다 내음 가득한 멋진 뷰를 가지고 있는 포구. 정돈된 포장길로 이어진 포구에서 섶섬을 바라볼 수 있다.",
           "cautions": "① 장애인 화장실 공사 중이므로 유의 ② 포구 일부 울타리가 없어, 추락 주의 필요함"
@@ -954,7 +4856,7 @@
           "matched_name": "성산일출봉",
           "category": "oreum",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "천연기념물 제420호, 제주를 대표하는 오름으로 해녀와 우도까지 만날 수 있는 곳. 무료 코스 관람시 계단 없는 관람로를 이용하여 우도까지 조망할 수 있는 관광지이다.",
           "cautions": "① 보장구 이용시 동암사 옆 경사로, 주출입 접근로 가파름 주의 ② 초입 경사로 및 일부 관람로 도움 필요 ③ 일부 탐방로 폭 주의 필요"
@@ -966,7 +4868,7 @@
           "matched_name": "오조포구",
           "category": "sea",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "바다와 현무암으로 이루어진 양어장과 식산봉이 어우러진 풍경을 감상할 수 있는 곳. 정돈된 포장길로 바다 위를 산책하는 기분을 느낄 수 있는 조용한 관광지이다.",
           "cautions": "① 일부 관람로 난간 미흡하여 주의 필요 ② 만조때 관람로 초입 바닷물이 얕게 밀려들어옴 주의 필요"
@@ -978,7 +4880,7 @@
           "matched_name": "지미봉밭길",
           "category": "other",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "지미봉과 바다를 벗삼아 돌담을 따라 걷는 올레21코스. 자전거 환상길과 근접한 평탄한 올레길로 밭담과 바다를 동시에 즐길 수 있다.",
           "cautions": "① 입구 신호등 없고, 차도 및 인도 구분 미흡하여 주의 필요 ② 초입 경사 급하며 일부 바닥 주의 필요"
@@ -1019,7 +4921,7 @@
           "matched_name": "저지문화예술인마을",
           "category": "culture",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "예술, 문화, 교육 그리고 체험의 장으로 자연과 예술이 공존하는 마을. 포장도로로 이어진 마을 길로, 가파른 경사나 단차가 없어 보장구, 유아차 이용이 쉽다.",
           "cautions": "① 마을 여행을 마친 후 주차장으로 돌아오는 접근로가 차도에 인접한 갓길이므로 주의 필요 ② 주차장 옆 화장실 진입시 흙길"
@@ -1031,7 +4933,7 @@
           "matched_name": "명이동못",
           "category": "rest_area",
           "verification_status": "needs_check",
-          "location_available": false,
+          "location_available": true,
           "promoted_candidate": true,
           "description": "저지리 명리동에 위치한 작은 연못으로, 중심부 큰 나무가 그늘을 만들어주는 쉼터. 연못을 둘러싼 데크길과 마을 길이 정돈 되어있어 보장구 이용이 용이하다.",
           "cautions": "① 보장구 이용시 진입로 주변 배수로 바퀴 빠짐 주의 필요 ② 연못 중심부 데크 진입시 단차로 도움 필요"
@@ -1150,29 +5052,29 @@
           "confidence": "medium",
           "breakdown": {
             "source_trust": {
-              "score": 25,
+              "score": 24,
               "max": 25,
-              "reason": "정보 상태 verified, 출처 있음 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "mobility_fit": {
-              "score": 25,
+              "score": 22,
               "max": 25,
-              "reason": "도보 부담 very_low 및 경사·바닥 상태 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "facility_fit": {
               "score": 18,
               "max": 20,
-              "reason": "화장실, 주차, 휴식, 대여, 휠체어 접근성 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "theme_fit": {
               "score": 15,
               "max": 15,
-              "reason": "선호 테마와 indoor 카테고리 일치"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "safety_clarity": {
               "score": 15,
               "max": 15,
-              "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             }
           }
         },
@@ -1194,11 +5096,11 @@
         "check_before_visit": [
           "휴식 공간",
           "혼잡도",
-          "식사 장소 제외 여부",
           "개별 식사 준비 가능 여부",
-          "혼잡 시간대",
-          "주말·성수기 방문 여부",
+          "식사 장소 제외 여부",
           "대기줄 여부",
+          "주말·성수기 방문 여부",
+          "혼잡 시간대",
           "휠체어 접근성",
           "바닥 상태",
           "방문 당일 날씨와 바람"
@@ -1269,6 +5171,13 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 98,
+              "bonuses": [],
+              "deductions": [],
+              "caps": [],
+              "final_total": 98
             }
           },
           "fit_reasons": [
@@ -1280,11 +5189,11 @@
           "check_before_visit": [
             "휴식 공간",
             "혼잡도",
-            "식사 장소 제외 여부",
             "개별 식사 준비 가능 여부",
-            "혼잡 시간대",
+            "식사 장소 제외 여부",
+            "대기줄 여부",
             "주말·성수기 방문 여부",
-            "대기줄 여부"
+            "혼잡 시간대"
           ],
           "source_summary": [
             {
@@ -1380,7 +5289,8 @@
             "source_url": "https://www.data.go.kr/data/15109158/fileData.do",
             "matched_name": "제주문학관",
             "match_method": "roadview_exact_name",
-            "evidence_count": 31
+            "evidence_count": 31,
+            "point_role": "poi"
           },
           "safety_notes": [
             "행사 일정과 대여 가능 수량은 방문 전 확인 필요",
@@ -1389,7 +5299,39 @@
           ],
           "avoid_for": [
             "문학 전시보다 야외 자연 감상을 우선하는 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": "제주특별자치도 제주시 연북로 339",
+            "phone": "064-710-3490",
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": "2025-07-30",
+            "missing_fields": [
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": [
+              {
+                "fields": [
+                  "address",
+                  "phone"
+                ],
+                "status": "needs_check",
+                "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+                "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+                "source_type": "public_agency",
+                "checked_at": null,
+                "observed_at": null,
+                "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+              }
+            ]
+          }
         },
         {
           "spot_id": "jeju_indoor_hanran_016",
@@ -1427,6 +5369,13 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 91,
+              "bonuses": [],
+              "deductions": [],
+              "caps": [],
+              "final_total": 91
             }
           },
           "fit_reasons": [
@@ -1439,11 +5388,11 @@
             "휠체어 접근성",
             "혼잡도",
             "바닥 상태",
-            "식사 장소 제외 여부",
             "개별 식사 준비 가능 여부",
-            "혼잡 시간대",
+            "식사 장소 제외 여부",
+            "대기줄 여부",
             "주말·성수기 방문 여부",
-            "대기줄 여부"
+            "혼잡 시간대"
           ],
           "source_summary": [
             {
@@ -1540,7 +5489,8 @@
             "source_url": "https://www.data.go.kr/data/15109158/fileData.do",
             "matched_name": "제주한란전시관",
             "match_method": "roadview_exact_name",
-            "evidence_count": 32
+            "evidence_count": 32,
+            "point_role": "poi"
           },
           "safety_notes": [
             "픽토그램 기반 정보라 세부 화장실·동선 상태 재확인 필요",
@@ -1548,7 +5498,39 @@
           ],
           "avoid_for": [
             "세부 관람로 폭과 휴식 위치 확인이 필요한 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": "제주특별자치도 서귀포시 돈내코로 67번길 19",
+            "phone": "064-710-6861",
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": "2025-07-30",
+            "missing_fields": [
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": [
+              {
+                "fields": [
+                  "address",
+                  "phone"
+                ],
+                "status": "needs_check",
+                "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+                "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+                "source_type": "public_agency",
+                "checked_at": null,
+                "observed_at": null,
+                "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+              }
+            ]
+          }
         },
         {
           "spot_id": "jeju_forest_saryeoni_002",
@@ -1586,6 +5568,13 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 90,
+              "bonuses": [],
+              "deductions": [],
+              "caps": [],
+              "final_total": 90
             }
           },
           "fit_reasons": [
@@ -1601,11 +5590,11 @@
             "휴식 공간",
             "휠체어 접근성",
             "혼잡도",
-            "식사 장소 제외 여부",
             "개별 식사 준비 가능 여부",
-            "혼잡 시간대",
+            "식사 장소 제외 여부",
+            "대기줄 여부",
             "주말·성수기 방문 여부",
-            "대기줄 여부"
+            "혼잡 시간대"
           ],
           "source_summary": [
             {
@@ -1701,7 +5690,8 @@
             "source_url": "https://www.data.go.kr/data/15109158/fileData.do",
             "matched_name": "사려니숲길",
             "match_method": "roadview_partial_name",
-            "evidence_count": 57
+            "evidence_count": 57,
+            "point_role": "poi"
           },
           "safety_notes": [
             "무장애 나눔길 이용 위치를 방문 전 확인 필요",
@@ -1711,7 +5701,27 @@
           "avoid_for": [
             "출입구 경사 12도 이용이 어려운 사용자",
             "긴 숲길 체류가 부담되는 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": null,
+            "phone": null,
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": null,
+            "missing_fields": [
+              "address",
+              "phone",
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": []
+          }
         },
         {
           "spot_id": "jeju_indoor_icc_032",
@@ -1749,6 +5759,19 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 96,
+              "bonuses": [],
+              "deductions": [
+                {
+                  "id": "situation_crowd_or_infection_sensitive",
+                  "label": "혼잡 또는 감염 우려 조건이 있어 사람이 몰릴 수 있는 장소를 감점합니다.",
+                  "delta": -6
+                }
+              ],
+              "caps": [],
+              "final_total": 90
             }
           },
           "fit_reasons": [
@@ -1762,11 +5785,11 @@
           "check_before_visit": [
             "휴식 공간",
             "혼잡도",
-            "식사 장소 제외 여부",
             "개별 식사 준비 가능 여부",
-            "혼잡 시간대",
+            "식사 장소 제외 여부",
+            "대기줄 여부",
             "주말·성수기 방문 여부",
-            "대기줄 여부"
+            "혼잡 시간대"
           ],
           "source_summary": [
             {
@@ -1857,7 +5880,8 @@
             "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500079",
             "matched_name": "제주국제컨벤션센터",
             "match_method": "manual_override",
-            "evidence_count": 1
+            "evidence_count": 1,
+            "point_role": "facility"
           },
           "safety_notes": [
             "행사 일정과 혼잡도를 방문 전 확인 필요",
@@ -1865,7 +5889,27 @@
           ],
           "avoid_for": [
             "대형 행사 혼잡이 부담되는 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": null,
+            "phone": null,
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": null,
+            "missing_fields": [
+              "address",
+              "phone",
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": []
+          }
         }
       ]
     },
@@ -1959,29 +6003,29 @@
           "confidence": "medium",
           "breakdown": {
             "source_trust": {
-              "score": 25,
+              "score": 22,
               "max": 25,
-              "reason": "정보 상태 verified, 출처 있음 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "mobility_fit": {
-              "score": 20,
+              "score": 17,
               "max": 25,
-              "reason": "도보 부담 very_low 및 경사·바닥 상태 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "facility_fit": {
               "score": 18,
               "max": 20,
-              "reason": "화장실, 주차, 휴식, 대여, 휠체어 접근성 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "theme_fit": {
               "score": 15,
               "max": 15,
-              "reason": "선호 테마와 indoor 카테고리 일치"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "safety_clarity": {
               "score": 15,
               "max": 15,
-              "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             }
           }
         },
@@ -2081,6 +6125,13 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 93,
+              "bonuses": [],
+              "deductions": [],
+              "caps": [],
+              "final_total": 93
             }
           },
           "fit_reasons": [
@@ -2190,7 +6241,8 @@
             "source_url": "https://www.data.go.kr/data/15109158/fileData.do",
             "matched_name": "제주문학관",
             "match_method": "roadview_exact_name",
-            "evidence_count": 31
+            "evidence_count": 31,
+            "point_role": "poi"
           },
           "safety_notes": [
             "행사 일정과 대여 가능 수량은 방문 전 확인 필요",
@@ -2199,7 +6251,39 @@
           ],
           "avoid_for": [
             "문학 전시보다 야외 자연 감상을 우선하는 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": "제주특별자치도 제주시 연북로 339",
+            "phone": "064-710-3490",
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": "2025-07-30",
+            "missing_fields": [
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": [
+              {
+                "fields": [
+                  "address",
+                  "phone"
+                ],
+                "status": "needs_check",
+                "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+                "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+                "source_type": "public_agency",
+                "checked_at": null,
+                "observed_at": null,
+                "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+              }
+            ]
+          }
         },
         {
           "spot_id": "jeju_indoor_icc_032",
@@ -2237,6 +6321,13 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 91,
+              "bonuses": [],
+              "deductions": [],
+              "caps": [],
+              "final_total": 91
             }
           },
           "fit_reasons": [
@@ -2341,7 +6432,8 @@
             "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500079",
             "matched_name": "제주국제컨벤션센터",
             "match_method": "manual_override",
-            "evidence_count": 1
+            "evidence_count": 1,
+            "point_role": "facility"
           },
           "safety_notes": [
             "행사 일정과 혼잡도를 방문 전 확인 필요",
@@ -2349,7 +6441,27 @@
           ],
           "avoid_for": [
             "대형 행사 혼잡이 부담되는 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": null,
+            "phone": null,
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": null,
+            "missing_fields": [
+              "address",
+              "phone",
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": []
+          }
         },
         {
           "spot_id": "jeju_cafe_osulloc_013",
@@ -2387,6 +6499,19 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 81,
+              "bonuses": [
+                {
+                  "id": "tourism_weak_course",
+                  "label": "제주관광공사 관광약자 추천코스 근거",
+                  "delta": 2
+                }
+              ],
+              "deductions": [],
+              "caps": [],
+              "final_total": 83
             }
           },
           "fit_reasons": [
@@ -2501,7 +6626,8 @@
             "source_url": "https://sb.2markers.com/977660",
             "matched_name": "오설록 티 뮤지엄",
             "match_method": "manual_override",
-            "evidence_count": 1
+            "evidence_count": 1,
+            "point_role": "poi"
           },
           "safety_notes": [
             "야외 차밭과 전망대는 조건에 따라 제외 안내 필요",
@@ -2510,7 +6636,27 @@
           "avoid_for": [
             "야외 차밭 요철과 전망대 단차가 어려운 사용자",
             "혼잡한 카페 환경이 부담되는 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": null,
+            "phone": null,
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": null,
+            "missing_fields": [
+              "address",
+              "phone",
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": []
+          }
         },
         {
           "spot_id": "jeju_indoor_hanran_016",
@@ -2548,6 +6694,13 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 83,
+              "bonuses": [],
+              "deductions": [],
+              "caps": [],
+              "final_total": 83
             }
           },
           "fit_reasons": [
@@ -2660,7 +6813,8 @@
             "source_url": "https://www.data.go.kr/data/15109158/fileData.do",
             "matched_name": "제주한란전시관",
             "match_method": "roadview_exact_name",
-            "evidence_count": 32
+            "evidence_count": 32,
+            "point_role": "poi"
           },
           "safety_notes": [
             "픽토그램 기반 정보라 세부 화장실·동선 상태 재확인 필요",
@@ -2668,7 +6822,39 @@
           ],
           "avoid_for": [
             "세부 관람로 폭과 휴식 위치 확인이 필요한 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": "제주특별자치도 서귀포시 돈내코로 67번길 19",
+            "phone": "064-710-6861",
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": "2025-07-30",
+            "missing_fields": [
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": [
+              {
+                "fields": [
+                  "address",
+                  "phone"
+                ],
+                "status": "needs_check",
+                "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+                "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+                "source_type": "public_agency",
+                "checked_at": null,
+                "observed_at": null,
+                "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+              }
+            ]
+          }
         }
       ]
     },
@@ -2766,29 +6952,29 @@
           "confidence": "medium",
           "breakdown": {
             "source_trust": {
-              "score": 25,
+              "score": 24,
               "max": 25,
-              "reason": "정보 상태 verified, 출처 있음 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "mobility_fit": {
-              "score": 20,
+              "score": 15,
               "max": 25,
-              "reason": "도보 부담 very_low 및 경사·바닥 상태 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "facility_fit": {
               "score": 18,
               "max": 20,
-              "reason": "화장실, 주차, 휴식, 대여, 휠체어 접근성 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "theme_fit": {
-              "score": 15,
+              "score": 10,
               "max": 15,
-              "reason": "선호 테마와 indoor 카테고리 일치"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "safety_clarity": {
               "score": 15,
               "max": 15,
-              "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             }
           }
         },
@@ -2814,8 +7000,8 @@
           "경사로, 계단, 단차 상태",
           "휴식 공간",
           "혼잡도",
-          "강풍 여부",
           "그늘과 실내 대피 가능 여부",
+          "강풍 여부",
           "방문 당일 날씨",
           "바닥 재질과 요철 여부",
           "방문 당일 날씨와 바람",
@@ -2892,6 +7078,13 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 93,
+              "bonuses": [],
+              "deductions": [],
+              "caps": [],
+              "final_total": 93
             }
           },
           "fit_reasons": [
@@ -2906,8 +7099,8 @@
             "경사로, 계단, 단차 상태",
             "휴식 공간",
             "혼잡도",
-            "강풍 여부",
             "그늘과 실내 대피 가능 여부",
+            "강풍 여부",
             "방문 당일 날씨"
           ],
           "source_summary": [
@@ -3004,7 +7197,8 @@
             "source_url": "https://www.data.go.kr/data/15109158/fileData.do",
             "matched_name": "제주문학관",
             "match_method": "roadview_exact_name",
-            "evidence_count": 31
+            "evidence_count": 31,
+            "point_role": "poi"
           },
           "safety_notes": [
             "행사 일정과 대여 가능 수량은 방문 전 확인 필요",
@@ -3013,7 +7207,39 @@
           ],
           "avoid_for": [
             "문학 전시보다 야외 자연 감상을 우선하는 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": "제주특별자치도 제주시 연북로 339",
+            "phone": "064-710-3490",
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": "2025-07-30",
+            "missing_fields": [
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": [
+              {
+                "fields": [
+                  "address",
+                  "phone"
+                ],
+                "status": "needs_check",
+                "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+                "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+                "source_type": "public_agency",
+                "checked_at": null,
+                "observed_at": null,
+                "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+              }
+            ]
+          }
         },
         {
           "spot_id": "jeju_indoor_icc_032",
@@ -3051,6 +7277,13 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 91,
+              "bonuses": [],
+              "deductions": [],
+              "caps": [],
+              "final_total": 91
             }
           },
           "fit_reasons": [
@@ -3065,8 +7298,8 @@
             "경사로, 계단, 단차 상태",
             "휴식 공간",
             "혼잡도",
-            "강풍 여부",
             "그늘과 실내 대피 가능 여부",
+            "강풍 여부",
             "방문 당일 날씨"
           ],
           "source_summary": [
@@ -3158,7 +7391,8 @@
             "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500079",
             "matched_name": "제주국제컨벤션센터",
             "match_method": "manual_override",
-            "evidence_count": 1
+            "evidence_count": 1,
+            "point_role": "facility"
           },
           "safety_notes": [
             "행사 일정과 혼잡도를 방문 전 확인 필요",
@@ -3166,7 +7400,27 @@
           ],
           "avoid_for": [
             "대형 행사 혼잡이 부담되는 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": null,
+            "phone": null,
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": null,
+            "missing_fields": [
+              "address",
+              "phone",
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": []
+          }
         },
         {
           "spot_id": "jeju_forest_healing_001",
@@ -3204,6 +7458,29 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 70,
+              "bonuses": [
+                {
+                  "id": "stroller_low_effort_rest",
+                  "label": "유모차 가족 조건에 맞는 짧은 휴식형 장소입니다.",
+                  "delta": 8
+                },
+                {
+                  "id": "stroller_rest_area",
+                  "label": "아이와 보호자가 중간에 쉬기 좋은 장소 성격입니다.",
+                  "delta": 4
+                },
+                {
+                  "id": "tourism_weak_course",
+                  "label": "제주관광공사 관광약자 추천코스 근거",
+                  "delta": 4
+                }
+              ],
+              "deductions": [],
+              "caps": [],
+              "final_total": 86
             }
           },
           "fit_reasons": [
@@ -3223,8 +7500,8 @@
             "방문 당일 날씨와 바람",
             "휠체어 접근성",
             "혼잡도",
-            "강풍 여부",
             "그늘과 실내 대피 가능 여부",
+            "강풍 여부",
             "방문 당일 날씨"
           ],
           "source_summary": [
@@ -3326,7 +7603,8 @@
             "source_url": "https://www.data.go.kr/data/15109158/fileData.do",
             "matched_name": "서귀포 치유의숲",
             "match_method": "roadview_exact_name",
-            "evidence_count": 128
+            "evidence_count": 128,
+            "point_role": "poi"
           },
           "safety_notes": [
             "데크길 이후 흙길 전환 구간은 회차 필요",
@@ -3337,7 +7615,39 @@
           "avoid_for": [
             "데크길 이후 흙길 전환 구간 이용이 어려운 사용자",
             "단차와 경사에 민감한 휠체어 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": "제주특별자치도 서귀포시 산록남로 2271",
+            "phone": "064-760-3067",
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": "2025-07-30",
+            "missing_fields": [
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": [
+              {
+                "fields": [
+                  "address",
+                  "phone"
+                ],
+                "status": "needs_check",
+                "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+                "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+                "source_type": "public_agency",
+                "checked_at": null,
+                "observed_at": null,
+                "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+              }
+            ]
+          }
         },
         {
           "spot_id": "jeju_forest_saryeoni_002",
@@ -3375,6 +7685,24 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 73,
+              "bonuses": [
+                {
+                  "id": "stroller_low_effort_rest",
+                  "label": "유모차 가족 조건에 맞는 짧은 휴식형 장소입니다.",
+                  "delta": 8
+                },
+                {
+                  "id": "stroller_rest_area",
+                  "label": "아이와 보호자가 중간에 쉬기 좋은 장소 성격입니다.",
+                  "delta": 4
+                }
+              ],
+              "deductions": [],
+              "caps": [],
+              "final_total": 85
             }
           },
           "fit_reasons": [
@@ -3394,8 +7722,8 @@
             "휴식 공간",
             "휠체어 접근성",
             "혼잡도",
-            "강풍 여부",
             "그늘과 실내 대피 가능 여부",
+            "강풍 여부",
             "방문 당일 날씨"
           ],
           "source_summary": [
@@ -3492,7 +7820,8 @@
             "source_url": "https://www.data.go.kr/data/15109158/fileData.do",
             "matched_name": "사려니숲길",
             "match_method": "roadview_partial_name",
-            "evidence_count": 57
+            "evidence_count": 57,
+            "point_role": "poi"
           },
           "safety_notes": [
             "무장애 나눔길 이용 위치를 방문 전 확인 필요",
@@ -3502,7 +7831,27 @@
           "avoid_for": [
             "출입구 경사 12도 이용이 어려운 사용자",
             "긴 숲길 체류가 부담되는 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": null,
+            "phone": null,
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": null,
+            "missing_fields": [
+              "address",
+              "phone",
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": []
+          }
         }
       ]
     },
@@ -3598,29 +7947,29 @@
           "confidence": "medium",
           "breakdown": {
             "source_trust": {
-              "score": 25,
+              "score": 22,
               "max": 25,
-              "reason": "정보 상태 verified, 출처 있음 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "mobility_fit": {
-              "score": 25,
+              "score": 24,
               "max": 25,
-              "reason": "도보 부담 very_low 및 경사·바닥 상태 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "facility_fit": {
               "score": 18,
               "max": 20,
-              "reason": "화장실, 주차, 휴식, 대여, 휠체어 접근성 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "theme_fit": {
               "score": 15,
               "max": 15,
-              "reason": "선호 테마와 indoor 카테고리 일치"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "safety_clarity": {
               "score": 15,
               "max": 15,
-              "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             }
           }
         },
@@ -3639,8 +7988,8 @@
         "check_before_visit": [
           "휴식 공간",
           "혼잡도",
-          "강풍 여부",
           "그늘과 실내 대피 가능 여부",
+          "강풍 여부",
           "방문 당일 날씨",
           "휠체어 접근성",
           "바닥 상태"
@@ -3711,6 +8060,13 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 98,
+              "bonuses": [],
+              "deductions": [],
+              "caps": [],
+              "final_total": 98
             }
           },
           "fit_reasons": [
@@ -3722,8 +8078,8 @@
           "check_before_visit": [
             "휴식 공간",
             "혼잡도",
-            "강풍 여부",
             "그늘과 실내 대피 가능 여부",
+            "강풍 여부",
             "방문 당일 날씨"
           ],
           "source_summary": [
@@ -3820,7 +8176,8 @@
             "source_url": "https://www.data.go.kr/data/15109158/fileData.do",
             "matched_name": "제주문학관",
             "match_method": "roadview_exact_name",
-            "evidence_count": 31
+            "evidence_count": 31,
+            "point_role": "poi"
           },
           "safety_notes": [
             "행사 일정과 대여 가능 수량은 방문 전 확인 필요",
@@ -3829,7 +8186,39 @@
           ],
           "avoid_for": [
             "문학 전시보다 야외 자연 감상을 우선하는 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": "제주특별자치도 제주시 연북로 339",
+            "phone": "064-710-3490",
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": "2025-07-30",
+            "missing_fields": [
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": [
+              {
+                "fields": [
+                  "address",
+                  "phone"
+                ],
+                "status": "needs_check",
+                "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+                "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+                "source_type": "public_agency",
+                "checked_at": null,
+                "observed_at": null,
+                "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+              }
+            ]
+          }
         },
         {
           "spot_id": "jeju_indoor_icc_032",
@@ -3867,6 +8256,13 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 96,
+              "bonuses": [],
+              "deductions": [],
+              "caps": [],
+              "final_total": 96
             }
           },
           "fit_reasons": [
@@ -3878,8 +8274,8 @@
           "check_before_visit": [
             "휴식 공간",
             "혼잡도",
-            "강풍 여부",
             "그늘과 실내 대피 가능 여부",
+            "강풍 여부",
             "방문 당일 날씨"
           ],
           "source_summary": [
@@ -3971,7 +8367,8 @@
             "source_url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500079",
             "matched_name": "제주국제컨벤션센터",
             "match_method": "manual_override",
-            "evidence_count": 1
+            "evidence_count": 1,
+            "point_role": "facility"
           },
           "safety_notes": [
             "행사 일정과 혼잡도를 방문 전 확인 필요",
@@ -3979,7 +8376,27 @@
           ],
           "avoid_for": [
             "대형 행사 혼잡이 부담되는 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": null,
+            "phone": null,
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": null,
+            "missing_fields": [
+              "address",
+              "phone",
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": []
+          }
         },
         {
           "spot_id": "jeju_indoor_hanran_016",
@@ -4017,6 +8434,13 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 91,
+              "bonuses": [],
+              "deductions": [],
+              "caps": [],
+              "final_total": 91
             }
           },
           "fit_reasons": [
@@ -4029,8 +8453,8 @@
             "휠체어 접근성",
             "혼잡도",
             "바닥 상태",
-            "강풍 여부",
             "그늘과 실내 대피 가능 여부",
+            "강풍 여부",
             "방문 당일 날씨"
           ],
           "source_summary": [
@@ -4128,7 +8552,8 @@
             "source_url": "https://www.data.go.kr/data/15109158/fileData.do",
             "matched_name": "제주한란전시관",
             "match_method": "roadview_exact_name",
-            "evidence_count": 32
+            "evidence_count": 32,
+            "point_role": "poi"
           },
           "safety_notes": [
             "픽토그램 기반 정보라 세부 화장실·동선 상태 재확인 필요",
@@ -4136,7 +8561,39 @@
           ],
           "avoid_for": [
             "세부 관람로 폭과 휴식 위치 확인이 필요한 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": "제주특별자치도 서귀포시 돈내코로 67번길 19",
+            "phone": "064-710-6861",
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": "2025-07-30",
+            "missing_fields": [
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": [
+              {
+                "fields": [
+                  "address",
+                  "phone"
+                ],
+                "status": "needs_check",
+                "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+                "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+                "source_type": "public_agency",
+                "checked_at": null,
+                "observed_at": null,
+                "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+              }
+            ]
+          }
         },
         {
           "spot_id": "jeju_indoor_worldheritage_011",
@@ -4174,6 +8631,13 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 89,
+              "bonuses": [],
+              "deductions": [],
+              "caps": [],
+              "final_total": 89
             }
           },
           "fit_reasons": [
@@ -4186,8 +8650,8 @@
             "휴식 공간",
             "휠체어 접근성",
             "혼잡도",
-            "강풍 여부",
             "그늘과 실내 대피 가능 여부",
+            "강풍 여부",
             "방문 당일 날씨"
           ],
           "source_summary": [
@@ -4279,7 +8743,8 @@
             "source_url": "https://www.data.go.kr/data/15109158/fileData.do",
             "matched_name": "제주세계자연유산센터",
             "match_method": "roadview_exact_name",
-            "evidence_count": 50
+            "evidence_count": 50,
+            "point_role": "poi"
           },
           "safety_notes": [
             "돔형 영상관 이후 계단 구간은 회차 안내 필요",
@@ -4287,7 +8752,39 @@
           ],
           "avoid_for": [
             "돔형 영상관 이후 계단 동선 이용이 필요한 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": "제주특별자치도 제주시 조천읍 선교로 569-36",
+            "phone": "064-710-6959",
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": "2025-07-30",
+            "missing_fields": [
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": [
+              {
+                "fields": [
+                  "address",
+                  "phone"
+                ],
+                "status": "needs_check",
+                "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+                "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+                "source_type": "public_agency",
+                "checked_at": null,
+                "observed_at": null,
+                "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+              }
+            ]
+          }
         }
       ]
     },
@@ -4385,29 +8882,29 @@
           "confidence": "medium",
           "breakdown": {
             "source_trust": {
-              "score": 25,
+              "score": 22,
               "max": 25,
-              "reason": "정보 상태 verified, 출처 있음 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "mobility_fit": {
-              "score": 25,
+              "score": 24,
               "max": 25,
-              "reason": "도보 부담 very_low 및 경사·바닥 상태 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "facility_fit": {
               "score": 18,
               "max": 20,
-              "reason": "화장실, 주차, 휴식, 대여, 휠체어 접근성 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "theme_fit": {
               "score": 15,
               "max": 15,
-              "reason": "선호 테마와 indoor 카테고리 일치"
+              "reason": "선택 장소 4곳의 항목별 평균"
             },
             "safety_clarity": {
               "score": 15,
               "max": 15,
-              "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
+              "reason": "선택 장소 4곳의 항목별 평균"
             }
           }
         },
@@ -4426,11 +8923,11 @@
         "check_before_visit": [
           "휴식 공간",
           "혼잡도",
-          "식사 장소 제외 여부",
           "개별 식사 준비 가능 여부",
-          "혼잡 시간대",
-          "주말·성수기 방문 여부",
+          "식사 장소 제외 여부",
           "대기줄 여부",
+          "주말·성수기 방문 여부",
+          "혼잡 시간대",
           "휠체어 접근성",
           "바닥 상태"
         ],
@@ -4505,6 +9002,13 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 98,
+              "bonuses": [],
+              "deductions": [],
+              "caps": [],
+              "final_total": 98
             }
           },
           "fit_reasons": [
@@ -4516,11 +9020,11 @@
           "check_before_visit": [
             "휴식 공간",
             "혼잡도",
-            "식사 장소 제외 여부",
             "개별 식사 준비 가능 여부",
-            "혼잡 시간대",
+            "식사 장소 제외 여부",
+            "대기줄 여부",
             "주말·성수기 방문 여부",
-            "대기줄 여부"
+            "혼잡 시간대"
           ],
           "source_summary": [
             {
@@ -4616,7 +9120,8 @@
             "source_url": "https://www.data.go.kr/data/15109158/fileData.do",
             "matched_name": "제주문학관",
             "match_method": "roadview_exact_name",
-            "evidence_count": 31
+            "evidence_count": 31,
+            "point_role": "poi"
           },
           "safety_notes": [
             "행사 일정과 대여 가능 수량은 방문 전 확인 필요",
@@ -4625,7 +9130,39 @@
           ],
           "avoid_for": [
             "문학 전시보다 야외 자연 감상을 우선하는 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": "제주특별자치도 제주시 연북로 339",
+            "phone": "064-710-3490",
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": "2025-07-30",
+            "missing_fields": [
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": [
+              {
+                "fields": [
+                  "address",
+                  "phone"
+                ],
+                "status": "needs_check",
+                "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+                "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+                "source_type": "public_agency",
+                "checked_at": null,
+                "observed_at": null,
+                "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+              }
+            ]
+          }
         },
         {
           "spot_id": "jeju_forest_saryeoni_002",
@@ -4663,6 +9200,13 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 94,
+              "bonuses": [],
+              "deductions": [],
+              "caps": [],
+              "final_total": 94
             }
           },
           "fit_reasons": [
@@ -4675,11 +9219,11 @@
             "휴식 공간",
             "휠체어 접근성",
             "혼잡도",
-            "식사 장소 제외 여부",
             "개별 식사 준비 가능 여부",
-            "혼잡 시간대",
+            "식사 장소 제외 여부",
+            "대기줄 여부",
             "주말·성수기 방문 여부",
-            "대기줄 여부"
+            "혼잡 시간대"
           ],
           "source_summary": [
             {
@@ -4775,7 +9319,8 @@
             "source_url": "https://www.data.go.kr/data/15109158/fileData.do",
             "matched_name": "사려니숲길",
             "match_method": "roadview_partial_name",
-            "evidence_count": 57
+            "evidence_count": 57,
+            "point_role": "poi"
           },
           "safety_notes": [
             "무장애 나눔길 이용 위치를 방문 전 확인 필요",
@@ -4785,7 +9330,27 @@
           "avoid_for": [
             "출입구 경사 12도 이용이 어려운 사용자",
             "긴 숲길 체류가 부담되는 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": null,
+            "phone": null,
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": null,
+            "missing_fields": [
+              "address",
+              "phone",
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": []
+          }
         },
         {
           "spot_id": "jeju_forest_healing_001",
@@ -4823,6 +9388,13 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 91,
+              "bonuses": [],
+              "deductions": [],
+              "caps": [],
+              "final_total": 91
             }
           },
           "fit_reasons": [
@@ -4834,11 +9406,11 @@
           "check_before_visit": [
             "휠체어 접근성",
             "혼잡도",
-            "식사 장소 제외 여부",
             "개별 식사 준비 가능 여부",
-            "혼잡 시간대",
+            "식사 장소 제외 여부",
+            "대기줄 여부",
             "주말·성수기 방문 여부",
-            "대기줄 여부"
+            "혼잡 시간대"
           ],
           "source_summary": [
             {
@@ -4939,7 +9511,8 @@
             "source_url": "https://www.data.go.kr/data/15109158/fileData.do",
             "matched_name": "서귀포 치유의숲",
             "match_method": "roadview_exact_name",
-            "evidence_count": 128
+            "evidence_count": 128,
+            "point_role": "poi"
           },
           "safety_notes": [
             "데크길 이후 흙길 전환 구간은 회차 필요",
@@ -4950,7 +9523,39 @@
           "avoid_for": [
             "데크길 이후 흙길 전환 구간 이용이 어려운 사용자",
             "단차와 경사에 민감한 휠체어 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": "제주특별자치도 서귀포시 산록남로 2271",
+            "phone": "064-760-3067",
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": "2025-07-30",
+            "missing_fields": [
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": [
+              {
+                "fields": [
+                  "address",
+                  "phone"
+                ],
+                "status": "needs_check",
+                "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+                "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+                "source_type": "public_agency",
+                "checked_at": null,
+                "observed_at": null,
+                "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+              }
+            ]
+          }
         },
         {
           "spot_id": "jeju_indoor_hanran_016",
@@ -4988,6 +9593,13 @@
                 "max": 15,
                 "reason": "안전 메모, 회피 대상, 확인 필요 항목 기준"
               }
+            },
+            "calculation_trace": {
+              "base_total": 91,
+              "bonuses": [],
+              "deductions": [],
+              "caps": [],
+              "final_total": 91
             }
           },
           "fit_reasons": [
@@ -5000,11 +9612,11 @@
             "휠체어 접근성",
             "혼잡도",
             "바닥 상태",
-            "식사 장소 제외 여부",
             "개별 식사 준비 가능 여부",
-            "혼잡 시간대",
+            "식사 장소 제외 여부",
+            "대기줄 여부",
             "주말·성수기 방문 여부",
-            "대기줄 여부"
+            "혼잡 시간대"
           ],
           "source_summary": [
             {
@@ -5101,7 +9713,8 @@
             "source_url": "https://www.data.go.kr/data/15109158/fileData.do",
             "matched_name": "제주한란전시관",
             "match_method": "roadview_exact_name",
-            "evidence_count": 32
+            "evidence_count": 32,
+            "point_role": "poi"
           },
           "safety_notes": [
             "픽토그램 기반 정보라 세부 화장실·동선 상태 재확인 필요",
@@ -5109,7 +9722,39 @@
           ],
           "avoid_for": [
             "세부 관람로 폭과 휴식 위치 확인이 필요한 사용자"
-          ]
+          ],
+          "visit_info": {
+            "address": "제주특별자치도 서귀포시 돈내코로 67번길 19",
+            "phone": "064-710-6861",
+            "operating_hours": null,
+            "official_url": null,
+            "reservation_url": null,
+            "service_status": "unknown",
+            "notice": null,
+            "verification_status": "needs_check",
+            "last_verified_at": null,
+            "source_updated_at": "2025-07-30",
+            "missing_fields": [
+              "operating_hours",
+              "official_url",
+              "reservation_url"
+            ],
+            "evidence": [
+              {
+                "fields": [
+                  "address",
+                  "phone"
+                ],
+                "status": "needs_check",
+                "source_title": "사회적약자 시설 데이터(로드뷰) 구축 관광지 현황",
+                "source_url": "https://www.data.go.kr/data/15109153/fileData.do",
+                "source_type": "public_agency",
+                "checked_at": null,
+                "observed_at": null,
+                "note": "공공 카탈로그 원본 갱신일은 2025-07-30이며, 실제 현장 확인일이 아니므로 방문 전 공식 정보 재확인이 필요합니다."
+              }
+            ]
+          }
         }
       ]
     }

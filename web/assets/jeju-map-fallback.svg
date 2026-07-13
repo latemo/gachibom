@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="816" height="931" viewBox="0 0 816 931" role="img" aria-labelledby="title description">
+  <title id="title">제주도 로컬 지도</title>
+  <desc id="description">외부 지도 서비스가 느리거나 차단된 경우 추천 장소 위치를 표시하는 제주도 배경 지도입니다.</desc>
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eaf8fb"/>
+      <stop offset="1" stop-color="#d7edf4"/>
+    </linearGradient>
+    <linearGradient id="land" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#f4f8e9"/>
+      <stop offset="0.55" stop-color="#e4f0df"/>
+      <stop offset="1" stop-color="#cfe5d8"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#5c8997" flood-opacity="0.22"/>
+    </filter>
+    <path id="island" d="M82 485 105 352 174 253 286 177 428 116 567 143 683 226 744 333 757 449 716 566 633 674 517 751 365 805 225 773 124 682 78 574Z"/>
+    <clipPath id="islandClip"><use href="#island"/></clipPath>
+  </defs>
+  <rect width="816" height="931" fill="url(#sea)"/>
+  <g opacity="0.32" fill="none" stroke="#fff" stroke-width="2">
+    <path d="M0 114C173 60 265 128 408 82s250-40 408 18"/>
+    <path d="M0 824c154-62 273-20 406-58s261-32 410 34"/>
+    <path d="M-20 238c125-35 223-2 326-42s220-54 332-4 151 42 210 23"/>
+  </g>
+  <use href="#island" fill="url(#land)" stroke="#fff" stroke-width="18" filter="url(#shadow)"/>
+  <use href="#island" fill="none" stroke="#9bc9c2" stroke-width="3" opacity="0.72"/>
+  <g clip-path="url(#islandClip)" fill="none" stroke-linecap="round">
+    <g stroke="#fff" stroke-width="8" opacity="0.78">
+      <path d="M95 526C238 455 345 363 719 315"/>
+      <path d="M122 337C291 404 424 495 688 630"/>
+      <path d="M160 677C281 583 430 465 675 252"/>
+      <path d="M235 190C316 341 405 508 534 748"/>
+      <path d="M97 590C286 613 465 624 704 554"/>
+    </g>
+    <g stroke="#a9c8bd" stroke-width="2" opacity="0.52">
+      <path d="M104 421C267 302 454 256 712 371"/>
+      <path d="M132 620C279 516 463 388 703 428"/>
+      <path d="M187 249C318 306 502 346 724 486"/>
+      <path d="M197 730C344 649 479 571 649 209"/>
+    </g>
+  </g>
+  <g fill="#75a48e" opacity="0.58">
+    <circle cx="196" cy="304" r="8"/><circle cx="254" cy="223" r="6"/><circle cx="329" cy="282" r="9"/>
+    <circle cx="420" cy="196" r="7"/><circle cx="526" cy="224" r="10"/><circle cx="622" cy="286" r="7"/>
+    <circle cx="165" cy="467" r="9"/><circle cx="277" cy="431" r="6"/><circle cx="389" cy="389" r="11"/>
+    <circle cx="509" cy="364" r="7"/><circle cx="636" cy="425" r="9"/><circle cx="214" cy="596" r="7"/>
+    <circle cx="334" cy="588" r="10"/><circle cx="456" cy="535" r="7"/><circle cx="579" cy="571" r="11"/>
+    <circle cx="303" cy="700" r="7"/><circle cx="438" cy="687" r="9"/><circle cx="550" cy="657" r="6"/>
+  </g>
+  <g transform="translate(708 792)" fill="none" stroke="#55717a">
+    <circle cx="0" cy="0" r="35" fill="#fff" fill-opacity="0.7" stroke-opacity="0.25"/>
+    <path d="M0-23 7 9 0 5-7 9Z" fill="#55717a" stroke="none"/>
+    <text x="0" y="-42" fill="#55717a" stroke="none" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700">N</text>
+  </g>
+</svg>
