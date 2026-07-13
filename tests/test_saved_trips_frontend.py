@@ -848,8 +848,8 @@ for (const entry of entries) {
         self.assertIn('id="savedRoutesModal"', index)
         self.assertIn("data-open-saved-routes", index)
         self.assertGreaterEqual(index.count("data-save-current-route"), 2)
-        self.assertIn("styles.css?v=20260714-2", index)
-        self.assertIn("app.js?v=20260714-2", index)
+        self.assertIn("styles.css?v=20260714-3", index)
+        self.assertIn("app.js?v=20260714-3", index)
         self.assertIn("top-save-route-button", index)
         self.assertIn("live-map-save-button", index)
         self.assertIn("loadSavedRouteState();", app)
@@ -1042,6 +1042,41 @@ if (classes.has("map-fallback-active")) throw new Error("successful tile load mu
             check=False,
         )
         self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_natural_language_rag_query_and_grounded_citations_are_wired(self):
+        index = INDEX_FILE.read_text(encoding="utf-8")
+        app = APP_SCRIPT.read_text(encoding="utf-8")
+        styles = STYLES_FILE.read_text(encoding="utf-8")
+
+        self.assertIn('id="ragQueryInput"', index)
+        self.assertIn('maxlength="500"', index)
+        self.assertIn("저장 코스나 공유 링크에는 포함하지 않습니다", index)
+        self.assertIn('ragQuery: ""', app)
+        payload_source = app[
+            app.index("function recommendationPayload") : app.index("function helpRecommendationContext")
+        ]
+        self.assertIn("query: normalizeRagQuery(state.ragQuery)", payload_source)
+        runtime_gate_source = app[
+            app.index("function shouldRequestRuntimeApi") : app.index("function shouldRequestRouteProxy")
+        ]
+        self.assertIn('params.get("api") === "0"', runtime_gate_source)
+        self.assertIn("Boolean(normalizeRagQuery(state.ragQuery))", runtime_gate_source)
+        self.assertIn("function aiCitationItems", app)
+        self.assertIn("safeExternalUrl(citation.source_url)", app)
+        self.assertIn("function retrievalEvidenceItems", app)
+        self.assertIn("safeExternalUrl(source?.url)", app)
+        self.assertIn('rel="noopener noreferrer"', app)
+        self.assertIn("grounded-source", app)
+        self.assertIn('retrievalStatus === "resource_data_gap"', app)
+        self.assertIn("관련 없는 장소를 대신 추천하지 않았습니다", app)
+        selected_route_source = app[
+            app.index("function selectedRoute") : app.index("function routeEntriesForScenario")
+        ]
+        self.assertIn('"resource_data_gap", "no_match"', selected_route_source)
+        self.assertIn("return [];", selected_route_source)
+        self.assertIn("ai-citation-list", styles)
+        self.assertIn("rag-query-section", styles)
+        self.assertIn("rag-status-detail", styles)
 
     def test_runtime_routes_use_the_full_public_place_index(self):
         harness = r"""

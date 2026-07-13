@@ -18,6 +18,7 @@ const state = {
   savedRouteMessage: "",
   pendingSavedRouteDeleteId: null,
   profile: null,
+  ragQuery: "",
   runtimeScenario: null,
   apiStatus: "추천 준비 완료",
   apiState: {
@@ -524,6 +525,7 @@ function runtimeScenarioFromResponse(response) {
     recommendation: response.recommendation,
     places,
     ai_summary: response.ai_summary,
+    retrieval: response.retrieval,
     engine: response.engine,
     generated_at: response.generated_at
   };
@@ -615,13 +617,27 @@ function validLocation(location) {
   return Number.isFinite(latitude) && Number.isFinite(longitude);
 }
 
-function recommendationStatusText(summary) {
+function recommendationStatusText(response) {
+  if (response?.retrieval?.status === "resource_data_gap") {
+    return "지원서비스 근거 데이터 보강 필요";
+  }
+  if (response?.retrieval?.status === "no_match") {
+    return "검색 근거가 부족해 추천을 보류했습니다";
+  }
+  if (response?.retrieval?.status === "applied") {
+    return "공식 근거 검색과 접근성 재정렬 완료";
+  }
   return "실시간 계산 추천 반영 완료";
+}
+
+function normalizeRagQuery(value) {
+  return String(value || "").replace(/[\u0000-\u001f\u007f]+/g, " ").replace(/\s+/g, " ").trim().slice(0, 500);
 }
 
 function recommendationPayload() {
   return {
     traveler_summary: normalizeProfile(state.profile),
+    query: normalizeRagQuery(state.ragQuery),
     limit: RECOMMENDATION_LIMIT,
     use_ai: true,
     model: RECOMMENDATION_MODEL
@@ -726,7 +742,7 @@ function shouldRequestRuntimeApi() {
   if (params.get("api") === "0") {
     return false;
   }
-  return false;
+  return Boolean(normalizeRagQuery(state.ragQuery));
 }
 
 function shouldRequestRouteProxy() {
@@ -764,7 +780,7 @@ async function requestRuntimeRecommendation(sequence) {
       return false;
     }
     state.runtimeScenario = runtimeScenarioFromResponse(payload);
-    setApiState("success", recommendationStatusText(payload.ai_summary));
+    setApiState("success", recommendationStatusText(payload));
     return true;
   } catch (error) {
     if (requestSequence !== recommendationRequestSequence) {
@@ -797,6 +813,9 @@ async function refreshRuntimeRecommendation(options = {}) {
 }
 
 function selectedRoute(scenario) {
+  if (["resource_data_gap", "no_match"].includes(scenario?.retrieval?.status)) {
+    return [];
+  }
   return scenario.recommendation?.course?.route || [];
 }
 
@@ -2163,6 +2182,56 @@ function aiDetailSections(scenario, place) {
   };
 }
 
+function aiCitationItems(scenario, spotId) {
+  const citations = Array.isArray(scenario?.ai_summary?.citations)
+    ? scenario.ai_summary.citations
+    : [];
+  return citations.reduce((items, citation) => {
+    if (!citation || citation.spot_id !== spotId) {
+      return items;
+    }
+    const sourceUrl = safeExternalUrl(citation.source_url);
+    if (!sourceUrl) {
+      return items;
+    }
+    items.push({
+      evidenceId: String(citation.evidence_id || ""),
+      title: String(citation.source_title || "공식 근거"),
+      url: sourceUrl,
+      checkedAt: /^\d{4}-\d{2}-\d{2}$/.test(String(citation.checked_at || ""))
+        ? String(citation.checked_at)
+        : "확인일 재검토 필요",
+      status: String(citation.verification_status || "needs_check")
+    });
+    return items;
+  }, []).slice(0, 4);
+}
+
+function retrievalEvidenceItems(scenario, spotId) {
+  const matches = Array.isArray(scenario?.retrieval?.matches)
+    ? scenario.retrieval.matches
+    : [];
+  const match = matches.find((item) => item?.spot_id === spotId);
+  const sources = Array.isArray(match?.evidence_bundle?.sources)
+    ? match.evidence_bundle.sources
+    : [];
+  return sources.reduce((items, source) => {
+    const sourceUrl = safeExternalUrl(source?.url);
+    if (!sourceUrl) {
+      return items;
+    }
+    items.push({
+      title: String(source.title || "공식 근거"),
+      url: sourceUrl,
+      checkedAt: /^\d{4}-\d{2}-\d{2}$/.test(String(source.checked_at || ""))
+        ? String(source.checked_at)
+        : "확인일 재검토 필요",
+      status: String(source.status || "needs_check")
+    });
+    return items;
+  }, []).slice(0, 4);
+}
+
 function visitCheckItems(place, routeItem) {
   const checks = [
     routeItem.stay_tip,
@@ -2177,6 +2246,7 @@ function visitCheckItems(place, routeItem) {
 
 function renderServiceStatus() {
   const status = state.apiState.status;
+  const retrievalStatus = currentScenario()?.retrieval?.status;
   const statusPill = document.getElementById("serviceStatusPill");
   const serviceStatus = document.getElementById("serviceStatus");
   if (statusPill) {
@@ -2190,7 +2260,11 @@ function renderServiceStatus() {
 
   const canRetry = state.apiState.canRetry && shouldRequestRuntimeApi();
   const description = status === "success"
-    ? "선택한 조건에 맞춰 추천 코스와 상세 근거를 갱신했습니다."
+    ? retrievalStatus === "resource_data_gap"
+      ? "요청한 지원서비스는 아직 공식 근거 데이터가 부족해 관련 없는 장소를 대신 추천하지 않았습니다."
+      : retrievalStatus === "no_match"
+        ? "현재 검증된 장소에서 충분한 검색 근거를 찾지 못해 추천을 보류했습니다."
+        : "선택한 조건에 맞춰 추천 코스와 상세 근거를 갱신했습니다."
     : status === "loading"
       ? "선택한 조건에 맞춰 접근성 점수를 다시 계산하고 있습니다."
       : status === "error"
@@ -3263,6 +3337,12 @@ function renderAiNote(scenario) {
   const title = scenario.recommendation?.course?.title || scenario.title || "추천 코스";
   const rawScore = Number(scenario.recommendation?.score?.total);
   const score = Number.isFinite(rawScore) ? Math.round(rawScore) : "-";
+  const retrievalStatus = scenario.retrieval?.status;
+  const retrievalDescription = retrievalStatus === "resource_data_gap"
+    ? "요청한 지원서비스는 공식 근거 데이터가 부족해 관련 없는 장소를 대신 추천하지 않았습니다."
+    : retrievalStatus === "no_match"
+      ? "현재 검증된 장소에서 충분한 검색 근거를 찾지 못해 추천을 보류했습니다."
+      : "";
   const matchNote = document.getElementById("matchNote");
   if (matchNote) {
     matchNote.innerHTML = `
@@ -3274,6 +3354,7 @@ function renderAiNote(scenario) {
         <b title="${escapeHtml(title)}">${escapeHtml(title)}</b>
         <small>${escapeHtml(state.apiStatus)}</small>
       </span>
+      ${retrievalDescription ? `<span class="rag-status-detail" role="status">${escapeHtml(retrievalDescription)}</span>` : ""}
     `;
   }
   document.getElementById("safetyNotice").textContent = state.data.safety_notice || "";
@@ -3440,6 +3521,8 @@ function renderDetail(scenario) {
   const category = categoryLabels[place.category] || "접근성 장소";
   const duration = place.effort?.recommended_duration_minutes;
   const aiSections = aiDetailSections(scenario, place);
+  const aiCitations = aiCitationItems(scenario, place.spot_id);
+  const retrievalSources = retrievalEvidenceItems(scenario, place.spot_id);
   const locationEvidence = locationEvidenceItem(place);
   const validationMarkup = renderValidationEvidence(scenario);
 
@@ -3575,6 +3658,17 @@ function renderDetail(scenario) {
             <ul>${aiSections.nextChecks.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
           </div>
         ` : `<p>${escapeHtml(aiSections.fallback)}</p>`}
+        ${aiCitations.length ? `
+          <div class="ai-citation-list">
+            <strong>답변에 사용한 공식 근거</strong>
+            <ul>${aiCitations.map((citation) => `
+              <li>
+                <a href="${escapeHtml(citation.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(citation.title)}</a>
+                <small>${escapeHtml(citation.checkedAt)} · ${escapeHtml(displayLabel(citation.status))}</small>
+              </li>
+            `).join("")}</ul>
+          </div>
+        ` : ""}
       </div>
     </section>
     <section class="source-box">
@@ -3583,6 +3677,15 @@ function renderDetail(scenario) {
         <span>확인 기준</span>
       </div>
       <ul>
+        ${retrievalSources.map((source) => `
+          <li class="grounded-source">
+            <span>
+              <a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.title)}</a>
+              <small>정보 확인일 ${escapeHtml(source.checkedAt)}</small>
+            </span>
+            <b>${escapeHtml(displayLabel(source.status))}</b>
+          </li>
+        `).join("")}
         ${(sources.length ? sources : [{ title: "가치봄 추천 기준", status: "partial" }]).map((source) => `
           <li>
             <span>${escapeHtml(source.title || "출처명 확인 필요")}</span>
@@ -3684,8 +3787,12 @@ function openProfileModal() {
   }
   modal.hidden = false;
   document.body.classList.add("modal-open");
+  const queryInput = document.getElementById("ragQueryInput");
+  if (queryInput) {
+    queryInput.value = state.ragQuery || "";
+  }
   window.requestAnimationFrame(() => {
-    modal.querySelector(".modal-close-button")?.focus();
+    queryInput?.focus();
   });
 }
 
@@ -4599,6 +4706,7 @@ function bindEvents() {
 
     const applyModalButton = event.target.closest("[data-apply-profile-modal]");
     if (applyModalButton) {
+      state.ragQuery = normalizeRagQuery(document.getElementById("ragQueryInput")?.value);
       closeProfileModal();
       await refreshRuntimeRecommendation({ renderLoading: true });
       render();

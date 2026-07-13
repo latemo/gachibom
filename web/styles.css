@@ -1446,6 +1446,16 @@ body.concept-result-open .concept-result-panel {
   font-weight: 850;
 }
 
+#matchNote .rag-status-detail {
+  margin-top: 4px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(120, 175, 196, 0.28);
+  color: #76511f;
+  font-size: 10px;
+  line-height: 1.45;
+  font-weight: 800;
+}
+
 .scenario-list {
   display: grid;
   grid-template-columns: 1fr;
@@ -3590,6 +3600,35 @@ body.concept-result-open .concept-result-panel {
   overflow-wrap: anywhere;
 }
 
+.ai-citation-list ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.ai-citation-list li {
+  display: grid;
+  gap: 3px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid #eadfff;
+}
+
+.ai-citation-list a {
+  color: #4d2f94;
+  font-size: 11px;
+  line-height: 1.45;
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ai-citation-list small {
+  color: #747081;
+  font-size: 10px;
+  font-weight: 750;
+}
+
 .error-state {
   grid-column: 1 / -1;
   padding: 24px;
@@ -3820,6 +3859,25 @@ body.saved-routes-modal-open .helpbot-wing-wrap {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.source-box li.grounded-source span {
+  display: grid;
+  gap: 2px;
+  white-space: normal;
+}
+
+.source-box li.grounded-source a {
+  color: #146d68;
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.source-box li.grounded-source small {
+  color: #73807e;
+  font-size: 9px;
+  font-weight: 750;
 }
 
 .saved-route-place-copy b {
@@ -4745,6 +4803,49 @@ body.saved-routes-modal-open .helpbot-wing-wrap {
   margin: 0;
   font-size: 14px;
   font-weight: 950;
+}
+
+.rag-query-section {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 9px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid #d9ece9;
+  background: #f4fbfa;
+}
+
+.rag-query-section label {
+  color: #183f3c;
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.rag-query-section textarea {
+  width: 100%;
+  min-height: 70px;
+  resize: vertical;
+  padding: 12px 14px;
+  border: 1px solid #c9dedb;
+  border-radius: 12px;
+  background: #fff;
+  color: #222a32;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.rag-query-section textarea:focus {
+  outline: 3px solid rgba(22, 135, 126, 0.15);
+  border-color: var(--teal);
+}
+
+.rag-query-section p {
+  margin: 0;
+  color: #64736f;
+  font-size: 11px;
+  line-height: 1.5;
+  font-weight: 750;
 }
 
 .modal-scenario-list {
