@@ -1122,7 +1122,7 @@ function shouldRequestRouteProxy() {
   if (params.get("routeProxy") === "0" || params.get("api") === "0") {
     return false;
   }
-  return false;
+  return window.location.protocol !== "file:";
 }
 
 async function requestRuntimeRecommendation(sequence) {

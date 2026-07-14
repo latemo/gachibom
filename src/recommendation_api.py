@@ -4,14 +4,17 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 from datetime import date
 from functools import partial
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from math import isfinite
 from pathlib import Path
+from time import monotonic
 from typing import Any
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlparse
+from urllib.parse import urlencode, urlparse
 from urllib.request import Request, urlopen
 
 from src.help_chatbot_service import build_help_chatbot_reply, openai_help_chatbot_client_from_env
@@ -37,6 +40,11 @@ DEFAULT_VISIT_INFO_OVERRIDES_PATH = ROOT / "data" / "place_visit_info_overrides.
 MAX_REQUEST_BODY_BYTES = 1_000_000
 MAX_ROUTE_POINTS = 8
 ROUTE_PROVIDER_TIMEOUT_SECONDS = 7
+KAKAO_ROUTE_PROVIDER_TIMEOUT_SECONDS = 4
+KAKAO_MAX_ROUTE_POINTS = 7
+KAKAO_MOBILITY_REST_API_KEY_ENV = "KAKAO_MOBILITY_REST_API_KEY"
+KAKAO_MOBILITY_DIRECTIONS_URL = "https://apis-navi.kakaomobility.com/v1/directions"
+OSRM_DIRECTIONS_URL = "https://router.project-osrm.org/route/v1/driving"
 MAX_HELP_CHAT_QUESTION_BYTES = 2_000
 MAX_RECOMMENDATION_QUERY_BYTES = 2_000
 
@@ -99,6 +107,7 @@ class RecommendationApiHandler(SimpleHTTPRequestHandler):
                     "status": "ok",
                     "service": "jeju-maeum-recommendation-api",
                     "ai_model": openai_model_from_env(DEFAULT_OPENAI_MODEL),
+                    "kakao_mobility_configured": kakao_mobility_rest_api_key_configured(),
                     "places": len(self.places),
                     "features": {
                         "route_proxy": True,
@@ -333,34 +342,275 @@ def parse_route_points(value: Any) -> list[dict[str, Any]]:
     return points
 
 
+def kakao_mobility_rest_api_key_from_env() -> str:
+    return str(os.environ.get(KAKAO_MOBILITY_REST_API_KEY_ENV, "")).strip()
+
+
+def kakao_mobility_rest_api_key_configured() -> bool:
+    return bool(kakao_mobility_rest_api_key_from_env())
+
+
 def fetch_route_directions(points: list[dict[str, Any]]) -> dict[str, Any]:
-    coordinates = ";".join(f"{point['longitude']:.7f},{point['latitude']:.7f}" for point in points)
-    url = (
-        "https://router.project-osrm.org/route/v1/driving/"
-        f"{coordinates}?overview=full&geometries=geojson&steps=false"
+    api_key = kakao_mobility_rest_api_key_from_env()
+    if api_key and len(points) <= KAKAO_MAX_ROUTE_POINTS:
+        deadline = monotonic() + ROUTE_PROVIDER_TIMEOUT_SECONDS
+        try:
+            return fetch_kakao_route_directions(
+                points,
+                api_key=api_key,
+                timeout=KAKAO_ROUTE_PROVIDER_TIMEOUT_SECONDS,
+            )
+        except ApiRequestError as exc:
+            LOGGER.warning(
+                "Kakao Mobility route provider failed (%s); falling back to OSRM",
+                exc.code,
+            )
+            remaining_timeout = deadline - monotonic()
+            if remaining_timeout <= 0:
+                raise ApiRequestError(
+                    "경로 제공자 연결에 실패했습니다.",
+                    status=HTTPStatus.BAD_GATEWAY,
+                    code="route_provider_unavailable",
+                ) from exc
+            return fetch_osrm_route_directions(points, timeout=remaining_timeout)
+
+    return fetch_osrm_route_directions(points, timeout=ROUTE_PROVIDER_TIMEOUT_SECONDS)
+
+
+def fetch_kakao_route_directions(
+    points: list[dict[str, Any]],
+    *,
+    api_key: str,
+    timeout: int = KAKAO_ROUTE_PROVIDER_TIMEOUT_SECONDS,
+) -> dict[str, Any]:
+    query: dict[str, str] = {
+        "origin": route_coordinate_text(points[0]),
+        "destination": route_coordinate_text(points[-1]),
+        "priority": "RECOMMEND",
+        "summary": "false",
+        "alternatives": "false",
+        "road_details": "false",
+    }
+    if len(points) > 2:
+        query["waypoints"] = "|".join(route_coordinate_text(point) for point in points[1:-1])
+
+    request = Request(
+        f"{KAKAO_MOBILITY_DIRECTIONS_URL}?{urlencode(query)}",
+        headers={
+            "Accept": "application/json",
+            "Authorization": f"KakaoAK {api_key}",
+            "Content-Type": "application/json",
+            "User-Agent": "jeju-maeum-accessible-travel/1.0",
+        },
     )
+    payload = read_route_provider_json(request, timeout=timeout)
+    route = first_route(payload)
+    if route.get("result_code") != 0:
+        raise ApiRequestError(
+            "사용 가능한 경로를 찾지 못했습니다.",
+            status=HTTPStatus.BAD_GATEWAY,
+            code="route_not_found",
+        )
+
+    summary = route.get("summary")
+    if not isinstance(summary, dict):
+        raise ApiRequestError(
+            "경로 제공자 응답이 올바르지 않습니다.",
+            status=HTTPStatus.BAD_GATEWAY,
+            code="route_provider_invalid_response",
+        )
+    distance = route_metric(summary.get("distance"))
+    duration = route_metric(summary.get("duration"))
+    coordinates = kakao_route_coordinates(route)
+    return build_route_response(
+        provider="kakao_mobility_directions",
+        points=points,
+        coordinates=coordinates,
+        distance=distance,
+        duration=duration,
+    )
+
+
+def fetch_osrm_route_directions(
+    points: list[dict[str, Any]],
+    *,
+    timeout: float = ROUTE_PROVIDER_TIMEOUT_SECONDS,
+) -> dict[str, Any]:
+    coordinates = ";".join(f"{point['longitude']:.7f},{point['latitude']:.7f}" for point in points)
+    url = f"{OSRM_DIRECTIONS_URL}/{coordinates}?overview=full&geometries=geojson&steps=false"
     request = Request(url, headers={"User-Agent": "jeju-maeum-accessible-travel/1.0"})
+    payload = read_route_provider_json(request, timeout=timeout)
+
+    route = first_route(payload)
+    coordinates_payload = route.get("geometry", {}).get("coordinates") if isinstance(route, dict) else None
+    if not isinstance(route, dict) or not isinstance(coordinates_payload, list) or len(coordinates_payload) < 2:
+        raise ApiRequestError("사용 가능한 경로를 찾지 못했습니다.", status=HTTPStatus.BAD_GATEWAY, code="route_not_found")
+
+    return build_route_response(
+        provider="osrm_public_route_proxy",
+        points=points,
+        coordinates=coordinates_payload,
+        distance=route.get("distance"),
+        duration=route.get("duration"),
+    )
+
+
+def read_route_provider_json(request: Request, *, timeout: float) -> dict[str, Any]:
     try:
-        with urlopen(request, timeout=ROUTE_PROVIDER_TIMEOUT_SECONDS) as response:
+        with urlopen(request, timeout=timeout) as response:
             payload = json.loads(response.read().decode("utf-8"))
     except HTTPError as exc:
         raise ApiRequestError("경로 제공자가 응답하지 않았습니다.", status=HTTPStatus.BAD_GATEWAY, code="route_provider_error") from exc
     except (URLError, TimeoutError) as exc:
         raise ApiRequestError("경로 제공자 연결에 실패했습니다.", status=HTTPStatus.BAD_GATEWAY, code="route_provider_unavailable") from exc
+    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        raise ApiRequestError(
+            "경로 제공자 응답이 올바르지 않습니다.",
+            status=HTTPStatus.BAD_GATEWAY,
+            code="route_provider_invalid_response",
+        ) from exc
+    if not isinstance(payload, dict):
+        raise ApiRequestError(
+            "경로 제공자 응답이 올바르지 않습니다.",
+            status=HTTPStatus.BAD_GATEWAY,
+            code="route_provider_invalid_response",
+        )
+    return payload
 
-    route = (payload.get("routes") or [None])[0]
-    coordinates_payload = route.get("geometry", {}).get("coordinates") if isinstance(route, dict) else None
-    if not isinstance(route, dict) or not isinstance(coordinates_payload, list) or len(coordinates_payload) < 2:
-        raise ApiRequestError("사용 가능한 경로를 찾지 못했습니다.", status=HTTPStatus.BAD_GATEWAY, code="route_not_found")
 
+def first_route(payload: dict[str, Any]) -> dict[str, Any]:
+    routes = payload.get("routes")
+    if not isinstance(routes, list):
+        raise ApiRequestError(
+            "경로 제공자 응답이 올바르지 않습니다.",
+            status=HTTPStatus.BAD_GATEWAY,
+            code="route_provider_invalid_response",
+        )
+    if not routes:
+        raise ApiRequestError(
+            "사용 가능한 경로를 찾지 못했습니다.",
+            status=HTTPStatus.BAD_GATEWAY,
+            code="route_not_found",
+        )
+    route = routes[0]
+    if not isinstance(route, dict):
+        raise ApiRequestError(
+            "경로 제공자 응답이 올바르지 않습니다.",
+            status=HTTPStatus.BAD_GATEWAY,
+            code="route_provider_invalid_response",
+        )
+    return route
+
+
+def route_coordinate_text(point: dict[str, Any]) -> str:
+    return f"{point['longitude']:.7f},{point['latitude']:.7f}"
+
+
+def route_metric(value: Any) -> float:
+    if isinstance(value, bool):
+        raise ApiRequestError(
+            "경로 제공자 응답이 올바르지 않습니다.",
+            status=HTTPStatus.BAD_GATEWAY,
+            code="route_provider_invalid_response",
+        )
+    try:
+        metric = float(value)
+    except (TypeError, ValueError) as exc:
+        raise ApiRequestError(
+            "경로 제공자 응답이 올바르지 않습니다.",
+            status=HTTPStatus.BAD_GATEWAY,
+            code="route_provider_invalid_response",
+        ) from exc
+    if not isfinite(metric) or metric < 0:
+        raise ApiRequestError(
+            "경로 제공자 응답이 올바르지 않습니다.",
+            status=HTTPStatus.BAD_GATEWAY,
+            code="route_provider_invalid_response",
+        )
+    return metric
+
+
+def kakao_route_coordinates(route: dict[str, Any]) -> list[list[float]]:
+    sections = route.get("sections")
+    if not isinstance(sections, list):
+        raise ApiRequestError(
+            "경로 제공자 응답이 올바르지 않습니다.",
+            status=HTTPStatus.BAD_GATEWAY,
+            code="route_provider_invalid_response",
+        )
+
+    coordinates: list[list[float]] = []
+    for section in sections:
+        roads = section.get("roads") if isinstance(section, dict) else None
+        if not isinstance(roads, list):
+            raise ApiRequestError(
+                "경로 제공자 응답이 올바르지 않습니다.",
+                status=HTTPStatus.BAD_GATEWAY,
+                code="route_provider_invalid_response",
+            )
+        for road in roads:
+            vertexes = road.get("vertexes") if isinstance(road, dict) else None
+            if not isinstance(vertexes, list) or len(vertexes) % 2:
+                raise ApiRequestError(
+                    "경로 제공자 응답이 올바르지 않습니다.",
+                    status=HTTPStatus.BAD_GATEWAY,
+                    code="route_provider_invalid_response",
+                )
+            for index in range(0, len(vertexes), 2):
+                coordinate = route_coordinate_pair(vertexes[index], vertexes[index + 1])
+                if not coordinates or coordinates[-1] != coordinate:
+                    coordinates.append(coordinate)
+
+    if len(coordinates) < 2:
+        raise ApiRequestError(
+            "사용 가능한 경로를 찾지 못했습니다.",
+            status=HTTPStatus.BAD_GATEWAY,
+            code="route_not_found",
+        )
+    return coordinates
+
+
+def route_coordinate_pair(longitude_value: Any, latitude_value: Any) -> list[float]:
+    if isinstance(longitude_value, bool) or isinstance(latitude_value, bool):
+        raise ApiRequestError(
+            "경로 제공자 응답이 올바르지 않습니다.",
+            status=HTTPStatus.BAD_GATEWAY,
+            code="route_provider_invalid_response",
+        )
+    try:
+        longitude = float(longitude_value)
+        latitude = float(latitude_value)
+    except (TypeError, ValueError) as exc:
+        raise ApiRequestError(
+            "경로 제공자 응답이 올바르지 않습니다.",
+            status=HTTPStatus.BAD_GATEWAY,
+            code="route_provider_invalid_response",
+        ) from exc
+    if not isfinite(longitude) or not isfinite(latitude) or not -180 <= longitude <= 180 or not -90 <= latitude <= 90:
+        raise ApiRequestError(
+            "경로 제공자 응답이 올바르지 않습니다.",
+            status=HTTPStatus.BAD_GATEWAY,
+            code="route_provider_invalid_response",
+        )
+    return [longitude, latitude]
+
+
+def build_route_response(
+    *,
+    provider: str,
+    points: list[dict[str, Any]],
+    coordinates: list[Any],
+    distance: Any,
+    duration: Any,
+) -> dict[str, Any]:
     return {
-        "provider": "osrm_public_route_proxy",
+        "provider": provider,
         "mode": "driving",
-        "distance_meters": route.get("distance"),
-        "duration_seconds": route.get("duration"),
+        "distance_meters": distance,
+        "duration_seconds": duration,
         "geometry": {
             "type": "LineString",
-            "coordinates": coordinates_payload,
+            "coordinates": coordinates,
         },
         "waypoints": [
             {

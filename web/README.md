@@ -11,12 +11,15 @@
 ```powershell
 $env:OPENAI_API_KEY="발급받은 키"
 $env:OPENAI_MODEL="gpt-5-mini"
+$env:KAKAO_MOBILITY_REST_API_KEY="발급받은 카카오 REST API 키"
 python scripts/serve_recommendation_api.py --port 8790 --generated-at 2026-07-09
 ```
 
 브라우저에서 실행한 포트 주소를 연다. 예: `http://127.0.0.1:8792/`
 
 `OPENAI_API_KEY`가 없으면 API는 정상 동작하되 AI 설명만 생략하고 로컬 점수 근거를 사용한다. 화면에는 API 연결, AI 키 없음, 실패 후 정적 전환 상태가 별도로 표시된다.
+
+`KAKAO_MOBILITY_REST_API_KEY`는 브라우저로 전달하지 않는 서버 전용 값이다. 설정하면 서버 경로 API가 카카오모빌리티 길찾기를 우선 사용하고, 키가 없거나 카카오 호출이 실패하거나 경유지를 포함해 8지점인 경로는 공개 OSRM으로 자동 대체한다.
 
 ## 정적 화면만 실행
 
@@ -88,6 +91,8 @@ python scripts/build_service_preflight_report.py --workspace-root . --output dat
 1. 같은 서버의 `/api/routes` 프록시 사용
 2. 프록시가 없으면 브라우저에서 공개 경로 API 직접 호출
 3. 둘 다 실패하면 좌표 기반 요약 경로로 자동 대체
+
+지도 렌더링은 Leaflet을 그대로 유지한다. 같은 서버의 `/api/routes`는 카카오모빌리티 길찾기를 우선 사용하며, 카카오 키 없음·호출 실패·8지점 경로에서는 OSRM으로 대체해 기존 프런트 계약을 유지한다.
 
 현재 검증된 기본 코스는 제주문학관 → 제주한란전시관 → 사려니숲길 무장애나눔길 → 제주국제컨벤션센터이며, `8792` 서버 기준 약 `95.0km`, 약 `2시간 2분`, 경로 좌표 `2,764`개를 반환했다.
 

@@ -845,6 +845,48 @@ for (const entry of entries) {
         )
         self.assertEqual(result.returncode, 0, result.stderr)
 
+    def test_route_proxy_auto_detects_http_server_and_respects_overrides(self):
+        harness = r"""
+const fs = require("fs");
+const vm = require("vm");
+
+function assert(condition, message) {
+  if (!condition) throw new Error(message);
+}
+
+const app = fs.readFileSync(process.argv[1], "utf8");
+const start = app.indexOf("function shouldRequestRouteProxy()");
+const end = app.indexOf("async function requestRuntimeRecommendation", start);
+assert(start >= 0 && end > start, "route proxy gate source must exist");
+const gateSource = app.slice(start, end);
+
+function routeProxyEnabled(search, protocol) {
+  const context = {
+    window: { location: { search, protocol } },
+    URLSearchParams
+  };
+  context.globalThis = context;
+  vm.createContext(context);
+  vm.runInContext(`${gateSource}\nglobalThis.__result = shouldRequestRouteProxy();`, context);
+  return context.__result;
+}
+
+assert(routeProxyEnabled("", "http:") === true, "HTTP servers should auto-detect the route proxy");
+assert(routeProxyEnabled("", "https:") === true, "HTTPS servers should auto-detect the route proxy");
+assert(routeProxyEnabled("", "file:") === false, "file previews should skip the route proxy");
+assert(routeProxyEnabled("?routeProxy=0", "http:") === false, "routeProxy=0 should disable the proxy");
+assert(routeProxyEnabled("?api=0", "http:") === false, "api=0 should keep the legacy disable override");
+assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 should explicitly enable the proxy");
+"""
+        result = subprocess.run(
+            ["node", "-e", harness, str(APP_SCRIPT)],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+
     def test_site_wires_saved_routes_before_the_main_app(self):
         index = INDEX_FILE.read_text(encoding="utf-8")
         app = APP_SCRIPT.read_text(encoding="utf-8")

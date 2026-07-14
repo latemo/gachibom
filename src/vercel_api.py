@@ -23,6 +23,7 @@ from src.recommendation_api import (
     MAX_REQUEST_BODY_BYTES,
     ApiRequestError,
     fetch_route_directions,
+    kakao_mobility_rest_api_key_configured,
     load_optional_json_list,
     load_places,
     parse_bool,
@@ -75,6 +76,7 @@ def build_health_payload() -> dict[str, Any]:
         "runtime": "vercel-python",
         "ai_model": openai_model_from_env(DEFAULT_OPENAI_MODEL),
         "openai_api_key_configured": bool(os.environ.get("OPENAI_API_KEY")),
+        "kakao_mobility_configured": kakao_mobility_rest_api_key_configured(),
         "places": len(state["places"]),
         "features": {
             "route_proxy": True,
