@@ -299,79 +299,263 @@ const DEFAULT_PLACE_IMAGE = {
   policy: "대표 이미지 미수급"
 };
 
-const PLACE_IMAGE_VERSION = "20260710-1";
+const PLACE_IMAGE_VERSION = "20260714-1";
+const JEJU_ROADVIEW_IMAGE_SOURCE_URL = "https://www.data.go.kr/data/15110209/fileData.do";
+
+function placeImage(src, caption, {
+  source,
+  sourceUrl,
+  license,
+  policy = "실제 장소 대표 이미지 · 16:9 크롭/리사이즈",
+  fit = "cover"
+}) {
+  return {
+    src: `${src}?v=${PLACE_IMAGE_VERSION}`,
+    caption,
+    source,
+    sourceUrl,
+    license,
+    policy,
+    fit
+  };
+}
+
+function roadviewPlaceImage(src, caption) {
+  return placeImage(src, caption, {
+    source: "제주특별자치도 사회적약자 시설 로드뷰 공공데이터",
+    sourceUrl: JEJU_ROADVIEW_IMAGE_SOURCE_URL,
+    license: "이용허락범위 제한 없음 · 16:9 크롭/리사이즈"
+  });
+}
+
+function commonsPlaceImage(src, caption, source, sourceUrl, license, policy) {
+  return placeImage(src, caption, {
+    source,
+    sourceUrl,
+    license: `${license} · 16:9 크롭/리사이즈`,
+    policy: policy || "실제 장소 대표 이미지 · 16:9 크롭/리사이즈"
+  });
+}
 
 const PLACE_IMAGE_POLICY = {
-  jeju_indoor_literature_022: {
-    src: `assets/JEJULITERMU-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "제주문학관 외관",
-    source: "제주특별자치도 공식 블로그",
-    sourceUrl: "https://blog.naver.com/happyjejudo/223187158714",
-    policy: "실제 장소 대표 이미지"
-  },
-  jeju_indoor_hanran_016: {
-    src: `assets/HALLANEX-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "제주한란전시관 외관",
-    source: "제주특별자치도 공식 블로그",
-    sourceUrl: "https://blog.naver.com/happyjejudo/223391669826",
-    policy: "실제 장소 대표 이미지"
-  },
-  jeju_indoor_icc_032: {
-    src: `assets/ICCJEJU-accessible-tourism.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "제주국제컨벤션센터와 중문 해안 전경",
-    source: "대한민국역사박물관 현대사아카이브",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:%EC%A0%9C%EC%A3%BC_%EC%A4%91%EB%AC%B8%EA%B4%80%EA%B4%91%EB%8B%A8%EC%A7%80_%EA%B5%AD%EC%A0%9C%EC%BB%A8%EB%B2%A4%EC%85%98%EC%84%BC%ED%84%B0.jpg",
-    license: "공공누리 제1유형",
-    policy: "실제 장소 대표 이미지"
-  },
-  jeju_indoor_mandeok_museum_009: {
-    src: `assets/MANDEOK-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "김만덕기념관과 야외 정원",
-    source: "제주특별자치도 공공데이터",
-    sourceUrl: "https://www.data.go.kr/data/15109158/fileData.do",
-    license: "이용허락범위 제한 없음",
-    policy: "실제 장소 대표 이미지"
-  },
-  jeju_indoor_worldheritage_011: {
-    src: `assets/WNHCENTER-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "제주세계자연유산센터 전경",
-    source: "제주특별자치도 공공데이터",
-    sourceUrl: "https://www.data.go.kr/data/15109158/fileData.do",
-    license: "이용허락범위 제한 없음",
-    policy: "실제 장소 대표 이미지"
-  },
-  jeju_forest_saryeoni_002: {
-    src: `assets/SARANI-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "사려니숲길 무장애 데크길",
-    source: "제주특별자치도 공공데이터",
-    sourceUrl: "https://www.data.go.kr/data/15109158/fileData.do",
-    license: "이용허락범위 제한 없음",
-    policy: "실제 장소 대표 이미지"
-  },
-  jeju_forest_healing_001: {
-    src: `assets/HEALING-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "서귀포 치유의숲 무장애 데크길",
-    source: "제주특별자치도 공공데이터",
-    sourceUrl: "https://www.data.go.kr/data/15109158/fileData.do",
-    license: "이용허락범위 제한 없음",
-    policy: "실제 장소 대표 이미지"
-  },
-  jeju_cafe_osulloc_013: {
-    src: `assets/OSULLOC-easyjeju.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "오설록 티 뮤지엄 외관",
-    source: "Wikimedia Commons · 골뱅이",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:O%27Sulloc_Tea_Museum,_Jeju_(%EC%98%A4%EC%84%A4%EB%A1%9D_%EB%85%B9%EC%B0%A8%EB%B0%95%EB%AC%BC%EA%B4%80,_%EC%A0%9C%EC%A3%BC)_-_panoramio.jpg",
-    license: "CC BY-SA 3.0",
-    policy: "실제 장소 대표 이미지"
-  },
-  jeju_rest_sinsan_015: {
-    src: `assets/SHINSANPA-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "신산공원 산책 광장",
-    source: "제주특별자치도 공공데이터",
-    sourceUrl: "https://www.data.go.kr/data/15109158/fileData.do",
-    license: "이용허락범위 제한 없음",
-    policy: "실제 장소 대표 이미지"
-  }
+  // 제주특별자치도 사회적약자 시설 로드뷰 공공데이터
+  jeju_culture_folk_village_007: roadviewPlaceImage(
+    "assets/places/jeju_culture_folk_village_007--jeju-roadview--JEJUFOLKVIL-1-032.jpg",
+    "제주민속촌 전통 가옥 거리"
+  ),
+  jeju_culture_hangmong_026: roadviewPlaceImage(
+    "assets/places/jeju_culture_hangmong_026--jeju-roadview--ANTIMONG-1-009.jpg",
+    "항몽유적지 진입부와 안내 공간"
+  ),
+  jeju_culture_mokgwana_008: roadviewPlaceImage(
+    "assets/places/jeju_culture_mokgwana_008--jeju-roadview--MOKGWANA-1-001.jpg",
+    "제주목관아 진입부와 주변 보행로"
+  ),
+  jeju_forest_cheonjiyeon_014: roadviewPlaceImage(
+    "assets/places/jeju_forest_cheonjiyeon_014--jeju-roadview--CHONJIYEON-1-009.jpg",
+    "천지연폭포 접근 주차장과 진입부"
+  ),
+  jeju_forest_halla_005: roadviewPlaceImage(
+    "assets/places/jeju_forest_halla_005--jeju-roadview--HALLAARBOR-1-022.jpg",
+    "한라수목원 숲 산책로"
+  ),
+  jeju_forest_healing_001: roadviewPlaceImage(
+    "assets/HEALING-1-001.jpg",
+    "서귀포 치유의숲 무장애 데크길"
+  ),
+  jeju_forest_recreation_003: roadviewPlaceImage(
+    "assets/places/jeju_forest_recreation_003--jeju-roadview--SEOGWIFOREST-1-024.jpg",
+    "서귀포 자연휴양림 무장애 산책로"
+  ),
+  jeju_forest_red_oreum_004: roadviewPlaceImage(
+    "assets/places/jeju_forest_red_oreum_004--jeju-roadview--REDOREUMROAD-1-056.jpg",
+    "붉은오름자연휴양림 무장애 데크길"
+  ),
+  jeju_forest_saryeoni_002: roadviewPlaceImage(
+    "assets/SARANI-1-001.jpg",
+    "사려니숲길 무장애 데크길"
+  ),
+  jeju_indoor_art_museum_033: roadviewPlaceImage(
+    "assets/places/jeju_indoor_art_museum_033--jeju-roadview--JEJUARTMU-1-008.jpg",
+    "제주도립미술관 외관과 진입 광장"
+  ),
+  jeju_indoor_haenyeo_024: roadviewPlaceImage(
+    "assets/places/jeju_indoor_haenyeo_024--jeju-roadview--HAENYEOMU-1-018.jpg",
+    "제주해녀박물관 야외 전경"
+  ),
+  jeju_indoor_hanran_016: roadviewPlaceImage(
+    "assets/places/jeju_indoor_hanran_016--jeju-roadview--HALLANEX-1-016.jpg",
+    "제주한란전시관 온실 외관과 산책로"
+  ),
+  jeju_indoor_literature_022: roadviewPlaceImage(
+    "assets/places/jeju_indoor_literature_022--jeju-roadview--JEJULITERMU-1-001.jpg",
+    "제주문학관 진입로와 외관"
+  ),
+  jeju_indoor_mandeok_museum_009: roadviewPlaceImage(
+    "assets/MANDEOK-1-001.jpg",
+    "김만덕기념관과 야외 정원"
+  ),
+  jeju_indoor_starlight_025: roadviewPlaceImage(
+    "assets/places/jeju_indoor_starlight_025--jeju-roadview--STARLIGHT-2-002.jpg",
+    "제주별빛누리공원 전시 공간"
+  ),
+  jeju_indoor_worldheritage_011: roadviewPlaceImage(
+    "assets/WNHCENTER-1-001.jpg",
+    "제주세계자연유산센터 전경"
+  ),
+  jeju_rest_sinsan_015: roadviewPlaceImage(
+    "assets/SHINSANPA-1-001.jpg",
+    "신산공원 산책 광장"
+  ),
+  jeju_sea_saeyeongyo_039: roadviewPlaceImage(
+    "assets/places/jeju_sea_saeyeongyo_039--jeju-roadview--NEWBRIDGE-1-014.jpg",
+    "새연교 전망 데크와 교량"
+  ),
+  jeju_tourism_weak_001: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_001--jeju-roadview--JEJU43PA-1-001.jpg",
+    "제주4·3평화공원 기념관 전경"
+  ),
+  jeju_tourism_weak_005: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_005--jeju-roadview--GIDANG-1-001.jpg",
+    "기당미술관 진입부와 외관"
+  ),
+  jeju_tourism_weak_006: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_006--jeju-roadview--KIMCHANG-1-022.jpg",
+    "김창열미술관 출입구 전경"
+  ),
+  jeju_tourism_weak_011: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_011--jeju-roadview--JEJUSTONE-1-035.jpg",
+    "제주돌문화공원 돌담 산책로"
+  ),
+  jeju_tourism_weak_013: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_013--jeju-roadview--MANJANGCAVE-1-016.jpg",
+    "만장굴 관람 진입로"
+  ),
+  jeju_tourism_weak_019: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_019--jeju-roadview--BIJARIM-1-038.jpg",
+    "비자림 숲길"
+  ),
+  jeju_tourism_weak_023: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_023--jeju-roadview--SEOPJIKOJI-1-009.jpg",
+    "섭지코지 해안 진입로"
+  ),
+  jeju_tourism_weak_037: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_037--jeju-roadview--JEOLMULFOREST-1-008.jpg",
+    "절물자연휴양림 산책로"
+  ),
+  jeju_tourism_weak_038: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_038--jeju-roadview--AEROSPACEMU-2-016.jpg",
+    "제주항공우주박물관 실내 전시 공간"
+  ),
+  jeju_tourism_weak_039: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_039--jeju-roadview--JEJUCONTEM-1-008.jpg",
+    "제주현대미술관 출입구와 외관"
+  ),
+
+  // Wikimedia Commons 및 공공누리 재사용 허용 이미지
+  jeju_cafe_osulloc_013: commonsPlaceImage(
+    "assets/OSULLOC-easyjeju.jpg",
+    "오설록 티 뮤지엄 외관",
+    "Wikimedia Commons · 골뱅이",
+    "https://commons.wikimedia.org/wiki/File:O%27Sulloc_Tea_Museum,_Jeju_(%EC%98%A4%EC%84%A4%EB%A1%9D_%EB%85%B9%EC%B0%A8%EB%B0%95%EB%AC%BC%EA%B4%80,_%EC%A0%9C%EC%A3%BC)_-_panoramio.jpg",
+    "CC BY-SA 3.0"
+  ),
+  jeju_food_market_olle_035: commonsPlaceImage(
+    "assets/places/jeju_food_market_olle_035--commons--seogwipo-maeil-olle-market-01--hero-crop.jpg",
+    "서귀포매일올레시장 내부 통로",
+    "Wikimedia Commons · Seefooddiet",
+    "https://commons.wikimedia.org/wiki/File:Seogwipo_Maeil_Olle_Market_01.jpg",
+    "CC BY-SA 4.0"
+  ),
+  jeju_forest_thinking_garden_027: commonsPlaceImage(
+    "assets/places/jeju_forest_thinking_garden_027--commons--spirited-garden-06--hero-crop.jpg",
+    "생각하는 정원 연못과 정원 풍경",
+    "Wikimedia Commons · Bernard Gagnon",
+    "https://commons.wikimedia.org/wiki/File:Spirited_Garden_06.jpg",
+    "CC0 1.0"
+  ),
+  jeju_forest_yeomiji_012: commonsPlaceImage(
+    "assets/places/jeju_forest_yeomiji_012--commons--yeomiji--hero-crop.jpg",
+    "여미지식물원 온실 외관",
+    "Wikimedia Commons · WSTAY.com",
+    "https://commons.wikimedia.org/wiki/File:Yeomiji.jpg",
+    "CC BY 3.0"
+  ),
+  jeju_indoor_icc_032: placeImage(
+    "assets/ICCJEJU-accessible-tourism.jpg",
+    "제주국제컨벤션센터와 중문 해안 전경",
+    {
+      source: "대한민국역사박물관 현대사아카이브",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:%EC%A0%9C%EC%A3%BC_%EC%A4%91%EB%AC%B8%EA%B4%80%EA%B4%91%EB%8B%A8%EC%A7%80_%EA%B5%AD%EC%A0%9C%EC%BB%A8%EB%B2%A4%EC%85%98%EC%84%BC%ED%84%B0.jpg",
+      license: "공공누리 제1유형",
+      policy: "실제 장소 대표 이미지"
+    }
+  ),
+  jeju_other_dongmun_market_029: commonsPlaceImage(
+    "assets/places/jeju_other_dongmun_market_029--commons--dongmun-market-01--hero-crop.jpg",
+    "제주 동문재래시장 입구",
+    "Wikimedia Commons · Abasaa",
+    "https://commons.wikimedia.org/wiki/File:Dongmun_Market_01.JPG",
+    "Public domain"
+  ),
+  jeju_rest_area_geolmae_038: commonsPlaceImage(
+    "assets/places/jeju_rest_area_geolmae_038--commons--route-7-1--hero-crop.jpg",
+    "천지연 걸매생태공원 산책 데크",
+    "Wikimedia Commons · Jeju Olle Foundation",
+    "https://commons.wikimedia.org/wiki/File:Jejuolle-route-7-1(5).jpg",
+    "CC BY-SA 4.0"
+  ),
+  jeju_sea_cruise_042: commonsPlaceImage(
+    "assets/places/jeju_sea_cruise_042--commons--seogwipo-harbor--hero-crop.jpg",
+    "서귀포유람선 출항지인 서귀포항 전경",
+    "Wikimedia Commons · SpaceFox",
+    "https://commons.wikimedia.org/wiki/File:Le_port_de_Seogwipo,_Cor%C3%A9e_du_Sud.jpg",
+    "CC BY 4.0",
+    "출항지 대체 이미지 · 16:9 크롭/리사이즈"
+  ),
+  jeju_sea_olle14_018: commonsPlaceImage(
+    "assets/places/jeju_sea_olle14_018--commons--route-14--hero-crop.jpg",
+    "올레 14코스 금능해변에서 본 비양도",
+    "Wikimedia Commons · Jeju Olle Foundation",
+    "https://commons.wikimedia.org/wiki/File:Jeju_Olle_Route_14_(2).jpg",
+    "CC BY-SA 4.0"
+  ),
+  jeju_sea_olle17_019: commonsPlaceImage(
+    "assets/places/jeju_sea_olle17_019--commons--route-17--hero-crop.jpg",
+    "올레 17코스 용연계곡과 용연다리",
+    "Wikimedia Commons · Jeju Olle Foundation",
+    "https://commons.wikimedia.org/wiki/File:Jejuolle-route-17(4).jpg",
+    "CC BY-SA 4.0"
+  ),
+  jeju_sea_olle6_017: commonsPlaceImage(
+    "assets/places/jeju_sea_olle6_017--commons--route-06--hero-crop.jpg",
+    "올레 6코스 시작점 쇠소깍 하구",
+    "Wikimedia Commons · Jeju Olle Foundation",
+    "https://commons.wikimedia.org/wiki/File:Jejuolle-route-06(1).jpg",
+    "CC BY-SA 4.0"
+  ),
+  jeju_transport_airport_031: commonsPlaceImage(
+    "assets/places/jeju_transport_airport_031--commons--jejuairport2024--hero-crop.jpg",
+    "제주국제공항 여객터미널 전경",
+    "Wikimedia Commons · Kimhs5400",
+    "https://commons.wikimedia.org/wiki/File:Jejuairport2024.jpg",
+    "CC BY 4.0"
+  ),
+
+  jeju_culture_seotal_oreum_030: commonsPlaceImage(
+    "assets/places/jeju_culture_seotal_oreum_030--commons--aldreu-hangar--hero-crop.jpg",
+    "섯알오름 인근 알뜨르비행장 격납고",
+    "Wikimedia Commons · Jjw",
+    "https://commons.wikimedia.org/wiki/File:Aldreu_Japanese_underground_hangar_at_WWII.jpg",
+    "CC BY-SA 4.0",
+    "인접 역사유적 대표 이미지 · 16:9 크롭/리사이즈"
+  )
+};
+
+const PLACE_IMAGE_PENDING_REASON = {
+  jeju_indoor_bunker_lumieres_010: "개별 이미지 이용유형 확인 중",
+  jeju_restaurant_nangtteule_036: "재사용 허용 대표 이미지 확인 중",
+  jeju_shopping_donghwa_040: "상업 재사용 허용 대표 이미지 확인 중"
 };
 
 function escapeHtml(value) {
@@ -1076,6 +1260,7 @@ function placeholderTitleLines(name) {
 function placeholderForPlace(place) {
   const name = String(place?.name || "추천 장소").trim();
   const category = categoryLabels[place?.category] || "제주 여행";
+  const pendingReason = PLACE_IMAGE_PENDING_REASON[place?.spot_id] || "대표 이미지 준비 중";
   const palettes = [
     { background: "#17433f", accent: "#f2c84b", text: "#ffffff" },
     { background: "#7a3043", accent: "#9de0c2", text: "#ffffff" },
@@ -1099,14 +1284,15 @@ function placeholderForPlace(place) {
       <rect x="72" y="76" width="88" height="8" fill="${palette.accent}"/>
       <text x="72" y="142" fill="${palette.accent}" font-family="Arial, Malgun Gothic, sans-serif" font-size="26" font-weight="700">${escapeHtml(category)}</text>
       <g font-family="Arial, Malgun Gothic, sans-serif">${titleMarkup}</g>
-      <text x="72" y="462" fill="${palette.text}" fill-opacity="0.78" font-family="Arial, Malgun Gothic, sans-serif" font-size="24">대표 이미지 준비 중</text>
+      <text x="72" y="462" fill="${palette.text}" fill-opacity="0.78" font-family="Arial, Malgun Gothic, sans-serif" font-size="24">${escapeHtml(pendingReason)}</text>
     </svg>
   `;
   return {
     src: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`,
-    caption: `${name} 대표 이미지 준비 중`,
+    caption: `${name} · ${pendingReason}`,
     source: "서비스 이미지 안내",
-    policy: "대표 이미지 준비 중"
+    policy: pendingReason,
+    fit: "cover"
   };
 }
 
@@ -1129,6 +1315,7 @@ function visualForPlace(place, usedSources = null) {
     sourceUrl: policy.sourceUrl || "",
     license: policy.license || "",
     policy: policy.policy,
+    fit: policy.fit || "cover",
     fallbackSrc: placeholder.src,
     fallbackCaption: placeholder.caption,
     fallbackSource: placeholder.source
@@ -1874,7 +2061,7 @@ function savedRouteCardMarkup(item, { shared = false } = {}) {
         </div>
         <b>${places.length}곳</b>
       </header>
-      <ol class="saved-route-places">
+      <ol class="saved-route-places" aria-label="${shared ? "공유받은 코스 방문 순서" : "저장한 코스 방문 순서"}">
         ${places.map((place, index) => {
           const duration = Number(place?.effort?.recommended_duration_minutes);
           const infoUrl = placeInfoUrl(place);
@@ -1884,28 +2071,35 @@ function savedRouteCardMarkup(item, { shared = false } = {}) {
           return `
             <li class="${place.unavailable ? "unavailable" : ""}">
               <i>${index + 1}</i>
-              <span class="saved-route-place-copy">
-                <b>${escapeHtml(place.name)}</b>
-                <small>${escapeHtml([
-                  place.visit_info?.address || place.region || "제주",
-                  pointLabel,
-                  place.unavailable
-                    ? "저장 기록은 유지됩니다"
-                    : (Number.isFinite(duration) && duration > 0 ? `체류 ${formatTravelMinutes(duration)}` : "체류시간 확인")
-                 ].filter(Boolean).join(" · "))}</small>
-              </span>
-              <span class="saved-route-place-actions">
-                ${!shared ? `
-                  <button type="button" data-move-saved-route="${escapeHtml(item.id)}" data-move-saved-spot="${escapeHtml(place.spot_id)}" data-move-direction="-1" aria-label="${escapeHtml(place.name)} 순서를 위로 이동" title="위로" ${index === 0 ? "disabled" : ""}><i class="bi bi-chevron-up" aria-hidden="true"></i></button>
-                  <button type="button" data-move-saved-route="${escapeHtml(item.id)}" data-move-saved-spot="${escapeHtml(place.spot_id)}" data-move-direction="1" aria-label="${escapeHtml(place.name)} 순서를 아래로 이동" title="아래로" ${index === places.length - 1 ? "disabled" : ""}><i class="bi bi-chevron-down" aria-hidden="true"></i></button>
-                ` : ""}
-                ${place.unavailable
-                  ? `<span class="saved-route-place-unavailable">현재 정보 없음</span>`
-                  : `<a href="${escapeHtml(kakaoPlaceUrl(place))}" target="_blank" rel="noopener noreferrer" aria-label="카카오맵에서 ${escapeHtml(place.name)} 보기">지도</a>`}
-                ${!place.unavailable && infoUrl ? `<a href="${escapeHtml(infoUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(place.name)} 정보 확인">정보</a>` : ""}
-                ${!place.unavailable && phoneHref ? `<a href="${escapeHtml(phoneHref)}" aria-label="${escapeHtml(place.name)} 전화 연결">전화</a>` : ""}
-                ${!place.unavailable && reservationUrl ? `<a href="${escapeHtml(reservationUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(place.name)} 예약하기">예약</a>` : ""}
-              </span>
+              <div class="saved-route-place-main">
+                <span class="saved-route-place-copy">
+                  <b>${escapeHtml(place.name)}</b>
+                  <small>${escapeHtml([
+                    place.visit_info?.address || place.region || "제주",
+                    pointLabel,
+                    place.unavailable
+                      ? "저장 기록은 유지됩니다"
+                      : (Number.isFinite(duration) && duration > 0 ? `체류 ${formatTravelMinutes(duration)}` : "체류시간 확인")
+                   ].filter(Boolean).join(" · "))}</small>
+                </span>
+                <div class="saved-route-place-actions">
+                  ${!shared ? `
+                    <div class="saved-route-order-actions" role="group" aria-label="${escapeHtml(place.name)} 방문 순서 변경">
+                      <span class="saved-route-action-label">순서 변경</span>
+                      <button type="button" data-move-saved-route="${escapeHtml(item.id)}" data-move-saved-spot="${escapeHtml(place.spot_id)}" data-move-direction="-1" aria-label="${escapeHtml(place.name)} 순서를 위로 이동" ${index === 0 ? "disabled" : ""}><i class="bi bi-chevron-up" aria-hidden="true"></i><span>위로</span></button>
+                      <button type="button" data-move-saved-route="${escapeHtml(item.id)}" data-move-saved-spot="${escapeHtml(place.spot_id)}" data-move-direction="1" aria-label="${escapeHtml(place.name)} 순서를 아래로 이동" ${index === places.length - 1 ? "disabled" : ""}><i class="bi bi-chevron-down" aria-hidden="true"></i><span>아래로</span></button>
+                    </div>
+                  ` : ""}
+                  <div class="saved-route-place-links" role="group" aria-label="${escapeHtml(place.name)} 장소 바로가기">
+                    ${place.unavailable
+                      ? `<span class="saved-route-place-unavailable">현재 정보 없음</span>`
+                      : `<a class="saved-route-map-link" href="${escapeHtml(kakaoPlaceUrl(place))}" target="_blank" rel="noopener noreferrer" aria-label="카카오맵에서 ${escapeHtml(place.name)} 보기"><i class="bi bi-map" aria-hidden="true"></i><span>지도</span></a>`}
+                    ${!place.unavailable && infoUrl ? `<a href="${escapeHtml(infoUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(place.name)} 정보 확인"><i class="bi bi-info-circle" aria-hidden="true"></i><span>정보</span></a>` : ""}
+                    ${!place.unavailable && phoneHref ? `<a href="${escapeHtml(phoneHref)}" aria-label="${escapeHtml(place.name)} 전화 연결"><i class="bi bi-telephone" aria-hidden="true"></i><span>전화</span></a>` : ""}
+                    ${!place.unavailable && reservationUrl ? `<a href="${escapeHtml(reservationUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(place.name)} 예약하기"><i class="bi bi-calendar-check" aria-hidden="true"></i><span>예약</span></a>` : ""}
+                  </div>
+                </div>
+              </div>
             </li>
           `;
         }).join("")}
@@ -2120,7 +2314,7 @@ function renderConceptPage(scenario) {
   if (summaryPlaces) {
     summaryPlaces.innerHTML = previewPlaces.map((place) => `
       <span class="concept-preview-item ${place.located ? "located" : "needs-check"}">
-        <img class="concept-preview-image" src="${escapeHtml(place.visual.src)}" alt="${escapeHtml(place.visual.alt)}" loading="lazy" decoding="async" data-fallback-src="${escapeHtml(place.visual.fallbackSrc)}" data-fallback-caption="${escapeHtml(place.visual.fallbackCaption)}" data-fallback-source="${escapeHtml(place.visual.fallbackSource)}">
+        <img class="concept-preview-image${place.visual.fit === "contain" ? " is-contain" : ""}" src="${escapeHtml(place.visual.src)}" alt="${escapeHtml(place.visual.alt)}" loading="lazy" decoding="async" data-fallback-src="${escapeHtml(place.visual.fallbackSrc)}" data-fallback-caption="${escapeHtml(place.visual.fallbackCaption)}" data-fallback-source="${escapeHtml(place.visual.fallbackSource)}">
         <b>${escapeHtml(place.order)}. ${escapeHtml(place.name)}</b>
         <small>${escapeHtml(place.category)} · ${escapeHtml(place.verified)}</small>
       </span>
@@ -3724,7 +3918,7 @@ function renderMapPopupCard(scenario, route, scoreTotal) {
   return `
     <button class="map-place-card map-popup-card rank-${index + 1} ${location ? "located" : ""} active" type="button" data-spot-id="${escapeHtml(place.spot_id)}" data-map-bound-index="${index}" ${locationAttrs} title="${escapeHtml(place.name)} 상세 보기" aria-label="${index + 1}번 추천 장소 ${escapeHtml(place.name)} 상세 보기" style="left:${(bound.x / 816) * 100}%; top:${(bound.y / 931) * 100}%; width:${(bound.width / 816) * 100}%; height:${(bound.height / 931) * 100}%;">
       <span class="map-popup-media">
-        <img class="map-popup-image" src="${escapeHtml(visual.src)}" alt="${escapeHtml(visual.alt)}" loading="lazy" decoding="async">
+        <img class="map-popup-image${visual.fit === "contain" ? " is-contain" : ""}" src="${escapeHtml(visual.src)}" alt="${escapeHtml(visual.alt)}" loading="lazy" decoding="async">
         <span class="map-rank">${index + 1}</span>
         <span class="map-popup-status ${escapeHtml(verificationStatus)}">${escapeHtml(verificationLabel(place))}</span>
       </span>
@@ -3819,7 +4013,7 @@ function renderDetail(scenario) {
       <button class="close-button" type="button" data-close-detail aria-label="선택 장소 상세 닫기">×</button>
     </div>
     <button class="detail-photo" type="button" data-open-image-modal data-image-src="${escapeHtml(visual.src)}" data-image-alt="${escapeHtml(visual.alt)}" data-image-caption="${escapeHtml(visual.caption)}" data-image-source="${escapeHtml(visual.source)}" data-image-source-url="${escapeHtml(visual.sourceUrl)}" data-image-license="${escapeHtml(visual.license)}" data-image-policy="${escapeHtml(visual.policy)}">
-      <img class="detail-photo-image" src="${escapeHtml(visual.src)}" alt="${escapeHtml(visual.alt)}" loading="lazy" decoding="async" data-fallback-src="${escapeHtml(visual.fallbackSrc)}" data-fallback-caption="${escapeHtml(visual.fallbackCaption)}" data-fallback-source="${escapeHtml(visual.fallbackSource)}">
+      <img class="detail-photo-image${visual.fit === "contain" ? " is-contain" : ""}" src="${escapeHtml(visual.src)}" alt="${escapeHtml(visual.alt)}" loading="lazy" decoding="async" data-fallback-src="${escapeHtml(visual.fallbackSrc)}" data-fallback-caption="${escapeHtml(visual.fallbackCaption)}" data-fallback-source="${escapeHtml(visual.fallbackSource)}">
       <span>${escapeHtml(visual.policy)}</span>
     </button>
     <div class="image-credit">

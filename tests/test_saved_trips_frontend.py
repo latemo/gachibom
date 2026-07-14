@@ -585,9 +585,15 @@ assert(itineraryMarkup.includes('value="2026-08-01"'), "saved date should render
 assert(itineraryMarkup.includes('value="09:30"'), "saved start time should render");
 assert(itineraryMarkup.includes("예상 체류"), "stay duration should render");
 assert(itineraryMarkup.includes("data-move-saved-route"), "order controls should render");
+assert(itineraryMarkup.includes('aria-label="저장한 코스 방문 순서"'), "saved stops should expose their visit order");
+assert(itineraryMarkup.includes('class="saved-route-order-actions" role="group"'), "order controls should be grouped separately");
+assert(itineraryMarkup.includes('class="saved-route-place-links" role="group"'), "place links should be grouped separately");
+assert(itineraryMarkup.includes('class="saved-route-map-link"'), "map should be the primary place action");
+assert(itineraryMarkup.includes("<span>위로</span>"), "move controls should have a visible label");
+assert(itineraryMarkup.includes("<span>아래로</span>"), "move controls should have a visible label");
 assert(itineraryMarkup.includes("https://map.kakao.com/link/by/car/"), "full Kakao route should render when coordinates exist");
-assert(itineraryMarkup.includes("정보</a>"), "public information link should render");
-assert(itineraryMarkup.includes(">전화</a>"), "verified-format phone action should render when available");
+assert(itineraryMarkup.includes("<span>정보</span></a>"), "public information link should render");
+assert(itineraryMarkup.includes("<span>전화</span></a>"), "verified-format phone action should render when available");
 assert(itineraryMarkup.includes("제주특별자치도"), "saved route should render the public address when available");
 assert(itineraryMarkup.includes("saved-route-mini-map"), "saved route should render an embedded mini map");
 assert(itineraryMarkup.includes("assets/jeju-map-fallback.svg"), "mini map should use the local map asset");
@@ -644,7 +650,7 @@ const retiredMarkup = app.savedRouteCardMarkup(retiredItem);
 assert(retiredMarkup.includes("현재 정보 없음"), "retired place should render a neutral tombstone");
 assert(retiredMarkup.includes("이 코스는 공유할 수 없습니다"), "share restriction should be explained");
 assert(!retiredMarkup.includes("data-share-saved-route"), "a route with a retired place must not expose sharing");
-assert((retiredMarkup.match(/>지도<\/a>/g) || []).length === 1, "retired place must not expose a map link");
+assert((retiredMarkup.match(/<span>지도<\/span><\/a>/g) || []).length === 1, "retired place must not expose a map link");
 
 const interruptedSpotIds = [savedSpotIds[0], "retired_spot_999", savedSpotIds[1]];
 const interruptedItem = {
@@ -848,8 +854,8 @@ for (const entry of entries) {
         self.assertIn('id="savedRoutesModal"', index)
         self.assertIn("data-open-saved-routes", index)
         self.assertGreaterEqual(index.count("data-save-current-route"), 2)
-        self.assertIn("styles.css?v=20260714-4", index)
-        self.assertIn("app.js?v=20260714-8", index)
+        self.assertIn("styles.css?v=20260714-10", index)
+        self.assertIn("app.js?v=20260714-10", index)
         self.assertIn("top-save-route-button", index)
         self.assertIn("live-map-save-button", index)
         self.assertIn("loadSavedRouteState();", app)
@@ -890,6 +896,15 @@ for (const entry of entries) {
         )
         self.assertIn(".saved-route-itinerary", styles)
         self.assertIn(".saved-route-place-actions", styles)
+        saved_route_place_styles = styles[
+            styles.index(".saved-route-places {") : styles.index(".saved-route-mini-map {")
+        ]
+        self.assertNotIn("repeat(2, minmax(0, 1fr))", saved_route_place_styles)
+        self.assertIn(".saved-route-place-main", saved_route_place_styles)
+        self.assertIn(".saved-route-order-actions", saved_route_place_styles)
+        self.assertIn(".saved-route-place-links .saved-route-map-link", saved_route_place_styles)
+        self.assertIn("white-space: normal", saved_route_place_styles)
+        self.assertIn("button:focus-visible", saved_route_place_styles)
         self.assertIn(".saved-route-mini-map", styles)
         self.assertIn(".visit-info-card", styles)
         self.assertIn(".live-marker-role", styles)

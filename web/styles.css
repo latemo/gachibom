@@ -901,6 +901,14 @@ body.concept-result-open .concept-result-panel {
   box-shadow: inset 0 0 0 1px rgba(0, 20, 82, 0.08);
 }
 
+.concept-preview-list .concept-preview-image.is-contain,
+.map-popup-image.is-contain,
+.detail-photo img.is-contain {
+  object-fit: contain;
+  background: #eef2f5;
+  transform: none;
+}
+
 .concept-preview-list span.located {
   border-left-color: transparent;
 }
@@ -3704,7 +3712,7 @@ body.saved-routes-modal-open .helpbot-wing-wrap {
 
 .saved-routes-modal-panel {
   position: relative;
-  width: min(820px, 100%);
+  width: min(1120px, 100%);
   max-height: min(840px, calc(100vh - 48px));
   overflow: hidden;
   display: grid;
@@ -3812,53 +3820,74 @@ body.saved-routes-modal-open .helpbot-wing-wrap {
 
 .saved-route-places {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 7px;
-  margin: 13px 0 0;
-  padding: 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  margin: 16px 0 0;
+  padding: 4px 16px;
+  border: 1px solid #e1e8ef;
+  border-radius: 16px;
+  background: #f9fbfc;
   list-style: none;
 }
 
 .saved-route-places li {
+  position: relative;
   min-width: 0;
   display: grid;
-  grid-template-columns: 20px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 9px;
-  border-radius: 12px;
-  background: #f6f8fb;
+  grid-template-columns: 32px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e6ebf0;
   color: #354151;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.35;
   font-weight: 850;
 }
 
+.saved-route-places li:last-child {
+  border-bottom: 0;
+}
+
+.saved-route-places li:not(:last-child)::after {
+  position: absolute;
+  z-index: 0;
+  left: 15px;
+  top: 46px;
+  bottom: -15px;
+  width: 2px;
+  background: #c9e7e2;
+  content: "";
+}
+
 .saved-route-places li > i {
-  width: 20px;
-  height: 20px;
-  flex: 0 0 20px;
+  position: relative;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
   display: grid;
   place-items: center;
   border-radius: 50%;
+  border: 2px solid #ccebe5;
   background: #fff;
-  color: var(--teal);
-  font-size: 10px;
+  color: #087b72;
+  font-size: 12px;
   font-style: normal;
   font-weight: 950;
+  box-shadow: 0 0 0 4px #f9fbfc;
+}
+
+.saved-route-place-main {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
 }
 
 .saved-route-place-copy {
   min-width: 0;
   display: grid;
-  gap: 2px;
-}
-
-.saved-route-place-copy b,
-.saved-route-place-copy small {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  gap: 3px;
 }
 
 .source-box li.grounded-source span {
@@ -3881,31 +3910,62 @@ body.saved-routes-modal-open .helpbot-wing-wrap {
 }
 
 .saved-route-place-copy b {
-  color: #354151;
-  font-size: 11px;
+  color: #263342;
+  font-size: 14px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 
 .saved-route-place-copy small {
-  color: #7b8796;
-  font-size: 11px;
-  font-weight: 800;
+  color: #6d7b8b;
+  font-size: 12px;
+  line-height: 1.55;
+  font-weight: 760;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .saved-route-place-actions {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 4px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  padding-top: 9px;
+  border-top: 1px dashed #dfe5eb;
+}
+
+.saved-route-order-actions,
+.saved-route-place-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.saved-route-order-actions {
+  padding: 4px;
+  border-radius: 10px;
+  background: #eef2f6;
+}
+
+.saved-route-action-label {
+  padding: 0 5px;
+  color: #667485;
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 900;
 }
 
 .saved-route-place-actions button,
 .saved-route-place-actions a,
 .saved-route-place-unavailable {
-  min-width: 34px;
-  min-height: 34px;
-  display: inline-grid;
-  place-items: center;
-  padding: 0 7px;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 10px;
   border: 1px solid #dfe6ee;
   border-radius: 8px;
   background: #fff;
@@ -3916,8 +3976,17 @@ body.saved-routes-modal-open .helpbot-wing-wrap {
   text-decoration: none;
 }
 
+.saved-route-place-actions button {
+  cursor: pointer;
+}
+
+.saved-route-place-actions button i,
+.saved-route-place-actions a i {
+  font-size: 13px;
+}
+
 .saved-route-places li.unavailable {
-  background: #f7f4f1;
+  background: linear-gradient(90deg, transparent, #fbf7f3 10%, #fbf7f3 90%, transparent);
 }
 
 .saved-route-place-unavailable {
@@ -3928,13 +3997,32 @@ body.saved-routes-modal-open .helpbot-wing-wrap {
 }
 
 .saved-route-place-actions button:disabled {
-  opacity: 0.35;
+  opacity: 0.4;
   cursor: default;
 }
 
+.saved-route-place-actions button:not(:disabled):hover,
 .saved-route-place-actions a:hover {
   border-color: #95c9bd;
   color: #0b7069;
+}
+
+.saved-route-place-actions button:focus-visible,
+.saved-route-place-actions a:focus-visible {
+  outline: 3px solid rgba(17, 140, 131, 0.24);
+  outline-offset: 2px;
+}
+
+.saved-route-place-links .saved-route-map-link {
+  border-color: #0e887e;
+  background: #0e887e;
+  color: #fff;
+}
+
+.saved-route-place-links .saved-route-map-link:hover {
+  border-color: #076d66;
+  background: #076d66;
+  color: #fff;
 }
 
 .saved-route-mini-map {
@@ -5697,18 +5785,32 @@ body.saved-routes-modal-open .helpbot-wing-wrap {
   }
 
   .saved-route-places {
-    grid-template-columns: 1fr;
+    padding: 4px 12px;
   }
 
   .saved-route-places li {
-    grid-template-columns: 20px minmax(0, 1fr);
+    grid-template-columns: 32px minmax(0, 1fr);
     align-items: start;
+    gap: 10px;
   }
 
   .saved-route-place-actions {
-    grid-column: 2;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .saved-route-order-actions,
+  .saved-route-place-links {
+    width: 100%;
+  }
+
+  .saved-route-order-actions button {
+    flex: 1 1 0;
+  }
+
+  .saved-route-place-links a,
+  .saved-route-place-links .saved-route-place-unavailable {
+    flex: 1 1 auto;
   }
 
   .saved-route-place-actions button,
