@@ -252,6 +252,47 @@
 
 final result: blocked
 
+## 2026-07-14 조건 수정 섹션 세로 배치 QA
+
+- source visual truth path: `C:\Users\jejunu\Pictures\Screenshots\스크린샷 2026-07-14 224138.png`
+- implementation screenshot path: 캡처 불가 (인앱 브라우저 연결 없음)
+- viewport: 기준 이미지 1102 × 448
+- state: 조건 수정 모달에서 상황 선택과 상세 조건이 나란히 표시된 상태
+- target state: 상황 선택을 첫 번째 전체 폭 행, 상세 조건을 두 번째 전체 폭 행으로 배치
+- full-view comparison evidence: 변경 전 기준 이미지를 열어 좌우 2열 배치를 확인했으나 변경 후 동일 상태 캡처는 만들지 못함
+- focused region comparison evidence: 코드상 상황 카드 5열·상세 조건 단일 행을 확인했으나 실제 줄바꿈과 높이 비교는 미완료
+
+**Findings**
+
+- [P2] 변경 후 두 행의 실제 밀도와 줄바꿈 검증이 남아 있음.
+  Location: `.profile-modal-body`, `.modal-scenario-list`, `.modal-option-list`.
+  Evidence: 상황 선택이 상세 조건보다 먼저 오고 각각 전체 폭을 사용하도록 구현됐으나 렌더링 캡처가 없음.
+  Impact: 760px 모달에서 다섯 카드 설명과 여덟 조건 칩이 의도대로 한 줄에 유지되는지 확정할 수 없음.
+  Fix: 동일 모달 상태를 넓은 화면과 390px에서 캡처해 전후 비교.
+
+**Required Fidelity Surfaces**
+
+- Fonts and typography: 기존 제목·설명·칩 글꼴 규칙을 유지함.
+- Spacing and layout rhythm: 본문을 단일 열, 섹션 간격 18px, 상황 카드 5열로 변경함.
+- Colors and visual tokens: 카드 톤과 선택 색상, 조건 칩 색상을 변경하지 않음.
+- Image quality and asset fidelity: 기존 Bootstrap Icons를 그대로 유지함.
+- Copy and content: 상황 선택을 먼저 배치하고 모든 제목·설명 문구를 유지함.
+
+**Comparison History**
+
+- 이전 증거: 1102 × 448 화면에서 상황 선택은 왼쪽, 상세 조건은 오른쪽에 배치됨.
+- 적용 수정: 두 섹션을 전체 폭 세로 순서로 전환하고 넓은 화면에서는 각각 단일 행을 유지함.
+- 기능 증거: 프런트엔드 테스트 22개, JavaScript 문법 검사, 로컬 HTML/CSS HTTP 200 응답 통과.
+- 시각 증거: 인앱 브라우저가 없어 변경 후 구현 화면 캡처 및 합성 비교를 수행하지 못함.
+
+**Implementation Checklist**
+
+- 넓은 화면에서 상황 카드 5개 단일 행 확인
+- 상세 조건 8개 칩 단일 행 확인
+- 390px에서 상황 카드 2열과 조건 칩 줄바꿈 확인
+
+final result: blocked
+
 ## 2026-07-14 저장 코스 순서 변경 및 대표 이미지 QA
 
 **대상**
@@ -282,3 +323,42 @@ final result: blocked
 - 2차: 모달 폭을 1120px로 조정하고 동일 화면을 다시 캡처함. 네 장소의 순서와 각 행동 그룹이 한 화면에서 분명하게 구분됨.
 
 final result: passed
+
+## 2026-07-14 조건 수정 상황 카드 컴팩트화 QA
+
+- source visual truth path: `C:\Users\jejunu\Pictures\Screenshots\스크린샷 2026-07-14 223208.png`
+- implementation screenshot path: 캡처 불가 (인앱 브라우저 연결 없음)
+- viewport: 기준 이미지 538 × 703
+- state: 조건 수정 모달의 상황 선택 영역, `회복 중` 선택 상태
+- full-view comparison evidence: 기준 이미지는 열어 확인했으나 동일 상태의 구현 화면을 캡처하지 못해 비교 불가
+- focused region comparison evidence: 상황 선택 카드 영역의 구현 캡처가 없어 아이콘 정렬과 2열 밀도를 시각 비교하지 못함
+
+**Findings**
+
+- [P2] 구현 화면의 시각 검증이 남아 있음.
+  Location: 조건 수정 모달의 `.modal-scenario-list`.
+  Evidence: 소스 화면은 5개의 세로형 대형 카드이고 구현은 2열·64px 최소 높이로 변경됐으나 새 브라우저 캡처가 없음.
+  Impact: 390px 부근에서 설명 문구 줄바꿈과 마지막 홀수 카드의 균형을 확정할 수 없음.
+  Fix: 동일 모달 상태를 538px과 390px에서 캡처해 기준 이미지와 한 화면에서 비교.
+
+**Required Fidelity Surfaces**
+
+- Fonts and typography: 기존 글꼴·굵기·타이틀과 설명 크기를 유지했으나 렌더링 비교는 미완료.
+- Spacing and layout rhythm: 상황 카드를 2열, 8px 간격, 64px 최소 높이로 축소함.
+- Colors and visual tokens: 기존 rose·cream·purple·mint·blue 톤과 선택 테두리를 유지함.
+- Image quality and asset fidelity: 문자 기호를 제거하고 Bootstrap Icons의 의미형 아이콘을 사용함.
+- Copy and content: 카드 제목과 설명 문구, 선택 동작을 유지함.
+
+**Comparison History**
+
+- 구현 변경: 5개 세로 카드에서 2열 컴팩트 카드로 전환하고 타이틀별 아이콘을 교체함.
+- 기능 증거: JavaScript 문법 검사, 프런트엔드 테스트 22개, 로컬 HTML/CSS/JS HTTP 200 응답 통과.
+- 시각 증거: 인앱 브라우저가 없어 구현 화면 캡처 및 전후 합성 비교를 수행하지 못함.
+
+**Implementation Checklist**
+
+- 538px 조건 수정 모달에서 아이콘·타이틀·설명 정렬 확인
+- 390px에서 2열 카드 줄바꿈과 가로 오버플로 확인
+- 선택·키보드 포커스 상태 확인
+
+final result: blocked

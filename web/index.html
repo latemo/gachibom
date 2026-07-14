@@ -23,7 +23,7 @@
   </script>
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css?v=1.9.4">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="styles.css?v=20260714-10">
+  <link rel="stylesheet" href="styles.css?v=20260714-18">
   <link rel="stylesheet" href="help-chatbot.css?v=20260710-12">
 </head>
 <body class="modal-open site-intro-open">
@@ -109,39 +109,26 @@
     </section>
 
     <main class="journey-layout" id="recommendations">
-      <aside class="companion-card" aria-label="여행 조건">
-        <div class="left-hero">
-          <h1><span class="hero-word">당신</span>의 속도에 맞춘 <span class="hero-word">제주</span></h1>
-          <p>당신의 몸과 마음을 이해하는 여행, 가치봄 제주가 함께합니다.</p>
+      <section class="journey-condition-bar" aria-labelledby="journeyConditionTitle">
+        <div class="journey-condition-heading">
+          <span>맞춤 추천</span>
+          <h2 id="journeyConditionTitle">현재 여행 조건</h2>
         </div>
-
-        <section class="condition-card">
-          <div class="section-row condition-summary-row">
-            <h2>현재 여행 조건</h2>
-            <button class="condition-edit-button" type="button" data-open-profile-modal>
-              <i class="bi bi-sliders" aria-hidden="true"></i>
-              <span>조건 수정</span>
-            </button>
-          </div>
-          <div id="matchNote">추천 기준 계산 중</div>
-          <div class="scenario-list" id="scenarioList"></div>
-        </section>
-
-        <section class="condition-card official-course-card">
-          <div class="section-row">
-            <h2>제주관광공사 추천여행코스</h2>
-            <a class="official-course-all-link" id="officialCourseMeta" href="tourism-courses.html">전체 보기</a>
-          </div>
-          <div class="official-course-list" id="officialCourseList"></div>
-        </section>
-
-        <div class="medical-note" id="safetyNotice"></div>
-
-        <figure class="quote-card">
-          <blockquote>“천천히, 그러나 확실하게<br>제주의 바람을 느껴보세요.”</blockquote>
-          <img src="assets/quote-seongsan-ilchulbong.jpg?v=20260710-1" alt="성산일출봉과 제주 동부 해안 항공 전경" loading="lazy" decoding="async">
-        </figure>
-      </aside>
+        <div id="matchNote" role="status" aria-live="polite">추천 기준 계산 중</div>
+        <div class="journey-condition-actions">
+          <details class="journey-safety-note">
+            <summary>
+              <i class="bi bi-shield-check" aria-hidden="true"></i>
+              <span>안전 안내</span>
+            </summary>
+            <p id="safetyNotice"></p>
+          </details>
+          <button class="condition-edit-button" type="button" data-open-profile-modal>
+            <i class="bi bi-sliders" aria-hidden="true"></i>
+            <span>조건 수정</span>
+          </button>
+        </div>
+      </section>
 
       <section class="map-card" id="mapPanel" aria-label="살아있는 제주 지도">
         <div class="map-frame">
@@ -213,14 +200,14 @@
           <p class="rag-query-conflict" id="ragQueryConflict" role="alert" hidden></p>
           <p class="rag-query-privacy" id="ragQueryPrivacy">입력 내용은 추천 요청에만 사용하며 저장 코스나 공유 링크에는 포함하지 않습니다.</p>
         </section>
-        <section>
+        <section class="profile-scenario-section">
           <div class="section-row">
             <h3>상황 선택</h3>
             <span>하나를 먼저 고르세요</span>
           </div>
           <div class="scenario-list modal-scenario-list" id="modalScenarioList"></div>
         </section>
-        <section>
+        <section class="profile-options-section">
           <div class="section-row">
             <h3>상세 조건</h3>
             <span>여러 개 선택 가능</span>
@@ -319,7 +306,7 @@
 
   <script src="vendor/leaflet/leaflet.js?v=1.9.4"></script>
   <script src="saved-trips.js?v=20260712-3"></script>
-  <script src="app.js?v=20260714-10"></script>
+  <script src="app.js?v=20260714-12"></script>
   <script src="help-chatbot.js?v=20260711-1"></script>
 </body>
 </html>

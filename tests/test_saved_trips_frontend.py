@@ -896,8 +896,8 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
         self.assertIn('id="savedRoutesModal"', index)
         self.assertIn("data-open-saved-routes", index)
         self.assertGreaterEqual(index.count("data-save-current-route"), 2)
-        self.assertIn("styles.css?v=20260714-10", index)
-        self.assertIn("app.js?v=20260714-10", index)
+        self.assertIn("styles.css?v=20260714-18", index)
+        self.assertIn("app.js?v=20260714-12", index)
         self.assertIn("top-save-route-button", index)
         self.assertIn("live-map-save-button", index)
         self.assertIn("loadSavedRouteState();", app)
@@ -957,6 +957,137 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
         self.assertIn("body.journey-in-view .top-save-route-button", styles)
         self.assertIn(".live-map-save-button.saved", styles)
         self.assertIn(".saved-route-card.shared > footer", styles)
+
+    def test_desktop_header_reserves_space_for_journey_actions(self):
+        styles = STYLES_FILE.read_text(encoding="utf-8")
+
+        topbar_start = styles.index(".topbar {")
+        topbar_end = styles.index("}", topbar_start)
+        topbar_rule = styles[topbar_start:topbar_end]
+        nav_start = styles.index(".nav-tabs {")
+        nav_end = styles.index("}", nav_start)
+        nav_rule = styles[nav_start:nav_end]
+
+        self.assertIn(
+            "grid-template-columns: max-content minmax(0, 1fr) max-content",
+            topbar_rule,
+        )
+        self.assertIn("border-bottom: 1px solid #d6dbe5", topbar_rule)
+        self.assertIn("background: rgba(243, 245, 249, 0.96)", topbar_rule)
+        self.assertIn("box-shadow: 0 4px 18px rgba(18, 28, 42, 0.06)", topbar_rule)
+        self.assertIn("min-width: 0", nav_rule)
+        self.assertIn("overflow-x: auto", nav_rule)
+
+        nav_link_start = styles.index(".nav-tabs a {")
+        nav_link_end = styles.index("}", nav_link_start)
+        nav_link_rule = styles[nav_link_start:nav_link_end]
+        self.assertIn("color: #4f5968", nav_link_rule)
+
+        brand_mark_start = styles.index(".brand-mark {")
+        brand_mark_end = styles.index("}", brand_mark_start)
+        brand_mark_rule = styles[brand_mark_start:brand_mark_end]
+        brand_video_start = styles.index(".brand-logo-video {")
+        brand_video_end = styles.index("}", brand_video_start)
+        brand_video_rule = styles[brand_video_start:brand_video_end]
+        self.assertIn("background: transparent", brand_mark_rule)
+        self.assertIn("mix-blend-mode: multiply", brand_video_rule)
+
+    def test_profile_scenario_cards_are_compact_and_use_semantic_icons(self):
+        index = INDEX_FILE.read_text(encoding="utf-8")
+        app = APP_SCRIPT.read_text(encoding="utf-8")
+        styles = STYLES_FILE.read_text(encoding="utf-8")
+
+        for icon_class in (
+            "bi-heart-pulse",
+            "bi-egg-fried",
+            "bi-people",
+            "bi-person-wheelchair",
+            "bi-cloud-rain",
+        ):
+            self.assertIn(f'iconClass: "{icon_class}"', app)
+
+        self.assertIn('class="scenario-tile-icon"', app)
+        self.assertIn('class="profile-scenario-section"', index)
+        self.assertIn('class="profile-options-section"', index)
+        self.assertLess(
+            index.index('class="profile-scenario-section"'),
+            index.index('class="profile-options-section"'),
+        )
+        self.assertIn("grid-template-columns: repeat(5, minmax(0, 1fr))", styles)
+        self.assertIn("flex-wrap: nowrap", styles)
+        self.assertIn(".scenario-tile-icon {", styles)
+        self.assertIn("min-height: 64px", styles)
+
+    def test_recommendation_layout_uses_condition_bar_and_responsive_map_detail_columns(self):
+        index = INDEX_FILE.read_text(encoding="utf-8")
+        styles = STYLES_FILE.read_text(encoding="utf-8")
+
+        recommendations_start = index.index(
+            '<main class="journey-layout" id="recommendations">'
+        )
+        recommendations_end = index.index("</main>", recommendations_start)
+        recommendations = index[recommendations_start:recommendations_end]
+
+        self.assertNotIn("companion-card", recommendations)
+        condition_bar_start = recommendations.index("journey-condition-bar")
+        map_panel_start = recommendations.index('id="mapPanel"')
+        place_detail_start = recommendations.index('id="placeDetail"')
+        condition_bar = recommendations[condition_bar_start:map_panel_start]
+        self.assertIn('id="matchNote"', condition_bar)
+        self.assertIn('id="safetyNotice"', condition_bar)
+        self.assertIn("data-open-profile-modal", condition_bar)
+        self.assertLess(map_panel_start, place_detail_start)
+
+        def css_block(source, marker):
+            marker_start = source.index(marker)
+            opening_brace = source.index("{", marker_start)
+            depth = 1
+            cursor = opening_brace + 1
+            while depth and cursor < len(source):
+                if source[cursor] == "{":
+                    depth += 1
+                elif source[cursor] == "}":
+                    depth -= 1
+                cursor += 1
+            self.assertEqual(depth, 0, f"unclosed CSS block: {marker}")
+            return source[opening_brace + 1 : cursor - 1]
+
+        def grid_tracks(rule):
+            declaration = "grid-template-columns:"
+            value_start = rule.index(declaration) + len(declaration)
+            value_end = rule.index(";", value_start)
+            value = rule[value_start:value_end].strip()
+            tracks = []
+            current = []
+            depth = 0
+            for character in value:
+                if character == "(":
+                    depth += 1
+                elif character == ")":
+                    depth -= 1
+                if character.isspace() and depth == 0:
+                    if current:
+                        tracks.append("".join(current))
+                        current = []
+                else:
+                    current.append(character)
+            if current:
+                tracks.append("".join(current))
+            return tracks
+
+        concept_main_rule = css_block(styles, ".concept-main {")
+        base_journey_rule = css_block(styles, ".journey-layout {")
+        compact_media = css_block(styles, "@media (max-width: 1480px) {")
+        compact_journey_rule = css_block(compact_media, ".journey-layout {")
+        mobile_media = css_block(styles, "@media (max-width: 1180px) {")
+        mobile_journey_rule = css_block(mobile_media, ".journey-layout {")
+
+        self.assertIn("width: 100%", concept_main_rule)
+        self.assertNotIn("max-width", concept_main_rule)
+        self.assertNotIn("margin: 0 auto", concept_main_rule)
+        self.assertEqual(len(grid_tracks(base_journey_rule)), 2)
+        self.assertEqual(len(grid_tracks(compact_journey_rule)), 2)
+        self.assertEqual(grid_tracks(mobile_journey_rule), ["1fr"])
 
     def test_local_map_fallback_and_leaflet_assets_are_committed(self):
         fallback = MAP_FALLBACK_FILE.read_text(encoding="utf-8")

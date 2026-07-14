@@ -172,7 +172,7 @@ const accessibilityFieldLabels = {
 const scenarioCards = [
   {
     id: "recovery_quiet",
-    icon: "♡",
+    iconClass: "bi-heart-pulse",
     image: "assets/theme-character-recovery.webp?v=20260710-2",
     title: "회복 중",
     body: "무리한 일정을 피하고 휴식이 많은 코스",
@@ -180,7 +180,7 @@ const scenarioCards = [
   },
   {
     id: "diet_restricted",
-    icon: "♨",
+    iconClass: "bi-egg-fried",
     image: "assets/theme-character-food.webp?v=20260710-2",
     title: "음식 제한",
     body: "식당·시장 제외, 휴식 중심",
@@ -188,7 +188,7 @@ const scenarioCards = [
   },
   {
     id: "stroller_family",
-    icon: "▣",
+    iconClass: "bi-people",
     image: "assets/theme-character-family.webp?v=20260710-2",
     title: "아이 동반",
     body: "유모차와 보호자 휴식 동선을 우선",
@@ -196,7 +196,7 @@ const scenarioCards = [
   },
   {
     id: "wheelchair_access",
-    icon: "♿",
+    iconClass: "bi-person-wheelchair",
     image: "assets/theme-character-wheelchair.webp?v=20260710-2",
     title: "휠체어 접근",
     body: "휠체어 접근 가능한 장소 우선",
@@ -204,7 +204,7 @@ const scenarioCards = [
   },
   {
     id: "weather_sensitive",
-    icon: "☁",
+    iconClass: "bi-cloud-rain",
     image: "assets/theme-character-weather.webp?v=20260710-2",
     title: "날씨 민감",
     body: "실내/실외 혼합 코스 선호",
@@ -3713,7 +3713,7 @@ function signedScore(value) {
 function scenarioCardsMarkup(selectedScenarioId = state.scenarioId) {
   return scenarioCards.map((card) => `
     <button class="scenario-tile ${card.tone} ${card.id === selectedScenarioId ? "active" : ""}" type="button" data-scenario-id="${escapeHtml(card.id)}">
-      <span>${escapeHtml(card.icon)}</span>
+      <span class="scenario-tile-icon" aria-hidden="true"><i class="bi ${escapeHtml(card.iconClass)}"></i></span>
       <strong>${escapeHtml(card.title)}</strong>
       <small>${escapeHtml(card.body)}</small>
     </button>
@@ -3833,7 +3833,10 @@ function renderAiNote(scenario) {
       ${retrievalDescription ? `<span class="rag-status-detail" role="status">${escapeHtml(retrievalDescription)}</span>` : ""}
     `;
   }
-  document.getElementById("safetyNotice").textContent = state.data.safety_notice || "";
+  const safetyNotice = document.getElementById("safetyNotice");
+  if (safetyNotice) {
+    safetyNotice.textContent = state.data.safety_notice || "";
+  }
 }
 
 function renderMapHits(scenario) {
