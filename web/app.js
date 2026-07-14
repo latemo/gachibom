@@ -20,6 +20,7 @@ const state = {
   profile: null,
   profileModalDraft: null,
   ragQuery: "",
+  conceptFocus: null,
   runtimeScenario: null,
   apiStatus: "추천 준비 완료",
   apiState: {
@@ -211,6 +212,74 @@ const scenarioCards = [
     tone: "blue"
   }
 ];
+
+const conceptRecipeProfiles = {
+  recovery_quiet: {
+    subtitle: "오늘은 천천히, 쉬어가며 제주를 만나요.",
+    travelMinutes: 34,
+    companion: { key: "traveler_type", value: "caregiver_group", label: "보호자와" },
+    pace: { key: "mobility_conditions", value: "휴식 필요", label: "아주 여유롭게" },
+    distance: { key: "mobility_conditions", value: "긴 걷기 어려움", label: "15분 이내" },
+    setting: { key: "preferred_themes", value: "실내", label: "실내 위주" },
+    essentials: [
+      { key: "required_accessibility", value: "주차", label: "주차" },
+      { key: "required_accessibility", value: "장애인 화장실", label: "화장실" },
+      { key: "required_accessibility", value: "휴식 공간", label: "휴식 공간" }
+    ]
+  },
+  diet_restricted: {
+    subtitle: "먹거리 걱정은 덜고, 편안한 관람에 집중해요.",
+    travelMinutes: 36,
+    companion: { key: "traveler_type", value: "diet_restricted_traveler", label: "식사 기준에 맞춰" },
+    pace: { key: "mobility_conditions", value: "체력 저하", label: "여유롭게" },
+    distance: { key: "mobility_conditions", value: "짧은 이동", label: "15분 이내" },
+    setting: { key: "preferred_themes", value: "실내", label: "실내 위주" },
+    essentials: [
+      { key: "required_accessibility", value: "주차", label: "주차" },
+      { key: "required_accessibility", value: "장애인 화장실", label: "화장실" },
+      { key: "avoid", value: "식당 제외", label: "식당 제외" }
+    ]
+  },
+  stroller_family: {
+    subtitle: "아이와 보호자 모두 쉬기 좋은 동선으로 둘러봐요.",
+    travelMinutes: 38,
+    companion: { key: "traveler_type", value: "stroller_family", label: "아이와" },
+    pace: { key: "mobility_conditions", value: "휴식 필요", label: "쉬엄쉬엄" },
+    distance: { key: "mobility_conditions", value: "짧은 이동", label: "15분 이내" },
+    setting: { key: "preferred_themes", value: "공원", label: "공원·실내 위주" },
+    essentials: [
+      { key: "required_accessibility", value: "주차", label: "주차" },
+      { key: "required_accessibility", value: "화장실", label: "화장실" },
+      { key: "required_accessibility", value: "휴식 공간", label: "휴식 공간" }
+    ]
+  },
+  wheelchair_access: {
+    subtitle: "확인된 접근 정보와 평탄한 동선을 먼저 살펴봐요.",
+    travelMinutes: 32,
+    companion: { key: "traveler_type", value: "wheelchair_user", label: "휠체어로" },
+    pace: { key: "mobility_conditions", value: "긴 걷기 어려움", label: "안전하게" },
+    distance: { key: "mobility_conditions", value: "경사와 계단 확인", label: "평탄한 동선" },
+    setting: { key: "preferred_themes", value: "실내", label: "실내 위주" },
+    essentials: [
+      { key: "required_accessibility", value: "주차", label: "주차" },
+      { key: "required_accessibility", value: "장애인 화장실", label: "화장실" },
+      { key: "required_accessibility", value: "휠체어 접근", label: "휠체어 접근" }
+    ]
+  },
+  weather_sensitive: {
+    subtitle: "비와 바람의 영향을 줄인 실내 코스로 여행해요.",
+    travelMinutes: 35,
+    companion: { key: "traveler_type", value: "senior", label: "동행자와" },
+    pace: { key: "mobility_conditions", value: "바람", label: "날씨 걱정 없이" },
+    distance: { key: "mobility_conditions", value: "짧은 이동", label: "15분 이내" },
+    setting: { key: "preferred_themes", value: "실내", label: "실내 위주" },
+    essentials: [
+      { key: "required_accessibility", value: "주차", label: "주차" },
+      { key: "required_accessibility", value: "장애인 화장실", label: "화장실" },
+      { key: "avoid", value: "강풍", label: "강풍 피하기" }
+    ]
+  }
+};
 
 let themeMotionTimer = null;
 let ragQueryAssistTimer = null;
@@ -818,6 +887,7 @@ function commitProfileModalEdit(queryValue) {
   state.scenarioId = draft.scenarioId;
   state.profile = normalizeProfile(draft.profile);
   state.ragQuery = draft.ragQuery;
+  state.conceptFocus = null;
   state.profileModalDraft = null;
   return true;
 }
@@ -1001,7 +1071,7 @@ function normalizeRagQuery(value) {
 function recommendationPayload() {
   return {
     traveler_summary: normalizeProfile(state.profile),
-    query: normalizeRagQuery(state.ragQuery),
+    query: normalizeRagQuery(state.ragQuery) || normalizeRagQuery(state.conceptFocus?.value),
     limit: RECOMMENDATION_LIMIT,
     use_ai: false,
     model: RECOMMENDATION_MODEL
@@ -1114,6 +1184,17 @@ function shouldRequestRuntimeApi() {
   return Boolean(normalizeRagQuery(state.ragQuery)) || hasCustomProfile;
 }
 
+function conceptFocusKey(focus = state.conceptFocus) {
+  const key = String(focus?.key || "").trim();
+  const value = String(focus?.value || "").trim();
+  return key && value ? `${key}:${value}` : "";
+}
+
+function staticConditionVariant() {
+  const variant = currentStaticScenario()?.condition_variants?.[conceptFocusKey()];
+  return variant ? { ...variant, engine: { scoring: "precomputed_condition_focus" } } : null;
+}
+
 function shouldRequestRouteProxy() {
   const params = new URLSearchParams(window.location.search);
   if (params.get("routeProxy") === "1" || params.get("api") === "1") {
@@ -1131,8 +1212,11 @@ async function requestRuntimeRecommendation(sequence) {
     recommendationAbortController?.abort?.();
     recommendationAbortController = null;
     if (requestSequence === recommendationRequestSequence) {
-      state.runtimeScenario = null;
-      setApiState("static", "사전 계산 추천 사용");
+      state.runtimeScenario = staticConditionVariant();
+      setApiState(
+        "static",
+        state.runtimeScenario ? "선택 조건 우선 추천 반영" : "사전 계산 추천 사용"
+      );
     }
     return false;
   }
@@ -1166,8 +1250,12 @@ async function requestRuntimeRecommendation(sequence) {
     if (requestSequence !== recommendationRequestSequence) {
       return false;
     }
-    state.runtimeScenario = null;
-    setApiState("error", "실시간 계산 실패, 사전 계산 추천 유지", { canRetry: true });
+    state.runtimeScenario = staticConditionVariant();
+    setApiState(
+      state.runtimeScenario ? "static" : "error",
+      state.runtimeScenario ? "선택 조건 우선 추천 반영" : "실시간 계산 실패, 사전 계산 추천 유지",
+      { canRetry: !state.runtimeScenario }
+    );
     state.apiState.detail = error?.message || "추천 요청에 실패했습니다.";
     return false;
   } finally {
@@ -1180,7 +1268,7 @@ async function requestRuntimeRecommendation(sequence) {
 async function refreshScenarioRecommendation({ renderLoading = false } = {}) {
   const sequence = ++recommendationRequestSequence;
   if (shouldRequestRuntimeApi() && renderLoading) {
-    state.runtimeScenario = null;
+    state.runtimeScenario = staticConditionVariant();
     setApiState("loading", "선택한 코스로 업데이트 중");
     render();
   }
@@ -1866,6 +1954,7 @@ function openSavedRoute(routeId) {
     }
     state.scenarioId = scenario.id;
     state.runtimeScenario = null;
+    state.conceptFocus = null;
     state.profile = profileFromScenario(scenario);
     setApiState("static", "저장한 추천 코스를 다시 열었습니다.");
   }
@@ -2228,15 +2317,56 @@ function conceptPreviewPlaces(scenario, maxItems = 3) {
   const usedSources = new Set();
   return selectedRoute(scenario).slice(0, maxItems).map((routeItem, index) => {
     const place = routePlace(scenario, routeItem);
+    const category = categoryLabels[place.category] || "추천 장소";
+    const stayTip = cleanDisplayText(routeItem.stay_tip || "");
     return {
       order: Number(routeItem.order || index + 1),
+      spotId: place.spot_id || routeItem.spot_id || "",
       name: place.name || routeItem.name || "추천 장소",
-      category: categoryLabels[place.category] || "추천 장소",
+      category,
+      detail: [category, stayTip].filter(Boolean).join(" · "),
+      durationMinutes: Math.max(0, Number(place?.effort?.recommended_duration_minutes || place?.duration_minutes) || 0),
       verified: verificationLabel(place),
       located: validLocation(place.location),
       visual: visualForPlace(place, usedSources)
     };
   });
+}
+
+function conceptRecipeProfile(scenarioId = state.scenarioId) {
+  return conceptRecipeProfiles[scenarioId] || conceptRecipeProfiles.recovery_quiet;
+}
+
+function conceptPreferenceChipMarkup(profile, option) {
+  const selected = hasProfileValue(profile, option.key, [option.value]);
+  const prioritized = conceptFocusKey() === conceptFocusKey(option);
+  return `
+    <button class="concept-preference-chip ${selected ? "active" : ""} ${prioritized ? "is-priority" : ""}" type="button" data-concept-focus-key="${escapeHtml(option.key)}" data-concept-focus-value="${escapeHtml(option.value)}" data-concept-focus-label="${escapeHtml(option.label)}" aria-pressed="${prioritized ? "true" : "false"}" aria-label="${escapeHtml(option.label)} 기준을 추천에 우선 반영">
+      ${escapeHtml(option.label)}
+    </button>
+  `;
+}
+
+function conceptPreferenceSentencesMarkup(profile, recipe) {
+  return `
+    <p>
+      <span>나는</span>
+      ${conceptPreferenceChipMarkup(profile, recipe.companion)}
+      ${conceptPreferenceChipMarkup(profile, recipe.pace)}
+      <span>여행해요</span>
+    </p>
+    <p>
+      <span>한 번에</span>
+      ${conceptPreferenceChipMarkup(profile, recipe.distance)}
+      <span>이동하고</span>
+      ${conceptPreferenceChipMarkup(profile, recipe.setting)}
+      <span>로 둘러봐요</span>
+    </p>
+    <p>
+      ${recipe.essentials.map((option) => conceptPreferenceChipMarkup(profile, option)).join("")}
+      <span>은 꼭 필요해요</span>
+    </p>
+  `;
 }
 
 function conceptMetaText(scenario) {
@@ -2263,9 +2393,13 @@ function conceptCardMetaText(scenario) {
 
 function renderConceptPage(scenario) {
   const grid = document.getElementById("conceptGrid");
-  const activeScenario = scenarioById(state.scenarioId) || scenario;
+  const activeScenario = scenario || scenarioById(state.scenarioId);
   if (grid) {
-    grid.innerHTML = scenarioCards.map((card, index) => {
+    const visibleCards = state.conceptPanelOpen
+      ? scenarioCards.filter((card) => card.id === state.scenarioId)
+      : scenarioCards;
+    grid.innerHTML = visibleCards.map((card) => {
+      const index = scenarioCards.findIndex((item) => item.id === card.id);
       const cardScenario = scenarioById(card.id);
       const active = state.conceptPanelOpen && card.id === state.scenarioId;
       return `
@@ -2284,13 +2418,18 @@ function renderConceptPage(scenario) {
     }).join("");
   }
 
-  const card = scenarioCardById(activeScenario?.id);
+  const card = scenarioCardById(state.scenarioId);
+  const recipe = conceptRecipeProfile(state.scenarioId);
+  const profile = normalizeProfile(state.profile || activeScenario?.traveler_summary);
   const previewPlaces = conceptPreviewPlaces(activeScenario, 4);
   const summaryBadge = document.getElementById("conceptSummaryBadge");
   const summaryTitle = document.getElementById("conceptSummaryTitle");
   const summaryText = document.getElementById("conceptSummaryText");
   const summaryProof = document.getElementById("conceptSummaryProof");
+  const preferenceSentences = document.getElementById("conceptPreferenceSentences");
   const summaryPlaces = document.getElementById("conceptSummaryPlaces");
+  const fitNote = document.getElementById("conceptFitNote");
+  const primaryCharacter = document.getElementById("conceptRecipeCharacterPrimary");
   const score = Number(activeScenario?.recommendation?.score?.total);
   const scoreText = Number.isFinite(score) ? Math.round(score) : "-";
   const verifiedCount = previewPlaces.filter((place) => place.verified !== "확인 필요").length;
@@ -2302,23 +2441,39 @@ function renderConceptPage(scenario) {
     summaryTitle.textContent = activeScenario?.recommendation?.course?.title || activeScenario?.title || card.title;
   }
   if (summaryText) {
-    summaryText.textContent = `${conceptMetaText(activeScenario)} · ${card.body}`;
+    summaryText.textContent = recipe.subtitle;
   }
   if (summaryProof) {
     summaryProof.innerHTML = `
-      <span><b>접근성 적합도</b><strong>${escapeHtml(String(scoreText))}%</strong></span>
-      <span><b>검증 완료</b><strong>${escapeHtml(String(verifiedCount))}/${escapeHtml(String(previewPlaces.length))}</strong></span>
-      <span><b>신뢰도 지수</b><strong>${escapeHtml(String(scoreText))}/100</strong></span>
+      <span><strong>${escapeHtml(String(previewPlaces.length))}</strong><b>곳 추천</b></span>
+      <span><b>검증</b><strong>${escapeHtml(String(verifiedCount))}/${escapeHtml(String(previewPlaces.length))}</strong></span>
+      <span><b>예상 이동</b><strong>${escapeHtml(String(recipe.travelMinutes))}분</strong></span>
     `;
+  }
+  if (preferenceSentences) {
+    preferenceSentences.innerHTML = conceptPreferenceSentencesMarkup(profile, recipe);
   }
   if (summaryPlaces) {
     summaryPlaces.innerHTML = previewPlaces.map((place) => `
-      <span class="concept-preview-item ${place.located ? "located" : "needs-check"}">
+      <button class="concept-preview-item ${place.located ? "located" : "needs-check"}" type="button" data-concept-place-id="${escapeHtml(place.spotId)}" aria-label="${escapeHtml(place.order)}번째 장소 ${escapeHtml(place.name)} 자세히 보기">
+        <span class="concept-preview-order">${escapeHtml(place.order)}</span>
         <img class="concept-preview-image${place.visual.fit === "contain" ? " is-contain" : ""}" src="${escapeHtml(place.visual.src)}" alt="${escapeHtml(place.visual.alt)}" loading="lazy" decoding="async" data-fallback-src="${escapeHtml(place.visual.fallbackSrc)}" data-fallback-caption="${escapeHtml(place.visual.fallbackCaption)}" data-fallback-source="${escapeHtml(place.visual.fallbackSource)}">
-        <b>${escapeHtml(place.order)}. ${escapeHtml(place.name)}</b>
-        <small>${escapeHtml(place.category)} · ${escapeHtml(place.verified)}</small>
-      </span>
+        <span class="concept-preview-copy">
+          <b>${escapeHtml(place.name)}</b>
+          <small>${escapeHtml(place.detail || place.category)}${place.durationMinutes ? ` · ${escapeHtml(String(place.durationMinutes))}분` : ""}</small>
+        </span>
+        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+      </button>
     `).join("");
+  }
+  if (fitNote) {
+    const focusText = state.conceptFocus?.label
+      ? `<b>${escapeHtml(state.conceptFocus.label)}</b> 기준 우선 · `
+      : "";
+    fitNote.innerHTML = `<i class="bi bi-info-circle" aria-hidden="true"></i> ${focusText}현재 조건으로 접근성 적합도 <strong>${escapeHtml(String(scoreText))}%</strong>`;
+  }
+  if (primaryCharacter) {
+    primaryCharacter.src = card.image;
   }
 }
 
@@ -2360,8 +2515,12 @@ function openConceptResultPanel() {
 }
 
 function closeConceptResultPanel() {
+  const wasOpen = state.conceptPanelOpen;
   state.conceptPanelOpen = false;
   syncStepViewState();
+  if (wasOpen && state.data) {
+    renderConceptPage(currentScenario());
+  }
 }
 
 function officialTravelerTypes(profile) {
@@ -5010,7 +5169,11 @@ function updateHash(href) {
 function navigateToSection(target, href, { updateLocation = false, behavior = "smooth" } = {}) {
   state.activeNav = target || navTargetFromHash(href);
   if (state.activeNav !== "concepts") {
+    const wasOpen = state.conceptPanelOpen;
     state.conceptPanelOpen = false;
+    if (wasOpen && state.data) {
+      renderConceptPage(currentScenario());
+    }
   }
   renderNavTabs();
   if (updateLocation) {
@@ -5030,6 +5193,7 @@ async function selectScenarioForResult(scenarioId, { navigateToResults = false }
   }
   state.scenarioId = scenarioId;
   state.runtimeScenario = null;
+  state.conceptFocus = null;
   state.profile = profileFromScenario(currentStaticScenario());
   state.selectedSpotId = null;
   state.mapPopupSpotId = null;
@@ -5240,6 +5404,31 @@ function bindEvents() {
       return;
     }
 
+    const conceptPlaceButton = event.target.closest("[data-concept-place-id]");
+    if (conceptPlaceButton) {
+      state.selectedSpotId = conceptPlaceButton.dataset.conceptPlaceId || null;
+      state.mapPopupSpotId = null;
+      state.detailCollapsed = false;
+      closeConceptResultPanel();
+      render();
+      navigateToSection("recommend", "#recommendations", { updateLocation: true });
+      return;
+    }
+
+    const conceptFocusButton = event.target.closest("[data-concept-focus-key]");
+    if (conceptFocusButton) {
+      const nextFocus = {
+        key: conceptFocusButton.dataset.conceptFocusKey,
+        value: conceptFocusButton.dataset.conceptFocusValue,
+        label: conceptFocusButton.dataset.conceptFocusLabel
+      };
+      state.conceptFocus = conceptFocusKey() === conceptFocusKey(nextFocus) ? null : nextFocus;
+      state.runtimeScenario = staticConditionVariant();
+      await refreshRuntimeRecommendation({ renderLoading: true });
+      render();
+      return;
+    }
+
     const viewSelectedConceptButton = event.target.closest("[data-view-selected-concept]");
     if (viewSelectedConceptButton) {
       closeConceptResultPanel();
@@ -5271,6 +5460,7 @@ function bindEvents() {
         }
         return;
       }
+      state.conceptFocus = null;
       toggleProfileValue(profileButton.dataset.profileKey, profileButton.dataset.profileValue);
       await refreshRuntimeRecommendation({ renderLoading: true });
       render();
@@ -5389,7 +5579,11 @@ function bindEvents() {
     }
     state.activeNav = target;
     if (target !== "concepts") {
+      const wasOpen = state.conceptPanelOpen;
       state.conceptPanelOpen = false;
+      if (wasOpen && state.data) {
+        renderConceptPage(currentScenario());
+      }
     }
     renderNavTabs();
     scrollToSelector(window.location.hash || "#conceptPage");

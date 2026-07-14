@@ -896,8 +896,8 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
         self.assertIn('id="savedRoutesModal"', index)
         self.assertIn("data-open-saved-routes", index)
         self.assertGreaterEqual(index.count("data-save-current-route"), 2)
-        self.assertIn("styles.css?v=20260714-18", index)
-        self.assertIn("app.js?v=20260714-12", index)
+        self.assertIn("styles.css?v=20260715-20", index)
+        self.assertIn("app.js?v=20260715-14", index)
         self.assertIn("top-save-route-button", index)
         self.assertIn("live-map-save-button", index)
         self.assertIn("loadSavedRouteState();", app)
@@ -1017,6 +1017,40 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
         self.assertIn("flex-wrap: nowrap", styles)
         self.assertIn(".scenario-tile-icon {", styles)
         self.assertIn("min-height: 64px", styles)
+
+    def test_selected_theme_expands_into_personalized_recipe_result(self):
+        index = INDEX_FILE.read_text(encoding="utf-8")
+        app = APP_SCRIPT.read_text(encoding="utf-8")
+        styles = STYLES_FILE.read_text(encoding="utf-8")
+
+        self.assertIn('id="conceptPreferenceSentences"', index)
+        self.assertIn('id="conceptFitNote"', index)
+        self.assertIn("이 코스로 여행하기", index)
+        self.assertIn("조금 더 맞추기", index)
+        self.assertIn("다른 테마 보기", index)
+        self.assertIn("conceptRecipeProfiles", app)
+        self.assertIn("conceptPreferenceSentencesMarkup", app)
+        self.assertIn("data-concept-focus-key", app)
+        self.assertIn("staticConditionVariant", app)
+        self.assertIn("data-concept-place-id", app)
+        self.assertIn("aria-pressed", app)
+        self.assertNotIn('id="conceptRecipeCharacterSecondary"', index)
+        self.assertIn("조건을 누르면 그 기준을 먼저 반영해요.", index)
+        self.assertIn(
+            "scenarioCards.filter((card) => card.id === state.scenarioId)",
+            app,
+        )
+        self.assertIn(
+            "grid-template-columns: clamp(300px, 19vw, 370px) minmax(0, 1fr)",
+            styles,
+        )
+        self.assertIn(
+            "body.concept-result-open .concept-main > h1",
+            styles,
+        )
+        self.assertIn("height: var(--concept-stage-height)", styles)
+        self.assertIn(".concept-preference-chip:focus-visible", styles)
+        self.assertIn(".concept-preference-chip.is-priority", styles)
 
     def test_recommendation_layout_uses_condition_bar_and_responsive_map_detail_columns(self):
         index = INDEX_FILE.read_text(encoding="utf-8")
@@ -2127,6 +2161,75 @@ if (JSON.stringify(route) !== JSON.stringify([
   "jeju_tourism_weak_037",
   "jeju_indoor_art_museum_033"
 ])) throw new Error(`runtime route was truncated: ${JSON.stringify(route)}`);
+"""
+        result = subprocess.run(
+            ["node", "-e", harness, str(APP_SCRIPT), str(SEED_FILE)],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_condition_focus_uses_a_distinct_static_route_when_api_is_disabled(self):
+        harness = r"""
+const fs = require("fs");
+const vm = require("vm");
+let source = fs.readFileSync(process.argv[1], "utf8");
+source = source.replace(/\ninit\(\);\s*$/, `
+globalThis.__conditionFocusTest = {
+  state,
+  currentScenario,
+  currentStaticScenario,
+  profileFromScenario,
+  recommendationPayload,
+  requestRuntimeRecommendation,
+  selectedRoute
+};
+`);
+const context = {
+  window: {
+    GachibomSavedTrips: null,
+    location: { search: "?api=0", hash: "", href: "https://example.test/?api=0" },
+    history: {}
+  },
+  document: {},
+  navigator: {},
+  URL,
+  URLSearchParams,
+  TextEncoder,
+  setTimeout,
+  clearTimeout,
+  console
+};
+vm.runInNewContext(source, context);
+const app = context.__conditionFocusTest;
+app.state.data = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
+app.state.scenarioId = "stroller_family";
+app.state.profile = app.profileFromScenario(app.currentStaticScenario());
+const baseRoute = app.selectedRoute(app.currentStaticScenario()).map((item) => item.spot_id);
+
+(async () => {
+  app.state.conceptFocus = {
+    key: "required_accessibility",
+    value: "휴식 공간",
+    label: "휴식 공간"
+  };
+  if (app.recommendationPayload().query !== "휴식 공간") {
+    throw new Error("the focused condition was not sent as the recommendation query");
+  }
+  await app.requestRuntimeRecommendation();
+  if (!app.state.runtimeScenario) throw new Error("the static condition route was not applied");
+  if (app.state.apiState.status !== "static") throw new Error("static fallback status was not retained");
+  const focusedRoute = app.selectedRoute(app.currentScenario()).map((item) => item.spot_id);
+  if (focusedRoute.length !== 4) throw new Error(`expected four focused places: ${focusedRoute}`);
+  if (JSON.stringify(focusedRoute) === JSON.stringify(baseRoute)) {
+    throw new Error("the focused route stayed identical to the base route");
+  }
+})().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
 """
         result = subprocess.run(
             ["node", "-e", harness, str(APP_SCRIPT), str(SEED_FILE)],

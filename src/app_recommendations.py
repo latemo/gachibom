@@ -8,6 +8,8 @@ from typing import Any
 
 from src.place_locations import normalize_point_role
 from src.place_visit_info import visit_info_for_place
+from src.rag_query import parse_query_intent
+from src.rag_retrieval import retrieve_place_candidates
 from src.route_optimization import optimize_course_route
 from src.scoring import PlaceScore, build_recommendation_result, rank_places
 
@@ -81,6 +83,55 @@ SCENARIOS: tuple[dict[str, Any], ...] = (
         },
     },
 )
+
+
+SCENARIO_CONDITION_FOCUS: dict[str, tuple[tuple[str, str], ...]] = {
+    "recovery_quiet": (
+        ("traveler_type", "caregiver_group"),
+        ("mobility_conditions", "휴식 필요"),
+        ("mobility_conditions", "긴 걷기 어려움"),
+        ("preferred_themes", "실내"),
+        ("required_accessibility", "주차"),
+        ("required_accessibility", "장애인 화장실"),
+        ("required_accessibility", "휴식 공간"),
+    ),
+    "diet_restricted": (
+        ("traveler_type", "diet_restricted_traveler"),
+        ("mobility_conditions", "체력 저하"),
+        ("mobility_conditions", "짧은 이동"),
+        ("preferred_themes", "실내"),
+        ("required_accessibility", "주차"),
+        ("required_accessibility", "장애인 화장실"),
+        ("avoid", "식당 제외"),
+    ),
+    "stroller_family": (
+        ("traveler_type", "stroller_family"),
+        ("mobility_conditions", "휴식 필요"),
+        ("mobility_conditions", "짧은 이동"),
+        ("preferred_themes", "공원"),
+        ("required_accessibility", "주차"),
+        ("required_accessibility", "화장실"),
+        ("required_accessibility", "휴식 공간"),
+    ),
+    "wheelchair_access": (
+        ("traveler_type", "wheelchair_user"),
+        ("mobility_conditions", "긴 걷기 어려움"),
+        ("mobility_conditions", "경사와 계단 확인"),
+        ("preferred_themes", "실내"),
+        ("required_accessibility", "주차"),
+        ("required_accessibility", "장애인 화장실"),
+        ("required_accessibility", "휠체어 접근"),
+    ),
+    "weather_sensitive": (
+        ("traveler_type", "senior"),
+        ("mobility_conditions", "바람"),
+        ("mobility_conditions", "짧은 이동"),
+        ("preferred_themes", "실내"),
+        ("required_accessibility", "주차"),
+        ("required_accessibility", "장애인 화장실"),
+        ("avoid", "강풍"),
+    ),
+}
 
 
 VISUAL_ASSETS = (
@@ -245,7 +296,75 @@ def build_app_scenario(
             app_place_result(score, place_index.get(score.spot_id, {}), location_index=location_index)
             for score in scores
         ],
+        "condition_variants": build_condition_variants(
+            scenario,
+            places,
+            generated_at=generated_at,
+            limit=limit,
+            location_index=location_index,
+        ),
     }
+
+
+def build_condition_variants(
+    scenario: dict[str, Any],
+    places: list[dict[str, Any]],
+    *,
+    generated_at: date,
+    limit: int,
+    location_index: dict[str, dict[str, Any]],
+) -> dict[str, dict[str, Any]]:
+    """Precompute simple condition-priority routes for static web hosting."""
+
+    traveler_summary = scenario["traveler_summary"]
+    base_scores = rank_places(places, traveler_summary, today=generated_at)
+    variants: dict[str, dict[str, Any]] = {}
+    for key, value in SCENARIO_CONDITION_FOCUS.get(scenario["id"], ()):
+        intent = parse_query_intent(value, traveler_summary)
+        hits = retrieve_place_candidates(
+            places,
+            query=value,
+            intent={
+                "regions": intent.get("regions", []),
+                "categories": intent.get("categories", []),
+            },
+            limit=max(12, limit * 4),
+            as_of=generated_at,
+        )
+        focused_places = [hit["place"] for hit in hits if isinstance(hit.get("place"), dict)]
+        focused_scores = rank_places(focused_places, traveler_summary, limit=limit, today=generated_at)
+        selected_scores = list(focused_scores)
+        selected_ids = {score.spot_id for score in selected_scores}
+        for score in base_scores:
+            if len(selected_scores) >= limit:
+                break
+            if score.spot_id in selected_ids:
+                continue
+            selected_scores.append(score)
+            selected_ids.add(score.spot_id)
+
+        recommendation = build_recommendation_result(
+            selected_scores,
+            traveler_summary,
+            safety_notice=SAFETY_NOTICE,
+            title=scenario["title"],
+        )
+        recommendation["course"]["route"] = optimize_course_route(
+            recommendation["course"]["route"],
+            location_index,
+        )
+        variant_key = f"{key}:{value}"
+        variants[variant_key] = {
+            "id": f"{scenario['id']}__condition_focus",
+            "label": scenario["label"],
+            "title": scenario["title"],
+            "focus": {"key": key, "value": value},
+            "traveler_summary": traveler_summary,
+            "recommendation": recommendation,
+            # Route places are resolved from the seed's shared public place index in the browser.
+            "places": [],
+        }
+    return variants
 
 
 def string_list(value: Any) -> list[str]:

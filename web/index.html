@@ -23,7 +23,7 @@
   </script>
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css?v=1.9.4">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="styles.css?v=20260714-18">
+  <link rel="stylesheet" href="styles.css?v=20260715-20">
   <link rel="stylesheet" href="help-chatbot.css?v=20260710-12">
 </head>
 <body class="modal-open site-intro-open">
@@ -92,18 +92,41 @@
         <div class="concept-grid" id="conceptGrid"></div>
       </div>
 
-      <aside class="concept-result-panel" aria-label="선택 테마 요약" tabindex="-1">
-        <img src="assets/jeju-theme-preview-hero.webp" alt="제주의 바다와 돌담 풍경" decoding="async" fetchpriority="high">
-        <div class="concept-result-body">
-          <span id="conceptSummaryBadge">선택된 테마</span>
-          <h2 id="conceptSummaryTitle">추천 준비 중</h2>
-          <p id="conceptSummaryText">테마에 맞는 접근성 코스를 불러오고 있습니다.</p>
-          <div class="concept-proof-row" id="conceptSummaryProof"></div>
-          <div class="concept-preview-list" id="conceptSummaryPlaces"></div>
-          <div class="concept-actions">
-            <button class="primary-button" type="button" data-view-selected-concept>추천 결과 보기</button>
-            <button class="outline-button" type="button" data-open-profile-modal>상세 조건</button>
+      <aside class="concept-result-panel" aria-label="선택 테마 맞춤 추천" tabindex="-1">
+        <header class="concept-result-header">
+          <div class="concept-result-heading">
+            <span id="conceptSummaryBadge">선택된 테마</span>
+            <h2 id="conceptSummaryTitle">추천 준비 중</h2>
+            <p id="conceptSummaryText">테마에 맞는 접근성 코스를 불러오고 있습니다.</p>
           </div>
+          <div class="concept-proof-row" id="conceptSummaryProof" aria-label="추천 요약"></div>
+        </header>
+
+        <section class="concept-recipe" aria-labelledby="conceptRecipeTitle">
+          <div class="concept-recipe-copy">
+            <h3 id="conceptRecipeTitle">나에게 맞는 여행</h3>
+            <div class="concept-preference-sentences" id="conceptPreferenceSentences"></div>
+          </div>
+          <div class="concept-recipe-guide">
+            <p><i class="bi bi-info-circle" aria-hidden="true"></i> 조건을 누르면 그 기준을 먼저 반영해요.</p>
+            <div class="concept-recipe-characters" aria-hidden="true">
+              <img id="conceptRecipeCharacterPrimary" src="assets/theme-character-recovery.webp?v=20260710-2" alt="">
+            </div>
+          </div>
+        </section>
+
+        <section class="concept-route-preview" aria-label="추천 코스 미리보기">
+          <div class="concept-preview-list" id="conceptSummaryPlaces"></div>
+          <p class="concept-fit-note" id="conceptFitNote"></p>
+        </section>
+
+        <div class="concept-actions">
+          <button class="primary-button" type="button" data-view-selected-concept>이 코스로 여행하기</button>
+          <button class="outline-button" type="button" data-open-profile-modal>조금 더 맞추기</button>
+          <button class="concept-other-theme-button" type="button" data-go-concepts>
+            <span>다른 테마 보기</span>
+            <i class="bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
         </div>
       </aside>
     </section>
@@ -306,7 +329,7 @@
 
   <script src="vendor/leaflet/leaflet.js?v=1.9.4"></script>
   <script src="saved-trips.js?v=20260712-3"></script>
-  <script src="app.js?v=20260714-12"></script>
+  <script src="app.js?v=20260715-14"></script>
   <script src="help-chatbot.js?v=20260711-1"></script>
 </body>
 </html>

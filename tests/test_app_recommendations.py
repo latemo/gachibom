@@ -65,6 +65,7 @@ class AppRecommendationSeedTests(unittest.TestCase):
             self.assertGreater(len(scenario["places"]), 0)
             self.assertFalse(any(place["blocked"] for place in scenario["places"]))
             self.assertFalse(any(place["location"] is None for place in scenario["places"]))
+            self.assertEqual(len(scenario["condition_variants"]), 7)
         self.assertTrue(
             any(
                 place["location"]["point_role"] != "poi"
@@ -163,6 +164,28 @@ class AppRecommendationSeedTests(unittest.TestCase):
         self.assertTrue(
             any(place["category"] in {"forest", "rest_area"} for place in scenarios["stroller_family"]["places"])
         )
+
+    def test_condition_focus_variants_change_the_visible_route(self):
+        seed = build_app_recommendation_seed(
+            load_places(),
+            generated_at=date(2026, 7, 8),
+            location_index=load_location_index(),
+        )
+
+        for scenario in seed["scenarios"]:
+            variants = scenario["condition_variants"]
+            route_signatures = {
+                tuple(item["spot_id"] for item in variant["recommendation"]["course"]["route"])
+                for variant in variants.values()
+            }
+            self.assertGreaterEqual(len(route_signatures), 3, scenario["id"])
+            self.assertTrue(all(len(signature) == 4 for signature in route_signatures))
+            self.assertTrue(
+                all(
+                    variant["traveler_summary"] == scenario["traveler_summary"]
+                    for variant in variants.values()
+                )
+            )
 
     def test_seed_keeps_score_ranked_places_and_optimizes_only_course_route(self):
         location_index = load_location_index()

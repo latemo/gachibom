@@ -224,6 +224,34 @@
         "places": {
           "type": "array",
           "items": { "$ref": "#/$defs/placeResult" }
+        },
+        "condition_variants": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "label", "title", "focus", "traveler_summary", "recommendation", "places"],
+            "properties": {
+              "id": { "type": "string" },
+              "label": { "type": "string" },
+              "title": { "type": "string" },
+              "focus": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["key", "value"],
+                "properties": {
+                  "key": { "type": "string" },
+                  "value": { "type": "string" }
+                }
+              },
+              "traveler_summary": { "type": "object" },
+              "recommendation": { "type": "object" },
+              "places": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/placeResult" }
+              }
+            }
+          }
         }
       }
     },

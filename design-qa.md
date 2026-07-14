@@ -362,3 +362,46 @@ final result: passed
 - 선택·키보드 포커스 상태 확인
 
 final result: blocked
+
+## 2026-07-14 선택 테마 문장형 맞춤 결과 QA
+
+- source visual truth path: `C:\Users\jejunu\.codex\generated_images\019f60e7-d54d-72f1-8404-a089850e4bff\exec-f5bbec00-e5ad-4993-ad1e-80685d7ea86b.png`
+- implementation screenshot path: 캡처 불가 (인앱 브라우저 사용 가능 항목 없음)
+- viewport: 소스 시안 1721 × 914, 구현 비교 목표 1721 × 914
+- state: `회복 중` 테마 선택, 나머지 네 카드 비노출, 문장형 조건 칩과 네 장소 코스가 표시된 상태
+- full-view comparison evidence: 소스 시안은 열어 확인했으나 브라우저 렌더링 캡처를 만들 수 없어 동일 뷰포트 비교가 차단됨
+- focused region comparison evidence: 조건 칩·코스 타임라인·선택 카드 상하 정렬의 구현 캡처가 없어 비교가 차단됨
+- primary interactions tested: 코드 경로와 자동 테스트로 테마 선택, 조건 토글, 장소 상세 이동 연결을 확인했으나 브라우저 클릭 검증은 차단됨
+- console errors checked: 브라우저 연결 부재로 확인 불가
+
+**Findings**
+
+- [P1] 브라우저 렌더링 증거가 없어 시안 충실도와 실제 상호작용을 승인할 수 없음.
+  Location: `#conceptPage`, `.concept-result-panel`, `.concept-preference-chip`, `.concept-preview-item`.
+  Evidence: 소스 시안은 1721 × 914 이미지로 확인했고 로컬 서버는 HTTP 200을 반환했지만, 인앱 브라우저 목록이 비어 구현 스크린샷·콘솔·클릭 상태를 캡처하지 못함.
+  Impact: 선택 카드와 결과 패널의 동일 높이, 한글 줄바꿈, 조건 칩 밀도, 네 코스 행의 실제 화면 균형을 확정할 수 없음.
+  Fix: 사용 가능한 브라우저 또는 승인된 Playwright 캡처로 동일 뷰포트·동일 상태를 열고, 소스와 구현 이미지를 한 비교 입력에 배치해 보정.
+
+**Required Fidelity Surfaces**
+
+- Fonts and typography: 기존 제주 돌담 제목체와 Noto Sans KR 계열을 유지했으나 실제 폰트 로드·줄바꿈은 시각 검증 전임.
+- Spacing and layout rhythm: 선택 카드와 결과 패널 모두 `--concept-stage-height`를 사용하도록 구현했으나 렌더링 정렬 증거가 없음.
+- Colors and visual tokens: 기존 Electric Blue `#003ec7`, 흰색 표면, 옅은 파랑 조건 영역을 사용했으나 화면상 대비와 농도는 미검증.
+- Image quality and asset fidelity: 기존 테마 캐릭터와 실제 장소 사진 자산을 재사용했으며 임시 이미지나 CSS 그림은 추가하지 않음. 실제 크롭은 미검증.
+- Copy and content: 시안의 `나에게 맞는 여행`, 문장형 조건, 네 장소 코스, 세 가지 하단 행동을 구현함.
+
+**Comparison History**
+
+- 1차: 구현과 자동 테스트까지 완료했으나 인앱 브라우저가 없어 첫 시각 비교 자체가 차단됨.
+- 적용 수정: 없음. 비교 증거가 생기기 전에는 픽셀 추정만으로 추가 보정하지 않음.
+- post-fix visual evidence: 없음.
+
+**Implementation Checklist**
+
+- 1721 × 914에서 `회복 중` 선택 상태 캡처
+- 소스 시안과 구현 캡처를 한 비교 입력으로 열어 전체 레이아웃 확인
+- 조건 칩 토글, 장소 행 이동, 세 하단 버튼, 키보드 포커스 확인
+- 1180px 및 390px 반응형 캡처와 가로 오버플로 확인
+- 콘솔 오류 확인 후 P0/P1/P2 보정
+
+final result: blocked
