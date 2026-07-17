@@ -1,0 +1,257 @@
+{
+  "schema_version": "1.0",
+  "change_id": "add_per_change_before_after_reports_v1",
+  "recorded_at": "2026-07-14T19:06:55Z",
+  "reason": "모든 변경마다 적용 전·적용 후 상세 리포트 자동 생성",
+  "evidence": [
+    "PPT 기록을 위해 변경별 지표·답변·근거 전후 자료가 필요"
+  ],
+  "changed_files": [
+    "src/ragas_change_tracking.py",
+    "scripts/record_ragas_change.py",
+    "scripts/build_ragas_change_reports.py",
+    "tests/test_ragas_change_tracking.py"
+  ],
+  "previous_run": "data/ragas_metric_runs/fix_mode_distinction_answer_scope_v1.json",
+  "current_run": "data/ragas_metric_runs/add_per_change_before_after_reports_v1.json",
+  "evaluation": {
+    "library": "ragas",
+    "ragas_version": "0.4.3",
+    "metric": "faithfulness",
+    "model": "gpt-5-mini",
+    "report_status": "complete_provisional",
+    "reportable_as_final": false
+  },
+  "before_summary": {
+    "sample_count": 30,
+    "mean": 0.7755,
+    "median": 0.7639,
+    "minimum": 0.4211,
+    "maximum": 1.0,
+    "thresholds": {
+      "0.70": {
+        "passed": 22,
+        "pass_rate": 0.7333
+      },
+      "0.80": {
+        "passed": 13,
+        "pass_rate": 0.4333
+      },
+      "0.90": {
+        "passed": 8,
+        "pass_rate": 0.2667
+      },
+      "0.95": {
+        "passed": 5,
+        "pass_rate": 0.1667
+      }
+    }
+  },
+  "after_summary": {
+    "sample_count": 30,
+    "mean": 0.7755,
+    "median": 0.7639,
+    "minimum": 0.4211,
+    "maximum": 1.0,
+    "thresholds": {
+      "0.70": {
+        "passed": 22,
+        "pass_rate": 0.7333
+      },
+      "0.80": {
+        "passed": 13,
+        "pass_rate": 0.4333
+      },
+      "0.90": {
+        "passed": 8,
+        "pass_rate": 0.2667
+      },
+      "0.95": {
+        "passed": 5,
+        "pass_rate": 0.1667
+      }
+    }
+  },
+  "comparison": {
+    "previous_run_id": "fix_mode_distinction_answer_scope_v1",
+    "current_run_id": "add_per_change_before_after_reports_v1",
+    "sample_set": {
+      "matched": 30,
+      "added": [],
+      "removed": []
+    },
+    "metric_delta": {
+      "summary": {
+        "mean": {
+          "before": 0.7755,
+          "after": 0.7755,
+          "delta": 0.0
+        },
+        "median": {
+          "before": 0.7639,
+          "after": 0.7639,
+          "delta": 0.0
+        },
+        "minimum": {
+          "before": 0.4211,
+          "after": 0.4211,
+          "delta": 0.0
+        },
+        "maximum": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "thresholds": {
+          "0.70": {
+            "passed": {
+              "before": 22,
+              "after": 22,
+              "delta": 0.0
+            },
+            "pass_rate": {
+              "before": 0.7333,
+              "after": 0.7333,
+              "delta": 0.0
+            }
+          },
+          "0.80": {
+            "passed": {
+              "before": 13,
+              "after": 13,
+              "delta": 0.0
+            },
+            "pass_rate": {
+              "before": 0.4333,
+              "after": 0.4333,
+              "delta": 0.0
+            }
+          },
+          "0.90": {
+            "passed": {
+              "before": 8,
+              "after": 8,
+              "delta": 0.0
+            },
+            "pass_rate": {
+              "before": 0.2667,
+              "after": 0.2667,
+              "delta": 0.0
+            }
+          },
+          "0.95": {
+            "passed": {
+              "before": 5,
+              "after": 5,
+              "delta": 0.0
+            },
+            "pass_rate": {
+              "before": 0.1667,
+              "after": 0.1667,
+              "delta": 0.0
+            }
+          }
+        }
+      },
+      "by_question_type": {
+        "deduction_reason": {
+          "before": 0.7522,
+          "after": 0.7522,
+          "delta": 0.0
+        },
+        "exclusion_or_alternative": {
+          "before": 0.6683,
+          "after": 0.6683,
+          "delta": 0.0
+        },
+        "mode_distinction": {
+          "before": 0.95,
+          "after": 0.95,
+          "delta": 0.0
+        },
+        "pre_visit_check": {
+          "before": 0.6406,
+          "after": 0.6406,
+          "delta": 0.0
+        },
+        "recommendation_reason": {
+          "before": 0.9082,
+          "after": 0.9082,
+          "delta": 0.0
+        },
+        "score_calculation": {
+          "before": 0.7336,
+          "after": 0.7336,
+          "delta": 0.0
+        }
+      },
+      "by_scenario": {
+        "diet_restricted": {
+          "before": 0.8346,
+          "after": 0.8346,
+          "delta": 0.0
+        },
+        "recovery_quiet": {
+          "before": 0.6825,
+          "after": 0.6825,
+          "delta": 0.0
+        },
+        "stroller_family": {
+          "before": 0.7905,
+          "after": 0.7905,
+          "delta": 0.0
+        },
+        "weather_sensitive": {
+          "before": 0.7874,
+          "after": 0.7874,
+          "delta": 0.0
+        },
+        "wheelchair_access": {
+          "before": 0.7825,
+          "after": 0.7825,
+          "delta": 0.0
+        }
+      }
+    },
+    "content_delta": {
+      "question": {
+        "changed_count": 0,
+        "sample_ids": []
+      },
+      "response": {
+        "changed_count": 0,
+        "sample_ids": []
+      },
+      "context": {
+        "changed_count": 0,
+        "sample_ids": []
+      },
+      "reference": {
+        "changed_count": 0,
+        "sample_ids": []
+      },
+      "combined": {
+        "changed_count": 0,
+        "sample_ids": []
+      }
+    },
+    "case_delta": {
+      "improved_count": 0,
+      "regressed_count": 0,
+      "unchanged_count": 30,
+      "meaningful_improved_count": 0,
+      "meaningful_regressed_count": 0,
+      "top_improvements": [],
+      "top_regressions": []
+    },
+    "evidence_change_authorized": false,
+    "gates": {
+      "coverage_complete": true,
+      "mean_not_regressed": true,
+      "no_meaningful_case_regression": true,
+      "evidence_change_declared": true,
+      "passed": true
+    }
+  },
+  "changed_samples": []
+}

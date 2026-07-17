@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "functions": {
     "api/**/*.py": {
-      "includeFiles": "{data/jeju_accessible_spots.json,data/place_location_overrides.json,data/roadview_image_metadata.json,data/tourism_weak_recommendation_courses.json,data/place_catalog.roadview_facility.json,data/place_visit_info_overrides.json}",
+      "includeFiles": "data/{jeju_{accessible_spots,accessible_public_toilets,power_wheelchair_fast_chargers},place_{location_overrides,visit_info_overrides},place_catalog.roadview_facility,roadview_image_metadata,tourism_weak_recommendation_courses}.json",
       "excludeFiles": "{tests/**,docs/**,scripts/**,web/assets/**,data/raw/**,.playwright-mcp/**,.serena/**,.tmp-*/**,.vercel/**,*.png,*.jpg,*.jpeg,*.mp4,*.pptx,*.docx}"
     }
   },

@@ -1,0 +1,246 @@
+{
+  "schema_version": "1.0",
+  "sample_count": 30,
+  "samples": [
+    {
+      "line": 1,
+      "sample_id": "recovery_quiet__recommendation_reason__after",
+      "case_id": "recovery_quiet__recommendation_reason",
+      "condition": "after",
+      "question_type": "recommendation_reason",
+      "run_signature": "b31678d974bb33fc77e22312e1f7b3720a480fa8aa44292d1d663e29d468ba8e"
+    },
+    {
+      "line": 2,
+      "sample_id": "recovery_quiet__score_calculation__after",
+      "case_id": "recovery_quiet__score_calculation",
+      "condition": "after",
+      "question_type": "score_calculation",
+      "run_signature": "b191b58d0928ca4ee5d6978ea44eeb3b14b3dfd5c7a059c158be3a8a83970826"
+    },
+    {
+      "line": 3,
+      "sample_id": "recovery_quiet__deduction_reason__after",
+      "case_id": "recovery_quiet__deduction_reason",
+      "condition": "after",
+      "question_type": "deduction_reason",
+      "run_signature": "7a0993d624bb5b278d15a7ae90c6b2b1fbb47c0e3152fc7047800e5039ef7899"
+    },
+    {
+      "line": 4,
+      "sample_id": "recovery_quiet__pre_visit_check__after",
+      "case_id": "recovery_quiet__pre_visit_check",
+      "condition": "after",
+      "question_type": "pre_visit_check",
+      "run_signature": "f748bb76672560270fc34da42e03c70a1bb23d10e6e7fe9ab131b93a42733f2a"
+    },
+    {
+      "line": 5,
+      "sample_id": "recovery_quiet__exclusion_or_alternative__after",
+      "case_id": "recovery_quiet__exclusion_or_alternative",
+      "condition": "after",
+      "question_type": "exclusion_or_alternative",
+      "run_signature": "c5565ac0a147af2dae7ee974ba4a61d1a7236c9c4e164b596d6ba35f3682ab9c"
+    },
+    {
+      "line": 6,
+      "sample_id": "recovery_quiet__mode_distinction__after",
+      "case_id": "recovery_quiet__mode_distinction",
+      "condition": "after",
+      "question_type": "mode_distinction",
+      "run_signature": "7d0c13a634e556c4452cd5c1abf1ebb3b154e034ddf5cd8957235097d1e4be42"
+    },
+    {
+      "line": 7,
+      "sample_id": "wheelchair_access__recommendation_reason__after",
+      "case_id": "wheelchair_access__recommendation_reason",
+      "condition": "after",
+      "question_type": "recommendation_reason",
+      "run_signature": "3c62979613970489e4632def172926db2551c468ca6132607ca8a413c6340806"
+    },
+    {
+      "line": 8,
+      "sample_id": "wheelchair_access__score_calculation__after",
+      "case_id": "wheelchair_access__score_calculation",
+      "condition": "after",
+      "question_type": "score_calculation",
+      "run_signature": "41e93669febc45c5dd4f499421307d8716c0fd24309a1176ebe6fff80dbaa666"
+    },
+    {
+      "line": 9,
+      "sample_id": "wheelchair_access__deduction_reason__after",
+      "case_id": "wheelchair_access__deduction_reason",
+      "condition": "after",
+      "question_type": "deduction_reason",
+      "run_signature": "cd366b23d3c06467fe59e28dfca4a62823f9be4841e6ccf7c6cf6cf8bfa48f2d"
+    },
+    {
+      "line": 10,
+      "sample_id": "wheelchair_access__pre_visit_check__after",
+      "case_id": "wheelchair_access__pre_visit_check",
+      "condition": "after",
+      "question_type": "pre_visit_check",
+      "run_signature": "9cfde631079e043f4880f06f9306dbf867b78a25d631b3ce506e97ace2260423"
+    },
+    {
+      "line": 11,
+      "sample_id": "wheelchair_access__exclusion_or_alternative__after",
+      "case_id": "wheelchair_access__exclusion_or_alternative",
+      "condition": "after",
+      "question_type": "exclusion_or_alternative",
+      "run_signature": "b86045c6550d95da9e4bd6aa647770bc232f516f29deeaffe649bc37bde1bfc4"
+    },
+    {
+      "line": 12,
+      "sample_id": "wheelchair_access__mode_distinction__after",
+      "case_id": "wheelchair_access__mode_distinction",
+      "condition": "after",
+      "question_type": "mode_distinction",
+      "run_signature": "92fc8c5e8fdee053f3719d0aaf0e2fe8e2443a287daced0da14cea9e185e5620"
+    },
+    {
+      "line": 13,
+      "sample_id": "stroller_family__recommendation_reason__after",
+      "case_id": "stroller_family__recommendation_reason",
+      "condition": "after",
+      "question_type": "recommendation_reason",
+      "run_signature": "031e9107563974ab372e054cf5de5bc808a26c10e04c8f2326eaa2895dacd6f1"
+    },
+    {
+      "line": 14,
+      "sample_id": "stroller_family__score_calculation__after",
+      "case_id": "stroller_family__score_calculation",
+      "condition": "after",
+      "question_type": "score_calculation",
+      "run_signature": "5efba92d82d4e8d7e148a26e441f00e71c2ddb9ce712d2e3a350dca374ba6b03"
+    },
+    {
+      "line": 15,
+      "sample_id": "stroller_family__deduction_reason__after",
+      "case_id": "stroller_family__deduction_reason",
+      "condition": "after",
+      "question_type": "deduction_reason",
+      "run_signature": "46937da89f6b3220c371c26dbd5dac850fdd10133d0a785d490f9620cfdbdb2b"
+    },
+    {
+      "line": 16,
+      "sample_id": "stroller_family__pre_visit_check__after",
+      "case_id": "stroller_family__pre_visit_check",
+      "condition": "after",
+      "question_type": "pre_visit_check",
+      "run_signature": "b0abddcf38b32d3397048eb37c7e6559710477dfeb965fb6c34b46fcf57fc528"
+    },
+    {
+      "line": 17,
+      "sample_id": "stroller_family__exclusion_or_alternative__after",
+      "case_id": "stroller_family__exclusion_or_alternative",
+      "condition": "after",
+      "question_type": "exclusion_or_alternative",
+      "run_signature": "e4816d72727cab9f8a25e33280061cbb2f89324b5d60faa25f684162c5aa92c5"
+    },
+    {
+      "line": 18,
+      "sample_id": "stroller_family__mode_distinction__after",
+      "case_id": "stroller_family__mode_distinction",
+      "condition": "after",
+      "question_type": "mode_distinction",
+      "run_signature": "e6fb14ec6b4ba0abc7525159871120860a45754f5146225bb3a71026774bcffa"
+    },
+    {
+      "line": 19,
+      "sample_id": "weather_sensitive__recommendation_reason__after",
+      "case_id": "weather_sensitive__recommendation_reason",
+      "condition": "after",
+      "question_type": "recommendation_reason",
+      "run_signature": "e030b3ff8de50b5c4c6cc75e1cb9b6c28d15ac4b22e3ff2c172a4a83872e5777"
+    },
+    {
+      "line": 20,
+      "sample_id": "weather_sensitive__score_calculation__after",
+      "case_id": "weather_sensitive__score_calculation",
+      "condition": "after",
+      "question_type": "score_calculation",
+      "run_signature": "e41d953dab761b9b6e5a7872f336d93ba202a833cc096cf10075c70e12a9a28e"
+    },
+    {
+      "line": 21,
+      "sample_id": "weather_sensitive__deduction_reason__after",
+      "case_id": "weather_sensitive__deduction_reason",
+      "condition": "after",
+      "question_type": "deduction_reason",
+      "run_signature": "4d02d314516f45ef13860931cd1a71ac844153c0d305b9fc25b781a01e2134c2"
+    },
+    {
+      "line": 22,
+      "sample_id": "weather_sensitive__pre_visit_check__after",
+      "case_id": "weather_sensitive__pre_visit_check",
+      "condition": "after",
+      "question_type": "pre_visit_check",
+      "run_signature": "5861699934fb3edbccefdc4835c31a1f36e7676e5d7d0c921df5cc8d96fb5bf3"
+    },
+    {
+      "line": 23,
+      "sample_id": "weather_sensitive__exclusion_or_alternative__after",
+      "case_id": "weather_sensitive__exclusion_or_alternative",
+      "condition": "after",
+      "question_type": "exclusion_or_alternative",
+      "run_signature": "f65ed7a85819bc945779d5d431555e03058bbf672b084d463ca0693463fd0786"
+    },
+    {
+      "line": 24,
+      "sample_id": "weather_sensitive__mode_distinction__after",
+      "case_id": "weather_sensitive__mode_distinction",
+      "condition": "after",
+      "question_type": "mode_distinction",
+      "run_signature": "be414cace91f2afdc1913eeffdabcec70d276668c1661c3a8b02a991c78e3fb0"
+    },
+    {
+      "line": 25,
+      "sample_id": "diet_restricted__recommendation_reason__after",
+      "case_id": "diet_restricted__recommendation_reason",
+      "condition": "after",
+      "question_type": "recommendation_reason",
+      "run_signature": "5ecfa786ed10cf206d3728e17349bbbc9b0ffa2678292c67a50ccbe2afc2a483"
+    },
+    {
+      "line": 26,
+      "sample_id": "diet_restricted__score_calculation__after",
+      "case_id": "diet_restricted__score_calculation",
+      "condition": "after",
+      "question_type": "score_calculation",
+      "run_signature": "518334464582fc1083b063eb1aeb0720ef1ae4f69ece28c0cd5ed4ed4c99fc33"
+    },
+    {
+      "line": 27,
+      "sample_id": "diet_restricted__deduction_reason__after",
+      "case_id": "diet_restricted__deduction_reason",
+      "condition": "after",
+      "question_type": "deduction_reason",
+      "run_signature": "f5d6cf592f0318a7c2811c256fe33926ffb4516de5733c172a0ce90e1b8587b1"
+    },
+    {
+      "line": 28,
+      "sample_id": "diet_restricted__pre_visit_check__after",
+      "case_id": "diet_restricted__pre_visit_check",
+      "condition": "after",
+      "question_type": "pre_visit_check",
+      "run_signature": "c2c07c08b7ded7b619a790f68ef43436070b41b0da53b6f412ef08ce47f2ec37"
+    },
+    {
+      "line": 29,
+      "sample_id": "diet_restricted__exclusion_or_alternative__after",
+      "case_id": "diet_restricted__exclusion_or_alternative",
+      "condition": "after",
+      "question_type": "exclusion_or_alternative",
+      "run_signature": "75e6d60ea574bf46a17dbcc96007eaa1907e50f739b2801d6e8fe39d971577fa"
+    },
+    {
+      "line": 30,
+      "sample_id": "diet_restricted__mode_distinction__after",
+      "case_id": "diet_restricted__mode_distinction",
+      "condition": "after",
+      "question_type": "mode_distinction",
+      "run_signature": "6be069bfa14bf3e3c3278145a82219acc3e01b360d72119ae90dcac0e350b334"
+    }
+  ]
+}

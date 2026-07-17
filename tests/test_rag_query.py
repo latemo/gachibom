@@ -115,7 +115,8 @@ class RagQueryTests(unittest.TestCase):
                 self.assertEqual(result["regions"], [])
                 self.assertEqual(result["categories"], [])
                 self.assertEqual(result["resource_types"], [])
-                self.assertEqual(result["signals"], {"emergency": False, "charging": False})
+                self.assertTrue({"emergency", "charging"}.issubset(result["signals"]))
+                self.assertFalse(any(result["signals"].values()))
                 self.assertEqual(set(result["traveler_summary"]), set(TRAVELER_SUMMARY_KEYS))
                 self.assertFalse(any(result["traveler_summary"].values()))
                 json.dumps(result, ensure_ascii=False)
@@ -127,7 +128,16 @@ class RagQueryTests(unittest.TestCase):
         self.assertEqual(len(result["query_text"]), MAX_QUERY_TEXT_LENGTH)
         self.assertEqual(
             set(result),
-            {"intent", "query_text", "regions", "categories", "resource_types", "traveler_summary", "signals"},
+            {
+                "intent",
+                "query_text",
+                "regions",
+                "categories",
+                "excluded_categories",
+                "resource_types",
+                "traveler_summary",
+                "signals",
+            },
         )
         self.assertNotIn("unknown_health_field", result["traveler_summary"])
         json.dumps(result, ensure_ascii=False, allow_nan=False)

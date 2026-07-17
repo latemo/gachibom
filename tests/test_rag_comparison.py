@@ -103,7 +103,8 @@ class RagComparisonTests(unittest.TestCase):
         self.assertIn("metric_id,label,validation_target", metrics_csv)
         self.assertIn("without_rag_passed_checks", cases_csv)
         self.assertIn("동문재래시장", cases_csv)
-        self.assertIn("# RAG 사용/미사용 비교 데이터", markdown)
+        self.assertIn("# 정책·랭킹 회귀검증과 무RAG 통제 fixture 비교", markdown)
+        self.assertIn("RAG 검색 정확도나 GPT 성능이 아니며", report["summary"]["key_findings"][-1])
         self.assertIn("5/59 체크 통과", markdown)
 
     def test_cli_writes_all_outputs(self):
@@ -151,7 +152,7 @@ class RagComparisonTests(unittest.TestCase):
             self.assertTrue(output_metrics_csv.exists())
             self.assertTrue(output_cases_csv.exists())
             self.assertTrue(output_md.exists())
-            self.assertIn("RAG 사용/미사용 비교 데이터", output_md.read_text(encoding="utf-8"))
+            self.assertIn("정책·랭킹 회귀검증과 무RAG 통제 fixture 비교", output_md.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

@@ -23,8 +23,8 @@
   </script>
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css?v=1.9.4">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="styles.css?v=20260715-20">
-  <link rel="stylesheet" href="help-chatbot.css?v=20260710-12">
+  <link rel="stylesheet" href="styles.css?v=20260716-1">
+  <link rel="stylesheet" href="help-chatbot.css?v=20260716-2">
 </head>
 <body class="modal-open site-intro-open">
   <div class="site-intro" id="siteIntro" role="dialog" aria-modal="true" aria-labelledby="siteIntroTitle">
@@ -95,7 +95,13 @@
       <aside class="concept-result-panel" aria-label="선택 테마 맞춤 추천" tabindex="-1">
         <header class="concept-result-header">
           <div class="concept-result-heading">
-            <span id="conceptSummaryBadge">선택된 테마</span>
+            <div class="concept-result-heading-meta">
+              <button class="concept-theme-list-button" type="button" data-go-concepts data-return-to-concept-list aria-controls="conceptGrid">
+                <i class="bi bi-arrow-left" aria-hidden="true"></i>
+                <span>전체 테마 보기</span>
+              </button>
+              <span class="concept-summary-badge" id="conceptSummaryBadge">선택된 테마</span>
+            </div>
             <h2 id="conceptSummaryTitle">추천 준비 중</h2>
             <p id="conceptSummaryText">테마에 맞는 접근성 코스를 불러오고 있습니다.</p>
           </div>
@@ -122,10 +128,13 @@
 
         <div class="concept-actions">
           <button class="primary-button" type="button" data-view-selected-concept>이 코스로 여행하기</button>
-          <button class="outline-button" type="button" data-open-profile-modal>조금 더 맞추기</button>
-          <button class="concept-other-theme-button" type="button" data-go-concepts>
-            <span>다른 테마 보기</span>
-            <i class="bi bi-chevron-right" aria-hidden="true"></i>
+          <button class="outline-button" type="button" data-open-profile-modal>
+            <i class="bi bi-diagram-3" aria-hidden="true"></i>
+            <span>RAG 조건 입력</span>
+          </button>
+          <button class="concept-other-theme-button" type="button" data-go-concepts data-return-to-concept-list aria-controls="conceptGrid">
+            <i class="bi bi-arrow-left" aria-hidden="true"></i>
+            <span>전체 테마 보기</span>
           </button>
         </div>
       </aside>
@@ -151,11 +160,17 @@
             <span>조건 수정</span>
           </button>
         </div>
+        <section class="rag-process-panel" id="ragProcessPanel" aria-labelledby="ragProcessTitle">
+          <header>
+            <span>검증 가능한 추천</span>
+            <h3 id="ragProcessTitle">RAG 검색 과정</h3>
+          </header>
+        </section>
       </section>
 
       <section class="map-card" id="mapPanel" aria-label="살아있는 제주 지도">
         <div class="map-frame">
-          <div class="live-map" id="liveMap" aria-label="실제 좌표 기반 제주 추천 지도"></div>
+          <div class="live-map" id="liveMap" aria-label="실제 좌표 기반 제주 추천 지도" aria-describedby="mapInteractionHint"></div>
           <img class="map-art" id="mapFallbackArt" src="assets/jeju-map-fallback.svg?v=20260713-1" alt="제주도 로컬 지도 배경" decoding="async">
           <svg class="map-route-layer" id="mapRouteLayer" aria-hidden="true"></svg>
           <p class="map-fallback-notice" id="mapFallbackNotice" role="status" hidden>
@@ -165,7 +180,7 @@
           <div class="live-map-header">
             <div>
               <h2>추천 지도</h2>
-              <p>실제 위치와 이동 경로를 기준으로 코스를 확인합니다.</p>
+              <p id="mapInteractionHint">마우스 휠은 페이지를 이동합니다. 지도 확대·축소는 + / − 버튼을 이용하세요.</p>
             </div>
             <div class="live-map-actions">
               <button class="live-map-button live-map-save-button" type="button" data-save-current-route aria-pressed="false">
@@ -184,6 +199,21 @@
 
       <aside class="detail-card" id="placeDetail" aria-label="선택 장소 상세"></aside>
     </main>
+  </div>
+
+  <div class="ai-explanation-modal" id="aiExplanationModal" role="dialog" aria-modal="true" aria-labelledby="aiExplanationModalTitle" aria-describedby="aiExplanationModalSummary" hidden>
+    <button class="ai-explanation-modal-backdrop" type="button" data-close-ai-explanation aria-label="AI 근거 설명 닫기"></button>
+    <section class="ai-explanation-modal-panel">
+      <header class="ai-explanation-modal-head">
+        <div>
+          <span><i class="bi bi-shield-check" aria-hidden="true"></i> 공식 근거 RAG 설명</span>
+          <h2 id="aiExplanationModalTitle">가치봄 AI 코스 근거 설명</h2>
+          <p id="aiExplanationModalSummary">검색된 공식·공공 근거에 연결된 추천 이유와 주의사항을 확인합니다.</p>
+        </div>
+        <button class="modal-close-button" type="button" data-close-ai-explanation aria-label="AI 근거 설명 닫기">×</button>
+      </header>
+      <div class="ai-explanation-modal-body" id="aiExplanationModalBody"></div>
+    </section>
   </div>
 
   <div class="profile-modal" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle" hidden>
@@ -329,7 +359,7 @@
 
   <script src="vendor/leaflet/leaflet.js?v=1.9.4"></script>
   <script src="saved-trips.js?v=20260712-3"></script>
-  <script src="app.js?v=20260715-14"></script>
-  <script src="help-chatbot.js?v=20260711-1"></script>
+  <script src="app.js?v=20260716-2"></script>
+  <script src="help-chatbot.js?v=20260716-2"></script>
 </body>
 </html>

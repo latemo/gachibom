@@ -10,11 +10,21 @@ from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler
 from typing import Any
 
-from src.help_chatbot_service import build_help_chatbot_reply, openai_help_chatbot_client_from_env
+from src.accessibility_resources import (
+    load_accessibility_resource_snapshot,
+    search_nearby_accessibility_resources,
+)
+from src.help_chatbot_service import (
+    HELP_CHATBOT_OPENAI_MODEL,
+    build_help_chatbot_reply,
+    openai_help_chatbot_client_from_env,
+)
 from src.place_locations import load_place_location_index
 from src.place_visit_info import enrich_places_with_visit_info
 from src.recommendation_api import (
     DEFAULT_PLACE_CATALOG_PATH,
+    DEFAULT_ACCESSIBLE_PUBLIC_TOILETS_PATH,
+    DEFAULT_POWER_WHEELCHAIR_CHARGERS_PATH,
     DEFAULT_VISIT_INFO_OVERRIDES_PATH,
     DEFAULT_LOCATION_OVERRIDES_PATH,
     DEFAULT_PLACES_PATH,
@@ -30,6 +40,7 @@ from src.recommendation_api import (
     parse_help_chat_question,
     parse_limit,
     parse_model,
+    parse_proximity_request,
     parse_recommendation_query,
     parse_route_points,
 )
@@ -61,9 +72,17 @@ def runtime_state() -> dict[str, Any]:
         roadview_metadata_path=DEFAULT_ROADVIEW_METADATA_PATH,
         overrides_path=DEFAULT_LOCATION_OVERRIDES_PATH,
     )
+    accessible_public_toilets = load_accessibility_resource_snapshot(
+        DEFAULT_ACCESSIBLE_PUBLIC_TOILETS_PATH
+    )["items"]
+    power_wheelchair_chargers = load_accessibility_resource_snapshot(
+        DEFAULT_POWER_WHEELCHAIR_CHARGERS_PATH
+    )["items"]
     return {
         "places": places,
         "location_index": location_index,
+        "accessible_public_toilets": accessible_public_toilets,
+        "power_wheelchair_chargers": power_wheelchair_chargers,
         "tourism_weak_course_summary": course_dataset.get("summary", {}) if course_dataset else {},
     }
 
@@ -75,6 +94,7 @@ def build_health_payload() -> dict[str, Any]:
         "service": "jeju-maeum-recommendation-api",
         "runtime": "vercel-python",
         "ai_model": openai_model_from_env(DEFAULT_OPENAI_MODEL),
+        "help_chatbot_model": HELP_CHATBOT_OPENAI_MODEL,
         "openai_api_key_configured": bool(os.environ.get("OPENAI_API_KEY")),
         "kakao_mobility_configured": kakao_mobility_rest_api_key_configured(),
         "places": len(state["places"]),
@@ -82,7 +102,12 @@ def build_health_payload() -> dict[str, Any]:
             "route_proxy": True,
             "help_chatbot": True,
             "grounded_rag": True,
+            "nearby_accessibility_resources": True,
             "tourism_weak_courses": bool(state["tourism_weak_course_summary"]),
+        },
+        "accessibility_resources": {
+            "accessible_public_toilets": len(state["accessible_public_toilets"]),
+            "power_wheelchair_fast_chargers": len(state["power_wheelchair_chargers"]),
         },
         "tourism_weak_courses": state["tourism_weak_course_summary"],
     }
@@ -135,16 +160,32 @@ def handle_help_chat(request: BaseHTTPRequestHandler) -> None:
     try:
         payload = read_json_body(request)
         question = parse_help_chat_question(payload.get("question") or payload.get("message"))
-        use_ai = parse_bool(payload.get("use_ai", True))
-        model = parse_model(payload.get("model") or openai_model_from_env(DEFAULT_OPENAI_MODEL))
-        client = openai_help_chatbot_client_from_env() if use_ai else None
-        result = build_help_chatbot_reply(
-            question,
-            history=payload.get("history") or payload.get("messages") or [],
-            recommendation_context=payload.get("recommendation_context"),
-            model=model,
-            client=client,
-        )
+        model = HELP_CHATBOT_OPENAI_MODEL
+        proximity_request = parse_proximity_request(payload.get("proximity_request"))
+        if proximity_request:
+            state = runtime_state()
+            result = search_nearby_accessibility_resources(
+                latitude=proximity_request["latitude"],
+                longitude=proximity_request["longitude"],
+                accuracy_meters=proximity_request["accuracy_meters"],
+                resource_types=proximity_request["resource_types"],
+                limit=proximity_request["limit"],
+                places=state["places"],
+                location_index=state["location_index"],
+                public_toilets=state["accessible_public_toilets"],
+                chargers=state["power_wheelchair_chargers"],
+                model="deterministic-geospatial",
+            )
+        else:
+            use_ai = parse_bool(payload.get("use_ai", True))
+            client = openai_help_chatbot_client_from_env() if use_ai else None
+            result = build_help_chatbot_reply(
+                question,
+                history=payload.get("history") or payload.get("messages") or [],
+                recommendation_context=payload.get("recommendation_context"),
+                model=model,
+                client=client,
+            )
     except ApiRequestError as exc:
         send_error_json(request, exc.code, str(exc), status=exc.status)
         return

@@ -3,6 +3,11 @@
 .playwright-mcp/
 .serena/
 .tmp-*/
+artifacts/
+outputs/
+.agents/
+.codex/
+tmp/
 tests/
 docs/
 scripts/
@@ -16,6 +21,8 @@ data/**
 !data/tourism_weak_recommendation_courses.json
 !data/place_catalog.roadview_facility.json
 !data/place_visit_info_overrides.json
+!data/jeju_accessible_public_toilets.json
+!data/jeju_power_wheelchair_fast_chargers.json
 
 web/.gitignore
 web/README.md

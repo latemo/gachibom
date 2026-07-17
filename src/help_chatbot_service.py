@@ -11,8 +11,8 @@ import urllib.request
 from typing import Any, Protocol
 from urllib.parse import urlsplit
 
+from src.accessibility_resources import build_location_required_reply
 from src.recommendation_service import (
-    DEFAULT_OPENAI_MODEL,
     OPENAI_RESPONSES_URL,
     extract_response_text,
     parse_json_object,
@@ -27,7 +27,11 @@ HELP_CHATBOT_MAX_CONTEXT_LIST_ITEMS = 6
 HELP_CHATBOT_MAX_CONTEXT_TEXT_LENGTH = 180
 HELP_CHATBOT_MAX_OUTPUT_TOKENS = 1_800
 HELP_CHATBOT_TIMEOUT_SECONDS = 20
+HELP_CHATBOT_OPENAI_MODEL = "gpt-5-mini"
 HELP_CHATBOT_PROMPT_VERSION = "help_chatbot_explanation_v2_20260712"
+HELP_CHATBOT_MODE_RULE_VERSION = "mode_distinction_rule_v1_20260715"
+HELP_CHATBOT_PRE_VISIT_RULE_VERSION = "pre_visit_check_rule_v1_20260715"
+HELP_CHATBOT_EXCLUSION_RULE_VERSION = "exclusion_alternative_rule_v1_20260715"
 
 HELP_CHATBOT_TRAVELER_SUMMARY_KEYS = (
     "traveler_type",
@@ -117,12 +121,36 @@ def build_help_chatbot_reply(
     *,
     history: list[dict[str, str]] | None = None,
     recommendation_context: dict[str, Any] | None = None,
-    model: str = DEFAULT_OPENAI_MODEL,
+    model: str = HELP_CHATBOT_OPENAI_MODEL,
     client: HelpChatbotClient | None = None,
 ) -> dict[str, Any]:
     normalized_question = normalize_help_question(question)
     normalized_history = normalize_help_history(history or [])
     normalized_recommendation_context = normalize_help_recommendation_context(recommendation_context)
+    location_reply = build_location_required_reply(normalized_question, model=model)
+    if location_reply is not None:
+        return location_reply
+    mode_reply = build_mode_distinction_reply(
+        normalized_question,
+        normalized_recommendation_context,
+        model=model,
+    )
+    if mode_reply is not None:
+        return mode_reply
+    pre_visit_reply = build_pre_visit_check_reply(
+        normalized_question,
+        normalized_recommendation_context,
+        model=model,
+    )
+    if pre_visit_reply is not None:
+        return pre_visit_reply
+    exclusion_reply = build_exclusion_or_alternative_reply(
+        normalized_question,
+        normalized_recommendation_context,
+        model=model,
+    )
+    if exclusion_reply is not None:
+        return exclusion_reply
     if client is None:
         return {
             "status": "disabled_no_key",
@@ -156,6 +184,137 @@ def build_help_chatbot_reply(
         }
 
     return normalize_help_chatbot_reply(generated, model)
+
+
+def build_mode_distinction_reply(
+    question: str,
+    recommendation_context: dict[str, Any],
+    *,
+    model: str,
+) -> dict[str, Any] | None:
+    """Return a bounded field-based answer for static/runtime questions."""
+
+    mode = str(recommendation_context.get("mode") or "").strip().casefold()
+    asks_about_mode = (
+        any(term in question for term in ("실시간", "사전 계산", "사전계산", "재계산"))
+        and any(term in question for term in ("추천", "결과", "계산", "표시"))
+    )
+    if mode not in {"static", "runtime"} or not asks_about_mode:
+        return None
+
+    if mode == "static":
+        answer = (
+            "이 추천은 실시간 개인별 재계산 결과가 아니라, 입력 조건과 가장 가까운 사전 계산 시나리오 결과입니다. "
+            '근거는 recommendation_context.mode가 "static"으로 표시된 점입니다.'
+        )
+    else:
+        answer = (
+            "이 추천은 현재 입력을 사용해 실행 시점에 계산한 결과입니다. "
+            '근거는 recommendation_context.mode가 "runtime"으로 표시된 점입니다.'
+        )
+    return {
+        "status": "success",
+        "model": model,
+        "answer_source": "deterministic_mode_rule",
+        "behavior_version": HELP_CHATBOT_MODE_RULE_VERSION,
+        "answer": answer,
+        "followups": ["점수 계산 방식도 알려 주세요"],
+        "handoff_checklist": [],
+        "safety_note": HELP_CHATBOT_SAFETY_NOTE,
+    }
+
+
+def build_pre_visit_check_reply(
+    question: str,
+    recommendation_context: dict[str, Any],
+    *,
+    model: str,
+) -> dict[str, Any] | None:
+    """Return only the place-specific check_before_visit evidence."""
+
+    asks_about_pre_visit = (
+        any(term in question for term in ("방문 전", "방문하기 전", "방문 전에"))
+        and any(term in question for term in ("확인", "체크", "준비"))
+    )
+    selected_place = recommendation_context.get("selected_place")
+    if not asks_about_pre_visit or not isinstance(selected_place, dict):
+        return None
+
+    checks = _normalize_context_text_list(
+        selected_place.get("check_before_visit"),
+        max_items=HELP_CHATBOT_MAX_CONTEXT_LIST_ITEMS,
+    )
+    if not checks:
+        return None
+
+    place_name = _clean_context_text(selected_place.get("name"), 120) or "선택 장소"
+    answer = f"{place_name} 방문 전 확인 항목은 {', '.join(checks)}입니다."
+    return {
+        "status": "success",
+        "model": model,
+        "answer_source": "deterministic_pre_visit_rule",
+        "behavior_version": HELP_CHATBOT_PRE_VISIT_RULE_VERSION,
+        "answer": answer,
+        "followups": ["각 확인 항목의 근거도 보여 주세요"],
+        "handoff_checklist": checks[:4],
+        "safety_note": HELP_CHATBOT_SAFETY_NOTE,
+    }
+
+
+def build_exclusion_or_alternative_reply(
+    question: str,
+    recommendation_context: dict[str, Any],
+    *,
+    model: str,
+) -> dict[str, Any] | None:
+    """Describe exclusion criteria without assigning unsupported place-level exclusions."""
+
+    asks_about_alternative = "대안" in question and any(
+        term in question for term in ("덜 적합", "제외", "피해야")
+    )
+    recommendation = recommendation_context.get("recommendation")
+    if not asks_about_alternative or not isinstance(recommendation, dict):
+        return None
+
+    course = recommendation.get("course")
+    route = course.get("route") if isinstance(course, dict) else None
+    allowed_names = []
+    if isinstance(route, list):
+        allowed_names = _normalize_context_text_list(
+            [item.get("name") for item in route if isinstance(item, dict)],
+            max_items=4,
+            max_length=120,
+        )
+
+    traveler_summary = recommendation_context.get("traveler_summary")
+    avoid = traveler_summary.get("avoid") if isinstance(traveler_summary, dict) else None
+    basis = _normalize_context_text_list(
+        [
+            *_normalize_context_text_list(avoid),
+            *_normalize_context_text_list(recommendation.get("deduction_reasons")),
+        ],
+        max_items=HELP_CHATBOT_MAX_CONTEXT_LIST_ITEMS,
+    )
+    if not allowed_names or not basis:
+        return None
+
+    basis_text = " / ".join(item.rstrip(".") for item in basis)
+    answer = (
+        f"입력된 회피·감점 근거: {basis_text}. "
+        "현재 추천 문맥에는 실제 제외 후보 목록과 후보별 점수가 없어 특정 코스 장소를 "
+        "덜 적합하다고 단정할 수 없습니다. "
+        f"현재 코스에서 함께 고려할 장소는 {', '.join(allowed_names)}입니다."
+    )
+    return {
+        "status": "success",
+        "model": model,
+        "answer_source": "deterministic_exclusion_alternative_rule",
+        "behavior_version": HELP_CHATBOT_EXCLUSION_RULE_VERSION,
+        "answer": answer,
+        "followups": ["코스 장소별 방문 전 확인 항목도 알려 주세요"],
+        "handoff_checklist": basis[:4],
+        "safety_note": HELP_CHATBOT_SAFETY_NOTE,
+    }
 
 
 def normalize_help_question(value: Any) -> str:

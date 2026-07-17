@@ -1,0 +1,5101 @@
+{
+  "metadata": {
+    "source_url": "https://www.data.go.kr/data/15034533/standard.do",
+    "dataset_name": "전국전동휠체어급속충전기표준데이터",
+    "synced_at": "2026-07-16",
+    "source_record_count": 4191,
+    "province": "제주특별자치도",
+    "province_record_count": 154,
+    "record_count": 154,
+    "excluded_missing_or_invalid_coordinate_count": 0,
+    "out_of_jeju_bounds_count": 0,
+    "out_of_jeju_bounds_ids": [],
+    "latest_reference_date": "2025-12-23",
+    "distance_caution": "표시 거리는 등록 좌표를 이용한 직선거리 기준이며 실제 무장애 이동 경로와 다를 수 있습니다.",
+    "realtime_caution": "공공데이터 등록 위치이며 실시간 고장·점유·사용 가능 상태를 제공하지 않습니다. 방문 전 관리기관에 운영 여부를 확인하세요."
+  },
+  "items": [
+    {
+      "id": "jeju_power_wheelchair_fast_charger_e2990f9183290f190df5",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "S-중앙병원",
+      "latitude": 33.49232226,
+      "longitude": 126.4704818,
+      "address": "제주특별자치도 제주시 월랑로 91",
+      "lot_address": "제주특별자치도 제주시 이호이동 22",
+      "installation_location": "2층 의료기상사 앞",
+      "operating_hours": {
+        "weekday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_bb48e8d6d00ad5f92b0a",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "㈜ 이마트 서귀포점",
+      "latitude": 33.24833973,
+      "longitude": 126.5091156,
+      "address": "제주특별자치도 서귀포시 일주동로 9209",
+      "lot_address": "제주특별자치도 서귀포시 법환동 841-2",
+      "installation_location": "1층 입구 우측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "10:00",
+          "closing": "17:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_a50add9287dde16675dd",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "㈜ 이마트 탑동점",
+      "latitude": 33.51797503,
+      "longitude": 126.5211776,
+      "address": "제주특별자치도 제주시 탑동로 38",
+      "lot_address": "제주특별자치도 제주시 삼도이동 1259",
+      "installation_location": "2층 매장입구 옆",
+      "operating_hours": {
+        "weekday": {
+          "opening": "10:00",
+          "closing": "23:00"
+        },
+        "saturday": {
+          "opening": "10:00",
+          "closing": "23:00"
+        },
+        "holiday": {
+          "opening": "10:00",
+          "closing": "23:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_42973cc198d0e43181cd",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "㈜엘린호텔",
+      "latitude": 33.48932491,
+      "longitude": 126.4954378,
+      "address": "제주특별자치도 제주시 은남1길 4",
+      "lot_address": "제주특별자치도 제주시 연동 292-32",
+      "installation_location": "호텔 정문 우측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_bf58a287f0562520fb97",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "㈜제주국제 켄벤션센터",
+      "latitude": 33.24129026,
+      "longitude": 126.4244423,
+      "address": "제주특별자치도 서귀포시 중문관광로 224",
+      "lot_address": "제주특별자치도 서귀포시 중문동 2700",
+      "installation_location": "1층 좌측 의무실 내",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_022847c35614e9ba98c8",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "감귤박물관",
+      "latitude": 33.27159304,
+      "longitude": 126.6074285,
+      "address": "제주특별자치도 서귀포시 효돈순환로 441",
+      "lot_address": "제주특별자치도 서귀포시 신효동 1200-6",
+      "installation_location": "1층 로비 중앙",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "19:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "19:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "19:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_e39f48d07de73d7b2ffc",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "강정보건지소",
+      "latitude": 33.23760016,
+      "longitude": 126.4772283,
+      "address": "제주특별자치도 서귀포시 강정통물로 125-11",
+      "lot_address": "제주특별자치도 서귀포시 강정동 4362-10",
+      "installation_location": "1층 현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_492f7973000beb4e5a94",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "건강과성박물관 제주",
+      "latitude": 33.25484822,
+      "longitude": 126.3465819,
+      "address": "제주특별자치도 서귀포시 안덕면 일주서로 1611",
+      "lot_address": "제주특별자치도 서귀포시 안덕면 감산리 1736",
+      "installation_location": "출입구 오른편 휴게실",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "20:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "20:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "20:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_f3b99c681b775fabc257",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "건입동행정복지센터",
+      "latitude": 33.51505009,
+      "longitude": 126.531505,
+      "address": "제주특별자치도 제주시 만덕로 18",
+      "lot_address": "제주특별자치도 제주시 건입동 1189-2",
+      "installation_location": "1층현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_5cf9cde3f4f5c44f3e28",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "구좌읍사무소",
+      "latitude": 33.52213927,
+      "longitude": 126.8518858,
+      "address": "제주특별자치도 제주시 구좌읍 일주동로 3116",
+      "lot_address": "제주특별자치도 제주시 구좌읍 세화리 1561-7",
+      "installation_location": "1층 로비 입구",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_2b4c8968c9f5e505024c",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "김만덕 기념관",
+      "latitude": 33.51587533,
+      "longitude": 126.5303898,
+      "address": "제주특별자치도 제주시 산지로 7",
+      "lot_address": "제주특별자치도 제주시 건입동 1164",
+      "installation_location": "후문로비 우측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_5b85fe2c2b529b14c852",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "남원읍사무소",
+      "latitude": 33.27989564,
+      "longitude": 126.7206785,
+      "address": "제주특별자치도 서귀포시 남원읍 태위로 695",
+      "lot_address": "제주특별자치도 서귀포시 남원읍 남원리 205-1",
+      "installation_location": "1층 현관 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": true,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_7ff8ea2fe2e0d8559973",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "납읍리 복지회관 소회의실",
+      "latitude": 33.43829073,
+      "longitude": 126.331165,
+      "address": "제주특별자치도 제주시 애월읍 납읍로2길 3",
+      "lot_address": "제주특별자치도 제주시 애월읍 납읍리 1605-1",
+      "installation_location": "경로당 현관 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_32faddd3ddeb6cae98b2",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "노리매",
+      "latitude": 33.28254489,
+      "longitude": 126.2873439,
+      "address": "제주특별자치도 서귀포시 대정읍 중산간서로 2260-15",
+      "lot_address": "제주특별자치도 서귀포시 대정읍 구억리 654-1",
+      "installation_location": "1층 커피숍 중앙",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_4da5840e1dbf6939df63",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "노형동주민센터",
+      "latitude": 33.48288157,
+      "longitude": 126.4769921,
+      "address": "제주특별자치도 제주시 노형9길 9-4",
+      "lot_address": "제주특별자치도 제주시 노형동 3793-1",
+      "installation_location": "1층현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_8799d2a89b32bcf1008f",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "대정읍사무소",
+      "latitude": 33.22667697,
+      "longitude": 126.2518133,
+      "address": "제주특별자치도 서귀포시 대정읍 하모중앙로 20",
+      "lot_address": "제주특별자치도 서귀포시 대정읍 하모리 1413",
+      "installation_location": "실외 현관 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_1f1c2ef1671bb5e551db",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "도두동주민센터",
+      "latitude": 33.50289739,
+      "longitude": 126.4680924,
+      "address": "제주특별자치도 제주시 도두1길 9-1",
+      "lot_address": "제주특별자치도 제주시 도두일동 1987-1",
+      "installation_location": "1층현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_68e8ad7a62425aaf2de9",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "렛츠런파크 제주",
+      "latitude": 33.4098413,
+      "longitude": 126.3931243,
+      "address": "제주특별자치도 제주시 애월읍 평화로 2144",
+      "lot_address": "제주특별자치도 제주시 애월읍 유수암리 1206",
+      "installation_location": "럭키빌 1번 건물 서비스 아카데미 부서 옆",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_fdcced46c7d53487cb9e",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "롯데마트",
+      "latitude": 33.48244556,
+      "longitude": 126.4818434,
+      "address": "제주특별자치도 제주시 연북로 1",
+      "lot_address": "제주특별자치도 제주시 노형동 708",
+      "installation_location": "지하1층 주차장",
+      "operating_hours": {
+        "weekday": {
+          "opening": "10:00",
+          "closing": "23:00"
+        },
+        "saturday": {
+          "opening": "10:00",
+          "closing": "23:00"
+        },
+        "holiday": {
+          "opening": "10:00",
+          "closing": "23:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_886f1cbe219c3f22cd65",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "만장굴",
+      "latitude": 33.52837742,
+      "longitude": 126.7716158,
+      "address": "제주특별자치도 제주시 구좌읍 만장굴길 182",
+      "lot_address": "제주특별자치도 제주시 구좌읍 월정리 산 41-15",
+      "installation_location": "1층 휴게실 내",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_9fce9bb6f1fada96944b",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "메이즈랜드",
+      "latitude": 33.48915381,
+      "longitude": 126.801098,
+      "address": "제주특별자치도 제주시 구좌읍 비자림로 2134-47",
+      "lot_address": "제주특별자치도 제주시 구좌읍 평대리 3322",
+      "installation_location": "미로박물관 입구 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": true,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_bde73460a1a06c55e6a3",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "무릉보건진료소",
+      "latitude": 33.27437049,
+      "longitude": 126.2342064,
+      "address": "제주특별자치도 서귀포시 대정읍 중산간서로 2877",
+      "lot_address": "제주특별자치도 서귀포시 대정읍 무릉리 605-4",
+      "installation_location": "1층 현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_8adfd1d7993dbe043de8",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "문예회관",
+      "latitude": 33.50444317,
+      "longitude": 126.5351739,
+      "address": "제주특별자치도 제주시 동광로 69",
+      "lot_address": "제주특별자치도 제주시 일도이동 852",
+      "installation_location": "소극장 입구 우측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_ac4669a782b03bd466dd",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "민속자연사 박물관",
+      "latitude": 33.50563037,
+      "longitude": 126.5317241,
+      "address": "제주특별자치도 제주시 삼성로 40",
+      "lot_address": "제주특별자치도 제주시 일도이동 996-1",
+      "installation_location": "매표소 우측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_085e2399a115862b49f8",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "봉개동주민센터",
+      "latitude": 33.49166571,
+      "longitude": 126.5947306,
+      "address": "제주특별자치도 제주시 봉개북1길 15",
+      "lot_address": "제주특별자치도 제주시 봉개동 1824-1",
+      "installation_location": "1층현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_c49af57c64d4b2425843",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "블루하와이리조트",
+      "latitude": 33.38071811,
+      "longitude": 126.2183937,
+      "address": "제주특별자치도 제주시 한림읍 한림로 75",
+      "lot_address": "제주특별자치도 제주시 한림읍 금능리 2005-1",
+      "installation_location": "1층 현관 우측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_87616f6cfc441522a980",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "비자림",
+      "latitude": 33.49109728,
+      "longitude": 126.8114612,
+      "address": "제주특별자치도 제주시 구좌읍 비자숲길 55",
+      "lot_address": "제주특별자치도 제주시 구좌읍 평대리 3161-1",
+      "installation_location": "1층 장애인화장실 앞",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_7c4e41a970c732dcaad0",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "사라봉 다목적 체육관",
+      "latitude": 33.51371716,
+      "longitude": 126.5444582,
+      "address": "제주특별자치도 제주시 동문로 169",
+      "lot_address": "제주특별자치도 제주시 건입동 566",
+      "installation_location": "1층 체육관출입구 옆",
+      "operating_hours": {
+        "weekday": {
+          "opening": "08:30",
+          "closing": "22:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": true,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_4480d26d615b67b40a37",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "사회복지 법인 효원 제주복지노인전문병원",
+      "latitude": 33.50521926,
+      "longitude": 126.5382607,
+      "address": "제주특별자치도 제주시 동광로 96",
+      "lot_address": "제주특별자치도 제주시 이도이동 315",
+      "installation_location": "3층 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "17:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_47fd8da5248b57f1e1fb",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "사회복지법인 춘강 서귀포시장애인종합복지관",
+      "latitude": 33.28691589,
+      "longitude": 126.5845835,
+      "address": "제주특별자치도 서귀포시 인정오름로 24",
+      "lot_address": "제주특별자치도 서귀포시 토평동 1919-3",
+      "installation_location": "1층 출입구",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_df62e03d9fac316937e4",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "사회복지법인 춘강 제주특별자치도 장애인종합복지관",
+      "latitude": 33.45254797,
+      "longitude": 126.5530085,
+      "address": "제주특별자치도 제주시 516로 3120",
+      "lot_address": "제주특별자치도 제주시 아라일동 396-1",
+      "installation_location": "1층 출입구 복도",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_66ca8dd607f27757fef8",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "삼도1동 행정복지센터",
+      "latitude": 33.50414427,
+      "longitude": 126.5173665,
+      "address": "제주특별자치도 제주시 전농로 40",
+      "lot_address": "제주특별자치도 제주시 삼도일동 508-4",
+      "installation_location": "정문입구 오른편",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_a0507f93cb5ff2932d90",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "삼양동 선사유적지",
+      "latitude": 33.52350584,
+      "longitude": 126.5879986,
+      "address": "제주특별자치도 제주시 선사로2길 13",
+      "lot_address": "제주특별자치도 제주시 삼양일동 1660-5",
+      "installation_location": "외부전시관 현관 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_2832273824eae0ca2717",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "서귀포 온성학교",
+      "latitude": 33.29104917,
+      "longitude": 126.5930174,
+      "address": "제주특별자치도 서귀포시 516로 447-10",
+      "lot_address": "제주특별자치도 서귀포시 상효동 1291-2",
+      "installation_location": "본관 휠체어 보관소 앞",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_d3b568a3ba8f102bc811",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "서귀포 홈플러스",
+      "latitude": 33.26048554,
+      "longitude": 126.5599348,
+      "address": "제주특별자치도 서귀포시 중앙로 180",
+      "lot_address": "제주특별자치도 서귀포시 동홍동 1558",
+      "installation_location": "1층 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "10:00",
+          "closing": "23:00"
+        },
+        "saturday": {
+          "opening": "10:00",
+          "closing": "23:00"
+        },
+        "holiday": {
+          "opening": "10:00",
+          "closing": "23:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_847db63b61dd90ddcf9d",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "서귀포시 동부보건소",
+      "latitude": 33.27562882,
+      "longitude": 126.7034233,
+      "address": "제주특별자치도 서귀포시 남원읍 태위로 527",
+      "lot_address": "제주특별자치도 서귀포시 남원읍 남원리 2359-1",
+      "installation_location": "1층 체력단련장 내부",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_1e9eba106c1a224abc87",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "서귀포시 서귀포보건소",
+      "latitude": 33.25347982,
+      "longitude": 126.5553555,
+      "address": "제주특별자치도 서귀포시 중앙로101번길 52",
+      "lot_address": "제주특별자치도 서귀포시 서홍동 447-3",
+      "installation_location": "1층 현관 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_dec40b8f20545abd2029",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "서귀포시 서부보건소",
+      "latitude": 33.21867302,
+      "longitude": 126.2532449,
+      "address": "제주특별자치도 서귀포시 대정읍 최남단해안로15번길 12",
+      "lot_address": "제주특별자치도 서귀포시 대정읍 하모리 767-8",
+      "installation_location": "1층 입구 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_ebc57fad40b88e12b59d",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "서귀포시장애인보조기기대여센터",
+      "latitude": 33.23976829,
+      "longitude": 126.5645589,
+      "address": "제주특별자치도 서귀포시 칠십리로72번길 9",
+      "lot_address": "제주특별자치도 서귀포시 서귀동 783-15",
+      "installation_location": "3층 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_c84f01d0538877d0f192",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "서귀포시장애인회관",
+      "latitude": 33.23976829,
+      "longitude": 126.5645589,
+      "address": "제주특별자치도 서귀포시 칠십리로72번길 9",
+      "lot_address": "제주특별자치도 서귀포시 서귀동 783-15",
+      "installation_location": "2층 로비, 6층 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 4,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_40a36c2d139e7bca4b45",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "서귀포시청 제1청사 별관",
+      "latitude": 33.25420363,
+      "longitude": 126.5602182,
+      "address": "제주특별자치도 서귀포시 중앙로 105",
+      "lot_address": "제주특별자치도 서귀포시 서홍동 440-1",
+      "installation_location": "정문 우측 별관 1층 입구",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": true,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_568ad989cdc73fa2cffa",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "서귀포월드컵경기장",
+      "latitude": 33.24621974,
+      "longitude": 126.5092777,
+      "address": "제주특별자치도 서귀포시 월드컵로 33",
+      "lot_address": "제주특별자치도 서귀포시 법환동 914",
+      "installation_location": "실내주차장 내 중앙",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_c917ef8b903b32259b42",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "서귀포의료원",
+      "latitude": 33.25598081,
+      "longitude": 126.5629493,
+      "address": "제주특별자치도 서귀포시 장수로 47",
+      "lot_address": "제주특별자치도 서귀포시 동홍동 1530-2",
+      "installation_location": "1층 입구 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_516dae3b6af0deb2864b",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "서부종합사회복지관",
+      "latitude": 33.41688429,
+      "longitude": 126.2683502,
+      "address": "제주특별자치도 제주시 한림읍 한림상로 207",
+      "lot_address": "제주특별자치도 제주시 한림읍 대림리 1774-3",
+      "installation_location": "1층 현관 앞",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_a9c24292aa0efb1a0aee",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "서홍동행정복지센터",
+      "latitude": 33.25607801,
+      "longitude": 126.5599846,
+      "address": "제주특별자치도 서귀포시 중앙로 125",
+      "lot_address": "제주특별자치도 서귀포시 서홍동 397-24",
+      "installation_location": "1층현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_4adee8d507db04d05ed9",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "성산보건지소",
+      "latitude": 33.44655575,
+      "longitude": 126.9157493,
+      "address": "제주특별자치도 서귀포시 성산읍 고성오조로 42",
+      "lot_address": "제주특별자치도 서귀포시 성산읍 고성리 336-2",
+      "installation_location": "1층 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_c975b352b82b22a1a0b0",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "성산읍사무소",
+      "latitude": 33.44264183,
+      "longitude": 126.9110601,
+      "address": "제주특별자치도 서귀포시 성산읍 일주동로 4330",
+      "lot_address": "제주특별자치도 서귀포시 성산읍 고성리 1023-2",
+      "installation_location": "1층 민원실내",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_4b4231132c6781aada04",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "성읍민속마을",
+      "latitude": 33.38451163,
+      "longitude": 126.8003779,
+      "address": "제주특별자치도 서귀포시 표선면 성읍정의현로 19",
+      "lot_address": "제주특별자치도 서귀포시 표선면 성읍리 775-1",
+      "installation_location": "관리사무소 1층 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_82f86b6f9180464de01b",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "세계자동차&피아노 박물관",
+      "latitude": 33.28294084,
+      "longitude": 126.349009,
+      "address": "제주특별자치도 서귀포시 안덕면 중산간서로 1610",
+      "lot_address": "제주특별자치도 서귀포시 안덕면 상창리 2065-4",
+      "installation_location": "1층 로비 우측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_63248cde3a013aebcfeb",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "세계자연유산센터",
+      "latitude": 33.4569205,
+      "longitude": 126.7147513,
+      "address": "제주특별자치도 제주시 조천읍 선교로 569-36",
+      "lot_address": "제주특별자치도 제주시 조천읍 선흘리 478",
+      "installation_location": "유산센터 지하1층 입구",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_23117da17af4b7e746c6",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "신도보건진료소",
+      "latitude": 33.27748499,
+      "longitude": 126.1742628,
+      "address": "제주특별자치도 서귀포시 대정읍 도원로 37",
+      "lot_address": "제주특별자치도 서귀포시 대정읍 신도리 2979-3",
+      "installation_location": "1층 치료실 앞",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_ca75cd382c42ad12cbd4",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "신천리마을회",
+      "latitude": 33.34418496,
+      "longitude": 126.8497949,
+      "address": "제주특별자치도 서귀포시 성산읍 신천서로 5",
+      "lot_address": "제주특별자치도 서귀포시 성산읍 신천리 478-7",
+      "installation_location": "1층 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_6644b687effaa27c285a",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "신평보건진료소",
+      "latitude": 33.2659612,
+      "longitude": 126.2593552,
+      "address": "제주특별자치도 서귀포시 대정읍 중산간서로 2600",
+      "lot_address": "제주특별자치도 서귀포시 대정읍 신평리 369-8",
+      "installation_location": "1층 현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_858d4c69f85eb3371bf7",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "신화테마파크",
+      "latitude": 33.3065373,
+      "longitude": 126.3075544,
+      "address": "제주특별자치도 서귀포시 안덕면 신화역사로304번길 98",
+      "lot_address": "제주특별자치도 서귀포시 안덕면 서광리 산 35-16",
+      "installation_location": "출입구 안 유모차 및 휠체어대여소",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_ba25feeea3dacc4f1768",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "아라동주민센터",
+      "latitude": 33.47634006,
+      "longitude": 126.5452693,
+      "address": "제주특별자치도 제주시 인다8길 5",
+      "lot_address": "제주특별자치도 제주시 아라일동 6103-5",
+      "installation_location": "1층현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_1ea111f03cff97a9441e",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "아라종합사회복지관 (아라주공아파트)",
+      "latitude": 33.47391698,
+      "longitude": 126.5463664,
+      "address": "제주특별자치도 제주시 인다12길 1",
+      "lot_address": "제주특별자치도 제주시 아라일동 6135",
+      "installation_location": "1층 로비 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_3a826d9e38497eccbd63",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "아르떼뮤지엄",
+      "latitude": 33.39669804,
+      "longitude": 126.3449759,
+      "address": "제주특별자치도 제주시 애월읍 어림비로 478",
+      "lot_address": "제주특별자치도 제주시 애월읍 어음리 1503",
+      "installation_location": "1층현관 입구",
+      "operating_hours": {
+        "weekday": {
+          "opening": "10:00",
+          "closing": "20:00"
+        },
+        "saturday": {
+          "opening": "10:00",
+          "closing": "20:00"
+        },
+        "holiday": {
+          "opening": "10:00",
+          "closing": "20:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_ee6da6d100c58f988338",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "아쿠아플라넷 제주",
+      "latitude": 33.43297785,
+      "longitude": 126.9277976,
+      "address": "제주특별자치도 서귀포시 성산읍 섭지코지로 95",
+      "lot_address": "제주특별자치도 서귀포시 성산읍 고성리 127-3",
+      "installation_location": "정문 입구우측로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "10:00",
+          "closing": "19:00"
+        },
+        "saturday": {
+          "opening": "10:00",
+          "closing": "19:00"
+        },
+        "holiday": {
+          "opening": "10:00",
+          "closing": "19:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_c7ef1af0c26db320dd3c",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "안덕면행정복지센터",
+      "latitude": 33.25757999,
+      "longitude": 126.330623,
+      "address": "제주특별자치도 서귀포시 안덕면 화순서서로 74",
+      "lot_address": "제주특별자치도 서귀포시 안덕면 화순리 1961-1",
+      "installation_location": "1층현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_f8adb3ea0dccc18eefbd",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "안덕보건지소",
+      "latitude": 33.25058764,
+      "longitude": 126.3313996,
+      "address": "제주특별자치도 서귀포시 안덕면 화순중앙로12번길 30-9",
+      "lot_address": "제주특별자치도 서귀포시 안덕면 화순리 1158-11",
+      "installation_location": "1층 치료실 내",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_88622b679f5d8375c50a",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "애월보건지소",
+      "latitude": 33.46417095,
+      "longitude": 126.3249905,
+      "address": "제주특별자치도 제주시 애월읍 애월로 167",
+      "lot_address": "제주특별자치도 제주시 애월읍 애월리 441-3",
+      "installation_location": "1층 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_fc6d5af5eb2645b219bd",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "애월읍사무소",
+      "latitude": 33.46201453,
+      "longitude": 126.3288568,
+      "address": "제주특별자치도 제주시 애월읍 일주서로 6322",
+      "lot_address": "제주특별자치도 제주시 애월읍 애월리 241-1",
+      "installation_location": "1층 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": true,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_4f0c023a33fc2a6c7c80",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "여미지식물원",
+      "latitude": 33.2544646,
+      "longitude": 126.4144764,
+      "address": "제주특별자치도 서귀포시 중문관광로 93",
+      "lot_address": "제주특별자치도 서귀포시 색달동 2484-1",
+      "installation_location": "온실식물원 1층 정문 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_40f47f928d7a188f08b0",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "영지학교",
+      "latitude": 33.48883859,
+      "longitude": 126.5427401,
+      "address": "제주특별자치도 제주시 간월동로3길 15",
+      "lot_address": "제주특별자치도 제주시 이도이동 690",
+      "installation_location": "본관 1층",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_045e58113f5fb072b003",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "영천동주민센터",
+      "latitude": 33.26876038,
+      "longitude": 126.5866444,
+      "address": "제주특별자치도 서귀포시 토평로 15",
+      "lot_address": "제주특별자치도 서귀포시 토평동 2202-3",
+      "installation_location": "1층현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_d80fe91245536ef3ae04",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "예술공간 이아",
+      "latitude": 33.51106972,
+      "longitude": 126.5223617,
+      "address": "제주특별자치도 제주시 중앙로 14길 21",
+      "lot_address": "제주특별자치도 제주시 삼도이동 154",
+      "installation_location": "1층 현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_9fdffad97ad80023b38f",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "예천노인전문요양원",
+      "latitude": 33.50038444,
+      "longitude": 126.6204446,
+      "address": "제주특별자치도 제주시 조천읍 종인내길 69",
+      "lot_address": "제주특별자치도 제주시 조천읍 와흘리 2408",
+      "installation_location": "1층 로비 중앙",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_3bfde2a3e7e5d734a962",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "오라동주민센터",
+      "latitude": 33.495149,
+      "longitude": 126.5115927,
+      "address": "제주특별자치도 제주시 오라로10길 6",
+      "lot_address": "제주특별자치도 제주시 오라이동 1191",
+      "installation_location": "1층현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_8e555922f89759b0c2ab",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "오조리마을회",
+      "latitude": 33.46148591,
+      "longitude": 126.9149862,
+      "address": "제주특별자치도 서귀포시 성산읍 오조로 85",
+      "lot_address": "제주특별자치도 서귀포시 성산읍 오조리 155-1",
+      "installation_location": "1층 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_dda643f6b6cbfce4b409",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "올림픽기념국민생활관",
+      "latitude": 33.26118028,
+      "longitude": 126.4995094,
+      "address": "제주특별자치도 서귀포시 중산간서로 97",
+      "lot_address": "제주특별자치도 서귀포시 강정동 1480",
+      "installation_location": "1층 로비 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_be12c034d0a88d26ea17",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "외도동 주민센터",
+      "latitude": 33.49290251,
+      "longitude": 126.4321189,
+      "address": "제주특별자치도 제주시 일주서로 7350",
+      "lot_address": "제주특별자치도 제주시 외도이동 233-4",
+      "installation_location": "정문입구 오른편 휴게실",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_325c5c7df51e1ec5d0dd",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "용담1동주민센터",
+      "latitude": 33.50911227,
+      "longitude": 126.5132793,
+      "address": "제주특별자치도 제주시 용남3길 11",
+      "lot_address": "제주특별자치도 제주시 용담일동 244-6",
+      "installation_location": "1층현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_8e2a8678ec6e7d42f581",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "용담2동주민센터",
+      "latitude": 33.511492,
+      "longitude": 126.5116815,
+      "address": "제주특별자치도 제주시 흥운길 27",
+      "lot_address": "제주특별자치도 제주시 용담이동 358-32",
+      "installation_location": "1층현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_dc3d1ca4f88e1e11b391",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "우도면사무소",
+      "latitude": 33.50647097,
+      "longitude": 126.9529777,
+      "address": "제주특별자치도 제주시 우도면 우도로 153",
+      "lot_address": "제주특별자치도 제주시 우도면 연평리 1451-3",
+      "installation_location": "1층현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_e98499a844ec5901134f",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "위미농협 하나로마트",
+      "latitude": 33.27474019,
+      "longitude": 126.661064,
+      "address": "제주특별자치도 서귀포시 남원읍 태위로 126",
+      "lot_address": "제주특별자치도 서귀포시 남원읍 위미리 2832-6",
+      "installation_location": "1층 매장 입구",
+      "operating_hours": {
+        "weekday": {
+          "opening": "07:00",
+          "closing": "22:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_134ec650958f56c62151",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "은성 종합 사회복지관",
+      "latitude": 33.48590135,
+      "longitude": 126.5494286,
+      "address": "제주특별자치도 제주시 월두2길 63-1",
+      "lot_address": "제주특별자치도 제주시 아라이동 1163-10",
+      "installation_location": "1층 우측 현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_04947505f2964873b462",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "이도1동주민센터",
+      "latitude": 33.50686711,
+      "longitude": 126.5267233,
+      "address": "제주특별자치도 제주시 중앙로25길 17",
+      "lot_address": "제주특별자치도 제주시 이도일동 1695-10",
+      "installation_location": "1층현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_8ce9dca5c9360d22dc72",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "이도2동행정복지센터",
+      "latitude": 33.49706861,
+      "longitude": 126.5353012,
+      "address": "제주특별자치도 제주시 오복3길 8",
+      "lot_address": "제주특별자치도 제주시 이도이동 1051-6",
+      "installation_location": "1층현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_7e34ed59397dcf61fd73",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "이호동 주민센터",
+      "latitude": 33.49981324,
+      "longitude": 126.4581036,
+      "address": "제주특별자치도 제주시 백포서길 9",
+      "lot_address": "제주특별자치도 제주시 이호일동 455-4",
+      "installation_location": "1층 민원실 내",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_7c151421fffa21fdc8df",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "자광원",
+      "latitude": 33.24751935,
+      "longitude": 126.4484676,
+      "address": "제주특별자치도 서귀포시 이어도로343번길 101",
+      "lot_address": "제주특별자치도 서귀포시 대포동 1146-1",
+      "installation_location": "1층 내부",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "19:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "19:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "19:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_f625d996cccb54b33ef6",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "장애인론볼연맹",
+      "latitude": 33.40969076,
+      "longitude": 126.2685438,
+      "address": "제주특별자치도 제주시 한림읍 한림중앙로 71-9",
+      "lot_address": "제주특별자치도 제주시 한림읍 한림리 887-2",
+      "installation_location": "경기장 내 사무실 앞",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_007b11588259e0ea5cfd",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "절물생태관리소 (절물자연휴양림)",
+      "latitude": 33.44004881,
+      "longitude": 126.6252034,
+      "address": "제주특별자치도 제주시 명림로 584",
+      "lot_address": "제주특별자치도 제주시 봉개동 산 78-1",
+      "installation_location": "매표소 우측입구",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_c98ad34298ed686d8d94",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "정혜재활원",
+      "latitude": 33.28467665,
+      "longitude": 126.5814767,
+      "address": "제주특별자치도 서귀포시 인정오름로85번길 41",
+      "lot_address": "제주특별자치도 서귀포시 토평동 2895",
+      "installation_location": "2층 치료실",
+      "operating_hours": {
+        "weekday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_fc7b9c3fb3b3b4110f29",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주 스카이워터쇼",
+      "latitude": 33.42410609,
+      "longitude": 126.743051,
+      "address": "제주특별자치도 제주시 구좌읍 번영로 2172-80",
+      "lot_address": "제주특별자치도 제주시 구좌읍 송당리 2764-1",
+      "installation_location": "정문 공연장 안쪽",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_10b75570cb7a9893829f",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주4.3평화공원",
+      "latitude": 33.44982559,
+      "longitude": 126.6177477,
+      "address": "제주특별자치도 제주시 명림로 430",
+      "lot_address": "제주특별자치도 제주시 봉개동 237-2",
+      "installation_location": "정문입구 오른편",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_01c2630556f6290c13e8",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주관광공사 제주 웰컴센터",
+      "latitude": 33.48621787,
+      "longitude": 126.4994025,
+      "address": "제주특별자치도 제주시 선덕로 23",
+      "lot_address": "제주특별자치도 제주시 연동 313-105",
+      "installation_location": "1층 현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_987b9ccd8db664ab2fd1",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주관광대학교",
+      "latitude": 33.44748023,
+      "longitude": 126.4343028,
+      "address": "제주특별자치도 제주시 애월읍 평화로 2715",
+      "lot_address": "제주특별자치도 제주시 애월읍 광령리 2535",
+      "installation_location": "초운관 우측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_0c70929433b21cbc61e0",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주국제대학교",
+      "latitude": 33.4427728,
+      "longitude": 126.5698313,
+      "address": "제주특별자치도 제주시 516로 2870",
+      "lot_address": "제주특별자치도 제주시 영평동 2235",
+      "installation_location": "학생회관1층 정문좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_1813af9601992563f355",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주국제평화센터",
+      "latitude": 33.24438838,
+      "longitude": 126.4220223,
+      "address": "제주특별자치도 서귀포시 중문관광로 227-24",
+      "lot_address": "제주특별자치도 서귀포시 중문동 2571",
+      "installation_location": "1층 현관 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_5949f4222d6e34d8d53c",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주권역재활병원",
+      "latitude": 33.25288112,
+      "longitude": 126.5624668,
+      "address": "제주특별자치도 서귀포시 동문로 1",
+      "lot_address": "제주특별자치도 서귀포시 서귀동 284-1",
+      "installation_location": "1층 휠체어 보관소 앞",
+      "operating_hours": {
+        "weekday": {
+          "opening": "08:30",
+          "closing": "17:30"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_d05ca7bdd994cfbd2812",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주늘봄재활병원",
+      "latitude": 33.51297418,
+      "longitude": 126.5224149,
+      "address": "제주특별자치도 제주시 관덕로 30",
+      "lot_address": "제주특별자치도 제주시 삼도이동 71-1",
+      "installation_location": "2층 입구 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": true,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_c1f9b3737f527bd2f082",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주대학교",
+      "latitude": 33.4572368,
+      "longitude": 126.5642957,
+      "address": "제주특별자치도 제주시 제주대학로 102",
+      "lot_address": "제주특별자치도 제주시 아라일동 1",
+      "installation_location": "장애학생지원센터안",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_68ba5a0b144767216511",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주대학교 사라캠퍼스",
+      "latitude": 33.51393117,
+      "longitude": 126.5522134,
+      "address": "제주특별자치도 제주시 일주동로 61",
+      "lot_address": "제주특별자치도 제주시 화북일동 4810",
+      "installation_location": "사회교육대학원 1층 현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_73c771ba270ba4fad7e2",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주대학교병원",
+      "latitude": 33.46720843,
+      "longitude": 126.5452008,
+      "address": "제주특별자치도 제주시 아란13길 15",
+      "lot_address": "제주특별자치도 제주시 아라일동 1753-3",
+      "installation_location": "정문 우측 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_ab4bbe1aec2d9a52878d",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주민속촌",
+      "latitude": 33.32128714,
+      "longitude": 126.8430882,
+      "address": "제주특별자치도 서귀포시 표선면 민속해안로 631-34",
+      "lot_address": "제주특별자치도 서귀포시 표선면 표선리 40-1",
+      "installation_location": "정문 우측 사무실내",
+      "operating_hours": {
+        "weekday": {
+          "opening": "08:30",
+          "closing": "17:00"
+        },
+        "saturday": {
+          "opening": "08:30",
+          "closing": "17:00"
+        },
+        "holiday": {
+          "opening": "08:30",
+          "closing": "17:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_2251d02f525569b05015",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주벤처마루",
+      "latitude": 33.50030518,
+      "longitude": 126.5299996,
+      "address": "제주특별자치도 제주시 중앙로 217",
+      "lot_address": "제주특별자치도 제주시 이도이동 1176-67",
+      "installation_location": "1층 좌측 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_6fa8792c2062da5a1eb1",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주별빛누리공원",
+      "latitude": 33.4445748,
+      "longitude": 126.5491863,
+      "address": "제주특별자치도 제주시 선돌목동길 60",
+      "lot_address": "제주특별자치도 제주시 오등동 10-34",
+      "installation_location": "출입구 우측로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "15:00",
+          "closing": "23:00"
+        },
+        "saturday": {
+          "opening": "15:00",
+          "closing": "23:00"
+        },
+        "holiday": {
+          "opening": "15:00",
+          "closing": "23:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_92f9b2ca5c5ccb19f12c",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주센트럴파크",
+      "latitude": 33.43425343,
+      "longitude": 126.6749129,
+      "address": "제주특별자치도 제주시 조천읍 비자림로 606",
+      "lot_address": "제주특별자치도 제주시 조천읍 교래리 산 56-4",
+      "installation_location": "정문 안 서프라이즈관 후문",
+      "operating_hours": {
+        "weekday": {
+          "opening": "08:30",
+          "closing": "17:30"
+        },
+        "saturday": {
+          "opening": "08:30",
+          "closing": "17:30"
+        },
+        "holiday": {
+          "opening": "08:30",
+          "closing": "17:30"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_880e01e65b05a01fad76",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주순복음사회복지관",
+      "latitude": 33.50832062,
+      "longitude": 126.5460363,
+      "address": "제주특별자치도 제주시 천수동로 25",
+      "lot_address": "제주특별자치도 제주시 건입동 115-7",
+      "installation_location": "1층 현관 입구",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_704a0b132088e5c6e5e7",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주시 농협 본점",
+      "latitude": 33.51201607,
+      "longitude": 126.5371922,
+      "address": "제주특별자치도 제주시 삼성로 133",
+      "lot_address": "제주특별자치도 제주시 일도이동 985-1",
+      "installation_location": "지하 1층 현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_fd063b1301cbe88761ef",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주시 동부보건소",
+      "latitude": 33.55435045,
+      "longitude": 126.7513281,
+      "address": "제주특별자치도 제주시 구좌읍 김녕로14길 6",
+      "lot_address": "제주특별자치도 제주시 구좌읍 김녕리 1697-1",
+      "installation_location": "1층 현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_948bf336cfd7f261402e",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주시 서부보건소",
+      "latitude": 33.41208361,
+      "longitude": 126.2695292,
+      "address": "제주특별자치도 제주시 한림읍 강구로 5",
+      "lot_address": "제주특별자치도 제주시 한림읍 한림리 966-1",
+      "installation_location": "1층 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_0212e9a0aca8e43cf050",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주시 연동주민센터",
+      "latitude": 33.48837823,
+      "longitude": 126.496923,
+      "address": "제주특별자치도 제주시 신대로 101",
+      "lot_address": "제주특별자치도 제주시 연동 302-6",
+      "installation_location": "1층현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_b3bc5491795885dfa300",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주시보건소",
+      "latitude": 33.49159994,
+      "longitude": 126.5202382,
+      "address": "제주특별자치도 제주시 연삼로 264",
+      "lot_address": "제주특별자치도 제주시 도남동 567-1",
+      "installation_location": "후문 출입구 우측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_72eb800896a5699eac4c",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주아트센터",
+      "latitude": 33.47510575,
+      "longitude": 126.5155179,
+      "address": "제주특별자치도 제주시 오남로 231",
+      "lot_address": "제주특별자치도 제주시 오라이동 898-8",
+      "installation_location": "1층 안내데스크 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_030d5193566735ba303e",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주영락교회",
+      "latitude": 33.51135415,
+      "longitude": 126.542957,
+      "address": "제주특별자치도 제주시 동광로23길 15",
+      "lot_address": "제주특별자치도 제주시 일도이동 153-5",
+      "installation_location": "정문 출입구 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "17:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "17:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "17:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_f1c9b96b5e2e003a5ee8",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주장애인야간학교",
+      "latitude": 33.50761436,
+      "longitude": 126.5452134,
+      "address": "제주특별자치도 제주시 천수동로 30",
+      "lot_address": "제주특별자치도 제주시 일도이동 401-5",
+      "installation_location": "1층 야간학교 출입문 복도",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_14a475d8fc77ed1545f6",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주장애인연맹(제주DPI)",
+      "latitude": 33.50921152,
+      "longitude": 126.5392339,
+      "address": "제주특별자치도 제주시 고마로 56",
+      "lot_address": "제주특별자치도 제주시 일도이동 330-26",
+      "installation_location": "지하1층 사무실 우측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_f656840b3ad6ea8528d6",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주장애인종합복지관 북부분관",
+      "latitude": 33.55244353,
+      "longitude": 126.7481807,
+      "address": "제주특별자치도 제주시 구좌읍 김녕로6길 27-18",
+      "lot_address": "제주특별자치도 제주시 구좌읍 김녕리 1803",
+      "installation_location": "1층 입구",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": true,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_99dd870530a5f8ba1598",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주장애인주간활동센터",
+      "latitude": 33.4961107,
+      "longitude": 126.5362321,
+      "address": "제주특별자치도 제주시 연삼로 422",
+      "lot_address": "제주특별자치도 제주시 이도이동 1063-6",
+      "installation_location": "3층교육실 내부",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_49c043d14f47885c35fe",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주지방합동청사 제주청사관리소",
+      "latitude": 33.49086649,
+      "longitude": 126.5250586,
+      "address": "제주특별자치도 제주시 청사로 59",
+      "lot_address": "제주특별자치도 제주시 도남동 662",
+      "installation_location": "1층 안내소",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_bdf51a603debca8bdf6f",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주추사관",
+      "latitude": 33.24979614,
+      "longitude": 126.278494,
+      "address": "제주특별자치도 서귀포시 대정읍 추사로 44",
+      "lot_address": "제주특별자치도 서귀포시 대정읍 안성리 1661-1",
+      "installation_location": "지하1층 현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "19:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "19:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "19:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_bf956690da362e2bc84a",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주특별자치도 권익옹호기관",
+      "latitude": 33.50115228,
+      "longitude": 126.5395005,
+      "address": "제주특별자치도 제주시 청귤로5길 21",
+      "lot_address": "제주특별자치도 제주시 이도이동 370",
+      "installation_location": "1층 현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_e96633188cfd41254ff1",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주특별자치도 사회복지협의회",
+      "latitude": 33.51816603,
+      "longitude": 126.570311,
+      "address": "제주특별자치도 제주시 청풍남8길 12-1",
+      "lot_address": "제주특별자치도 제주시 화북일동 1112-1",
+      "installation_location": "1층 현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_bd4b1182d4a67053303d",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주특별자치도 장애인요트연맹",
+      "latitude": 33.50816302,
+      "longitude": 126.4666615,
+      "address": "제주특별자치도 제주시 도두항길 28-10",
+      "lot_address": "제주특별자치도 제주시 도두일동 2605-1",
+      "installation_location": "1층 내부",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_0ac688cd8867d81925ac",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주특별자치도 장애인체육회",
+      "latitude": 33.4865104,
+      "longitude": 126.4368875,
+      "address": "제주특별자치도 제주시 통물길 72",
+      "lot_address": "제주특별자치도 제주시 외도일동 173-1",
+      "installation_location": "1층 현관 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_f90bf857e729dd43fd08",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주특별자치도 지체장애인협회 서귀포시지회",
+      "latitude": 33.24427865,
+      "longitude": 126.555093,
+      "address": "제주특별자치도 서귀포시 남성중로 130",
+      "lot_address": "제주특별자치도 서귀포시 서홍동 581-3",
+      "installation_location": "1층 사무실 입구",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_be3dc70ef75996f3f222",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주특별자치도의회",
+      "latitude": 33.49044032,
+      "longitude": 126.4995628,
+      "address": "제주특별자치도 제주시 문연로 13",
+      "lot_address": "제주특별자치도 제주시 연동 311-45",
+      "installation_location": "의원회관 1층 현관 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_49db7ca290004e04657d",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주특별자치도지체장애인협회서귀포시지회 안덕면분회",
+      "latitude": 33.24653775,
+      "longitude": 126.332776,
+      "address": "제주특별자치도 서귀포시 안덕면 화순로 126",
+      "lot_address": "제주특별자치도 서귀포시 안덕면 화순리 1090-1",
+      "installation_location": "1층 현관 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_4828c610a443b97a8d13",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주특별자치도지체장애인협회장애인활동지원센터",
+      "latitude": 33.50447673,
+      "longitude": 126.5364308,
+      "address": "제주특별자치도 제주시 동광로 77",
+      "lot_address": "제주특별자치도 제주시 일도이동 362-23",
+      "installation_location": "3층 사무실 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_facbbe0aa98e361620c3",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주퍼시픽호텔 ㈜금자탑",
+      "latitude": 33.51066325,
+      "longitude": 126.5188802,
+      "address": "제주특별자치도 제주시 서사로 20",
+      "lot_address": "제주특별자치도 제주시 용담일동 159-1",
+      "installation_location": "1층 현관 우측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_7b497167fcb0dd8961a2",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주한란전시관",
+      "latitude": 33.29638827,
+      "longitude": 126.5905296,
+      "address": "제주특별자치도 서귀포시 돈내코로67번길 19",
+      "lot_address": "제주특별자치도 서귀포시 상효동 1421-9",
+      "installation_location": "1층로비 중앙",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "17:30"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "17:30"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "17:30"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_50cafe77588c01275c9b",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주항공우주박물관",
+      "latitude": 33.3042074,
+      "longitude": 126.2996615,
+      "address": "제주특별자치도 서귀포시 안덕면 녹차분재로 218",
+      "lot_address": "제주특별자치도 서귀포시 안덕면 서광리 산 39",
+      "installation_location": "1층 로비 우측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:30"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:30"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:30"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_d62c51765e59d034c80b",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주항일기념관",
+      "latitude": 33.54102729,
+      "longitude": 126.6407255,
+      "address": "제주특별자치도 제주시 조천읍 신북로 303",
+      "lot_address": "제주특별자치도 제주시 조천읍 조천리 1156",
+      "installation_location": "1층 현관 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_68f3dad8ee35031a28e8",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "제주혼디누림터",
+      "latitude": 33.5009203,
+      "longitude": 126.5249745,
+      "address": "제주특별자치도 제주시 서광로27길 16",
+      "lot_address": "제주특별자치도 제주시 이도일동 1660-6",
+      "installation_location": "1층 로비 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_78ae3869fa63221612eb",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "조수1리사무소",
+      "latitude": 33.33729529,
+      "longitude": 126.2284274,
+      "address": "제주특별자치도 제주시 한경면 홍수암로 565",
+      "lot_address": "제주특별자치도 제주시 한경면 조수리 418",
+      "installation_location": "다목적실 현관 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_d5f98bffb3e1879abd13",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "조천체육관",
+      "latitude": 33.53953614,
+      "longitude": 126.6437192,
+      "address": "제주특별자치도 제주시 조천읍 조천18길 11-1",
+      "lot_address": "제주특별자치도 제주시 조천읍 조천리 1176-1",
+      "installation_location": "정문 현관 로비앞",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_ca73683ea18c19353ca7",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "지체장애인협회 남원분회 (남원다목적센터)",
+      "latitude": 33.28069823,
+      "longitude": 126.7231578,
+      "address": "제주특별자치도 서귀포시 남원읍 태위로723번길 3",
+      "lot_address": "제주특별자치도 서귀포시 남원읍 남원리 51",
+      "installation_location": "1층 다목적 센터내",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "16:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": true,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_2bbc71e6e9c1ec225322",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "지체장애인협회 대정분회",
+      "latitude": 33.22329954,
+      "longitude": 126.2562451,
+      "address": "제주특별자치도 서귀포시 대정읍 상모로 312-4",
+      "lot_address": "제주특별자치도 서귀포시 대정읍 상모리 3941-1",
+      "installation_location": "1층 복도",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "12:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_29fdccf44d92630d9f36",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "지체장애인협회 안덕분회",
+      "latitude": 33.24672936,
+      "longitude": 126.3327974,
+      "address": "제주특별자치도 서귀포시 안덕면 화순중앙로54번길 29",
+      "lot_address": "제주특별자치도 서귀포시 안덕면 화순리 1093-5",
+      "installation_location": "1층 현관 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_75b899a3c16dc967e516",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "지체장애인협회 추자분회",
+      "latitude": 33.96353134,
+      "longitude": 126.2960688,
+      "address": "제주특별자치도 제주시 추자면 추자로 26",
+      "lot_address": "제주특별자치도 제주시 추자면 대서리 19-1",
+      "installation_location": "면사무소 좌측 비품창고 입구",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_270da2e7a3d455334503",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "지체장애인협회 표선분회",
+      "latitude": 33.33091011,
+      "longitude": 126.8305483,
+      "address": "제주특별자치도 서귀포시 표선면 표선중앙로 21",
+      "lot_address": "제주특별자치도 서귀포시 표선면 표선리 318",
+      "installation_location": "1층 복도",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_96250c5b92427d4a3c0e",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "천지연 폭포",
+      "latitude": 33.24421235,
+      "longitude": 126.5597717,
+      "address": "제주특별자치도 서귀포시 남성중로 2-11",
+      "lot_address": "제주특별자치도 서귀포시 서홍동 668",
+      "installation_location": "매표소 좌측 휠체어 대여소",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "21:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "21:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "21:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_0fab1f3a2a026afc93f5",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "치유의 숲",
+      "latitude": 33.29193935,
+      "longitude": 126.5279042,
+      "address": "제주특별자치도 서귀포시 산록남로 2271",
+      "lot_address": "제주특별자치도 서귀포시 호근동 산 1",
+      "installation_location": "1층 차롱쉼터 내부",
+      "operating_hours": {
+        "weekday": {
+          "opening": "08:30",
+          "closing": "17:00"
+        },
+        "saturday": {
+          "opening": "08:30",
+          "closing": "17:00"
+        },
+        "holiday": {
+          "opening": "08:30",
+          "closing": "17:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_ff75385705c0c0365250",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "탐라장애인종합복지관 (2대)",
+      "latitude": 33.501412,
+      "longitude": 126.5251149,
+      "address": "제주특별자치도 제주시 광양4길 32",
+      "lot_address": "제주특별자치도 제주시 이도일동 1660",
+      "installation_location": "1층 통합사무실 입구(2대)",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "21:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 4,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_d542df39a9af1aaa2cc4",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "판포리 사무소",
+      "latitude": 33.36265062,
+      "longitude": 126.203135,
+      "address": "제주특별자치도 제주시 한경면 판포4길 39",
+      "lot_address": "제주특별자치도 제주시 한경면 판포리 2831",
+      "installation_location": "게이트볼장 현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_364af8e82a5d27612d39",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "평촌의료재단 제주대림요양병원",
+      "latitude": 33.41855465,
+      "longitude": 126.2690672,
+      "address": "제주특별자치도 제주시 한림읍 한수풀로 60",
+      "lot_address": "제주특별자치도 제주시 한림읍 대림리 1771-6",
+      "installation_location": "지하 1층 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_da28dc5af07fdf2a6d53",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "표선보건지소",
+      "latitude": 33.3311295,
+      "longitude": 126.8302647,
+      "address": "제주특별자치도 서귀포시 표선면 표선중앙로 17",
+      "lot_address": "제주특별자치도 서귀포시 표선면 표선리 312",
+      "installation_location": "1층 현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_2cec31aa4a1e66a002fe",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "하귀농협하나로마트",
+      "latitude": 33.48505938,
+      "longitude": 126.4121573,
+      "address": "제주특별자치도 제주시 애월읍 일주서로 7136",
+      "lot_address": "제주특별자치도 제주시 애월읍 하귀1리 190-1",
+      "installation_location": "1층 매장입구 안",
+      "operating_hours": {
+        "weekday": {
+          "opening": "08:00",
+          "closing": "22:00"
+        },
+        "saturday": {
+          "opening": "08:00",
+          "closing": "22:00"
+        },
+        "holiday": {
+          "opening": "08:00",
+          "closing": "22:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_6d10af1c10c8d7d1f811",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "하도리 사무소",
+      "latitude": 33.51830053,
+      "longitude": 126.8828805,
+      "address": "제주특별자치도 제주시 구좌읍 일주동로 3417",
+      "lot_address": "제주특별자치도 제주시 구좌읍 하도리 1430-3",
+      "installation_location": "1층현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_647193c01b97f98abd9a",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "한경면사무소",
+      "latitude": 33.35011034,
+      "longitude": 126.1841057,
+      "address": "제주특별자치도 제주시 한경면 두신로 84",
+      "lot_address": "제주특별자치도 제주시 한경면 신창리 247",
+      "installation_location": "1층 현관 좌측 입구",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_4a895d636d40a76ffb9c",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "한경보건지소",
+      "latitude": 33.35276412,
+      "longitude": 126.1851816,
+      "address": "제주특별자치도 제주시 한경면 두신로 118-2",
+      "lot_address": "제주특별자치도 제주시 한경면 두모리 2892-1",
+      "installation_location": "1층 로비",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_53c839d21b9d79877655",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "한국방송통신대학교",
+      "latitude": 33.48592356,
+      "longitude": 126.4736324,
+      "address": "제주특별자치도 제주시 정존7길 34",
+      "lot_address": "제주특별자치도 제주시 노형동 2614-5",
+      "installation_location": "1층 우측 현관",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_c2af9e1ba1c249d6534f",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "한국장애인고용공단 제주지사 (한화생명 빌딩)",
+      "latitude": 33.50183924,
+      "longitude": 126.532265,
+      "address": "제주특별자치도 제주시 동광로 30",
+      "lot_address": "제주특별자치도 제주시 이도이동 1174-2",
+      "installation_location": "3층  출입구 우측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_89cfc92dc41be48e632c",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "한라대학교",
+      "latitude": 33.47678976,
+      "longitude": 126.4741519,
+      "address": "제주특별자치도 제주시 한라대학로 38",
+      "lot_address": "제주특별자치도 제주시 노형동 1534",
+      "installation_location": "장애학생지원센터안",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_2c24410d7110e95d5223",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "한라도서관",
+      "latitude": 33.47620763,
+      "longitude": 126.5161965,
+      "address": "제주특별자치도 제주시 오남로 221",
+      "lot_address": "제주특별자치도 제주시 오라이동 899-3",
+      "installation_location": "1층 현관 우측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "22:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "20:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "20:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_fca3111dad2c2d78d536",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "한림읍사무소",
+      "latitude": 33.40969076,
+      "longitude": 126.2685438,
+      "address": "제주특별자치도 제주시 한림읍 한림중앙로 71-9",
+      "lot_address": "제주특별자치도 제주시 한림읍 한림리 887-2",
+      "installation_location": "1층 민원실 내",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": true,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_8e59e2afb6f7d3359b75",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "해녀박물관",
+      "latitude": 33.52361087,
+      "longitude": 126.8634277,
+      "address": "제주특별자치도 제주시 구좌읍 해녀박물관길 26",
+      "lot_address": "제주특별자치도 제주시 구좌읍 상도리 3204-1",
+      "installation_location": "정문입구 로비 우측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_e45da647e13039e4c293",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "해오름주간활동센터",
+      "latitude": 33.3318256,
+      "longitude": 126.8300407,
+      "address": "제주특별자치도 서귀포시 표선면 표선중앙로 9-8",
+      "lot_address": "제주특별자치도 서귀포시 표선면 표선리 311-6",
+      "installation_location": "1층현관 입구",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_68dca77e4cd66f53dff2",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "현대미술관",
+      "latitude": 33.33969225,
+      "longitude": 126.2656922,
+      "address": "제주특별자치도 제주시 한경면 저지14길 35",
+      "lot_address": "제주특별자치도 제주시 한경면 저지리 2114-63",
+      "installation_location": "2층 통로",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "holiday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_34f5417b54f973c91a67",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "호근동마을회",
+      "latitude": 33.25698933,
+      "longitude": 126.5280536,
+      "address": "제주특별자치도 서귀포시 호근남로 6",
+      "lot_address": "제주특별자치도 서귀포시 호근동 1764-8",
+      "installation_location": "1층 현관 우측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_66ef2d0967636dac618c",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "호텔빠레브",
+      "latitude": 33.25238373,
+      "longitude": 126.5066592,
+      "address": "제주특별자치도 서귀포시 김정문화로 15",
+      "lot_address": "제주특별자치도 서귀포시 강정동 173",
+      "installation_location": "1층 현관 좌측",
+      "operating_hours": {
+        "weekday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "23:59"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_7200dddce1f8e6191324",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "화북동 주민센터",
+      "latitude": 33.52023365,
+      "longitude": 126.5653711,
+      "address": "제주특별자치도 제주시 진남로6길 17",
+      "lot_address": "제주특별자치도 제주시 화북일동 1976-7",
+      "installation_location": "정문입구 오른편",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    },
+    {
+      "id": "jeju_power_wheelchair_fast_charger_42e831aa842798bab4bb",
+      "resource_type": "power_wheelchair_fast_charger",
+      "name": "효돈동 주민센터",
+      "latitude": 33.26330272,
+      "longitude": 126.6155618,
+      "address": "제주특별자치도 서귀포시 남선동산로 26",
+      "lot_address": "제주특별자치도 서귀포시 하효동 152-1",
+      "installation_location": "현관 우측 로비 입구",
+      "operating_hours": {
+        "weekday": {
+          "opening": "09:00",
+          "closing": "18:00"
+        },
+        "saturday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        },
+        "holiday": {
+          "opening": "00:00",
+          "closing": "00:00"
+        }
+      },
+      "capacity": 2,
+      "air_injector_available": true,
+      "mobile_phone_charging_available": false,
+      "managing_organization": "제주장애인자립생활센터",
+      "phone": "064-751-9103",
+      "checked_at": "2025-12-23",
+      "reference_date": "2025-12-23",
+      "source_title": "전국전동휠체어급속충전기표준데이터",
+      "source_url": "https://www.data.go.kr/data/15034533/standard.do"
+    }
+  ]
+}

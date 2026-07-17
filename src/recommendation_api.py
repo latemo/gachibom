@@ -17,7 +17,16 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urlparse
 from urllib.request import Request, urlopen
 
-from src.help_chatbot_service import build_help_chatbot_reply, openai_help_chatbot_client_from_env
+from src.accessibility_resources import (
+    SUPPORTED_RESOURCE_TYPES,
+    load_accessibility_resource_snapshot,
+    search_nearby_accessibility_resources,
+)
+from src.help_chatbot_service import (
+    HELP_CHATBOT_OPENAI_MODEL,
+    build_help_chatbot_reply,
+    openai_help_chatbot_client_from_env,
+)
 from src.place_locations import load_place_location_index
 from src.place_visit_info import enrich_places_with_visit_info
 from src.recommendation_service import (
@@ -37,6 +46,8 @@ DEFAULT_LOCATION_OVERRIDES_PATH = ROOT / "data" / "place_location_overrides.json
 DEFAULT_TOURISM_WEAK_COURSES_PATH = ROOT / "data" / "tourism_weak_recommendation_courses.json"
 DEFAULT_PLACE_CATALOG_PATH = ROOT / "data" / "place_catalog.roadview_facility.json"
 DEFAULT_VISIT_INFO_OVERRIDES_PATH = ROOT / "data" / "place_visit_info_overrides.json"
+DEFAULT_ACCESSIBLE_PUBLIC_TOILETS_PATH = ROOT / "data" / "jeju_accessible_public_toilets.json"
+DEFAULT_POWER_WHEELCHAIR_CHARGERS_PATH = ROOT / "data" / "jeju_power_wheelchair_fast_chargers.json"
 MAX_REQUEST_BODY_BYTES = 1_000_000
 MAX_ROUTE_POINTS = 8
 ROUTE_PROVIDER_TIMEOUT_SECONDS = 7
@@ -96,6 +107,8 @@ def load_optional_json_list(path: Path, *, label: str = "optional data") -> list
 class RecommendationApiHandler(SimpleHTTPRequestHandler):
     places: list[dict[str, Any]] = []
     location_index: dict[str, dict[str, Any]] = {}
+    accessible_public_toilets: list[dict[str, Any]] = []
+    power_wheelchair_chargers: list[dict[str, Any]] = []
     tourism_weak_course_summary: dict[str, Any] = {}
     generated_at: date = date.today()
 
@@ -107,13 +120,19 @@ class RecommendationApiHandler(SimpleHTTPRequestHandler):
                     "status": "ok",
                     "service": "jeju-maeum-recommendation-api",
                     "ai_model": openai_model_from_env(DEFAULT_OPENAI_MODEL),
+                    "help_chatbot_model": HELP_CHATBOT_OPENAI_MODEL,
                     "kakao_mobility_configured": kakao_mobility_rest_api_key_configured(),
                     "places": len(self.places),
                     "features": {
                         "route_proxy": True,
                         "help_chatbot": True,
                         "grounded_rag": True,
+                        "nearby_accessibility_resources": True,
                         "tourism_weak_courses": bool(self.tourism_weak_course_summary),
+                    },
+                    "accessibility_resources": {
+                        "accessible_public_toilets": len(self.accessible_public_toilets),
+                        "power_wheelchair_fast_chargers": len(self.power_wheelchair_chargers),
                     },
                     "tourism_weak_courses": self.tourism_weak_course_summary,
                 }
@@ -174,16 +193,31 @@ class RecommendationApiHandler(SimpleHTTPRequestHandler):
         try:
             payload = self.read_json_body()
             question = parse_help_chat_question(payload.get("question") or payload.get("message"))
-            use_ai = parse_bool(payload.get("use_ai", True))
-            model = parse_model(payload.get("model") or openai_model_from_env(DEFAULT_OPENAI_MODEL))
-            client = openai_help_chatbot_client_from_env() if use_ai else None
-            result = build_help_chatbot_reply(
-                question,
-                history=payload.get("history") or payload.get("messages") or [],
-                recommendation_context=payload.get("recommendation_context"),
-                model=model,
-                client=client,
-            )
+            model = HELP_CHATBOT_OPENAI_MODEL
+            proximity_request = parse_proximity_request(payload.get("proximity_request"))
+            if proximity_request:
+                result = search_nearby_accessibility_resources(
+                    latitude=proximity_request["latitude"],
+                    longitude=proximity_request["longitude"],
+                    accuracy_meters=proximity_request["accuracy_meters"],
+                    resource_types=proximity_request["resource_types"],
+                    limit=proximity_request["limit"],
+                    places=self.places,
+                    location_index=self.location_index,
+                    public_toilets=self.accessible_public_toilets,
+                    chargers=self.power_wheelchair_chargers,
+                    model="deterministic-geospatial",
+                )
+            else:
+                use_ai = parse_bool(payload.get("use_ai", True))
+                client = openai_help_chatbot_client_from_env() if use_ai else None
+                result = build_help_chatbot_reply(
+                    question,
+                    history=payload.get("history") or payload.get("messages") or [],
+                    recommendation_context=payload.get("recommendation_context"),
+                    model=model,
+                    client=client,
+                )
         except ApiRequestError as exc:
             self.send_error_json(exc.code, str(exc), status=exc.status)
             return
@@ -295,6 +329,78 @@ def parse_help_chat_question(value: Any) -> str:
             code="question_too_large",
         )
     return question
+
+
+def parse_proximity_request(value: Any) -> dict[str, Any] | None:
+    if value is None:
+        return None
+    if not isinstance(value, dict):
+        raise ApiRequestError("proximity_request는 객체여야 합니다.", code="invalid_proximity_request")
+
+    raw_types = value.get("resource_types")
+    if raw_types is None and value.get("resource_type") is not None:
+        raw_types = [value.get("resource_type")]
+    if not isinstance(raw_types, list) or not raw_types:
+        raise ApiRequestError("검색할 지원시설 유형이 필요합니다.", code="invalid_resource_types")
+
+    resource_types: list[str] = []
+    for raw_type in raw_types:
+        resource_type = str(raw_type or "").strip()
+        if resource_type not in SUPPORTED_RESOURCE_TYPES:
+            raise ApiRequestError("지원하지 않는 시설 유형입니다.", code="unsupported_resource_type")
+        if resource_type not in resource_types:
+            resource_types.append(resource_type)
+    if len(resource_types) > len(SUPPORTED_RESOURCE_TYPES):
+        raise ApiRequestError("검색할 시설 유형이 너무 많습니다.", code="invalid_resource_types")
+
+    latitude = _finite_coordinate(value.get("latitude"), minimum=-90, maximum=90)
+    longitude = _finite_coordinate(value.get("longitude"), minimum=-180, maximum=180)
+
+    accuracy_value = value.get("accuracy_meters")
+    if accuracy_value is None:
+        accuracy_meters = None
+    else:
+        accuracy_meters = _finite_number(accuracy_value, label="위치 정확도")
+        if accuracy_meters < 0:
+            raise ApiRequestError("위치 정확도 값이 올바르지 않습니다.", code="invalid_location_accuracy")
+        accuracy_meters = min(round(accuracy_meters), 100_000)
+
+    raw_limit = value.get("limit", 4)
+    if isinstance(raw_limit, bool):
+        raise ApiRequestError("limit은 숫자여야 합니다.", code="invalid_limit")
+    try:
+        limit = int(raw_limit)
+    except (TypeError, ValueError) as exc:
+        raise ApiRequestError("limit은 숫자여야 합니다.", code="invalid_limit") from exc
+    if limit < 1:
+        raise ApiRequestError("limit은 1 이상이어야 합니다.", code="invalid_limit")
+
+    return {
+        "resource_types": resource_types,
+        "latitude": latitude,
+        "longitude": longitude,
+        "accuracy_meters": accuracy_meters,
+        "limit": min(limit, 4),
+    }
+
+
+def _finite_coordinate(value: Any, *, minimum: float, maximum: float) -> float:
+    number = _finite_number(value, label="위치 좌표")
+    if not minimum <= number <= maximum:
+        raise ApiRequestError("위치 좌표 범위가 올바르지 않습니다.", code="invalid_location_coordinate")
+    return number
+
+
+def _finite_number(value: Any, *, label: str) -> float:
+    if isinstance(value, bool):
+        raise ApiRequestError(f"{label} 값이 올바르지 않습니다.", code="invalid_location_coordinate")
+    try:
+        number = float(value)
+    except (TypeError, ValueError) as exc:
+        raise ApiRequestError(f"{label} 값이 올바르지 않습니다.", code="invalid_location_coordinate") from exc
+    if not isfinite(number):
+        raise ApiRequestError(f"{label} 값이 올바르지 않습니다.", code="invalid_location_coordinate")
+    return number
 
 
 def parse_recommendation_query(value: Any) -> str:
@@ -635,6 +741,8 @@ def create_server(
     tourism_weak_courses_path: Path = DEFAULT_TOURISM_WEAK_COURSES_PATH,
     place_catalog_path: Path = DEFAULT_PLACE_CATALOG_PATH,
     visit_info_overrides_path: Path = DEFAULT_VISIT_INFO_OVERRIDES_PATH,
+    accessible_public_toilets_path: Path = DEFAULT_ACCESSIBLE_PUBLIC_TOILETS_PATH,
+    power_wheelchair_chargers_path: Path = DEFAULT_POWER_WHEELCHAIR_CHARGERS_PATH,
     generated_at: date | None = None,
 ) -> ThreadingHTTPServer:
     handler_class = partial(RecommendationApiHandler, directory=str(web_dir))
@@ -653,6 +761,12 @@ def create_server(
         roadview_metadata_path=roadview_metadata_path,
         overrides_path=location_overrides_path,
     )
+    RecommendationApiHandler.accessible_public_toilets = load_accessibility_resource_snapshot(
+        accessible_public_toilets_path
+    )["items"]
+    RecommendationApiHandler.power_wheelchair_chargers = load_accessibility_resource_snapshot(
+        power_wheelchair_chargers_path
+    )["items"]
     RecommendationApiHandler.generated_at = generated_at or date.today()
     return ThreadingHTTPServer((host, port), handler_class)
 
@@ -668,6 +782,8 @@ def run_server(
     tourism_weak_courses_path: Path = DEFAULT_TOURISM_WEAK_COURSES_PATH,
     place_catalog_path: Path = DEFAULT_PLACE_CATALOG_PATH,
     visit_info_overrides_path: Path = DEFAULT_VISIT_INFO_OVERRIDES_PATH,
+    accessible_public_toilets_path: Path = DEFAULT_ACCESSIBLE_PUBLIC_TOILETS_PATH,
+    power_wheelchair_chargers_path: Path = DEFAULT_POWER_WHEELCHAIR_CHARGERS_PATH,
     generated_at: date | None = None,
 ) -> None:
     server = create_server(
@@ -680,6 +796,8 @@ def run_server(
         tourism_weak_courses_path=tourism_weak_courses_path,
         place_catalog_path=place_catalog_path,
         visit_info_overrides_path=visit_info_overrides_path,
+        accessible_public_toilets_path=accessible_public_toilets_path,
+        power_wheelchair_chargers_path=power_wheelchair_chargers_path,
         generated_at=generated_at,
     )
     with server:

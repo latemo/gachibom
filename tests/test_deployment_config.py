@@ -7,12 +7,20 @@ ROOT = Path(__file__).resolve().parents[1]
 
 RUNTIME_DATA_FILES = {
     "data/jeju_accessible_spots.json",
+    "data/jeju_accessible_public_toilets.json",
+    "data/jeju_power_wheelchair_fast_chargers.json",
     "data/place_location_overrides.json",
     "data/roadview_image_metadata.json",
     "data/tourism_weak_recommendation_courses.json",
     "data/place_catalog.roadview_facility.json",
     "data/place_visit_info_overrides.json",
 }
+
+RUNTIME_DATA_INCLUDE_PATTERN = (
+    "data/{jeju_{accessible_spots,accessible_public_toilets,power_wheelchair_fast_chargers},"
+    "place_{location_overrides,visit_info_overrides},place_catalog.roadview_facility,"
+    "roadview_image_metadata,tourism_weak_recommendation_courses}.json"
+)
 
 BLOCKED_ROUTES = {
     r"/\.env(.*)",
@@ -46,8 +54,8 @@ class DeploymentConfigTests(unittest.TestCase):
         config = json.loads((ROOT / "vercel.json").read_text(encoding="utf-8"))
         function_config = config["functions"]["api/**/*.py"]
         pattern = function_config["includeFiles"]
-        self.assertTrue(pattern.startswith("{") and pattern.endswith("}"))
-        self.assertEqual(set(pattern[1:-1].split(",")), RUNTIME_DATA_FILES)
+        self.assertEqual(pattern, RUNTIME_DATA_INCLUDE_PATTERN)
+        self.assertLessEqual(len(pattern), 256)
         self.assertIn("data/raw/**", function_config["excludeFiles"])
 
     def test_vercelignore_excludes_private_and_unused_files(self):

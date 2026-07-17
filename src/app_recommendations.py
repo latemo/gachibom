@@ -10,6 +10,10 @@ from src.place_locations import normalize_point_role
 from src.place_visit_info import visit_info_for_place
 from src.rag_query import parse_query_intent
 from src.rag_retrieval import retrieve_place_candidates
+from src.recommendation_evidence import (
+    grounded_recommendation_places,
+    is_grounded_recommendation_candidate,
+)
 from src.route_optimization import optimize_course_route
 from src.scoring import PlaceScore, build_recommendation_result, rank_places
 
@@ -183,11 +187,12 @@ def build_app_recommendation_seed(
     tourism_weak_course_dataset: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     place_index = {place.get("id", ""): place for place in places}
+    recommendation_places = grounded_recommendation_places(places)
     location_index = location_index or {}
     scenarios = [
         build_app_scenario(
             scenario,
-            places,
+            recommendation_places,
             place_index,
             generated_at=generated_at,
             limit=limit,
@@ -253,8 +258,7 @@ def saved_route_place_index(
                 "region": str(place.get("region") or "")[:120],
                 "category": str(place.get("category") or "other")[:80],
                 "available": (
-                    place.get("status") == "active"
-                    and place.get("verification", {}).get("status") in {"verified", "partial"}
+                    is_grounded_recommendation_candidate(place)
                 ),
                 "duration_minutes": duration_minutes,
                 "info_url": info_url,
@@ -317,6 +321,7 @@ def build_condition_variants(
     """Precompute simple condition-priority routes for static web hosting."""
 
     traveler_summary = scenario["traveler_summary"]
+    place_index = {place.get("id", ""): place for place in places}
     base_scores = rank_places(places, traveler_summary, today=generated_at)
     variants: dict[str, dict[str, Any]] = {}
     for key, value in SCENARIO_CONDITION_FOCUS.get(scenario["id"], ()):
@@ -361,8 +366,14 @@ def build_condition_variants(
             "focus": {"key": key, "value": value},
             "traveler_summary": traveler_summary,
             "recommendation": recommendation,
-            # Route places are resolved from the seed's shared public place index in the browser.
-            "places": [],
+            "places": [
+                app_place_result(
+                    score,
+                    place_index.get(score.spot_id, {}),
+                    location_index=location_index,
+                )
+                for score in selected_scores[:limit]
+            ],
         }
     return variants
 
@@ -523,12 +534,7 @@ def place_location(
 def public_gate_summary(places: list[dict[str, Any]]) -> dict[str, Any]:
     status_counts = Counter(place.get("status", "unknown") for place in places)
     verification_counts = Counter(place.get("verification", {}).get("status", "needs_check") for place in places)
-    app_candidates = [
-        place
-        for place in places
-        if place.get("status") == "active"
-        and place.get("verification", {}).get("status") in {"verified", "partial"}
-    ]
+    app_candidates = grounded_recommendation_places(places)
     return {
         "total_places": len(places),
         "app_candidate_places": len(app_candidates),

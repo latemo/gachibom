@@ -24,6 +24,7 @@ DEFAULT_LIMIT = 12
 MAX_LIMIT = 50
 BM25_K1 = 1.5
 BM25_B = 0.75
+EVIDENCE_NOTE_MAX_LENGTH = 320
 
 ACTIVE_STATUSES = {"active"}
 CLOSED_SERVICE_STATUSES = {"permanently_closed", "temporarily_closed"}
@@ -41,6 +42,26 @@ VERIFICATION_SCORE = {
 }
 ACCESSIBILITY_STATES = {"yes", "partial", "needs_check", "unknown", "no"}
 SAFE_REQUIRED_ACCESSIBILITY_STATES = {"yes", "partial"}
+EFFORT_RANK = {"very_low": 0, "low": 1, "medium": 2, "high": 3}
+STEP_FREE_EVIDENCE_TERMS = (
+    "계단 없음",
+    "계단이 없음",
+    "단차 없음",
+    "단차가 없음",
+    "무단차",
+    "턱이 없",
+    "엘리베이터",
+    "승강기",
+)
+FLAT_ROUTE_EVIDENCE_TERMS = (
+    "경사 없음",
+    "경사가 없음",
+    "단차 없음",
+    "단차가 없음",
+    "무단차",
+    "평탄",
+    "턱이 없",
+)
 
 TOKEN_PATTERN = re.compile(r"[0-9A-Za-z가-힣]+")
 KOREAN_SUFFIXES = (
@@ -81,11 +102,18 @@ CATEGORY_ALIASES: dict[str, tuple[str, ...]] = {
 }
 
 ACCESSIBILITY_ALIASES: dict[str, tuple[str, ...]] = {
-    "wheelchair_access": ("휠체어", "전동휠체어", "무장애", "전동스쿠터", "보장구"),
+    "wheelchair_access": (
+        "휠체어",
+        "휠체어 접근",
+        "전동휠체어",
+        "무장애",
+        "전동스쿠터",
+        "보장구",
+    ),
     "accessible_toilet": ("장애인화장실", "화장실"),
     "parking": ("장애인주차", "전용주차", "주차"),
-    "slope_or_stairs": ("경사", "계단", "단차", "승강기", "엘리베이터"),
-    "rest_area": ("휴식", "휴게", "쉼터", "쉼팡", "좌석"),
+    "slope_or_stairs": ("경사", "경사로", "계단", "단차", "승강기", "엘리베이터"),
+    "rest_area": ("휴식", "휴식 공간", "휴게", "쉼터", "쉼팡", "좌석"),
     "rental_or_assistance": ("대여", "보조", "도움", "유아차", "휠체어대여"),
     "surface_condition": ("바닥", "노면", "포장", "데크", "요철"),
     "crowd_level": ("혼잡", "대기", "붐빔"),
@@ -101,6 +129,15 @@ INTENT_KEYS = {
     "required_accessibility",
     "min_verification",
     "verified_only",
+    "require_all_accessibility_verified",
+    "require_24_hours",
+    "require_night_hours",
+    "max_weather_sensitivity",
+    "max_outdoor_exposure",
+    "max_walking_level",
+    "require_step_free",
+    "require_flat_route",
+    "exclude_warning_terms",
 }
 
 
@@ -251,6 +288,15 @@ def _normalize_intent(intent: Mapping[str, Any]) -> dict[str, Any]:
     if intent.get("verified_only") is True:
         min_verification = "verified"
 
+    max_weather_sensitivity = _canonical_effort_level(intent.get("max_weather_sensitivity"))
+    max_outdoor_exposure = _canonical_effort_level(intent.get("max_outdoor_exposure"))
+    max_walking_level = _canonical_effort_level(intent.get("max_walking_level"))
+    excluded_warning_terms = {
+        str(value).strip().casefold()
+        for value in _string_values(intent.get("exclude_warning_terms"))
+        if str(value).strip()
+    }
+
     present_fields = sorted(
         key for key in INTENT_KEYS if key in intent and _has_intent_value(intent.get(key))
     )
@@ -260,6 +306,15 @@ def _normalize_intent(intent: Mapping[str, Any]) -> dict[str, Any]:
         "excluded_categories": excluded_categories,
         "accessibility": accessibility,
         "min_verification": min_verification,
+        "require_all_accessibility_verified": intent.get("require_all_accessibility_verified") is True,
+        "require_24_hours": intent.get("require_24_hours") is True,
+        "require_night_hours": intent.get("require_night_hours") is True,
+        "max_weather_sensitivity": max_weather_sensitivity,
+        "max_outdoor_exposure": max_outdoor_exposure,
+        "max_walking_level": max_walking_level,
+        "require_step_free": intent.get("require_step_free") is True,
+        "require_flat_route": intent.get("require_flat_route") is True,
+        "excluded_warning_terms": excluded_warning_terms,
         "intent_fields": present_fields,
     }
 
@@ -311,12 +366,33 @@ def _passes_filters(place: Mapping[str, Any], intent: Mapping[str, Any]) -> bool
     if place_category in intent["excluded_categories"]:
         return False
 
+    warning_text = " ".join(
+        str(value).casefold()
+        for value in (*_string_values(place.get("avoid_for")), *_string_values(place.get("safety_notes")))
+    )
+    if any(term in warning_text for term in intent["excluded_warning_terms"]):
+        return False
+
     regions = intent["regions"]
     if regions and not any(_region_matches(place.get("region"), region) for region in regions):
         return False
 
     minimum = intent["min_verification"]
     if minimum and VERIFICATION_RANK.get(_verification_status(place), -1) < VERIFICATION_RANK[minimum]:
+        return False
+
+    effort = place.get("effort")
+    effort = effort if isinstance(effort, Mapping) else {}
+    for field in ("weather_sensitivity", "outdoor_exposure", "walking_level"):
+        maximum = intent[f"max_{field}"]
+        if maximum and not _effort_at_most(effort.get(field), maximum):
+            return False
+
+    visit_info = place.get("visit_info")
+    visit_info = visit_info if isinstance(visit_info, Mapping) else {}
+    if intent["require_24_hours"] and not _has_operating_hours_evidence(visit_info, require_24_hours=True):
+        return False
+    if intent["require_night_hours"] and not _has_operating_hours_evidence(visit_info, require_night=True):
         return False
 
     accessibility = place.get("accessibility")
@@ -326,6 +402,16 @@ def _passes_filters(place: Mapping[str, Any], intent: Mapping[str, Any]) -> bool
         state = str(value.get("state") if isinstance(value, Mapping) else "unknown").casefold()
         if state not in allowed_states:
             return False
+    if intent["require_all_accessibility_verified"] and not _all_accessibility_verified(accessibility):
+        return False
+    if intent["require_step_free"] and not _has_route_evidence(
+        accessibility.get("slope_or_stairs"), STEP_FREE_EVIDENCE_TERMS
+    ):
+        return False
+    if intent["require_flat_route"] and not _has_route_evidence(
+        accessibility.get("slope_or_stairs"), FLAT_ROUTE_EVIDENCE_TERMS
+    ):
+        return False
     return True
 
 
@@ -544,7 +630,7 @@ def _trust_scores(
 def _evidence_bundle(place: Mapping[str, Any], *, freshness: str) -> dict[str, Any]:
     status = _verification_status(place)
     checked_at = _checked_at(place)
-    source_evidence = []
+    source_evidence: list[dict[str, Any]] = []
     place_id = str(place.get("id") or "")
     for source_index, source in enumerate(place.get("sources") or [], start=1):
         if not isinstance(source, Mapping):
@@ -568,9 +654,15 @@ def _evidence_bundle(place: Mapping[str, Any], *, freshness: str) -> dict[str, A
             value = accessibility.get(field)
             if not isinstance(value, Mapping):
                 continue
+            source_ref = str(value.get("source_ref") or "").strip()
+            matched_source = _source_for_ref(source_evidence, source_ref)
             accessibility_evidence[field] = {
+                "evidence_id": _field_evidence_id(place_id, field),
                 "state": str(value.get("state") or "unknown"),
-                "source_ref": str(value.get("source_ref") or "") or None,
+                "note": _bounded_evidence_text(value.get("note"), EVIDENCE_NOTE_MAX_LENGTH),
+                "source_ref": source_ref or None,
+                "source_title": matched_source.get("title") if matched_source else None,
+                "source_url": matched_source.get("url") if matched_source else None,
             }
 
     return {
@@ -588,6 +680,48 @@ def _evidence_bundle(place: Mapping[str, Any], *, freshness: str) -> dict[str, A
 def _evidence_id(place_id: str, source_index: int, source_url: str) -> str:
     payload = f"{place_id}\n{source_index}\n{source_url}".encode("utf-8")
     return "ev_" + hashlib.sha256(payload).hexdigest()[:16]
+
+
+def _field_evidence_id(place_id: str, field: str) -> str:
+    payload = f"accessibility_field\n{place_id}\n{field}".encode("utf-8")
+    return "ev_" + hashlib.sha256(payload).hexdigest()[:16]
+
+
+def _source_for_ref(
+    sources: list[dict[str, Any]], source_ref: str
+) -> dict[str, Any] | None:
+    """Best-effort link from a bounded corpus reference to its public source."""
+
+    if not source_ref:
+        return None
+    normalized_ref = _normalized_text(source_ref)
+    hints = {
+        "easyjeju": ("easyjejunet", "이지제주"),
+        "jeju_roadview_facility_status": ("15109153", "로드뷰"),
+        "open_tourism": ("accessvisitkorea", "열린관광"),
+        "airport": ("airportcokr", "제주국제공항"),
+        "tourism_weak_recommendation_courses": ("15117357", "관광약자유형별"),
+    }.get(source_ref.casefold(), ())
+    normalized_hints = tuple(_normalized_text(hint) for hint in hints)
+
+    for source in sources:
+        haystack = _normalized_text(
+            f"{source.get('title') or ''} {source.get('url') or ''} {source.get('type') or ''}"
+        )
+        if normalized_ref and normalized_ref in haystack:
+            return source
+        if normalized_hints and any(hint in haystack for hint in normalized_hints):
+            return source
+
+    # Small fixtures and cards with one source can safely resolve an opaque ref.
+    return sources[0] if len(sources) == 1 else None
+
+
+def _bounded_evidence_text(value: Any, max_length: int) -> str:
+    text = re.sub(r"\s+", " ", str(value or "")).strip()
+    if len(text) <= max_length:
+        return text
+    return text[: max_length - 3].rstrip() + "..."
 
 
 def _query_accessibility_fields(query: str) -> set[str]:
@@ -665,6 +799,61 @@ def _canonical_verification(value: Any) -> str:
     return normalized if normalized in VERIFICATION_RANK else ""
 
 
+def _canonical_effort_level(value: Any) -> str:
+    normalized = str(value or "").strip().casefold().replace("-", "_").replace(" ", "_")
+    return normalized if normalized in EFFORT_RANK else ""
+
+
+def _effort_at_most(value: Any, maximum: str) -> bool:
+    actual = _canonical_effort_level(value)
+    return bool(actual and EFFORT_RANK[actual] <= EFFORT_RANK[maximum])
+
+
+def _all_accessibility_verified(accessibility: Mapping[str, Any]) -> bool:
+    for field in ACCESSIBILITY_ALIASES:
+        value = accessibility.get(field)
+        if not isinstance(value, Mapping):
+            return False
+        if str(value.get("state") or "unknown").casefold() not in SAFE_REQUIRED_ACCESSIBILITY_STATES:
+            return False
+        if not str(value.get("source_ref") or "").strip():
+            return False
+    return True
+
+
+def _has_route_evidence(value: Any, evidence_terms: tuple[str, ...]) -> bool:
+    if not isinstance(value, Mapping):
+        return False
+    if str(value.get("state") or "unknown").casefold() not in SAFE_REQUIRED_ACCESSIBILITY_STATES:
+        return False
+    note = re.sub(r"\s+", " ", str(value.get("note") or "")).strip()
+    return any(term in note for term in evidence_terms)
+
+
+def _has_operating_hours_evidence(
+    visit_info: Mapping[str, Any], *, require_24_hours: bool = False, require_night: bool = False
+) -> bool:
+    if visit_info.get("open_24_hours") is True:
+        return True
+    hours = " ".join(
+        str(visit_info.get(key) or "")
+        for key in ("operating_hours", "opening_hours", "hours")
+    )
+    compact = re.sub(r"\s+", "", hours).casefold()
+    if not compact:
+        return False
+    if any(marker in compact for marker in ("24시간", "24hours", "00:00-24:00", "00:00~24:00")):
+        return True
+    if require_24_hours:
+        return False
+    if require_night and any(marker in compact for marker in ("야간", "심야", "night")):
+        return True
+    if require_night:
+        closing_hours = [int(value) for value in re.findall(r"(?:-|~)([01]?\d|2[0-3]):\d{2}", compact)]
+        return any(hour >= 20 for hour in closing_hours)
+    return True
+
+
 def _verification_status(place: Mapping[str, Any]) -> str:
     verification = place.get("verification")
     if not isinstance(verification, Mapping):
@@ -715,6 +904,24 @@ def _filter_trace(intent: Mapping[str, Any]) -> list[str]:
         filters.append("required_accessibility")
     if intent["min_verification"]:
         filters.append("minimum_verification")
+    if intent["require_all_accessibility_verified"]:
+        filters.append("all_accessibility_verified")
+    if intent["require_24_hours"]:
+        filters.append("operating_24_hours")
+    if intent["require_night_hours"]:
+        filters.append("night_operating_hours")
+    if intent["max_weather_sensitivity"]:
+        filters.append("weather_sensitivity")
+    if intent["max_outdoor_exposure"]:
+        filters.append("outdoor_exposure")
+    if intent["max_walking_level"]:
+        filters.append("walking_level")
+    if intent["require_step_free"]:
+        filters.append("step_free_evidence")
+    if intent["require_flat_route"]:
+        filters.append("flat_route_evidence")
+    if intent["excluded_warning_terms"]:
+        filters.append("avoid_warning_collision")
     return filters
 
 

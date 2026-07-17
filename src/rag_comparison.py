@@ -38,13 +38,15 @@ def build_rag_comparison_report(
     report = {
         "generated_at": generated_at.isoformat(),
         "scope": {
-            "title": "RAG 사용/미사용 추천 검증 비교",
+            "title": "정책·랭킹 회귀검증과 무RAG 통제 fixture 비교",
+            "classification": "policy_ranking_regression_not_model_benchmark",
+            "ai_used": False,
             "with_rag_definition": (
-                "장소 카드, 상황별 정책, 공식 추천코스, 출처/검수 상태를 검색·조립해 "
-                "추천과 설명의 근거로 사용하는 현재 서비스 방식"
+                "장소 카드, 상황별 정책, 공식 추천코스, 출처/검수 상태를 사용하되 "
+                "use_ai=false로 실행한 현재 정책·랭킹 회귀검증"
             ),
             "without_rag_definition": (
-                "동일 질문에 대해 근거 저장소 검색 없이 일반 모델 지식 또는 프롬프트만 사용하는 기준선"
+                "근거 저장소 없이 일반 제주 대표 관광지를 답하도록 사람이 작성한 고정 통제 fixture"
             ),
             "measurement_note": (
                 measurement_note(no_rag_validation_report)
@@ -89,10 +91,10 @@ def build_rag_comparison_report(
                 "slot_match_rate": ratio(course_summary.get("matched_stops"), course_summary.get("stops")),
             },
             "key_findings": [
-                f"근거 기반 현재 방식은 상황별 검증 {passed_cases}/{total_cases}건을 통과했다.",
-                f"검증 체크는 {passed_checks}/{total_checks}개 통과로 집계됐다.",
+                f"정책·랭킹 회귀검증은 상황별 검증 {passed_cases}/{total_cases}건을 통과했다.",
+                f"정책·랭킹 체크는 {passed_checks}/{total_checks}개 통과로 집계됐다.",
                 no_rag_key_finding(no_rag_summary),
-                "무RAG 비교는 출처 연결, 제외 규칙, 방문 전 확인 항목의 실패 여부로 추적한다.",
+                "이 수치는 RAG 검색 정확도나 GPT 성능이 아니며 무RAG 값도 실제 외부 모델 호출 결과가 아니다.",
             ],
         },
         "metrics": build_metrics(
@@ -153,7 +155,7 @@ def build_metrics(
     return [
         metric(
             "scenario_case_pass_rate",
-            "상황별 추천 검증 통과율",
+            "상황별 정책·랭킹 회귀 통과율",
             ratio(passed_cases, total_cases),
             f"{passed_cases}/{total_cases} 케이스 통과",
             ratio(no_rag_summary.get("passed_cases"), no_rag_summary.get("total_cases")),
@@ -162,7 +164,7 @@ def build_metrics(
         ),
         metric(
             "validation_check_pass_rate",
-            "검증 체크 통과율",
+            "정책·랭킹 체크 통과율",
             ratio(passed_checks, total_checks),
             f"{passed_checks}/{total_checks} 체크 통과",
             no_rag_summary.get("check_pass_rate"),
@@ -226,9 +228,9 @@ def metric(
             "evidence": without_rag_note,
         },
         "interpretation": (
-            f"{label}: 같은 평가표 기준으로 RAG/무RAG 통제 기준선을 비교한다."
+            f"{label}: 같은 정책 평가표로 현재 파이프라인과 고정 통제 fixture를 비교한다."
             if without_observed
-            else f"{label}: 현재 근거 기반 방식에서만 관측 가능하다."
+            else f"{label}: 현재 정책 파이프라인에서만 관측 가능하다."
         ),
     }
 
@@ -243,7 +245,7 @@ def measurement_gap_metric(no_rag_summary: dict[str, Any]) -> dict[str, Any]:
             "observed": False,
             "value": None,
             "status": "해당 없음",
-            "evidence": "RAG 사용 성능이 아니라 비교 실험 준비 상태 지표",
+            "evidence": "RAG 성능이 아니라 실제 모델 비교 실험 준비 상태 지표",
         },
         "without_rag": {
             "observed": bool(observed_cases),
@@ -275,6 +277,8 @@ def build_case_comparison(case: dict[str, Any], no_rag_case: dict[str, Any] | No
         "title": case.get("title"),
         "intent": case.get("intent"),
         "with_rag": {
+            "classification": "policy_ranking_regression",
+            "ai_used": False,
             "status": case.get("status"),
             "score_total": recommendation.get("score", {}).get("total"),
             "grade": recommendation.get("score", {}).get("grade"),
@@ -466,19 +470,19 @@ def render_rag_comparison_markdown(report: dict[str, Any]) -> str:
     summary = report["summary"]
     course_slots = summary["official_course_slots"]
     lines = [
-        "# RAG 사용/미사용 비교 데이터",
+        "# 정책·랭킹 회귀검증과 무RAG 통제 fixture 비교",
         "",
         f"작성일: {report['generated_at']}",
         "",
         "## 비교 범위",
         "",
-        f"- RAG 사용: {report['scope']['with_rag_definition']}",
-        f"- RAG 미사용: {report['scope']['without_rag_definition']}",
+        f"- 현재 정책 파이프라인: {report['scope']['with_rag_definition']}",
+        f"- 무RAG 통제 fixture: {report['scope']['without_rag_definition']}",
         f"- 주의: {report['scope']['measurement_note']}",
         "",
         "## 요약 지표",
         "",
-        "| 항목 | RAG 사용 | RAG 미사용 | 해석 |",
+        "| 항목 | 현재 정책 파이프라인 | 무RAG 통제 fixture | 해석 |",
         "| --- | --- | --- | --- |",
     ]
     for metric_item in report["metrics"]:
@@ -507,7 +511,7 @@ def render_rag_comparison_markdown(report: dict[str, Any]) -> str:
             "",
             "## 케이스별 비교",
             "",
-            "| 케이스 | RAG 검증 | RAG 추천 경로 | 무RAG 검증 | 무RAG 추천 경로 | 주요 실패 항목 |",
+            "| 케이스 | 정책 회귀검증 | 정책 추천 경로 | fixture 검증 | fixture 추천 경로 | 주요 실패 항목 |",
             "| --- | --- | --- | --- | --- | --- |",
         ]
     )

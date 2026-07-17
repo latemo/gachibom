@@ -46,12 +46,15 @@ _JEJU_PROVINCE_ALIASES = ("제주특별자치도", "제주도", "제주")
 _CATEGORY_ALIASES = (
     ("medical_support", ("응급실", "종합병원", "대형병원", "병원", "의원", "약국", "보건소")),
     ("transport", ("교통약자", "이동지원센터", "이동 지원 센터", "콜택시", "콜 택시", "대중교통", "버스")),
-    ("indoor", ("실내", "박물관", "미술관", "전시관", "기념관")),
+    ("indoor", ("실내", "문화시설", "문학관", "박물관", "미술관", "전시관", "기념관")),
     ("culture", ("문화", "박물관", "미술관", "전시", "역사", "유적")),
     ("forest", ("숲", "수목원", "정원", "치유의 숲")),
     ("sea", ("바다", "해변", "해안", "올레")),
     ("oreum", ("오름",)),
-    ("rest_area", ("공원", "휴식", "쉼터")),
+    # A rest amenity (for example, "휴식 공간" or "쉴 수 있는") is an
+    # accessibility preference, not a request to hard-filter place types.
+    # Keep this category limited to explicit park/rest-area place wording.
+    ("rest_area", ("공원", "휴게소", "휴식 장소")),
     ("cafe", ("카페", "찻집")),
     ("restaurant", ("식당", "음식점", "맛집")),
     ("food_market", ("시장", "먹거리")),
@@ -124,7 +127,7 @@ _AVOID_ALIASES = (
     ("혼잡", ("혼잡", "사람 많은", "붐비는", "대기줄")),
     ("비포장", ("비포장", "울퉁불퉁", "요철")),
     ("긴 걷기", ("긴 걷기", "오래 걷", "많이 걷", "장거리 보행")),
-    ("장시간 야외 체류", ("장시간 야외", "오래 야외", "야외 체류")),
+    ("장시간 야외 체류", ("장시간 야외", "긴 야외 이동", "오래 야외", "야외 체류")),
     ("식당 제외", ("식당", "음식점", "맛집", "먹거리")),
     ("강풍", ("강풍", "센 바람")),
     ("더위", ("더위", "폭염")),
@@ -147,10 +150,16 @@ _MOBILITY_ALIASES = (
 
 _REQUIRED_ACCESSIBILITY_ALIASES = (
     ("장애인 화장실", ("장애인 화장실", "휠체어 화장실", "무장애 화장실")),
-    ("주차", ("장애인 주차", "주차장", "주차 필요", "주차 가능")),
-    ("휴식 공간", ("휴식 공간", "쉴 곳", "벤치", "쉼터")),
+    ("주차", ("장애인 주차", "주차장", "주차 필요", "주차 가능", "주차")),
+    (
+        "휴식 공간",
+        ("휴식 공간", "휴식 가능", "쉴 곳", "쉴 수", "앉아 쉴", "자주 쉬", "벤치", "쉼터"),
+    ),
     ("엘리베이터", ("엘리베이터", "승강기")),
     ("경사로", ("경사로", "램프", "무단차")),
+    ("경사", ("계단 없이", "계단이 적", "급경사", "경사도 없", "계단을 이용할 수 없")),
+    ("노면", ("바닥", "비포장", "노면", "포장길", "요철", "유모차 바퀴")),
+    ("대여", ("휠체어 대여", "유모차 대여", "유아차 대여", "이동 보조")),
     ("수어 안내", ("수어", "수화 안내")),
     ("음성 안내", ("음성 안내", "오디오 가이드", "점자")),
 )
@@ -163,15 +172,33 @@ _AVOID_AFTER_MARKERS = (
     "빼",
     "제외",
     "말고",
+    "대신",
+    "피한",
     "싫",
-    "없",
     "어렵",
     "힘들",
     "불편",
-    "원하지",
+    "원하지 않",
     "안 가",
     "가지 않",
     "못 가",
+)
+
+_CONTRAST_MARKERS = ("지만", "으나", "반면")
+_STRICT_VERIFICATION_PHRASES = (
+    "모든 접근성 항목이 verified",
+    "모든 접근성 항목이 검증",
+    "모든 시설이 확정",
+    "검증되지 않은 정보가 하나도 없는",
+)
+_NO_FALLBACK_PHRASES = (
+    "없으면 없다고",
+    "없으면 빈 결과",
+    "빈 결과",
+    "추천하지 말고",
+    "추천하지 마세요",
+    "추천을 보류",
+    "억지로 추천하지",
 )
 
 _AVOID_BEFORE_PATTERN = re.compile(
@@ -205,7 +232,8 @@ def parse_query_intent(
     emergency = _has_emergency_signal(query_text)
     charging = _has_charging_signal(query_text)
     regions = _extract_regions(query_text)
-    categories = _extract_categories(query_text)
+    excluded_categories = _extract_excluded_categories(query_text)
+    categories = _extract_categories(query_text, excluded_categories=excluded_categories)
     resource_types = _extract_resource_types(query_text, emergency=emergency, charging=charging)
 
     if emergency and "medical_support" not in categories:
@@ -226,11 +254,26 @@ def parse_query_intent(
         "query_text": query_text,
         "regions": regions,
         "categories": categories,
+        "excluded_categories": excluded_categories,
         "resource_types": resource_types,
         "traveler_summary": merged_summary,
         "signals": {
             "emergency": emergency,
             "charging": charging,
+            "strict_verification": _contains_any(query_text, _STRICT_VERIFICATION_PHRASES),
+            "require_24_hours": "24시간" in query_text,
+            "require_night_hours": "야간" in query_text,
+            "no_fallback": _contains_any(query_text, _NO_FALLBACK_PHRASES),
+            "weather_protected": _requires_weather_protection(query_text),
+            "low_walking_burden": _requires_low_walking_burden(query_text),
+            "require_step_free": _contains_any(
+                query_text,
+                ("계단이 전혀 없", "계단을 이용할 수 없"),
+            ),
+            "require_flat_route": _contains_any(
+                query_text,
+                ("경사도 없",),
+            ),
         },
     }
 
@@ -274,12 +317,40 @@ def _extract_regions(text: str) -> list[str]:
     return regions
 
 
-def _extract_categories(text: str) -> list[str]:
+def _extract_categories(text: str, *, excluded_categories: list[str]) -> list[str]:
     categories = []
     for canonical, aliases in _CATEGORY_ALIASES:
+        if canonical in excluded_categories:
+            continue
+        if canonical == "sea" and "바다 전망" in text:
+            continue
         if any(alias in text and not _alias_is_avoided(text, alias) for alias in aliases):
             categories.append(canonical)
     return categories
+
+
+def _extract_excluded_categories(text: str) -> list[str]:
+    excluded = [
+        canonical
+        for canonical, aliases in _CATEGORY_ALIASES
+        if any(alias in text and _alias_is_avoided(text, alias) for alias in aliases)
+    ]
+
+    # These phrases describe a class of food venues rather than one exact noun.
+    if any(
+        phrase in text
+        for phrase in (
+            "식사 장소를 제외",
+            "먹거리 체험 없이",
+            "카페나 맛집 대신",
+            "비식음",
+        )
+    ):
+        excluded.extend(("restaurant", "food_market", "cafe"))
+    elif any(phrase in text for phrase in ("음식 제한", "음식 섭취가 어려", "식당과 시장")):
+        excluded.extend(("restaurant", "food_market"))
+
+    return _merge_unique([], excluded, len(_CATEGORY_ALIASES))
 
 
 def _extract_resource_types(text: str, *, emergency: bool, charging: bool) -> list[str]:
@@ -325,6 +396,20 @@ def _extract_traveler_summary(text: str) -> dict[str, list[str]]:
         summary["required_accessibility"].append("휠체어 접근")
     if _has_charging_signal(text):
         summary["required_accessibility"].append("전동휠체어 충전")
+    if _contains_any(text, ("유모차", "유아차")) and _contains_any(
+        text,
+        ("계단", "비포장", "바퀴", "불확실", "안힘든"),
+    ):
+        summary["required_accessibility"].append("노면")
+    if "계단이나 급경사가 확인되면 제외" in text:
+        summary["required_accessibility"].append("노면")
+    if _contains_any(text, ("회복기", "재활 중", "수술 후", "몸 안좋")):
+        summary["required_accessibility"].append("휴식 공간")
+    if _contains_any(
+        text,
+        ("긴 걷기", "오래 걷", "긴 야외 이동", "장시간 야외"),
+    ) or _requires_low_walking_burden(text):
+        summary["required_accessibility"].append("휴식 공간")
 
     for canonical, aliases in _AVOID_ALIASES:
         if any(alias in text and _alias_is_avoided(text, alias) for alias in aliases):
@@ -364,11 +449,55 @@ def _alias_is_avoided(text: str, alias: str) -> bool:
 
 
 def _span_is_avoided(text: str, start: int, end: int) -> bool:
-    after = text[end : end + 18]
-    if any(marker in after for marker in _AVOID_AFTER_MARKERS):
+    after = text[end : end + 36]
+    after = re.split(r"[.!?。]", after, maxsplit=1)[0]
+    marker_positions = [after.find(marker) for marker in _AVOID_AFTER_MARKERS if marker in after]
+    marker_position = min(marker_positions, default=-1)
+    contrast_positions = [after.find(marker) for marker in _CONTRAST_MARKERS if marker in after]
+    contrast_position = min(contrast_positions, default=-1)
+    if marker_position >= 0 and not (
+        contrast_position >= 0 and contrast_position < marker_position
+    ):
+        return True
+    if re.match(
+        r"^\s*(?:은|는|이|가|을|를|도)?\s*(?:전혀\s*)?"
+        r"(?:(?:이용|사용|통과)할\s*수\s*)?없(?:이|는|고|어|으며|도록|어야)",
+        after,
+    ):
         return True
     before = text[max(0, start - 16) : start]
     return bool(_AVOID_BEFORE_PATTERN.search(before))
+
+
+def _requires_weather_protection(text: str) -> bool:
+    if not _contains_any(text, ("비", "우천", "강풍", "날씨")):
+        return False
+    return _contains_any(
+        text,
+        (
+            "피할 수 있는",
+            "피해야",
+            "대피하기 쉬운",
+            "민감도가 높은 장소는 감점",
+            "야외 장소를 안전하다고 단정하지",
+            "비가 오고 오래 걸을 수 없",
+        ),
+    )
+
+
+def _requires_low_walking_burden(text: str) -> bool:
+    return _contains_any(
+        text,
+        (
+            "이동 부담이 낮",
+            "이동 부담이 적",
+            "오래 걷지 않",
+            "도보 부담이 낮",
+            "오래 걸을 수 없",
+            "짧게 이동",
+            "안힘든",
+        ),
+    )
 
 
 def _intent_name(

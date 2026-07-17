@@ -17,6 +17,11 @@ from scripts.run_explanation_ab_eval import (
     render_review_csv,
     run_evaluation_jobs,
 )
+from src.help_chatbot_service import (
+    HELP_CHATBOT_EXCLUSION_RULE_VERSION,
+    HELP_CHATBOT_MODE_RULE_VERSION,
+    HELP_CHATBOT_PRE_VISIT_RULE_VERSION,
+)
 
 
 class FakeHelpClient:
@@ -108,6 +113,7 @@ def sample_context() -> dict:
             "name": "제주문학관",
             "score": {"total": 84, "grade": "B", "confidence": "high"},
             "fit_reasons": ["휠체어 접근 정보가 있습니다."],
+            "check_before_visit": ["장애인 화장실 운영 여부"],
             "source_summary": [
                 {"title": "공식 접근성 정보", "url": "https://example.org/place", "status": "verified"}
             ],
@@ -158,6 +164,36 @@ class ExplanationAbEvalRunnerTests(unittest.TestCase):
         self.assertEqual(context["mode"], "static")
         self.assertEqual(context["recommendation"]["score"]["total"], 84)
         self.assertEqual(context["selected_place"]["spot_id"], "spot-1")
+
+    def test_mode_rule_version_invalidates_only_after_mode_job(self):
+        mode_case = sample_case()
+        mode_case["question_type"] = "mode_distinction"
+        mode_case["question"] = "실시간 계산인가요, 사전 계산인가요?"
+        jobs = build_jobs(prepare_cases([mode_case], sample_seed()), "gpt-5-mini")
+
+        self.assertIsNone(jobs[0]["behavior_version"])
+        self.assertEqual(jobs[1]["behavior_version"], HELP_CHATBOT_MODE_RULE_VERSION)
+        self.assertNotEqual(jobs[1]["signature"], jobs[1]["legacy_signature"])
+
+    def test_pre_visit_rule_version_invalidates_only_after_pre_visit_job(self):
+        pre_visit_case = sample_case()
+        pre_visit_case["question_type"] = "pre_visit_check"
+        pre_visit_case["question"] = "방문 전에 무엇을 확인해야 하나요?"
+        jobs = build_jobs(prepare_cases([pre_visit_case], sample_seed()), "gpt-5-mini")
+
+        self.assertIsNone(jobs[0]["behavior_version"])
+        self.assertEqual(jobs[1]["behavior_version"], HELP_CHATBOT_PRE_VISIT_RULE_VERSION)
+        self.assertNotEqual(jobs[1]["signature"], jobs[1]["legacy_signature"])
+
+    def test_exclusion_rule_version_invalidates_only_after_exclusion_job(self):
+        exclusion_case = sample_case()
+        exclusion_case["question_type"] = "exclusion_or_alternative"
+        exclusion_case["question"] = "어떤 유형의 장소가 대안으로 덜 적합한가요?"
+        jobs = build_jobs(prepare_cases([exclusion_case], sample_seed()), "gpt-5-mini")
+
+        self.assertIsNone(jobs[0]["behavior_version"])
+        self.assertEqual(jobs[1]["behavior_version"], HELP_CHATBOT_EXCLUSION_RULE_VERSION)
+        self.assertNotEqual(jobs[1]["signature"], jobs[1]["legacy_signature"])
 
     def test_successful_records_are_reused_by_signature(self):
         cases = prepare_cases([sample_case()], sample_seed())

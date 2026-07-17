@@ -1,0 +1,554 @@
+{
+  "schema_version": "1.0",
+  "run_id": "baseline_20260715_ragas_faithfulness_v1",
+  "role": "baseline",
+  "recorded_at": "2026-07-14T18:50:33Z",
+  "reason": "RAGAS Faithfulness 최초 30건 자동평가 기준선 고정",
+  "evidence": [
+    "30/30 평가 성공, 평균 0.7071, 중앙값 0.7238",
+    "최저 유형 mode_distinction 0.5397, 최고 유형 recommendation_reason 0.9082",
+    "사람 검수 전 잠정 자동평가이며 추천 순위 정확도와 분리"
+  ],
+  "changed_files": [],
+  "evaluation": {
+    "library": "ragas",
+    "ragas_version": "0.4.3",
+    "metric": "faithfulness",
+    "model": "gpt-5-mini",
+    "report_status": "complete_provisional",
+    "reportable_as_final": false
+  },
+  "source_fingerprints": {
+    "data/explanation_eval_cases.json": "1d390b053973bb7a2016ed499a91bfd2fabd21b108da37d74818d085157c0f2e",
+    "data/explanation_eval_results.json": "02290967d1e476123554589f5364da52228f53f2c1673b736cbcb5cb2b27dc0c",
+    "data/ragas_faithfulness_dataset.jsonl": "e2b597b460e38587b855f4ca1752f348ab896fa89b1de250e2ac3fa9a0606dea",
+    "data/ragas_faithfulness_manifest.json": "b2cdf9902d616b702818117f79e9ae07382929622d26acec61579535c7fd6cf2",
+    "data/ragas_faithfulness_report.json": "7c4f7dd11aec7a23a34cc6cd5a513f5b0a85d9004f35d6884acb77efc78d29d2",
+    "data/ragas_faithfulness_scores.json": "f87858394c4b1abd80be80f30d933c27c54a0d90f48307867f68755d4de3038d"
+  },
+  "summary": {
+    "sample_count": 30,
+    "mean": 0.7071,
+    "median": 0.7238,
+    "minimum": 0.4211,
+    "maximum": 0.9524,
+    "thresholds": {
+      "0.70": {
+        "passed": 18,
+        "pass_rate": 0.6
+      },
+      "0.80": {
+        "passed": 9,
+        "pass_rate": 0.3
+      },
+      "0.90": {
+        "passed": 4,
+        "pass_rate": 0.1333
+      },
+      "0.95": {
+        "passed": 1,
+        "pass_rate": 0.0333
+      }
+    }
+  },
+  "by_question_type": {
+    "deduction_reason": {
+      "sample_count": 5,
+      "mean": 0.7522
+    },
+    "exclusion_or_alternative": {
+      "sample_count": 5,
+      "mean": 0.6683
+    },
+    "mode_distinction": {
+      "sample_count": 5,
+      "mean": 0.5397
+    },
+    "pre_visit_check": {
+      "sample_count": 5,
+      "mean": 0.6406
+    },
+    "recommendation_reason": {
+      "sample_count": 5,
+      "mean": 0.9082
+    },
+    "score_calculation": {
+      "sample_count": 5,
+      "mean": 0.7336
+    }
+  },
+  "by_scenario": {
+    "diet_restricted": {
+      "sample_count": 6,
+      "mean": 0.7605
+    },
+    "recovery_quiet": {
+      "sample_count": 6,
+      "mean": 0.6332
+    },
+    "stroller_family": {
+      "sample_count": 6,
+      "mean": 0.7429
+    },
+    "weather_sensitive": {
+      "sample_count": 6,
+      "mean": 0.7116
+    },
+    "wheelchair_access": {
+      "sample_count": 6,
+      "mean": 0.6872
+    }
+  },
+  "samples": [
+    {
+      "sample_id": "diet_restricted__deduction_reason__after",
+      "case_id": "diet_restricted__deduction_reason",
+      "scenario_id": "diet_restricted",
+      "question_type": "deduction_reason",
+      "condition": "after",
+      "faithfulness": 0.7778,
+      "signatures": {
+        "question": "f3f1a72d62efb27019d17e3bdc9f0d110ca72faabccb918e6f11867194a02bd9",
+        "response": "896ada8b5cfe52e5e3464d5095ebd79f732a79eb2a42781083c830caa389a897",
+        "context": "352926508b79414fef38a516cc352afb87b1b714f6a8a7bb4649fcb5c31e8320",
+        "reference": "0361ee10aadf63fdd647eaef0197d6e19f46cb84468610467a8632489913550d",
+        "combined": "f5d6cf592f0318a7c2811c256fe33926ffb4516de5733c172a0ce90e1b8587b1"
+      }
+    },
+    {
+      "sample_id": "diet_restricted__exclusion_or_alternative__after",
+      "case_id": "diet_restricted__exclusion_or_alternative",
+      "scenario_id": "diet_restricted",
+      "question_type": "exclusion_or_alternative",
+      "condition": "after",
+      "faithfulness": 0.75,
+      "signatures": {
+        "question": "fadb430f0e4b60ee792fbb4fe0fe4750269c518cc4b660c1434e9f4d67c9a1a0",
+        "response": "10cab90f72a7681d78bae27c8e6687a2b1eef6a55897715ca5f6f850518f2281",
+        "context": "1cdfdd6d8f6fb46588cabc068fd6c13572e9af5c3912786f3f73ac2e4c839552",
+        "reference": "b52c80f94227d2caf1e26fb6cd69971cf048c1d51463e2213af92161ea3a94c4",
+        "combined": "c86d35c899d2fa1162dbd73f0b656c6b11aa65bf767cbcb0648653fb7b10e5f9"
+      }
+    },
+    {
+      "sample_id": "diet_restricted__mode_distinction__after",
+      "case_id": "diet_restricted__mode_distinction",
+      "scenario_id": "diet_restricted",
+      "question_type": "mode_distinction",
+      "condition": "after",
+      "faithfulness": 0.5556,
+      "signatures": {
+        "question": "a17f08eec2f428cb0c00810ccae0fdbf5662d1c112b43a1353412cfecd6e191b",
+        "response": "2e4b6a3cb702ad107e1e241942aa5edc6fcfc5a7906566357cef26d1e04d238d",
+        "context": "550d3ff691e4a1bcdaf25ad76c7e543db76d97eeffdc240d667b2e7d4ce0a194",
+        "reference": "f227224003b70308cf7ed44cf4162095db1f7d8d636bfa80e82f51f36bab744e",
+        "combined": "2a10c9c5bd57c4ec919b4284a96870f9a5bf1ac73bf16a0e92a478c1cfe78d3d"
+      }
+    },
+    {
+      "sample_id": "diet_restricted__pre_visit_check__after",
+      "case_id": "diet_restricted__pre_visit_check",
+      "scenario_id": "diet_restricted",
+      "question_type": "pre_visit_check",
+      "condition": "after",
+      "faithfulness": 0.7059,
+      "signatures": {
+        "question": "557512b895c3a210a112f036628fbe26dd22adbb33e0070da9bb953a484df60a",
+        "response": "d9af108a20158631cbe893e3cea7b5168517f9ad93a2a9e3eed7262e0b7d4fc6",
+        "context": "ea1f424df6c17c326bfb5020a12787431ad5e9e697f45996873bb2ef1809bb65",
+        "reference": "7daf7ac94ca14cce116b081814a70a8ffea10aee449c5523b78ffa6c9639d38e",
+        "combined": "dfd19c4b5369be282d8b65f76705cf51fe4fa16ca98b0f8634206debb06f449f"
+      }
+    },
+    {
+      "sample_id": "diet_restricted__recommendation_reason__after",
+      "case_id": "diet_restricted__recommendation_reason",
+      "scenario_id": "diet_restricted",
+      "question_type": "recommendation_reason",
+      "condition": "after",
+      "faithfulness": 0.9167,
+      "signatures": {
+        "question": "a6e0d30c01f0f0fb4a0e42c9e80375263803a55561308f6161597863d4d54f72",
+        "response": "55ded19eca5b0845eea6d143bd00b8abd765d004e5ef8569c038cabf06f4222e",
+        "context": "e14ec372455cb4503eeb41f3566913e567235ecefe23ac7bc55657920ba55124",
+        "reference": "d72edc6a0ff76a9b2cb20fbb0297905af5f804a4088e567a75d60f8491e289a6",
+        "combined": "5ecfa786ed10cf206d3728e17349bbbc9b0ffa2678292c67a50ccbe2afc2a483"
+      }
+    },
+    {
+      "sample_id": "diet_restricted__score_calculation__after",
+      "case_id": "diet_restricted__score_calculation",
+      "scenario_id": "diet_restricted",
+      "question_type": "score_calculation",
+      "condition": "after",
+      "faithfulness": 0.8571,
+      "signatures": {
+        "question": "a1a19e41d8e84450a124a64dc9233d5b7238d88cf3065572b1f030b363b57b73",
+        "response": "2a39d219fcf7980ff3a1d2341b6b7899e0aaa68384c3e5dc363a04948a3bf44b",
+        "context": "a50c6dd23141bfbd403a31862f75e6046211a91fd6d985a64cf0e150fb8f78f5",
+        "reference": "eb9d3aafb8f41e0bfbbfda649910ca0aa6d49bbd49bed4165da70af157bd602a",
+        "combined": "518334464582fc1083b063eb1aeb0720ef1ae4f69ece28c0cd5ed4ed4c99fc33"
+      }
+    },
+    {
+      "sample_id": "recovery_quiet__deduction_reason__after",
+      "case_id": "recovery_quiet__deduction_reason",
+      "scenario_id": "recovery_quiet",
+      "question_type": "deduction_reason",
+      "condition": "after",
+      "faithfulness": 0.6,
+      "signatures": {
+        "question": "84b85e1e346424bf148ca341c9d482e2beb4f6b1ca1438cae34b8a1348e58591",
+        "response": "66f91e9f249650f9dc086d590c575d360136a36410fc3b23dc1fbf8a0350eaf8",
+        "context": "4d3b54eb94cf15d1453c4f17d2870d85cedb5cad9b67d13bb5e1955974e47a96",
+        "reference": "51b44c933a49d134fea781b4542f8d3086cecfb4b745f816b957e2d5e61bc438",
+        "combined": "7a0993d624bb5b278d15a7ae90c6b2b1fbb47c0e3152fc7047800e5039ef7899"
+      }
+    },
+    {
+      "sample_id": "recovery_quiet__exclusion_or_alternative__after",
+      "case_id": "recovery_quiet__exclusion_or_alternative",
+      "scenario_id": "recovery_quiet",
+      "question_type": "exclusion_or_alternative",
+      "condition": "after",
+      "faithfulness": 0.4211,
+      "signatures": {
+        "question": "fadb430f0e4b60ee792fbb4fe0fe4750269c518cc4b660c1434e9f4d67c9a1a0",
+        "response": "54aa4b18d6d4d7ed452e437b6eb7eac5e5a70ef564915d74a18e3a40f66dc38a",
+        "context": "f104b08ac61ce4a46b3c50e3035bf1542691529bc36537e4a9afb0ee8e251d59",
+        "reference": "417eab37da4e10e1eebe7740407e74eb62904853ef71c5b1afb6a600b6265d31",
+        "combined": "dbc9a473ce3c5487316b7ea30bf4e9bfd0e622f07a2071f46ee4e371c020ec5a"
+      }
+    },
+    {
+      "sample_id": "recovery_quiet__mode_distinction__after",
+      "case_id": "recovery_quiet__mode_distinction",
+      "scenario_id": "recovery_quiet",
+      "question_type": "mode_distinction",
+      "condition": "after",
+      "faithfulness": 0.4545,
+      "signatures": {
+        "question": "a17f08eec2f428cb0c00810ccae0fdbf5662d1c112b43a1353412cfecd6e191b",
+        "response": "d664a3789d3494b092093a023b9699131eb6c1284f944faff70785914fd1c429",
+        "context": "64fe76bf85dad85e7d42fd8d8e3e83f86d25af6a367996176d7c10be11964b50",
+        "reference": "a48924af7dce8fa32cae69e1d82e6aef38b499b6903414f3f75976e72f5c348b",
+        "combined": "1043a4f48045be2936991d714438255ff1c52f5c60e965286b58a4972c2d46ac"
+      }
+    },
+    {
+      "sample_id": "recovery_quiet__pre_visit_check__after",
+      "case_id": "recovery_quiet__pre_visit_check",
+      "scenario_id": "recovery_quiet",
+      "question_type": "pre_visit_check",
+      "condition": "after",
+      "faithfulness": 0.6667,
+      "signatures": {
+        "question": "557512b895c3a210a112f036628fbe26dd22adbb33e0070da9bb953a484df60a",
+        "response": "05f79e31a1fefaab035e85417531242bdd1075ebb40c1cda8e553ff8f66a1783",
+        "context": "ef701ed9796c6bd70f60c99026dca053afb208cb074b285ad24c4c8e4eb5b141",
+        "reference": "5fdccb0000289c8dfd2cd9f73b2e3e2fc1654ff85a32100faa0fcb7e7a079a17",
+        "combined": "48b19c1e3137bff9912041342d934879f9d22776e7322ad9106f7775619e6487"
+      }
+    },
+    {
+      "sample_id": "recovery_quiet__recommendation_reason__after",
+      "case_id": "recovery_quiet__recommendation_reason",
+      "scenario_id": "recovery_quiet",
+      "question_type": "recommendation_reason",
+      "condition": "after",
+      "faithfulness": 0.8571,
+      "signatures": {
+        "question": "a6e0d30c01f0f0fb4a0e42c9e80375263803a55561308f6161597863d4d54f72",
+        "response": "debc50dabdfceb12878cb19d22566dfa7364d4359237ed64adb905b54140e1a0",
+        "context": "b6e53fb79478dc2bb8176152de290916fe15733db6656f5e7bd74bda19efc752",
+        "reference": "e031e8896e56799d925ae6af7ff1dee08b381ca3d343b53fd4eaa803fc302217",
+        "combined": "b31678d974bb33fc77e22312e1f7b3720a480fa8aa44292d1d663e29d468ba8e"
+      }
+    },
+    {
+      "sample_id": "recovery_quiet__score_calculation__after",
+      "case_id": "recovery_quiet__score_calculation",
+      "scenario_id": "recovery_quiet",
+      "question_type": "score_calculation",
+      "condition": "after",
+      "faithfulness": 0.8,
+      "signatures": {
+        "question": "a1a19e41d8e84450a124a64dc9233d5b7238d88cf3065572b1f030b363b57b73",
+        "response": "4c62a3ca41301f8302d6b5461334c428b20c25a3fb027379e1ea8a72b2f28409",
+        "context": "a1c070737e14e43fa047eb616b3b4ffdbbfe4255f0cf487125f20900ecf8d250",
+        "reference": "a119d1fafdbf4f96497f95a0522dfcffa69efa0a622a1ec1c3aaf00777cb87bd",
+        "combined": "b191b58d0928ca4ee5d6978ea44eeb3b14b3dfd5c7a059c158be3a8a83970826"
+      }
+    },
+    {
+      "sample_id": "stroller_family__deduction_reason__after",
+      "case_id": "stroller_family__deduction_reason",
+      "scenario_id": "stroller_family",
+      "question_type": "deduction_reason",
+      "condition": "after",
+      "faithfulness": 0.9167,
+      "signatures": {
+        "question": "8efb2f65d3e6145825084b71b993ff6cd9d6768c00962e4ad7a848e14930f46b",
+        "response": "67c94e2cb23ca606cffca84946d4283ae11d4e4c23d45ce0988d85686fc9f8bf",
+        "context": "d1258bb546a78ff76cb266cda251840d11853f5329fcbede6efea2e87f47462f",
+        "reference": "baac75f3305ff1722a0829e633f3af94e9b0656ead1edf7b91c624956437418c",
+        "combined": "46937da89f6b3220c371c26dbd5dac850fdd10133d0a785d490f9620cfdbdb2b"
+      }
+    },
+    {
+      "sample_id": "stroller_family__exclusion_or_alternative__after",
+      "case_id": "stroller_family__exclusion_or_alternative",
+      "scenario_id": "stroller_family",
+      "question_type": "exclusion_or_alternative",
+      "condition": "after",
+      "faithfulness": 0.7895,
+      "signatures": {
+        "question": "fadb430f0e4b60ee792fbb4fe0fe4750269c518cc4b660c1434e9f4d67c9a1a0",
+        "response": "a6a2f5eaf7fc12ad5ff70e7ea33b2b9db2c8a51de589f29b903f5a08a0193214",
+        "context": "6ca8219fb76fcfef1311d54d1d547868e1174d9684759f6c5b9ef60a92256f3d",
+        "reference": "b337e24a0e2ee4bfbec6337a1439c41ac6a80e2941920e8e8e7398ebaa175f9d",
+        "combined": "26d28cda812c9d535f611d54a50f5f54095dc1657cd869ce6c98eec248393477"
+      }
+    },
+    {
+      "sample_id": "stroller_family__mode_distinction__after",
+      "case_id": "stroller_family__mode_distinction",
+      "scenario_id": "stroller_family",
+      "question_type": "mode_distinction",
+      "condition": "after",
+      "faithfulness": 0.7143,
+      "signatures": {
+        "question": "a17f08eec2f428cb0c00810ccae0fdbf5662d1c112b43a1353412cfecd6e191b",
+        "response": "17f5a982b9de852e550c0cc24d7311a349d13899f74b8ffd2e58468d4fc2629f",
+        "context": "3a0f913ab0031ce06648dcefcbab15beedf90dd4ae091dc7bbb6e9a140533e4d",
+        "reference": "8005dbde3862ff5e312109050f8cbebb5f83ef5554428e24e04fe7daa5874e7e",
+        "combined": "0c56a569c76bbde9accfa7d1448717353ab15bc2347b6e92a7ca3d95de2d6d99"
+      }
+    },
+    {
+      "sample_id": "stroller_family__pre_visit_check__after",
+      "case_id": "stroller_family__pre_visit_check",
+      "scenario_id": "stroller_family",
+      "question_type": "pre_visit_check",
+      "condition": "after",
+      "faithfulness": 0.6667,
+      "signatures": {
+        "question": "557512b895c3a210a112f036628fbe26dd22adbb33e0070da9bb953a484df60a",
+        "response": "da01e87f8cd224054fcf1c3b30144199567f248818d97155263e6db914dc56ac",
+        "context": "3f3776bd92921eb82bb2d75babf34cf2b4572608ea95f32847e2a41467f3d96d",
+        "reference": "aa8eca70a95729f1f150de46788bef23b05cb9f58502817dc4c61c77fa97ef2c",
+        "combined": "092c5ca316d77574e050df58231c35e4a19edee7d488b1b84ad9aa5e18814ad9"
+      }
+    },
+    {
+      "sample_id": "stroller_family__recommendation_reason__after",
+      "case_id": "stroller_family__recommendation_reason",
+      "scenario_id": "stroller_family",
+      "question_type": "recommendation_reason",
+      "condition": "after",
+      "faithfulness": 0.9259,
+      "signatures": {
+        "question": "a6e0d30c01f0f0fb4a0e42c9e80375263803a55561308f6161597863d4d54f72",
+        "response": "e41acfe84dd124b2b4422b83174fe3f2f299ebf1ecf046b51cd5876a394de3ea",
+        "context": "5063363a4b7bbcf35ba7ac1a59ab71fddb72ce3fe2e9e95ea4458217ff065103",
+        "reference": "7860784f6f3fb05f5d9b88cbfd73f2733040c49375fc8781593866df1dd8d9bd",
+        "combined": "031e9107563974ab372e054cf5de5bc808a26c10e04c8f2326eaa2895dacd6f1"
+      }
+    },
+    {
+      "sample_id": "stroller_family__score_calculation__after",
+      "case_id": "stroller_family__score_calculation",
+      "scenario_id": "stroller_family",
+      "question_type": "score_calculation",
+      "condition": "after",
+      "faithfulness": 0.4444,
+      "signatures": {
+        "question": "a1a19e41d8e84450a124a64dc9233d5b7238d88cf3065572b1f030b363b57b73",
+        "response": "31a5f70ee1149fe0054fffa3df1e034ac973304597b38da694cdd596aabc013f",
+        "context": "fdaf16884dbfbb7f4a39e7ab1e07bec5762073b48acf24061202b4fbf1f55780",
+        "reference": "a66962e791793310ec99cf936d77031481eea2347763cd4c68f6513f18813e4e",
+        "combined": "5efba92d82d4e8d7e148a26e441f00e71c2ddb9ce712d2e3a350dca374ba6b03"
+      }
+    },
+    {
+      "sample_id": "weather_sensitive__deduction_reason__after",
+      "case_id": "weather_sensitive__deduction_reason",
+      "scenario_id": "weather_sensitive",
+      "question_type": "deduction_reason",
+      "condition": "after",
+      "faithfulness": 0.7333,
+      "signatures": {
+        "question": "f3f1a72d62efb27019d17e3bdc9f0d110ca72faabccb918e6f11867194a02bd9",
+        "response": "06c68302a29070ab2316e2618677c4ea3973de611bb2569752eaca497c8afcf0",
+        "context": "5ae0a7d873ea3ef468ad12c28710571c5a924656d2f14ae423d76cc92ea9cab8",
+        "reference": "2fa5af837e190ca1968ba33e54e984b389f4df9a6f08ea4871338ffdb70cc759",
+        "combined": "4d02d314516f45ef13860931cd1a71ac844153c0d305b9fc25b781a01e2134c2"
+      }
+    },
+    {
+      "sample_id": "weather_sensitive__exclusion_or_alternative__after",
+      "case_id": "weather_sensitive__exclusion_or_alternative",
+      "scenario_id": "weather_sensitive",
+      "question_type": "exclusion_or_alternative",
+      "condition": "after",
+      "faithfulness": 0.6667,
+      "signatures": {
+        "question": "fadb430f0e4b60ee792fbb4fe0fe4750269c518cc4b660c1434e9f4d67c9a1a0",
+        "response": "76a7929b165a306525ca6096267dc1952b02cbbeb3d1dbed57e96c5c2aae306a",
+        "context": "50bbed4948be8495f64e77a474dd0e67379c54f33173f597ee590e34e3f53450",
+        "reference": "f4b5650819769cf0317a4efc8aa651c60f7ca6c66a68bb85b9afd1a61c98e7f1",
+        "combined": "f6a4e531a34c2f18e5176fd0f907cc2ef7f80d5e85a1e4703700d9e54ba67579"
+      }
+    },
+    {
+      "sample_id": "weather_sensitive__mode_distinction__after",
+      "case_id": "weather_sensitive__mode_distinction",
+      "scenario_id": "weather_sensitive",
+      "question_type": "mode_distinction",
+      "condition": "after",
+      "faithfulness": 0.5455,
+      "signatures": {
+        "question": "a17f08eec2f428cb0c00810ccae0fdbf5662d1c112b43a1353412cfecd6e191b",
+        "response": "98c8c3f0f13198c60ed8240524c9b31152cf1c30fec3103be8fa754434ee147a",
+        "context": "1c46bdab32da72463b94ed55cae49d94de8ca600ff37e5bd7283da966dc3dcab",
+        "reference": "b7cc0d1fa1813cc13564fd4c5085265b157a769674322a6f55aadb39a8d44dd7",
+        "combined": "73bd9d8f6c67bab022eda9215567778c3342cde5278e1c20d46e214ab8af2af7"
+      }
+    },
+    {
+      "sample_id": "weather_sensitive__pre_visit_check__after",
+      "case_id": "weather_sensitive__pre_visit_check",
+      "scenario_id": "weather_sensitive",
+      "question_type": "pre_visit_check",
+      "condition": "after",
+      "faithfulness": 0.5385,
+      "signatures": {
+        "question": "557512b895c3a210a112f036628fbe26dd22adbb33e0070da9bb953a484df60a",
+        "response": "072d12c27fc99a632bff3c73ed021c1a0117a4fcc4a4231757c781c7fe6e8492",
+        "context": "e4bf43d6b8c8a3e144a0a12a25f4979d991f794f5799310fd6a4ed305af2cff9",
+        "reference": "c64c28ccdec88aa7ba69de2ec6a6518dc3d2ae9b457ecb55704ce9dce2f2fce9",
+        "combined": "273ba78a752d8472e31762ca3c9cdd00cdc8e9c3017558a1ebdb499e4d7ebe84"
+      }
+    },
+    {
+      "sample_id": "weather_sensitive__recommendation_reason__after",
+      "case_id": "weather_sensitive__recommendation_reason",
+      "scenario_id": "weather_sensitive",
+      "question_type": "recommendation_reason",
+      "condition": "after",
+      "faithfulness": 0.9524,
+      "signatures": {
+        "question": "a6e0d30c01f0f0fb4a0e42c9e80375263803a55561308f6161597863d4d54f72",
+        "response": "63cdf4d41f155a1da49a8d888c5ac5753a5d282785a5275a645e39efb6653f8d",
+        "context": "eda4074620d75a4212e7063612d06cb5c97301c2eec76678b65df8d10e95226b",
+        "reference": "773b2d6acfcf1d2257ff66191eafc7d82f090bdd4dc2796056218b1642ad5b3b",
+        "combined": "e030b3ff8de50b5c4c6cc75e1cb9b6c28d15ac4b22e3ff2c172a4a83872e5777"
+      }
+    },
+    {
+      "sample_id": "weather_sensitive__score_calculation__after",
+      "case_id": "weather_sensitive__score_calculation",
+      "scenario_id": "weather_sensitive",
+      "question_type": "score_calculation",
+      "condition": "after",
+      "faithfulness": 0.8333,
+      "signatures": {
+        "question": "a1a19e41d8e84450a124a64dc9233d5b7238d88cf3065572b1f030b363b57b73",
+        "response": "8797d24d7b584aed2be0be114def8ee8eae122df40a85e8f395db00f1e28f280",
+        "context": "9c88b8b2ef458cbe235dc62dd255f3b63ce9ba8836fb2b780067180f62425aeb",
+        "reference": "adb636da3a80ffdad49bbe4b78f35be6ab218af2222daf01df2cd50014dbba84",
+        "combined": "e41d953dab761b9b6e5a7872f336d93ba202a833cc096cf10075c70e12a9a28e"
+      }
+    },
+    {
+      "sample_id": "wheelchair_access__deduction_reason__after",
+      "case_id": "wheelchair_access__deduction_reason",
+      "scenario_id": "wheelchair_access",
+      "question_type": "deduction_reason",
+      "condition": "after",
+      "faithfulness": 0.7333,
+      "signatures": {
+        "question": "c230732738c014622d8a5551db0ae984766b564185ee2ad5f2c16aeb705060d7",
+        "response": "1ec7091e35d1fe0a878c14896fd9dc99d2ea684fb971a18abbe8778c39c61512",
+        "context": "35a594ef5b81feaf78e63d9592d4e6142dc79b7fc01aafa9f9e6af7a5eaa7e47",
+        "reference": "b975a7f8fab601bf9ff8db36ae29d242a46755bb1640266fbf2b5dcb218bad5f",
+        "combined": "cd366b23d3c06467fe59e28dfca4a62823f9be4841e6ccf7c6cf6cf8bfa48f2d"
+      }
+    },
+    {
+      "sample_id": "wheelchair_access__exclusion_or_alternative__after",
+      "case_id": "wheelchair_access__exclusion_or_alternative",
+      "scenario_id": "wheelchair_access",
+      "question_type": "exclusion_or_alternative",
+      "condition": "after",
+      "faithfulness": 0.7143,
+      "signatures": {
+        "question": "fadb430f0e4b60ee792fbb4fe0fe4750269c518cc4b660c1434e9f4d67c9a1a0",
+        "response": "fb19ae2c3a9b195772e0f86faf8854b70f5c66f029c76373e6a5e0b7d7d98ba4",
+        "context": "356257e3d395b7a967b7472c155f6e64c653e0e25795a72641cd4560923ada04",
+        "reference": "91efae71400f0c5e4d7c02b11b0b710436cd9d5d5c154f49cb95232b1734b7e0",
+        "combined": "2e57899883df1f745a39a2ea3d21eeecdeb34659494e841f4c2971f8deb54b30"
+      }
+    },
+    {
+      "sample_id": "wheelchair_access__mode_distinction__after",
+      "case_id": "wheelchair_access__mode_distinction",
+      "scenario_id": "wheelchair_access",
+      "question_type": "mode_distinction",
+      "condition": "after",
+      "faithfulness": 0.4286,
+      "signatures": {
+        "question": "a17f08eec2f428cb0c00810ccae0fdbf5662d1c112b43a1353412cfecd6e191b",
+        "response": "dc9d2e232e68f9df8f1495dc05994f9d27a61649a0c40c4827329c75ad83858a",
+        "context": "328c9400f609ae45df674e5fbb763773b757802c934dc6408a3f44428a9fedda",
+        "reference": "c94bf7a508facdb5b2e1d64b9131813c014c2588daf6f649af694f2668b43f17",
+        "combined": "75323e986775664be04e9a10f0e175cd450ba021bea9b8312a9918a3fc6db6bb"
+      }
+    },
+    {
+      "sample_id": "wheelchair_access__pre_visit_check__after",
+      "case_id": "wheelchair_access__pre_visit_check",
+      "scenario_id": "wheelchair_access",
+      "question_type": "pre_visit_check",
+      "condition": "after",
+      "faithfulness": 0.625,
+      "signatures": {
+        "question": "557512b895c3a210a112f036628fbe26dd22adbb33e0070da9bb953a484df60a",
+        "response": "c7ca377489d9425ae9a79a97bf3993eabcb0dc0f3d5f7f1f68d16f753b2f44fe",
+        "context": "c42fabbd8eb71b6592485ceab3ae2ea4facc6e1a7f25781c0bed0c55758a6f76",
+        "reference": "f60a30a8ac75edffe097400c8aa5fe0810c0244c6f027d73c9c1d9e7afdf55b0",
+        "combined": "eefc41e443f96eda31f38194464faa9463213ce3a69fbaec5d7652759e11c5c1"
+      }
+    },
+    {
+      "sample_id": "wheelchair_access__recommendation_reason__after",
+      "case_id": "wheelchair_access__recommendation_reason",
+      "scenario_id": "wheelchair_access",
+      "question_type": "recommendation_reason",
+      "condition": "after",
+      "faithfulness": 0.8889,
+      "signatures": {
+        "question": "a6e0d30c01f0f0fb4a0e42c9e80375263803a55561308f6161597863d4d54f72",
+        "response": "0f054d17299a96e324cbfeb77171cef983c44fee92c828aeb3846fcbd3117d5a",
+        "context": "8e75a513b1dc420a49a147376861b39058d657b0e9fa7e39e56fb4d55ceb2696",
+        "reference": "d7213562f8728796b32314ab0e47be46a6215c9ea1a3b70c841154dd017b3319",
+        "combined": "3c62979613970489e4632def172926db2551c468ca6132607ca8a413c6340806"
+      }
+    },
+    {
+      "sample_id": "wheelchair_access__score_calculation__after",
+      "case_id": "wheelchair_access__score_calculation",
+      "scenario_id": "wheelchair_access",
+      "question_type": "score_calculation",
+      "condition": "after",
+      "faithfulness": 0.7333,
+      "signatures": {
+        "question": "a1a19e41d8e84450a124a64dc9233d5b7238d88cf3065572b1f030b363b57b73",
+        "response": "d819534ed25b5eea9ce2f647a36024b690fbef31538cc57185f23e400b21c662",
+        "context": "29f0f3bd6f879e05eaa2ed4be895eb74a71cf888e4e970002038fb3b274d8162",
+        "reference": "8b7073bee9e6ac3539fb81bae323b12e942c65770aa9a01f4a1bd47eaeb26e81",
+        "combined": "41e93669febc45c5dd4f499421307d8716c0fd24309a1176ebe6fff80dbaa666"
+      }
+    }
+  ]
+}
