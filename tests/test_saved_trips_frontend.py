@@ -896,8 +896,8 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
         self.assertIn('id="savedRoutesModal"', index)
         self.assertIn("data-open-saved-routes", index)
         self.assertGreaterEqual(index.count("data-save-current-route"), 2)
-        self.assertIn("styles.css?v=20260715-20", index)
-        self.assertIn("app.js?v=20260715-14", index)
+        self.assertIn("styles.css?v=20260715-29", index)
+        self.assertIn("app.js?v=20260715-20", index)
         self.assertIn("top-save-route-button", index)
         self.assertIn("live-map-save-button", index)
         self.assertIn("loadSavedRouteState();", app)
@@ -1051,6 +1051,32 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
         self.assertIn("height: var(--concept-stage-height)", styles)
         self.assertIn(".concept-preference-chip:focus-visible", styles)
         self.assertIn(".concept-preference-chip.is-priority", styles)
+
+    def test_theme_cards_use_clean_line_art_instead_of_photo_backgrounds(self):
+        app = APP_SCRIPT.read_text(encoding="utf-8")
+        styles = STYLES_FILE.read_text(encoding="utf-8")
+
+        self.assertEqual(app.count("theme-line-"), 5)
+        self.assertIn('class="concept-card-line-art"', app)
+        self.assertIn('class="concept-card-character"', app)
+        self.assertIn('class="concept-card-score-row"', app)
+        self.assertIn('class="concept-card-shield"', app)
+        self.assertIn("bi-heart-fill", app)
+        self.assertIn('aria-pressed="${active ? "true" : "false"}"', app)
+        self.assertIn("solid var(--theme-rail)", styles)
+        self.assertIn(".concept-card.rose .concept-card-line-art", styles)
+        self.assertIn("background: #fff", styles)
+        self.assertNotIn("--theme-image:", styles)
+        self.assertNotIn("theme-recovery-editorial.webp", styles)
+
+    def test_concept_travel_time_uses_the_shared_route_summary(self):
+        app = APP_SCRIPT.read_text(encoding="utf-8")
+
+        self.assertNotIn("travelMinutes:", app)
+        self.assertIn("conceptTravelTimeSnapshot(activeScenario)", app)
+        self.assertIn("cachedRouteSummaryWithRoadGeometry(snapshot.entries)", app)
+        self.assertIn('data-concept-travel-route-key="${escapeHtml(travelTime.routeKey)}"', app)
+        self.assertIn("currentRouteKey !== snapshot.routeKey", app)
 
     def test_recommendation_layout_uses_condition_bar_and_responsive_map_detail_columns(self):
         index = INDEX_FILE.read_text(encoding="utf-8")
@@ -2184,7 +2210,8 @@ globalThis.__conditionFocusTest = {
   profileFromScenario,
   recommendationPayload,
   requestRuntimeRecommendation,
-  selectedRoute
+  selectedRoute,
+  selectedPlace
 };
 `);
 const context = {
@@ -2225,6 +2252,11 @@ const baseRoute = app.selectedRoute(app.currentStaticScenario()).map((item) => i
   if (focusedRoute.length !== 4) throw new Error(`expected four focused places: ${focusedRoute}`);
   if (JSON.stringify(focusedRoute) === JSON.stringify(baseRoute)) {
     throw new Error("the focused route stayed identical to the base route");
+  }
+  app.state.selectedSpotId = focusedRoute[0];
+  const selected = app.selectedPlace(app.currentScenario());
+  if (selected?.spot_id !== focusedRoute[0]) {
+    throw new Error(`focused place detail was not resolved: ${selected?.spot_id}`);
   }
 })().catch((error) => {
   console.error(error);

@@ -174,7 +174,8 @@ const scenarioCards = [
   {
     id: "recovery_quiet",
     iconClass: "bi-heart-pulse",
-    image: "assets/theme-character-recovery.webp?v=20260710-2",
+    lineArt: "assets/theme-line-recovery.png?v=20260715-1",
+    character: "assets/theme-character-recovery.webp?v=20260710-2",
     title: "회복 중",
     body: "무리한 일정을 피하고 휴식이 많은 코스",
     tone: "rose"
@@ -182,7 +183,8 @@ const scenarioCards = [
   {
     id: "diet_restricted",
     iconClass: "bi-egg-fried",
-    image: "assets/theme-character-food.webp?v=20260710-2",
+    lineArt: "assets/theme-line-food.png?v=20260715-1",
+    character: "assets/theme-character-food.webp?v=20260710-2",
     title: "음식 제한",
     body: "식당·시장 제외, 휴식 중심",
     tone: "cream"
@@ -190,7 +192,8 @@ const scenarioCards = [
   {
     id: "stroller_family",
     iconClass: "bi-people",
-    image: "assets/theme-character-family.webp?v=20260710-2",
+    lineArt: "assets/theme-line-family.png?v=20260715-1",
+    character: "assets/theme-character-family.webp?v=20260710-2",
     title: "아이 동반",
     body: "유모차와 보호자 휴식 동선을 우선",
     tone: "purple"
@@ -198,7 +201,8 @@ const scenarioCards = [
   {
     id: "wheelchair_access",
     iconClass: "bi-person-wheelchair",
-    image: "assets/theme-character-wheelchair.webp?v=20260710-2",
+    lineArt: "assets/theme-line-wheelchair.png?v=20260715-1",
+    character: "assets/theme-character-wheelchair.webp?v=20260710-2",
     title: "휠체어 접근",
     body: "휠체어 접근 가능한 장소 우선",
     tone: "mint"
@@ -206,7 +210,8 @@ const scenarioCards = [
   {
     id: "weather_sensitive",
     iconClass: "bi-cloud-rain",
-    image: "assets/theme-character-weather.webp?v=20260710-2",
+    lineArt: "assets/theme-line-weather.png?v=20260715-1",
+    character: "assets/theme-character-weather.webp?v=20260710-2",
     title: "날씨 민감",
     body: "실내/실외 혼합 코스 선호",
     tone: "blue"
@@ -216,7 +221,6 @@ const scenarioCards = [
 const conceptRecipeProfiles = {
   recovery_quiet: {
     subtitle: "오늘은 천천히, 쉬어가며 제주를 만나요.",
-    travelMinutes: 34,
     companion: { key: "traveler_type", value: "caregiver_group", label: "보호자와" },
     pace: { key: "mobility_conditions", value: "휴식 필요", label: "아주 여유롭게" },
     distance: { key: "mobility_conditions", value: "긴 걷기 어려움", label: "15분 이내" },
@@ -229,7 +233,6 @@ const conceptRecipeProfiles = {
   },
   diet_restricted: {
     subtitle: "먹거리 걱정은 덜고, 편안한 관람에 집중해요.",
-    travelMinutes: 36,
     companion: { key: "traveler_type", value: "diet_restricted_traveler", label: "식사 기준에 맞춰" },
     pace: { key: "mobility_conditions", value: "체력 저하", label: "여유롭게" },
     distance: { key: "mobility_conditions", value: "짧은 이동", label: "15분 이내" },
@@ -242,7 +245,6 @@ const conceptRecipeProfiles = {
   },
   stroller_family: {
     subtitle: "아이와 보호자 모두 쉬기 좋은 동선으로 둘러봐요.",
-    travelMinutes: 38,
     companion: { key: "traveler_type", value: "stroller_family", label: "아이와" },
     pace: { key: "mobility_conditions", value: "휴식 필요", label: "쉬엄쉬엄" },
     distance: { key: "mobility_conditions", value: "짧은 이동", label: "15분 이내" },
@@ -255,7 +257,6 @@ const conceptRecipeProfiles = {
   },
   wheelchair_access: {
     subtitle: "확인된 접근 정보와 평탄한 동선을 먼저 살펴봐요.",
-    travelMinutes: 32,
     companion: { key: "traveler_type", value: "wheelchair_user", label: "휠체어로" },
     pace: { key: "mobility_conditions", value: "긴 걷기 어려움", label: "안전하게" },
     distance: { key: "mobility_conditions", value: "경사와 계단 확인", label: "평탄한 동선" },
@@ -268,7 +269,6 @@ const conceptRecipeProfiles = {
   },
   weather_sensitive: {
     subtitle: "비와 바람의 영향을 줄인 실내 코스로 여행해요.",
-    travelMinutes: 35,
     companion: { key: "traveler_type", value: "senior", label: "동행자와" },
     pace: { key: "mobility_conditions", value: "바람", label: "날씨 걱정 없이" },
     distance: { key: "mobility_conditions", value: "짧은 이동", label: "15분 이내" },
@@ -1329,7 +1329,8 @@ function selectedPlace(scenario) {
     state.selectedSpotId = route[0]?.spot_id || scenario.places?.[0]?.spot_id || null;
   }
   const places = placesById(scenario);
-  return places.get(state.selectedSpotId) || null;
+  const routeItem = route.find((item) => item.spot_id === state.selectedSpotId);
+  return places.get(state.selectedSpotId) || (routeItem ? routePlace(scenario, routeItem) : null);
 }
 
 function placeholderTitleLines(name) {
@@ -2391,6 +2392,39 @@ function conceptCardMetaText(scenario) {
   return `${route.length || 0}곳 추천 · 검증 ${verifiedCount}/${route.length || 0}`;
 }
 
+function conceptTravelTimeSnapshot(scenario) {
+  const entries = routeCoordinateEntries(scenario);
+  if (entries.length < 2) {
+    return { entries, routeKey: "", label: "시간 확인 필요" };
+  }
+  return {
+    entries,
+    routeKey: routeEntriesCacheKey(entries),
+    label: formatDurationMinutes(fallbackRouteSummary(entries).durationMinutes)
+  };
+}
+
+function updateConceptTravelTime(snapshot) {
+  if (!snapshot.routeKey || !shouldRequestRouteProxy()) {
+    return;
+  }
+  cachedRouteSummaryWithRoadGeometry(snapshot.entries).then((summary) => {
+    const currentEntries = routeCoordinateEntries(currentScenario());
+    const currentRouteKey = currentEntries.length >= 2 ? routeEntriesCacheKey(currentEntries) : "";
+    const target = document.querySelector("[data-concept-travel-time]");
+    if (
+      currentRouteKey !== snapshot.routeKey
+      || target?.dataset.conceptTravelRouteKey !== snapshot.routeKey
+    ) {
+      return;
+    }
+    const value = target.querySelector("strong");
+    if (value) {
+      value.textContent = formatDurationMinutes(summary.durationMinutes);
+    }
+  }).catch(() => {});
+}
+
 function renderConceptPage(scenario) {
   const grid = document.getElementById("conceptGrid");
   const activeScenario = scenario || scenarioById(state.scenarioId);
@@ -2403,15 +2437,23 @@ function renderConceptPage(scenario) {
       const cardScenario = scenarioById(card.id);
       const active = state.conceptPanelOpen && card.id === state.scenarioId;
       return `
-        <button class="concept-card ${card.tone} ${active ? "active" : ""}" type="button" data-concept-id="${escapeHtml(card.id)}" aria-label="${escapeHtml(card.title)} 테마 추천 미리보기">
+        <button class="concept-card ${card.tone} ${active ? "active" : ""}" type="button" data-concept-id="${escapeHtml(card.id)}" aria-label="${escapeHtml(card.title)} 테마 추천 미리보기" aria-pressed="${active ? "true" : "false"}">
           ${active ? '<span class="concept-selected-badge">선택됨</span>' : ""}
           <span class="concept-card-index">${String(index + 1).padStart(2, "0")}</span>
           <strong>${escapeHtml(card.title)}</strong>
           <small>${escapeHtml(card.body)}</small>
-          <span class="concept-card-icon" aria-hidden="true">
-            <img src="${escapeHtml(card.image)}" alt="" loading="lazy" decoding="async">
+          <span class="concept-card-visual" aria-hidden="true">
+            <img class="concept-card-line-art" src="${escapeHtml(card.lineArt)}" alt="" loading="eager" decoding="async">
+            <img class="concept-card-character" src="${escapeHtml(card.character)}" alt="" loading="eager" decoding="async">
           </span>
-          <em>${escapeHtml(conceptCardScoreText(cardScenario))}</em>
+          <span class="concept-card-divider" aria-hidden="true"></span>
+          <span class="concept-card-score-row">
+            <span class="concept-card-shield" aria-hidden="true">
+              <i class="bi bi-shield"></i>
+              <i class="bi bi-heart-fill"></i>
+            </span>
+            <em>${escapeHtml(conceptCardScoreText(cardScenario))}</em>
+          </span>
           <span class="concept-card-submeta">${escapeHtml(conceptCardMetaText(cardScenario))}</span>
         </button>
       `;
@@ -2433,6 +2475,7 @@ function renderConceptPage(scenario) {
   const score = Number(activeScenario?.recommendation?.score?.total);
   const scoreText = Number.isFinite(score) ? Math.round(score) : "-";
   const verifiedCount = previewPlaces.filter((place) => place.verified !== "확인 필요").length;
+  const travelTime = conceptTravelTimeSnapshot(activeScenario);
 
   if (summaryBadge) {
     summaryBadge.textContent = `${card.title} 테마`;
@@ -2447,8 +2490,9 @@ function renderConceptPage(scenario) {
     summaryProof.innerHTML = `
       <span><strong>${escapeHtml(String(previewPlaces.length))}</strong><b>곳 추천</b></span>
       <span><b>검증</b><strong>${escapeHtml(String(verifiedCount))}/${escapeHtml(String(previewPlaces.length))}</strong></span>
-      <span><b>예상 이동</b><strong>${escapeHtml(String(recipe.travelMinutes))}분</strong></span>
+      <span data-concept-travel-time data-concept-travel-route-key="${escapeHtml(travelTime.routeKey)}"><b>예상 이동</b><strong>${escapeHtml(travelTime.label)}</strong></span>
     `;
+    updateConceptTravelTime(travelTime);
   }
   if (preferenceSentences) {
     preferenceSentences.innerHTML = conceptPreferenceSentencesMarkup(profile, recipe);
@@ -2473,7 +2517,7 @@ function renderConceptPage(scenario) {
     fitNote.innerHTML = `<i class="bi bi-info-circle" aria-hidden="true"></i> ${focusText}현재 조건으로 접근성 적합도 <strong>${escapeHtml(String(scoreText))}%</strong>`;
   }
   if (primaryCharacter) {
-    primaryCharacter.src = card.image;
+    primaryCharacter.src = card.character;
   }
 }
 

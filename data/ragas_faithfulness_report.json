@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-07-15",
+  "status": "complete_provisional",
+  "reportable_as_final": false,
+  "metric_status": "provisional_automatic_metric",
+  "warning": "RAGAS 자동 심사 결과이며 사람 검수 Gold Set이 승인되기 전에는 최종 성능으로 발표하지 않는다.",
+  "evaluation": {
+    "library": "ragas",
+    "ragas_version": "0.4.3",
+    "metric": "faithfulness",
+    "model": "gpt-5-mini",
+    "threshold": 0.95,
+    "conditions": [
+      "after"
+    ],
+    "context_interpretation": "after는 실제 제공 추천 컨텍스트, before는 동일 기준 근거에 대한 진단 비교로만 해석한다."
+  },
+  "coverage": {
+    "target_samples": 30,
+    "successful_samples": 30,
+    "error_samples": 0,
+    "coverage_rate": 1.0
+  },
+  "summary": {
+    "mean": 0.8907,
+    "median": 0.9392,
+    "minimum": 0.4444,
+    "maximum": 1.0,
+    "passed_samples": 15,
+    "pass_rate": 0.5
+  },
+  "by_condition": {
+    "after": {
+      "sample_count": 30,
+      "mean": 0.8907,
+      "pass_rate": 0.5
+    }
+  },
+  "by_question_type": {
+    "deduction_reason": {
+      "sample_count": 5,
+      "mean": 0.7522,
+      "pass_rate": 0.0
+    },
+    "exclusion_or_alternative": {
+      "sample_count": 5,
+      "mean": 1.0,
+      "pass_rate": 1.0
+    },
+    "mode_distinction": {
+      "sample_count": 5,
+      "mean": 0.95,
+      "pass_rate": 0.8
+    },
+    "pre_visit_check": {
+      "sample_count": 5,
+      "mean": 1.0,
+      "pass_rate": 1.0
+    },
+    "recommendation_reason": {
+      "sample_count": 5,
+      "mean": 0.9082,
+      "pass_rate": 0.2
+    },
+    "score_calculation": {
+      "sample_count": 5,
+      "mean": 0.7337,
+      "pass_rate": 0.0
+    }
+  },
+  "lowest_cases": [
+    {
+      "sample_id": "stroller_family__score_calculation__after",
+      "case_id": "stroller_family__score_calculation",
+      "condition": "after",
+      "question_type": "score_calculation",
+      "faithfulness": 0.4444,
+      "passed": false
+    },
+    {
+      "sample_id": "recovery_quiet__deduction_reason__after",
+      "case_id": "recovery_quiet__deduction_reason",
+      "condition": "after",
+      "question_type": "deduction_reason",
+      "faithfulness": 0.6,
+      "passed": false
+    },
+    {
+      "sample_id": "wheelchair_access__score_calculation__after",
+      "case_id": "wheelchair_access__score_calculation",
+      "condition": "after",
+      "question_type": "score_calculation",
+      "faithfulness": 0.7333,
+      "passed": false
+    },
+    {
+      "sample_id": "wheelchair_access__deduction_reason__after",
+      "case_id": "wheelchair_access__deduction_reason",
+      "condition": "after",
+      "question_type": "deduction_reason",
+      "faithfulness": 0.7333,
+      "passed": false
+    },
+    {
+      "sample_id": "weather_sensitive__deduction_reason__after",
+      "case_id": "weather_sensitive__deduction_reason",
+      "condition": "after",
+      "question_type": "deduction_reason",
+      "faithfulness": 0.7333,
+      "passed": false
+    },
+    {
+      "sample_id": "recovery_quiet__mode_distinction__after",
+      "case_id": "recovery_quiet__mode_distinction",
+      "condition": "after",
+      "question_type": "mode_distinction",
+      "faithfulness": 0.75,
+      "passed": false
+    },
+    {
+      "sample_id": "diet_restricted__deduction_reason__after",
+      "case_id": "diet_restricted__deduction_reason",
+      "condition": "after",
+      "question_type": "deduction_reason",
+      "faithfulness": 0.7778,
+      "passed": false
+    },
+    {
+      "sample_id": "recovery_quiet__score_calculation__after",
+      "case_id": "recovery_quiet__score_calculation",
+      "condition": "after",
+      "question_type": "score_calculation",
+      "faithfulness": 0.8,
+      "passed": false
+    },
+    {
+      "sample_id": "weather_sensitive__score_calculation__after",
+      "case_id": "weather_sensitive__score_calculation",
+      "condition": "after",
+      "question_type": "score_calculation",
+      "faithfulness": 0.8333,
+      "passed": false
+    },
+    {
+      "sample_id": "recovery_quiet__recommendation_reason__after",
+      "case_id": "recovery_quiet__recommendation_reason",
+      "condition": "after",
+      "question_type": "recommendation_reason",
+      "faithfulness": 0.8571,
+      "passed": false
+    }
+  ],
+  "errors": []
+}

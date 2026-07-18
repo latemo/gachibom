@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeju-maeum.local/schemas/rag_goldset.schema.json",
+  "title": "Gachibom Jeju RAG Gold Set",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "goldset_id", "generated_at", "status", "methodology", "summary", "cases"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "goldset_id": { "type": "string", "minLength": 1 },
+    "generated_at": { "type": "string", "format": "date" },
+    "status": { "enum": ["draft_pending_human_review", "approved"] },
+    "methodology": { "type": "object" },
+    "summary": { "type": "object" },
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/case" }
+    }
+  },
+  "$defs": {
+    "stringList": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "split", "segment", "segment_label", "question", "expected", "review"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+        "split": { "enum": ["dev", "test"] },
+        "segment": { "type": "string", "minLength": 1 },
+        "segment_label": { "type": "string", "minLength": 1 },
+        "question": { "type": "string", "minLength": 2 },
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "relevant_place_ids",
+            "acceptable_place_ids",
+            "must_exclude_place_ids",
+            "must_exclude_categories",
+            "required_accessibility_fields",
+            "required_evidence_fields",
+            "required_check_before_visit_terms",
+            "allow_no_result"
+          ],
+          "properties": {
+            "relevant_place_ids": { "$ref": "#/$defs/stringList" },
+            "acceptable_place_ids": { "$ref": "#/$defs/stringList" },
+            "must_exclude_place_ids": { "$ref": "#/$defs/stringList" },
+            "must_exclude_categories": { "$ref": "#/$defs/stringList" },
+            "required_accessibility_fields": { "$ref": "#/$defs/stringList" },
+            "required_evidence_fields": { "$ref": "#/$defs/stringList" },
+            "required_check_before_visit_terms": { "$ref": "#/$defs/stringList" },
+            "allow_no_result": { "type": "boolean" }
+          }
+        },
+        "review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "required_reviewers", "reviewer_ids", "adjudicated_by", "approved_at", "notes"],
+          "properties": {
+            "status": { "enum": ["pending_human_review", "in_review", "needs_adjudication", "approved"] },
+            "required_reviewers": { "type": "integer", "minimum": 2 },
+            "reviewer_ids": { "$ref": "#/$defs/stringList" },
+            "adjudicated_by": { "type": ["string", "null"] },
+            "approved_at": { "type": ["string", "null"] },
+            "notes": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

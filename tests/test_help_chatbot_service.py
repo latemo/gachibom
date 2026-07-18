@@ -2,8 +2,11 @@ import json
 import unittest
 
 from src.help_chatbot_service import (
+    HELP_CHATBOT_EXCLUSION_RULE_VERSION,
     HELP_CHATBOT_MAX_CONTEXT_LIST_ITEMS,
     HELP_CHATBOT_MAX_RECOMMENDATION_CONTEXT_BYTES,
+    HELP_CHATBOT_MODE_RULE_VERSION,
+    HELP_CHATBOT_PRE_VISIT_RULE_VERSION,
     HELP_CHATBOT_SAFETY_NOTE,
     build_help_chatbot_reply,
     enforce_help_safety,
@@ -87,6 +90,120 @@ class HelpChatbotServiceTests(unittest.TestCase):
         self.assertEqual(context["selected_place"]["block_reasons"], ["추천 제외 조건 없음"])
         self.assertNotIn("unknown_top_level", context)
         self.assertNotIn("internal_note", context["selected_place"])
+
+    def test_mode_question_uses_bounded_rule_without_calling_llm(self):
+        class FailIfCalledClient:
+            def generate_reply(self, context, *, model):
+                raise AssertionError("mode rule should not call the LLM")
+
+        reply = build_help_chatbot_reply(
+            "이 추천은 실시간 계산된 결과인가요, 사전 계산된 결과인가요?",
+            recommendation_context={"mode": "static"},
+            model="gpt-5-mini",
+            client=FailIfCalledClient(),
+        )
+
+        self.assertEqual(reply["status"], "success")
+        self.assertEqual(reply["answer_source"], "deterministic_mode_rule")
+        self.assertEqual(reply["behavior_version"], HELP_CHATBOT_MODE_RULE_VERSION)
+        self.assertIn("사전 계산 시나리오", reply["answer"])
+        self.assertIn('mode가 "static"', reply["answer"])
+        self.assertNotIn("점수", reply["answer"])
+        self.assertEqual(reply["answer"].count("입니다."), 2)
+
+    def test_runtime_mode_question_uses_runtime_field_only(self):
+        reply = build_help_chatbot_reply(
+            "지금 표시된 추천은 실시간 계산 결과인가요?",
+            recommendation_context={"mode": "runtime"},
+            model="gpt-5-mini",
+            client=FakeHelpClient(),
+        )
+
+        self.assertIn("실행 시점에 계산한 결과", reply["answer"])
+        self.assertIn('mode가 "runtime"', reply["answer"])
+
+    def test_pre_visit_question_uses_only_selected_place_checks(self):
+        class FailIfCalledClient:
+            def generate_reply(self, context, *, model):
+                raise AssertionError("pre-visit rule should not call the LLM")
+
+        reply = build_help_chatbot_reply(
+            "제주문학관에 방문하기 전에 무엇을 확인해야 하나요?",
+            recommendation_context={
+                "selected_place": {
+                    "name": "제주문학관",
+                    "check_before_visit": ["경사로 상태", "휴식 공간", "혼잡도"],
+                    "score": {"total": 93},
+                }
+            },
+            model="gpt-5-mini",
+            client=FailIfCalledClient(),
+        )
+
+        self.assertEqual(reply["answer_source"], "deterministic_pre_visit_rule")
+        self.assertEqual(reply["behavior_version"], HELP_CHATBOT_PRE_VISIT_RULE_VERSION)
+        self.assertEqual(
+            reply["answer"],
+            "제주문학관 방문 전 확인 항목은 경사로 상태, 휴식 공간, 혼잡도입니다.",
+        )
+        self.assertNotIn("점수", reply["answer"])
+        self.assertNotIn("출처", reply["answer"])
+
+    def test_pre_visit_question_without_place_checks_falls_back_to_llm(self):
+        client = FakeHelpClient()
+        reply = build_help_chatbot_reply(
+            "제주문학관에 방문 전 무엇을 확인해야 하나요?",
+            recommendation_context={"selected_place": {"name": "제주문학관"}},
+            client=client,
+        )
+
+        self.assertIn("LLM 답변", reply["answer"])
+        self.assertIsNotNone(client.context)
+
+    def test_exclusion_alternative_question_uses_only_supported_course_facts(self):
+        class FailIfCalledClient:
+            def generate_reply(self, context, *, model):
+                raise AssertionError("exclusion rule should not call the LLM")
+
+        reply = build_help_chatbot_reply(
+            "어떤 유형의 장소가 대안으로 덜 적합한가요? 현재 코스 장소만 알려 주세요.",
+            recommendation_context={
+                "traveler_summary": {"avoid": ["좁은 길", "비포장"]},
+                "recommendation": {
+                    "course": {
+                        "route": [
+                            {"order": 1, "name": "제주문학관"},
+                            {"order": 2, "name": "제주국제컨벤션센터"},
+                        ]
+                    },
+                    "deduction_reasons": ["경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다."],
+                },
+            },
+            model="gpt-5-mini",
+            client=FailIfCalledClient(),
+        )
+
+        self.assertEqual(reply["answer_source"], "deterministic_exclusion_alternative_rule")
+        self.assertEqual(reply["behavior_version"], HELP_CHATBOT_EXCLUSION_RULE_VERSION)
+        self.assertIn("좁은 길 / 비포장", reply["answer"])
+        self.assertIn("실제 제외 후보 목록과 후보별 점수가 없어", reply["answer"])
+        self.assertIn("제주문학관, 제주국제컨벤션센터", reply["answer"])
+        self.assertNotIn("제주문학관이 덜 적합", reply["answer"])
+
+    def test_exclusion_alternative_question_without_basis_falls_back_to_llm(self):
+        client = FakeHelpClient()
+        reply = build_help_chatbot_reply(
+            "어떤 장소가 대안으로 덜 적합한가요?",
+            recommendation_context={
+                "recommendation": {
+                    "course": {"route": [{"order": 1, "name": "제주문학관"}]},
+                }
+            },
+            client=client,
+        )
+
+        self.assertIn("LLM 답변", reply["answer"])
+        self.assertIsNotNone(client.context)
 
     def test_normalize_recommendation_context_limits_fields_lists_text_and_urls(self):
         normalized = normalize_help_recommendation_context(

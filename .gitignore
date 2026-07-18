@@ -33,3 +33,8 @@ web/assets/media/gachibom-jeju-promo.mp4
 web/assets/media/gachibom-jeju-promo-20260710.mp4
 web/qa-*.png
 docs/ppt_render_*/
+.gstack/
+.agents/
+.codex/
+/artifacts/
+/outputs/

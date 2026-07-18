@@ -22,6 +22,9 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.help_chatbot_service import (  # noqa: E402
+    HELP_CHATBOT_EXCLUSION_RULE_VERSION,
+    HELP_CHATBOT_MODE_RULE_VERSION,
+    HELP_CHATBOT_PRE_VISIT_RULE_VERSION,
     HELP_CHATBOT_PROMPT_VERSION,
     HelpChatbotClient,
     build_help_chatbot_reply,
@@ -298,10 +301,21 @@ def build_jobs(cases: list[dict[str, Any]], model: str) -> list[dict[str, Any]]:
                 **legacy_signature_source,
                 "prompt_version": HELP_CHATBOT_PROMPT_VERSION,
             }
+            behavior_version = None
+            if variant == "after" and case.get("question_type") == "mode_distinction":
+                behavior_version = HELP_CHATBOT_MODE_RULE_VERSION
+                signature_source["behavior_version"] = behavior_version
+            elif variant == "after" and case.get("question_type") == "pre_visit_check":
+                behavior_version = HELP_CHATBOT_PRE_VISIT_RULE_VERSION
+                signature_source["behavior_version"] = behavior_version
+            elif variant == "after" and case.get("question_type") == "exclusion_or_alternative":
+                behavior_version = HELP_CHATBOT_EXCLUSION_RULE_VERSION
+                signature_source["behavior_version"] = behavior_version
             jobs.append(
                 {
                     "case": case,
                     "variant": variant,
+                    "behavior_version": behavior_version,
                     "signature": hashlib.sha256(_canonical_json(signature_source).encode("utf-8")).hexdigest(),
                     "legacy_signature": hashlib.sha256(
                         _canonical_json(legacy_signature_source).encode("utf-8")
@@ -432,6 +446,7 @@ def _run_one_job(
         "status": response.get("status") or "error",
         "model": model,
         "prompt_version": HELP_CHATBOT_PROMPT_VERSION,
+        "behavior_version": job.get("behavior_version"),
         "latency_ms": elapsed_ms,
         "attempts": attempts,
         "run_signature": job["signature"],

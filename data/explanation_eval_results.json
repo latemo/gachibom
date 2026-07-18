@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-11T16:15:34Z",
+  "generated_at": "2026-07-14T19:49:49Z",
   "methodology": {
     "automatic_scoring": "고정 질문과 저장된 기대 근거를 사용하는 규칙 기반 휴리스틱",
     "human_review_status": "pending",
@@ -45,13 +45,13 @@
         "answered_records": 30,
         "successful_records": 30,
         "response_success_rate": 1.0,
-        "mean_latency_ms": 10857.1,
-        "p95_latency_ms": 29126.3,
-        "mean_attempts": 1.07,
+        "mean_latency_ms": 5503.2,
+        "p95_latency_ms": 13372.3,
+        "mean_attempts": 1.03,
         "metrics": {
           "score_trace_numeric_accuracy": 1.0,
-          "expected_evidence_coverage": 0.9137,
-          "user_condition_coverage": 0.8611,
+          "expected_evidence_coverage": 0.9524,
+          "user_condition_coverage": 0.75,
           "mode_accuracy": 1.0,
           "safety_violation_rate": 0.0,
           "unsupported_place_mention_rate": 0.0
@@ -76,16 +76,16 @@
       },
       "expected_evidence_coverage": {
         "before": 0.4881,
-        "after": 0.9137,
-        "delta": 0.4256,
-        "improvement": 0.4256,
+        "after": 0.9524,
+        "delta": 0.4643,
+        "improvement": 0.4643,
         "direction": "higher_is_better"
       },
       "user_condition_coverage": {
         "before": 0.6389,
-        "after": 0.8611,
-        "delta": 0.2222,
-        "improvement": 0.2222,
+        "after": 0.75,
+        "delta": 0.1111,
+        "improvement": 0.1111,
         "direction": "higher_is_better"
       },
       "mode_accuracy": {
@@ -730,10 +730,10 @@
       "question": "'제주문학관'에 방문하기 전에 제 조건상 무엇을 확인해야 하나요?",
       "record_status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 10517.7,
+      "latency_ms": 1.6,
       "attempts": 1,
       "has_response": true,
-      "response_text": "제주문학관은 제공된 사전 계산 시나리오에서 귀하의 이동 조건에 잘 맞아 최종 점수 98(A), 신뢰도는 높음으로 평가되었습니다. 이 결과는 static 모드의 미리 계산된 추천이므로, 실시간 현장 상태나 운영 정보는 반영되어 있지 않습니다. 방문 전 반드시 확인할 항목은 휴식 공간 유무·위치, 장애인 화장실 이용 가능성, 주차 가능 여부와 주차장 위치, 휠체어로의 경사·출입 경로입니다. 또한 혼잡도 및 대기줄 유무, 식사 장소 제공 여부(식당 제외 조건에 따른 대체 방안)와 개인 식사 준비 가능성, 방문일의 날씨(우천·강풍)와 시설 운영상태를 확인하세요. 출처는 열린관광(접근성 페이지)과 제주도 사회적약자 시설 데이터로 검증되었고, 정보 생성일은 2026-07-09입니다.",
+      "response_text": "제주문학관 방문 전 확인 항목은 휴식 공간, 혼잡도, 식사 장소 제외 여부, 개별 식사 준비 가능 여부, 대기줄 여부, 주말·성수기 방문 여부입니다.",
       "metrics": {
         "score_trace_numeric_accuracy": null,
         "expected_evidence_coverage": 1.0,
@@ -894,14 +894,14 @@
       "question": "제 입력 조건 때문에 어떤 유형의 장소가 이 코스의 대안으로 덜 적합할 수 있나요? 현재 추천 코스 안에서 함께 고려할 장소만 알려 주세요.",
       "record_status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 9991.2,
+      "latency_ms": 1,
       "attempts": 1,
       "has_response": true,
-      "response_text": "추천 코스 안에서 입력하신 조건(긴 걷기 어려움, 혼잡 회피, 장시간 야외 회피)에 덜 적합할 수 있는 장소는 사려니숲길 무장애나눔길과 제주국제컨벤션센터입니다. 사려니숲길은 야외·날씨(우천·강풍)와 비교적 장시간 걷기 가능성 때문에 체력 저하와 야외 회피 조건에 감점 요인이 됩니다. 제주국제컨벤션센터는 대규모 행사 시 혼잡·대기와 실내 이동거리가 늘어날 수 있어 휴식 필요·혼잡 회피 조건에 불리할 수 있습니다. 제주문학관과 제주한란전시관은 도보 부담이 낮고 편의시설이 잘 맞아 적합도로 평가되었습니다. 이 평가는 mode이 \"static\"인 사전 계산 시나리오에 기반한 설명이며, 실시간 혼잡·날씨는 반영되지 않았습니다. 방문 전 현장 확인을 권합니다.",
+      "response_text": "입력된 회피·감점 근거: 식당 제외 / 혼잡 / 장시간 야외 체류 / 날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다 / 혼잡 또는 감염 우려 조건이 있어 사람이 몰릴 수 있는 장소를 감점합니다. 현재 추천 문맥에는 실제 제외 후보 목록과 후보별 점수가 없어 특정 코스 장소를 덜 적합하다고 단정할 수 없습니다. 현재 코스에서 함께 고려할 장소는 제주문학관, 제주한란전시관, 사려니숲길 무장애나눔길, 제주국제컨벤션센터입니다.",
       "metrics": {
         "score_trace_numeric_accuracy": null,
         "expected_evidence_coverage": 1.0,
-        "user_condition_coverage": 1.0,
+        "user_condition_coverage": 0.5,
         "mode_accuracy": null,
         "safety_violation_rate": 0.0,
         "unsupported_place_mention_rate": 0.0
@@ -942,14 +942,15 @@
         },
         "user_conditions": {
           "applicable": true,
-          "value": 1.0,
+          "value": 0.5,
           "expected_count": 2,
-          "matched_count": 2,
+          "matched_count": 1,
           "matched": [
-            "필수 접근성",
             "회피 조건"
           ],
-          "missing": []
+          "missing": [
+            "필수 접근성"
+          ]
         },
         "mode": {
           "applicable": false,
@@ -1050,10 +1051,10 @@
       "question": "지금 표시된 '제주문학관' 추천은 제 입력으로 실시간 계산된 결과인가요, 사전 계산된 결과인가요?",
       "record_status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 30429.8,
-      "attempts": 2,
+      "latency_ms": 1,
+      "attempts": 1,
       "has_response": true,
-      "response_text": "표시된 '제주문학관' 추천은 recommendation_context의 mode가 \"static\"으로 되어 있어 사용자의 입력을 바탕으로 사전 계산된(재현 가능한) 시나리오 결과입니다. 생성일자는 2026-07-09이며, 제공된 출처들을 이용해 사전 검증된 정보와 점수(계산 흔적 포함)를 기반으로 산출되었습니다. 이 결과는 실시간 현장 상태(혼잡도, 임시 폐쇄, 날씨 영향 등)를 반영하지 않으므로 방문 전 최신 정보 확인이 필요합니다. 실시간 확인을 원하면 공식 웹사이트나 전화, 방문 예정일 근접 시점의 공지·로드뷰를 확인하세요. 계산_trace가 포함되어 있어 점수 산출 방식(기본 점수·보너스·감점·최종)을 제공하고 있습니다. 추가로 실시간 재계산을 원하시면 알려주세요.",
+      "response_text": "이 추천은 실시간 개인별 재계산 결과가 아니라, 입력 조건과 가장 가까운 사전 계산 시나리오 결과입니다. 근거는 recommendation_context.mode가 \"static\"으로 표시된 점입니다.",
       "metrics": {
         "score_trace_numeric_accuracy": null,
         "expected_evidence_coverage": 1.0,
@@ -1696,13 +1697,13 @@
       "question": "'제주문학관'에 방문하기 전에 제 조건상 무엇을 확인해야 하나요?",
       "record_status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 9847.4,
+      "latency_ms": 0.7,
       "attempts": 1,
       "has_response": true,
-      "response_text": "입력하신 조건으로 계산된 사전(모드: static) 시나리오에서 제주문학관은 총점 93점(A, 신뢰도 높음)으로 적합한 편입니다. 적합 근거는 도보 부담이 매우 낮고 필수 편의시설(화장실·주차·휴식·대여 등) 정보가 충족된 점이며, 감점 근거는 경사·계단 또는 단차 요소가 있어 보호자 확인이 필요하다는 점입니다. 계산 추적(calculation_trace)은 기본 점수 93점, 보너스·감점 적용 후 최종 93점으로 표기되어 있습니다. 출처는 열린관광(제주문학관) 자료와 제주특별자치도 관광지 데이터로 확인(verified)되었습니다. 참고: 이 결과는 사전 계산 시나리오이며 실시간 현장 상태(공사·날씨·혼잡 등)는 반영되지 않으니 방문 전 추가 확인을 권합니다.",
+      "response_text": "제주문학관 방문 전 확인 항목은 경사로, 계단, 단차 상태, 휴식 공간, 혼잡도입니다.",
       "metrics": {
         "score_trace_numeric_accuracy": null,
-        "expected_evidence_coverage": 0.6667,
+        "expected_evidence_coverage": 1.0,
         "user_condition_coverage": 1.0,
         "mode_accuracy": null,
         "safety_violation_rate": 0.0,
@@ -1733,16 +1734,15 @@
         },
         "expected_evidence": {
           "applicable": true,
-          "value": 0.6667,
+          "value": 1.0,
           "expected_count": 3,
-          "matched_count": 2,
+          "matched_count": 3,
           "matched": [
             "경사로, 계단, 단차 상태",
+            "휴식 공간",
             "혼잡도"
           ],
-          "missing": [
-            "휴식 공간"
-          ]
+          "missing": []
         },
         "user_conditions": {
           "applicable": true,
@@ -1860,10 +1860,10 @@
       "question": "제 입력 조건 때문에 어떤 유형의 장소가 이 코스의 대안으로 덜 적합할 수 있나요? 현재 추천 코스 안에서 함께 고려할 장소만 알려 주세요.",
       "record_status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 9515.5,
+      "latency_ms": 0.6,
       "attempts": 1,
       "has_response": true,
-      "response_text": "추천 코스 내에서 사용자의 입력 조건(긴 걷기 어려움, 계단 회피 등)과 특히 덜 적합할 수 있는 유형은 ‘경사·계단·단차 요소가 있는 장소’입니다. 코스의 네 곳(제주문학관, 제주국제컨벤션센터, 오설록 티 뮤지엄, 제주한란전시관)은 모두 방문 전 경사로·계단·단차 상태 확인이 권고되어 해당 유형에 민감한 분께는 상대적으로 덜 적합할 수 있습니다. 다만 제주문학관은 정보 신뢰도와 편의시설이 좋아 상대적으로 적합도가 높게 평가되었습니다. 이 결과는 mode가 static인 사전 계산 시나리오에 따른 권고임을 알려드립니다. 방문 전 각 장소의 경사·계단 여부와 휠체어 동선 등 현장 확인이 필요합니다.",
+      "response_text": "입력된 회피·감점 근거: 계단 / 정보 부족 / 경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다. 현재 추천 문맥에는 실제 제외 후보 목록과 후보별 점수가 없어 특정 코스 장소를 덜 적합하다고 단정할 수 없습니다. 현재 코스에서 함께 고려할 장소는 제주문학관, 제주국제컨벤션센터, 오설록 티 뮤지엄, 제주한란전시관입니다.",
       "metrics": {
         "score_trace_numeric_accuracy": null,
         "expected_evidence_coverage": 1.0,
@@ -2016,10 +2016,10 @@
       "question": "지금 표시된 '제주문학관' 추천은 제 입력으로 실시간 계산된 결과인가요, 사전 계산된 결과인가요?",
       "record_status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 7204.9,
+      "latency_ms": 0.5,
       "attempts": 1,
       "has_response": true,
-      "response_text": "표시된 '제주문학관' 추천은 recommendation_context의 mode가 \"static\"으로 되어 있어 실시간 개인별 재계산이 아닌 사전 계산된(가장 근접한 사전 시나리오) 결과입니다. 생성일(2026-07-09)과 출처(verified)가 함께 제공되어 있으나, 이는 현장 상태를 실시간 반영하지 않습니다. 선택된 장소의 점수는 calculation_trace가 있어 기본 점수(base_total) →(해당 없음: 보너스/감점 세부 없음)→상한 적용→최종 점수 순서로 정리되어 있으며 이 케이스는 base_total과 final_total이 각각 93으로 표시됩니다. 실시간 상태(예: 공사·혼잡·임시 폐쇄)는 방문 전 기관 문의나 공식 웹·전화 확인이 필요합니다. 이 결과는 이동 가능성을 보장하지 않으니 현장 확인을 우선하세요.",
+      "response_text": "이 추천은 실시간 개인별 재계산 결과가 아니라, 입력 조건과 가장 가까운 사전 계산 시나리오 결과입니다. 근거는 recommendation_context.mode가 \"static\"으로 표시된 점입니다.",
       "metrics": {
         "score_trace_numeric_accuracy": null,
         "expected_evidence_coverage": 1.0,
@@ -2726,13 +2726,13 @@
       "question": "'제주문학관'에 방문하기 전에 제 조건상 무엇을 확인해야 하나요?",
       "record_status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 9135.9,
+      "latency_ms": 0.6,
       "attempts": 1,
       "has_response": true,
-      "response_text": "제주문학관은 입력하신 조건(유모차 가족, 계단 회피, 짧은 이동, 휴식 필요)에 잘 맞아 최종 점수 93점(A, 신뢰도 높음)을 받았습니다. 이 결과는 mode이 static이므로 입력 조건에 가장 근접한 사전 계산 시나리오에 따른 평가임을 알려드립니다(실시간 현장 상태 반영 아님). 적합 근거: 도보 부담이 낮고 필수 편의시설(화장실·주차·휴식)이 잘 갖춰져 있으며 실내·문화 테마와 일치합니다. 감점 근거: 경사로·계단·단차 요소가 있어 보호자가 직접 상태를 확인해야 합니다. 방문 전에는 날씨(우천·강풍), 혼잡도, 실내 대피 가능성과 운영시간을 반드시 확인하세요. 출처: 열린관광 모두의 여행(방문 접근성 페이지) 및 제주도 관광지 시설 데이터(verified).",
+      "response_text": "제주문학관 방문 전 확인 항목은 경사로, 계단, 단차 상태, 휴식 공간, 혼잡도, 그늘과 실내 대피 가능 여부, 강풍 여부, 방문 당일 날씨입니다.",
       "metrics": {
         "score_trace_numeric_accuracy": null,
-        "expected_evidence_coverage": 0.75,
+        "expected_evidence_coverage": 1.0,
         "user_condition_coverage": 0.6667,
         "mode_accuracy": null,
         "safety_violation_rate": 0.0,
@@ -2763,17 +2763,16 @@
         },
         "expected_evidence": {
           "applicable": true,
-          "value": 0.75,
+          "value": 1.0,
           "expected_count": 4,
-          "matched_count": 3,
+          "matched_count": 4,
           "matched": [
             "경사로, 계단, 단차 상태",
+            "휴식 공간",
             "혼잡도",
             "그늘과 실내 대피 가능 여부"
           ],
-          "missing": [
-            "휴식 공간"
-          ]
+          "missing": []
         },
         "user_conditions": {
           "applicable": true,
@@ -2893,14 +2892,14 @@
       "question": "제 입력 조건 때문에 어떤 유형의 장소가 이 코스의 대안으로 덜 적합할 수 있나요? 현재 추천 코스 안에서 함께 고려할 장소만 알려 주세요.",
       "record_status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 11179.4,
+      "latency_ms": 0.6,
       "attempts": 1,
       "has_response": true,
-      "response_text": "추천 코스 내에서는 야외 숲 공간인 ‘서귀포 치유의숲’과 ‘사려니숲길 무장애나눔길’이 입력하신 조건(계단 회피, 짧은 이동, 비포장 회피, 휴식 필요) 때문에 상대적으로 덜 적합할 수 있습니다. 제공된 감점 근거에는 ‘경사·계단 또는 단차 요소’와 ‘날씨 영향을 받을 수 있음’이 있어 유모차·짧은 이동을 선호하는 조건과 충돌합니다. 코스 전체 점수는 89(A, confidence: medium)이나 실내 장소(제주문학관 93점 등)는 더 적합하게 평가되었습니다. 본 결과는 mode=static으로, 입력 조건에 가장 가까운 사전 계산 시나리오임을 참고해 주세요. 방문 전에는 숲길의 포장 여부·경사·단차, 그늘·휴식 공간, 당일 날씨(강풍·우천)를 꼭 확인하시길 권합니다.",
+      "response_text": "입력된 회피·감점 근거: 좁은 길 / 비포장 / 경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다 / 날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다. 현재 추천 문맥에는 실제 제외 후보 목록과 후보별 점수가 없어 특정 코스 장소를 덜 적합하다고 단정할 수 없습니다. 현재 코스에서 함께 고려할 장소는 제주문학관, 제주국제컨벤션센터, 서귀포 치유의숲, 사려니숲길 무장애나눔길입니다.",
       "metrics": {
         "score_trace_numeric_accuracy": null,
         "expected_evidence_coverage": 1.0,
-        "user_condition_coverage": 1.0,
+        "user_condition_coverage": 0.5,
         "mode_accuracy": null,
         "safety_violation_rate": 0.0,
         "unsupported_place_mention_rate": 0.0
@@ -2941,14 +2940,15 @@
         },
         "user_conditions": {
           "applicable": true,
-          "value": 1.0,
+          "value": 0.5,
           "expected_count": 2,
-          "matched_count": 2,
+          "matched_count": 1,
           "matched": [
-            "필수 접근성",
             "회피 조건"
           ],
-          "missing": []
+          "missing": [
+            "필수 접근성"
+          ]
         },
         "mode": {
           "applicable": false,
@@ -3049,10 +3049,10 @@
       "question": "지금 표시된 '제주문학관' 추천은 제 입력으로 실시간 계산된 결과인가요, 사전 계산된 결과인가요?",
       "record_status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 9357.4,
+      "latency_ms": 0.4,
       "attempts": 1,
       "has_response": true,
-      "response_text": "표시된 ‘제주문학관’ 추천은 mode가 \"static\"으로 설정돼 있어 실시간 개인별 재계산 결과가 아닙니다. 입력 조건과 가장 가까운 사전 계산(프리컴퓨티드) 시나리오에 해당하며, generated_at(2026-07-09) 기준의 사전 계산 결과입니다. 추천에는 selected_place의 계산 기록(calculation_trace)도 포함되어 있어 기본·최종 점수(본 사례는 base_total=93, final_total=93)를 보여줍니다. 정보는 verification_status가 \"verified\"로 표시되어 출처가 확인되었지만, 현장 상황(날씨·운영·공사·혼잡 등)은 반영되지 않을 수 있습니다. 실시간 재계산을 원하면 runtime 모드나 최신 입력으로 다시 요청해 주세요. 방문 전에는 반드시 아래 항목을 직접 확인하세요.",
+      "response_text": "이 추천은 실시간 개인별 재계산 결과가 아니라, 입력 조건과 가장 가까운 사전 계산 시나리오 결과입니다. 근거는 recommendation_context.mode가 \"static\"으로 표시된 점입니다.",
       "metrics": {
         "score_trace_numeric_accuracy": null,
         "expected_evidence_coverage": 1.0,
@@ -3675,14 +3675,14 @@
       "question": "'제주문학관'에 방문하기 전에 제 조건상 무엇을 확인해야 하나요?",
       "record_status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 11160.7,
+      "latency_ms": 0.7,
       "attempts": 1,
       "has_response": true,
-      "response_text": "제주문학관은 사용자 조건(도보 부담 매우 낮음, 실내·문화 선호, 필요한 편의시설)과 잘 맞아 점수 98·등급 A·신뢰도 높음으로 평가되었습니다. 방문 전 반드시 확인할 항목은 휠체어 접근성(경사로·출입문 폭), 장애인 화장실·장애인 주차 유무, 휴식 공간과 의자 유무, 당일 혼잡도·운영시간, 강풍 등 방문 당일 날씨와 실내 대피 가능 여부입니다. 추천 근거는 도보 부담이 낮고 필수 편의시설 정보가 적합하다는 점이며, 제공된 출처(열린관광 모두의 여행 제주문학관, 제주특별자치도 사회적약자 시설 데이터)는 검증 완료 상태입니다. 이 결과는 mode가 static인 사전 계산 시나리오에 따른 것이며, 실시간 현장 상태(혼잡·공사·임시 폐쇄 등)는 방문 전 별도 확인이 필요합니다. 꼭 공식 운영 정보나 시설에 전화로 최신 상태를 확인하고 출발하세요.",
+      "response_text": "제주문학관 방문 전 확인 항목은 휴식 공간, 혼잡도, 그늘과 실내 대피 가능 여부, 강풍 여부, 방문 당일 날씨입니다.",
       "metrics": {
         "score_trace_numeric_accuracy": null,
         "expected_evidence_coverage": 1.0,
-        "user_condition_coverage": 1.0,
+        "user_condition_coverage": 0.6667,
         "mode_accuracy": null,
         "safety_violation_rate": 0.0,
         "unsupported_place_mention_rate": 0.0
@@ -3725,15 +3725,16 @@
         },
         "user_conditions": {
           "applicable": true,
-          "value": 1.0,
+          "value": 0.6667,
           "expected_count": 3,
-          "matched_count": 3,
+          "matched_count": 2,
           "matched": [
             "이동 조건",
-            "필수 접근성",
             "회피 조건"
           ],
-          "missing": []
+          "missing": [
+            "필수 접근성"
+          ]
         },
         "mode": {
           "applicable": false,
@@ -3839,13 +3840,13 @@
       "question": "제 입력 조건 때문에 어떤 유형의 장소가 이 코스의 대안으로 덜 적합할 수 있나요? 현재 추천 코스 안에서 함께 고려할 장소만 알려 주세요.",
       "record_status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 11248,
+      "latency_ms": 0.5,
       "attempts": 1,
       "has_response": true,
-      "response_text": "추천 코스(제주문학관, 제주국제컨벤션센터, 제주한란전시관, 제주세계자연유산센터) 안에서는 명백히 ‘덜 적합’한 장소가 없습니다. 제공된 정보와 점수(모두 도보 부담이 낮음, 실내 중심, 필수 편의시설 충족)에 따르면 네 곳 모두 사용자의 입력 조건과 잘 맞습니다. 다만 실무상 상대적으로 덜 편할 수 있는 요소는 건물 내 이동 거리가 큰 대형 전시장(예: 국제컨벤션센터의 일부 행사장 등)이나 실내라도 통로가 좁거나 계단이 많은 구간입니다. 이런 가능성은 현재 데이터에서 일반적 주의사항으로만 표기되어 있으니 방문 전 해당 장소의 구체적 시설(엘리베이터, 경사로, 이동 경로 여부)을 확인하세요. 이 결과는 mode가 static인 사전 계산 시나리오에 따른 평가입니다.",
+      "response_text": "입력된 회피·감점 근거: 장시간 야외 체류 / 강풍. 현재 추천 문맥에는 실제 제외 후보 목록과 후보별 점수가 없어 특정 코스 장소를 덜 적합하다고 단정할 수 없습니다. 현재 코스에서 함께 고려할 장소는 제주문학관, 제주국제컨벤션센터, 제주한란전시관, 제주세계자연유산센터입니다.",
       "metrics": {
         "score_trace_numeric_accuracy": null,
-        "expected_evidence_coverage": 0.5,
+        "expected_evidence_coverage": 1.0,
         "user_condition_coverage": 0.5,
         "mode_accuracy": null,
         "safety_violation_rate": 0.0,
@@ -3876,15 +3877,14 @@
         },
         "expected_evidence": {
           "applicable": true,
-          "value": 0.5,
+          "value": 1.0,
           "expected_count": 2,
-          "matched_count": 1,
+          "matched_count": 2,
           "matched": [
+            "사용자가 피하거나 주의해야 할 조건",
             "현재 추천 코스 안의 대안 장소"
           ],
-          "missing": [
-            "사용자가 피하거나 주의해야 할 조건"
-          ]
+          "missing": []
         },
         "user_conditions": {
           "applicable": true,
@@ -3997,10 +3997,10 @@
       "question": "지금 표시된 '제주문학관' 추천은 제 입력으로 실시간 계산된 결과인가요, 사전 계산된 결과인가요?",
       "record_status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 7610,
+      "latency_ms": 0.5,
       "attempts": 1,
       "has_response": true,
-      "response_text": "표시된 '제주문학관' 추천은 recommendation_context의 mode가 \"static\"으로 되어 있으므로 사용자의 입력을 바탕으로 사전(미리) 계산된 시나리오 결과입니다. mode가 static이면 이 결과는 입력과 가장 가까운 사전 계산 시나리오에 따른 추천임을 의미하며, 실시간 현장 상태나 방문 당일 조건을 반영해 재계산한 것은 아닙니다. 제공된 selected_place에는 calculation_trace와 점수 내역이 포함되어 있어 기본 점수와 최종 점수가 어떻게 정해졌는지 확인할 수 있습니다. 방문 전에는 서비스가 실시간 현장 상태를 보장하지 않으므로 운영 시간, 현장 접근성 변경, 날씨·강풍 등을 별도로 확인하세요.",
+      "response_text": "이 추천은 실시간 개인별 재계산 결과가 아니라, 입력 조건과 가장 가까운 사전 계산 시나리오 결과입니다. 근거는 recommendation_context.mode가 \"static\"으로 표시된 점입니다.",
       "metrics": {
         "score_trace_numeric_accuracy": null,
         "expected_evidence_coverage": 1.0,
@@ -4635,14 +4635,14 @@
       "question": "'제주문학관'에 방문하기 전에 제 조건상 무엇을 확인해야 하나요?",
       "record_status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 9087.4,
+      "latency_ms": 0.6,
       "attempts": 1,
       "has_response": true,
-      "response_text": "제주문학관은 가치봄 제주의 사전 계산 시나리오(static)에서 총점 98점(A, 신뢰도 높음)을 받아 사용자의 이동 조건(도보 부담 낮음)과 편의시설(화장실·주차·휴식 등)에 잘 맞는 것으로 평가되었습니다. 제공된 적합 근거는 도보 부담이 매우 낮고(경사·바닥 상태 양호), 필수 편의시설 정보가 충족되며 실내·휴식 테마와 일치한다는 점입니다. 계산 흔적(calculation_trace)에 따르면 기본 점수 98점이 최종 98점으로 적용되었습니다(실시간 재계산이 아님). 방문 전에는 혼잡도·주말·성수기 상황, 휴식 공간 이용 가능 여부, 식사 장소 제공 여부(또는 개별 식사 준비 가능성), 대기줄 유무, 장애인 화장실·주차·휠체어 접근성 등 현장 변경사항을 반드시 확인하세요. 이 정보는 검증된 출처를 바탕으로 했으나 현장 상황(날씨·공사·운영 변동 등)은 달라질 수 있으니 공식 연락처나 사이트로 최종 확인하시기 바랍니다.",
+      "response_text": "제주문학관 방문 전 확인 항목은 휴식 공간, 혼잡도, 식사 장소 제외 여부, 개별 식사 준비 가능 여부, 대기줄 여부, 주말·성수기 방문 여부입니다.",
       "metrics": {
         "score_trace_numeric_accuracy": null,
         "expected_evidence_coverage": 1.0,
-        "user_condition_coverage": 1.0,
+        "user_condition_coverage": 0.3333,
         "mode_accuracy": null,
         "safety_violation_rate": 0.0,
         "unsupported_place_mention_rate": 0.0
@@ -4685,15 +4685,16 @@
         },
         "user_conditions": {
           "applicable": true,
-          "value": 1.0,
+          "value": 0.3333,
           "expected_count": 3,
-          "matched_count": 3,
+          "matched_count": 1,
           "matched": [
-            "이동 조건",
-            "필수 접근성",
             "회피 조건"
           ],
-          "missing": []
+          "missing": [
+            "이동 조건",
+            "필수 접근성"
+          ]
         },
         "mode": {
           "applicable": false,
@@ -4799,10 +4800,10 @@
       "question": "제 입력 조건 때문에 어떤 유형의 장소가 이 코스의 대안으로 덜 적합할 수 있나요? 현재 추천 코스 안에서 함께 고려할 장소만 알려 주세요.",
       "record_status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 8365.1,
+      "latency_ms": 0.5,
       "attempts": 1,
       "has_response": true,
-      "response_text": "추천 코스의 네 곳 중 실내 전시인 제주문학관과 제주한란전시관은 사용자의 '실내·휴식' 선호와 이동 조건에 특히 적합합니다. 반면 사려니숲길 무장애나눔길과 서귀포 치유의숲은 도보 부담이 낮다고 평가되었지만 야외 넓은 구간, 노면·경사, 날씨 영향과 체력 저하 상황에서는 상대적으로 덜 적합할 수 있습니다. 이 판단은 제공된 입력을 바탕으로 사전 계산된(static) 추천 시나리오임을 참고하세요. 실제 현장 상태·혼잡도·운영은 방문 전 확인이 필요합니다.",
+      "response_text": "입력된 회피·감점 근거: 식당 제외 / 외부 음식 제한 / 혼잡. 현재 추천 문맥에는 실제 제외 후보 목록과 후보별 점수가 없어 특정 코스 장소를 덜 적합하다고 단정할 수 없습니다. 현재 코스에서 함께 고려할 장소는 제주문학관, 사려니숲길 무장애나눔길, 서귀포 치유의숲, 제주한란전시관입니다.",
       "metrics": {
         "score_trace_numeric_accuracy": null,
         "expected_evidence_coverage": 1.0,
@@ -4956,10 +4957,10 @@
       "question": "지금 표시된 '제주문학관' 추천은 제 입력으로 실시간 계산된 결과인가요, 사전 계산된 결과인가요?",
       "record_status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 5974.9,
+      "latency_ms": 0.4,
       "attempts": 1,
       "has_response": true,
-      "response_text": "표시된 ‘제주문학관’ 추천 결과는 recommendation_context의 mode가 \"static\"으로 되어 있어 입력을 바탕으로 미리 계산된(사전 계산된) 시나리오입니다. 즉 현재 현장 상태나 실시간 변경 반영이 아니라, 2026-07-09에 생성된 사전 계산 결과임을 알려드립니다. 선택된 장소의 점수는 제공된 calculation_trace에 따라 기본 총점 98이었고 최종 총점도 98으로 표기되어 있습니다. 출처는 열린관광·제주도 데이터 등으로 verification 상태가 \"verified\"로 표시되어 있습니다. 방문 전에는 현장 운영 시간·혼잡·공사 여부 등 실시간 정보를 반드시 확인하세요.",
+      "response_text": "이 추천은 실시간 개인별 재계산 결과가 아니라, 입력 조건과 가장 가까운 사전 계산 시나리오 결과입니다. 근거는 recommendation_context.mode가 \"static\"으로 표시된 점입니다.",
       "metrics": {
         "score_trace_numeric_accuracy": null,
         "expected_evidence_coverage": 1.0,
@@ -5028,11 +5029,11 @@
   ],
   "run": {
     "status": "complete",
-    "generated_at": "2026-07-11T16:15:34Z",
+    "generated_at": "2026-07-14T19:49:49Z",
     "model": "gpt-5-mini",
     "prompt_version": "help_chatbot_explanation_v2_20260712",
-    "fresh_records": 0,
-    "resumed_records": 60,
+    "fresh_records": 5,
+    "resumed_records": 55,
     "cases_path": "data/explanation_eval_cases.json",
     "seed_path": "web/data/app_recommendation_seed.json",
     "ab_definition": {
@@ -5250,28 +5251,30 @@
       "condition": "after",
       "status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 10517.7,
+      "prompt_version": "help_chatbot_explanation_v2_20260712",
+      "behavior_version": "pre_visit_check_rule_v1_20260715",
+      "latency_ms": 1.6,
       "attempts": 1,
-      "run_signature": "fa09d0f89cdda01154b1320cf817fb9d423eda344237170e5e7bb875b2584171",
+      "run_signature": "af4a396e709e2f8908069e3ff40a4988d7d11cfde83df00f50bcdea891365db0",
       "response": {
         "status": "success",
         "model": "gpt-5-mini",
-        "answer": "제주문학관은 제공된 사전 계산 시나리오에서 귀하의 이동 조건에 잘 맞아 최종 점수 98(A), 신뢰도는 높음으로 평가되었습니다. 이 결과는 static 모드의 미리 계산된 추천이므로, 실시간 현장 상태나 운영 정보는 반영되어 있지 않습니다. 방문 전 반드시 확인할 항목은 휴식 공간 유무·위치, 장애인 화장실 이용 가능성, 주차 가능 여부와 주차장 위치, 휠체어로의 경사·출입 경로입니다. 또한 혼잡도 및 대기줄 유무, 식사 장소 제공 여부(식당 제외 조건에 따른 대체 방안)와 개인 식사 준비 가능성, 방문일의 날씨(우천·강풍)와 시설 운영상태를 확인하세요. 출처는 열린관광(접근성 페이지)과 제주도 사회적약자 시설 데이터로 검증되었고, 정보 생성일은 2026-07-09입니다.",
+        "answer_source": "deterministic_pre_visit_rule",
+        "behavior_version": "pre_visit_check_rule_v1_20260715",
+        "answer": "제주문학관 방문 전 확인 항목은 휴식 공간, 혼잡도, 식사 장소 제외 여부, 개별 식사 준비 가능 여부, 대기줄 여부, 주말·성수기 방문 여부입니다.",
         "followups": [
-          "운영시간·휴관일을 알려드릴까요?",
-          "주차장 위치와 접근 경로를 확인해 드릴까요?"
+          "각 확인 항목의 근거도 보여 주세요"
         ],
         "handoff_checklist": [
-          "휴식 공간(의자·휴게실) 위치와 이용 가능 여부 확인",
-          "장애인 화장실 위치 및 이용 가능 여부 확인",
-          "주차 가능 여부와 주차장 위치(장애인 구역 포함) 확인",
-          "출입구·전시동 내부의 경사·바닥 상태 및 휠체어 접근 경로 확인(엘리베이터 유무 포함)"
+          "휴식 공간",
+          "혼잡도",
+          "식사 장소 제외 여부",
+          "개별 식사 준비 가능 여부"
         ],
         "safety_note": "이 도움말은 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요."
       },
-      "completed_at": "2026-07-11T16:04:19Z",
-      "resumed": true,
-      "prompt_version": "help_chatbot_explanation_v2_20260712"
+      "completed_at": "2026-07-14T19:33:20Z",
+      "resumed": true
     },
     {
       "case_id": "recovery_quiet__exclusion_or_alternative",
@@ -5309,28 +5312,30 @@
       "condition": "after",
       "status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 9991.2,
+      "prompt_version": "help_chatbot_explanation_v2_20260712",
+      "behavior_version": "exclusion_alternative_rule_v1_20260715",
+      "latency_ms": 1.0,
       "attempts": 1,
-      "run_signature": "ba1475e075969ba8a7dad30e00b0bb9522ad143b0409c43b80d5c6b99e134eda",
+      "run_signature": "3175b8da771ce850a228632219d0ea01eb4fae3a9f3d50b4bb366e7a4c897446",
       "response": {
         "status": "success",
         "model": "gpt-5-mini",
-        "answer": "추천 코스 안에서 입력하신 조건(긴 걷기 어려움, 혼잡 회피, 장시간 야외 회피)에 덜 적합할 수 있는 장소는 사려니숲길 무장애나눔길과 제주국제컨벤션센터입니다. 사려니숲길은 야외·날씨(우천·강풍)와 비교적 장시간 걷기 가능성 때문에 체력 저하와 야외 회피 조건에 감점 요인이 됩니다. 제주국제컨벤션센터는 대규모 행사 시 혼잡·대기와 실내 이동거리가 늘어날 수 있어 휴식 필요·혼잡 회피 조건에 불리할 수 있습니다. 제주문학관과 제주한란전시관은 도보 부담이 낮고 편의시설이 잘 맞아 적합도로 평가되었습니다. 이 평가는 mode이 \"static\"인 사전 계산 시나리오에 기반한 설명이며, 실시간 혼잡·날씨는 반영되지 않았습니다. 방문 전 현장 확인을 권합니다.",
+        "answer_source": "deterministic_exclusion_alternative_rule",
+        "behavior_version": "exclusion_alternative_rule_v1_20260715",
+        "answer": "입력된 회피·감점 근거: 식당 제외 / 혼잡 / 장시간 야외 체류 / 날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다 / 혼잡 또는 감염 우려 조건이 있어 사람이 몰릴 수 있는 장소를 감점합니다. 현재 추천 문맥에는 실제 제외 후보 목록과 후보별 점수가 없어 특정 코스 장소를 덜 적합하다고 단정할 수 없습니다. 현재 코스에서 함께 고려할 장소는 제주문학관, 제주한란전시관, 사려니숲길 무장애나눔길, 제주국제컨벤션센터입니다.",
         "followups": [
-          "사려니숲길 대신 실내 대체 장소 추천해 주세요.",
-          "컨벤션센터의 행사 일정·혼잡도는 어떻게 확인하나요?"
+          "코스 장소별 방문 전 확인 항목도 알려 주세요"
         ],
         "handoff_checklist": [
-          "사려니숲길: 방문 당일 우천·강풍 여부 확인",
-          "사려니숲길: 예상 도보시간과 중간 휴식지점 유무 확인",
-          "제주국제컨벤션센터: 방문일 행사 일정(전시·컨벤션) 확인",
-          "제주국제컨벤션센터: 실내 휴식공간·장애인 이동경로·주차 가능 여부 확인"
+          "식당 제외",
+          "혼잡",
+          "장시간 야외 체류",
+          "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
         ],
         "safety_note": "이 도움말은 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요."
       },
-      "completed_at": "2026-07-11T16:04:23Z",
-      "resumed": true,
-      "prompt_version": "help_chatbot_explanation_v2_20260712"
+      "completed_at": "2026-07-14T19:49:48Z",
+      "resumed": false
     },
     {
       "case_id": "recovery_quiet__mode_distinction",
@@ -5367,28 +5372,25 @@
       "condition": "after",
       "status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 30429.8,
-      "attempts": 2,
-      "run_signature": "f0f9429910ba34aec49330a4d9db6821028854fb9b2277744211aef28425a865",
+      "prompt_version": "help_chatbot_explanation_v2_20260712",
+      "behavior_version": "mode_distinction_rule_v1_20260715",
+      "latency_ms": 1.0,
+      "attempts": 1,
+      "run_signature": "a6dcc4277b3114c698ffc19d4b63944e478e12c5477fefd7c2bcafda58ee4f64",
       "response": {
         "status": "success",
         "model": "gpt-5-mini",
-        "answer": "표시된 '제주문학관' 추천은 recommendation_context의 mode가 \"static\"으로 되어 있어 사용자의 입력을 바탕으로 사전 계산된(재현 가능한) 시나리오 결과입니다. 생성일자는 2026-07-09이며, 제공된 출처들을 이용해 사전 검증된 정보와 점수(계산 흔적 포함)를 기반으로 산출되었습니다. 이 결과는 실시간 현장 상태(혼잡도, 임시 폐쇄, 날씨 영향 등)를 반영하지 않으므로 방문 전 최신 정보 확인이 필요합니다. 실시간 확인을 원하면 공식 웹사이트나 전화, 방문 예정일 근접 시점의 공지·로드뷰를 확인하세요. 계산_trace가 포함되어 있어 점수 산출 방식(기본 점수·보너스·감점·최종)을 제공하고 있습니다. 추가로 실시간 재계산을 원하시면 알려주세요.",
+        "answer_source": "deterministic_mode_rule",
+        "behavior_version": "mode_distinction_rule_v1_20260715",
+        "answer": "이 추천은 실시간 개인별 재계산 결과가 아니라, 입력 조건과 가장 가까운 사전 계산 시나리오 결과입니다. 근거는 recommendation_context.mode가 \"static\"으로 표시된 점입니다.",
         "followups": [
-          "이 결과를 실시간 정보로 재계산해줄래요?",
-          "방문 전에 먼저 어떤 항목을 확인해야 하나요?"
+          "점수 계산 방식도 알려 주세요"
         ],
-        "handoff_checklist": [
-          "공식 홈페이지나 전화로 개장 시간 및 휴관 여부 확인",
-          "현장 휠체어 접근성(경사로·엘리베이터·바닥 상태) 확인",
-          "장애인 화장실 설치 여부 및 위치 확인",
-          "주차 가능 여부 및 장애인 주차 공간 유무 확인（주차요금 포함）））】"
-        ],
+        "handoff_checklist": [],
         "safety_note": "이 도움말은 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요."
       },
-      "completed_at": "2026-07-11T16:04:49Z",
-      "resumed": true,
-      "prompt_version": "help_chatbot_explanation_v2_20260712"
+      "completed_at": "2026-07-14T19:04:06Z",
+      "resumed": true
     },
     {
       "case_id": "wheelchair_access__recommendation_reason",
@@ -5600,28 +5602,29 @@
       "condition": "after",
       "status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 9847.4,
+      "prompt_version": "help_chatbot_explanation_v2_20260712",
+      "behavior_version": "pre_visit_check_rule_v1_20260715",
+      "latency_ms": 0.7,
       "attempts": 1,
-      "run_signature": "c5ff7b80e3668cf5ef925be1118d3a54fcb48c68a32fda0d8e204b99b9c95bb0",
+      "run_signature": "d3c2b4e2788278d98b8d7e1ff6bd3256fa9f4e0018bad0016d667d2372e3957c",
       "response": {
         "status": "success",
         "model": "gpt-5-mini",
-        "answer": "입력하신 조건으로 계산된 사전(모드: static) 시나리오에서 제주문학관은 총점 93점(A, 신뢰도 높음)으로 적합한 편입니다. 적합 근거는 도보 부담이 매우 낮고 필수 편의시설(화장실·주차·휴식·대여 등) 정보가 충족된 점이며, 감점 근거는 경사·계단 또는 단차 요소가 있어 보호자 확인이 필요하다는 점입니다. 계산 추적(calculation_trace)은 기본 점수 93점, 보너스·감점 적용 후 최종 93점으로 표기되어 있습니다. 출처는 열린관광(제주문학관) 자료와 제주특별자치도 관광지 데이터로 확인(verified)되었습니다. 참고: 이 결과는 사전 계산 시나리오이며 실시간 현장 상태(공사·날씨·혼잡 등)는 반영되지 않으니 방문 전 추가 확인을 권합니다.",
+        "answer_source": "deterministic_pre_visit_rule",
+        "behavior_version": "pre_visit_check_rule_v1_20260715",
+        "answer": "제주문학관 방문 전 확인 항목은 경사로, 계단, 단차 상태, 휴식 공간, 혼잡도입니다.",
         "followups": [
-          "현장 연락처나 운영시간을 알려줄래요?",
-          "경사·단차 사진이나 상세 위치를 어떻게 확인하나요?"
+          "각 확인 항목의 근거도 보여 주세요"
         ],
         "handoff_checklist": [
-          "경사로, 계단, 단차(출입구·전시관 내부) 상태 확인",
-          "휠체어 접근경로(출입문 폭·경사 경사도) 확인",
-          "장애인 화장실 위치와 사용 가능 여부 확인",
-          "장애인 주차 공간 위치·수량 확인 및 필요 시 예약 여부 확인가능성 확인（주차권/유료 여부 포함）））】】】】】】"
+          "경사로, 계단, 단차 상태",
+          "휴식 공간",
+          "혼잡도"
         ],
         "safety_note": "이 도움말은 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요."
       },
-      "completed_at": "2026-07-11T16:04:59Z",
-      "resumed": true,
-      "prompt_version": "help_chatbot_explanation_v2_20260712"
+      "completed_at": "2026-07-14T19:33:20Z",
+      "resumed": true
     },
     {
       "case_id": "wheelchair_access__exclusion_or_alternative",
@@ -5658,28 +5661,29 @@
       "condition": "after",
       "status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 9515.5,
+      "prompt_version": "help_chatbot_explanation_v2_20260712",
+      "behavior_version": "exclusion_alternative_rule_v1_20260715",
+      "latency_ms": 0.6,
       "attempts": 1,
-      "run_signature": "70f557163e6eb175d81c950c326e05e93b417fdce15a4c485281c0faef668dc9",
+      "run_signature": "093269f4ebf8962c52baf75211a9b3f1e61a88ea926dcaf6b4248c80d1a5ac3e",
       "response": {
         "status": "success",
         "model": "gpt-5-mini",
-        "answer": "추천 코스 내에서 사용자의 입력 조건(긴 걷기 어려움, 계단 회피 등)과 특히 덜 적합할 수 있는 유형은 ‘경사·계단·단차 요소가 있는 장소’입니다. 코스의 네 곳(제주문학관, 제주국제컨벤션센터, 오설록 티 뮤지엄, 제주한란전시관)은 모두 방문 전 경사로·계단·단차 상태 확인이 권고되어 해당 유형에 민감한 분께는 상대적으로 덜 적합할 수 있습니다. 다만 제주문학관은 정보 신뢰도와 편의시설이 좋아 상대적으로 적합도가 높게 평가되었습니다. 이 결과는 mode가 static인 사전 계산 시나리오에 따른 권고임을 알려드립니다. 방문 전 각 장소의 경사·계단 여부와 휠체어 동선 등 현장 확인이 필요합니다.",
+        "answer_source": "deterministic_exclusion_alternative_rule",
+        "behavior_version": "exclusion_alternative_rule_v1_20260715",
+        "answer": "입력된 회피·감점 근거: 계단 / 정보 부족 / 경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다. 현재 추천 문맥에는 실제 제외 후보 목록과 후보별 점수가 없어 특정 코스 장소를 덜 적합하다고 단정할 수 없습니다. 현재 코스에서 함께 고려할 장소는 제주문학관, 제주국제컨벤션센터, 오설록 티 뮤지엄, 제주한란전시관입니다.",
         "followups": [
-          "계단이 전혀 없는 대안 장소를 찾아줄래요?",
-          "각 장소의 출입 경로 사진이나 상세 정보를 볼 수 있을까요?"
+          "코스 장소별 방문 전 확인 항목도 알려 주세요"
         ],
         "handoff_checklist": [
-          "각 장소의 경사로, 계단, 단차 상태 확인",
-          "휠체어 접근 가능한 출입구와 동선 확인",
-          "장애인 화장실 위치·이용 가능 여부 확인",
-          "주차 위치 및 장애인 주차 공간 확인"
+          "계단",
+          "정보 부족",
+          "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다."
         ],
         "safety_note": "이 도움말은 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요."
       },
-      "completed_at": "2026-07-11T16:05:08Z",
-      "resumed": true,
-      "prompt_version": "help_chatbot_explanation_v2_20260712"
+      "completed_at": "2026-07-14T19:49:48Z",
+      "resumed": false
     },
     {
       "case_id": "wheelchair_access__mode_distinction",
@@ -5717,28 +5721,25 @@
       "condition": "after",
       "status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 7204.9,
+      "prompt_version": "help_chatbot_explanation_v2_20260712",
+      "behavior_version": "mode_distinction_rule_v1_20260715",
+      "latency_ms": 0.5,
       "attempts": 1,
-      "run_signature": "52050fa3d24f4f8c11b8b970b882534aaffe8e1856cd6cf10ff52a1fe2f5b5da",
+      "run_signature": "9bc59af0eded6b08f17d164a2d8506c9b8ae1f5a0cad44ead41a538d7801bc39",
       "response": {
         "status": "success",
         "model": "gpt-5-mini",
-        "answer": "표시된 '제주문학관' 추천은 recommendation_context의 mode가 \"static\"으로 되어 있어 실시간 개인별 재계산이 아닌 사전 계산된(가장 근접한 사전 시나리오) 결과입니다. 생성일(2026-07-09)과 출처(verified)가 함께 제공되어 있으나, 이는 현장 상태를 실시간 반영하지 않습니다. 선택된 장소의 점수는 calculation_trace가 있어 기본 점수(base_total) →(해당 없음: 보너스/감점 세부 없음)→상한 적용→최종 점수 순서로 정리되어 있으며 이 케이스는 base_total과 final_total이 각각 93으로 표시됩니다. 실시간 상태(예: 공사·혼잡·임시 폐쇄)는 방문 전 기관 문의나 공식 웹·전화 확인이 필요합니다. 이 결과는 이동 가능성을 보장하지 않으니 현장 확인을 우선하세요.",
+        "answer_source": "deterministic_mode_rule",
+        "behavior_version": "mode_distinction_rule_v1_20260715",
+        "answer": "이 추천은 실시간 개인별 재계산 결과가 아니라, 입력 조건과 가장 가까운 사전 계산 시나리오 결과입니다. 근거는 recommendation_context.mode가 \"static\"으로 표시된 점입니다.",
         "followups": [
-          "이걸 실시간으로 재계산하려면 어떻게 하나요?",
-          "현장 상태를 확인할 공식 연락처를 알려줄래요?"
+          "점수 계산 방식도 알려 주세요"
         ],
-        "handoff_checklist": [
-          "경사로·계단·단차 상태 직접 문의 또는 최근 사진 확인",
-          "장애인 화장실·주차 공간 유무 및 위치 확인",
-          "휴식 공간 유무와 바닥 재질(요철 여부) 확인",
-          "혼잡도·운영시간·임시공사 여부 문의"
-        ],
+        "handoff_checklist": [],
         "safety_note": "이 도움말은 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요."
       },
-      "completed_at": "2026-07-11T16:05:13Z",
-      "resumed": true,
-      "prompt_version": "help_chatbot_explanation_v2_20260712"
+      "completed_at": "2026-07-14T19:04:06Z",
+      "resumed": true
     },
     {
       "case_id": "stroller_family__recommendation_reason",
@@ -5951,28 +5952,30 @@
       "condition": "after",
       "status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 9135.9,
+      "prompt_version": "help_chatbot_explanation_v2_20260712",
+      "behavior_version": "pre_visit_check_rule_v1_20260715",
+      "latency_ms": 0.6,
       "attempts": 1,
-      "run_signature": "3474aa40beb64d453b44335a1f7c1b157bc1898faf7dfbd8db6b321aa5c784f4",
+      "run_signature": "99e354cae57d5717bb6372adb09554647f94a0fe1abeb00ec96be1044f844130",
       "response": {
         "status": "success",
         "model": "gpt-5-mini",
-        "answer": "제주문학관은 입력하신 조건(유모차 가족, 계단 회피, 짧은 이동, 휴식 필요)에 잘 맞아 최종 점수 93점(A, 신뢰도 높음)을 받았습니다. 이 결과는 mode이 static이므로 입력 조건에 가장 근접한 사전 계산 시나리오에 따른 평가임을 알려드립니다(실시간 현장 상태 반영 아님). 적합 근거: 도보 부담이 낮고 필수 편의시설(화장실·주차·휴식)이 잘 갖춰져 있으며 실내·문화 테마와 일치합니다. 감점 근거: 경사로·계단·단차 요소가 있어 보호자가 직접 상태를 확인해야 합니다. 방문 전에는 날씨(우천·강풍), 혼잡도, 실내 대피 가능성과 운영시간을 반드시 확인하세요. 출처: 열린관광 모두의 여행(방문 접근성 페이지) 및 제주도 관광지 시설 데이터(verified).",
+        "answer_source": "deterministic_pre_visit_rule",
+        "behavior_version": "pre_visit_check_rule_v1_20260715",
+        "answer": "제주문학관 방문 전 확인 항목은 경사로, 계단, 단차 상태, 휴식 공간, 혼잡도, 그늘과 실내 대피 가능 여부, 강풍 여부, 방문 당일 날씨입니다.",
         "followups": [
-          "경사로·계단 사진이나 단차 높이를 어디서 확인하나요?",
-          "주차 가능 여부와 유모차 대여가 되는지 어떻게 확인하죠?"
+          "각 확인 항목의 근거도 보여 주세요"
         ],
         "handoff_checklist": [
-          "경사로·계단·단차 상태(사진·경사도·임시 경사로 유무) 확인",
-          "휴식 공간 위치와 의자·쉼터 유무 확인",
-          "화장실(장애인용 포함) 위치와 접근성 확인",
-          "주차장 위치·장애인주차 유무·출입 경로 확인(도로 단차 여부 포함)」「혼잡도(방문 시간대, 단체 행사 여부) 확인」,"
+          "경사로, 계단, 단차 상태",
+          "휴식 공간",
+          "혼잡도",
+          "그늘과 실내 대피 가능 여부"
         ],
         "safety_note": "이 도움말은 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요."
       },
-      "completed_at": "2026-07-11T16:05:46Z",
-      "resumed": true,
-      "prompt_version": "help_chatbot_explanation_v2_20260712"
+      "completed_at": "2026-07-14T19:33:20Z",
+      "resumed": true
     },
     {
       "case_id": "stroller_family__exclusion_or_alternative",
@@ -6009,28 +6012,30 @@
       "condition": "after",
       "status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 11179.4,
+      "prompt_version": "help_chatbot_explanation_v2_20260712",
+      "behavior_version": "exclusion_alternative_rule_v1_20260715",
+      "latency_ms": 0.6,
       "attempts": 1,
-      "run_signature": "b9cce48f3e8c1718396799eb60f49ebd1d89cd50897d43c3dd4aa7d71a14dedd",
+      "run_signature": "7e0860128cd1a5ee42f6138320848ac8ed75ea48a09a31258558f8ed7266a8a8",
       "response": {
         "status": "success",
         "model": "gpt-5-mini",
-        "answer": "추천 코스 내에서는 야외 숲 공간인 ‘서귀포 치유의숲’과 ‘사려니숲길 무장애나눔길’이 입력하신 조건(계단 회피, 짧은 이동, 비포장 회피, 휴식 필요) 때문에 상대적으로 덜 적합할 수 있습니다. 제공된 감점 근거에는 ‘경사·계단 또는 단차 요소’와 ‘날씨 영향을 받을 수 있음’이 있어 유모차·짧은 이동을 선호하는 조건과 충돌합니다. 코스 전체 점수는 89(A, confidence: medium)이나 실내 장소(제주문학관 93점 등)는 더 적합하게 평가되었습니다. 본 결과는 mode=static으로, 입력 조건에 가장 가까운 사전 계산 시나리오임을 참고해 주세요. 방문 전에는 숲길의 포장 여부·경사·단차, 그늘·휴식 공간, 당일 날씨(강풍·우천)를 꼭 확인하시길 권합니다.",
+        "answer_source": "deterministic_exclusion_alternative_rule",
+        "behavior_version": "exclusion_alternative_rule_v1_20260715",
+        "answer": "입력된 회피·감점 근거: 좁은 길 / 비포장 / 경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다 / 날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다. 현재 추천 문맥에는 실제 제외 후보 목록과 후보별 점수가 없어 특정 코스 장소를 덜 적합하다고 단정할 수 없습니다. 현재 코스에서 함께 고려할 장소는 제주문학관, 제주국제컨벤션센터, 서귀포 치유의숲, 사려니숲길 무장애나눔길입니다.",
         "followups": [
-          "두 숲 장소의 포장 여부와 경사 상세를 알려줄래요?",
-          "실내 장소에서 쉴 만한 공간이 있는지 더 알려줄래요?"
+          "코스 장소별 방문 전 확인 항목도 알려 주세요"
         ],
         "handoff_checklist": [
-          "숲길(서귀포 치유의숲, 사려니숲길) 포장 여부 및 좁은 길 유무 확인",
-          "경사로·계단·단차 존재 여부 확인",
-          "휴식 공간(벤치·쉼터) 및 그늘/실내 대피 가능성 확인",
-          "당일 날씨(강풍·우천) 및 혼잡도 확인"
+          "좁은 길",
+          "비포장",
+          "경사·계단 또는 단차 요소가 있어 보호자 확인이 필요합니다.",
+          "날씨 영향을 받을 수 있어 우천·강풍 여부 확인이 필요합니다."
         ],
         "safety_note": "이 도움말은 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요."
       },
-      "completed_at": "2026-07-11T16:05:54Z",
-      "resumed": true,
-      "prompt_version": "help_chatbot_explanation_v2_20260712"
+      "completed_at": "2026-07-14T19:49:48Z",
+      "resumed": false
     },
     {
       "case_id": "stroller_family__mode_distinction",
@@ -6067,28 +6072,25 @@
       "condition": "after",
       "status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 9357.4,
+      "prompt_version": "help_chatbot_explanation_v2_20260712",
+      "behavior_version": "mode_distinction_rule_v1_20260715",
+      "latency_ms": 0.4,
       "attempts": 1,
-      "run_signature": "4b3099bbdaeff49ed19f1c26f6899247697f0592ab6ce30bfc2625a71522eebc",
+      "run_signature": "085b904f5f3923db8f5a591411c8c357bbf7a93bb133b852791cb3da8533d250",
       "response": {
         "status": "success",
         "model": "gpt-5-mini",
-        "answer": "표시된 ‘제주문학관’ 추천은 mode가 \"static\"으로 설정돼 있어 실시간 개인별 재계산 결과가 아닙니다. 입력 조건과 가장 가까운 사전 계산(프리컴퓨티드) 시나리오에 해당하며, generated_at(2026-07-09) 기준의 사전 계산 결과입니다. 추천에는 selected_place의 계산 기록(calculation_trace)도 포함되어 있어 기본·최종 점수(본 사례는 base_total=93, final_total=93)를 보여줍니다. 정보는 verification_status가 \"verified\"로 표시되어 출처가 확인되었지만, 현장 상황(날씨·운영·공사·혼잡 등)은 반영되지 않을 수 있습니다. 실시간 재계산을 원하면 runtime 모드나 최신 입력으로 다시 요청해 주세요. 방문 전에는 반드시 아래 항목을 직접 확인하세요.",
+        "answer_source": "deterministic_mode_rule",
+        "behavior_version": "mode_distinction_rule_v1_20260715",
+        "answer": "이 추천은 실시간 개인별 재계산 결과가 아니라, 입력 조건과 가장 가까운 사전 계산 시나리오 결과입니다. 근거는 recommendation_context.mode가 \"static\"으로 표시된 점입니다.",
         "followups": [
-          "실시간 재계산으로 최신 추천을 받을래요?",
-          "제주문학관의 경사로·단차 세부 정보를 더 알려줄래요?"
+          "점수 계산 방식도 알려 주세요"
         ],
-        "handoff_checklist": [
-          "경사로, 계단, 단차 상태 직접 확인",
-          "휴식 공간(의자·쉼터) 유무 확인",
-          "현장 혼잡도 확인(영업일·행사 여부 포함)",
-          "실내 대피 가능 여부 및 그늘 유무 확인」「강풍·우천 등 당일 날씨 확인」「시설 운영 시간 및 임시 폐쇄 여부 문의 확인"
-        ],
+        "handoff_checklist": [],
         "safety_note": "이 도움말은 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요."
       },
-      "completed_at": "2026-07-11T16:05:57Z",
-      "resumed": true,
-      "prompt_version": "help_chatbot_explanation_v2_20260712"
+      "completed_at": "2026-07-14T19:04:06Z",
+      "resumed": true
     },
     {
       "case_id": "weather_sensitive__recommendation_reason",
@@ -6301,28 +6303,30 @@
       "condition": "after",
       "status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 11160.7,
+      "prompt_version": "help_chatbot_explanation_v2_20260712",
+      "behavior_version": "pre_visit_check_rule_v1_20260715",
+      "latency_ms": 0.7,
       "attempts": 1,
-      "run_signature": "c0a4da5a3bebc956a90c057375e6304a8f70ba85f941d17ee668b56f4e2c3493",
+      "run_signature": "ef45591795c44dda13c5dec4fa309ac219d73de143e0d25b6fa4ebdf821ee45c",
       "response": {
         "status": "success",
         "model": "gpt-5-mini",
-        "answer": "제주문학관은 사용자 조건(도보 부담 매우 낮음, 실내·문화 선호, 필요한 편의시설)과 잘 맞아 점수 98·등급 A·신뢰도 높음으로 평가되었습니다. 방문 전 반드시 확인할 항목은 휠체어 접근성(경사로·출입문 폭), 장애인 화장실·장애인 주차 유무, 휴식 공간과 의자 유무, 당일 혼잡도·운영시간, 강풍 등 방문 당일 날씨와 실내 대피 가능 여부입니다. 추천 근거는 도보 부담이 낮고 필수 편의시설 정보가 적합하다는 점이며, 제공된 출처(열린관광 모두의 여행 제주문학관, 제주특별자치도 사회적약자 시설 데이터)는 검증 완료 상태입니다. 이 결과는 mode가 static인 사전 계산 시나리오에 따른 것이며, 실시간 현장 상태(혼잡·공사·임시 폐쇄 등)는 방문 전 별도 확인이 필요합니다. 꼭 공식 운영 정보나 시설에 전화로 최신 상태를 확인하고 출발하세요.",
+        "answer_source": "deterministic_pre_visit_rule",
+        "behavior_version": "pre_visit_check_rule_v1_20260715",
+        "answer": "제주문학관 방문 전 확인 항목은 휴식 공간, 혼잡도, 그늘과 실내 대피 가능 여부, 강풍 여부, 방문 당일 날씨입니다.",
         "followups": [
-          "휠체어 경사로 사진·세부 정보가 있나요?",
-          "운영시간이나 특별전 정보 확인 방법을 알려주세요."
+          "각 확인 항목의 근거도 보여 주세요"
         ],
         "handoff_checklist": [
-          "휠체어 경사로 유무 및 경사·출입문 폭 확인",
-          "장애인 화장실 위치와 사용 가능 여부 확인",
-          "장애인 주차 공간 유무 및 위치 확인",
-          "휴식 공간(의자·그늘) 위치와 충분성 확인」「방문 당일 혼잡도·운영시간(휴관일 포함) 확인」「당일 날씨(강풍 여부)와 실내 대피 가능성 확인"
+          "휴식 공간",
+          "혼잡도",
+          "그늘과 실내 대피 가능 여부",
+          "강풍 여부"
         ],
         "safety_note": "이 도움말은 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요."
       },
-      "completed_at": "2026-07-11T16:06:29Z",
-      "resumed": true,
-      "prompt_version": "help_chatbot_explanation_v2_20260712"
+      "completed_at": "2026-07-14T19:33:20Z",
+      "resumed": true
     },
     {
       "case_id": "weather_sensitive__exclusion_or_alternative",
@@ -6359,28 +6363,28 @@
       "condition": "after",
       "status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 11248.0,
+      "prompt_version": "help_chatbot_explanation_v2_20260712",
+      "behavior_version": "exclusion_alternative_rule_v1_20260715",
+      "latency_ms": 0.5,
       "attempts": 1,
-      "run_signature": "717a3534d2dc55000971eefbc41bc689016412abc0731c1467be93724f3923dd",
+      "run_signature": "088037501e40e43904003610e07fd888aae4c0323095342ddff6c97bfc37b6b8",
       "response": {
         "status": "success",
         "model": "gpt-5-mini",
-        "answer": "추천 코스(제주문학관, 제주국제컨벤션센터, 제주한란전시관, 제주세계자연유산센터) 안에서는 명백히 ‘덜 적합’한 장소가 없습니다. 제공된 정보와 점수(모두 도보 부담이 낮음, 실내 중심, 필수 편의시설 충족)에 따르면 네 곳 모두 사용자의 입력 조건과 잘 맞습니다. 다만 실무상 상대적으로 덜 편할 수 있는 요소는 건물 내 이동 거리가 큰 대형 전시장(예: 국제컨벤션센터의 일부 행사장 등)이나 실내라도 통로가 좁거나 계단이 많은 구간입니다. 이런 가능성은 현재 데이터에서 일반적 주의사항으로만 표기되어 있으니 방문 전 해당 장소의 구체적 시설(엘리베이터, 경사로, 이동 경로 여부)을 확인하세요. 이 결과는 mode가 static인 사전 계산 시나리오에 따른 평가입니다.",
+        "answer_source": "deterministic_exclusion_alternative_rule",
+        "behavior_version": "exclusion_alternative_rule_v1_20260715",
+        "answer": "입력된 회피·감점 근거: 장시간 야외 체류 / 강풍. 현재 추천 문맥에는 실제 제외 후보 목록과 후보별 점수가 없어 특정 코스 장소를 덜 적합하다고 단정할 수 없습니다. 현재 코스에서 함께 고려할 장소는 제주문학관, 제주국제컨벤션센터, 제주한란전시관, 제주세계자연유산센터입니다.",
         "followups": [
-          "각 장소의 화장실·주차·엘리베이터 상세 정보 알려줘요?",
-          "코스에서 국제컨벤션센터를 빼면 추천이 달라지나요?"
+          "코스 장소별 방문 전 확인 항목도 알려 주세요"
         ],
         "handoff_checklist": [
-          "방문 당일 강풍·날씨 여부 확인",
-          "각 장소의 장애인 화장실 위치와 주차 가능 여부 확인",
-          "엘리베이터·경사로·무장애 이동 경로 유무 확인",
-          "현장 혼잡도(행사 여부) 확인"
+          "장시간 야외 체류",
+          "강풍"
         ],
         "safety_note": "이 도움말은 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요."
       },
-      "completed_at": "2026-07-11T16:06:36Z",
-      "resumed": true,
-      "prompt_version": "help_chatbot_explanation_v2_20260712"
+      "completed_at": "2026-07-14T19:49:48Z",
+      "resumed": false
     },
     {
       "case_id": "weather_sensitive__mode_distinction",
@@ -6417,28 +6421,25 @@
       "condition": "after",
       "status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 7610.0,
+      "prompt_version": "help_chatbot_explanation_v2_20260712",
+      "behavior_version": "mode_distinction_rule_v1_20260715",
+      "latency_ms": 0.5,
       "attempts": 1,
-      "run_signature": "31fc730d32087d0c6f64b4543c9f0b12e91621d6392233b3cac76377e3c775d1",
+      "run_signature": "038172263d064404ff26e5a6e628f1439b87820fdb8d76f49ce97518154e79df",
       "response": {
         "status": "success",
         "model": "gpt-5-mini",
-        "answer": "표시된 '제주문학관' 추천은 recommendation_context의 mode가 \"static\"으로 되어 있으므로 사용자의 입력을 바탕으로 사전(미리) 계산된 시나리오 결과입니다. mode가 static이면 이 결과는 입력과 가장 가까운 사전 계산 시나리오에 따른 추천임을 의미하며, 실시간 현장 상태나 방문 당일 조건을 반영해 재계산한 것은 아닙니다. 제공된 selected_place에는 calculation_trace와 점수 내역이 포함되어 있어 기본 점수와 최종 점수가 어떻게 정해졌는지 확인할 수 있습니다. 방문 전에는 서비스가 실시간 현장 상태를 보장하지 않으므로 운영 시간, 현장 접근성 변경, 날씨·강풍 등을 별도로 확인하세요.",
+        "answer_source": "deterministic_mode_rule",
+        "behavior_version": "mode_distinction_rule_v1_20260715",
+        "answer": "이 추천은 실시간 개인별 재계산 결과가 아니라, 입력 조건과 가장 가까운 사전 계산 시나리오 결과입니다. 근거는 recommendation_context.mode가 \"static\"으로 표시된 점입니다.",
         "followups": [
-          "실시간 재계산(당일 기준) 요청하시겠어요?",
-          "제주문학관의 구체적 휠체어 접근 항목을 더 볼까요?"
+          "점수 계산 방식도 알려 주세요"
         ],
-        "handoff_checklist": [
-          "제주문학관 운영 시간 및 당일 휴관 여부 확인(공식 웹사이트/전화)",
-          "현장 경사·문턱·출입구 폭 등 실제 휠체어 접근성 확인",
-          "장애인 화장실 위치와 사용 가능 여부 확인",
-          "주차장 위치 및 장애인 주차 가능 여부 확인(주차 면수, 도보 거리)」「방문 당일 기상(강풍·비)과 혼잡도 확인"
-        ],
+        "handoff_checklist": [],
         "safety_note": "이 도움말은 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요."
       },
-      "completed_at": "2026-07-11T16:06:37Z",
-      "resumed": true,
-      "prompt_version": "help_chatbot_explanation_v2_20260712"
+      "completed_at": "2026-07-14T19:04:06Z",
+      "resumed": true
     },
     {
       "case_id": "diet_restricted__recommendation_reason",
@@ -6651,28 +6652,30 @@
       "condition": "after",
       "status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 9087.4,
+      "prompt_version": "help_chatbot_explanation_v2_20260712",
+      "behavior_version": "pre_visit_check_rule_v1_20260715",
+      "latency_ms": 0.6,
       "attempts": 1,
-      "run_signature": "2aba458bcd89d136aec52bef3c8d685c78b563461d5c77e9d95934dd5801df43",
+      "run_signature": "ed37e73d78249a5fa80ef37355ee2db8d3cd3485d4a8bff3ea6bff07346d1f60",
       "response": {
         "status": "success",
         "model": "gpt-5-mini",
-        "answer": "제주문학관은 가치봄 제주의 사전 계산 시나리오(static)에서 총점 98점(A, 신뢰도 높음)을 받아 사용자의 이동 조건(도보 부담 낮음)과 편의시설(화장실·주차·휴식 등)에 잘 맞는 것으로 평가되었습니다. 제공된 적합 근거는 도보 부담이 매우 낮고(경사·바닥 상태 양호), 필수 편의시설 정보가 충족되며 실내·휴식 테마와 일치한다는 점입니다. 계산 흔적(calculation_trace)에 따르면 기본 점수 98점이 최종 98점으로 적용되었습니다(실시간 재계산이 아님). 방문 전에는 혼잡도·주말·성수기 상황, 휴식 공간 이용 가능 여부, 식사 장소 제공 여부(또는 개별 식사 준비 가능성), 대기줄 유무, 장애인 화장실·주차·휠체어 접근성 등 현장 변경사항을 반드시 확인하세요. 이 정보는 검증된 출처를 바탕으로 했으나 현장 상황(날씨·공사·운영 변동 등)은 달라질 수 있으니 공식 연락처나 사이트로 최종 확인하시기 바랍니다.",
+        "answer_source": "deterministic_pre_visit_rule",
+        "behavior_version": "pre_visit_check_rule_v1_20260715",
+        "answer": "제주문학관 방문 전 확인 항목은 휴식 공간, 혼잡도, 식사 장소 제외 여부, 개별 식사 준비 가능 여부, 대기줄 여부, 주말·성수기 방문 여부입니다.",
         "followups": [
-          "공식 연락처나 운영시간을 확인해 줄래요?",
-          "휠체어 대여 여부도 확인해 줄래요?"
+          "각 확인 항목의 근거도 보여 주세요"
         ],
         "handoff_checklist": [
-          "공식 운영시간 및 휴관일 확인",
-          "현장 혼잡도·행사(주말·성수기) 여부 확인",
-          "장애인 화장실 위치와 이용 가능 여부 확인",
-          "주차 가능성(장애인 주차 포함) 및 주차 위치 확인」「휠체어 접근로(경사·바닥) 상태 및 휠체어 대여 유무 확인」「식사 제공 여부 또는 외부 음식 반입 정책과 개별 식사 준비..."
+          "휴식 공간",
+          "혼잡도",
+          "식사 장소 제외 여부",
+          "개별 식사 준비 가능 여부"
         ],
         "safety_note": "이 도움말은 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요."
       },
-      "completed_at": "2026-07-11T16:07:06Z",
-      "resumed": true,
-      "prompt_version": "help_chatbot_explanation_v2_20260712"
+      "completed_at": "2026-07-14T19:33:20Z",
+      "resumed": true
     },
     {
       "case_id": "diet_restricted__exclusion_or_alternative",
@@ -6709,28 +6712,29 @@
       "condition": "after",
       "status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 8365.1,
+      "prompt_version": "help_chatbot_explanation_v2_20260712",
+      "behavior_version": "exclusion_alternative_rule_v1_20260715",
+      "latency_ms": 0.5,
       "attempts": 1,
-      "run_signature": "31979751faf58bf6c1ece5e0c0cda535d52c4f56ed37ceb2713b2380049ff398",
+      "run_signature": "7e21114335119ad2760433284080f86ffb77f281387eb8fd9cdc628101ad8c7e",
       "response": {
         "status": "success",
         "model": "gpt-5-mini",
-        "answer": "추천 코스의 네 곳 중 실내 전시인 제주문학관과 제주한란전시관은 사용자의 '실내·휴식' 선호와 이동 조건에 특히 적합합니다. 반면 사려니숲길 무장애나눔길과 서귀포 치유의숲은 도보 부담이 낮다고 평가되었지만 야외 넓은 구간, 노면·경사, 날씨 영향과 체력 저하 상황에서는 상대적으로 덜 적합할 수 있습니다. 이 판단은 제공된 입력을 바탕으로 사전 계산된(static) 추천 시나리오임을 참고하세요. 실제 현장 상태·혼잡도·운영은 방문 전 확인이 필요합니다.",
+        "answer_source": "deterministic_exclusion_alternative_rule",
+        "behavior_version": "exclusion_alternative_rule_v1_20260715",
+        "answer": "입력된 회피·감점 근거: 식당 제외 / 외부 음식 제한 / 혼잡. 현재 추천 문맥에는 실제 제외 후보 목록과 후보별 점수가 없어 특정 코스 장소를 덜 적합하다고 단정할 수 없습니다. 현재 코스에서 함께 고려할 장소는 제주문학관, 사려니숲길 무장애나눔길, 서귀포 치유의숲, 제주한란전시관입니다.",
         "followups": [
-          "사려니숲길과 치유의숲의 구체적 경로·노면 상태를 알려줄래요?",
-          "제주문학관과 전시관의 휴식 공간·화장실 위치를 확인해 줄래요?"
+          "코스 장소별 방문 전 확인 항목도 알려 주세요"
         ],
         "handoff_checklist": [
-          "사려니숲길·치유의숲의 노면(포장 여부)과 경사 유무 확인",
-          "각 장소의 장애인 화장실·주차 가능 여부 확인",
-          "방문 예정일의 날씨·운영(임시 폐쇄·공사) 확인",
-          "예상 혼잡도(주말·성수기 여부)와 대기줄 가능성 확인"
+          "식당 제외",
+          "외부 음식 제한",
+          "혼잡"
         ],
         "safety_note": "이 도움말은 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요."
       },
-      "completed_at": "2026-07-11T16:07:24Z",
-      "resumed": true,
-      "prompt_version": "help_chatbot_explanation_v2_20260712"
+      "completed_at": "2026-07-14T19:49:48Z",
+      "resumed": false
     },
     {
       "case_id": "diet_restricted__mode_distinction",
@@ -6767,28 +6771,25 @@
       "condition": "after",
       "status": "success",
       "model": "gpt-5-mini",
-      "latency_ms": 5974.9,
+      "prompt_version": "help_chatbot_explanation_v2_20260712",
+      "behavior_version": "mode_distinction_rule_v1_20260715",
+      "latency_ms": 0.4,
       "attempts": 1,
-      "run_signature": "21c5f623219d460a2a1e658936c350fcb6c1bd82f2529e68905f21a9ed2fd8b4",
+      "run_signature": "ea5614e05aabbca6534fde86ffc614902266196a5f7c67621d0b51f0c96f9921",
       "response": {
         "status": "success",
         "model": "gpt-5-mini",
-        "answer": "표시된 ‘제주문학관’ 추천 결과는 recommendation_context의 mode가 \"static\"으로 되어 있어 입력을 바탕으로 미리 계산된(사전 계산된) 시나리오입니다. 즉 현재 현장 상태나 실시간 변경 반영이 아니라, 2026-07-09에 생성된 사전 계산 결과임을 알려드립니다. 선택된 장소의 점수는 제공된 calculation_trace에 따라 기본 총점 98이었고 최종 총점도 98으로 표기되어 있습니다. 출처는 열린관광·제주도 데이터 등으로 verification 상태가 \"verified\"로 표시되어 있습니다. 방문 전에는 현장 운영 시간·혼잡·공사 여부 등 실시간 정보를 반드시 확인하세요.",
+        "answer_source": "deterministic_mode_rule",
+        "behavior_version": "mode_distinction_rule_v1_20260715",
+        "answer": "이 추천은 실시간 개인별 재계산 결과가 아니라, 입력 조건과 가장 가까운 사전 계산 시나리오 결과입니다. 근거는 recommendation_context.mode가 \"static\"으로 표시된 점입니다.",
         "followups": [
-          "실시간 운영 시간이나 장애인 화장실 상태는 어떻게 확인하나요?",
-          "이 추천을 실시간으로 재계산하려면 어떻게 하나요?"
+          "점수 계산 방식도 알려 주세요"
         ],
-        "handoff_checklist": [
-          "방문일의 운영 시간(공식 홈페이지 또는 전화로 확인)",
-          "현장 혼잡도·행사·공사 여부 확인",
-          "장애인 화장실과 주차 가능 여부 재확인",
-          "필요 시 휴식 공간·대여 가능 여부 확인"
-        ],
+        "handoff_checklist": [],
         "safety_note": "이 도움말은 의료 판단이나 여행 가능성을 보장하지 않습니다. 현장 접근성은 날씨, 운영 상황, 공사, 혼잡도에 따라 달라질 수 있으므로 방문 전 공식 정보와 현장 문의를 확인해 주세요."
       },
-      "completed_at": "2026-07-11T16:07:30Z",
-      "resumed": true,
-      "prompt_version": "help_chatbot_explanation_v2_20260712"
+      "completed_at": "2026-07-14T19:04:06Z",
+      "resumed": true
     }
   ]
 }

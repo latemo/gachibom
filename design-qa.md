@@ -252,6 +252,49 @@
 
 final result: blocked
 
+## 2026-07-15 테마 카드 클린 선화형 전환 QA
+
+- source visual truth path: `C:\Users\jejunu\.codex\generated_images\019f60e7-d54d-72f1-8404-a089850e4bff\exec-09eeda2f-4aa7-4bc8-a8e4-6a9e200c05e3.png`
+- implementation screenshot path: 캡처 불가 (사용 가능한 인앱 브라우저 없음)
+- viewport: 소스 시안 2048 × 986, 구현 비교 목표 2048 × 986
+- state: 다섯 테마 카드 기본 상태, 실사 배경 제거, 컬러 레일·제주 선화·테마 캐릭터·접근성 지표 표시
+- full-view comparison evidence: 소스 시안과 다섯 개 선화 에셋은 원본 크기로 확인했으나 브라우저 렌더링 캡처가 없어 동일 뷰포트 비교는 차단됨
+- focused region comparison evidence: 선화 크롭과 캐릭터 위치는 에셋 단위로 확인했으나 카드 안의 실제 조합 화면은 비교하지 못함
+- primary interactions tested: 기존 테마 선택·선택 카드 단독 노출 경로를 자동 테스트로 확인했으며 브라우저 클릭 검증은 차단됨
+- console errors checked: 브라우저 연결 부재로 확인 불가
+
+**Findings**
+
+- [P1] 구현 스크린샷이 없어 2번 시안과의 최종 시각 충실도를 승인할 수 없음.
+  Location: `#conceptGrid`, `.concept-card`, `.concept-card-visual`, `.concept-card-score-row`.
+  Evidence: 로컬 페이지와 다섯 에셋은 HTTP/파일 수준에서 정상이며 JavaScript 문법 검사와 프런트 테스트 25개가 통과했지만, 브라우저 목록이 비어 렌더링 캡처를 만들지 못함.
+  Impact: 2048px에서 카드 선화 크롭·제목 줄바꿈·하단 지표 정렬과 1180px/390px 반응형 균형을 확정할 수 없음.
+  Fix: 사용 가능한 브라우저 또는 사용자 승인 Playwright로 기본 상태와 카드 선택 상태를 캡처하고 소스 시안과 한 비교 입력에서 보정.
+
+**Required Fidelity Surfaces**
+
+- Fonts and typography: 기존 제주 돌담 제목체와 Pretendard/Noto Sans KR 본문 체계를 유지함. 실제 렌더링 줄바꿈은 미검증.
+- Spacing and layout rhythm: 원형 번호, 제목·설명, 선화 장면, 구분선, 접근성 지표 순서를 시안과 동일하게 구성함.
+- Colors and visual tokens: 흰색 표면, 8px 모서리, 낮은 대비 외곽선, 테마별 블루·오렌지·틸·라벤더 레일을 적용함.
+- Image quality and asset fidelity: 실사 카드 배경을 제거하고 카드별 실제 PNG 선화와 기존 WebP 캐릭터를 사용함. 모든 선화의 흰색 하단 픽셀과 세로 비율을 확인함.
+- Copy and content: 기존 테마 제목·설명·추천 수·검증 수를 유지하고 접근성 지표에 방패 하트 아이콘을 추가함.
+
+**Comparison History**
+
+- 1차: 2번 시안의 구조를 코드와 다섯 개 카드별 선화 에셋으로 구현함.
+- 에셋 보정: 날씨 선화 하단 검은 패딩을 제거하고 720 × 860 흰 배경으로 다시 저장함.
+- 기능 증거: `node --check web/app.js`, `python -m unittest tests.test_saved_trips_frontend`, `git diff --check` 통과.
+- post-fix visual evidence: 브라우저 캡처가 없어 없음.
+
+**Implementation Checklist**
+
+- 2048 × 986 기본 상태에서 다섯 카드와 소스 시안 비교
+- 각 테마 선택 후 선택 카드와 추천 결과 높이·정렬 확인
+- 1480px, 1180px, 390px에서 줄바꿈·오버플로 확인
+- 키보드 포커스, hover, 선택 상태와 콘솔 오류 확인
+
+final result: blocked
+
 ## 2026-07-14 조건 수정 섹션 세로 배치 QA
 
 - source visual truth path: `C:\Users\jejunu\Pictures\Screenshots\스크린샷 2026-07-14 224138.png`
@@ -405,3 +448,45 @@ final result: blocked
 - 콘솔 오류 확인 후 P0/P1/P2 보정
 
 final result: blocked
+
+## 2026-07-15 테마 카드 클린 선화형 최종 QA
+
+- source visual truth path: `C:\Users\jejunu\.codex\generated_images\019f60e7-d54d-72f1-8404-a089850e4bff\exec-09eeda2f-4aa7-4bc8-a8e4-6a9e200c05e3.png`
+- implementation screenshot path: `C:\project\디엘톤최종\artifacts\theme-option2-final-section-1806.png`
+- viewport: 1806 × 871 섹션 캡처 (브라우저 1806 × 943)
+- state: 다섯 테마 카드 기본 상태와 `회복 중` 선택 결과 상태
+- full-view comparison evidence: `C:\project\디엘톤최종\artifacts\theme-option2-final-comparison.png`
+- selected-state evidence: `C:\project\디엘톤최종\artifacts\theme-option2-final-selected-1806.png`
+- responsive evidence: `C:\project\디엘톤최종\artifacts\theme-option2-final-tablet-1366.png`, `C:\project\디엘톤최종\artifacts\theme-option2-final-mobile-390.png`, `C:\project\디엘톤최종\artifacts\theme-option2-final-mobile-selected-390.png`
+
+**Findings**
+
+- P0/P1/P2 잔여 결함 없음.
+- 1806px에서 카드 시작점, 다섯 열 폭, 634px 카드 높이, 번호·제목·본문·선화·지표의 수직 순서를 기준 시안과 동일하게 맞춤.
+- 390px에서 카드가 겹쳐 클릭을 막던 고정 그리드 높이 문제를 수정하고 각 카드를 독립된 680px 행으로 배치함.
+
+**Required Fidelity Surfaces**
+
+- Fonts and typography: 제주 돌담 제목체와 기존 한글 본문 글꼴을 유지하고 기준 시안의 제목·설명 크기와 줄바꿈을 재현함.
+- Spacing and layout rhythm: 1806px 기준 그리드 X 22px, 폭 1753px, 높이 634px이며 카드 사이 간격과 내부 여백을 시안에 맞춤.
+- Colors and visual tokens: 흰색 카드, 낮은 대비 외곽선, 테마별 컬러 레일과 원형 번호를 동일한 톤으로 유지함.
+- Image quality and asset fidelity: 카드별 PNG 선화와 기존 투명 WebP 캐릭터를 각각 사용해 실사 배경과 전체 시안 스프라이트 의존을 제거함.
+- Copy and content: 제목·설명·접근성 적합도·추천 수·검증 수를 유지하고 방패 하트 지표를 아이콘 라이브러리로 구성함.
+
+**Comparison History**
+
+- 1차: 기본 카드 구조와 데스크톱 치수를 시안에 맞췄으나 카드용 원본 이미지가 선택 패널 캐릭터에도 재사용되는 문제를 확인함.
+- 2차: 선택 패널 캐릭터 자산을 분리하고 카드별 선화·캐릭터를 독립 자산으로 구성함.
+- 3차: 390px에서 카드 다섯 개가 겹치는 P1을 재현한 뒤 그리드 자동 행과 모바일 카드 높이를 보정함.
+- 4차: 기준 이미지와 최종 구현을 한 합성 이미지에서 비교하고 1806px 기본·선택, 1366px, 390px 상태를 다시 캡처함.
+
+**Interaction and Runtime Checks**
+
+- 테마 클릭 후 나머지 네 카드가 사라지고 선택 카드 한 개와 추천 결과가 표시됨.
+- 1806px 선택 카드와 결과 패널 높이 807px, 차이 0px.
+- 상세 조건 칩 `aria-pressed`가 `false`에서 `true`로 변경되고 추천 갱신 경로가 실행됨.
+- `다른 테마 보기` 클릭 후 다섯 카드가 복원됨.
+- 1806px, 1366px, 390px 가로 오버플로 0px이며 콘솔 오류와 페이지 오류가 없음.
+- `node --check web/app.js`, `python -m unittest tests.test_saved_trips_frontend` 25개, `git diff --check` 통과.
+
+final result: passed
