@@ -521,7 +521,7 @@ const invalidMergedPoint = app.mergePlaceLocation(
   routeStartPlace.location
 );
 assert(invalidMergedPoint.point_role === "route_start", "invalid runtime point roles should not erase the static role");
-assert(app.locationPointLabel({ point_role: "unsupported" }) === "장소 대표점", "unknown point roles should fail closed");
+assert(app.locationPointLabel({ point_role: "unsupported" }) === "장소 위치", "unknown point roles should fail closed");
 const savedScenario = seed.scenarios[0];
 app.state.scenarioId = savedScenario.id;
 app.state.runtimeScenario = null;
@@ -662,7 +662,7 @@ const interruptedItem = {
 };
 const interruptedMarkup = app.savedRouteCardMarkup(interruptedItem);
 assert(!interruptedMarkup.includes('class="saved-route-mini-path"'), "missing middle coordinates must break the mini-map route line");
-assert(interruptedMarkup.includes("앞뒤 동선은 연결하지 않습니다"), "broken route segment should be explained");
+assert(interruptedMarkup.includes("앞뒤 이동선은 표시하지 않습니다"), "broken route segment should be explained");
 
 const otherScenario = seed.scenarios.find((scenario) => (
   JSON.stringify(app.currentRouteSpotIds(scenario)) !== JSON.stringify(savedSpotIds)
@@ -896,8 +896,8 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
         self.assertIn('id="savedRoutesModal"', index)
         self.assertIn("data-open-saved-routes", index)
         self.assertGreaterEqual(index.count("data-save-current-route"), 2)
-        self.assertIn("styles.css?v=20260716-1", index)
-        self.assertIn("app.js?v=20260716-2", index)
+        self.assertIn("styles.css?v=20260718-7", index)
+        self.assertIn("app.js?v=20260718-6", index)
         self.assertIn("top-save-route-button", index)
         self.assertIn("live-map-save-button", index)
         self.assertIn("loadSavedRouteState();", app)
@@ -983,14 +983,39 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
         nav_link_rule = styles[nav_link_start:nav_link_end]
         self.assertIn("color: #4f5968", nav_link_rule)
 
-        brand_mark_start = styles.index(".brand-mark {")
-        brand_mark_end = styles.index("}", brand_mark_start)
-        brand_mark_rule = styles[brand_mark_start:brand_mark_end]
-        brand_video_start = styles.index(".brand-logo-video {")
-        brand_video_end = styles.index("}", brand_video_start)
-        brand_video_rule = styles[brand_video_start:brand_video_end]
-        self.assertIn("background: transparent", brand_mark_rule)
-        self.assertIn("mix-blend-mode: multiply", brand_video_rule)
+        brand_start = styles.index(".brand {")
+        brand_end = styles.index("}", brand_start)
+        brand_rule = styles[brand_start:brand_end]
+        self.assertIn("min-height: 44px", brand_rule)
+        self.assertIn("text-decoration: none", brand_rule)
+        self.assertNotIn(".brand-logo-video {", styles)
+
+    def test_mobile_header_and_theme_picker_use_compact_app_layout(self):
+        index = INDEX_FILE.read_text(encoding="utf-8")
+        styles = STYLES_FILE.read_text(encoding="utf-8")
+        mobile = styles[styles.index("@media (max-width: 560px)") :]
+
+        self.assertIn('"brand actions"\n      "nav nav"', mobile)
+        self.assertIn('<div class="brand-copy">', index)
+        self.assertIn("<strong>가치봄 제주</strong>", index)
+        self.assertNotIn('class="brand-copy sr-only"', index)
+        self.assertIn("grid-template-columns: repeat(2, minmax(0, 1fr))", mobile)
+        self.assertIn(
+            ".evidence-grid {\n    grid-template-columns: repeat(2, minmax(0, 1fr))",
+            mobile,
+        )
+        self.assertIn(".concept-card:last-child:nth-child(odd)", mobile)
+        self.assertIn("grid-column: 1 / -1", mobile)
+        self.assertIn(
+            "body:not(.concept-result-open) .concept-card-score-row",
+            mobile,
+        )
+        self.assertIn(
+            "body.concept-result-open .concept-main {\n    display: none",
+            mobile,
+        )
+        self.assertIn('class="bi bi-map"', index)
+        self.assertIn('class="bi bi-share"', index)
 
     def test_profile_scenario_cards_are_compact_and_use_semantic_icons(self):
         index = INDEX_FILE.read_text(encoding="utf-8")
@@ -1026,7 +1051,7 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
         self.assertIn('id="conceptPreferenceSentences"', index)
         self.assertIn('id="conceptFitNote"', index)
         self.assertIn("이 코스로 여행하기", index)
-        self.assertIn("RAG 조건 입력", index)
+        self.assertIn("여행 조건 더 입력", index)
         self.assertIn("전체 테마 보기", index)
         self.assertIn("conceptRecipeProfiles", app)
         self.assertIn("conceptPreferenceSentencesMarkup", app)
@@ -1136,11 +1161,18 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
             return tracks
 
         concept_main_rule = css_block(styles, ".concept-main {")
-        base_journey_rule = css_block(styles, ".journey-layout {")
+        base_journey_rule = css_block(
+            styles, ".journey-layout {\n  min-height: 100vh;"
+        )
         compact_media = css_block(styles, "@media (max-width: 1480px) {")
-        compact_journey_rule = css_block(compact_media, ".journey-layout {")
+        compact_journey_rule = css_block(
+            compact_media,
+            ".journey-layout {\n    grid-template-columns: minmax(590px, 1fr) 316px;",
+        )
         mobile_media = css_block(styles, "@media (max-width: 1180px) {")
-        mobile_journey_rule = css_block(mobile_media, ".journey-layout {")
+        mobile_journey_rule = css_block(
+            mobile_media, ".journey-layout {\n    display: grid;"
+        )
 
         self.assertIn("width: 100%", concept_main_rule)
         self.assertNotIn("max-width", concept_main_rule)
@@ -1241,7 +1273,7 @@ vm.runInContext(source, context);
 const api = context.__mapFallbackTest;
 if (api.ensureCenterMap() !== null) throw new Error("Leaflet absence must use fallback");
 if (!classes.has("map-fallback-active")) throw new Error("fallback class must activate");
-if (notice.hidden || !notice.textContent.includes("로컬 지도")) throw new Error("visible fallback notice required");
+if (notice.hidden || !notice.textContent.includes("기본 지도")) throw new Error("visible fallback notice required");
 if (attributes.get("aria-hidden") !== "true") throw new Error("hidden live map must be aria-hidden");
 api.deactivateCenterMapFallback();
 if (classes.has("map-fallback-active") || !notice.hidden) throw new Error("fallback should deactivate cleanly");
@@ -2124,7 +2156,7 @@ const onePointRoute = scenario("route_one", [
   assert(calls.polylines === afterOnePointCounts.polylines, "a delayed old route must not redraw after a one-point result");
   assert(calls.markers === afterOnePointCounts.markers, "a delayed old route must not restore markers after a one-point result");
   assert(
-    mapSyncStatus.textContent.includes("두 곳 이상의 좌표"),
+    mapSyncStatus.textContent.includes("추천 장소 두 곳 이상의 지도 위치"),
     "the map should explain why a one-point route cannot be displayed"
   );
 })().catch((error) => {

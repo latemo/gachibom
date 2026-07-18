@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>가치봄 제주 도움말 챗봇</title>
+  <title>가치봄 제주 도움말</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="styles.css?v=20260713-5">
-  <link rel="stylesheet" href="help-chatbot.css?v=20260716-2">
+  <link rel="stylesheet" href="styles.css?v=20260718-6">
+  <link rel="stylesheet" href="help-chatbot.css?v=20260718-6">
 </head>
 <body class="help-page">
   <header class="help-topbar">
@@ -14,13 +14,13 @@
       <span class="help-brand-mark">봄</span>
       <span>
         <strong>가치봄 제주</strong>
-        <small>도움말 챗봇</small>
+        <small>여행 도움말</small>
       </span>
     </a>
     <nav class="help-nav" aria-label="도움말 빠른 이동">
       <a href="index.html">서비스 화면</a>
       <a href="#helpTopics">도움말 주제</a>
-      <a href="#helpChatbot">챗봇 상담</a>
+      <a href="#helpChatbot">질문하기</a>
     </nav>
   </header>
 
@@ -39,7 +39,7 @@
 
     <section class="help-topic-band" id="helpTopics" aria-labelledby="helpTopicsTitle">
       <div class="help-section-head">
-        <span>Help Center</span>
+        <span>도움말</span>
         <h2 id="helpTopicsTitle">자주 찾는 도움말</h2>
       </div>
       <div class="help-topic-grid" data-help-topic-grid></div>
@@ -47,17 +47,16 @@
 
     <section class="help-chat-section" id="helpChatbot" aria-labelledby="helpChatbotTitle">
       <div class="help-section-head">
-        <span>Chatbot</span>
-        <h2 id="helpChatbotTitle">오른쪽 날개 배너를 눌러 질문하세요</h2>
+        <span>질문하기</span>
+        <h2 id="helpChatbotTitle">오른쪽 도움말 버튼을 눌러 질문하세요</h2>
       </div>
       <p class="help-chat-intro">
-        챗봇은 추천 API 서버의 <code>/api/help-chat</code>으로 질문을 보내고, 서버에서 LLM 답변을 생성합니다.
-        API 키가 없거나 정적 미리보기 모드이면 안전한 기본 도움말로 대체됩니다.
+        궁금한 내용을 짧게 적어 주세요. 자동 답변을 불러오지 못하면 바로 확인할 수 있는 기본 도움말을 보여드립니다.
       </p>
       <div data-help-chatbot data-help-chatbot-mode="wing"></div>
     </section>
   </main>
 
-  <script src="help-chatbot.js?v=20260716-2"></script>
+  <script src="help-chatbot.js?v=20260718-6"></script>
 </body>
 </html>

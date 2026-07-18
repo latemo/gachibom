@@ -23,8 +23,8 @@
   </script>
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css?v=1.9.4">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="styles.css?v=20260716-1">
-  <link rel="stylesheet" href="help-chatbot.css?v=20260716-2">
+  <link rel="stylesheet" href="styles.css?v=20260718-7">
+  <link rel="stylesheet" href="help-chatbot.css?v=20260718-6">
 </head>
 <body class="modal-open site-intro-open">
   <div class="site-intro" id="siteIntro" role="dialog" aria-modal="true" aria-labelledby="siteIntroTitle">
@@ -36,7 +36,7 @@
       <div class="site-intro-controls">
         <div>
           <span>가치봄 제주</span>
-          <h2 id="siteIntroTitle">장벽없는 여행의 시작</h2>
+          <h2 id="siteIntroTitle">장벽 없는 여행의 시작</h2>
         </div>
         <div class="site-intro-actions">
           <button class="outline-button" type="button" data-toggle-intro-sound>소리 켜기</button>
@@ -48,17 +48,12 @@
 
   <div class="app-shell">
     <header class="topbar">
-      <div class="brand" aria-label="가치봄 제주">
-        <div class="brand-mark">
-          <video class="brand-logo-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-            <source src="assets/media/gachibom-logo-final.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="brand-copy sr-only">
+      <a class="brand" href="#conceptPage" aria-label="가치봄 제주 테마 선택으로 이동">
+        <div class="brand-copy">
           <strong>가치봄 제주</strong>
           <span>모두를 위한 제주 접근성 여행</span>
         </div>
-      </div>
+      </a>
 
       <nav class="nav-tabs" aria-label="주요 메뉴">
         <a class="active" href="#conceptPage" data-nav-target="concepts">테마 선택</a>
@@ -68,8 +63,14 @@
       </nav>
 
       <div class="top-actions">
-        <button class="outline-button" type="button" data-open-route-modal>실제 경로</button>
-        <button class="outline-button" type="button" data-share-app>공유</button>
+        <button class="outline-button" type="button" data-open-route-modal aria-label="실제 경로 보기">
+          <i class="bi bi-map" aria-hidden="true"></i>
+          <span>실제 경로</span>
+        </button>
+        <button class="outline-button" type="button" data-share-app aria-label="현재 화면 공유">
+          <i class="bi bi-share" aria-hidden="true"></i>
+          <span data-share-label>공유</span>
+        </button>
         <button class="primary-button top-save-route-button" type="button" data-save-current-route aria-pressed="false">
           <i class="bi bi-bookmark-plus" aria-hidden="true"></i>
           <span data-save-current-route-label>코스 저장</span>
@@ -130,7 +131,7 @@
           <button class="primary-button" type="button" data-view-selected-concept>이 코스로 여행하기</button>
           <button class="outline-button" type="button" data-open-profile-modal>
             <i class="bi bi-diagram-3" aria-hidden="true"></i>
-            <span>RAG 조건 입력</span>
+            <span>여행 조건 더 입력</span>
           </button>
           <button class="concept-other-theme-button" type="button" data-go-concepts data-return-to-concept-list aria-controls="conceptGrid">
             <i class="bi bi-arrow-left" aria-hidden="true"></i>
@@ -147,6 +148,7 @@
           <h2 id="journeyConditionTitle">현재 여행 조건</h2>
         </div>
         <div id="matchNote" role="status" aria-live="polite">추천 기준 계산 중</div>
+        <div id="serviceStatus" role="status" aria-live="polite" hidden></div>
         <div class="journey-condition-actions">
           <details class="journey-safety-note">
             <summary>
@@ -162,19 +164,19 @@
         </div>
         <section class="rag-process-panel" id="ragProcessPanel" aria-labelledby="ragProcessTitle">
           <header>
-            <span>검증 가능한 추천</span>
-            <h3 id="ragProcessTitle">RAG 검색 과정</h3>
+            <span>확인 가능한 추천</span>
+            <h3 id="ragProcessTitle">추천 근거 확인</h3>
           </header>
         </section>
       </section>
 
-      <section class="map-card" id="mapPanel" aria-label="살아있는 제주 지도">
+      <section class="map-card" id="mapPanel" aria-label="추천 장소 제주 지도">
         <div class="map-frame">
-          <div class="live-map" id="liveMap" aria-label="실제 좌표 기반 제주 추천 지도" aria-describedby="mapInteractionHint"></div>
-          <img class="map-art" id="mapFallbackArt" src="assets/jeju-map-fallback.svg?v=20260713-1" alt="제주도 로컬 지도 배경" decoding="async">
+          <div class="live-map" id="liveMap" aria-label="추천 장소 위치를 표시한 제주 지도" aria-describedby="mapInteractionHint"></div>
+          <img class="map-art" id="mapFallbackArt" src="assets/jeju-map-fallback.svg?v=20260713-1" alt="제주도 지도 배경" decoding="async">
           <svg class="map-route-layer" id="mapRouteLayer" aria-hidden="true"></svg>
           <p class="map-fallback-notice" id="mapFallbackNotice" role="status" hidden>
-            <span data-map-fallback-message>로컬 지도로 추천 위치를 표시합니다.</span>
+            <span data-map-fallback-message>기본 지도로 추천 위치를 표시합니다.</span>
             <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>
           </p>
           <div class="live-map-header">
@@ -187,7 +189,7 @@
                 <i class="bi bi-bookmark-plus" aria-hidden="true"></i>
                 <span data-save-current-route-label>코스 저장</span>
               </button>
-              <button class="live-map-button" type="button" data-map-layer-toggle>지도 레이어</button>
+              <button class="live-map-button" type="button" data-map-layer-toggle>지도 바꾸기</button>
               <button class="live-map-button" type="button" data-map-fit-route>코스 맞춤</button>
             </div>
           </div>
@@ -202,15 +204,15 @@
   </div>
 
   <div class="ai-explanation-modal" id="aiExplanationModal" role="dialog" aria-modal="true" aria-labelledby="aiExplanationModalTitle" aria-describedby="aiExplanationModalSummary" hidden>
-    <button class="ai-explanation-modal-backdrop" type="button" data-close-ai-explanation aria-label="AI 근거 설명 닫기"></button>
+    <button class="ai-explanation-modal-backdrop" type="button" data-close-ai-explanation aria-label="자동 근거 설명 닫기"></button>
     <section class="ai-explanation-modal-panel">
       <header class="ai-explanation-modal-head">
         <div>
-          <span><i class="bi bi-shield-check" aria-hidden="true"></i> 공식 근거 RAG 설명</span>
-          <h2 id="aiExplanationModalTitle">가치봄 AI 코스 근거 설명</h2>
-          <p id="aiExplanationModalSummary">검색된 공식·공공 근거에 연결된 추천 이유와 주의사항을 확인합니다.</p>
+          <span><i class="bi bi-shield-check" aria-hidden="true"></i> 공식 자료로 확인한 설명</span>
+          <h2 id="aiExplanationModalTitle">코스 추천 근거</h2>
+          <p id="aiExplanationModalSummary">추천 이유와 주의사항을 공식 자료와 함께 확인합니다.</p>
         </div>
-        <button class="modal-close-button" type="button" data-close-ai-explanation aria-label="AI 근거 설명 닫기">×</button>
+        <button class="modal-close-button" type="button" data-close-ai-explanation aria-label="자동 근거 설명 닫기">×</button>
       </header>
       <div class="ai-explanation-modal-body" id="aiExplanationModalBody"></div>
     </section>
@@ -269,7 +271,7 @@
         </section>
       </div>
       <footer class="profile-modal-foot">
-        <p>자연어 입력은 선택 사항입니다. ‘적용하고 보기’를 누르면 선택한 조건과 함께 반영됩니다.</p>
+        <p>직접 입력은 선택 사항입니다. ‘적용하고 보기’를 누르면 고른 조건과 함께 반영됩니다.</p>
         <button class="primary-button" type="button" data-apply-profile-modal>적용하고 보기</button>
       </footer>
     </section>
@@ -298,17 +300,17 @@
     <section class="route-modal-panel">
       <header class="route-modal-head">
         <div>
-          <span>실제 위치 기반 경로</span>
+          <span>추천 장소 이동 경로</span>
           <h2 id="routeModalTitle">오늘의 동행 경로</h2>
-          <p id="routeModalSubtitle">추천 순서와 접근성 근거를 실제 지도 위에서 확인합니다.</p>
+          <p id="routeModalSubtitle">추천 순서와 접근성 정보를 지도에서 확인합니다.</p>
         </div>
         <button class="modal-close-button" type="button" data-close-route-modal aria-label="닫기">×</button>
       </header>
       <div class="route-modal-body">
-        <section class="route-map-shell" aria-label="실제 경로 지도">
+        <section class="route-map-shell" aria-label="추천 이동 경로 지도">
           <div class="route-map-toolbar">
             <strong id="routeMapBadge">경로 계산 중</strong>
-            <span id="routeMapStatus">실제 좌표를 지도에 올리는 중입니다.</span>
+            <span id="routeMapStatus">추천 장소 위치를 지도에 표시하고 있습니다.</span>
           </div>
           <div class="route-map" id="routeMap"></div>
           <svg class="route-map-fallback-layer" id="routeMapFallbackLayer" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
@@ -359,7 +361,7 @@
 
   <script src="vendor/leaflet/leaflet.js?v=1.9.4"></script>
   <script src="saved-trips.js?v=20260712-3"></script>
-  <script src="app.js?v=20260716-2"></script>
-  <script src="help-chatbot.js?v=20260716-2"></script>
+  <script src="app.js?v=20260718-6"></script>
+  <script src="help-chatbot.js?v=20260718-6"></script>
 </body>
 </html>

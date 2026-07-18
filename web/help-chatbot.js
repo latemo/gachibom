@@ -49,12 +49,12 @@
     {
       id: "wheelchair",
       title: "휠체어 접근 확인",
-      summary: "단정 대신 경사, 바닥, 화장실, 주차를 분리 확인",
+      summary: "경사, 바닥, 화장실, 주차를 따로 확인",
       keywords: ["휠체어", "장애", "무장애", "경사", "계단", "바닥", "화장실", "주차"],
       answer: [
         "휠체어 접근은 하나의 가능/불가능 값으로 보지 않고 경사, 바닥, 입구, 화장실, 주차를 나눠 확인합니다.",
         "추천 카드의 장애인 화장실, 가까운 주차, 경사 또는 계단, 휴식 공간 항목을 먼저 보세요.",
-        "로드뷰나 운영자 메모가 있어도 현장 공사나 날씨에 따라 달라질 수 있습니다.",
+        "사진이나 현장 확인 메모가 있어도 공사나 날씨에 따라 달라질 수 있습니다.",
         "장거리 이동이 부담된다면 실제 경로에서 장소 간 거리와 예상 시간을 함께 확인하세요."
       ]
     },
@@ -77,20 +77,20 @@
       keywords: ["경로", "지도", "거리", "시간", "이동", "코스", "순서", "길"],
       answer: [
         "실제 경로 버튼을 누르면 추천 장소 순서와 예상 이동거리, 예상 시간이 표시됩니다.",
-        "도로형 경로 계산이 실패하면 좌표 기반 요약 경로로 자동 대체됩니다.",
+        "도로 경로를 불러오지 못하면 장소 위치를 직선으로 이은 간단한 경로로 바뀝니다.",
         "코스는 2~4개 장소를 기준으로 보며, 무리한 장소 수를 늘리지 않는 것이 원칙입니다.",
         "이동 시간이 길게 보이면 테마를 바꾸거나 짧은 동선, 휴식 필요 조건을 선택하세요."
       ]
     },
     {
       id: "source",
-      title: "출처와 최신성",
-      summary: "공식 정보와 운영자 검수 상태를 함께 표시",
+      title: "정보 출처와 확인일",
+      summary: "공식 자료와 마지막 확인일을 함께 표시",
       keywords: ["출처", "최신", "확인일", "근거", "공식", "검수", "로드뷰", "데이터"],
       answer: [
-        "서비스는 출처가 있는 장소와 운영자 검수 카드를 우선 사용합니다.",
+        "서비스는 출처와 확인일이 있는 장소 정보를 우선 사용합니다.",
         "정보 확인일이 오래됐거나 출처가 부족한 항목은 확인 필요로 표시합니다.",
-        "로드뷰 정보는 접근성 검수의 참고 근거이며, 대표 이미지와 구분해서 다룹니다.",
+        "거리 사진은 접근성 확인에 참고하며, 장소를 소개하는 대표 사진과 구분합니다.",
         "출처가 불명확한 내용은 추천 근거로 강하게 쓰지 않는 것이 원칙입니다."
       ]
     },
@@ -102,45 +102,33 @@
       answer: [
         "서비스는 이름, 연락처, 주민등록번호, 병원명, 상세 진단명을 요구하지 않는 것이 원칙입니다.",
         "건강 정보는 진단명이 아니라 짧은 이동, 계단 회피, 휴식 필요 같은 이동 조건으로만 다룹니다.",
-        "이 도움말 챗봇은 브라우저에서 직접 API 키를 다루지 않습니다.",
-        "현재 위치 근처 검색을 직접 요청한 경우에만 위치 권한을 받고, 좌표는 그 요청의 거리 계산에만 사용하며 대화 기록이나 브라우저 저장소에 남기지 않습니다.",
+        "비밀번호나 인증 정보는 입력할 필요가 없습니다.",
+        "현재 위치 근처 검색을 직접 요청한 경우에만 위치 권한을 받고, 현재 위치 정보는 그 요청의 거리 계산에만 사용하며 대화 기록이나 브라우저 저장소에 남기지 않습니다.",
         "민감한 정보는 입력하지 말고, 필요한 경우 보호자나 공식 문의처와 직접 확인하세요."
       ]
     },
     {
       id: "trouble",
-      title: "화면이나 API가 실패할 때",
-      summary: "정적 추천으로 대체하고 안전한 오류 메시지를 확인",
+      title: "화면 연결이 원활하지 않을 때",
+      summary: "기본 추천으로 이어서 확인하고 다시 시도",
       keywords: ["오류", "실패", "안됨", "API", "연결", "로딩", "에러", "재시도"],
       answer: [
-        "추천 API 연결이 실패하면 화면은 정적 추천 데이터로 자동 전환됩니다.",
-        "AI 설명이 없어도 기본 점수와 로컬 근거는 계속 표시될 수 있습니다.",
-        "경로 API가 실패하면 좌표 기반 요약 경로로 대체됩니다.",
+        "새 조건을 적용하지 못하면 화면은 기본 추천을 계속 보여드립니다.",
+        "자동 설명이 없어도 기본 점수와 확인 자료는 계속 볼 수 있습니다.",
+        "상세 경로를 불러오지 못하면 장소 위치를 이은 요약 경로를 보여드립니다.",
         "반복해서 실패하면 화면을 새로고침하고, 조건을 단순화한 뒤 다시 시도하세요."
-      ]
-    },
-    {
-      id: "operator",
-      title: "운영자 확인 항목",
-      summary: "장소 카드, 출처, 확인일, 위험 문구를 검수",
-      keywords: ["운영자", "관리자", "추가", "수정", "장소", "카드", "검수", "업데이트"],
-      answer: [
-        "운영자는 장소 카드의 출처, 확인일, 접근성 태그, 확인 필요 항목을 계속 갱신해야 합니다.",
-        "새 장소는 검수 완료 또는 제한 공개 가능 상태가 되기 전까지 사용자 추천에 넣지 않는 것이 안전합니다.",
-        "의료 효과, 100% 가능, 무조건 추천 같은 표현은 결과에서 차단해야 합니다.",
-        "사용자 피드백은 민감정보 없이 부적절한 추천 사례와 데이터 보완 항목 중심으로 기록하세요."
       ]
     }
   ];
 
   const QUICK_PROMPTS = [
-    "현재 위치 근처 장애인 화장실 찾아줘",
-    "현재 위치 근처 전동휠체어 충전기 찾아줘",
-    "처음 어떻게 쓰나요?",
-    "휠체어 접근은 뭘 확인하나요?",
-    "점수와 감점 이유가 궁금해요",
-    "음식 제한이 있으면요?",
-    "개인정보는 저장되나요?"
+    "내 주변 장애인 화장실 찾기",
+    "내 주변 전동휠체어 충전기 찾기",
+    "처음 쓰는 방법",
+    "휠체어 접근 확인 방법",
+    "점수와 감점 이유",
+    "음식 제한 안내",
+    "개인정보 저장 여부"
   ];
 
   function normalize(text) {
@@ -496,9 +484,9 @@
 
   function nearbyVerificationLabel(value) {
     return {
-      public_data: "공공데이터 등록",
-      verified: "검수 완료",
-      partial: "일부 검수",
+      public_data: "공식 자료 등록",
+      verified: "확인 완료",
+      partial: "일부 확인",
       needs_check: "방문 전 확인 필요",
       unavailable: "정보 확인 필요"
     }[boundedText(value, 24).toLowerCase()] || "방문 전 확인 필요";
@@ -552,7 +540,7 @@
           "p",
           "helpbot-nearby-empty",
           payload?.status === "resource_data_gap"
-            ? "공식 위치 데이터가 아직 연결되지 않아 거리순 결과를 표시하지 않습니다."
+            ? "공식 위치 정보가 아직 연결되지 않아 거리순 결과를 표시하지 않습니다."
             : "현재 위치를 기준으로 표시할 공식 시설 결과가 없습니다. 지역명을 함께 입력해 다시 확인해 주세요."
         )
       );
@@ -604,7 +592,7 @@
       const checkedAt = boundedText(item.checked_at, 32);
       if (checkedAt) {
         const checkedPrefix = boundedText(item.verification_status, 24).toLowerCase() === "public_data"
-          ? "데이터 기준"
+          ? "정보 기준"
           : "확인";
         verification.appendChild(createElement("small", "", `${checkedPrefix} ${checkedAt}`));
       }
@@ -645,7 +633,7 @@
       denied: "위치 권한이 없어 근처 검색을 진행하지 못했습니다. 브라우저 주소창의 위치 권한을 허용한 뒤 다시 찾아 주세요.",
       unavailable: "기기에서 현재 위치를 확인할 수 없습니다. 위치 서비스를 켠 뒤 다시 시도해 주세요.",
       timeout: "10초 안에 현재 위치를 확인하지 못했습니다. 잠시 후 다시 시도해 주세요.",
-      insecure: "보안 연결(HTTPS)이 아니어서 위치 권한을 사용할 수 없습니다. 안전한 연결에서 다시 열어 주세요.",
+      insecure: "안전한 연결이 아니어서 위치 권한을 사용할 수 없습니다. 안전한 주소에서 다시 열어 주세요.",
       unsupported: "이 브라우저에서는 현재 위치 기능을 사용할 수 없습니다. 읍·면·동을 직접 입력해 주세요."
     };
     fragment.appendChild(
@@ -660,7 +648,7 @@
       fragment.appendChild(actions);
     }
     fragment.appendChild(
-      createElement("div", "helpbot-safe-note", "좌표는 위치 확인에 성공한 경우에만 이번 거리 검색 요청에 사용되며 대화 기록이나 브라우저 저장소에 남지 않습니다.")
+      createElement("div", "helpbot-safe-note", "현재 위치 정보는 이번 거리 검색에만 사용되며 대화 기록이나 브라우저 저장소에 남지 않습니다.")
     );
     return fragment;
   }
@@ -679,7 +667,7 @@
     const confidenceBadge = createElement(
       "span",
       "helpbot-confidence",
-      confidence >= 5 ? "기본 도움말 · 관련도 높음" : "기본 도움말"
+      confidence >= 5 ? "기본 도움말 · 바로 확인" : "기본 도움말"
     );
     const safeNote = createElement("div", "helpbot-safe-note", SAFETY_NOTE);
 
@@ -698,7 +686,7 @@
       "",
       isNearbyResourceResponse
         ? "현재 위치 근처 검색"
-        : (payload.status === "success" ? "AI 도움말 답변" : "도움말 상태")
+        : (payload.status === "success" ? "자동 도움말 답변" : "도움말 상태")
     );
     const answerText = payload.answer || "답변을 가져오지 못했습니다.";
     const answer = renderReadableText(answerText);
@@ -706,8 +694,8 @@
       "span",
       "helpbot-confidence",
       isNearbyResourceResponse
-        ? "공식 데이터 · 거리순"
-        : (payload.status === "success" ? `LLM 답변 · ${payload.model || "model"}` : payload.status || "fallback")
+        ? "공식 자료 · 거리순"
+        : (payload.status === "success" ? "가치봄 자동 안내" : "기본 도움말")
     );
 
     fragment.appendChild(title);
@@ -817,7 +805,7 @@
     const title = createElement("div", "helpbot-loading-title");
     const dots = createElement("span", "helpbot-loading-dots");
 
-    title.appendChild(createElement("span", "", options.title || "AI가 답변을 준비 중입니다"));
+    title.appendChild(createElement("span", "", options.title || "답변을 준비하고 있습니다"));
     [1, 2, 3].forEach(() => {
       dots.appendChild(createElement("span"));
     });
@@ -1020,7 +1008,8 @@
       ? Math.max(360, viewportHeight - 88)
       : Math.min(660, Math.max(360, viewportHeight - 116));
     const panelHeight = shell.getBoundingClientRect().height || fallbackPanelHeight;
-    const tabHeight = wingButton.getBoundingClientRect().height || 176;
+    const tabHeight = wingButton.getBoundingClientRect().height
+      || readCssPixel(positionRoot, "--helpbot-wing-size", 56);
     const panelTop = clamp(
       viewportHeight - panelHeight - panelBottom,
       margin,
@@ -1034,6 +1023,24 @@
 
     positionRoot.style.setProperty("--helpbot-panel-top", `${Math.round(panelTop)}px`);
     positionRoot.style.setProperty("--helpbot-tab-top", `${Math.round(tabTop)}px`);
+  }
+
+  function installWingScrollVisibility(positionRoot) {
+    if (!positionRoot) {
+      return;
+    }
+
+    function update() {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+      const pageHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+      const atTop = scrollTop <= 24;
+      const atBottom = scrollTop + window.innerHeight >= pageHeight - 96;
+      positionRoot.classList.toggle("is-page-middle", !atTop && !atBottom);
+    }
+
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
   }
 
   function installWingBannerDraggable(positionRoot, wingButton, shell) {
@@ -1054,7 +1061,8 @@
     }
 
     function setTabTop(tabTop) {
-      const tabHeight = wingButton.getBoundingClientRect().height || 190;
+      const tabHeight = wingButton.getBoundingClientRect().height
+        || readCssPixel(positionRoot, "--helpbot-wing-size", 56);
       const panelHeight = shell.getBoundingClientRect().height || Math.min(660, window.innerHeight - 116);
       const tabOffset = dragState?.tabOffset ?? getTabOffset();
       const nextTabTop = clamp(tabTop, margin, window.innerHeight - tabHeight - margin);
@@ -1214,7 +1222,7 @@
       if (message) {
         message.textContent = prompt;
       }
-      openButton?.setAttribute("aria-label", `${prompt} 가치봄 AI 챗봇 열기`);
+      openButton?.setAttribute("aria-label", `${prompt} 가치봄 도움말 열기`);
       if (!HELP_PRESENCE_TEST_MODE) {
         writeHelpbotPresenceStorage(HELP_PRESENCE_LAST_HOUR_KEY, helpbotPresenceHourKey(now));
       }
@@ -1765,7 +1773,8 @@
     const presence = wingMode ? createElement("div", "helpbot-presence") : null;
     const shell = createElement("section", "helpbot");
     shell.dataset.mode = mode;
-    shell.setAttribute("aria-label", "가치봄 제주 도움말 챗봇");
+    shell.setAttribute("role", "dialog");
+    shell.setAttribute("aria-label", "가치봄 제주 도움말");
 
     const sidebar = createElement("aside", "helpbot-sidebar");
     const intro = createElement("div");
@@ -1774,12 +1783,12 @@
       createElement(
         "p",
         "helpbot-note",
-        "서비스 사용 중 헷갈리는 점을 빠르게 확인하세요. 브라우저는 API 키를 직접 다루지 않습니다."
+        "서비스 사용 중 헷갈리는 내용을 주제별로 빠르게 확인하세요."
       )
     );
 
     const status = createElement("div", "helpbot-status");
-    status.appendChild(createElement("strong", "", "LLM 답변"));
+    status.appendChild(createElement("strong", "", "안내 기준"));
     status.appendChild(
       createElement("span", "", "추천보다 근거, 방문 전 확인, 개인정보 최소 입력 원칙을 기준으로 답합니다.")
     );
@@ -1807,13 +1816,12 @@
     headAvatar.appendChild(headAvatarImage);
     const titleBlock = createElement("div", "helpbot-head-copy");
     titleBlock.appendChild(createElement("strong", "", "가치봄 도움말"));
-    titleBlock.appendChild(createElement("span", "", "서버 답변 · 공식 위치 검색"));
+    titleBlock.appendChild(createElement("span", "", "사용 안내 · 주변 시설 찾기"));
     headBrand.appendChild(headAvatar);
     headBrand.appendChild(titleBlock);
     const headActions = createElement("div", "helpbot-head-actions");
-    const dragHandle = createElement("button", "helpbot-drag-handle", "이동");
-    dragHandle.type = "button";
-    dragHandle.setAttribute("aria-label", "챗봇 창 이동");
+    const dragHandle = createElement("span", "helpbot-drag-handle", "창 이동");
+    dragHandle.setAttribute("aria-hidden", "true");
     const resetButton = createElement("button", "helpbot-reset", "대화 초기화");
     resetButton.type = "button";
     headActions.appendChild(dragHandle);
@@ -1835,7 +1843,7 @@
     log.appendChild(
       createMessage(
         "bot",
-        "안녕하세요. 가치봄 제주 사용법, 점수 해석, 접근성 확인, 개인정보 기준을 안내합니다. 일반 질문은 서버 도움말로, 현재 위치 근처 검색은 공식 데이터의 거리순 결과로 처리됩니다."
+        "안녕하세요. 가치봄 제주 사용법, 추천 결과 보는 법, 접근성 확인 방법을 안내합니다. 가까운 시설을 찾을 때만 현재 위치를 요청합니다."
       )
     );
 
@@ -1845,8 +1853,8 @@
     const quickRailId = `helpbot-quick-rail-${++quickRailSequence}`;
     quickRail.id = quickRailId;
     quickRail.setAttribute("aria-label", "질문 예시 목록");
-    const quickCount = createElement("span", "helpbot-quick-count", `질문 예시 ${QUICK_PROMPTS.length}개`);
-    const quickToggle = createElement("button", "helpbot-quick-toggle", "모두 보기");
+    const quickCount = createElement("span", "helpbot-quick-count", "자주 묻는 질문");
+    const quickToggle = createElement("button", "helpbot-quick-toggle", "더 보기");
     quickToggle.type = "button";
     quickToggle.setAttribute("aria-expanded", "false");
     quickToggle.setAttribute("aria-controls", quickRailId);
@@ -1854,7 +1862,7 @@
       const expanded = !quick.classList.contains("is-expanded");
       quick.classList.toggle("is-expanded", expanded);
       quickToggle.setAttribute("aria-expanded", String(expanded));
-      quickToggle.textContent = expanded ? "접기" : "모두 보기";
+      quickToggle.textContent = expanded ? "접기" : "더 보기";
       if (!expanded) {
         quickRail.scrollLeft = 0;
       }
@@ -1896,7 +1904,7 @@
     if (wingMode && wingWrap && wingButton && presence) {
       const presenceCta = createElement("button", "helpbot-presence-cta");
       presenceCta.type = "button";
-      presenceCta.appendChild(createElement("strong", "", "가치봄 AI"));
+      presenceCta.appendChild(createElement("strong", "", "가치봄 도움말"));
       presenceCta.appendChild(createElement("span", "helpbot-presence-message", "접근성 정보가 궁금하면 물어보세요."));
       const presenceDismiss = createElement("button", "helpbot-presence-dismiss", "×");
       presenceDismiss.type = "button";
@@ -1909,8 +1917,8 @@
       presence.appendChild(presenceDismiss);
       wingButton.type = "button";
       wingButton.setAttribute("aria-expanded", "false");
-      wingButton.setAttribute("aria-label", "가치봄 AI 챗봇 열기");
-      wingButton.title = "가치봄 AI 챗봇";
+      wingButton.setAttribute("aria-label", "가치봄 도움말 열기");
+      wingButton.title = "가치봄 도움말";
       const wingImage = createElement("img", "helpbot-wing-image");
       wingImage.src = "assets/help-chatbot-wing-badge.png";
       wingImage.alt = "";
@@ -1934,6 +1942,7 @@
       wingButton,
     });
     applyInitialWingPosition(wingWrap, wingButton, shell);
+    installWingScrollVisibility(wingWrap);
     window.addEventListener("resize", () => {
       if (!wingWrap || wingWrap.classList.contains("is-position-custom") || wingWrap.classList.contains("is-open")) {
         return;
@@ -1954,10 +1963,19 @@
 
       const history = collectHistory(log);
       const nearbyIntent = nearbyResourceIntent(userText);
+      const topicMatch = nearbyIntent ? { topic: null, score: 0 } : findTopic(userText);
       log.appendChild(createMessage("user", userText, { excludeFromHistory: Boolean(nearbyIntent) }));
+
+      if (topicMatch.topic && topicMatch.score >= 5) {
+        log.appendChild(createMessage("bot", renderAnswer(topicMatch.topic, topicMatch.score)));
+        log.scrollTop = log.scrollHeight;
+        input.focus();
+        return;
+      }
+
       const thinking = createLoadingMessage(nearbyIntent ? {
         title: "현재 위치 권한을 확인하고 있습니다",
-        copy: "좌표는 이번 거리 검색 요청에만 사용하며 대화 기록이나 브라우저 저장소에 남기지 않습니다."
+        copy: "현재 위치 정보는 이번 거리 검색에만 사용하며 대화 기록이나 브라우저 저장소에 남기지 않습니다."
       } : {});
       if (nearbyIntent) {
         thinking.dataset.helpHistory = "exclude";
@@ -1978,10 +1996,17 @@
           }
           updateLoadingMessage(thinking, {
             title: "가까운 공식 시설을 찾고 있습니다",
-            copy: "공식 위치 데이터의 거리, 검수 상태와 출처를 함께 확인하고 있습니다."
+            copy: "공식 위치 정보의 거리, 확인 상태와 출처를 함께 살펴보고 있습니다."
           });
         }
         const payload = await requestLlmAnswer(userText, history, proximityRequest);
+        if (!nearbyIntent && payload?.status !== "success") {
+          const fallback = topicMatch.topic
+            ? renderAnswer(topicMatch.topic, topicMatch.score)
+            : renderFallback(userText);
+          thinking.replaceWith(createMessage("bot", fallback));
+          return;
+        }
         thinking.replaceWith(
           createMessage("bot", renderLlmAnswer(payload), {
             excludeFromHistory: Boolean(nearbyIntent || payload?.response_kind === "nearby_resource")
@@ -1993,14 +2018,15 @@
             createMessage("bot", renderLocationError(error, userText), { excludeFromHistory: true })
           );
         } else {
-          const match = findTopic(userText);
-          const fallback = match.topic ? renderAnswer(match.topic, match.score) : renderFallback(userText);
+          const fallback = topicMatch.topic
+            ? renderAnswer(topicMatch.topic, topicMatch.score)
+            : renderFallback(userText);
           const wrapper = document.createDocumentFragment();
           wrapper.appendChild(
             createElement(
               "div",
               "helpbot-safe-note",
-              `LLM 도움말 API에 연결하지 못해 기본 도움말로 답합니다. 사유: ${String(error.message || error).slice(0, 80)}`
+              "답변을 불러오지 못해 기본 도움말을 보여드립니다. 잠시 후 다시 시도해 주세요."
             )
           );
           wrapper.appendChild(fallback);
@@ -2016,26 +2042,36 @@
       log.scrollTop = log.scrollHeight;
     }
 
+    let wingReturnFocus = null;
+
     function openWing() {
       if (!wingWrap || !wingButton) {
         input.focus();
         return;
       }
+      if (!isWingOpen()) {
+        wingReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : wingButton;
+      }
       wingWrap.classList.add("is-open");
       wingButton.setAttribute("aria-expanded", "true");
-      wingButton.setAttribute("aria-label", "가치봄 AI 챗봇 닫기");
+      wingButton.setAttribute("aria-label", "가치봄 도움말 닫기");
       wingWrap.dispatchEvent(new CustomEvent("helpbot-wing-opened"));
       input.focus();
     }
 
-    function closeWing() {
+    function closeWing({ restoreFocus = true } = {}) {
       if (!wingWrap || !wingButton) {
         return;
       }
       wingWrap.classList.remove("is-open");
       wingButton.setAttribute("aria-expanded", "false");
-      wingButton.setAttribute("aria-label", "가치봄 AI 챗봇 열기");
+      wingButton.setAttribute("aria-label", "가치봄 도움말 열기");
       wingWrap.dispatchEvent(new CustomEvent("helpbot-wing-closed"));
+      if (restoreFocus) {
+        const focusTarget = wingReturnFocus?.isConnected ? wingReturnFocus : wingButton;
+        window.requestAnimationFrame(() => focusTarget?.focus());
+      }
+      wingReturnFocus = null;
     }
 
     function isWingOpen() {
@@ -2054,7 +2090,7 @@
           if (!isWingOpen() || isHelpbotTarget(event.target, event)) {
             return;
           }
-          closeWing();
+          closeWing({ restoreFocus: false });
         },
         true
       );
@@ -2114,7 +2150,17 @@
     }
 
     if (closeButton) {
-      closeButton.addEventListener("click", closeWing);
+      closeButton.addEventListener("click", () => closeWing());
+    }
+
+    if (wingWrap) {
+      document.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape" || !isWingOpen()) {
+          return;
+        }
+        event.preventDefault();
+        closeWing();
+      });
     }
 
     form.addEventListener("submit", (event) => {
