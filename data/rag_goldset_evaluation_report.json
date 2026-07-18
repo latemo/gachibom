@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-07-15",
+  "goldset_id": "gachibom_rag_goldset_v1",
+  "status": "blocked_pending_human_review",
+  "reportable": false,
+  "blockers": [
+    "사람이 승인한 골드셋 케이스가 없어 Recall@4와 Grounded Claim Rate를 산출할 수 없습니다."
+  ],
+  "coverage": {
+    "total_cases": 60,
+    "approved_cases": 0,
+    "pending_cases": 60,
+    "run_record_count": 0
+  },
+  "thresholds": {
+    "recall_at_4": 0.9,
+    "grounded_claim_rate": 0.95,
+    "hard_constraint_violation_rate": 0.0,
+    "run_success_rate": 1.0
+  },
+  "systems": {}
+}

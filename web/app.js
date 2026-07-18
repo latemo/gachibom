@@ -1,8 +1,5 @@
 const state = {
   data: null,
-  validationReport: null,
-  operationsReadiness: null,
-  launchActionPlan: null,
   scenarioId: null,
   selectedSpotId: null,
   mapPopupSpotId: null,
@@ -12,39 +9,74 @@ const state = {
   routeModalOpen: false,
   promoModalOpen: false,
   siteIntroOpen: true,
+  savedRoutes: [],
+  savedRoutesOpen: false,
+  aiExplanationModalOpen: false,
+  sharedRoutePreview: null,
+  savedRouteMessage: "",
+  pendingSavedRouteDeleteId: null,
   profile: null,
+  profileModalDraft: null,
+  ragQuery: "",
+  conceptFocus: null,
   runtimeScenario: null,
   apiStatus: "추천 준비 완료",
   apiState: {
     status: "idle",
     message: "추천 기준을 준비하고 있습니다.",
     canRetry: false
+  },
+  aiExplanation: {
+    status: "idle",
+    message: "공식 근거를 바탕으로 한 자동 설명은 아직 만들지 않았습니다.",
+    contextKey: ""
   }
 };
 
 const RECOMMENDATION_MODEL = "gpt-5-mini";
 const RECOMMENDATION_LIMIT = 4;
-const AI_DISPLAY_NAME = "가치봄 AI";
 const AI_HEADLINE_MAX_LENGTH = 90;
 const AI_LIST_ITEM_MAX_LENGTH = 86;
+const AI_EXPLANATION_TIMEOUT_MS = 40000;
+const AI_EXPLANATION_CACHE_LIMIT = 8;
 const ROUTE_PROVIDER_TIMEOUT_MS = 7000;
 const ROUTE_SPEED_FALLBACK_KMH = 32;
+const ROUTE_SUMMARY_CACHE_LIMIT = 24;
 const ROUTE_KEY_COLOR = "#126fb5";
 const SITE_INTRO_SEEN_KEY = "gachibom:site-intro-seen";
-let shareFeedbackTimer = null;
+const SAVED_TRIPS = window.GachibomSavedTrips || null;
+const shareFeedbackTimers = new WeakMap();
+const standardModalReturnFocus = new WeakMap();
+let savedRouteDeleteTimer = null;
+let savedRoutesReturnFocus = null;
+let aiExplanationReturnFocus = null;
+let promoReturnHash = "#conceptPage";
 let centerMap = null;
 let centerTileLayer = null;
-let centerLayerGroup = null;
+let centerRouteLayerGroup = null;
+let centerMarkerLayerGroup = null;
+const centerMarkersBySpotId = new Map();
 let centerMapLayerMode = "soft";
 let centerMapRenderSequence = 0;
 let centerMapLastFitKey = null;
+let centerMapRenderedRouteKey = null;
 let centerMapObserver = null;
 let pendingCenterMapScenario = null;
+let mapHitBoundsFrame = null;
+let centerTileErrorCount = 0;
 let routeMap = null;
 let routeLayerGroup = null;
+let routeTileLayer = null;
+let routeTileErrorCount = 0;
 let routeProxySupportPromise = null;
 const routeSummaryCache = new Map();
+const aiExplanationCache = new Map();
+let routeModalRenderSequence = 0;
 let recommendationRequestSequence = 0;
+let recommendationAbortController = null;
+let aiExplanationRequestSequence = 0;
+let aiExplanationAbortController = null;
+let aiExplanationProgressTimers = [];
 let siteIntroStarted = false;
 
 const centerMapLayerDefinitions = {
@@ -102,6 +134,23 @@ const categoryLabels = {
   other: "기타"
 };
 
+const pointRoleLabels = Object.freeze({
+  poi: "장소 위치",
+  facility: "시설 위치",
+  route_start: "코스 시작점",
+  route_start_end: "코스 시작·종점",
+  route_end_reference: "종점 인근 위치",
+  viewpoint: "조망점"
+});
+
+const pointRoleShortLabels = Object.freeze({
+  facility: "시설",
+  route_start: "시작점",
+  route_start_end: "시작·종점",
+  route_end_reference: "종점 측",
+  viewpoint: "조망점"
+});
+
 const conditionLabels = {
   traveler_type: "여행자",
   mobility_conditions: "이동 조건",
@@ -111,11 +160,11 @@ const conditionLabels = {
 };
 
 const scoreLabels = {
-  source_trust: "정보 신뢰",
-  mobility_fit: "이동 편의",
-  facility_fit: "시설 접근성",
-  theme_fit: "편의 시설",
-  safety_clarity: "안전·편의"
+  source_trust: "정보 신뢰도",
+  mobility_fit: "이동 적합성",
+  facility_fit: "편의시설",
+  theme_fit: "테마 적합성",
+  safety_clarity: "안전 안내"
 };
 
 const accessibilityFieldLabels = {
@@ -135,47 +184,116 @@ const accessibilityFieldLabels = {
 const scenarioCards = [
   {
     id: "recovery_quiet",
-    icon: "♡",
-    image: "assets/theme-character-recovery.webp?v=20260710-2",
+    iconClass: "bi-heart-pulse",
+    lineArt: "assets/theme-line-recovery.png?v=20260715-1",
+    character: "assets/theme-character-recovery.webp?v=20260710-2",
     title: "회복 중",
     body: "무리한 일정을 피하고 휴식이 많은 코스",
     tone: "rose"
   },
   {
     id: "diet_restricted",
-    icon: "♨",
-    image: "assets/theme-character-food.webp?v=20260710-2",
+    iconClass: "bi-egg-fried",
+    lineArt: "assets/theme-line-food.png?v=20260715-1",
+    character: "assets/theme-character-food.webp?v=20260710-2",
     title: "음식 제한",
     body: "식당·시장 제외, 휴식 중심",
     tone: "cream"
   },
   {
     id: "stroller_family",
-    icon: "▣",
-    image: "assets/theme-character-family.webp?v=20260710-2",
+    iconClass: "bi-people",
+    lineArt: "assets/theme-line-family.png?v=20260715-1",
+    character: "assets/theme-character-family.webp?v=20260710-2",
     title: "아이 동반",
     body: "유모차와 보호자 휴식 동선을 우선",
     tone: "purple"
   },
   {
     id: "wheelchair_access",
-    icon: "♿",
-    image: "assets/theme-character-wheelchair.webp?v=20260710-2",
+    iconClass: "bi-person-wheelchair",
+    lineArt: "assets/theme-line-wheelchair.png?v=20260715-1",
+    character: "assets/theme-character-wheelchair.webp?v=20260710-2",
     title: "휠체어 접근",
     body: "휠체어 접근 가능한 장소 우선",
     tone: "mint"
   },
   {
     id: "weather_sensitive",
-    icon: "☁",
-    image: "assets/theme-character-weather.webp?v=20260710-2",
+    iconClass: "bi-cloud-rain",
+    lineArt: "assets/theme-line-weather.png?v=20260715-1",
+    character: "assets/theme-character-weather.webp?v=20260710-2",
     title: "날씨 민감",
     body: "실내/실외 혼합 코스 선호",
     tone: "blue"
   }
 ];
 
+const conceptRecipeProfiles = {
+  recovery_quiet: {
+    subtitle: "오늘은 천천히, 쉬어가며 제주를 만나요.",
+    companion: { key: "traveler_type", value: "caregiver_group", label: "보호자와" },
+    pace: { key: "mobility_conditions", value: "휴식 필요", label: "아주 여유롭게" },
+    distance: { key: "mobility_conditions", value: "긴 걷기 어려움", label: "15분 이내" },
+    setting: { key: "preferred_themes", value: "실내", label: "실내 위주" },
+    essentials: [
+      { key: "required_accessibility", value: "주차", label: "주차" },
+      { key: "required_accessibility", value: "장애인 화장실", label: "화장실" },
+      { key: "required_accessibility", value: "휴식 공간", label: "휴식 공간" }
+    ]
+  },
+  diet_restricted: {
+    subtitle: "먹거리 걱정은 덜고, 편안한 관람에 집중해요.",
+    companion: { key: "traveler_type", value: "diet_restricted_traveler", label: "식사 기준에 맞춰" },
+    pace: { key: "mobility_conditions", value: "체력 저하", label: "여유롭게" },
+    distance: { key: "mobility_conditions", value: "짧은 이동", label: "15분 이내" },
+    setting: { key: "preferred_themes", value: "실내", label: "실내 위주" },
+    essentials: [
+      { key: "required_accessibility", value: "주차", label: "주차" },
+      { key: "required_accessibility", value: "장애인 화장실", label: "화장실" },
+      { key: "avoid", value: "식당 제외", label: "식당 제외" }
+    ]
+  },
+  stroller_family: {
+    subtitle: "아이와 보호자 모두 쉬기 좋은 동선으로 둘러봐요.",
+    companion: { key: "traveler_type", value: "stroller_family", label: "아이와" },
+    pace: { key: "mobility_conditions", value: "휴식 필요", label: "쉬엄쉬엄" },
+    distance: { key: "mobility_conditions", value: "짧은 이동", label: "15분 이내" },
+    setting: { key: "preferred_themes", value: "공원", label: "공원·실내 위주" },
+    essentials: [
+      { key: "required_accessibility", value: "주차", label: "주차" },
+      { key: "required_accessibility", value: "화장실", label: "화장실" },
+      { key: "required_accessibility", value: "휴식 공간", label: "휴식 공간" }
+    ]
+  },
+  wheelchair_access: {
+    subtitle: "확인된 접근 정보와 평탄한 동선을 먼저 살펴봐요.",
+    companion: { key: "traveler_type", value: "wheelchair_user", label: "휠체어로" },
+    pace: { key: "mobility_conditions", value: "긴 걷기 어려움", label: "안전하게" },
+    distance: { key: "mobility_conditions", value: "경사와 계단 확인", label: "평탄한 동선" },
+    setting: { key: "preferred_themes", value: "실내", label: "실내 위주" },
+    essentials: [
+      { key: "required_accessibility", value: "주차", label: "주차" },
+      { key: "required_accessibility", value: "장애인 화장실", label: "화장실" },
+      { key: "required_accessibility", value: "휠체어 접근", label: "휠체어 접근" }
+    ]
+  },
+  weather_sensitive: {
+    subtitle: "비와 바람의 영향을 줄인 실내 코스로 여행해요.",
+    companion: { key: "traveler_type", value: "senior", label: "동행자와" },
+    pace: { key: "mobility_conditions", value: "바람", label: "날씨 걱정 없이" },
+    distance: { key: "mobility_conditions", value: "짧은 이동", label: "15분 이내" },
+    setting: { key: "preferred_themes", value: "실내", label: "실내 위주" },
+    essentials: [
+      { key: "required_accessibility", value: "주차", label: "주차" },
+      { key: "required_accessibility", value: "장애인 화장실", label: "화장실" },
+      { key: "avoid", value: "강풍", label: "강풍 피하기" }
+    ]
+  }
+};
+
 let themeMotionTimer = null;
+let ragQueryAssistTimer = null;
 
 const optionItems = [
   { key: "traveler_type", value: "stroller_family", label: "아이 동반" },
@@ -188,19 +306,41 @@ const optionItems = [
   { key: "avoid", value: "식당 제외", label: "식당 제외" }
 ];
 
-const scenarioMatchWeights = {
-  traveler_type: 4,
-  mobility_conditions: 3,
-  preferred_themes: 2,
-  required_accessibility: 3,
-  avoid: 4
-};
+const ragQueryConditionRules = [
+  { label: "지역 · 제주시", aliases: ["제주시", "제주 시내", "제주공항"] },
+  { label: "지역 · 서귀포시", aliases: ["서귀포시", "서귀포"] },
+  { label: "테마 · 실내", aliases: ["실내", "박물관", "미술관", "전시관", "기념관"] },
+  { label: "테마 · 문화", aliases: ["문화", "역사", "유적", "박물관", "미술관"] },
+  { label: "테마 · 숲", aliases: ["숲", "수목원", "정원"] },
+  { label: "테마 · 바다", aliases: ["바다", "해변", "해안"] },
+  { label: "테마 · 공원", aliases: ["공원", "산책로"] },
+  { label: "테마 · 휴식", aliases: ["휴식", "조용한", "한적한", "쉼"] },
+  { label: "접근 · 휠체어", aliases: ["휠체어", "전동휠체어", "전동 휠체어"] },
+  { label: "접근 · 장애인 화장실", aliases: ["장애인 화장실", "휠체어 화장실", "무장애 화장실"] },
+  { label: "접근 · 주차", aliases: ["장애인 주차", "주차장", "주차 필요", "주차 가능"] },
+  { label: "동행 · 아이", aliases: ["유모차", "유아차", "영유아", "아이 동반"] },
+  { label: "동행 · 고령자", aliases: ["어르신", "노인", "고령자", "노약자"] },
+  { label: "이동 · 짧은 이동", aliases: ["짧은 이동", "이동 거리가 짧", "가까운 곳", "근처"] },
+  { label: "이동 · 휴식 필요", aliases: ["휴식 필요", "자주 쉬", "벤치", "쉼터"] },
+  { label: "이동 · 계단 회피", aliases: ["계단 회피", "계단 피", "계단 제외"] },
+  { label: "날씨 · 비", aliases: ["비 오는", "우천"] },
+  { label: "지원 · 병원", aliases: ["종합병원", "대형병원", "응급실", "병원"] },
+  { label: "지원 · 약국", aliases: ["약국"] },
+  { label: "지원 · 급속충전기", aliases: ["급속충전기", "급속 충전기", "휠체어 충전", "보장구 충전"] },
+  { label: "지원 · 이동지원센터", aliases: ["이동지원센터", "이동 지원 센터", "콜택시", "콜 택시"] },
+  { label: "지원 · 관광 복지", aliases: ["관광복지서비스", "관광 복지 서비스", "관광 관련 복지", "복지서비스"] }
+];
 
-const officialRecommendationWeights = {
-  "적극추천": 3,
-  "추천": 2,
-  "조건부권장": 1
-};
+const ragQueryConflictRules = [
+  { label: "음식·식당", avoidAliases: ["식당 제외"], queryAliases: ["음식", "식당", "음식점", "맛집", "먹거리"] },
+  { label: "바다", avoidAliases: ["바다"], queryAliases: ["바다", "해변", "해안"] },
+  { label: "숲", avoidAliases: ["숲"], queryAliases: ["숲", "수목원", "정원"] },
+  { label: "실내", avoidAliases: ["실내"], queryAliases: ["실내", "박물관", "미술관", "전시관", "기념관"] }
+];
+
+const ragQueryAvoidAfterMarkers = [
+  "회피", "피하", "피해", "피하고", "빼", "제외", "말고", "싫", "없", "어렵", "힘들", "불편", "원하지", "안 가", "가지 않", "못 가"
+];
 
 const mapCardBounds = [
   { x: 346, y: 108, width: 282, height: 132 },
@@ -227,85 +367,270 @@ const jejuMapProjection = {
 };
 
 const DEFAULT_PLACE_IMAGE = {
-  src: "assets/WELCOME-1-001.jpg",
-  caption: "제주 접근성 여행 기본 이미지",
-  source: "서비스 기본 이미지",
-  policy: "대표 이미지 미수급"
+  src: "assets/jeju-theme-preview-hero.webp",
+  alt: "제주 여행 배경 이미지",
+  caption: "장소 대표 이미지를 준비하고 있습니다.",
+  source: "가치봄 제주 공용 이미지",
+  policy: "대표 이미지 준비 중"
 };
 
-const PLACE_IMAGE_VERSION = "20260710-1";
+const PLACE_IMAGE_VERSION = "20260714-1";
+const JEJU_ROADVIEW_IMAGE_SOURCE_URL = "https://www.data.go.kr/data/15110209/fileData.do";
+
+function placeImage(src, caption, {
+  source,
+  sourceUrl,
+  license,
+  policy = "장소 대표 이미지",
+  fit = "cover"
+}) {
+  return {
+    src: `${src}?v=${PLACE_IMAGE_VERSION}`,
+    caption,
+    source,
+    sourceUrl,
+    license,
+    policy,
+    fit
+  };
+}
+
+function roadviewPlaceImage(src, caption) {
+  return placeImage(src, caption, {
+    source: "제주특별자치도 접근성 시설 사진",
+    sourceUrl: JEJU_ROADVIEW_IMAGE_SOURCE_URL,
+    license: "이용허락 범위 제한 없음"
+  });
+}
+
+function commonsPlaceImage(src, caption, source, sourceUrl, license, policy) {
+  return placeImage(src, caption, {
+    source,
+    sourceUrl,
+    license,
+    policy: policy || "장소 대표 이미지"
+  });
+}
 
 const PLACE_IMAGE_POLICY = {
-  jeju_indoor_literature_022: {
-    src: `assets/JEJULITERMU-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "제주문학관 외관",
-    source: "제주특별자치도 공식 블로그",
-    sourceUrl: "https://blog.naver.com/happyjejudo/223187158714",
-    policy: "실제 장소 대표 이미지"
-  },
-  jeju_indoor_hanran_016: {
-    src: `assets/HALLANEX-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "제주한란전시관 외관",
-    source: "제주특별자치도 공식 블로그",
-    sourceUrl: "https://blog.naver.com/happyjejudo/223391669826",
-    policy: "실제 장소 대표 이미지"
-  },
-  jeju_indoor_icc_032: {
-    src: `assets/ICCJEJU-accessible-tourism.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "제주국제컨벤션센터와 중문 해안 전경",
-    source: "대한민국역사박물관 현대사아카이브",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:%EC%A0%9C%EC%A3%BC_%EC%A4%91%EB%AC%B8%EA%B4%80%EA%B4%91%EB%8B%A8%EC%A7%80_%EA%B5%AD%EC%A0%9C%EC%BB%A8%EB%B2%A4%EC%85%98%EC%84%BC%ED%84%B0.jpg",
-    license: "공공누리 제1유형",
-    policy: "실제 장소 대표 이미지"
-  },
-  jeju_indoor_mandeok_museum_009: {
-    src: `assets/MANDEOK-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "김만덕기념관과 야외 정원",
-    source: "제주특별자치도 공공데이터",
-    sourceUrl: "https://www.data.go.kr/data/15109158/fileData.do",
-    license: "이용허락범위 제한 없음",
-    policy: "실제 장소 대표 이미지"
-  },
-  jeju_indoor_worldheritage_011: {
-    src: `assets/WNHCENTER-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "제주세계자연유산센터 전경",
-    source: "제주특별자치도 공공데이터",
-    sourceUrl: "https://www.data.go.kr/data/15109158/fileData.do",
-    license: "이용허락범위 제한 없음",
-    policy: "실제 장소 대표 이미지"
-  },
-  jeju_forest_saryeoni_002: {
-    src: `assets/SARANI-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "사려니숲길 무장애 데크길",
-    source: "제주특별자치도 공공데이터",
-    sourceUrl: "https://www.data.go.kr/data/15109158/fileData.do",
-    license: "이용허락범위 제한 없음",
-    policy: "실제 장소 대표 이미지"
-  },
-  jeju_forest_healing_001: {
-    src: `assets/HEALING-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "서귀포 치유의숲 무장애 데크길",
-    source: "제주특별자치도 공공데이터",
-    sourceUrl: "https://www.data.go.kr/data/15109158/fileData.do",
-    license: "이용허락범위 제한 없음",
-    policy: "실제 장소 대표 이미지"
-  },
-  jeju_cafe_osulloc_013: {
-    src: `assets/OSULLOC-easyjeju.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "오설록 티 뮤지엄 외관",
-    source: "Wikimedia Commons · 골뱅이",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:O%27Sulloc_Tea_Museum,_Jeju_(%EC%98%A4%EC%84%A4%EB%A1%9D_%EB%85%B9%EC%B0%A8%EB%B0%95%EB%AC%BC%EA%B4%80,_%EC%A0%9C%EC%A3%BC)_-_panoramio.jpg",
-    license: "CC BY-SA 3.0",
-    policy: "실제 장소 대표 이미지"
-  },
-  jeju_rest_sinsan_015: {
-    src: `assets/SHINSANPA-1-001.jpg?v=${PLACE_IMAGE_VERSION}`,
-    caption: "신산공원 산책 광장",
-    source: "제주특별자치도 공공데이터",
-    sourceUrl: "https://www.data.go.kr/data/15109158/fileData.do",
-    license: "이용허락범위 제한 없음",
-    policy: "실제 장소 대표 이미지"
-  }
+  // 제주특별자치도 사회적약자 시설 로드뷰 공공데이터
+  jeju_culture_folk_village_007: roadviewPlaceImage(
+    "assets/places/jeju_culture_folk_village_007--jeju-roadview--JEJUFOLKVIL-1-032.jpg",
+    "제주민속촌 전통 가옥 거리"
+  ),
+  jeju_culture_hangmong_026: roadviewPlaceImage(
+    "assets/places/jeju_culture_hangmong_026--jeju-roadview--ANTIMONG-1-009.jpg",
+    "항몽유적지 진입부와 안내 공간"
+  ),
+  jeju_culture_mokgwana_008: roadviewPlaceImage(
+    "assets/places/jeju_culture_mokgwana_008--jeju-roadview--MOKGWANA-1-001.jpg",
+    "제주목관아 진입부와 주변 보행로"
+  ),
+  jeju_forest_cheonjiyeon_014: roadviewPlaceImage(
+    "assets/places/jeju_forest_cheonjiyeon_014--jeju-roadview--CHONJIYEON-1-009.jpg",
+    "천지연폭포 접근 주차장과 진입부"
+  ),
+  jeju_forest_halla_005: roadviewPlaceImage(
+    "assets/places/jeju_forest_halla_005--jeju-roadview--HALLAARBOR-1-022.jpg",
+    "한라수목원 숲 산책로"
+  ),
+  jeju_forest_healing_001: roadviewPlaceImage(
+    "assets/HEALING-1-001.jpg",
+    "서귀포 치유의숲 무장애 데크길"
+  ),
+  jeju_forest_recreation_003: roadviewPlaceImage(
+    "assets/places/jeju_forest_recreation_003--jeju-roadview--SEOGWIFOREST-1-024.jpg",
+    "서귀포 자연휴양림 무장애 산책로"
+  ),
+  jeju_forest_red_oreum_004: roadviewPlaceImage(
+    "assets/places/jeju_forest_red_oreum_004--jeju-roadview--REDOREUMROAD-1-056.jpg",
+    "붉은오름자연휴양림 무장애 데크길"
+  ),
+  jeju_forest_saryeoni_002: roadviewPlaceImage(
+    "assets/SARANI-1-001.jpg",
+    "사려니숲길 무장애 데크길"
+  ),
+  jeju_indoor_art_museum_033: roadviewPlaceImage(
+    "assets/places/jeju_indoor_art_museum_033--jeju-roadview--JEJUARTMU-1-008.jpg",
+    "제주도립미술관 외관과 진입 광장"
+  ),
+  jeju_indoor_haenyeo_024: roadviewPlaceImage(
+    "assets/places/jeju_indoor_haenyeo_024--jeju-roadview--HAENYEOMU-1-018.jpg",
+    "제주해녀박물관 야외 전경"
+  ),
+  jeju_indoor_hanran_016: roadviewPlaceImage(
+    "assets/places/jeju_indoor_hanran_016--jeju-roadview--HALLANEX-1-016.jpg",
+    "제주한란전시관 온실 외관과 산책로"
+  ),
+  jeju_indoor_literature_022: roadviewPlaceImage(
+    "assets/places/jeju_indoor_literature_022--jeju-roadview--JEJULITERMU-1-001.jpg",
+    "제주문학관 진입로와 외관"
+  ),
+  jeju_indoor_mandeok_museum_009: roadviewPlaceImage(
+    "assets/MANDEOK-1-001.jpg",
+    "김만덕기념관과 야외 정원"
+  ),
+  jeju_indoor_starlight_025: roadviewPlaceImage(
+    "assets/places/jeju_indoor_starlight_025--jeju-roadview--STARLIGHT-2-002.jpg",
+    "제주별빛누리공원 전시 공간"
+  ),
+  jeju_indoor_worldheritage_011: roadviewPlaceImage(
+    "assets/WNHCENTER-1-001.jpg",
+    "제주세계자연유산센터 전경"
+  ),
+  jeju_rest_sinsan_015: roadviewPlaceImage(
+    "assets/SHINSANPA-1-001.jpg",
+    "신산공원 산책 광장"
+  ),
+  jeju_sea_saeyeongyo_039: roadviewPlaceImage(
+    "assets/places/jeju_sea_saeyeongyo_039--jeju-roadview--NEWBRIDGE-1-014.jpg",
+    "새연교 전망 데크와 교량"
+  ),
+  jeju_tourism_weak_001: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_001--jeju-roadview--JEJU43PA-1-001.jpg",
+    "제주4·3평화공원 기념관 전경"
+  ),
+  jeju_tourism_weak_005: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_005--jeju-roadview--GIDANG-1-001.jpg",
+    "기당미술관 진입부와 외관"
+  ),
+  jeju_tourism_weak_006: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_006--jeju-roadview--KIMCHANG-1-022.jpg",
+    "김창열미술관 출입구 전경"
+  ),
+  jeju_tourism_weak_011: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_011--jeju-roadview--JEJUSTONE-1-035.jpg",
+    "제주돌문화공원 돌담 산책로"
+  ),
+  jeju_tourism_weak_013: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_013--jeju-roadview--MANJANGCAVE-1-016.jpg",
+    "만장굴 관람 진입로"
+  ),
+  jeju_tourism_weak_019: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_019--jeju-roadview--BIJARIM-1-038.jpg",
+    "비자림 숲길"
+  ),
+  jeju_tourism_weak_023: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_023--jeju-roadview--SEOPJIKOJI-1-009.jpg",
+    "섭지코지 해안 진입로"
+  ),
+  jeju_tourism_weak_037: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_037--jeju-roadview--JEOLMULFOREST-1-008.jpg",
+    "절물자연휴양림 산책로"
+  ),
+  jeju_tourism_weak_038: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_038--jeju-roadview--AEROSPACEMU-2-016.jpg",
+    "제주항공우주박물관 실내 전시 공간"
+  ),
+  jeju_tourism_weak_039: roadviewPlaceImage(
+    "assets/places/jeju_tourism_weak_039--jeju-roadview--JEJUCONTEM-1-008.jpg",
+    "제주현대미술관 출입구와 외관"
+  ),
+
+  // Wikimedia Commons 및 공공누리 재사용 허용 이미지
+  jeju_cafe_osulloc_013: commonsPlaceImage(
+    "assets/OSULLOC-easyjeju.jpg",
+    "오설록 티 뮤지엄 외관",
+    "Wikimedia Commons · 골뱅이",
+    "https://commons.wikimedia.org/wiki/File:O%27Sulloc_Tea_Museum,_Jeju_(%EC%98%A4%EC%84%A4%EB%A1%9D_%EB%85%B9%EC%B0%A8%EB%B0%95%EB%AC%BC%EA%B4%80,_%EC%A0%9C%EC%A3%BC)_-_panoramio.jpg",
+    "CC BY-SA 3.0"
+  ),
+  jeju_food_market_olle_035: commonsPlaceImage(
+    "assets/places/jeju_food_market_olle_035--commons--seogwipo-maeil-olle-market-01--hero-crop.jpg",
+    "서귀포매일올레시장 내부 통로",
+    "Wikimedia Commons · Seefooddiet",
+    "https://commons.wikimedia.org/wiki/File:Seogwipo_Maeil_Olle_Market_01.jpg",
+    "CC BY-SA 4.0"
+  ),
+  jeju_forest_thinking_garden_027: commonsPlaceImage(
+    "assets/places/jeju_forest_thinking_garden_027--commons--spirited-garden-06--hero-crop.jpg",
+    "생각하는 정원 연못과 정원 풍경",
+    "Wikimedia Commons · Bernard Gagnon",
+    "https://commons.wikimedia.org/wiki/File:Spirited_Garden_06.jpg",
+    "CC0 1.0"
+  ),
+  jeju_forest_yeomiji_012: commonsPlaceImage(
+    "assets/places/jeju_forest_yeomiji_012--commons--yeomiji--hero-crop.jpg",
+    "여미지식물원 온실 외관",
+    "Wikimedia Commons · WSTAY.com",
+    "https://commons.wikimedia.org/wiki/File:Yeomiji.jpg",
+    "CC BY 3.0"
+  ),
+  jeju_indoor_icc_032: placeImage(
+    "assets/ICCJEJU-accessible-tourism.jpg",
+    "제주국제컨벤션센터와 중문 해안 전경",
+    {
+      source: "대한민국역사박물관 현대사아카이브",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:%EC%A0%9C%EC%A3%BC_%EC%A4%91%EB%AC%B8%EA%B4%80%EA%B4%91%EB%8B%A8%EC%A7%80_%EA%B5%AD%EC%A0%9C%EC%BB%A8%EB%B2%A4%EC%85%98%EC%84%BC%ED%84%B0.jpg",
+      license: "공공누리 제1유형",
+      policy: "실제 장소 대표 이미지"
+    }
+  ),
+  jeju_other_dongmun_market_029: commonsPlaceImage(
+    "assets/places/jeju_other_dongmun_market_029--commons--dongmun-market-01--hero-crop.jpg",
+    "제주 동문재래시장 입구",
+    "Wikimedia Commons · Abasaa",
+    "https://commons.wikimedia.org/wiki/File:Dongmun_Market_01.JPG",
+    "Public domain"
+  ),
+  jeju_rest_area_geolmae_038: commonsPlaceImage(
+    "assets/places/jeju_rest_area_geolmae_038--commons--route-7-1--hero-crop.jpg",
+    "천지연 걸매생태공원 산책 데크",
+    "Wikimedia Commons · Jeju Olle Foundation",
+    "https://commons.wikimedia.org/wiki/File:Jejuolle-route-7-1(5).jpg",
+    "CC BY-SA 4.0"
+  ),
+  jeju_sea_cruise_042: commonsPlaceImage(
+    "assets/places/jeju_sea_cruise_042--commons--seogwipo-harbor--hero-crop.jpg",
+    "서귀포유람선 출항지인 서귀포항 전경",
+    "Wikimedia Commons · SpaceFox",
+    "https://commons.wikimedia.org/wiki/File:Le_port_de_Seogwipo,_Cor%C3%A9e_du_Sud.jpg",
+    "CC BY 4.0",
+    "출항지 참고 이미지"
+  ),
+  jeju_sea_olle14_018: commonsPlaceImage(
+    "assets/places/jeju_sea_olle14_018--commons--route-14--hero-crop.jpg",
+    "올레 14코스 금능해변에서 본 비양도",
+    "Wikimedia Commons · Jeju Olle Foundation",
+    "https://commons.wikimedia.org/wiki/File:Jeju_Olle_Route_14_(2).jpg",
+    "CC BY-SA 4.0"
+  ),
+  jeju_sea_olle17_019: commonsPlaceImage(
+    "assets/places/jeju_sea_olle17_019--commons--route-17--hero-crop.jpg",
+    "올레 17코스 용연계곡과 용연다리",
+    "Wikimedia Commons · Jeju Olle Foundation",
+    "https://commons.wikimedia.org/wiki/File:Jejuolle-route-17(4).jpg",
+    "CC BY-SA 4.0"
+  ),
+  jeju_sea_olle6_017: commonsPlaceImage(
+    "assets/places/jeju_sea_olle6_017--commons--route-06--hero-crop.jpg",
+    "올레 6코스 시작점 쇠소깍 하구",
+    "Wikimedia Commons · Jeju Olle Foundation",
+    "https://commons.wikimedia.org/wiki/File:Jejuolle-route-06(1).jpg",
+    "CC BY-SA 4.0"
+  ),
+  jeju_transport_airport_031: commonsPlaceImage(
+    "assets/places/jeju_transport_airport_031--commons--jejuairport2024--hero-crop.jpg",
+    "제주국제공항 여객터미널 전경",
+    "Wikimedia Commons · Kimhs5400",
+    "https://commons.wikimedia.org/wiki/File:Jejuairport2024.jpg",
+    "CC BY 4.0"
+  ),
+
+  jeju_culture_seotal_oreum_030: commonsPlaceImage(
+    "assets/places/jeju_culture_seotal_oreum_030--commons--aldreu-hangar--hero-crop.jpg",
+    "섯알오름 인근 알뜨르비행장 격납고",
+    "Wikimedia Commons · Jjw",
+    "https://commons.wikimedia.org/wiki/File:Aldreu_Japanese_underground_hangar_at_WWII.jpg",
+    "CC BY-SA 4.0",
+    "인접 역사유적 참고 이미지"
+  )
+};
+
+const PLACE_IMAGE_PENDING_REASON = {
+  jeju_indoor_bunker_lumieres_010: "개별 이미지 이용유형 확인 중",
+  jeju_restaurant_nangtteule_036: "재사용 허용 대표 이미지 확인 중",
+  jeju_shopping_donghwa_040: "상업 재사용 허용 대표 이미지 확인 중"
 };
 
 function escapeHtml(value) {
@@ -375,54 +700,22 @@ function hasProfileValue(profile, key, values) {
   return values.some((value) => selected.has(value));
 }
 
-function overlapCount(leftValues, rightValues) {
-  const right = new Set(rightValues || []);
-  return (leftValues || []).filter((value) => right.has(value)).length;
+function profilesHaveSameConditions(leftProfile, rightProfile) {
+  const left = normalizeProfile(leftProfile);
+  const right = normalizeProfile(rightProfile);
+  return Object.keys(left).every((key) => {
+    const leftValues = new Set(left[key]);
+    const rightValues = new Set(right[key]);
+    return leftValues.size === rightValues.size
+      && [...leftValues].every((value) => rightValues.has(value));
+  });
 }
 
-function scenarioPriorityBoost(scenarioId, profile) {
-  let boost = 0;
-  if (scenarioId === "diet_restricted" && (
-    hasProfileValue(profile, "traveler_type", ["diet_restricted_traveler"])
-    || hasProfileValue(profile, "avoid", ["식당 제외", "외부 음식 제한"])
-  )) {
-    boost += 60;
+function profileWithToggledValue(sourceProfile, key, value) {
+  const profile = normalizeProfile(sourceProfile);
+  if (!Object.prototype.hasOwnProperty.call(profile, key) || !value) {
+    return profile;
   }
-  if (scenarioId === "wheelchair_access" && (
-    hasProfileValue(profile, "traveler_type", ["wheelchair_user"])
-    || hasProfileValue(profile, "required_accessibility", ["휠체어 접근"])
-  )) {
-    boost += 55;
-  }
-  if (scenarioId === "weather_sensitive" && (
-    hasProfileValue(profile, "mobility_conditions", ["비", "바람", "더위"])
-    || hasProfileValue(profile, "avoid", ["강풍"])
-  )) {
-    boost += 50;
-  }
-  return boost;
-}
-
-function scoreScenarioForProfile(scenario, profile) {
-  const summary = scenario.traveler_summary || {};
-  const baseScore = Object.entries(scenarioMatchWeights).reduce((total, [key, weight]) => (
-    total + overlapCount(profile[key], summary[key]) * weight
-  ), 0);
-  return baseScore + scenarioPriorityBoost(scenario.id, profile);
-}
-
-function matchedScenarioFromProfile(profile) {
-  return state.data.scenarios.reduce((best, scenario) => {
-    const score = scoreScenarioForProfile(scenario, profile);
-    if (!best || score > best.score) {
-      return { scenario, score };
-    }
-    return best;
-  }, null)?.scenario || state.data.scenarios[0];
-}
-
-function toggleProfileValue(key, value) {
-  const profile = normalizeProfile(state.profile);
   const selected = new Set(profile[key] || []);
   if (selected.has(value)) {
     selected.delete(value);
@@ -430,7 +723,183 @@ function toggleProfileValue(key, value) {
     selected.add(value);
   }
   profile[key] = Array.from(selected);
-  state.profile = profile;
+  return profile;
+}
+
+function toggleProfileValue(key, value) {
+  state.profile = profileWithToggledValue(state.profile, key, value);
+}
+
+function beginProfileModalEdit() {
+  state.profileModalDraft = {
+    scenarioId: state.scenarioId,
+    profile: normalizeProfile(state.profile),
+    ragQuery: normalizeRagQuery(state.ragQuery)
+  };
+  return state.profileModalDraft;
+}
+
+function selectProfileModalScenario(scenarioId) {
+  const scenario = state.data?.scenarios?.find((item) => item.id === scenarioId);
+  if (!state.profileModalDraft || !scenario) {
+    return false;
+  }
+  state.profileModalDraft.scenarioId = scenarioId;
+  state.profileModalDraft.profile = profileFromScenario(scenario);
+  return true;
+}
+
+function toggleProfileModalValue(key, value) {
+  if (!state.profileModalDraft) {
+    return false;
+  }
+  const profile = profileWithToggledValue(state.profileModalDraft.profile, key, value);
+  state.profileModalDraft.profile = profile;
+  return true;
+}
+
+function updateProfileModalQuery(value) {
+  if (!state.profileModalDraft) {
+    return false;
+  }
+  state.profileModalDraft.ragQuery = normalizeRagQuery(value);
+  return true;
+}
+
+function ragQueryAliasIsAvoided(query, alias) {
+  let start = 0;
+  while (start < query.length) {
+    const index = query.indexOf(alias, start);
+    if (index < 0) {
+      return false;
+    }
+    const after = query.slice(index + alias.length, index + alias.length + 18);
+    const before = query.slice(Math.max(0, index - 16), index);
+    if (
+      ragQueryAvoidAfterMarkers.some((marker) => after.includes(marker))
+      || /(?:피할|피하고 싶은|빼고 싶은|제외할|원하지 않는|싫은|안 갈|가지 않을)\s*$/.test(before)
+    ) {
+      return true;
+    }
+    start = index + alias.length;
+  }
+  return false;
+}
+
+function ragQueryHasPositiveAlias(query, aliases) {
+  return aliases.some((alias) => query.includes(alias) && !ragQueryAliasIsAvoided(query, alias));
+}
+
+function detectRagQueryConditions(value) {
+  const query = normalizeRagQuery(value);
+  if (!query) {
+    return [];
+  }
+  return ragQueryConditionRules
+    .flatMap((rule) => {
+      if (!rule.aliases.some((alias) => query.includes(alias))) {
+        return [];
+      }
+      const negationAware = rule.label.startsWith("테마 ·") || rule.label.startsWith("지원 ·");
+      if (negationAware && !ragQueryHasPositiveAlias(query, rule.aliases)) {
+        return [`제외 · ${rule.label.split(" · ").slice(1).join(" · ")}`];
+      }
+      return [rule.label];
+    })
+    .slice(0, 8);
+}
+
+function detectRagQueryConflicts(value, profile) {
+  const query = normalizeRagQuery(value);
+  const avoid = normalizeProfile(profile).avoid;
+  if (!query || !avoid.length) {
+    return [];
+  }
+  return ragQueryConflictRules
+    .filter((rule) => (
+      avoid.some((value) => rule.avoidAliases.some((alias) => value.includes(alias)))
+      && ragQueryHasPositiveAlias(query, rule.queryAliases)
+    ))
+    .map((rule) => rule.label);
+}
+
+function renderRagQueryAssist(value) {
+  if (ragQueryAssistTimer) {
+    clearTimeout(ragQueryAssistTimer);
+    ragQueryAssistTimer = null;
+  }
+  const input = document.getElementById("ragQueryInput");
+  const query = normalizeRagQuery(value ?? input?.value ?? state.profileModalDraft?.ragQuery);
+  const clearButton = document.getElementById("ragQueryClear");
+  const recognized = document.getElementById("ragRecognizedConditions");
+  const conflict = document.getElementById("ragQueryConflict");
+  if (clearButton) {
+    clearButton.hidden = !query;
+  }
+  if (conflict) {
+    const conflicts = detectRagQueryConflicts(query, state.profileModalDraft?.profile);
+    conflict.hidden = !conflicts.length;
+    conflict.textContent = conflicts.length
+      ? `${conflicts.join(", ")} 요청이 아래 제외 조건과 겹쳐요. 검색어나 상세 조건 중 하나를 조정해 주세요.`
+      : "";
+  }
+  if (!recognized) {
+    return;
+  }
+  const conditions = detectRagQueryConditions(query);
+  if (!query) {
+    recognized.innerHTML = '<span class="rag-recognized-empty">입력하지 않아도 아래 선택 조건만으로 추천할 수 있어요.</span>';
+    return;
+  }
+  if (!conditions.length) {
+    recognized.innerHTML = '<span class="rag-recognized-empty">입력한 표현 그대로 검색에 반영해요.</span>';
+    return;
+  }
+  recognized.innerHTML = conditions
+    .map((condition) => `<span class="rag-recognized-chip">${escapeHtml(condition)}</span>`)
+    .join("");
+}
+
+function scheduleRagQueryAssist(value) {
+  if (ragQueryAssistTimer) {
+    clearTimeout(ragQueryAssistTimer);
+  }
+  const query = normalizeRagQuery(value);
+  ragQueryAssistTimer = setTimeout(() => {
+    renderRagQueryAssist(query);
+  }, 300);
+}
+
+function setRagQueryValue(value, { focus = true } = {}) {
+  const input = document.getElementById("ragQueryInput");
+  const query = normalizeRagQuery(value);
+  if (input) {
+    input.value = query;
+  }
+  updateProfileModalQuery(query);
+  renderRagQueryAssist(query);
+  if (focus) {
+    input?.focus();
+  }
+  return query;
+}
+
+function commitProfileModalEdit(queryValue) {
+  if (!state.profileModalDraft) {
+    return false;
+  }
+  updateProfileModalQuery(queryValue);
+  const draft = state.profileModalDraft;
+  state.scenarioId = draft.scenarioId;
+  state.profile = normalizeProfile(draft.profile);
+  state.ragQuery = draft.ragQuery;
+  state.conceptFocus = null;
+  state.profileModalDraft = null;
+  return true;
+}
+
+function discardProfileModalEdit() {
+  state.profileModalDraft = null;
 }
 
 async function loadData() {
@@ -439,42 +908,6 @@ async function loadData() {
     throw new Error("추천 데이터를 불러오지 못했습니다.");
   }
   return response.json();
-}
-
-async function loadValidationReport() {
-  try {
-    const response = await fetch("data/recommendation_case_validation_report.json", { cache: "no-store" });
-    if (!response.ok) {
-      return null;
-    }
-    return response.json();
-  } catch (error) {
-    return null;
-  }
-}
-
-async function loadOperationsReadiness() {
-  try {
-    const response = await fetch("data/operations_readiness_report.json", { cache: "no-store" });
-    if (!response.ok) {
-      return null;
-    }
-    return response.json();
-  } catch (error) {
-    return null;
-  }
-}
-
-async function loadServiceLaunchActionPlan() {
-  try {
-    const response = await fetch("data/service_launch_action_plan.json", { cache: "no-store" });
-    if (!response.ok) {
-      return null;
-    }
-    return response.json();
-  } catch (error) {
-    return null;
-  }
 }
 
 function currentStaticScenario() {
@@ -496,7 +929,9 @@ function runtimeScenarioFromResponse(response) {
     recommendation: response.recommendation,
     places,
     ai_summary: response.ai_summary,
-    engine: response.engine
+    retrieval: response.retrieval,
+    engine: response.engine,
+    generated_at: response.generated_at
   };
 }
 
@@ -508,6 +943,24 @@ function staticPlacesById() {
         places.set(place.spot_id, place);
       }
     });
+  });
+  (state.data?.saved_route_places || []).forEach((place) => {
+    if (place?.spot_id && place?.name && !places.has(place.spot_id)) {
+      places.set(place.spot_id, {
+        spot_id: place.spot_id,
+        name: place.name,
+        region: place.region || "제주",
+        category: place.category || "other",
+        effort: {
+          recommended_duration_minutes: place.duration_minutes || null
+        },
+        info_url: place.info_url || "",
+        visit_info: place.visit_info || null,
+        location: validLocation(place.location) ? place.location : null,
+        verification_status: "needs_check",
+        unavailable: place.available === false
+      });
+    }
   });
   return places;
 }
@@ -541,8 +994,22 @@ function enrichRuntimePlace(place, staticIndex) {
     ...fallback,
     ...place,
     accessibility: place?.accessibility || fallback.accessibility || {},
-    location: validLocation(place?.location) ? place.location : fallback.location || null
+    location: mergePlaceLocation(place?.location, fallback.location)
   };
+}
+
+function mergePlaceLocation(primary, fallback) {
+  const primaryLocation = validLocation(primary) ? primary : null;
+  const fallbackLocation = validLocation(fallback) ? fallback : null;
+  if (!primaryLocation && !fallbackLocation) {
+    return null;
+  }
+  const merged = { ...(fallbackLocation || {}), ...(primaryLocation || {}) };
+  const primaryRole = String(primaryLocation?.point_role || "");
+  merged.point_role = Object.prototype.hasOwnProperty.call(pointRoleLabels, primaryRole)
+    ? primaryRole
+    : locationPointRole(fallbackLocation);
+  return merged;
 }
 
 function validLocation(location) {
@@ -554,18 +1021,232 @@ function validLocation(location) {
   return Number.isFinite(latitude) && Number.isFinite(longitude);
 }
 
-function recommendationStatusText(summary) {
-  return "선택한 코스 반영 완료";
+function recommendationStatusText(response) {
+  if (response?.retrieval?.status === "resource_data_gap") {
+    return "요청한 지원 시설 정보를 충분히 찾지 못했습니다";
+  }
+  if (response?.retrieval?.status === "no_match") {
+    return "조건에 맞는 장소 정보를 충분히 찾지 못했습니다";
+  }
+  if (response?.retrieval?.status === "applied") {
+    return "입력한 조건과 접근성 정보를 반영했습니다";
+  }
+  return "맞춤 추천 반영 완료";
 }
 
-function recommendationPayload() {
+function normalizeRagQuery(value) {
+  return String(value || "").replace(/[\u0000-\u001f\u007f]+/g, " ").replace(/\s+/g, " ").trim().slice(0, 500);
+}
+
+function recommendationPayload({ useAi = false } = {}) {
   return {
     traveler_summary: normalizeProfile(state.profile),
+    query: normalizeRagQuery(state.ragQuery) || normalizeRagQuery(state.conceptFocus?.value),
     limit: RECOMMENDATION_LIMIT,
-    use_ai: true,
+    use_ai: Boolean(useAi),
     model: RECOMMENDATION_MODEL
   };
 }
+
+function recommendationContextKey() {
+  const payload = recommendationPayload();
+  return JSON.stringify({
+    traveler_summary: payload.traveler_summary,
+    query: payload.query,
+    limit: payload.limit,
+    model: payload.model
+  });
+}
+
+function aiExplanationCacheKey(scenario = currentScenario()) {
+  const route = (scenario?.recommendation?.course?.route || [])
+    .slice(0, RECOMMENDATION_LIMIT)
+    .map((item) => String(item?.spot_id || item?.name || ""));
+  const evidence = (scenario?.retrieval?.matches || [])
+    .slice(0, RECOMMENDATION_LIMIT)
+    .map((match) => {
+      const bundle = match?.evidence_bundle || {};
+      const factIds = Object.values(bundle.accessibility || {})
+        .map((fact) => String(fact?.evidence_id || ""))
+        .filter(Boolean);
+      const sourceIds = (bundle.sources || [])
+        .map((source) => String(source?.evidence_id || ""))
+        .filter(Boolean);
+      return [String(match?.spot_id || ""), ...factIds, ...sourceIds];
+    });
+  return JSON.stringify({
+    context: recommendationContextKey(),
+    generatedAt: String(scenario?.generated_at || ""),
+    route,
+    evidence
+  });
+}
+
+function aiExplanationStateFromSummary(summary, contextKey = recommendationContextKey()) {
+  const sourceStatus = String(summary?.status || "skipped").toLowerCase();
+  if (sourceStatus === "success") {
+    return {
+      status: "success",
+      message: "설명이 준비되었습니다. ‘자동 설명 보기’를 눌러 공식 근거와 함께 확인하세요.",
+      contextKey
+    };
+  }
+  if (["disabled", "disabled_no_key"].includes(sourceStatus)) {
+    return {
+      status: "disabled",
+      message: "자동 설명을 사용할 수 없어 검색·점수 근거만 표시합니다.",
+      contextKey
+    };
+  }
+  if (sourceStatus === "error") {
+    return {
+      status: "error",
+      message: "자동 설명을 만들지 못했습니다. 검색 결과와 공식 출처는 그대로 확인할 수 있습니다.",
+      contextKey
+    };
+  }
+  if (["ungrounded", "insufficient_evidence", "blocked_retrieval"].includes(sourceStatus)) {
+    return {
+      status: "ungrounded",
+      message: "확인된 공식 근거가 부족해 자동 설명을 표시하지 않았습니다.",
+      contextKey
+    };
+  }
+  return {
+    status: "idle",
+    message: "공식 근거를 바탕으로 한 자동 설명은 아직 만들지 않았습니다.",
+    contextKey
+  };
+}
+
+function setAiExplanationFromSummary(summary, contextKey = recommendationContextKey()) {
+  state.aiExplanation = aiExplanationStateFromSummary(summary, contextKey);
+  return state.aiExplanation;
+}
+
+function setAiExplanationState(status, message, contextKey = recommendationContextKey()) {
+  state.aiExplanation = { status, message, contextKey };
+}
+
+function clearAiExplanationProgressTimers() {
+  aiExplanationProgressTimers.forEach((timer) => clearTimeout(timer));
+  aiExplanationProgressTimers = [];
+}
+
+function cachedAiExplanation(cacheKey) {
+  const summary = aiExplanationCache.get(cacheKey);
+  if (!summary) {
+    return null;
+  }
+  aiExplanationCache.delete(cacheKey);
+  aiExplanationCache.set(cacheKey, summary);
+  return summary;
+}
+
+function rememberAiExplanation(cacheKey, summary) {
+  if (summary?.status !== "success") {
+    return;
+  }
+  aiExplanationCache.delete(cacheKey);
+  aiExplanationCache.set(cacheKey, summary);
+  while (aiExplanationCache.size > AI_EXPLANATION_CACHE_LIMIT) {
+    aiExplanationCache.delete(aiExplanationCache.keys().next().value);
+  }
+}
+
+function scheduleAiExplanationProgress(requestSequence, contextKey) {
+  clearAiExplanationProgressTimers();
+  [
+    [1200, "공식 근거를 바탕으로 추천 이유를 구성하고 있습니다."],
+    [12000, "설명 내용과 공식 출처가 맞는지 확인하고 있습니다."],
+    [25000, "응답이 평소보다 늦습니다. 최대 40초까지 기다린 뒤 다시 안내할게요."]
+  ].forEach(([delay, message]) => {
+    aiExplanationProgressTimers.push(setTimeout(() => {
+      if (
+        requestSequence !== aiExplanationRequestSequence
+        || contextKey !== recommendationContextKey()
+        || state.aiExplanation?.status !== "loading"
+      ) {
+        return;
+      }
+      setAiExplanationState("loading", message, contextKey);
+      renderRagProcess(currentScenario());
+    }, delay));
+  });
+}
+
+function cancelGroundedAiExplanation({ reset = true } = {}) {
+  aiExplanationRequestSequence += 1;
+  aiExplanationAbortController?.abort?.();
+  aiExplanationAbortController = null;
+  clearAiExplanationProgressTimers();
+  closeAiExplanationModal({ restoreFocus: false });
+  if (reset) {
+    setAiExplanationFromSummary(null);
+  }
+}
+
+function currentAiExplanationState(scenario = currentScenario()) {
+  if (scenario?.retrieval?.status !== "applied") {
+    return aiExplanationStateFromSummary(null);
+  }
+  const contextKey = recommendationContextKey();
+  if (state.aiExplanation?.contextKey !== contextKey) {
+    return aiExplanationStateFromSummary(scenario?.ai_summary, contextKey);
+  }
+  return state.aiExplanation;
+}
+
+function helpRecommendationContext() {
+  if (!state.data) {
+    return null;
+  }
+  const scenario = currentScenario();
+  if (!scenario) {
+    return null;
+  }
+
+  const recommendation = scenario.recommendation || {};
+  const course = recommendation.course || {};
+  const place = state.detailCollapsed ? null : selectedPlace(scenario);
+  return {
+    mode: state.runtimeScenario ? "runtime" : "static",
+    generated_at: scenario.generated_at || state.data?.generated_at || "",
+    engine: scenario.engine || { scoring: "precomputed_recommendation_seed" },
+    traveler_summary: normalizeProfile(state.profile),
+    recommendation: {
+      course: {
+        title: course.title || scenario.title || "추천 코스",
+        summary: course.summary || "",
+        route: (course.route || []).slice(0, 4).map((item) => ({
+          order: item.order,
+          spot_id: item.spot_id,
+          name: item.name,
+          purpose: item.purpose,
+          stay_tip: item.stay_tip
+        }))
+      },
+      score: recommendation.score || {},
+      fit_reasons: (recommendation.fit_reasons || []).slice(0, 8),
+      deduction_reasons: (recommendation.deduction_reasons || []).slice(0, 8),
+      check_before_visit: (recommendation.check_before_visit || []).slice(0, 8)
+    },
+    selected_place: place ? {
+      spot_id: place.spot_id,
+      name: place.name,
+      score: place.score || {},
+      fit_reasons: (place.fit_reasons || []).slice(0, 8),
+      deduction_reasons: (place.deduction_reasons || []).slice(0, 8),
+      check_before_visit: (place.check_before_visit || []).slice(0, 8),
+      source_summary: (place.source_summary || []).slice(0, 3),
+      verification_status: place.verification_status || place.verification?.status || "needs_check",
+      blocked: Boolean(place.blocked),
+      block_reasons: (place.block_reasons || []).slice(0, 4)
+    } : null
+  };
+}
+
+window.GachibomRecommendationContext = helpRecommendationContext;
 
 function setApiState(status, message, { canRetry = false } = {}) {
   state.apiState = { status, message, canRetry };
@@ -578,7 +1259,7 @@ function apiStatusTitle() {
     return "추천 업데이트 중";
   }
   if (status === "success") {
-    return "추천 결과 업데이트";
+    return "실시간 추천 결과";
   }
   if (status === "error") {
     return "추천 업데이트 실패";
@@ -595,7 +1276,7 @@ function apiStatusPillText() {
     return "계산 중";
   }
   if (status === "success") {
-    return "업데이트";
+    return "실시간 계산";
   }
   if (status === "error") {
     return "기본 추천";
@@ -614,7 +1295,23 @@ function shouldRequestRuntimeApi() {
   if (params.get("api") === "0") {
     return false;
   }
-  return false;
+  const selectedScenario = state.data?.scenarios?.find((scenario) => scenario.id === state.scenarioId);
+  const hasCustomProfile = Boolean(
+    selectedScenario
+    && !profilesHaveSameConditions(state.profile, profileFromScenario(selectedScenario))
+  );
+  return Boolean(normalizeRagQuery(state.ragQuery)) || hasCustomProfile;
+}
+
+function conceptFocusKey(focus = state.conceptFocus) {
+  const key = String(focus?.key || "").trim();
+  const value = String(focus?.value || "").trim();
+  return key && value ? `${key}:${value}` : "";
+}
+
+function staticConditionVariant() {
+  const variant = currentStaticScenario()?.condition_variants?.[conceptFocusKey()];
+  return variant ? { ...variant, engine: { scoring: "precomputed_condition_focus" } } : null;
 }
 
 function shouldRequestRouteProxy() {
@@ -625,24 +1322,36 @@ function shouldRequestRouteProxy() {
   if (params.get("routeProxy") === "0" || params.get("api") === "0") {
     return false;
   }
-  return false;
+  return window.location.protocol !== "file:";
 }
 
 async function requestRuntimeRecommendation(sequence) {
   const requestSequence = sequence || ++recommendationRequestSequence;
   if (!shouldRequestRuntimeApi()) {
+    recommendationAbortController?.abort?.();
+    recommendationAbortController = null;
     if (requestSequence === recommendationRequestSequence) {
-      state.runtimeScenario = null;
-      setApiState("static", "기본 추천 사용");
+      state.runtimeScenario = staticConditionVariant();
+      setAiExplanationFromSummary(state.runtimeScenario?.ai_summary);
+      setApiState(
+        "static",
+        state.runtimeScenario ? "선택 조건 우선 추천 반영" : "기본 추천 사용"
+      );
     }
     return false;
   }
+
+  recommendationAbortController?.abort?.();
+  const AbortControllerClass = window.AbortController || globalThis.AbortController;
+  const controller = AbortControllerClass ? new AbortControllerClass() : null;
+  recommendationAbortController = controller;
 
   try {
     const response = await fetch("api/recommendations", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(recommendationPayload())
+      body: JSON.stringify(recommendationPayload()),
+      ...(controller ? { signal: controller.signal } : {})
     });
     if (!response.ok) {
       throw new Error("추천 서버 미응답");
@@ -652,23 +1361,151 @@ async function requestRuntimeRecommendation(sequence) {
       return false;
     }
     state.runtimeScenario = runtimeScenarioFromResponse(payload);
-    setApiState("success", recommendationStatusText(payload.ai_summary));
+    setAiExplanationFromSummary(payload.ai_summary);
+    setApiState("success", recommendationStatusText(payload));
     return true;
   } catch (error) {
+    if (controller?.signal?.aborted || error?.name === "AbortError") {
+      return false;
+    }
     if (requestSequence !== recommendationRequestSequence) {
       return false;
     }
-    state.runtimeScenario = null;
-    setApiState("error", "추천 업데이트 실패, 기본 추천 유지", { canRetry: true });
-    state.apiState.detail = error?.message || "추천 요청에 실패했습니다.";
+    state.runtimeScenario = staticConditionVariant();
+    setAiExplanationFromSummary(state.runtimeScenario?.ai_summary);
+    setApiState(
+      state.runtimeScenario ? "static" : "error",
+      state.runtimeScenario ? "선택 조건 우선 추천 반영" : "새 조건을 적용하지 못해 기본 추천을 유지합니다.",
+      { canRetry: !state.runtimeScenario }
+    );
     return false;
+  } finally {
+    if (recommendationAbortController === controller) {
+      recommendationAbortController = null;
+    }
+  }
+}
+
+async function requestGroundedAiExplanation({ forceRefresh = false } = {}) {
+  const scenario = currentScenario();
+  if (scenario?.retrieval?.status !== "applied") {
+    return false;
+  }
+
+  const requestContextKey = recommendationContextKey();
+  const requestCacheKey = aiExplanationCacheKey(scenario);
+  if (forceRefresh) {
+    aiExplanationCache.delete(requestCacheKey);
+  } else {
+    const cachedSummary = cachedAiExplanation(requestCacheKey);
+    if (cachedSummary) {
+      state.runtimeScenario = { ...state.runtimeScenario, ai_summary: cachedSummary };
+      setAiExplanationFromSummary(cachedSummary, requestContextKey);
+      render();
+      return true;
+    }
+  }
+
+  aiExplanationAbortController?.abort?.();
+  clearAiExplanationProgressTimers();
+  const requestSequence = ++aiExplanationRequestSequence;
+  const AbortControllerClass = window.AbortController || globalThis.AbortController;
+  const controller = AbortControllerClass ? new AbortControllerClass() : null;
+  aiExplanationAbortController = controller;
+  setAiExplanationState(
+    "loading",
+    "공식 근거를 준비하고 있습니다.",
+    requestContextKey
+  );
+  render();
+  scheduleAiExplanationProgress(requestSequence, requestContextKey);
+
+  let timeoutId = null;
+  let timedOut = false;
+  try {
+    const payload = await Promise.race([
+      (async () => {
+        const response = await fetch("api/recommendations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(recommendationPayload({ useAi: true })),
+          ...(controller ? { signal: controller.signal } : {})
+        });
+        if (!response.ok) {
+          throw new Error("자동 설명을 불러오지 못했습니다.");
+        }
+        return response.json();
+      })(),
+      new Promise((_, reject) => {
+        timeoutId = setTimeout(() => {
+          timedOut = true;
+          controller?.abort?.();
+          const error = new Error("자동 설명을 불러오는 데 시간이 오래 걸립니다.");
+          error.name = "TimeoutError";
+          reject(error);
+        }, AI_EXPLANATION_TIMEOUT_MS);
+      })
+    ]);
+    if (
+      requestSequence !== aiExplanationRequestSequence
+      || requestContextKey !== recommendationContextKey()
+    ) {
+      return false;
+    }
+    if (!payload?.ai_summary || typeof payload.ai_summary !== "object") {
+      throw new Error("자동 설명을 표시할 수 없습니다.");
+    }
+
+    state.runtimeScenario = {
+      ...state.runtimeScenario,
+      ai_summary: payload.ai_summary
+    };
+    rememberAiExplanation(requestCacheKey, payload.ai_summary);
+    setAiExplanationFromSummary(payload.ai_summary, requestContextKey);
+    render();
+    return state.aiExplanation.status === "success";
+  } catch (error) {
+    if (
+      requestSequence !== aiExplanationRequestSequence
+      || requestContextKey !== recommendationContextKey()
+    ) {
+      return false;
+    }
+    if (timedOut || error?.name === "TimeoutError") {
+      setAiExplanationState(
+        "error",
+        "40초 안에 응답이 완료되지 않았습니다. 검색 결과는 유지되며 다시 시도할 수 있습니다.",
+        requestContextKey
+      );
+      render();
+      return false;
+    }
+    if (controller?.signal?.aborted || error?.name === "AbortError") {
+      return false;
+    }
+    setAiExplanationState(
+      "error",
+      "자동 설명을 만들지 못했습니다. 잠시 후 다시 시도해 주세요.",
+      requestContextKey
+    );
+    render();
+    return false;
+  } finally {
+    if (timeoutId !== null) {
+      clearTimeout(timeoutId);
+    }
+    clearAiExplanationProgressTimers();
+    if (aiExplanationAbortController === controller) {
+      aiExplanationAbortController = null;
+    }
   }
 }
 
 async function refreshScenarioRecommendation({ renderLoading = false } = {}) {
+  cancelGroundedAiExplanation();
   const sequence = ++recommendationRequestSequence;
   if (shouldRequestRuntimeApi() && renderLoading) {
-    state.runtimeScenario = null;
+    state.runtimeScenario = staticConditionVariant();
     setApiState("loading", "선택한 코스로 업데이트 중");
     render();
   }
@@ -676,16 +1513,29 @@ async function refreshScenarioRecommendation({ renderLoading = false } = {}) {
 }
 
 async function refreshRuntimeRecommendation(options = {}) {
-  const matchedScenario = matchedScenarioFromProfile(state.profile);
-  state.scenarioId = matchedScenario.id;
   state.selectedSpotId = null;
   state.mapPopupSpotId = null;
   state.detailCollapsed = false;
   await refreshScenarioRecommendation(options);
 }
 
+function hasGroundedRecommendationEvidence(place) {
+  const status = String(place?.verification?.status || place?.verification_status || "").toLowerCase();
+  if (!["verified", "partial"].includes(status)) {
+    return false;
+  }
+  return (place?.source_summary || place?.sources || []).some((source) => (
+    Boolean(safeExternalUrl(source?.url))
+  ));
+}
+
 function selectedRoute(scenario) {
-  return scenario.recommendation?.course?.route || [];
+  if (["resource_data_gap", "no_match"].includes(scenario?.retrieval?.status)) {
+    return [];
+  }
+  return (scenario?.recommendation?.course?.route || []).filter((routeItem) => (
+    hasGroundedRecommendationEvidence(routePlace(scenario, routeItem))
+  ));
 }
 
 function routeEntriesForScenario(scenario) {
@@ -728,56 +1578,20 @@ function selectedPlace(scenario) {
     state.selectedSpotId = route[0]?.spot_id || scenario.places?.[0]?.spot_id || null;
   }
   const places = placesById(scenario);
-  return places.get(state.selectedSpotId) || null;
-}
-
-function placeholderTitleLines(name) {
-  const characters = Array.from(name);
-  if (characters.length <= 13) {
-    return [name];
-  }
-  const firstLine = characters.slice(0, 13).join("");
-  const remainder = characters.slice(13);
-  const secondLine = remainder.length > 13
-    ? `${remainder.slice(0, 12).join("")}…`
-    : remainder.join("");
-  return [firstLine, secondLine];
+  const routeItem = route.find((item) => item.spot_id === state.selectedSpotId);
+  return places.get(state.selectedSpotId) || (routeItem ? routePlace(scenario, routeItem) : null);
 }
 
 function placeholderForPlace(place) {
   const name = String(place?.name || "추천 장소").trim();
-  const category = categoryLabels[place?.category] || "제주 여행";
-  const palettes = [
-    { background: "#17433f", accent: "#f2c84b", text: "#ffffff" },
-    { background: "#7a3043", accent: "#9de0c2", text: "#ffffff" },
-    { background: "#263238", accent: "#ff8a65", text: "#ffffff" },
-    { background: "#126e75", accent: "#f6e7b0", text: "#ffffff" },
-    { background: "#53433f", accent: "#9fd7e5", text: "#ffffff" }
-  ];
-  const hash = Array.from(`${place?.spot_id || ""}:${name}`).reduce(
-    (total, character) => ((total * 31) + character.codePointAt(0)) >>> 0,
-    0
-  );
-  const palette = palettes[hash % palettes.length];
-  const titleLines = placeholderTitleLines(name);
-  const titleStartY = titleLines.length === 1 ? 278 : 246;
-  const titleMarkup = titleLines.map((line, index) => (
-    `<text x="72" y="${titleStartY + index * 64}" fill="${palette.text}" font-size="52" font-weight="700">${escapeHtml(line)}</text>`
-  )).join("");
-  const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
-      <rect width="960" height="540" fill="${palette.background}"/>
-      <rect x="72" y="76" width="88" height="8" fill="${palette.accent}"/>
-      <text x="72" y="142" fill="${palette.accent}" font-family="Arial, Malgun Gothic, sans-serif" font-size="26" font-weight="700">${escapeHtml(category)}</text>
-      <g font-family="Arial, Malgun Gothic, sans-serif">${titleMarkup}</g>
-      <text x="72" y="462" fill="${palette.text}" fill-opacity="0.78" font-family="Arial, Malgun Gothic, sans-serif" font-size="24">대표 이미지 준비 중</text>
-    </svg>
-  `;
+  const pendingReason = PLACE_IMAGE_PENDING_REASON[place?.spot_id] || "대표 이미지 준비 중";
   return {
-    src: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`,
-    caption: `${name} 대표 이미지 준비 중`,
-    source: "서비스 이미지 안내",
-    policy: "대표 이미지 준비 중"
+    src: DEFAULT_PLACE_IMAGE.src,
+    alt: DEFAULT_PLACE_IMAGE.alt,
+    caption: `${name} · ${pendingReason}`,
+    source: DEFAULT_PLACE_IMAGE.source,
+    policy: pendingReason,
+    fit: "cover"
   };
 }
 
@@ -794,12 +1608,13 @@ function visualForPlace(place, usedSources = null) {
   }
   return {
     src: policy.src,
-    alt: `${place?.name || "추천 장소"} 대표 이미지`,
+    alt: policy.alt || `${place?.name || "추천 장소"} 대표 이미지`,
     caption: policy.caption,
     source: policy.source,
     sourceUrl: policy.sourceUrl || "",
     license: policy.license || "",
     policy: policy.policy,
+    fit: policy.fit || "cover",
     fallbackSrc: placeholder.src,
     fallbackCaption: placeholder.caption,
     fallbackSource: placeholder.source
@@ -872,12 +1687,847 @@ function verificationLabel(place) {
   return "확인 필요";
 }
 
+function normalizedPointRole(value) {
+  const pointRole = String(value || "poi");
+  return Object.prototype.hasOwnProperty.call(pointRoleLabels, pointRole) ? pointRole : "poi";
+}
+
+function locationPointRole(location) {
+  return normalizedPointRole(location?.point_role);
+}
+
+function locationPointLabel(location) {
+  return pointRoleLabels[locationPointRole(location)];
+}
+
+function locationPointShortLabel(location) {
+  return pointRoleShortLabels[locationPointRole(location)] || "";
+}
+
+function hasSpecialPointRole(location) {
+  return validLocation(location) && locationPointRole(location) !== "poi";
+}
+
+function locationPointStatusLabel(location) {
+  if (!validLocation(location)) {
+    return "위치 확인 필요";
+  }
+  return hasSpecialPointRole(location)
+    ? `지도 위치 · ${locationPointLabel(location)}`
+    : "지도 위치 확인";
+}
+
+function pointRoleBadgeMarkup(location, className = "point-role-badge") {
+  if (!hasSpecialPointRole(location)) {
+    return "";
+  }
+  return `<b class="${escapeHtml(className)}">${escapeHtml(locationPointLabel(location))}</b>`;
+}
+
+function mapPointDisplayName(place) {
+  const name = String(place?.name || "제주 여행지");
+  return hasSpecialPointRole(place?.location)
+    ? `${name} (${locationPointLabel(place.location)})`
+    : name;
+}
+
 function sourceSummaryItems(place) {
   return (place?.source_summary || place?.sources || []).slice(0, 3);
 }
 
 function routeNames(scenario) {
   return selectedRoute(scenario).slice(0, 4).map((item) => item.name).filter(Boolean);
+}
+
+function savedRouteStorage() {
+  try {
+    return window.localStorage;
+  } catch (error) {
+    return null;
+  }
+}
+
+function allowedSavedSpotIds() {
+  return new Set(staticPlacesById().keys());
+}
+
+function shareableSavedSpotIds() {
+  const spotIds = new Set();
+  staticPlacesById().forEach((place, spotId) => {
+    if (!place.unavailable) {
+      spotIds.add(spotId);
+    }
+  });
+  return spotIds;
+}
+
+function currentRouteSpotIds(scenario = currentScenario()) {
+  if (!scenario) {
+    return [];
+  }
+  const allowed = allowedSavedSpotIds();
+  return unique(selectedRoute(scenario)
+    .slice(0, 4)
+    .map((item) => String(item?.spot_id || ""))
+    .filter((spotId) => allowed.has(spotId)));
+}
+
+function loadSavedRouteState() {
+  if (!SAVED_TRIPS || !state.data) {
+    state.savedRoutes = [];
+    state.sharedRoutePreview = null;
+    return;
+  }
+  const allowed = allowedSavedSpotIds();
+  state.savedRoutes = SAVED_TRIPS.load(savedRouteStorage(), allowed);
+  const sharedSpotIds = SAVED_TRIPS.parseSharedSpotIds(window.location, shareableSavedSpotIds());
+  const sharedRouteId = sharedSpotIds ? SAVED_TRIPS.routeId(sharedSpotIds) : "";
+  state.sharedRoutePreview = sharedSpotIds
+    && !state.savedRoutes.some((item) => item.id === sharedRouteId) ? {
+    id: sharedRouteId,
+    spotIds: sharedSpotIds,
+    checkedIds: [],
+    savedAt: ""
+  } : null;
+}
+
+function persistSavedRoutes(successMessage = "저장 상태를 업데이트했습니다.") {
+  if (!SAVED_TRIPS) {
+    announceSavedRoute("이 브라우저에서는 저장 기능을 사용할 수 없습니다.");
+    return false;
+  }
+  const result = SAVED_TRIPS.persist(
+    savedRouteStorage(),
+    state.savedRoutes,
+    allowedSavedSpotIds(),
+    state.data?.generated_at || ""
+  );
+  state.savedRoutes = result.items;
+  announceSavedRoute(result.ok ? successMessage : "브라우저 저장소를 사용할 수 없어 현재 화면에서만 유지됩니다.");
+  return result.ok;
+}
+
+function announceSavedRoute(message) {
+  state.savedRouteMessage = String(message || "");
+  const globalStatus = document.getElementById("savedRouteGlobalStatus");
+  const modalStatus = document.getElementById("savedRoutesStatus");
+  if (globalStatus) {
+    globalStatus.textContent = state.savedRouteMessage;
+  }
+  if (modalStatus) {
+    modalStatus.textContent = state.savedRouteMessage;
+  }
+}
+
+function savedRouteForSpotIds(spotIds) {
+  if (!SAVED_TRIPS || !spotIds?.length) {
+    return null;
+  }
+  const id = SAVED_TRIPS.routeId(spotIds);
+  return state.savedRoutes.find((item) => item.id === id) || null;
+}
+
+function currentSavedRoute() {
+  return savedRouteForSpotIds(currentRouteSpotIds());
+}
+
+function saveRouteSpotIds(spotIds, message = "추천 코스를 저장했습니다.") {
+  if (!SAVED_TRIPS || !spotIds?.length) {
+    announceSavedRoute("저장할 추천 코스를 찾지 못했습니다.");
+    return false;
+  }
+  state.savedRoutes = SAVED_TRIPS.upsert(
+    state.savedRoutes,
+    spotIds,
+    allowedSavedSpotIds()
+  );
+  persistSavedRoutes(message);
+  refreshSavedRouteViews();
+  return true;
+}
+
+function saveCurrentRoute() {
+  return saveRouteSpotIds(currentRouteSpotIds());
+}
+
+function saveSharedRoute() {
+  if (!state.sharedRoutePreview) {
+    return false;
+  }
+  const spotIds = state.sharedRoutePreview.spotIds;
+  state.sharedRoutePreview = null;
+  const saved = saveRouteSpotIds(spotIds, "공유받은 코스를 내 저장함에 추가했습니다.");
+  if (!saved) {
+    state.sharedRoutePreview = {
+      id: SAVED_TRIPS.routeId(spotIds),
+      spotIds,
+      checkedIds: [],
+      savedAt: ""
+    };
+    renderSavedRoutesModal();
+  }
+  return saved;
+}
+
+function savedRoutePlaces(item) {
+  const index = staticPlacesById();
+  const orderedSpotIds = SAVED_TRIPS?.orderedSpotIds(item) || item?.spotIds || [];
+  return orderedSpotIds
+    .map((spotId) => index.get(spotId) || {
+      spot_id: spotId,
+      name: "현재 제공하지 않는 장소",
+      region: "장소 정보 업데이트 필요",
+      unavailable: true,
+      effort: { recommended_duration_minutes: null },
+      info_url: "",
+      location: null
+    });
+}
+
+function savedRouteTitle(item) {
+  const places = savedRoutePlaces(item);
+  const availablePlaces = places.filter((place) => !place.unavailable);
+  if (!availablePlaces.length) {
+    return "저장한 제주 추천 코스";
+  }
+  return places.length > 1
+    ? `${availablePlaces[0].name} 외 ${places.length - 1}곳`
+    : availablePlaces[0].name;
+}
+
+function safeExternalUrl(value) {
+  try {
+    const url = new URL(String(value || ""));
+    return ["http:", "https:"].includes(url.protocol) ? url.toString() : "";
+  } catch (error) {
+    return "";
+  }
+}
+
+function placeInfoUrl(place) {
+  const official = safeExternalUrl(place?.visit_info?.official_url);
+  if (official) {
+    return official;
+  }
+  const direct = safeExternalUrl(place?.info_url);
+  if (direct) {
+    return direct;
+  }
+  const source = (place?.source_summary || place?.sources || []).find((item) => (
+    safeExternalUrl(item?.url)
+  ));
+  return safeExternalUrl(source?.url);
+}
+
+function placeReservationUrl(place) {
+  return safeExternalUrl(place?.visit_info?.reservation_url);
+}
+
+function safePhoneHref(value) {
+  const raw = String(value || "").trim();
+  if (!raw || !/^[+0-9().\s-]{7,30}$/.test(raw)) {
+    return "";
+  }
+  const digits = raw.replace(/\D/g, "");
+  if (digits.length < 7 || digits.length > 15) {
+    return "";
+  }
+  return `tel:${raw.startsWith("+") ? "+" : ""}${digits}`;
+}
+
+function formatVisitInfoDate(value) {
+  const text = String(value || "").trim();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(text)) {
+    return "확인일 없음";
+  }
+  const parsed = new Date(`${text}T00:00:00Z`);
+  if (Number.isNaN(parsed.getTime())) {
+    return "확인일 없음";
+  }
+  return new Intl.DateTimeFormat("ko-KR", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC"
+  }).format(parsed);
+}
+
+function visitInfoDateLabel(info) {
+  const verifiedAt = formatVisitInfoDate(info?.last_verified_at);
+  if (verifiedAt !== "확인일 없음") {
+    return `정보 확인 ${verifiedAt}`;
+  }
+  const sourceUpdatedAt = formatVisitInfoDate(info?.source_updated_at);
+  if (sourceUpdatedAt !== "확인일 없음") {
+    return `원본 갱신 ${sourceUpdatedAt}`;
+  }
+  return "정보 확인일 없음";
+}
+
+function visitInfoStatusLabel(value) {
+  if (value === "verified") {
+    return "확인 완료";
+  }
+  if (value === "partial") {
+    return "일부 확인";
+  }
+  return "재확인 필요";
+}
+
+function visitServiceStatusLabel(value) {
+  if (value === "temporarily_closed") {
+    return "임시휴관 확인";
+  }
+  if (value === "permanently_closed") {
+    return "운영 종료 확인";
+  }
+  return "";
+}
+
+function visitInfoMarkup(place) {
+  const info = place?.visit_info && typeof place.visit_info === "object" ? place.visit_info : {};
+  const address = String(info.address || "").trim();
+  const phone = String(info.phone || "").trim();
+  const phoneHref = safePhoneHref(phone);
+  const operatingHours = String(info.operating_hours || "").trim();
+  const officialUrl = safeExternalUrl(info.official_url);
+  const reservationUrl = safeExternalUrl(info.reservation_url);
+  const evidence = Array.isArray(info.evidence)
+    ? info.evidence.find((item) => safeExternalUrl(item?.source_url))
+    : null;
+  const evidenceUrl = safeExternalUrl(evidence?.source_url);
+  const serviceLabel = visitServiceStatusLabel(info.service_status);
+  const hasDetails = Boolean(address || phoneHref || operatingHours || officialUrl || reservationUrl);
+  return `
+    ${serviceLabel ? `
+      <p class="visit-service-alert" role="status">
+        <i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i>
+        <span><strong>${escapeHtml(serviceLabel)}</strong> · 방문 전 공식 운영 여부를 다시 확인해 주세요.</span>
+      </p>
+    ` : ""}
+    <details class="visit-info-card detail-disclosure ${hasDetails ? "" : "empty"}">
+      <summary>
+        <span class="detail-disclosure-heading">
+          <i class="bi bi-info-circle" aria-hidden="true"></i>
+          <span><b>방문 정보</b><small>주소·운영시간·예약</small></span>
+        </span>
+        <span class="detail-disclosure-status">
+          <strong>${escapeHtml(serviceLabel || visitInfoStatusLabel(info.verification_status))}</strong>
+          <small>${escapeHtml(visitInfoDateLabel(info))}</small>
+          <i class="bi bi-chevron-down" aria-hidden="true"></i>
+        </span>
+      </summary>
+      <div class="detail-disclosure-content">
+        <p class="visit-info-expanded-meta"><i class="bi bi-calendar-check" aria-hidden="true"></i>${escapeHtml(visitInfoDateLabel(info))}</p>
+        ${hasDetails ? `
+          <dl>
+            ${address ? `<div><dt>주소</dt><dd>${escapeHtml(address)}</dd></div>` : ""}
+            ${operatingHours ? `<div><dt>운영시간</dt><dd>${escapeHtml(operatingHours)}</dd></div>` : ""}
+            ${phoneHref ? `<div><dt>전화</dt><dd><a href="${escapeHtml(phoneHref)}">${escapeHtml(phone)}</a></dd></div>` : ""}
+          </dl>
+          <div class="visit-info-actions">
+            ${officialUrl ? `<a href="${escapeHtml(officialUrl)}" target="_blank" rel="noopener noreferrer">공식 홈페이지</a>` : ""}
+            ${reservationUrl ? `<a href="${escapeHtml(reservationUrl)}" target="_blank" rel="noopener noreferrer">예약하기</a>` : ""}
+            ${evidenceUrl ? `<a href="${escapeHtml(evidenceUrl)}" target="_blank" rel="noopener noreferrer">정보 근거</a>` : ""}
+          </div>
+        ` : `<p>주소·전화·운영시간을 공식 또는 공공 출처로 확인 중입니다.</p>`}
+        <p class="visit-info-notice">${escapeHtml(info.notice || "운영시간과 연락처는 변경될 수 있으니 방문 전에 공식 정보로 다시 확인해 주세요.")}</p>
+      </div>
+    </details>
+  `;
+}
+
+function kakaoPlaceUrl(place) {
+  if (validLocation(place?.location)) {
+    return `https://map.kakao.com/link/map/${encodeURIComponent(mapPointDisplayName(place))},${Number(place.location.latitude)},${Number(place.location.longitude)}`;
+  }
+  return `https://map.kakao.com/link/search/${encodeURIComponent(`${place?.name || "제주 여행지"} 제주`)}`;
+}
+
+function kakaoRouteUrl(places) {
+  if (places.length < 2 || !places.every((place) => validLocation(place?.location))) {
+    return "";
+  }
+  const points = places.map((place) => (
+    `${encodeURIComponent(mapPointDisplayName(place))},${Number(place.location.latitude)},${Number(place.location.longitude)}`
+  ));
+  return `https://map.kakao.com/link/by/car/${points.join("/")}`;
+}
+
+function formatTravelMinutes(value) {
+  const minutes = Math.max(0, Math.round(Number(value) || 0));
+  const hours = Math.floor(minutes / 60);
+  const remainder = minutes % 60;
+  if (!hours) {
+    return `${remainder}분`;
+  }
+  return remainder ? `${hours}시간 ${remainder}분` : `${hours}시간`;
+}
+
+function savedRouteStayMinutes(item) {
+  return savedRoutePlaces(item).reduce((total, place) => (
+    total + Math.max(0, Number(place?.effort?.recommended_duration_minutes) || 0)
+  ), 0);
+}
+
+function savedRouteMiniMapPoint(location) {
+  if (!validLocation(location)) {
+    return null;
+  }
+  const xRatio = (Number(location.longitude) - jejuMapProjection.west)
+    / (jejuMapProjection.east - jejuMapProjection.west);
+  const yRatio = (jejuMapProjection.north - Number(location.latitude))
+    / (jejuMapProjection.north - jejuMapProjection.south);
+  if (!Number.isFinite(xRatio) || !Number.isFinite(yRatio)) {
+    return null;
+  }
+  return {
+    x: jejuMapProjection.content.left + clamp(xRatio, 0, 1) * jejuMapProjection.content.width,
+    y: jejuMapProjection.content.top + clamp(yRatio, 0, 1) * jejuMapProjection.content.height
+  };
+}
+
+function savedRouteMiniMapMarkup(item, places) {
+  const entries = places.map((place, index) => ({
+    place,
+    order: index + 1,
+    point: savedRouteMiniMapPoint(place.location)
+  }));
+  const located = entries.filter((entry) => entry.point);
+  const pathSegments = [];
+  let currentSegment = [];
+  entries.forEach((entry) => {
+    if (entry.point) {
+      currentSegment.push(entry.point);
+      return;
+    }
+    if (currentSegment.length >= 2) {
+      pathSegments.push(currentSegment);
+    }
+    currentSegment = [];
+  });
+  if (currentSegment.length >= 2) {
+    pathSegments.push(currentSegment);
+  }
+  return `
+    <figure class="saved-route-mini-map" aria-label="저장 코스 위치 미리보기">
+      <div class="saved-route-mini-map-canvas">
+        <img src="assets/jeju-map-fallback.svg?v=20260713-1" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <svg viewBox="0 0 100 100" role="img" aria-label="${escapeHtml(`${located.length}개 장소의 방문 순서 지도`)}">
+          ${pathSegments.map((segment) => {
+            const path = routePathData(segment);
+            return `<path class="saved-route-mini-path-shadow" d="${path}"></path><path class="saved-route-mini-path" d="${path}"></path>`;
+          }).join("")}
+          ${located.map((entry) => `
+            <g class="saved-route-mini-marker" transform="translate(${roundSvg(entry.point.x)} ${roundSvg(entry.point.y)})">
+              <title>${escapeHtml(`${entry.order}번 ${mapPointDisplayName(entry.place)}`)}</title>
+              <circle r="5.2"></circle>
+              <text x="0" y="0.6">${entry.order}</text>
+            </g>
+          `).join("")}
+        </svg>
+      </div>
+      <figcaption>
+        <span>코스 위치 미리보기</span>
+        <b>${located.length}/${places.length}곳 지도 위치 확인</b>
+        ${located.length < places.length ? "<small>지도에서 위치를 찾지 못한 장소 앞뒤 이동선은 표시하지 않습니다.</small>" : ""}
+        <a class="saved-route-map-attribution" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">지도 데이터 © OpenStreetMap contributors</a>
+      </figcaption>
+    </figure>
+  `;
+}
+
+function localTodayValue() {
+  const now = new Date();
+  const local = new Date(now.getTime() - now.getTimezoneOffset() * 60 * 1000);
+  return local.toISOString().slice(0, 10);
+}
+
+function sameRouteSpotIds(left, right) {
+  return left.length === right.length && left.every((spotId, index) => spotId === right[index]);
+}
+
+function scenarioForRouteSpotIds(spotIds) {
+  return (state.data?.scenarios || []).find((scenario) => (
+    sameRouteSpotIds(currentRouteSpotIds(scenario), spotIds)
+  )) || null;
+}
+
+function canOpenSavedRoute(item) {
+  if (!item?.spotIds?.length) {
+    return false;
+  }
+  return sameRouteSpotIds(currentRouteSpotIds(), item.spotIds)
+    || Boolean(scenarioForRouteSpotIds(item.spotIds));
+}
+
+function openSavedRoute(routeId) {
+  const item = state.savedRoutes.find((saved) => saved.id === routeId)
+    || (state.sharedRoutePreview?.id === routeId ? state.sharedRoutePreview : null);
+  if (!item) {
+    announceSavedRoute("다시 볼 코스를 찾지 못했습니다.");
+    return false;
+  }
+
+  const isCurrentRoute = sameRouteSpotIds(currentRouteSpotIds(), item.spotIds);
+  if (!isCurrentRoute) {
+    const scenario = scenarioForRouteSpotIds(item.spotIds);
+    if (!scenario) {
+      announceSavedRoute("이 코스는 저장함의 장소 목록과 방문 체크에서 다시 볼 수 있습니다.");
+      return false;
+    }
+    state.scenarioId = scenario.id;
+    state.runtimeScenario = null;
+    state.conceptFocus = null;
+    state.profile = profileFromScenario(scenario);
+    setApiState("static", "저장한 추천 코스를 다시 열었습니다.");
+  }
+
+  state.selectedSpotId = (SAVED_TRIPS?.orderedSpotIds(item) || item.spotIds)
+    .find((spotId) => allowedSavedSpotIds().has(spotId)) || null;
+  state.mapPopupSpotId = null;
+  state.detailCollapsed = false;
+  cancelGroundedAiExplanation();
+  render();
+
+  closeSavedRoutesModal({ restoreFocus: false });
+  navigateToSection("recommend", "#recommendations", { updateLocation: true });
+  return true;
+}
+
+function savedRouteChecklist(item) {
+  if (!SAVED_TRIPS) {
+    return [];
+  }
+  const result = [];
+  savedRoutePlaces(item).forEach((place) => {
+    if (place.unavailable) {
+      return;
+    }
+    const labels = [
+      "운영시간과 임시휴관 여부",
+      "주차·출입 동선 이용 가능 여부",
+      "화장실·휴식 공간 이용 가능 여부"
+    ];
+    labels.forEach((label) => {
+      const id = SAVED_TRIPS.checkId(place.spot_id, label);
+      if (!result.some((check) => check.id === id)) {
+        result.push({ id, spotId: place.spot_id, placeName: place.name, label });
+      }
+    });
+  });
+  return result.slice(0, 12);
+}
+
+function updateSavedRouteCheck(routeId, checkId, checked, focusContainerId = "") {
+  if (!SAVED_TRIPS) {
+    return;
+  }
+  state.savedRoutes = SAVED_TRIPS.updateCheck(
+    state.savedRoutes,
+    routeId,
+    checkId,
+    checked,
+    allowedSavedSpotIds()
+  );
+  persistSavedRoutes("방문 전 체크 상태를 저장했습니다.");
+  refreshSavedRouteViews();
+  window.requestAnimationFrame(() => {
+    const scope = document.getElementById(focusContainerId) || document;
+    const checkbox = Array.from(scope.querySelectorAll("[data-saved-route-id][data-saved-check-id]")).find((item) => (
+      item.dataset.savedRouteId === routeId && item.dataset.savedCheckId === checkId
+    ));
+    checkbox?.focus();
+  });
+}
+
+function updateSavedRouteItinerary(routeId, date, startTime) {
+  if (!SAVED_TRIPS) {
+    return;
+  }
+  state.savedRoutes = SAVED_TRIPS.updateItinerary(
+    state.savedRoutes,
+    routeId,
+    { date, startTime },
+    allowedSavedSpotIds()
+  );
+  persistSavedRoutes("여행 일정을 이 기기에 저장했습니다.");
+}
+
+function moveSavedRouteSpot(routeId, spotId, direction) {
+  if (!SAVED_TRIPS) {
+    return;
+  }
+  if (![-1, 1].includes(direction)) {
+    return;
+  }
+  const item = state.savedRoutes.find((saved) => saved.id === routeId);
+  if (!item) {
+    announceSavedRoute("순서를 변경할 코스를 찾지 못했습니다.");
+    return;
+  }
+  const orderedSpotIds = SAVED_TRIPS.orderedSpotIds(item);
+  const index = orderedSpotIds.indexOf(spotId);
+  const nextIndex = index + direction;
+  if (index < 0 || nextIndex < 0 || nextIndex >= orderedSpotIds.length) {
+    return;
+  }
+  [orderedSpotIds[index], orderedSpotIds[nextIndex]] = [orderedSpotIds[nextIndex], orderedSpotIds[index]];
+  state.savedRoutes = SAVED_TRIPS.updateSpotOrder(
+    state.savedRoutes,
+    routeId,
+    orderedSpotIds,
+    allowedSavedSpotIds()
+  );
+  persistSavedRoutes("방문 순서를 변경했습니다.");
+  renderSavedRoutesModal();
+  window.requestAnimationFrame(() => {
+    const buttons = Array.from(document.querySelectorAll("[data-move-saved-route]")).filter((itemButton) => (
+      itemButton.dataset.moveSavedRoute === routeId
+      && itemButton.dataset.moveSavedSpot === spotId
+    ));
+    const button = buttons.find((itemButton) => (
+      !itemButton.disabled && Number(itemButton.dataset.moveDirection) === direction
+    )) || buttons.find((itemButton) => !itemButton.disabled);
+    button?.focus();
+  });
+}
+
+function focusSavedRouteDeleteButton(routeId) {
+  window.requestAnimationFrame(() => {
+    const button = Array.from(document.querySelectorAll("[data-delete-saved-route]")).find((item) => (
+      item.dataset.deleteSavedRoute === routeId
+    ));
+    button?.focus();
+  });
+}
+
+function clearSavedRouteDeleteConfirmation({ clearMessage = false } = {}) {
+  const hadPendingDelete = Boolean(state.pendingSavedRouteDeleteId);
+  window.clearTimeout(savedRouteDeleteTimer);
+  savedRouteDeleteTimer = null;
+  state.pendingSavedRouteDeleteId = null;
+  if (clearMessage && hadPendingDelete) {
+    state.savedRouteMessage = "";
+  }
+}
+
+function requestDeleteSavedRoute(routeId) {
+  if (!SAVED_TRIPS) {
+    return;
+  }
+  if (state.pendingSavedRouteDeleteId !== routeId) {
+    clearSavedRouteDeleteConfirmation();
+    state.pendingSavedRouteDeleteId = routeId;
+    announceSavedRoute("삭제 버튼을 한 번 더 누르면 이 코스가 삭제됩니다.");
+    savedRouteDeleteTimer = window.setTimeout(() => {
+      savedRouteDeleteTimer = null;
+      const keepFocus = document.activeElement?.dataset?.deleteSavedRoute === routeId;
+      state.pendingSavedRouteDeleteId = null;
+      announceSavedRoute("삭제 확인이 취소되었습니다.");
+      renderSavedRoutesModal();
+      if (keepFocus) {
+        focusSavedRouteDeleteButton(routeId);
+      }
+    }, 3500);
+    renderSavedRoutesModal();
+    focusSavedRouteDeleteButton(routeId);
+    return;
+  }
+  clearSavedRouteDeleteConfirmation();
+  state.savedRoutes = SAVED_TRIPS.remove(state.savedRoutes, routeId, allowedSavedSpotIds());
+  persistSavedRoutes("저장한 코스를 삭제했습니다.");
+  refreshSavedRouteViews();
+}
+
+function formatSavedRouteDate(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "저장일 확인 필요";
+  }
+  return new Intl.DateTimeFormat("ko-KR", {
+    year: "numeric",
+    month: "short",
+    day: "numeric"
+  }).format(date);
+}
+
+function savedRouteCardMarkup(item, { shared = false } = {}) {
+  const places = savedRoutePlaces(item);
+  const checks = savedRouteChecklist(item);
+  const checkedIds = new Set(item.checkedIds || []);
+  const completed = checks.filter((check) => checkedIds.has(check.id)).length;
+  const confirmingDelete = state.pendingSavedRouteDeleteId === item.id;
+  const canOpen = canOpenSavedRoute(item);
+  const itinerary = item.itinerary || {};
+  const routeUrl = kakaoRouteUrl(places);
+  const stayMinutes = savedRouteStayMinutes(item);
+  const unavailableCount = places.filter((place) => place.unavailable).length;
+  const shareable = shareableSavedSpotIds();
+  const canShare = unavailableCount === 0
+    && item.spotIds?.every((spotId) => shareable.has(spotId));
+  return `
+    <article class="saved-route-card ${shared ? "shared" : ""}" data-saved-route-card="${escapeHtml(item.id)}">
+      <header>
+        <div>
+          <span>${shared ? "공유받은 코스" : escapeHtml(formatSavedRouteDate(item.savedAt))}</span>
+          <h3>${escapeHtml(shared ? "공유받은 제주 추천 코스" : savedRouteTitle(item))}</h3>
+        </div>
+        <b>${places.length}곳</b>
+      </header>
+      <ol class="saved-route-places" aria-label="${shared ? "공유받은 코스 방문 순서" : "저장한 코스 방문 순서"}">
+        ${places.map((place, index) => {
+          const duration = Number(place?.effort?.recommended_duration_minutes);
+          const infoUrl = placeInfoUrl(place);
+          const reservationUrl = placeReservationUrl(place);
+          const phoneHref = safePhoneHref(place?.visit_info?.phone);
+          const pointLabel = hasSpecialPointRole(place.location) ? locationPointLabel(place.location) : "";
+          return `
+            <li class="${place.unavailable ? "unavailable" : ""}">
+              <i>${index + 1}</i>
+              <div class="saved-route-place-main">
+                <span class="saved-route-place-copy">
+                  <b>${escapeHtml(place.name)}</b>
+                  <small>${escapeHtml([
+                    place.visit_info?.address || place.region || "제주",
+                    pointLabel,
+                    place.unavailable
+                      ? "저장 기록은 유지됩니다"
+                      : (Number.isFinite(duration) && duration > 0 ? `체류 ${formatTravelMinutes(duration)}` : "체류시간 확인")
+                   ].filter(Boolean).join(" · "))}</small>
+                </span>
+                <div class="saved-route-place-actions">
+                  ${!shared ? `
+                    <div class="saved-route-order-actions" role="group" aria-label="${escapeHtml(place.name)} 방문 순서 변경">
+                      <span class="saved-route-action-label">순서 변경</span>
+                      <button type="button" data-move-saved-route="${escapeHtml(item.id)}" data-move-saved-spot="${escapeHtml(place.spot_id)}" data-move-direction="-1" aria-label="${escapeHtml(place.name)} 순서를 위로 이동" ${index === 0 ? "disabled" : ""}><i class="bi bi-chevron-up" aria-hidden="true"></i><span>위로</span></button>
+                      <button type="button" data-move-saved-route="${escapeHtml(item.id)}" data-move-saved-spot="${escapeHtml(place.spot_id)}" data-move-direction="1" aria-label="${escapeHtml(place.name)} 순서를 아래로 이동" ${index === places.length - 1 ? "disabled" : ""}><i class="bi bi-chevron-down" aria-hidden="true"></i><span>아래로</span></button>
+                    </div>
+                  ` : ""}
+                  <div class="saved-route-place-links" role="group" aria-label="${escapeHtml(place.name)} 장소 바로가기">
+                    ${place.unavailable
+                      ? `<span class="saved-route-place-unavailable">현재 정보 없음</span>`
+                      : `<a class="saved-route-map-link" href="${escapeHtml(kakaoPlaceUrl(place))}" target="_blank" rel="noopener noreferrer" aria-label="카카오맵에서 ${escapeHtml(place.name)} 보기"><i class="bi bi-map" aria-hidden="true"></i><span>지도</span></a>`}
+                    ${!place.unavailable && infoUrl ? `<a href="${escapeHtml(infoUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(place.name)} 정보 확인"><i class="bi bi-info-circle" aria-hidden="true"></i><span>정보</span></a>` : ""}
+                    ${!place.unavailable && phoneHref ? `<a href="${escapeHtml(phoneHref)}" aria-label="${escapeHtml(place.name)} 전화 연결"><i class="bi bi-telephone" aria-hidden="true"></i><span>전화</span></a>` : ""}
+                    ${!place.unavailable && reservationUrl ? `<a href="${escapeHtml(reservationUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(place.name)} 예약하기"><i class="bi bi-calendar-check" aria-hidden="true"></i><span>예약</span></a>` : ""}
+                  </div>
+                </div>
+              </div>
+            </li>
+          `;
+        }).join("")}
+      </ol>
+      ${savedRouteMiniMapMarkup(item, places)}
+      ${shared ? `
+        <p class="saved-route-share-note">공유 링크에는 장소 정보만 포함되며 개인 조건·일정·체크 상태는 포함되지 않습니다.</p>
+      ` : `
+        <section class="saved-route-itinerary" aria-label="여행 일정 설정">
+          <header>
+            <span><i class="bi bi-calendar2-check" aria-hidden="true"></i> 여행 준비</span>
+            <b>예상 체류 ${escapeHtml(formatTravelMinutes(stayMinutes))}</b>
+          </header>
+          <div class="saved-route-schedule-fields">
+            <label>
+              <span>여행 날짜</span>
+              <input type="date" value="${escapeHtml(itinerary.date || "")}" min="${escapeHtml(localTodayValue())}" data-saved-trip-date="${escapeHtml(item.id)}">
+            </label>
+            <label>
+              <span>시작 시간</span>
+              <input type="time" value="${escapeHtml(itinerary.startTime || "")}" data-saved-start-time="${escapeHtml(item.id)}">
+            </label>
+          </div>
+          <div class="saved-route-plan-actions">
+            ${routeUrl
+              ? `<a href="${escapeHtml(routeUrl)}" target="_blank" rel="noopener noreferrer"><i class="bi bi-sign-turn-right" aria-hidden="true"></i> 카카오맵 자동차 경로</a>`
+              : `<span><i class="bi bi-geo-alt" aria-hidden="true"></i> 위치를 찾기 어려운 장소는 위의 ‘지도’에서 직접 검색하세요.</span>`}
+          </div>
+          <p>예상 체류에는 이동시간이 포함되지 않습니다. 날짜·시간·변경한 순서는 이 기기에만 저장되며 공유되지 않습니다.</p>
+          ${unavailableCount ? `<p class="saved-route-availability-note">현재 정보를 찾을 수 없는 장소 ${unavailableCount}곳은 기록만 보존되며, 정보가 복구될 때까지 이 코스는 공유할 수 없습니다.</p>` : ""}
+        </section>
+        <fieldset class="saved-route-checklist">
+          <legend>방문 전 체크 <span>${completed}/${checks.length}</span></legend>
+          ${checks.map((check) => `
+            <label>
+              <input type="checkbox" data-saved-route-id="${escapeHtml(item.id)}" data-saved-check-id="${escapeHtml(check.id)}" ${checkedIds.has(check.id) ? "checked" : ""}>
+              <span><small>${escapeHtml(check.placeName)}</small>${escapeHtml(check.label)}</span>
+            </label>
+          `).join("")}
+        </fieldset>
+      `}
+      <footer>
+        ${shared ? `
+          ${canOpen ? `<button class="outline-button" type="button" data-open-saved-route="${escapeHtml(item.id)}">코스 보기</button>` : ""}
+          <button class="primary-button" type="button" data-save-shared-route>내 저장함에 추가</button>
+        ` : `
+          ${canOpen ? `<button class="primary-button" type="button" data-open-saved-route="${escapeHtml(item.id)}">원본 추천 상세</button>` : ""}
+          ${canShare ? `<button class="outline-button" type="button" data-share-saved-route="${escapeHtml(item.id)}">공유 링크</button>` : ""}
+          <button class="saved-route-delete-button ${confirmingDelete ? "confirm" : ""}" type="button" data-delete-saved-route="${escapeHtml(item.id)}">${confirmingDelete ? "한 번 더 삭제" : "삭제"}</button>
+        `}
+      </footer>
+    </article>
+  `;
+}
+
+function renderSavedRouteControls() {
+  const count = state.savedRoutes.length;
+  const countNode = document.getElementById("savedRoutesCount");
+  if (countNode) {
+    countNode.textContent = String(count);
+  }
+  document.querySelectorAll("[data-open-saved-routes]").forEach((button) => {
+    button.setAttribute("aria-label", `저장한 추천 코스 ${count}개 보기`);
+  });
+  const saved = Boolean(currentSavedRoute());
+  document.querySelectorAll("[data-save-current-route]").forEach((button) => {
+    button.classList.toggle("saved", saved);
+    button.setAttribute("aria-pressed", String(saved));
+    button.setAttribute("aria-label", saved ? "저장한 코스 열기" : "현재 추천 코스 저장");
+    const label = button.querySelector("[data-save-current-route-label]");
+    if (label) {
+      label.textContent = saved ? "저장됨" : "코스 저장";
+    }
+    const icon = button.querySelector("i");
+    if (icon) {
+      icon.className = `bi ${saved ? "bi-bookmark-check-fill" : "bi-bookmark-plus"}`;
+    }
+    const note = button.querySelector("small");
+    if (note) {
+      note.textContent = saved
+        ? "저장함에서 방문 전 체크를 이어갈 수 있습니다."
+        : "개인 조건 없이 장소 목록만 이 기기에 저장합니다.";
+    }
+  });
+}
+
+function refreshSavedRouteViews() {
+  renderSavedRouteControls();
+  renderSavedRoutesModal();
+  if (state.data) {
+    renderDetail(currentScenario());
+  }
+}
+
+function renderSavedRoutesModal() {
+  const list = document.getElementById("savedRoutesList");
+  if (!list) {
+    return;
+  }
+  const sharedMarkup = state.sharedRoutePreview
+    ? savedRouteCardMarkup(state.sharedRoutePreview, { shared: true })
+    : "";
+  const savedMarkup = state.savedRoutes.map((item) => savedRouteCardMarkup(item)).join("");
+  list.innerHTML = sharedMarkup + savedMarkup || `
+    <section class="saved-routes-empty">
+      <i class="bi bi-bookmark-heart" aria-hidden="true"></i>
+      <h3>저장한 코스가 없습니다</h3>
+      <p>추천 결과에서 ‘코스 저장’을 누르면 이 기기에서 다시 볼 수 있습니다.</p>
+    </section>
+  `;
+  const status = document.getElementById("savedRoutesStatus");
+  if (status) {
+    status.textContent = state.savedRouteMessage;
+  }
 }
 
 function scenarioById(scenarioId) {
@@ -892,15 +2542,56 @@ function conceptPreviewPlaces(scenario, maxItems = 3) {
   const usedSources = new Set();
   return selectedRoute(scenario).slice(0, maxItems).map((routeItem, index) => {
     const place = routePlace(scenario, routeItem);
+    const category = categoryLabels[place.category] || "추천 장소";
+    const stayTip = cleanDisplayText(routeItem.stay_tip || "");
     return {
       order: Number(routeItem.order || index + 1),
+      spotId: place.spot_id || routeItem.spot_id || "",
       name: place.name || routeItem.name || "추천 장소",
-      category: categoryLabels[place.category] || "추천 장소",
+      category,
+      detail: [category, stayTip].filter(Boolean).join(" · "),
+      durationMinutes: Math.max(0, Number(place?.effort?.recommended_duration_minutes || place?.duration_minutes) || 0),
       verified: verificationLabel(place),
       located: validLocation(place.location),
       visual: visualForPlace(place, usedSources)
     };
   });
+}
+
+function conceptRecipeProfile(scenarioId = state.scenarioId) {
+  return conceptRecipeProfiles[scenarioId] || conceptRecipeProfiles.recovery_quiet;
+}
+
+function conceptPreferenceChipMarkup(profile, option) {
+  const selected = hasProfileValue(profile, option.key, [option.value]);
+  const prioritized = conceptFocusKey() === conceptFocusKey(option);
+  return `
+    <button class="concept-preference-chip ${selected ? "active" : ""} ${prioritized ? "is-priority" : ""}" type="button" data-concept-focus-key="${escapeHtml(option.key)}" data-concept-focus-value="${escapeHtml(option.value)}" data-concept-focus-label="${escapeHtml(option.label)}" aria-pressed="${prioritized ? "true" : "false"}" aria-label="${escapeHtml(option.label)} 기준을 추천에 우선 반영">
+      ${escapeHtml(option.label)}
+    </button>
+  `;
+}
+
+function conceptPreferenceSentencesMarkup(profile, recipe) {
+  return `
+    <p>
+      <span>나는</span>
+      ${conceptPreferenceChipMarkup(profile, recipe.companion)}
+      ${conceptPreferenceChipMarkup(profile, recipe.pace)}
+      <span>여행해요</span>
+    </p>
+    <p>
+      <span>한 번에</span>
+      ${conceptPreferenceChipMarkup(profile, recipe.distance)}
+      <span>이동하고</span>
+      ${conceptPreferenceChipMarkup(profile, recipe.setting)}
+      <span>로 둘러봐요</span>
+    </p>
+    <p>
+      ${recipe.essentials.map((option) => conceptPreferenceChipMarkup(profile, option)).join("")}
+      <span>은 꼭 필요해요</span>
+    </p>
+  `;
 }
 
 function conceptMetaText(scenario) {
@@ -909,7 +2600,7 @@ function conceptMetaText(scenario) {
   const score = Number(scenario?.recommendation?.score?.total);
   return [
     `${route.length || 0}곳 추천`,
-    `검증 ${verifiedCount}/${route.length || 0}`,
+    `정보 확인 ${verifiedCount}/${route.length || 0}`,
     Number.isFinite(score) ? `${Math.round(score)}점` : ""
   ].filter(Boolean).join(" · ");
 }
@@ -922,42 +2613,93 @@ function conceptCardScoreText(scenario) {
 function conceptCardMetaText(scenario) {
   const route = selectedRoute(scenario).slice(0, 4);
   const verifiedCount = route.filter((routeItem) => verificationLabel(routePlace(scenario, routeItem)) !== "확인 필요").length;
-  return `${route.length || 0}곳 추천 · 검증 ${verifiedCount}/${route.length || 0}`;
+  return `${route.length || 0}곳 추천 · 정보 확인 ${verifiedCount}/${route.length || 0}`;
+}
+
+function conceptTravelTimeSnapshot(scenario) {
+  const entries = routeCoordinateEntries(scenario);
+  if (entries.length < 2) {
+    return { entries, routeKey: "", label: "시간 확인 필요" };
+  }
+  return {
+    entries,
+    routeKey: routeEntriesCacheKey(entries),
+    label: formatDurationMinutes(fallbackRouteSummary(entries).durationMinutes)
+  };
+}
+
+function updateConceptTravelTime(snapshot) {
+  if (!snapshot.routeKey || !shouldRequestRouteProxy()) {
+    return;
+  }
+  cachedRouteSummaryWithRoadGeometry(snapshot.entries).then((summary) => {
+    const currentEntries = routeCoordinateEntries(currentScenario());
+    const currentRouteKey = currentEntries.length >= 2 ? routeEntriesCacheKey(currentEntries) : "";
+    const target = document.querySelector("[data-concept-travel-time]");
+    if (
+      currentRouteKey !== snapshot.routeKey
+      || target?.dataset.conceptTravelRouteKey !== snapshot.routeKey
+    ) {
+      return;
+    }
+    const value = target.querySelector("strong");
+    if (value) {
+      value.textContent = formatDurationMinutes(summary.durationMinutes);
+    }
+  }).catch(() => {});
 }
 
 function renderConceptPage(scenario) {
   const grid = document.getElementById("conceptGrid");
-  const activeScenario = scenarioById(state.scenarioId) || scenario;
+  const activeScenario = scenario || scenarioById(state.scenarioId);
   if (grid) {
-    grid.innerHTML = scenarioCards.map((card, index) => {
+    const visibleCards = state.conceptPanelOpen
+      ? scenarioCards.filter((card) => card.id === state.scenarioId)
+      : scenarioCards;
+    grid.innerHTML = visibleCards.map((card) => {
+      const index = scenarioCards.findIndex((item) => item.id === card.id);
       const cardScenario = scenarioById(card.id);
       const active = state.conceptPanelOpen && card.id === state.scenarioId;
       return `
-        <button class="concept-card ${card.tone} ${active ? "active" : ""}" type="button" data-concept-id="${escapeHtml(card.id)}" aria-label="${escapeHtml(card.title)} 테마 추천 미리보기">
+        <button class="concept-card ${card.tone} ${active ? "active" : ""}" type="button" data-concept-id="${escapeHtml(card.id)}" aria-label="${escapeHtml(card.title)} 테마 추천 미리보기" aria-pressed="${active ? "true" : "false"}">
           ${active ? '<span class="concept-selected-badge">선택됨</span>' : ""}
           <span class="concept-card-index">${String(index + 1).padStart(2, "0")}</span>
           <strong>${escapeHtml(card.title)}</strong>
           <small>${escapeHtml(card.body)}</small>
-          <span class="concept-card-icon" aria-hidden="true">
-            <img src="${escapeHtml(card.image)}" alt="" loading="lazy" decoding="async">
+          <span class="concept-card-visual" aria-hidden="true">
+            <img class="concept-card-line-art" src="${escapeHtml(card.lineArt)}" alt="" loading="eager" decoding="async">
+            <img class="concept-card-character" src="${escapeHtml(card.character)}" alt="" loading="eager" decoding="async">
           </span>
-          <em>${escapeHtml(conceptCardScoreText(cardScenario))}</em>
+          <span class="concept-card-divider" aria-hidden="true"></span>
+          <span class="concept-card-score-row">
+            <span class="concept-card-shield" aria-hidden="true">
+              <i class="bi bi-shield"></i>
+              <i class="bi bi-heart-fill"></i>
+            </span>
+            <em>${escapeHtml(conceptCardScoreText(cardScenario))}</em>
+          </span>
           <span class="concept-card-submeta">${escapeHtml(conceptCardMetaText(cardScenario))}</span>
         </button>
       `;
     }).join("");
   }
 
-  const card = scenarioCardById(activeScenario?.id);
+  const card = scenarioCardById(state.scenarioId);
+  const recipe = conceptRecipeProfile(state.scenarioId);
+  const profile = normalizeProfile(state.profile || activeScenario?.traveler_summary);
   const previewPlaces = conceptPreviewPlaces(activeScenario, 4);
   const summaryBadge = document.getElementById("conceptSummaryBadge");
   const summaryTitle = document.getElementById("conceptSummaryTitle");
   const summaryText = document.getElementById("conceptSummaryText");
   const summaryProof = document.getElementById("conceptSummaryProof");
+  const preferenceSentences = document.getElementById("conceptPreferenceSentences");
   const summaryPlaces = document.getElementById("conceptSummaryPlaces");
+  const fitNote = document.getElementById("conceptFitNote");
+  const primaryCharacter = document.getElementById("conceptRecipeCharacterPrimary");
   const score = Number(activeScenario?.recommendation?.score?.total);
   const scoreText = Number.isFinite(score) ? Math.round(score) : "-";
   const verifiedCount = previewPlaces.filter((place) => place.verified !== "확인 필요").length;
+  const travelTime = conceptTravelTimeSnapshot(activeScenario);
 
   if (summaryBadge) {
     summaryBadge.textContent = `${card.title} 테마`;
@@ -966,23 +2708,46 @@ function renderConceptPage(scenario) {
     summaryTitle.textContent = activeScenario?.recommendation?.course?.title || activeScenario?.title || card.title;
   }
   if (summaryText) {
-    summaryText.textContent = `${conceptMetaText(activeScenario)} · ${card.body}`;
+    summaryText.textContent = recipe.subtitle;
   }
   if (summaryProof) {
     summaryProof.innerHTML = `
-      <span><b>접근성 적합도</b><strong>${escapeHtml(String(scoreText))}%</strong></span>
-      <span><b>검증 완료</b><strong>${escapeHtml(String(verifiedCount))}/${escapeHtml(String(previewPlaces.length))}</strong></span>
-      <span><b>신뢰도 지수</b><strong>${escapeHtml(String(scoreText))}/100</strong></span>
+      <span><strong>${escapeHtml(String(previewPlaces.length))}</strong><b>곳 추천</b></span>
+      <span><b>정보 확인</b><strong>${escapeHtml(String(verifiedCount))}/${escapeHtml(String(previewPlaces.length))}</strong></span>
+      <span data-concept-travel-time data-concept-travel-route-key="${escapeHtml(travelTime.routeKey)}"><b>예상 이동</b><strong>${escapeHtml(travelTime.label)}</strong></span>
     `;
+    updateConceptTravelTime(travelTime);
+  }
+  if (preferenceSentences) {
+    preferenceSentences.innerHTML = conceptPreferenceSentencesMarkup(profile, recipe);
   }
   if (summaryPlaces) {
-    summaryPlaces.innerHTML = previewPlaces.map((place) => `
-      <span class="concept-preview-item ${place.located ? "located" : "needs-check"}">
-        <img class="concept-preview-image" src="${escapeHtml(place.visual.src)}" alt="${escapeHtml(place.visual.alt)}" loading="lazy" decoding="async" data-fallback-src="${escapeHtml(place.visual.fallbackSrc)}" data-fallback-caption="${escapeHtml(place.visual.fallbackCaption)}" data-fallback-source="${escapeHtml(place.visual.fallbackSource)}">
-        <b>${escapeHtml(place.order)}. ${escapeHtml(place.name)}</b>
-        <small>${escapeHtml(place.category)} · ${escapeHtml(place.verified)}</small>
-      </span>
-    `).join("");
+    summaryPlaces.innerHTML = previewPlaces.length ? previewPlaces.map((place) => `
+      <button class="concept-preview-item ${place.located ? "located" : "needs-check"}" type="button" data-concept-place-id="${escapeHtml(place.spotId)}" aria-label="${escapeHtml(place.order)}번째 장소 ${escapeHtml(place.name)} 자세히 보기">
+        <span class="concept-preview-order">${escapeHtml(place.order)}</span>
+        <img class="concept-preview-image${place.visual.fit === "contain" ? " is-contain" : ""}" src="${escapeHtml(place.visual.src)}" alt="${escapeHtml(place.visual.alt)}" loading="lazy" decoding="async" data-fallback-src="${escapeHtml(place.visual.fallbackSrc)}" data-fallback-caption="${escapeHtml(place.visual.fallbackCaption)}" data-fallback-source="${escapeHtml(place.visual.fallbackSource)}">
+        <span class="concept-preview-copy">
+          <b>${escapeHtml(place.name)}</b>
+          <small>${escapeHtml(place.detail || place.category)}${place.durationMinutes ? ` · ${escapeHtml(String(place.durationMinutes))}분` : ""}</small>
+        </span>
+        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+      </button>
+    `).join("") : `
+      <div class="concept-preview-empty" role="status">
+        <i class="bi bi-shield-exclamation" aria-hidden="true"></i>
+        <strong>공식 근거가 확인된 장소가 없습니다.</strong>
+        <span>근거가 부족한 장소를 대신 보여드리지 않아요. 다른 조건을 선택해 주세요.</span>
+      </div>
+    `;
+  }
+  if (fitNote) {
+    const focusText = state.conceptFocus?.label
+      ? `<b>${escapeHtml(state.conceptFocus.label)}</b> 기준 우선 · `
+      : "";
+    fitNote.innerHTML = `<i class="bi bi-info-circle" aria-hidden="true"></i> ${focusText}현재 조건으로 접근성 적합도 <strong>${escapeHtml(String(scoreText))}%</strong>`;
+  }
+  if (primaryCharacter) {
+    primaryCharacter.src = card.character;
   }
 }
 
@@ -1024,173 +2789,43 @@ function openConceptResultPanel() {
 }
 
 function closeConceptResultPanel() {
+  const wasOpen = state.conceptPanelOpen;
   state.conceptPanelOpen = false;
   syncStepViewState();
+  if (wasOpen && state.data) {
+    renderConceptPage(currentScenario());
+  }
 }
 
-function officialTravelerTypes(profile) {
-  const types = [];
-  const text = Object.values(profile || {}).flat().join(" ");
-  if (/휠체어|wheelchair/.test(text)) {
-    types.push("wheelchair_user");
-  }
-  if (/유모차|아이|stroller|영유아/.test(text)) {
-    types.push("stroller_family");
-  }
-  if (/고령|노인|임산부|임신|senior|pregnant/.test(text)) {
-    types.push("senior_or_pregnant");
-  }
-  if (/시각/.test(text)) {
-    types.push("visual_impairment");
-  }
-  if (/청각/.test(text)) {
-    types.push("hearing_impairment");
-  }
-  return unique(types);
+function restoreSelectedConceptFocus() {
+  window.requestAnimationFrame(() => {
+    const selectedCard = Array.from(document.querySelectorAll("[data-concept-id]"))
+      .find((card) => card.dataset.conceptId === state.scenarioId);
+    selectedCard?.focus();
+  });
 }
 
-function officialCourseScore(course, scenario) {
-  const profile = normalizeProfile(scenario?.traveler_summary || state.profile);
-  const activeTypes = officialTravelerTypes(profile);
-  const recommendations = course?.recommendation_by_type || {};
-  const typeKeys = activeTypes.length ? activeTypes : Object.keys(recommendations);
-  const typeScore = Math.max(0, ...typeKeys.map((type) => officialRecommendationWeights[recommendations[type]] || 0));
-  const promotedCount = (course?.stops || []).filter((stop) => stop.promoted_candidate).length;
-  const locationCount = (course?.stops || []).filter((stop) => stop.location_available).length;
-  return typeScore * 100 + promotedCount * 4 + locationCount;
+function aiStatusBadge(status) {
+  return {
+    idle: "생성 전",
+    loading: "생성 중",
+    success: "근거 연결 완료",
+    disabled: "자동 설명 사용 불가",
+    error: "생성 실패",
+    ungrounded: "근거 부족",
+    local: "기본 추천 기준"
+  }[status] || "기본 추천 기준";
 }
 
-function officialCoursesForScenario(scenario) {
-  const courses = state.data?.official_courses || [];
-  return courses
-    .map((course) => ({ course, score: officialCourseScore(course, scenario) }))
-    .filter((item) => item.score > 0)
-    .sort((left, right) => right.score - left.score)
-    .map((item) => item.course);
-}
-
-function currentValidationCase(scenario) {
-  const caseId = scenario?.id === "runtime_recommendation" ? state.scenarioId : scenario?.id;
-  return (state.validationReport?.cases || []).find((item) => item.id === caseId) || null;
-}
-
-function validationSummaryText() {
-  const summary = state.validationReport?.summary;
-  if (!summary) {
-    return "검증표 미연결";
-  }
-  return `상황별 검증 ${summary.passed_cases}/${summary.total_cases} 통과`;
-}
-
-function validationStatusClass(status) {
-  return status === "통과" ? "pass" : "fail";
-}
-
-function operationsStatusLabel(status) {
-  if (status === "ready_for_full_service") {
-    return "전체 공개 가능";
-  }
-  if (status === "ready_with_warnings") {
-    return "제한 공개 가능";
-  }
-  if (status === "blocked_for_full_service") {
-    return "준비 필요";
-  }
-  return "확인 필요";
-}
-
-function operationsStatusClass(status) {
-  if (status === "ready_for_full_service") {
-    return "pass";
-  }
-  if (status === "ready_with_warnings") {
-    return "warn";
-  }
-  if (status === "blocked_for_full_service") {
-    return "block";
-  }
-  return "warn";
-}
-
-function operationsSectionLabel(name) {
-  const labels = {
-    base_place_catalog: "기본 장소 카드",
-    public_data_dependencies: "공공데이터 의존성",
-    roadview_service_seed: "로드뷰 시드",
-    operational_documents: "운영 문서"
-  };
-  return labels[name] || name;
-}
-
-function gateStatusText(status) {
-  if (status === "pass") {
-    return "통과";
-  }
-  if (status === "warn") {
-    return "주의";
-  }
-  if (status === "block") {
-    return "보류";
-  }
-  return "확인";
-}
-
-function readinessValueLabel(value) {
-  const labels = {
-    awaiting_receipt: "원본 수령 대기",
-    ready_to_use: "사용 가능",
-    ready_to_submit: "제출 준비",
-    not_required_ready: "별도 신청 불필요",
-    action_required: "조치 필요",
-    blocked: "보류",
-    ready_for_service_activation: "서비스 반영 가능",
-    ready_for_full_service: "전체 공개 가능",
-    ready_with_warnings: "제한 공개 가능",
-    blocked_for_full_service: "준비 필요",
-    "all service seeds promoted": "모든 시드 승격 완료",
-    "primary catalog all active": "기본 카드 모두 활성",
-    "downloaded public datasets ready": "다운로드형 공공데이터 준비",
-    "not_required_ready or ready_to_use": "별도 신청 불필요 또는 사용 가능"
-  };
-  const text = String(value ?? "");
-  if (labels[text]) {
-    return labels[text];
-  }
-  if (/^\d+\/\d+$/.test(text) || /^\d+(\.\d+)?%$/.test(text) || /^missing \d+$/.test(text)) {
-    return text.replace("missing", "누락");
-  }
-  if (/^\d+ cards$/.test(text)) {
-    return text.replace("cards", "개 카드");
-  }
-  return text
-    .replace(/_/g, " ")
-    .replace(/\bpass\b/g, "통과")
-    .replace(/\bwarn\b/g, "주의")
-    .replace(/\bblock\b/g, "보류");
-}
-
-function selectedValidationChecks(validationCase) {
-  const checks = validationCase?.validation?.checks || [];
-  const priority = checks.filter((check) => (
-    /총점|도보 부담|상위 추천 제외|필수 장소|필수 편의시설|날씨 민감도|정책 효과/.test(`${check.area} ${check.name}`)
-  ));
-  return (priority.length ? priority : checks).slice(0, 6);
-}
-
-function aiStatusBadge(summary) {
-  if (!summary) {
-    return "기본 설명";
-  }
-  if (summary.status === "success") {
-    return "AI 반영";
-  }
-  if (summary.status === "disabled_no_key") {
-    return "키 없음";
-  }
-  if (summary.status === "skipped") {
-    return "생략";
-  }
-  return "점수 근거";
+function aiStatusIcon(status) {
+  return {
+    idle: "bi-stars",
+    loading: "bi-arrow-repeat",
+    success: "bi-patch-check-fill",
+    disabled: "bi-plug",
+    error: "bi-exclamation-triangle",
+    ungrounded: "bi-shield-exclamation"
+  }[status] || "bi-info-circle";
 }
 
 function aiDetailText(scenario, place) {
@@ -1238,6 +2873,240 @@ function aiDetailSections(scenario, place) {
   };
 }
 
+function aiCitationItems(scenario, spotId) {
+  const citations = Array.isArray(scenario?.ai_summary?.citations)
+    ? scenario.ai_summary.citations
+    : [];
+  return citations.reduce((items, citation) => {
+    if (!citation || (spotId && citation.spot_id !== spotId)) {
+      return items;
+    }
+    const sourceUrl = safeExternalUrl(citation.source_url);
+    if (!sourceUrl) {
+      return items;
+    }
+    items.push({
+      evidenceId: String(citation.evidence_id || ""),
+      title: String(citation.source_title || "공식 근거"),
+      url: sourceUrl,
+      checkedAt: /^\d{4}-\d{2}-\d{2}$/.test(String(citation.checked_at || ""))
+        ? String(citation.checked_at)
+        : "확인일 재검토 필요",
+      status: String(citation.verification_status || "needs_check")
+    });
+    return items;
+  }, []).slice(0, 4);
+}
+
+function aiClaimCitationGroups(scenario) {
+  const claims = Array.isArray(scenario?.ai_summary?.claim_citations)
+    ? scenario.ai_summary.claim_citations
+    : [];
+  if (!claims.length) {
+    return null;
+  }
+
+  const allowedSections = new Set(["rationale", "cautions", "next_checks"]);
+  const evidenceNumbers = new Map();
+  const groups = {};
+  let nextEvidenceNumber = 1;
+
+  claims.forEach((claim) => {
+    const section = String(claim?.section || "");
+    const index = Number(claim?.index);
+    if (!allowedSections.has(section) || !Number.isInteger(index) || index < 0) {
+      return;
+    }
+
+    const key = `${section}:${index}`;
+    const seen = new Set();
+    const citations = Array.isArray(claim?.citations) ? claim.citations : [];
+    const safeCitations = citations.reduce((items, citation) => {
+      const sourceUrl = safeExternalUrl(citation?.source_url);
+      if (!sourceUrl) {
+        return items;
+      }
+      const evidenceId = String(citation?.evidence_id || "");
+      const identity = evidenceId || sourceUrl;
+      if (seen.has(identity)) {
+        return items;
+      }
+      seen.add(identity);
+
+      if (!evidenceNumbers.has(identity)) {
+        evidenceNumbers.set(identity, nextEvidenceNumber);
+        nextEvidenceNumber += 1;
+      }
+      items.push({
+        evidenceId,
+        number: evidenceNumbers.get(identity),
+        title: String(citation?.source_title || "공식 근거"),
+        url: sourceUrl,
+        checkedAt: /^\d{4}-\d{2}-\d{2}$/.test(String(citation?.checked_at || ""))
+          ? String(citation.checked_at)
+          : "확인일 재검토 필요"
+      });
+      return items;
+    }, []).slice(0, 3);
+
+    if (safeCitations.length) {
+      groups[key] = safeCitations;
+    }
+  });
+  return Object.keys(groups).length ? groups : null;
+}
+
+function retrievalEvidenceItems(scenario, spotId) {
+  const matches = Array.isArray(scenario?.retrieval?.matches)
+    ? scenario.retrieval.matches
+    : [];
+  const match = matches.find((item) => item?.spot_id === spotId);
+  const sources = Array.isArray(match?.evidence_bundle?.sources)
+    ? match.evidence_bundle.sources
+    : [];
+  return sources.reduce((items, source) => {
+    const sourceUrl = safeExternalUrl(source?.url);
+    if (!sourceUrl) {
+      return items;
+    }
+    items.push({
+      title: String(source.title || "공식 근거"),
+      url: sourceUrl,
+      checkedAt: /^\d{4}-\d{2}-\d{2}$/.test(String(source.checked_at || ""))
+        ? String(source.checked_at)
+        : "확인일 재검토 필요",
+      status: String(source.status || "needs_check")
+    });
+    return items;
+  }, []).slice(0, 4);
+}
+
+function aiCitationMarkup(citations) {
+  if (!citations.length) {
+    return "";
+  }
+  return `
+    <div class="ai-citation-list">
+      <strong>답변에 사용한 공식 근거</strong>
+      <ul>${citations.map((citation) => `
+        <li>
+          <a href="${escapeHtml(citation.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(citation.title)}</a>
+          <small>${escapeHtml(citation.checkedAt)} · ${escapeHtml(displayLabel(citation.status))}</small>
+        </li>
+      `).join("")}</ul>
+    </div>
+  `;
+}
+
+function aiClaimCitationMarkup(citations) {
+  if (!citations.length) {
+    return "";
+  }
+  return `
+    <span class="ai-claim-citations" aria-label="이 문장의 공식 근거">
+      ${citations.map((citation) => `
+        <a href="${escapeHtml(citation.url)}" target="_blank" rel="noopener noreferrer" aria-label="근거 ${escapeHtml(citation.number)}: ${escapeHtml(citation.title)}, 확인일 ${escapeHtml(citation.checkedAt)}">
+          <b>[${escapeHtml(citation.number)}]</b>
+          <span>${escapeHtml(citation.title)}</span>
+          <small>확인 ${escapeHtml(citation.checkedAt)}</small>
+        </a>
+      `).join("")}
+    </span>
+  `;
+}
+
+function aiReasonItemMarkup(item, section, index, claimCitationGroups) {
+  const citations = claimCitationGroups?.[`${section}:${index}`] || [];
+  return `
+    <li class="${citations.length ? "has-claim-citations" : ""}" data-ai-claim-section="${escapeHtml(section)}" data-ai-claim-index="${escapeHtml(index)}">
+      <span class="ai-claim-text">${escapeHtml(item)}</span>
+      ${aiClaimCitationMarkup(citations)}
+    </li>
+  `;
+}
+
+function aiReasonSectionsMarkup(sections, citations = [], claimCitationGroups = null) {
+  return `
+    <div class="ai-reason-list">
+      ${sections.reasons.length ? `
+        <div>
+          <strong>추천 근거</strong>
+          <ul>${sections.reasons.map((item, index) => aiReasonItemMarkup(item, "rationale", index, claimCitationGroups)).join("")}</ul>
+        </div>
+      ` : ""}
+      ${sections.cautions.length ? `
+        <div>
+          <strong>주의할 점</strong>
+          <ul>${sections.cautions.map((item, index) => aiReasonItemMarkup(item, "cautions", index, claimCitationGroups)).join("")}</ul>
+        </div>
+      ` : ""}
+      ${sections.nextChecks.length ? `
+        <div>
+          <strong>방문 전 확인</strong>
+          <ul>${sections.nextChecks.map((item, index) => aiReasonItemMarkup(item, "next_checks", index, claimCitationGroups)).join("")}</ul>
+        </div>
+      ` : `<p>${escapeHtml(sections.fallback)}</p>`}
+      ${claimCitationGroups ? "" : aiCitationMarkup(citations)}
+    </div>
+  `;
+}
+
+function aiExplanationPanelMarkup(scenario, generatedSections, localSections, citations) {
+  if (scenario?.retrieval?.status !== "applied") {
+    return `
+      <section class="gpt-box" data-ai-explanation-status="local">
+        <div class="detail-section-row ai">
+          <h3>추천 근거</h3>
+          <span>${escapeHtml(aiStatusBadge("local"))}</span>
+        </div>
+        <p>${escapeHtml(localSections.headline)}</p>
+        ${aiReasonSectionsMarkup(localSections)}
+      </section>
+    `;
+  }
+
+  const explanationState = currentAiExplanationState(scenario);
+  if (explanationState.status === "success") {
+    const claimCitationGroups = aiClaimCitationGroups(scenario);
+    const retrieval = scenario?.retrieval || {};
+    const routeCount = selectedRoute(scenario).slice(0, RECOMMENDATION_LIMIT).length;
+    return `
+      <section class="gpt-box" id="generatedAiExplanation" data-ai-explanation-status="success" tabindex="-1">
+        <div class="detail-section-row ai">
+          <h3>공식 자료로 확인한 코스 설명</h3>
+          <span>${escapeHtml(aiStatusBadge("success"))}</span>
+        </div>
+        <p>${escapeHtml(generatedSections.headline)}</p>
+        <div class="ai-explanation-trace" aria-label="추천 근거 확인 요약">
+          <span><small>확인된 장소</small><strong>${escapeHtml(ragCountLabel(retrieval.corpus_count))}</strong></span>
+          <i class="bi bi-arrow-right" aria-hidden="true"></i>
+          <span><small>조건에 맞는 장소</small><strong>${escapeHtml(ragCountLabel(retrieval.retrieved_count))}</strong></span>
+          <i class="bi bi-arrow-right" aria-hidden="true"></i>
+          <span><small>추천 코스</small><strong>${escapeHtml(ragCountLabel(routeCount))}</strong></span>
+        </div>
+        ${aiReasonSectionsMarkup(generatedSections, citations, claimCitationGroups)}
+      </section>
+    `;
+  }
+
+  return `
+    <section class="gpt-box" data-ai-explanation-status="${escapeHtml(explanationState.status)}">
+      <div class="detail-section-row ai">
+        <h3>공식 자료로 확인한 설명</h3>
+        <span>${escapeHtml(aiStatusBadge(explanationState.status))}</span>
+      </div>
+      <div class="ai-state-message">
+        <i class="bi ${escapeHtml(aiStatusIcon(explanationState.status))}" aria-hidden="true"></i>
+        <p>${escapeHtml(explanationState.message)}</p>
+      </div>
+      <div class="ai-local-preview">
+        <strong>현재 추천을 정한 기준</strong>
+        ${aiReasonSectionsMarkup(localSections)}
+      </div>
+    </section>
+  `;
+}
+
 function visitCheckItems(place, routeItem) {
   const checks = [
     routeItem.stay_tip,
@@ -1263,48 +3132,106 @@ function renderServiceStatus() {
     return;
   }
 
+  const shouldShow = status === "error";
+  serviceStatus.hidden = !shouldShow;
+  if (!shouldShow) {
+    serviceStatus.replaceChildren();
+    return;
+  }
+
   const canRetry = state.apiState.canRetry && shouldRequestRuntimeApi();
-  const description = status === "success"
-    ? "선택한 조건에 맞춰 추천 코스와 상세 근거를 갱신했습니다."
-    : status === "loading"
-      ? "선택한 조건에 맞춰 접근성 점수를 다시 계산하고 있습니다."
-      : status === "error"
-        ? "현재는 기본 추천을 표시하고 있습니다. 잠시 후 다시 시도할 수 있습니다."
-        : "여행 조건을 선택하면 접근성 기준에 맞춰 추천을 다시 계산합니다.";
+  const description = "새 조건을 적용하지 못해 기본 추천을 표시하고 있습니다. 잠시 후 다시 시도해 주세요.";
 
   serviceStatus.innerHTML = `
     <div class="service-status-card ${escapeHtml(status)}">
       <div>
         <strong>${escapeHtml(apiStatusTitle())}</strong>
         <p>${escapeHtml(description)}</p>
-        <small>${escapeHtml([state.apiState.message, validationSummaryText()].filter(Boolean).join(" · "))}</small>
+        <small>${escapeHtml(state.apiState.message)}</small>
       </div>
       ${canRetry ? '<button class="retry-button" type="button" data-retry-recommendation>재시도</button>' : ""}
     </div>
   `;
 }
 
-function renderOperationsGate() {}
+function activateCenterMapFallback(message = "외부 지도 연결 없이 기본 지도로 표시합니다.") {
+  const frame = document.querySelector("#mapPanel .map-frame");
+  const art = document.getElementById("mapFallbackArt");
+  const notice = document.getElementById("mapFallbackNotice");
+  const noticeMessage = notice?.querySelector?.("[data-map-fallback-message]");
+  const liveMap = document.getElementById("liveMap");
+  if (!frame || !art) {
+    return;
+  }
+  frame.classList.add("map-fallback-active");
+  liveMap?.setAttribute("aria-hidden", "true");
+  if (notice) {
+    notice.hidden = false;
+    if (noticeMessage) {
+      noticeMessage.textContent = message;
+    } else {
+      notice.textContent = message;
+    }
+  }
+  const sync = () => scheduleMapHitBoundsSync();
+  if (art.complete && art.naturalWidth > 0) {
+    sync();
+  } else {
+    art.addEventListener("load", sync, { once: true });
+  }
+}
+
+function deactivateCenterMapFallback() {
+  const frame = document.querySelector("#mapPanel .map-frame");
+  const notice = document.getElementById("mapFallbackNotice");
+  const liveMap = document.getElementById("liveMap");
+  frame?.classList.remove("map-fallback-active");
+  liveMap?.removeAttribute("aria-hidden");
+  if (notice) {
+    notice.hidden = true;
+  }
+}
+
+function scheduleMapHitBoundsSync() {
+  if (mapHitBoundsFrame) {
+    return;
+  }
+  mapHitBoundsFrame = true;
+  window.requestAnimationFrame(() => {
+    mapHitBoundsFrame = false;
+    syncMapHitBounds();
+  });
+}
 
 function ensureCenterMap() {
   const mapElement = document.getElementById("liveMap");
-  if (!mapElement || !window.L) {
+  if (!mapElement) {
+    return null;
+  }
+  if (!window.L) {
+    activateCenterMapFallback("지도를 불러오지 못해 기본 지도로 표시합니다.");
     return null;
   }
   if (!centerMap) {
     centerMap = L.map(mapElement, {
       zoomControl: false,
-      scrollWheelZoom: true,
+      scrollWheelZoom: false,
+      dragging: true,
+      touchZoom: true,
       attributionControl: true,
       zoomSnap: 0.25,
       zoomDelta: 0.5
     });
     L.control.zoom({ position: "topleft" }).addTo(centerMap);
-    centerLayerGroup = L.layerGroup().addTo(centerMap);
-    centerMap.on("zoom move", syncMapHitBounds);
+    centerRouteLayerGroup = L.layerGroup().addTo(centerMap);
+    centerMarkerLayerGroup = L.layerGroup().addTo(centerMap);
+    centerMap.on("zoom move", scheduleMapHitBoundsSync);
+    setCenterMapTileLayer(centerMapLayerMode);
+    window.setTimeout(() => {
+      centerMap?.invalidateSize();
+      scheduleMapHitBoundsSync();
+    }, 80);
   }
-  setCenterMapTileLayer(centerMapLayerMode);
-  window.setTimeout(() => centerMap?.invalidateSize(), 80);
   return centerMap;
 }
 
@@ -1320,7 +3247,23 @@ function setCenterMapTileLayer(mode) {
   if (centerTileLayer) {
     centerMap.removeLayer(centerTileLayer);
   }
-  centerTileLayer = L.tileLayer(definition.url, definition.options).addTo(centerMap);
+  centerTileErrorCount = 0;
+  centerTileLayer = L.tileLayer(definition.url, definition.options)
+    .on("loading", () => {
+      centerTileErrorCount = 0;
+    })
+    .on("tileerror", () => {
+      centerTileErrorCount += 1;
+      if (centerTileErrorCount >= 3) {
+        activateCenterMapFallback("지도 연결이 원활하지 않아 기본 지도로 표시합니다.");
+      }
+    })
+    .on("load", () => {
+      if (centerTileErrorCount < 3) {
+        deactivateCenterMapFallback();
+      }
+    })
+    .addTo(centerMap);
   centerTileLayer.__jejuLayerMode = mode;
   centerMapLayerMode = mode;
   updateCenterMapLayerButton();
@@ -1340,24 +3283,101 @@ function toggleCenterMapLayer() {
   setCenterMapTileLayer(nextMode);
 }
 
-function liveMarkerIcon(index, active) {
+function liveMarkerIcon(index, active, location) {
   return L.divIcon({
     className: `live-marker-icon rank-${index + 1} ${active ? "active" : ""}`,
-    html: `<span>${index + 1}</span>`,
-    iconSize: [38, 38],
-    iconAnchor: [19, 19]
+    html: `<span>${index + 1}</span>${pointRoleBadgeMarkup(location, "live-marker-role")}`,
+    iconSize: [44, 44],
+    iconAnchor: [22, 22]
+  });
+}
+
+function routeGeometryWithStopAnchors(entries, geometry) {
+  const routeGeometry = (Array.isArray(geometry) ? geometry : [])
+    .filter((location) => Number.isFinite(Number(location?.latitude)) && Number.isFinite(Number(location?.longitude)));
+  const stopLocations = (Array.isArray(entries) ? entries : [])
+    .map((entry) => entry?.location)
+    .filter((location) => Number.isFinite(Number(location?.latitude)) && Number.isFinite(Number(location?.longitude)));
+
+  if (routeGeometry.length < 2) {
+    return stopLocations;
+  }
+  if (stopLocations.length < 2) {
+    return routeGeometry;
+  }
+
+  // Road providers snap waypoints to nearby roads. Keep the reviewed place
+  // coordinates as markers and add short access legs so the route meets them.
+  const anchorsByGeometryIndex = new Map();
+  let searchStartIndex = 0;
+  stopLocations.slice(1, -1).forEach((stop) => {
+    let nearestIndex = searchStartIndex;
+    let nearestDistance = Number.POSITIVE_INFINITY;
+    for (let index = searchStartIndex; index < routeGeometry.length; index += 1) {
+      const distance = haversineKm(stop, routeGeometry[index]);
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        nearestIndex = index;
+      }
+    }
+    if (!anchorsByGeometryIndex.has(nearestIndex)) {
+      anchorsByGeometryIndex.set(nearestIndex, []);
+    }
+    anchorsByGeometryIndex.get(nearestIndex).push(stop);
+    searchStartIndex = nearestIndex;
+  });
+
+  const alignedGeometry = [];
+  const appendDistinct = (location) => {
+    const previous = alignedGeometry[alignedGeometry.length - 1];
+    if (
+      previous
+      && Number(previous.latitude) === Number(location.latitude)
+      && Number(previous.longitude) === Number(location.longitude)
+    ) {
+      return;
+    }
+    alignedGeometry.push(location);
+  };
+
+  appendDistinct(stopLocations[0]);
+  routeGeometry.forEach((location, index) => {
+    appendDistinct(location);
+    (anchorsByGeometryIndex.get(index) || []).forEach((stop) => {
+      appendDistinct(stop);
+    });
+  });
+  appendDistinct(stopLocations[stopLocations.length - 1]);
+  return alignedGeometry;
+}
+
+function clearCenterMapLayers() {
+  centerRouteLayerGroup?.clearLayers();
+  centerMarkerLayerGroup?.clearLayers();
+  centerMarkersBySpotId.clear();
+  centerMapRenderedRouteKey = null;
+  centerMapLastFitKey = null;
+}
+
+function syncCenterMapMarkerSelection(entries) {
+  entries.forEach((entry, index) => {
+    const marker = centerMarkersBySpotId.get(entry.place.spot_id);
+    marker?.setIcon?.(liveMarkerIcon(
+      index,
+      entry.place.spot_id === state.mapPopupSpotId,
+      entry.location
+    ));
   });
 }
 
 function drawCenterMap(entries, summary, options = {}) {
-  const map = ensureCenterMap();
-  if (!map || !centerLayerGroup || entries.length === 0) {
+  const map = centerMap;
+  if (!map || !centerRouteLayerGroup || !centerMarkerLayerGroup || entries.length === 0) {
     return;
   }
-  centerLayerGroup.clearLayers();
-  const geometry = summary.geometry?.length >= 2
-    ? summary.geometry
-    : entries.map((entry) => entry.location).filter(Boolean);
+  const routeKey = options.routeKey || routeEntriesCacheKey(entries);
+  centerRouteLayerGroup.clearLayers();
+  const geometry = routeGeometryWithStopAnchors(entries, summary.geometry);
   const lineLatLngs = geometry.map((location) => [Number(location.latitude), Number(location.longitude)]);
   const markerLatLngs = entries.map((entry) => [Number(entry.location.latitude), Number(entry.location.longitude)]);
 
@@ -1366,35 +3386,45 @@ function drawCenterMap(entries, summary, options = {}) {
       color: "#ffffff",
       weight: 13,
       opacity: 0.94,
+      smoothFactor: 0,
       lineCap: "round",
       lineJoin: "round"
-    }).addTo(centerLayerGroup);
+    }).addTo(centerRouteLayerGroup);
     L.polyline(lineLatLngs, {
       color: ROUTE_KEY_COLOR,
       weight: 6,
       opacity: 0.96,
+      smoothFactor: 0,
       lineCap: "round",
       lineJoin: "round"
-    }).addTo(centerLayerGroup);
+    }).addTo(centerRouteLayerGroup);
   }
 
-  entries.forEach((entry, index) => {
-    const marker = L.marker([Number(entry.location.latitude), Number(entry.location.longitude)], {
-      icon: liveMarkerIcon(index, entry.place.spot_id === state.mapPopupSpotId),
-      keyboard: true,
-      title: entry.place.name,
-      bubblingMouseEvents: false
-    }).addTo(centerLayerGroup);
-    marker.on("click", (event) => {
-      if (event.originalEvent) {
-        L.DomEvent.stop(event.originalEvent);
-      }
-      state.selectedSpotId = entry.place.spot_id;
-      state.mapPopupSpotId = entry.place.spot_id;
-      state.detailCollapsed = false;
-      render();
+  if (centerMapRenderedRouteKey !== routeKey) {
+    centerMarkerLayerGroup.clearLayers();
+    centerMarkersBySpotId.clear();
+    entries.forEach((entry, index) => {
+      const marker = L.marker([Number(entry.location.latitude), Number(entry.location.longitude)], {
+        icon: liveMarkerIcon(index, entry.place.spot_id === state.mapPopupSpotId, entry.location),
+        keyboard: true,
+        title: mapPointDisplayName(entry.place),
+        bubblingMouseEvents: false
+      }).addTo(centerMarkerLayerGroup);
+      centerMarkersBySpotId.set(entry.place.spot_id, marker);
+      marker.on("click", (event) => {
+        if (event.originalEvent) {
+          L.DomEvent.stop(event.originalEvent);
+        }
+        state.selectedSpotId = entry.place.spot_id;
+        state.mapPopupSpotId = entry.place.spot_id;
+        state.detailCollapsed = false;
+        render();
+      });
     });
-  });
+    centerMapRenderedRouteKey = routeKey;
+  } else {
+    syncCenterMapMarkerSelection(entries);
+  }
 
   if (options.fit) {
     const bounds = L.latLngBounds(markerLatLngs);
@@ -1407,7 +3437,7 @@ function drawCenterMap(entries, summary, options = {}) {
   }
   window.setTimeout(() => {
     map.invalidateSize();
-    syncMapHitBounds();
+    scheduleMapHitBoundsSync();
   }, 80);
 }
 
@@ -1513,30 +3543,66 @@ function scheduleCenterMapRender(scenario) {
 
 function renderCenterMap(scenario) {
   const entries = routeCoordinateEntries(scenario);
-  const map = ensureCenterMap();
-  if (!map || entries.length < 2) {
-    document.getElementById("mapSyncStatus").textContent = "실제 지도를 표시하려면 두 곳 이상의 좌표가 필요합니다.";
+  const key = routeEntriesCacheKey(entries);
+
+  if (entries.length < 2) {
+    centerMapRenderSequence += 1;
+    clearCenterMapLayers();
+    renderLiveMapStats(entries, fallbackRouteSummary(entries), "위치 확인 필요");
+    const status = document.getElementById("mapSyncStatus");
+    if (status) {
+      status.textContent = "추천 장소 두 곳 이상의 지도 위치가 필요합니다.";
+    }
+    scheduleMapHitBoundsSync();
     return;
   }
-  const key = routeEntriesCacheKey(entries);
+
+  const map = ensureCenterMap();
   const fallback = fallbackRouteSummary(entries);
+  if (!map) {
+    centerMapRenderSequence += 1;
+    renderLiveMapStats(entries, fallback, "기본 지도");
+    document.getElementById("mapSyncStatus").textContent = `기본 지도: ${entries.length}개 위치 연결, ${formatDistanceKm(fallback.distanceKm)}, ${formatDurationMinutes(fallback.durationMinutes)}`;
+    scheduleMapHitBoundsSync();
+    return;
+  }
+
+  if (centerMapRenderedRouteKey === key) {
+    syncCenterMapMarkerSelection(entries);
+    scheduleMapHitBoundsSync();
+    return;
+  }
+
   const shouldFit = centerMapLastFitKey !== key;
   centerMapLastFitKey = key;
   const sequence = ++centerMapRenderSequence;
 
-  drawCenterMap(entries, fallback, { fit: shouldFit });
-  renderLiveMapStats(entries, fallback, "경로 계산 중");
-  document.getElementById("mapSyncStatus").textContent = `실제 지도: ${entries.length}개 좌표 연결, ${formatDistanceKm(fallback.distanceKm)}, ${formatDurationMinutes(fallback.durationMinutes)}`;
+  drawCenterMap(entries, fallback, { fit: shouldFit, routeKey: key });
+  renderLiveMapStats(entries, fallback, shouldRequestRouteProxy() ? "경로 계산 중" : "간단 경로");
+  document.getElementById("mapSyncStatus").textContent = `추천 지도: ${entries.length}곳 표시, ${formatDistanceKm(fallback.distanceKm)}, ${formatDurationMinutes(fallback.durationMinutes)}`;
+
+  if (!shouldRequestRouteProxy()) {
+    return;
+  }
 
   runWhenBrowserIdle(() => {
+    const activeKey = routeEntriesCacheKey(routeCoordinateEntries(currentScenario()));
+    if (sequence !== centerMapRenderSequence || activeKey !== key) {
+      return;
+    }
     cachedRouteSummaryWithRoadGeometry(entries).then((summary) => {
-      if (sequence !== centerMapRenderSequence) {
+      const latestKey = routeEntriesCacheKey(routeCoordinateEntries(currentScenario()));
+      if (
+        sequence !== centerMapRenderSequence
+        || latestKey !== key
+        || centerMapRenderedRouteKey !== key
+      ) {
         return;
       }
-      const statusLabel = summary.provider === "coordinate_fallback" ? "좌표 기반" : "도로 경로";
-      drawCenterMap(entries, summary, { fit: false });
+      const statusLabel = summary.provider === "coordinate_fallback" ? "간단 경로" : "도로 경로";
+      drawCenterMap(entries, summary, { fit: false, routeKey: key });
       renderLiveMapStats(entries, summary, statusLabel);
-      document.getElementById("mapSyncStatus").textContent = `실제 지도: ${statusLabel}, ${formatDistanceKm(summary.distanceKm)}, ${formatDurationMinutes(summary.durationMinutes)}`;
+      document.getElementById("mapSyncStatus").textContent = `추천 지도: ${statusLabel}, ${formatDistanceKm(summary.distanceKm)}, ${formatDurationMinutes(summary.durationMinutes)}`;
     });
   });
 }
@@ -1578,19 +3644,20 @@ function syncLiveMapPopup() {
 }
 
 function syncMapHitBounds() {
-  if (document.getElementById("liveMap")) {
+  const frame = document.querySelector(".map-frame");
+  const fallbackActive = frame?.classList.contains("map-fallback-active");
+  if (document.getElementById("liveMap") && centerMap && !fallbackActive) {
     syncLiveMapPopup();
     return;
   }
 
-  const frame = document.querySelector(".map-frame");
   const art = document.querySelector(".map-art");
   if (!frame || !art || !art.naturalWidth || !art.naturalHeight) {
     return;
   }
 
-  const frameWidth = frame.clientWidth;
-  const frameHeight = frame.clientHeight;
+  const frameWidth = art.clientWidth || frame.clientWidth;
+  const frameHeight = art.clientHeight || frame.clientHeight;
   const mobileMapList = window.matchMedia("(max-width: 560px)").matches;
   const objectFit = window.getComputedStyle(art).objectFit;
   const imageMetrics = mapImageMetrics(art, frameWidth, frameHeight, objectFit);
@@ -1766,7 +3833,7 @@ function fallbackRouteSummary(entries) {
   const estimatedRoadKm = baseKm * 1.28;
   return {
     provider: "coordinate_fallback",
-    providerLabel: "좌표 기반 경로",
+    providerLabel: "간단 경로",
     distanceKm: estimatedRoadKm,
     durationMinutes: estimatedRoadKm / ROUTE_SPEED_FALLBACK_KMH * 60,
     geometry: entries.map((entry) => entry.location).filter(Boolean)
@@ -1775,7 +3842,7 @@ function fallbackRouteSummary(entries) {
 
 async function routeSummaryWithRoadGeometry(entries) {
   const fallback = fallbackRouteSummary(entries);
-  if (entries.length < 2) {
+  if (entries.length < 2 || !shouldRequestRouteProxy()) {
     return fallback;
   }
   const proxied = await fetchProxiedRoute(entries).catch(() => null);
@@ -1794,10 +3861,19 @@ function routeEntriesCacheKey(entries) {
 
 async function cachedRouteSummaryWithRoadGeometry(entries) {
   const key = routeEntriesCacheKey(entries);
-  if (!routeSummaryCache.has(key)) {
-    routeSummaryCache.set(key, routeSummaryWithRoadGeometry(entries));
+  if (routeSummaryCache.has(key)) {
+    const cached = routeSummaryCache.get(key);
+    routeSummaryCache.delete(key);
+    routeSummaryCache.set(key, cached);
+    return cached;
   }
-  return routeSummaryCache.get(key);
+  if (routeSummaryCache.size >= ROUTE_SUMMARY_CACHE_LIMIT) {
+    const oldestKey = routeSummaryCache.keys().next().value;
+    routeSummaryCache.delete(oldestKey);
+  }
+  const pending = routeSummaryWithRoadGeometry(entries);
+  routeSummaryCache.set(key, pending);
+  return pending;
 }
 
 async function fetchProxiedRoute(entries) {
@@ -2073,15 +4149,48 @@ function scoreBreakdown(place) {
     return {
       label,
       score: Number.isFinite(score) ? score : Math.max(1, fallbackMax - 2),
-      max: Number.isFinite(max) ? max : fallbackMax
+      max: Number.isFinite(max) ? max : fallbackMax,
+      reason: cleanDisplayText(item.reason || "세부 근거 확인 필요", 120)
     };
   });
 }
 
-function scenarioCardsMarkup() {
+function scoreCalculationTrace(place) {
+  const raw = place?.score?.calculation_trace;
+  if (!raw || typeof raw !== "object") {
+    return null;
+  }
+
+  const baseTotal = Number(raw.base_total);
+  const finalTotal = Number(raw.final_total);
+  if (!Number.isFinite(baseTotal) || !Number.isFinite(finalTotal)) {
+    return null;
+  }
+
+  const adjustments = [
+    ...(Array.isArray(raw.bonuses) ? raw.bonuses : []),
+    ...(Array.isArray(raw.deductions) ? raw.deductions : [])
+  ].map((item) => ({
+    label: cleanDisplayText(item?.label || "점수 조정", 120),
+    delta: Number(item?.delta)
+  })).filter((item) => Number.isFinite(item.delta) && item.delta !== 0);
+  const caps = (Array.isArray(raw.caps) ? raw.caps : []).map((item) => ({
+    label: cleanDisplayText(item?.label || "점수 상한 적용", 120),
+    before: Number(item?.before),
+    after: Number(item?.after)
+  })).filter((item) => Number.isFinite(item.before) && Number.isFinite(item.after) && item.before !== item.after);
+
+  return { baseTotal, adjustments, caps, finalTotal };
+}
+
+function signedScore(value) {
+  return value > 0 ? `+${value}` : String(value);
+}
+
+function scenarioCardsMarkup(selectedScenarioId = state.scenarioId) {
   return scenarioCards.map((card) => `
-    <button class="scenario-tile ${card.tone} ${card.id === state.scenarioId ? "active" : ""}" type="button" data-scenario-id="${escapeHtml(card.id)}">
-      <span>${escapeHtml(card.icon)}</span>
+    <button class="scenario-tile ${card.tone} ${card.id === selectedScenarioId ? "active" : ""}" type="button" data-scenario-id="${escapeHtml(card.id)}">
+      <span class="scenario-tile-icon" aria-hidden="true"><i class="bi ${escapeHtml(card.iconClass)}"></i></span>
       <strong>${escapeHtml(card.title)}</strong>
       <small>${escapeHtml(card.body)}</small>
     </button>
@@ -2089,16 +4198,19 @@ function scenarioCardsMarkup() {
 }
 
 function renderScenarioCards() {
-  ["scenarioList", "modalScenarioList"].forEach((id) => {
+  [
+    ["scenarioList", state.scenarioId],
+    ["modalScenarioList", state.profileModalDraft?.scenarioId || state.scenarioId]
+  ].forEach(([id, selectedScenarioId]) => {
     const container = document.getElementById(id);
     if (container) {
-      container.innerHTML = scenarioCardsMarkup();
+      container.innerHTML = scenarioCardsMarkup(selectedScenarioId);
     }
   });
 }
 
-function profileOptionsMarkup() {
-  const profile = normalizeProfile(state.profile);
+function profileOptionsMarkup(sourceProfile = state.profile) {
+  const profile = normalizeProfile(sourceProfile);
   return optionItems.map((option) => {
     const selected = hasProfileValue(profile, option.key, [option.value]);
     return `
@@ -2113,59 +4225,9 @@ function renderProfileOptions() {
   ["modalProfileForm"].forEach((id) => {
     const container = document.getElementById(id);
     if (container) {
-      container.innerHTML = profileOptionsMarkup();
+      container.innerHTML = profileOptionsMarkup(state.profileModalDraft?.profile || state.profile);
     }
   });
-}
-
-function renderOfficialCourses(scenario) {
-  const container = document.getElementById("officialCourseList");
-  const meta = document.getElementById("officialCourseMeta");
-  if (!container) {
-    return;
-  }
-
-  const courses = officialCoursesForScenario(scenario).slice(0, 2);
-  const allCourses = state.data?.official_courses || [];
-  const promotedVisible = courses.reduce(
-    (total, course) => total + (course.stops || []).filter((stop) => stop.promoted_candidate).length,
-    0
-  );
-  if (meta) {
-    meta.textContent = `${allCourses.length}개 코스 · 후보 ${promotedVisible}개`;
-  }
-  if (!courses.length) {
-    container.innerHTML = "";
-    return;
-  }
-
-  container.innerHTML = courses.map((course) => {
-    const duration = course.total_travel_minutes ? `${course.total_travel_minutes}분` : "시간 확인";
-    const stops = (course.stops || []).slice(0, 4);
-    return `
-      <a class="official-course-item" href="tourism-courses.html?course=${encodeURIComponent(course.id)}" aria-label="${escapeHtml(course.title)} 관광공사 추천 코스 보기">
-        <div class="official-course-head">
-          <strong title="${escapeHtml(course.title)}">${escapeHtml(course.title)}</strong>
-          <span>${escapeHtml(duration)}</span>
-          <i class="bi bi-chevron-right official-course-arrow" aria-hidden="true"></i>
-        </div>
-        <div class="official-stop-list">
-          ${stops.map((stop) => {
-            const category = categoryLabels[stop.category] || "장소";
-            const status = displayLabel(stop.verification_status || "needs_check");
-            const candidate = stop.promoted_candidate ? " · 후보" : "";
-            return `
-              <div class="official-stop ${stop.promoted_candidate ? "candidate" : ""} ${escapeHtml(stop.verification_status || "needs_check")}">
-                <i>${escapeHtml(stop.order || "")}</i>
-                <b title="${escapeHtml(stop.name)}">${escapeHtml(stop.name)}</b>
-                <small>${escapeHtml(category)} · ${escapeHtml(status)}${escapeHtml(candidate)}</small>
-              </div>
-            `;
-          }).join("")}
-        </div>
-      </a>
-    `;
-  }).join("");
 }
 
 function renderNavTabs() {
@@ -2174,10 +4236,153 @@ function renderNavTabs() {
   });
 }
 
+function ragIntentLabels(queryIntent) {
+  if (!queryIntent || typeof queryIntent !== "object") {
+    return ["입력한 조건으로 찾기"];
+  }
+  const intentLabels = {
+    place_search: "장소 찾기",
+    general_search: "여행지 찾기",
+    support_resource_search: "지원 시설 찾기",
+    emergency_support: "긴급 도움 찾기"
+  };
+  const labels = [
+    intentLabels[queryIntent.intent],
+    ...(queryIntent.regions || []),
+    ...(queryIntent.categories || []).map((category) => categoryLabels[category] || category),
+    ...(queryIntent.signals?.emergency ? ["긴급 지원"] : []),
+    ...(queryIntent.signals?.charging ? ["충전시설"] : [])
+  ];
+  return unique(labels.filter(Boolean)).slice(0, 8);
+}
+
+function ragCountLabel(value, suffix = "곳") {
+  const count = Number(value);
+  return Number.isFinite(count) ? `${Math.max(0, Math.round(count))}${suffix}` : "확인 중";
+}
+
+function ragEngineLabel(engine) {
+  return engine ? "공식 자료와 접근성 정보 비교" : "접근성 정보 확인";
+}
+
+function renderRagProcess(scenario) {
+  const panel = document.getElementById("ragProcessPanel");
+  if (!panel) {
+    return;
+  }
+  const retrieval = scenario?.retrieval || {};
+  const retrievalStatus = String(retrieval.status || "not_requested");
+  const hasRetrievalTrace = ["applied", "no_match", "resource_data_gap"].includes(retrievalStatus);
+  panel.hidden = false;
+  if (!hasRetrievalTrace) {
+    panel.innerHTML = `
+      <header class="rag-process-header">
+        <div>
+          <span><i class="bi bi-diagram-3" aria-hidden="true"></i> 확인 가능한 추천</span>
+          <h3 id="ragProcessTitle">추천 근거 확인</h3>
+          <p>원하는 지역과 필요한 편의시설을 적으면 확인된 자료에서 맞는 장소를 찾아요.</p>
+        </div>
+        <b class="rag-engine-badge">추가 조건 입력 대기</b>
+      </header>
+      <div class="rag-process-onboarding">
+        <i class="bi bi-chat-square-text" aria-hidden="true"></i>
+        <div>
+          <strong>추가로 원하는 조건이 있나요?</strong>
+          <p>‘제주시 실내 휠체어 화장실’처럼 적으면 맞는 장소와 확인 자료를 바로 보여드려요.</p>
+        </div>
+        <button class="grounded-ai-button rag-query-cta" type="button" data-open-profile-modal>
+          <i class="bi bi-pencil-square" aria-hidden="true"></i>
+          <span>여행 조건 더 입력하기</span>
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  const routeLength = selectedRoute(scenario).slice(0, RECOMMENDATION_LIMIT).length;
+  const intentLabels = ragIntentLabels(retrieval.query_intent);
+  const applied = retrievalStatus === "applied";
+  const explanationState = applied
+    ? currentAiExplanationState(scenario)
+    : {
+        status: "ungrounded",
+        message: retrievalStatus === "resource_data_gap"
+          ? "요청한 지원 서비스의 공식 근거가 부족해 자동 설명도 만들지 않습니다."
+          : "확인된 근거가 부족해 추천과 자동 설명을 함께 보류했습니다."
+      };
+  const isLoading = explanationState.status === "loading";
+
+  panel.innerHTML = `
+    <header class="rag-process-header">
+      <div>
+        <span><i class="bi bi-diagram-3" aria-hidden="true"></i> 확인 가능한 추천</span>
+        <h3 id="ragProcessTitle">추천 근거 확인</h3>
+        <p>확인된 장소에서 조건에 맞는 곳을 찾고 접근성 정보를 비교했습니다.</p>
+      </div>
+      <b class="rag-engine-badge">${escapeHtml(ragEngineLabel(retrieval.engine))}</b>
+    </header>
+    <ol class="rag-process-steps" aria-label="추천 근거 확인 단계">
+      <li>
+        <span>1</span>
+        <small>확인된 장소</small>
+        <strong>${escapeHtml(ragCountLabel(retrieval.corpus_count))}</strong>
+      </li>
+      <li>
+        <span>2</span>
+        <small>조건에 맞는 장소</small>
+        <strong>${escapeHtml(ragCountLabel(retrieval.retrieved_count))}</strong>
+      </li>
+      <li>
+        <span>3</span>
+        <small>최종 추천</small>
+        <strong>${escapeHtml(ragCountLabel(routeLength))}</strong>
+      </li>
+    </ol>
+    <div class="rag-intent-row">
+      <strong>입력에서 찾은 조건</strong>
+      <div>${intentLabels.map((label) => `<span>${escapeHtml(label)}</span>`).join("")}</div>
+    </div>
+    <footer class="rag-process-footer">
+      <div class="rag-ai-state" id="ragAiState" data-status="${escapeHtml(explanationState.status)}" role="status" aria-live="polite" aria-atomic="true" aria-busy="${isLoading ? "true" : "false"}">
+        <i class="bi ${escapeHtml(aiStatusIcon(explanationState.status))}" aria-hidden="true"></i>
+        <span>
+          <strong>${escapeHtml(aiStatusBadge(explanationState.status))}</strong>
+          <small>${escapeHtml(explanationState.message)}</small>
+        </span>
+      </div>
+      ${applied ? `
+        <div class="rag-process-actions">
+          ${explanationState.status === "success" ? `
+            <button class="rag-regenerate-button" type="button" data-generate-grounded-ai data-ai-refresh="true" aria-describedby="ragAiState">
+              <i class="bi bi-arrow-clockwise" aria-hidden="true"></i>
+              <span>설명 새로 만들기</span>
+            </button>
+            <button class="grounded-ai-button rag-view-explanation-button" type="button" data-focus-ai-explanation>
+              <i class="bi bi-arrow-right-circle" aria-hidden="true"></i>
+              <span>자동 설명 보기</span>
+            </button>
+          ` : `
+            <button class="grounded-ai-button" type="button" data-generate-grounded-ai aria-describedby="ragAiState" aria-busy="${isLoading ? "true" : "false"}" ${isLoading ? "disabled" : ""}>
+              <i class="bi ${isLoading ? "bi-arrow-repeat" : "bi-stars"}" aria-hidden="true"></i>
+              <span>${isLoading ? "자동 설명 준비 중" : explanationState.status === "error" ? "자동 설명 다시 시도" : "공식 근거로 자동 설명 만들기"}</span>
+            </button>
+          `}
+        </div>
+      ` : ""}
+    </footer>
+  `;
+}
+
 function renderAiNote(scenario) {
   const title = scenario.recommendation?.course?.title || scenario.title || "추천 코스";
   const rawScore = Number(scenario.recommendation?.score?.total);
   const score = Number.isFinite(rawScore) ? Math.round(rawScore) : "-";
+  const retrievalStatus = scenario.retrieval?.status;
+  const retrievalDescription = retrievalStatus === "resource_data_gap"
+    ? "요청한 지원 서비스는 확인된 정보가 부족해 관련 없는 장소를 대신 추천하지 않았습니다."
+    : retrievalStatus === "no_match"
+      ? "현재 확인된 장소에서 조건에 맞는 정보를 충분히 찾지 못해 추천을 보류했습니다."
+      : "";
   const matchNote = document.getElementById("matchNote");
   if (matchNote) {
     matchNote.innerHTML = `
@@ -2189,9 +4394,13 @@ function renderAiNote(scenario) {
         <b title="${escapeHtml(title)}">${escapeHtml(title)}</b>
         <small>${escapeHtml(state.apiStatus)}</small>
       </span>
+      ${retrievalDescription ? `<span class="rag-status-detail" role="status">${escapeHtml(retrievalDescription)}</span>` : ""}
     `;
   }
-  document.getElementById("safetyNotice").textContent = state.data.safety_notice || "";
+  const safetyNotice = document.getElementById("safetyNotice");
+  if (safetyNotice) {
+    safetyNotice.textContent = state.data.safety_notice || "";
+  }
 }
 
 function renderMapHits(scenario) {
@@ -2203,8 +4412,7 @@ function renderMapHits(scenario) {
   mapHits.dataset.currentScenario = scenario.id;
   mapHits.dataset.routeSpots = route.map((item) => item.spot_id).join(",");
   mapHits.dataset.routeNames = names.join(" | ");
-  document.getElementById("mapSyncStatus").textContent = `${scenario.title || "추천 코스"}: ${names.join(", ")} · 실제 좌표 ${locatedCount}/${route.length} · 실제 지도 ${locatedCount >= 2 ? "표시" : "대기"}`;
-  scheduleCenterMapRender(scenario);
+  document.getElementById("mapSyncStatus").textContent = `${scenario.title || "추천 코스"}: ${names.join(", ")} · 지도 위치 ${locatedCount}/${route.length}곳 · ${locatedCount >= 2 ? "경로 표시" : "위치 확인 필요"}`;
   const cardMarkup = route.map((routeItem, index) => {
     const place = routePlace(scenario, routeItem);
     const bound = mapCardBounds[index] || mapCardBounds[0];
@@ -2217,7 +4425,7 @@ function renderMapHits(scenario) {
     const locationAttrs = location
       ? `data-latitude="${escapeHtml(location.latitude)}" data-longitude="${escapeHtml(location.longitude)}"`
       : "";
-    const locationLabel = location ? "실제 위치 기반" : "위치 확인 필요";
+    const locationLabel = locationPointStatusLabel(location);
     return `
       <button class="map-place-card map-list-card rank-${index + 1} ${location ? "located" : ""} ${active ? "active" : ""}" type="button" data-spot-id="${escapeHtml(place.spot_id)}" data-map-bound-index="${index}" ${locationAttrs} title="${escapeHtml(place.name)} 상세 보기" aria-label="${index + 1}번 추천 장소 ${escapeHtml(place.name)} 상세 보기" style="left:${(bound.x / 816) * 100}%; top:${(bound.y / 931) * 100}%; width:${(bound.width / 816) * 100}%; height:${(bound.height / 931) * 100}%;">
         <span class="map-rank">${index + 1}</span>
@@ -2233,9 +4441,22 @@ function renderMapHits(scenario) {
       </button>
     `;
   }).join("");
+  const pinMarkup = route.map((routeItem, index) => {
+    const place = routePlace(scenario, routeItem);
+    const location = validLocation(place.location) ? place.location : null;
+    if (!location) {
+      return "";
+    }
+    const active = place.spot_id === state.selectedSpotId;
+    const pointLabel = locationPointLabel(location);
+    return `
+      <button class="map-location-pin rank-${index + 1} ${active ? "active" : ""}" type="button" data-spot-id="${escapeHtml(place.spot_id)}" data-latitude="${escapeHtml(location.latitude)}" data-longitude="${escapeHtml(location.longitude)}" aria-label="${index + 1}번 ${escapeHtml(place.name)} ${escapeHtml(pointLabel)}" title="${escapeHtml(mapPointDisplayName(place))}">${index + 1}${pointRoleBadgeMarkup(location, "map-pin-role")}</button>
+    `;
+  }).join("");
   const popup = renderMapPopupCard(scenario, route, scoreTotal);
-  mapHits.innerHTML = popup + cardMarkup;
-  window.requestAnimationFrame(syncMapHitBounds);
+  mapHits.innerHTML = popup + pinMarkup + cardMarkup;
+  scheduleCenterMapRender(scenario);
+  scheduleMapHitBoundsSync();
 }
 
 function renderMapPopupCard(scenario, route, scoreTotal) {
@@ -2254,6 +4475,9 @@ function renderMapPopupCard(scenario, route, scoreTotal) {
   const slope = accessibilityItem(place, ["slope_or_stairs", "slope"]);
   const restArea = accessibilityItem(place, ["rest_area"]);
   const verificationStatus = place?.verification?.status || place?.verification_status || "needs_check";
+  const pointNote = hasSpecialPointRole(location)
+    ? `지도 핀은 ${locationPointLabel(location)} 기준입니다. 실제 출입·탐방 시작 위치를 다시 확인해 주세요.`
+    : "현재 조건에 맞춰 이동 부담과 휴식 가능성을 우선 반영했습니다.";
   const bound = mapCardBounds[index] || mapCardBounds[0];
   const locationAttrs = location
     ? `data-latitude="${escapeHtml(location.latitude)}" data-longitude="${escapeHtml(location.longitude)}"`
@@ -2261,7 +4485,7 @@ function renderMapPopupCard(scenario, route, scoreTotal) {
   return `
     <button class="map-place-card map-popup-card rank-${index + 1} ${location ? "located" : ""} active" type="button" data-spot-id="${escapeHtml(place.spot_id)}" data-map-bound-index="${index}" ${locationAttrs} title="${escapeHtml(place.name)} 상세 보기" aria-label="${index + 1}번 추천 장소 ${escapeHtml(place.name)} 상세 보기" style="left:${(bound.x / 816) * 100}%; top:${(bound.y / 931) * 100}%; width:${(bound.width / 816) * 100}%; height:${(bound.height / 931) * 100}%;">
       <span class="map-popup-media">
-        <img class="map-popup-image" src="${escapeHtml(visual.src)}" alt="${escapeHtml(visual.alt)}" loading="lazy" decoding="async">
+        <img class="map-popup-image${visual.fit === "contain" ? " is-contain" : ""}" src="${escapeHtml(visual.src)}" alt="${escapeHtml(visual.alt)}" loading="lazy" decoding="async">
         <span class="map-rank">${index + 1}</span>
         <span class="map-popup-status ${escapeHtml(verificationStatus)}">${escapeHtml(verificationLabel(place))}</span>
       </span>
@@ -2269,7 +4493,8 @@ function renderMapPopupCard(scenario, route, scoreTotal) {
         <span class="map-popup-head">
           <span class="map-popup-title-group">
             <strong>${escapeHtml(place.name)}</strong>
-            <span class="map-popup-subtitle">${escapeHtml(category)} · ${escapeHtml(location ? "실제 위치 기반" : "위치 확인 필요")}</span>
+            <span class="map-popup-subtitle">${escapeHtml(category)} · ${escapeHtml(location ? "지도 위치 확인" : "위치 확인 필요")}</span>
+            ${pointRoleBadgeMarkup(location, "map-popup-point-role")}
           </span>
           <em class="map-popup-score"><b>${score}</b>점</em>
         </span>
@@ -2280,7 +4505,7 @@ function renderMapPopupCard(scenario, route, scoreTotal) {
           ${mapPopupMetric("휴식", restArea.state)}
           ${mapPopupMetric("경사", slope.state)}
         </span>
-        <span class="map-popup-note">현재 조건에 맞춰 이동 부담과 휴식 가능성을 우선 반영했습니다.</span>
+        <span class="map-popup-note">${escapeHtml(pointNote)}</span>
       </span>
     </button>
   `;
@@ -2317,7 +4542,14 @@ function renderDetail(scenario) {
   const grade = scoreGrade(place, score);
   const visual = visualForPlace(place);
   const checks = visitCheckItems(place, routeItem);
+  const savedRoute = currentSavedRoute();
+  const persistentChecks = savedRoute
+    ? savedRouteChecklist(savedRoute).filter((check) => check.spotId === place.spot_id)
+    : [];
+  const savedCheckedIds = new Set(savedRoute?.checkedIds || []);
+  const completedPersistentChecks = persistentChecks.filter((check) => savedCheckedIds.has(check.id)).length;
   const breakdown = scoreBreakdown(place);
+  const calculationTrace = scoreCalculationTrace(place);
   const restroom = accessibilityItem(place, ["accessible_toilet", "accessible_restroom", "restroom"]);
   const parking = accessibilityItem(place, ["parking"]);
   const slope = accessibilityItem(place, ["slope_or_stairs", "slope"]);
@@ -2331,21 +4563,22 @@ function renderDetail(scenario) {
   const sources = sourceSummaryItems(place);
   const category = categoryLabels[place.category] || "접근성 장소";
   const duration = place.effort?.recommended_duration_minutes;
-  const aiSections = aiDetailSections(scenario, place);
+  const retrievalSources = retrievalEvidenceItems(scenario, place.spot_id);
   const locationEvidence = locationEvidenceItem(place);
-  const validationMarkup = renderValidationEvidence(scenario);
+  const sourceCount = retrievalSources.length + sources.length + (locationEvidence ? 1 : 0);
 
   detail.innerHTML = `
     <div class="detail-head">
       <div>
         <span class="detail-rank">${index + 1}</span>
         <h2>${escapeHtml(place.name)}</h2>
-        <p>${escapeHtml(place.address || place.region || "제주 접근성 추천 장소")} · ${escapeHtml(category)}</p>
+        ${pointRoleBadgeMarkup(place.location, "detail-point-role")}
+        <p>${escapeHtml(place.visit_info?.address || place.address || place.region || "제주 접근성 추천 장소")} · ${escapeHtml(category)}</p>
       </div>
       <button class="close-button" type="button" data-close-detail aria-label="선택 장소 상세 닫기">×</button>
     </div>
     <button class="detail-photo" type="button" data-open-image-modal data-image-src="${escapeHtml(visual.src)}" data-image-alt="${escapeHtml(visual.alt)}" data-image-caption="${escapeHtml(visual.caption)}" data-image-source="${escapeHtml(visual.source)}" data-image-source-url="${escapeHtml(visual.sourceUrl)}" data-image-license="${escapeHtml(visual.license)}" data-image-policy="${escapeHtml(visual.policy)}">
-      <img class="detail-photo-image" src="${escapeHtml(visual.src)}" alt="${escapeHtml(visual.alt)}" loading="lazy" decoding="async" data-fallback-src="${escapeHtml(visual.fallbackSrc)}" data-fallback-caption="${escapeHtml(visual.fallbackCaption)}" data-fallback-source="${escapeHtml(visual.fallbackSource)}">
+      <img class="detail-photo-image${visual.fit === "contain" ? " is-contain" : ""}" src="${escapeHtml(visual.src)}" alt="${escapeHtml(visual.alt)}" loading="lazy" decoding="async" data-fallback-src="${escapeHtml(visual.fallbackSrc)}" data-fallback-caption="${escapeHtml(visual.fallbackCaption)}" data-fallback-source="${escapeHtml(visual.fallbackSource)}">
       <span>${escapeHtml(visual.policy)}</span>
     </button>
     <div class="image-credit">
@@ -2356,6 +4589,12 @@ function renderDetail(scenario) {
       <span>실제 경로 보기</span>
       <b>${escapeHtml(routeNames(scenario).join(" → "))}</b>
     </button>
+    <button class="saved-route-cta ${savedRoute ? "saved" : ""}" type="button" data-save-current-route aria-pressed="${savedRoute ? "true" : "false"}">
+      <i class="bi ${savedRoute ? "bi-bookmark-check-fill" : "bi-bookmark-plus"}" aria-hidden="true"></i>
+      <span data-save-current-route-label>${savedRoute ? "저장됨" : "코스 저장"}</span>
+      <small>${savedRoute ? "저장함에서 방문 전 체크를 이어갈 수 있습니다." : "개인 조건 없이 장소 목록만 이 기기에 저장합니다."}</small>
+    </button>
+    ${visitInfoMarkup(place)}
     <section class="detail-score">
       <span>접근성 점수</span>
       <strong>${score}<small>/100</small></strong>
@@ -2366,25 +4605,60 @@ function renderDetail(scenario) {
       <span>예상 체류 <b>${duration ? `${duration}분` : "확인"}</b></span>
       <span>날씨 영향 <b>${escapeHtml(mapStateText(effortValue(place, "weather_sensitivity")))}</b></span>
     </section>
-    <section class="score-basis">
-      <div class="detail-section-row neutral">
-        <h3>점수 근거</h3>
-        <span>추천 엔진</span>
-      </div>
-      ${breakdown.slice(1, 5).map((item) => {
-        const percent = item.max > 0 ? Math.round((item.score / item.max) * 100) : 0;
-        return `
-          <div class="bar-row">
-            <span>${escapeHtml(item.label)}</span>
-            <i><b style="width:${percent}%"></b></i>
-            <strong>${item.score}/${item.max}</strong>
+    <details class="score-basis detail-disclosure">
+      <summary>
+        <span class="detail-disclosure-heading">
+          <i class="bi bi-bar-chart-line" aria-hidden="true"></i>
+          <span><b>추천 점수 기준</b><small>${breakdown.length}개 항목·조정 내용</small></span>
+        </span>
+        <span class="detail-disclosure-status">
+          <strong>${score}점</strong>
+          <i class="bi bi-chevron-down" aria-hidden="true"></i>
+        </span>
+      </summary>
+      <div class="detail-disclosure-content">
+        ${breakdown.map((item) => {
+          const percent = item.max > 0 ? Math.round((item.score / item.max) * 100) : 0;
+          return `
+            <div class="score-factor">
+              <div class="bar-row">
+                <span>${escapeHtml(item.label)}</span>
+                <i><b style="width:${percent}%"></b></i>
+                <strong>${item.score}/${item.max}</strong>
+              </div>
+              <small>${escapeHtml(item.reason)}</small>
+            </div>
+          `;
+        }).join("")}
+        ${calculationTrace ? `
+          <div class="score-trace" aria-label="점수 계산 과정">
+            <div class="score-trace-row base">
+              <span>5개 항목 기본 합계</span>
+              <b>${calculationTrace.baseTotal}점</b>
+            </div>
+            ${calculationTrace.adjustments.map((item) => `
+              <div class="score-trace-row ${item.delta > 0 ? "bonus" : "deduction"}">
+                <span>${escapeHtml(item.label)}</span>
+                <b>${escapeHtml(signedScore(item.delta))}점</b>
+              </div>
+            `).join("")}
+            ${calculationTrace.caps.map((item) => `
+              <div class="score-trace-row cap">
+                <span>${escapeHtml(item.label)}</span>
+                <b>${item.before}→${item.after}점</b>
+              </div>
+            `).join("")}
+            <div class="score-trace-row final">
+              <span>최종 점수</span>
+              <b>${calculationTrace.finalTotal}점</b>
+            </div>
           </div>
-        `;
-      }).join("")}
-    </section>
+        ` : ""}
+      </div>
+    </details>
     <section class="evidence-grid">
       ${facilityCards.map(({ title, item }) => `
-        <div title="${escapeHtml(item.note || "세부 메모 없음")}">
+        <div role="group" aria-label="${escapeHtml(`${title}: ${stateText(item.state)}. ${item.note || "세부 메모 없음"}`)}" title="${escapeHtml(item.note || "세부 메모 없음")}">
           <b>${escapeHtml(title)}</b>
           <span>${escapeHtml(stateText(item.state))}</span>
           <small>${escapeHtml(item.state_label || stateText(item.state))}</small>
@@ -2394,45 +4668,42 @@ function renderDetail(scenario) {
     <section class="visit-check">
       <div class="detail-section-row">
         <h3>방문 전 확인</h3>
-        <span>${escapeHtml(verificationLabel(place))}</span>
+        <span>${savedRoute ? `${completedPersistentChecks}/${persistentChecks.length} 완료` : "저장 후 체크 가능"}</span>
       </div>
       <ul>
-        ${checks.map((check) => `<li>${escapeHtml(check.text)}<span>${escapeHtml(check.status)}</span></li>`).join("")}
+        ${savedRoute && persistentChecks.length ? persistentChecks.map((check) => `
+          <li class="interactive">
+            <label>
+              <input type="checkbox" data-saved-route-id="${escapeHtml(savedRoute.id)}" data-saved-check-id="${escapeHtml(check.id)}" ${savedCheckedIds.has(check.id) ? "checked" : ""}>
+              <b>${escapeHtml(check.label)}</b>
+            </label>
+            <span>${savedCheckedIds.has(check.id) ? "완료" : "확인"}</span>
+          </li>
+        `).join("") : checks.map((check) => `<li>${escapeHtml(check.text)}<span>저장 후 체크</span></li>`).join("")}
       </ul>
     </section>
-    <section class="gpt-box">
-      <div class="detail-section-row ai">
-        <h3>${escapeHtml(AI_DISPLAY_NAME)} 설명</h3>
-        <span>${escapeHtml(aiStatusBadge(scenario.ai_summary))}</span>
-      </div>
-      <p>${escapeHtml(aiSections.headline)}</p>
-      <div class="ai-reason-list">
-        ${aiSections.reasons.length ? `
-          <div>
-            <strong>추천 근거</strong>
-            <ul>${aiSections.reasons.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-          </div>
-        ` : ""}
-        ${aiSections.cautions.length ? `
-          <div>
-            <strong>주의할 점</strong>
-            <ul>${aiSections.cautions.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-          </div>
-        ` : ""}
-        ${aiSections.nextChecks.length ? `
-          <div>
-            <strong>방문 전 확인</strong>
-            <ul>${aiSections.nextChecks.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-          </div>
-        ` : `<p>${escapeHtml(aiSections.fallback)}</p>`}
-      </div>
-    </section>
-    <section class="source-box">
-      <div class="detail-section-row neutral">
-        <h3>정보 출처</h3>
-        <span>확인 기준</span>
-      </div>
-      <ul>
+    <details class="source-box detail-disclosure">
+      <summary>
+        <span class="detail-disclosure-heading">
+          <i class="bi bi-link-45deg" aria-hidden="true"></i>
+          <span><b>정보 출처</b><small>공식 링크와 확인일</small></span>
+        </span>
+        <span class="detail-disclosure-status">
+          <strong>${sourceCount || 1}개</strong>
+          <i class="bi bi-chevron-down" aria-hidden="true"></i>
+        </span>
+      </summary>
+      <div class="detail-disclosure-content">
+        <ul>
+        ${retrievalSources.map((source) => `
+          <li class="grounded-source">
+            <span>
+              <a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.title)}</a>
+              <small>정보 확인일 ${escapeHtml(source.checkedAt)}</small>
+            </span>
+            <b>${escapeHtml(displayLabel(source.status))}</b>
+          </li>
+        `).join("")}
         ${(sources.length ? sources : [{ title: "가치봄 추천 기준", status: "partial" }]).map((source) => `
           <li>
             <span>${escapeHtml(source.title || "출처명 확인 필요")}</span>
@@ -2445,9 +4716,9 @@ function renderDetail(scenario) {
             <b>${escapeHtml(locationEvidence.status)}</b>
           </li>
         ` : ""}
-      </ul>
-    </section>
-    ${validationMarkup}
+        </ul>
+      </div>
+    </details>
   `;
 }
 
@@ -2456,16 +4727,34 @@ function locationEvidenceItem(place) {
   if (!location) {
     return null;
   }
-  const coordinate = `${Number(location.latitude).toFixed(5)}, ${Number(location.longitude).toFixed(5)}`;
-  const sourceTitle = location.source_title || "위치 좌표";
   return {
-    title: `지도 위치 ${coordinate} · ${sourceTitle}`,
-    status: location.match_method === "manual_override" ? "직접 확인" : "좌표 확인"
+    title: `${locationPointLabel(location)} · 지도 위치 확인`,
+    status: "확인 완료"
   };
 }
 
-function renderValidationEvidence() {
-  return "";
+function renderAiExplanationModal(scenario = currentScenario()) {
+  const modal = document.getElementById("aiExplanationModal");
+  const body = document.getElementById("aiExplanationModalBody");
+  if (!modal || !body) {
+    return;
+  }
+  const generatedSections = aiDetailSections(scenario, null);
+  const localSections = aiDetailSections({ ...scenario, ai_summary: null }, null);
+  body.innerHTML = aiExplanationPanelMarkup(
+    scenario,
+    generatedSections,
+    localSections,
+    aiCitationItems(scenario)
+  );
+  const courseTitle = scenario?.recommendation?.course?.title || scenario?.title || "추천 코스";
+  const title = document.getElementById("aiExplanationModalTitle");
+  if (title) {
+    title.textContent = `${courseTitle} · 자동 근거 설명`;
+  }
+  if (state.aiExplanationModalOpen && currentAiExplanationState(scenario).status !== "success") {
+    closeAiExplanationModal({ restoreFocus: false });
+  }
 }
 
 function render() {
@@ -2477,12 +4766,14 @@ function render() {
   renderConceptPage(scenario);
   renderScenarioCards();
   renderProfileOptions();
-  renderOfficialCourses(scenario);
   renderServiceStatus();
-  renderOperationsGate();
   renderAiNote(scenario);
+  renderRagProcess(scenario);
+  renderAiExplanationModal(scenario);
   renderMapHits(scenario);
   renderDetail(scenario);
+  renderSavedRouteControls();
+  renderSavedRoutesModal();
 }
 
 function closeDetailPanel() {
@@ -2525,16 +4816,174 @@ function focusRecommendationList() {
   });
 }
 
-function openProfileModal() {
+function setStandardModalIsolation(active) {
+  document.querySelectorAll(".app-shell, .helpbot-wing-wrap").forEach((node) => {
+    if (active) {
+      node.setAttribute("inert", "");
+    } else {
+      node.removeAttribute("inert");
+    }
+  });
+}
+
+function openStandardModal(modal, trigger = document.activeElement, focusTarget = null) {
+  if (!modal) {
+    return;
+  }
+  if (modal.hidden && trigger?.focus && !modal.contains(trigger)) {
+    standardModalReturnFocus.set(modal, trigger);
+  }
+  modal.hidden = false;
+  setStandardModalIsolation(true);
+  document.body.classList.add("modal-open");
+  window.requestAnimationFrame(() => {
+    (focusTarget || modal.querySelector(".modal-close-button, button:not([disabled])"))?.focus({ preventScroll: true });
+  });
+}
+
+function closeStandardModal(modal, { restoreFocus = true } = {}) {
+  if (!modal) {
+    return false;
+  }
+  const wasOpen = !modal.hidden;
+  const returnFocus = standardModalReturnFocus.get(modal);
+  modal.hidden = true;
+  standardModalReturnFocus.delete(modal);
+  if (wasOpen) {
+    setStandardModalIsolation(false);
+    document.body.classList.remove("modal-open");
+  }
+  if (wasOpen && restoreFocus && returnFocus?.isConnected) {
+    window.requestAnimationFrame(() => returnFocus.focus({ preventScroll: true }));
+  }
+  return wasOpen;
+}
+
+function trapStandardModalFocus(event) {
+  if (event.key !== "Tab") {
+    return false;
+  }
+  const modal = ["profileModal", "imageModal", "routeModal", "promoVideoModal", "siteIntro"]
+    .map((id) => document.getElementById(id))
+    .find((item) => item && !item.hidden);
+  if (!modal) {
+    return false;
+  }
+  const controls = Array.from(modal.querySelectorAll(
+    "a[href], button:not([disabled]):not([class$='-backdrop']), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex='-1'])"
+  ));
+  if (!controls.length) {
+    return false;
+  }
+  const first = controls[0];
+  const last = controls[controls.length - 1];
+  if (event.shiftKey && (document.activeElement === first || !modal.contains(document.activeElement))) {
+    event.preventDefault();
+    last.focus();
+    return true;
+  }
+  if (!event.shiftKey && (document.activeElement === last || !modal.contains(document.activeElement))) {
+    event.preventDefault();
+    first.focus();
+    return true;
+  }
+  return false;
+}
+
+function openProfileModal(trigger = document.activeElement) {
   const modal = document.getElementById("profileModal");
   if (!modal) {
     return;
   }
+  const draft = beginProfileModalEdit();
+  renderScenarioCards();
+  renderProfileOptions();
+  const queryInput = document.getElementById("ragQueryInput");
+  if (queryInput) {
+    queryInput.value = draft.ragQuery;
+  }
+  const panel = modal.querySelector(".profile-modal-panel");
+  if (panel) {
+    panel.scrollTop = 0;
+  }
+  renderRagQueryAssist(draft.ragQuery);
+  openStandardModal(modal, trigger, modal.querySelector("[data-rag-example]") || queryInput);
+}
+
+function setAiExplanationModalIsolation(active) {
+  document.querySelectorAll(".app-shell, .helpbot-wing-wrap").forEach((node) => {
+    if (active) {
+      node.setAttribute("inert", "");
+    } else {
+      node.removeAttribute("inert");
+    }
+  });
+  document.body.classList.toggle("ai-explanation-modal-open", active);
+}
+
+function openAiExplanationModal(trigger = document.activeElement) {
+  const modal = document.getElementById("aiExplanationModal");
+  const scenario = currentScenario();
+  if (!modal || currentAiExplanationState(scenario).status !== "success") {
+    return;
+  }
+  if (modal.hidden && trigger?.focus && !modal.contains(trigger)) {
+    aiExplanationReturnFocus = trigger;
+  }
+  renderAiExplanationModal(scenario);
+  state.aiExplanationModalOpen = true;
   modal.hidden = false;
+  setAiExplanationModalIsolation(true);
   document.body.classList.add("modal-open");
   window.requestAnimationFrame(() => {
-    modal.querySelector(".modal-close-button")?.focus();
+    modal.querySelector(".modal-close-button")?.focus({ preventScroll: true });
   });
+}
+
+function closeAiExplanationModal({ restoreFocus = true } = {}) {
+  const modal = document.getElementById("aiExplanationModal");
+  if (!modal) {
+    state.aiExplanationModalOpen = false;
+    return;
+  }
+  const wasOpen = state.aiExplanationModalOpen || !modal.hidden;
+  const returnFocus = aiExplanationReturnFocus;
+  state.aiExplanationModalOpen = false;
+  modal.hidden = true;
+  if (wasOpen) {
+    setAiExplanationModalIsolation(false);
+    document.body.classList.remove("modal-open");
+  }
+  aiExplanationReturnFocus = null;
+  if (wasOpen && restoreFocus && returnFocus?.isConnected) {
+    window.requestAnimationFrame(() => returnFocus.focus({ preventScroll: true }));
+  }
+}
+
+function trapAiExplanationFocus(event) {
+  const modal = document.getElementById("aiExplanationModal");
+  if (!state.aiExplanationModalOpen || !modal || modal.hidden || event.key !== "Tab") {
+    return false;
+  }
+  const controls = Array.from(modal.querySelectorAll(
+    "a[href], button:not([disabled]):not(.ai-explanation-modal-backdrop), [tabindex]:not([tabindex=\"-1\"])"
+  ));
+  if (!controls.length) {
+    return false;
+  }
+  const first = controls[0];
+  const last = controls[controls.length - 1];
+  if (event.shiftKey && (document.activeElement === first || !modal.contains(document.activeElement))) {
+    event.preventDefault();
+    last.focus();
+    return true;
+  }
+  if (!event.shiftKey && (document.activeElement === last || !modal.contains(document.activeElement))) {
+    event.preventDefault();
+    first.focus();
+    return true;
+  }
+  return false;
 }
 
 function closeProfileModal() {
@@ -2542,8 +4991,8 @@ function closeProfileModal() {
   if (!modal) {
     return;
   }
-  modal.hidden = true;
-  document.body.classList.remove("modal-open");
+  closeStandardModal(modal);
+  discardProfileModalEdit();
 }
 
 function openImageModal(trigger) {
@@ -2562,11 +5011,7 @@ function openImageModal(trigger) {
   );
   image.src = trigger.dataset.imageSrc || DEFAULT_PLACE_IMAGE.src;
   image.alt = trigger.dataset.imageAlt || "장소 이미지";
-  modal.hidden = false;
-  document.body.classList.add("modal-open");
-  window.requestAnimationFrame(() => {
-    modal.querySelector(".modal-close-button")?.focus();
-  });
+  openStandardModal(modal, trigger, modal.querySelector(".modal-close-button"));
 }
 
 function closeImageModal() {
@@ -2574,23 +5019,18 @@ function closeImageModal() {
   if (!modal) {
     return;
   }
-  modal.hidden = true;
+  closeStandardModal(modal);
   document.getElementById("imageModalImage")?.removeAttribute("src");
-  document.body.classList.remove("modal-open");
 }
 
-function openRouteModal() {
+function openRouteModal(trigger = document.activeElement) {
   const modal = document.getElementById("routeModal");
   if (!modal) {
     return;
   }
   state.routeModalOpen = true;
-  modal.hidden = false;
-  document.body.classList.add("modal-open");
+  openStandardModal(modal, trigger, modal.querySelector(".modal-close-button"));
   renderRouteModal();
-  window.requestAnimationFrame(() => {
-    modal.querySelector(".modal-close-button")?.focus();
-  });
 }
 
 function closeRouteModal() {
@@ -2599,28 +5039,106 @@ function closeRouteModal() {
     return;
   }
   state.routeModalOpen = false;
-  modal.hidden = true;
-  document.body.classList.remove("modal-open");
+  routeModalRenderSequence += 1;
+  closeStandardModal(modal);
 }
 
-function openPromoModal() {
+function setSavedRoutesModalIsolation(active) {
+  const isolatedNodes = [
+    document.querySelector(".app-shell"),
+    document.querySelector(".helpbot-wing-wrap")
+  ].filter(Boolean);
+  isolatedNodes.forEach((node) => {
+    if (active) {
+      node.setAttribute("inert", "");
+    } else {
+      node.removeAttribute("inert");
+    }
+  });
+  if (active) {
+    document.body.classList.add("saved-routes-modal-open");
+  } else {
+    document.body.classList.remove("saved-routes-modal-open");
+  }
+}
+
+function openSavedRoutesModal() {
+  const modal = document.getElementById("savedRoutesModal");
+  if (!modal) {
+    return;
+  }
+  if (modal.hidden && document.activeElement?.focus && !modal.contains(document.activeElement)) {
+    savedRoutesReturnFocus = document.activeElement;
+  }
+  state.savedRoutesOpen = true;
+  clearSavedRouteDeleteConfirmation({ clearMessage: true });
+  renderSavedRoutesModal();
+  modal.hidden = false;
+  setSavedRoutesModalIsolation(true);
+  document.body.classList.add("modal-open");
+  window.requestAnimationFrame(() => {
+    modal.querySelector(".modal-close-button")?.focus();
+  });
+}
+
+function closeSavedRoutesModal({ restoreFocus = true } = {}) {
+  const modal = document.getElementById("savedRoutesModal");
+  if (!modal) {
+    return;
+  }
+  const wasOpen = !modal.hidden;
+  const returnFocus = savedRoutesReturnFocus;
+  state.savedRoutesOpen = false;
+  clearSavedRouteDeleteConfirmation({ clearMessage: true });
+  modal.hidden = true;
+  setSavedRoutesModalIsolation(false);
+  document.body.classList.remove("modal-open");
+  savedRoutesReturnFocus = null;
+  if (wasOpen && restoreFocus && returnFocus?.isConnected) {
+    window.requestAnimationFrame(() => returnFocus.focus());
+  }
+}
+
+function trapSavedRoutesFocus(event) {
+  const modal = document.getElementById("savedRoutesModal");
+  if (!state.savedRoutesOpen || !modal || modal.hidden || event.key !== "Tab") {
+    return false;
+  }
+  const controls = Array.from(modal.querySelectorAll(
+    "button:not([disabled]):not(.saved-routes-modal-backdrop), input:not([disabled])"
+  ));
+  if (!controls.length) {
+    return false;
+  }
+  const first = controls[0];
+  const last = controls[controls.length - 1];
+  if (event.shiftKey && (document.activeElement === first || !modal.contains(document.activeElement))) {
+    event.preventDefault();
+    last.focus();
+    return true;
+  }
+  if (!event.shiftKey && (document.activeElement === last || !modal.contains(document.activeElement))) {
+    event.preventDefault();
+    first.focus();
+    return true;
+  }
+  return false;
+}
+
+function openPromoModal(trigger = document.activeElement) {
   const modal = document.getElementById("promoVideoModal");
   if (!modal) {
     return;
   }
   state.promoModalOpen = true;
   state.activeNav = "promo";
-  modal.hidden = false;
-  document.body.classList.add("modal-open");
+  openStandardModal(modal, trigger, modal.querySelector(".modal-close-button"));
   const video = document.getElementById("promoVideo");
   if (video) {
     video.preload = "metadata";
     video.load?.();
   }
   renderNavTabs();
-  window.requestAnimationFrame(() => {
-    modal.querySelector(".modal-close-button")?.focus();
-  });
 }
 
 function openSiteIntro() {
@@ -2631,8 +5149,7 @@ function openSiteIntro() {
   }
   siteIntroStarted = true;
   state.siteIntroOpen = true;
-  intro.hidden = false;
-  document.body.classList.add("modal-open");
+  openStandardModal(intro, null, intro.querySelector("[data-close-site-intro]"));
   document.body.classList.add("site-intro-open");
   video.currentTime = 0;
   video.muted = true;
@@ -2671,11 +5188,10 @@ function bypassSiteIntro() {
   siteIntroStarted = true;
   state.siteIntroOpen = false;
   if (intro) {
-    intro.hidden = true;
+    closeStandardModal(intro, { restoreFocus: false });
   }
   video?.pause();
   document.body.classList.remove("site-intro-open");
-  document.body.classList.remove("modal-open");
   document.documentElement.classList.remove("skip-site-intro");
   markSiteIntroSeen();
 
@@ -2698,12 +5214,11 @@ function closeSiteIntro() {
   }
   state.siteIntroOpen = false;
   markSiteIntroSeen();
-  intro.hidden = true;
+  closeStandardModal(intro, { restoreFocus: false });
   if (video) {
     video.pause();
   }
   document.body.classList.remove("site-intro-open");
-  document.body.classList.remove("modal-open");
   showThemeSelectionAfterIntro();
   return true;
 }
@@ -2748,16 +5263,18 @@ function closePromoModal() {
     return;
   }
   state.promoModalOpen = false;
-  modal.hidden = true;
+  closeStandardModal(modal);
   const video = document.getElementById("promoVideo");
   if (video) {
     video.pause();
   }
   if (state.activeNav === "promo") {
-    state.activeNav = "map";
+    state.activeNav = navTargetFromHash(promoReturnHash);
+    if (window.location.hash === "#promoVideoModal") {
+      window.history.replaceState(null, "", promoReturnHash);
+    }
     renderNavTabs();
   }
-  document.body.classList.remove("modal-open");
 }
 
 function renderRouteModal() {
@@ -2765,28 +5282,40 @@ function renderRouteModal() {
   const routeTitle = scenario.recommendation?.course?.title || scenario.title || "오늘의 동행 경로";
   const entries = routeCoordinateEntries(scenario);
   const allEntries = routeEntriesForScenario(scenario);
+  const routeKey = routeEntriesCacheKey(entries);
+  const sequence = ++routeModalRenderSequence;
   document.getElementById("routeModalTitle").textContent = routeTitle;
-  document.getElementById("routeModalSubtitle").textContent = `${routeNames(scenario).join(" → ")} 순서로 실제 위치를 연결합니다.`;
+  document.getElementById("routeModalSubtitle").textContent = `${routeNames(scenario).join(" → ")} 순서로 지도에 표시합니다.`;
 
   if (entries.length < 2) {
-    setRouteMapStatus("좌표 확인 필요", "두 곳 이상의 실제 좌표가 있어야 경로를 계산할 수 있습니다.");
-    renderRouteItinerary(allEntries, fallbackRouteSummary(entries), "좌표 확인 필요");
+    setRouteMapStatus("위치 확인 필요", "추천 장소 두 곳 이상의 지도 위치가 필요합니다.");
+    renderRouteItinerary(allEntries, fallbackRouteSummary(entries), "위치 확인 필요");
     clearRouteMap();
     return;
   }
 
   const fallback = fallbackRouteSummary(entries);
-  setRouteMapStatus("경로 계산 중", "실제 도로형 경로를 가져오는 중입니다.");
-  renderRouteItinerary(allEntries, fallback, "계산 중");
+  drawRouteMap(entries, fallback);
+  renderRouteItinerary(allEntries, fallback, shouldRequestRouteProxy() ? "계산 중" : "간단 경로");
+  if (!shouldRequestRouteProxy()) {
+    setRouteMapStatus(
+      "간단 경로",
+      `${formatDistanceKm(fallback.distanceKm)} · ${formatDurationMinutes(fallback.durationMinutes)}`
+    );
+    return;
+  }
+
+  setRouteMapStatus("경로 계산 중", "이동 경로를 확인하고 있습니다.");
   window.requestAnimationFrame(async () => {
-    const summary = await routeSummaryWithRoadGeometry(entries);
-    if (!state.routeModalOpen) {
+    const summary = await cachedRouteSummaryWithRoadGeometry(entries);
+    const currentKey = routeEntriesCacheKey(routeCoordinateEntries(currentScenario()));
+    if (!state.routeModalOpen || sequence !== routeModalRenderSequence || currentKey !== routeKey) {
       return;
     }
     drawRouteMap(entries, summary);
-    renderRouteItinerary(allEntries, summary, summary.provider === "coordinate_fallback" ? "좌표 기반" : "도로 경로");
+    renderRouteItinerary(allEntries, summary, summary.provider === "coordinate_fallback" ? "간단 경로" : "도로 경로");
     setRouteMapStatus(
-      summary.provider === "coordinate_fallback" ? "좌표 기반 경로" : "도로 경로 반영",
+      summary.provider === "coordinate_fallback" ? "간단 경로" : "도로 경로 확인",
       `${formatDistanceKm(summary.distanceKm)} · ${formatDurationMinutes(summary.durationMinutes)}`
     );
   });
@@ -2812,12 +5341,12 @@ function renderRouteItinerary(entries, summary, statusLabel) {
   container.innerHTML = `
     <div class="route-summary-card">
       <span>${escapeHtml(statusLabel)}</span>
-      <h3>추천 코스가 실제 지도 위에 연결됐습니다</h3>
-      <p>장소 점수와 접근성 확인 항목을 유지한 채, 이동 순서와 좌표 근거를 한 화면에서 검토합니다.</p>
+      <h3>추천 코스를 지도에 표시했습니다</h3>
+      <p>추천 순서와 장소별 접근성 정보를 한 화면에서 확인할 수 있습니다.</p>
       <div class="route-stat-grid">
         <b><small>총 이동</small>${escapeHtml(formatDistanceKm(summary.distanceKm))}</b>
         <b><small>예상 시간</small>${escapeHtml(formatDurationMinutes(summary.durationMinutes))}</b>
-        <b><small>좌표</small>${locatedCount}/${entries.length}곳</b>
+        <b><small>위치 확인</small>${locatedCount}/${entries.length}곳</b>
       </div>
     </div>
     <ol class="route-step-list">
@@ -2836,9 +5365,9 @@ function routeStepMarkup(entry, index) {
   const parking = accessibilityItem(place, ["parking"]);
   const slope = accessibilityItem(place, ["slope_or_stairs", "slope"]);
   const restArea = accessibilityItem(place, ["rest_area"]);
-  const coordinate = entry.location
-    ? `${Number(entry.location.latitude).toFixed(5)}, ${Number(entry.location.longitude).toFixed(5)}`
-    : "좌표 확인 필요";
+  const locationStatus = entry.location
+    ? "지도 위치 확인 완료"
+    : "지도 위치를 확인하지 못했습니다.";
   return `
     <li class="${entry.location ? "" : "missing"}">
       <div class="route-step-rank">${index + 1}</div>
@@ -2849,12 +5378,13 @@ function routeStepMarkup(entry, index) {
         </div>
         <p>${escapeHtml(place.region || place.address || "제주 접근성 추천 장소")}</p>
         <div class="route-step-tags">
+          ${pointRoleBadgeMarkup(entry.location, "route-point-role")}
           <b>화장실 ${escapeHtml(mapStateText(restroom.state))}</b>
           <b>주차 ${escapeHtml(mapStateText(parking.state))}</b>
           <b>경사 ${escapeHtml(mapStateText(slope.state))}</b>
           <b>휴식 ${escapeHtml(mapStateText(restArea.state))}</b>
         </div>
-        <small>${escapeHtml(coordinate)} · ${escapeHtml(place.location?.source_title || "위치 근거 확인 중")}</small>
+        <small>${escapeHtml(locationStatus)}</small>
       </div>
     </li>
   `;
@@ -2864,11 +5394,67 @@ function clearRouteMap() {
   if (routeLayerGroup) {
     routeLayerGroup.clearLayers();
   }
+  const fallbackLayer = document.getElementById("routeMapFallbackLayer");
+  if (fallbackLayer) {
+    fallbackLayer.innerHTML = "";
+  }
+  deactivateRouteMapFallback();
+}
+
+function prepareRouteMapFallback(entries) {
+  const layer = document.getElementById("routeMapFallbackLayer");
+  if (!layer) {
+    return;
+  }
+  const located = entries.map((entry, index) => ({
+    entry,
+    order: Number(entry.order || index + 1),
+    point: savedRouteMiniMapPoint(entry.location)
+  })).filter((item) => item.point);
+  const path = located.length >= 2 ? routePathData(located.map((item) => item.point)) : "";
+  layer.innerHTML = `
+    ${path ? `<path class="route-map-fallback-path-shadow" d="${path}"></path><path class="route-map-fallback-path" d="${path}"></path>` : ""}
+    ${located.map((item) => {
+      const roleLabel = locationPointShortLabel(item.entry.location);
+      const roleWidth = Math.max(10, Math.min(20, 4 + roleLabel.length * 3));
+      const roleX = clamp(-roleWidth / 2, 1 - item.point.x, 99 - item.point.x - roleWidth);
+      return `
+        <g class="route-map-fallback-marker" transform="translate(${roundSvg(item.point.x)} ${roundSvg(item.point.y)})">
+          <title>${escapeHtml(`${item.order}번 ${mapPointDisplayName(item.entry.place)}`)}</title>
+          <circle r="4.8"></circle>
+          <text x="0" y="0.5">${item.order}</text>
+          ${roleLabel ? `
+            <rect class="route-map-fallback-role-bg" x="${roundSvg(roleX)}" y="6.2" width="${roundSvg(roleWidth)}" height="6.2" rx="3.1"></rect>
+            <text class="route-map-fallback-role" x="${roundSvg(roleX + roleWidth / 2)}" y="9.5">${escapeHtml(roleLabel)}</text>
+          ` : ""}
+        </g>
+      `;
+    }).join("")}
+  `;
+}
+
+function activateRouteMapFallback(badge, message) {
+  const shell = document.querySelector(".route-map-shell");
+  const mapElement = document.getElementById("routeMap");
+  shell?.classList.add("route-map-fallback-active");
+  mapElement?.setAttribute("aria-hidden", "true");
+  setRouteMapStatus(badge, message);
+}
+
+function deactivateRouteMapFallback() {
+  const shell = document.querySelector(".route-map-shell");
+  const mapElement = document.getElementById("routeMap");
+  shell?.classList.remove("route-map-fallback-active");
+  mapElement?.removeAttribute("aria-hidden");
 }
 
 function ensureRouteMap() {
   const mapElement = document.getElementById("routeMap");
-  if (!mapElement || !window.L) {
+  if (!mapElement) {
+    return null;
+  }
+  if (!window.L) {
+    activateRouteMapFallback("기본 경로 지도", "지도를 불러오지 못해 실제 위치 순서를 표시합니다.");
     return null;
   }
   if (!routeMap) {
@@ -2877,26 +5463,44 @@ function ensureRouteMap() {
       scrollWheelZoom: false,
       attributionControl: true
     });
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    routeTileErrorCount = 0;
+    routeTileLayer = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution: "&copy; OpenStreetMap contributors"
-    }).addTo(routeMap);
+    })
+      .on("loading", () => {
+        routeTileErrorCount = 0;
+      })
+      .on("tileerror", () => {
+        routeTileErrorCount += 1;
+        if (routeTileErrorCount >= 3) {
+          activateRouteMapFallback("기본 경로 지도", "지도 연결 없이 실제 위치 순서를 표시합니다.");
+        }
+      })
+      .on("load", () => {
+        if (routeTileErrorCount < 3) {
+          deactivateRouteMapFallback();
+        }
+      })
+      .addTo(routeMap);
     routeLayerGroup = L.layerGroup().addTo(routeMap);
+  }
+  if (routeTileErrorCount >= 3) {
+    activateRouteMapFallback("기본 경로 지도", "지도 연결 없이 실제 위치 순서를 표시합니다.");
   }
   window.setTimeout(() => routeMap.invalidateSize(), 80);
   return routeMap;
 }
 
 function drawRouteMap(entries, summary) {
+  clearRouteMap();
+  prepareRouteMapFallback(entries);
   const map = ensureRouteMap();
   if (!map) {
-    setRouteMapStatus("지도 로딩 대기", "지도 라이브러리를 불러오지 못해 경로 목록으로 표시합니다.");
+    activateRouteMapFallback("기본 경로 지도", "외부 지도 연결 없이 실제 위치 순서를 표시합니다.");
     return;
   }
-  clearRouteMap();
-  const geometry = summary.geometry?.length >= 2
-    ? summary.geometry
-    : entries.map((entry) => entry.location).filter(Boolean);
+  const geometry = routeGeometryWithStopAnchors(entries, summary.geometry);
   const lineLatLngs = geometry.map((location) => [Number(location.latitude), Number(location.longitude)]);
   const markerLatLngs = entries.map((entry) => [Number(entry.location.latitude), Number(entry.location.longitude)]);
 
@@ -2904,6 +5508,7 @@ function drawRouteMap(entries, summary) {
     color: "#ffffff",
     weight: 12,
     opacity: 0.96,
+    smoothFactor: 0,
     lineCap: "round",
     lineJoin: "round"
   }).addTo(routeLayerGroup);
@@ -2911,6 +5516,7 @@ function drawRouteMap(entries, summary) {
     color: ROUTE_KEY_COLOR,
     weight: 6,
     opacity: 0.95,
+    smoothFactor: 0,
     lineCap: "round",
     lineJoin: "round"
   }).addTo(routeLayerGroup);
@@ -2919,13 +5525,15 @@ function drawRouteMap(entries, summary) {
     const marker = L.marker([Number(entry.location.latitude), Number(entry.location.longitude)], {
       icon: L.divIcon({
         className: `route-marker-icon rank-${index + 1}`,
-        html: `<span>${index + 1}</span>`,
-        iconSize: [34, 34],
-        iconAnchor: [17, 17],
+        html: `<span>${index + 1}</span>${pointRoleBadgeMarkup(entry.location, "route-marker-role")}`,
+        iconSize: [44, 44],
+        iconAnchor: [22, 22],
         popupAnchor: [0, -18]
-      })
+      }),
+      keyboard: true,
+      title: mapPointDisplayName(entry.place)
     }).addTo(routeLayerGroup);
-    marker.bindPopup(`<strong>${escapeHtml(entry.place.name)}</strong><br>${escapeHtml(entry.score)}점 · ${escapeHtml(verificationLabel(entry.place))}`);
+    marker.bindPopup(`<strong>${escapeHtml(entry.place.name)}</strong><br>${escapeHtml(locationPointLabel(entry.location))} · ${escapeHtml(entry.score)}점 · ${escapeHtml(verificationLabel(entry.place))}`);
   });
 
   const bounds = L.latLngBounds(markerLatLngs);
@@ -2956,14 +5564,30 @@ function applyImageFallback(image) {
 }
 
 async function shareCurrentView(button) {
-  const url = new URL(window.location.href);
-  url.searchParams.delete("qa");
   const scenario = currentScenario();
   const place = state.detailCollapsed ? null : selectedPlace(scenario);
-  const title = "가치봄 제주 접근성 여행 추천";
   const text = place
     ? `${place.name} 접근성 근거와 추천 코스를 확인해 보세요.`
     : "가치봄 제주 맞춤 접근성 여행 추천 화면을 확인해 보세요.";
+  await shareRouteSpotIds(button, currentRouteSpotIds(scenario), text);
+}
+
+async function shareSavedRoute(button, routeId) {
+  const item = state.savedRoutes.find((saved) => saved.id === routeId);
+  if (!item) {
+    setShareButtonFeedback(button, "코스 없음");
+    return;
+  }
+  await shareRouteSpotIds(button, item.spotIds, `${savedRouteTitle(item)} 코스를 확인해 보세요.`);
+}
+
+async function shareRouteSpotIds(button, spotIds, text) {
+  const url = SAVED_TRIPS?.buildShareUrl(window.location, spotIds, shareableSavedSpotIds());
+  if (!url) {
+    setShareButtonFeedback(button, "공유 실패");
+    return;
+  }
+  const title = "가치봄 제주 접근성 여행 추천";
 
   try {
     const preferNativeShare = window.matchMedia("(pointer: coarse)").matches && navigator.share;
@@ -2975,7 +5599,7 @@ async function shareCurrentView(button) {
     await copyTextToClipboard(url.toString());
     setShareButtonFeedback(button, "링크 복사됨");
   } catch (error) {
-    setShareButtonFeedback(button, "복사 실패");
+    setShareButtonFeedback(button, error?.name === "AbortError" ? "공유 취소" : "복사 실패");
   }
 }
 
@@ -3002,21 +5626,21 @@ function setShareButtonFeedback(button, text) {
   if (!button) {
     return;
   }
-  const original = button.dataset.originalText || button.textContent;
-  button.dataset.originalText = original;
-  button.textContent = text;
-  window.clearTimeout(shareFeedbackTimer);
-  shareFeedbackTimer = window.setTimeout(() => {
-    button.textContent = button.dataset.originalText || "공유";
+  const label = button.querySelector("[data-share-label], span") || button;
+  const original = label.dataset.originalText || label.textContent.trim();
+  label.dataset.originalText = original;
+  label.textContent = text;
+  window.clearTimeout(shareFeedbackTimers.get(button));
+  const timer = window.setTimeout(() => {
+    label.textContent = label.dataset.originalText || "공유";
+    shareFeedbackTimers.delete(button);
   }, 1800);
+  shareFeedbackTimers.set(button, timer);
 }
 
 function navTargetFromHash(hash = window.location.hash) {
   if (hash === "#recommendations" || hash === "#mapPanel") {
     return "recommend";
-  }
-  if (hash === "#officialCourseList") {
-    return "official";
   }
   if (hash === "#promoVideoModal") {
     return "promo";
@@ -3071,7 +5695,11 @@ function updateHash(href) {
 function navigateToSection(target, href, { updateLocation = false, behavior = "smooth" } = {}) {
   state.activeNav = target || navTargetFromHash(href);
   if (state.activeNav !== "concepts") {
+    const wasOpen = state.conceptPanelOpen;
     state.conceptPanelOpen = false;
+    if (wasOpen && state.data) {
+      renderConceptPage(currentScenario());
+    }
   }
   renderNavTabs();
   if (updateLocation) {
@@ -3080,17 +5708,18 @@ function navigateToSection(target, href, { updateLocation = false, behavior = "s
   window.requestAnimationFrame(() => {
     scrollToSelector(href || "#conceptPage", behavior);
     centerMap?.invalidateSize();
-    syncMapHitBounds();
+    scheduleMapHitBoundsSync();
     syncStepViewState();
   });
 }
 
-async function selectScenarioForResult(scenarioId, { navigateToResults = false, fromModal = false } = {}) {
+async function selectScenarioForResult(scenarioId, { navigateToResults = false } = {}) {
   if (!scenarioById(scenarioId)) {
     return;
   }
   state.scenarioId = scenarioId;
   state.runtimeScenario = null;
+  state.conceptFocus = null;
   state.profile = profileFromScenario(currentStaticScenario());
   state.selectedSpotId = null;
   state.mapPopupSpotId = null;
@@ -3098,18 +5727,10 @@ async function selectScenarioForResult(scenarioId, { navigateToResults = false, 
 
   if (navigateToResults) {
     navigateToSection("recommend", "#recommendations", { updateLocation: true });
-  }
-
-  if (fromModal) {
-    setApiState(shouldRequestRuntimeApi() ? "idle" : "static", shouldRequestRuntimeApi() ? "적용 전 조건 편집 중" : "기본 추천 사용");
-    render();
-    return;
-  }
-
-  if (!navigateToResults) {
+  } else {
     openConceptResultPanel();
-    render();
   }
+  render();
 
   await refreshScenarioRecommendation({ renderLoading: true });
   render();
@@ -3133,14 +5754,74 @@ function bindEvents() {
 
     const goConceptsButton = event.target.closest("[data-go-concepts]");
     if (goConceptsButton) {
+      const shouldRestoreConceptFocus = goConceptsButton.hasAttribute("data-return-to-concept-list");
       closeConceptResultPanel();
       navigateToSection("concepts", "#conceptPage", { updateLocation: true });
+      if (shouldRestoreConceptFocus) {
+        restoreSelectedConceptFocus();
+      }
       return;
     }
 
     const shareButton = event.target.closest("[data-share-app]");
     if (shareButton) {
       await shareCurrentView(shareButton);
+      return;
+    }
+
+    const saveCurrentRouteButton = event.target.closest("[data-save-current-route]");
+    if (saveCurrentRouteButton) {
+      if (currentSavedRoute()) {
+        openSavedRoutesModal();
+      } else {
+        saveCurrentRoute();
+      }
+      return;
+    }
+
+    const openSavedRoutesButton = event.target.closest("[data-open-saved-routes]");
+    if (openSavedRoutesButton) {
+      openSavedRoutesModal();
+      return;
+    }
+
+    const closeSavedRoutesButton = event.target.closest("[data-close-saved-routes]");
+    if (closeSavedRoutesButton) {
+      closeSavedRoutesModal();
+      return;
+    }
+
+    const openSavedRouteButton = event.target.closest("[data-open-saved-route]");
+    if (openSavedRouteButton) {
+      openSavedRoute(openSavedRouteButton.dataset.openSavedRoute);
+      return;
+    }
+
+    const saveSharedRouteButton = event.target.closest("[data-save-shared-route]");
+    if (saveSharedRouteButton) {
+      saveSharedRoute();
+      return;
+    }
+
+    const shareSavedRouteButton = event.target.closest("[data-share-saved-route]");
+    if (shareSavedRouteButton) {
+      await shareSavedRoute(shareSavedRouteButton, shareSavedRouteButton.dataset.shareSavedRoute);
+      return;
+    }
+
+    const moveSavedSpotButton = event.target.closest("[data-move-saved-route][data-move-saved-spot]");
+    if (moveSavedSpotButton) {
+      moveSavedRouteSpot(
+        moveSavedSpotButton.dataset.moveSavedRoute,
+        moveSavedSpotButton.dataset.moveSavedSpot,
+        Number(moveSavedSpotButton.dataset.moveDirection)
+      );
+      return;
+    }
+
+    const deleteSavedRouteButton = event.target.closest("[data-delete-saved-route]");
+    if (deleteSavedRouteButton) {
+      requestDeleteSavedRoute(deleteSavedRouteButton.dataset.deleteSavedRoute);
       return;
     }
 
@@ -3210,11 +5891,44 @@ function bindEvents() {
       return;
     }
 
+    const ragExampleButton = event.target.closest("[data-rag-example]");
+    if (ragExampleButton) {
+      setRagQueryValue(ragExampleButton.dataset.ragExample);
+      return;
+    }
+
+    const clearRagQueryButton = event.target.closest("[data-clear-rag-query]");
+    if (clearRagQueryButton) {
+      setRagQueryValue("");
+      return;
+    }
+
     const applyModalButton = event.target.closest("[data-apply-profile-modal]");
     if (applyModalButton) {
+      commitProfileModalEdit(document.getElementById("ragQueryInput")?.value);
       closeProfileModal();
       await refreshRuntimeRecommendation({ renderLoading: true });
       render();
+      return;
+    }
+
+    const groundedAiButton = event.target.closest("[data-generate-grounded-ai]");
+    if (groundedAiButton) {
+      await requestGroundedAiExplanation({
+        forceRefresh: groundedAiButton.dataset.aiRefresh === "true"
+      });
+      return;
+    }
+
+    const focusAiExplanationButton = event.target.closest("[data-focus-ai-explanation]");
+    if (focusAiExplanationButton) {
+      openAiExplanationModal(focusAiExplanationButton);
+      return;
+    }
+
+    const closeAiExplanationButton = event.target.closest("[data-close-ai-explanation]");
+    if (closeAiExplanationButton) {
+      closeAiExplanationModal();
       return;
     }
 
@@ -3240,6 +5954,31 @@ function bindEvents() {
       return;
     }
 
+    const conceptPlaceButton = event.target.closest("[data-concept-place-id]");
+    if (conceptPlaceButton) {
+      state.selectedSpotId = conceptPlaceButton.dataset.conceptPlaceId || null;
+      state.mapPopupSpotId = null;
+      state.detailCollapsed = false;
+      closeConceptResultPanel();
+      render();
+      navigateToSection("recommend", "#recommendations", { updateLocation: true });
+      return;
+    }
+
+    const conceptFocusButton = event.target.closest("[data-concept-focus-key]");
+    if (conceptFocusButton) {
+      const nextFocus = {
+        key: conceptFocusButton.dataset.conceptFocusKey,
+        value: conceptFocusButton.dataset.conceptFocusValue,
+        label: conceptFocusButton.dataset.conceptFocusLabel
+      };
+      state.conceptFocus = conceptFocusKey() === conceptFocusKey(nextFocus) ? null : nextFocus;
+      state.runtimeScenario = staticConditionVariant();
+      await refreshRuntimeRecommendation({ renderLoading: true });
+      render();
+      return;
+    }
+
     const viewSelectedConceptButton = event.target.closest("[data-view-selected-concept]");
     if (viewSelectedConceptButton) {
       closeConceptResultPanel();
@@ -3250,7 +5989,11 @@ function bindEvents() {
     const scenarioButton = event.target.closest("[data-scenario-id]");
     if (scenarioButton) {
       if (scenarioButton.closest("#profileModal")) {
-        await selectScenarioForResult(scenarioButton.dataset.scenarioId, { fromModal: true });
+        if (selectProfileModalScenario(scenarioButton.dataset.scenarioId)) {
+          renderScenarioCards();
+          renderProfileOptions();
+          renderRagQueryAssist();
+        }
         return;
       }
       await selectScenarioForResult(scenarioButton.dataset.scenarioId);
@@ -3259,18 +6002,16 @@ function bindEvents() {
 
     const profileButton = event.target.closest("[data-profile-key]");
     if (profileButton) {
-      toggleProfileValue(profileButton.dataset.profileKey, profileButton.dataset.profileValue);
       if (profileButton.closest("#profileModal")) {
-        const matchedScenario = matchedScenarioFromProfile(state.profile);
-        state.scenarioId = matchedScenario.id;
-        state.runtimeScenario = null;
-        state.selectedSpotId = null;
-        state.mapPopupSpotId = null;
-        state.detailCollapsed = false;
-        setApiState(shouldRequestRuntimeApi() ? "idle" : "static", shouldRequestRuntimeApi() ? "적용 전 조건 편집 중" : "기본 추천 사용");
-        render();
+        if (toggleProfileModalValue(profileButton.dataset.profileKey, profileButton.dataset.profileValue)) {
+          renderScenarioCards();
+          renderProfileOptions();
+          renderRagQueryAssist();
+        }
         return;
       }
+      state.conceptFocus = null;
+      toggleProfileValue(profileButton.dataset.profileKey, profileButton.dataset.profileValue);
       await refreshRuntimeRecommendation({ renderLoading: true });
       render();
       return;
@@ -3308,12 +6049,55 @@ function bindEvents() {
     }
   });
 
+  document.getElementById("ragQueryInput")?.addEventListener("input", (event) => {
+    updateProfileModalQuery(event.target.value);
+    scheduleRagQueryAssist(event.target.value);
+  });
+
+  document.addEventListener("change", (event) => {
+    const scheduleInput = event.target.closest?.("[data-saved-trip-date], [data-saved-start-time]");
+    if (scheduleInput) {
+      const card = scheduleInput.closest("[data-saved-route-card]");
+      const routeId = card?.dataset.savedRouteCard;
+      const date = card?.querySelector("[data-saved-trip-date]")?.value || "";
+      const startTime = card?.querySelector("[data-saved-start-time]")?.value || "";
+      if (routeId) {
+        updateSavedRouteItinerary(routeId, date, startTime);
+      }
+      return;
+    }
+    const checkbox = event.target.closest?.("[data-saved-route-id][data-saved-check-id]");
+    if (!checkbox || checkbox.type !== "checkbox") {
+      return;
+    }
+    updateSavedRouteCheck(
+      checkbox.dataset.savedRouteId,
+      checkbox.dataset.savedCheckId,
+      checkbox.checked,
+      checkbox.closest("#savedRoutesModal") ? "savedRoutesModal" : "placeDetail"
+    );
+  });
+
   document.addEventListener("keydown", (event) => {
+    if (trapAiExplanationFocus(event)) {
+      return;
+    }
+    if (trapSavedRoutesFocus(event)) {
+      return;
+    }
+    if (trapStandardModalFocus(event)) {
+      return;
+    }
+    if (event.key === "Escape" && state.aiExplanationModalOpen) {
+      closeAiExplanationModal();
+      return;
+    }
     if (event.key === "Escape") {
       closeSiteIntro();
       closeImageModal();
       closeProfileModal();
       closeRouteModal();
+      closeSavedRoutesModal();
       closePromoModal();
       closeMapPopup();
     }
@@ -3328,7 +6112,7 @@ function bindEvents() {
 
   window.addEventListener("resize", () => {
     centerMap?.invalidateSize();
-    syncMapHitBounds();
+    scheduleMapHitBoundsSync();
     syncStepViewState();
   });
 
@@ -3355,7 +6139,11 @@ function bindEvents() {
     }
     state.activeNav = target;
     if (target !== "concepts") {
+      const wasOpen = state.conceptPanelOpen;
       state.conceptPanelOpen = false;
+      if (wasOpen && state.data) {
+        renderConceptPage(currentScenario());
+      }
     }
     renderNavTabs();
     scrollToSelector(window.location.hash || "#conceptPage");
@@ -3366,22 +6154,13 @@ function bindEvents() {
 }
 
 function handleNavTarget(target, href) {
+  if (target === "promo" && window.location.hash !== "#promoVideoModal") {
+    promoReturnHash = window.location.hash || (state.activeNav === "recommend" ? "#recommendations" : "#conceptPage");
+  }
   state.activeNav = target || "concepts";
   if (target === "promo") {
     updateHash(href);
     openPromoModal();
-    return;
-  }
-
-  if (target === "evidence") {
-    state.detailCollapsed = false;
-    selectedPlace(currentScenario());
-    render();
-    window.requestAnimationFrame(() => {
-      const evidence = document.getElementById("validationEvidence");
-      evidence?.scrollIntoView({ block: "start", behavior: "smooth" });
-      evidence?.focus({ preventScroll: true });
-    });
     return;
   }
 
@@ -3393,23 +6172,28 @@ async function init() {
   try {
     const seed = await loadData();
     state.data = seed;
-    state.validationReport = null;
-    state.operationsReadiness = null;
-    state.launchActionPlan = null;
     state.scenarioId = state.data.scenarios[0]?.id || null;
     state.activeNav = navTargetFromHash();
     state.profile = profileFromScenario(currentStaticScenario());
-    setApiState("idle", "추천 준비 완료");
+    loadSavedRouteState();
+    setApiState(
+      shouldRequestRuntimeApi() ? "idle" : "static",
+      shouldRequestRuntimeApi() ? "맞춤 추천 준비 완료" : "기본 추천 사용"
+    );
     render();
     bindEvents();
     syncStepViewState();
-    const skipIntro = shouldSkipSiteIntro();
+    const skipIntro = Boolean(state.sharedRoutePreview) || shouldSkipSiteIntro();
     if (skipIntro) {
       bypassSiteIntro();
     } else {
       window.requestAnimationFrame(openSiteIntro);
     }
     window.requestAnimationFrame(() => {
+      if (state.sharedRoutePreview) {
+        openSavedRoutesModal();
+        return;
+      }
       if (skipIntro && state.activeNav === "promo") {
         openPromoModal();
         return;
@@ -3419,7 +6203,26 @@ async function init() {
       }
     });
   } catch (error) {
-    document.querySelector(".journey-layout").innerHTML = `<div class="error-state">${escapeHtml(error.message)}</div>`;
+    console.error("추천 정보를 불러오지 못했습니다.", error);
+    const retryMarkup = `
+      <div class="error-state" role="alert">
+        <strong>추천 정보를 불러오지 못했습니다.</strong>
+        <p>인터넷 연결을 확인한 뒤 다시 시도해 주세요.</p>
+        <button class="outline-button" type="button" data-reload-app>다시 불러오기</button>
+      </div>
+    `;
+    const conceptGrid = document.getElementById("conceptGrid");
+    const journeyLayout = document.querySelector(".journey-layout");
+    if (conceptGrid) {
+      conceptGrid.innerHTML = retryMarkup;
+    }
+    if (journeyLayout) {
+      journeyLayout.innerHTML = retryMarkup;
+    }
+    document.querySelectorAll("[data-reload-app]").forEach((button) => {
+      button.addEventListener("click", () => window.location.reload());
+    });
+    bypassSiteIntro();
   }
 }
 

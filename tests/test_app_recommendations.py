@@ -10,6 +10,7 @@ from jsonschema import Draft202012Validator
 
 from src.app_recommendations import build_app_recommendation_seed
 from src.place_locations import build_place_location_index
+from src.route_optimization import optimize_course_route
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -40,10 +41,38 @@ class AppRecommendationSeedTests(unittest.TestCase):
         self.assertGreaterEqual(len(seed["scenarios"]), 5)
         self.assertEqual(len(seed["official_courses"]), 0)
         self.assertGreater(seed["public_gate"]["app_candidate_places"], 0)
+        self.assertEqual(len(seed["saved_route_places"]), len(load_places()))
+        self.assertEqual(
+            {item["spot_id"] for item in seed["saved_route_places"]},
+            {place["id"] for place in load_places()},
+        )
+        self.assertTrue(all(item["duration_minutes"] for item in seed["saved_route_places"]))
+        self.assertTrue(all(item["info_url"].startswith(("https://", "http://")) for item in seed["saved_route_places"]))
+        self.assertEqual(
+            sum(item["available"] for item in seed["saved_route_places"]),
+            seed["public_gate"]["app_candidate_places"],
+        )
+        self.assertTrue(all(item["visit_info"]["verification_status"] == "needs_check" for item in seed["saved_route_places"]))
+        self.assertTrue(all(item["visit_info"]["address"] is None for item in seed["saved_route_places"]))
+        self.assertEqual(
+            sum(item["location"] is not None for item in seed["saved_route_places"]),
+            len(load_location_index()),
+        )
+        self.assertTrue(
+            all(item["location"]["point_role"] for item in seed["saved_route_places"] if item["location"])
+        )
         for scenario in seed["scenarios"]:
             self.assertGreater(len(scenario["places"]), 0)
             self.assertFalse(any(place["blocked"] for place in scenario["places"]))
             self.assertFalse(any(place["location"] is None for place in scenario["places"]))
+            self.assertEqual(len(scenario["condition_variants"]), 7)
+        self.assertTrue(
+            any(
+                place["location"]["point_role"] != "poi"
+                for scenario in seed["scenarios"]
+                for place in scenario["places"]
+            )
+        )
 
     def test_build_app_recommendation_seed_cli_writes_output(self):
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -70,6 +99,40 @@ class AppRecommendationSeedTests(unittest.TestCase):
             seed = json.loads(output_path.read_text(encoding="utf-8"))
             self.assertEqual(seed["generated_at"], "2026-07-08")
             self.assertEqual(len(seed["official_courses"]), 16)
+            visit_rows = [item["visit_info"] for item in seed["saved_route_places"]]
+            self.assertEqual(sum(bool(info["address"]) for info in visit_rows), 50)
+            self.assertEqual(sum(bool(info["phone"]) for info in visit_rows), 32)
+            self.assertEqual(sum(bool(info["operating_hours"]) for info in visit_rows), 15)
+            self.assertEqual(sum(bool(info["official_url"]) for info in visit_rows), 37)
+            self.assertEqual(sum(bool(info["reservation_url"]) for info in visit_rows), 2)
+            self.assertEqual(sum(bool(info["evidence"]) for info in visit_rows), 51)
+            self.assertEqual(sum(bool(info["last_verified_at"]) for info in visit_rows), 37)
+            self.assertEqual(sum(bool(info["source_updated_at"]) for info in visit_rows), 31)
+            self.assertEqual(sum(info["service_status"] == "active" for info in visit_rows), 14)
+            self.assertEqual(
+                sum(item["location"] is not None for item in seed["saved_route_places"]),
+                90,
+            )
+            location_roles = {
+                item["spot_id"]: item["location"]["point_role"]
+                for item in seed["saved_route_places"]
+                if item["location"]
+            }
+            self.assertEqual(location_roles["jeju_tourism_weak_040"], "route_end_reference")
+            self.assertEqual(location_roles["jeju_tourism_weak_047"], "viewpoint")
+            hidden_place = next(
+                item
+                for item in seed["saved_route_places"]
+                if item["spot_id"] == "jeju_indoor_sumokwon_theme_028"
+            )
+            self.assertFalse(hidden_place["available"])
+            self.assertFalse(
+                any(
+                    place["spot_id"] == hidden_place["spot_id"]
+                    for scenario in seed["scenarios"]
+                    for place in scenario["places"]
+                )
+            )
             self.assertTrue(
                 any(stop["promoted_candidate"] for course in seed["official_courses"] for stop in course["stops"])
             )
@@ -101,6 +164,73 @@ class AppRecommendationSeedTests(unittest.TestCase):
         self.assertTrue(
             any(place["category"] in {"forest", "rest_area"} for place in scenarios["stroller_family"]["places"])
         )
+
+    def test_condition_focus_variants_change_the_visible_route(self):
+        seed = build_app_recommendation_seed(
+            load_places(),
+            generated_at=date(2026, 7, 8),
+            location_index=load_location_index(),
+        )
+
+        for scenario in seed["scenarios"]:
+            variants = scenario["condition_variants"]
+            route_signatures = {
+                tuple(item["spot_id"] for item in variant["recommendation"]["course"]["route"])
+                for variant in variants.values()
+            }
+            self.assertGreaterEqual(len(route_signatures), 3, scenario["id"])
+            self.assertTrue(all(len(signature) == 4 for signature in route_signatures))
+            self.assertTrue(
+                all(
+                    variant["traveler_summary"] == scenario["traveler_summary"]
+                    for variant in variants.values()
+                )
+            )
+
+    def test_seed_keeps_score_ranked_places_and_optimizes_only_course_route(self):
+        location_index = load_location_index()
+        seed = build_app_recommendation_seed(
+            load_places(),
+            generated_at=date(2026, 7, 8),
+            location_index=location_index,
+        )
+        reordered_scenarios = 0
+
+        for scenario in seed["scenarios"]:
+            score_order = [place["spot_id"] for place in scenario["places"]]
+            route = scenario["recommendation"]["course"]["route"]
+            route_order = [item["spot_id"] for item in route]
+
+            self.assertEqual(set(route_order), set(score_order))
+            self.assertEqual(
+                scenario["recommendation"]["recommended_spots"],
+                [place["name"] for place in scenario["places"]],
+            )
+            self.assertEqual(route, optimize_course_route(route, location_index))
+            self.assertEqual([item["order"] for item in route], list(range(1, len(route) + 1)))
+            reordered_scenarios += route_order != score_order
+
+        self.assertGreater(reordered_scenarios, 0)
+
+    def test_committed_seed_contains_reconstructible_score_traces(self):
+        seed = json.loads((ROOT / "web" / "data" / "app_recommendation_seed.json").read_text(encoding="utf-8"))
+
+        for scenario in seed["scenarios"]:
+            places = scenario["places"]
+            for place in places:
+                trace = place["score"]["calculation_trace"]
+                reconstructed = trace["base_total"]
+                reconstructed += sum(item["delta"] for item in trace["bonuses"])
+                reconstructed += sum(item["delta"] for item in trace["deductions"])
+                for cap in trace["caps"]:
+                    self.assertEqual(cap["before"], reconstructed)
+                    reconstructed = cap["after"]
+                self.assertEqual(reconstructed, trace["final_total"])
+                self.assertEqual(trace["final_total"], place["score"]["total"])
+
+            for component, item in scenario["recommendation"]["score"]["breakdown"].items():
+                expected = int(round(sum(place["score"]["breakdown"][component]["score"] for place in places) / len(places)))
+                self.assertEqual(item["score"], expected)
 
 
 if __name__ == "__main__":

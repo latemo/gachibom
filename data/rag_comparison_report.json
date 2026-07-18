@@ -1,9 +1,11 @@
 {
   "generated_at": "2026-07-10",
   "scope": {
-    "title": "RAG 사용/미사용 추천 검증 비교",
-    "with_rag_definition": "장소 카드, 상황별 정책, 공식 추천코스, 출처/검수 상태를 검색·조립해 추천과 설명의 근거로 사용하는 현재 서비스 방식",
-    "without_rag_definition": "동일 질문에 대해 근거 저장소 검색 없이 일반 모델 지식 또는 프롬프트만 사용하는 기준선",
+    "title": "정책·랭킹 회귀검증과 무RAG 통제 fixture 비교",
+    "classification": "policy_ranking_regression_not_model_benchmark",
+    "ai_used": false,
+    "with_rag_definition": "장소 카드, 상황별 정책, 공식 추천코스, 출처/검수 상태를 사용하되 use_ai=false로 실행한 현재 정책·랭킹 회귀검증",
+    "without_rag_definition": "근거 저장소 없이 일반 제주 대표 관광지를 답하도록 사람이 작성한 고정 통제 fixture",
     "measurement_note": "무RAG 값은 실제 외부 모델 운영 로그가 아니라, 근거 저장소 없이 일반 제주 대표 관광지 중심으로 응답했을 때를 재현한 통제 기준선 검증 자료를 사용한다."
   },
   "sources": {
@@ -41,16 +43,16 @@
       "slot_match_rate": 1.0
     },
     "key_findings": [
-      "근거 기반 현재 방식은 상황별 검증 5/5건을 통과했다.",
-      "검증 체크는 59/59개 통과로 집계됐다.",
+      "정책·랭킹 회귀검증은 상황별 검증 5/5건을 통과했다.",
+      "정책·랭킹 체크는 59/59개 통과로 집계됐다.",
       "무RAG 통제 기준선은 0/5건, 5/59개 체크를 통과했다.",
-      "무RAG 비교는 출처 연결, 제외 규칙, 방문 전 확인 항목의 실패 여부로 추적한다."
+      "이 수치는 RAG 검색 정확도나 GPT 성능이 아니며 무RAG 값도 실제 외부 모델 호출 결과가 아니다."
     ]
   },
   "metrics": [
     {
       "metric_id": "scenario_case_pass_rate",
-      "label": "상황별 추천 검증 통과율",
+      "label": "상황별 정책·랭킹 회귀 통과율",
       "validation_target": "상황별 정책 반영 여부",
       "with_rag": {
         "observed": true,
@@ -64,11 +66,11 @@
         "status": "관측됨",
         "evidence": "0/5 케이스 통과"
       },
-      "interpretation": "상황별 추천 검증 통과율: 같은 평가표 기준으로 RAG/무RAG 통제 기준선을 비교한다."
+      "interpretation": "상황별 정책·랭킹 회귀 통과율: 같은 정책 평가표로 현재 파이프라인과 고정 통제 fixture를 비교한다."
     },
     {
       "metric_id": "validation_check_pass_rate",
-      "label": "검증 체크 통과율",
+      "label": "정책·랭킹 체크 통과율",
       "validation_target": "근거 문구, 제외 정책, 방문 전 확인 항목",
       "with_rag": {
         "observed": true,
@@ -82,7 +84,7 @@
         "status": "관측됨",
         "evidence": "5/59 체크 통과"
       },
-      "interpretation": "검증 체크 통과율: 같은 평가표 기준으로 RAG/무RAG 통제 기준선을 비교한다."
+      "interpretation": "정책·랭킹 체크 통과율: 같은 정책 평가표로 현재 파이프라인과 고정 통제 fixture를 비교한다."
     },
     {
       "metric_id": "official_course_slot_match_rate",
@@ -100,7 +102,7 @@
         "status": "미측정",
         "evidence": "근거 저장소를 사용하지 않으면 공식 코스 슬롯 대조 자체가 수행되지 않음"
       },
-      "interpretation": "공식 추천코스 슬롯 매칭률: 현재 근거 기반 방식에서만 관측 가능하다."
+      "interpretation": "공식 추천코스 슬롯 매칭률: 현재 정책 파이프라인에서만 관측 가능하다."
     },
     {
       "metric_id": "unmatched_official_places",
@@ -118,7 +120,7 @@
         "status": "미측정",
         "evidence": "무RAG 기준선에는 장소명-내부카드 매칭 테이블이 없음"
       },
-      "interpretation": "공식 코스 미매칭 장소 수: 현재 근거 기반 방식에서만 관측 가능하다."
+      "interpretation": "공식 코스 미매칭 장소 수: 현재 정책 파이프라인에서만 관측 가능하다."
     },
     {
       "metric_id": "observable_no_rag_runs",
@@ -128,7 +130,7 @@
         "observed": false,
         "value": null,
         "status": "해당 없음",
-        "evidence": "RAG 사용 성능이 아니라 비교 실험 준비 상태 지표"
+        "evidence": "RAG 성능이 아니라 실제 모델 비교 실험 준비 상태 지표"
       },
       "without_rag": {
         "observed": true,
@@ -146,6 +148,8 @@
       "title": "짧고 조용한 회복 여행",
       "intent": "체력 저하와 긴 걷기 부담을 줄이고, 식사·혼잡·장시간 야외 체류 위험을 피하는 코스",
       "with_rag": {
+        "classification": "policy_ranking_regression",
+        "ai_used": false,
         "status": "통과",
         "score_total": 92,
         "grade": "A",
@@ -230,6 +234,8 @@
       "title": "식사 장소를 제외한 코스",
       "intent": "식당·시장처럼 음식 섭취를 전제로 하는 장소를 제외하고, 쉬운 이동과 휴식 중심으로 묶는 코스",
       "with_rag": {
+        "classification": "policy_ranking_regression",
+        "ai_used": false,
         "status": "통과",
         "score_total": 94,
         "grade": "A",
@@ -313,6 +319,8 @@
       "title": "휠체어 접근 확인 코스",
       "intent": "휠체어 접근, 장애인 화장실, 주차 정보를 우선 확인하고 경사·계단 변수를 노출하는 코스",
       "with_rag": {
+        "classification": "policy_ranking_regression",
+        "ai_used": false,
         "status": "통과",
         "score_total": 87,
         "grade": "A",
@@ -395,6 +403,8 @@
       "title": "아이 동반 짧은 코스",
       "intent": "아이와 보호자가 쉬어갈 수 있고 계단·비포장 부담을 줄이는 짧은 코스",
       "with_rag": {
+        "classification": "policy_ranking_regression",
+        "ai_used": false,
         "status": "통과",
         "score_total": 88,
         "grade": "A",
@@ -479,6 +489,8 @@
       "title": "날씨 영향을 줄인 코스",
       "intent": "비·바람·더위 영향을 줄이고 실내 대피 가능성이 높은 장소를 우선하는 코스",
       "with_rag": {
+        "classification": "policy_ranking_regression",
+        "ai_used": false,
         "status": "통과",
         "score_total": 94,
         "grade": "A",

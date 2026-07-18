@@ -144,10 +144,9 @@ function renderTravelerFilters() {
     return `
       <button
         type="button"
-        role="tab"
         class="${active ? "active" : ""}"
         data-traveler-type="${escapeHtml(option.id)}"
-        aria-selected="${active}"
+        aria-pressed="${active}"
       >
         <i class="bi ${escapeHtml(option.icon)}" aria-hidden="true"></i>
         <span>${escapeHtml(option.label)}</span>
@@ -207,7 +206,7 @@ function destinationCardMarkup(stop) {
   const category = categoryLabels[stop.category] || "장소";
   const icon = categoryIcons[stop.category] || categoryIcons.other;
   const candidateBadge = stop.promoted_candidate
-    ? '<span class="destination-candidate">추가 검수 후보</span>'
+    ? '<span class="destination-candidate">추가 확인 필요</span>'
     : "";
   const locationBadge = stop.location_available
     ? '<span><i class="bi bi-geo-alt-fill" aria-hidden="true"></i> 위치 확인</span>'
@@ -254,7 +253,7 @@ function renderDestinations(course) {
   const locatedCount = stops.filter((stop) => stop.location_available).length;
   document.getElementById("destinationGrid").innerHTML = stops.map(destinationCardMarkup).join("");
   document.getElementById("destinationSummary").textContent =
-    `위치 확인 ${locatedCount}/${stops.length} · 추가 검수 후보 ${candidateCount}곳`;
+    `위치 확인 ${locatedCount}/${stops.length} · 추가 확인 필요 ${candidateCount}곳`;
 }
 
 function renderPager() {
@@ -348,7 +347,7 @@ function renderHeroStats() {
   document.getElementById("tourismHeroStats").innerHTML = `
     <span><b>${tourismState.courses.length}</b>개 공식 코스</span>
     <span><b>${stopCount}</b>개 추천 여행지</span>
-    <span><b>${candidateCount}</b>개 추가 검수 후보</span>
+    <span><b>${candidateCount}</b>개 추가 확인 필요</span>
   `;
 }
 
@@ -401,6 +400,10 @@ function bindTourismEvents() {
     refreshFilteredCourses();
   });
 
+  document.getElementById("retryCourseLoad")?.addEventListener("click", () => {
+    window.location.reload();
+  });
+
   window.addEventListener("popstate", () => {
     const courseId = selectedCourseFromUrl();
     if (tourismState.courses.some((course) => course.id === courseId)) {
@@ -438,8 +441,9 @@ async function initTourismCourses() {
     const empty = document.getElementById("tourismEmpty");
     empty.hidden = false;
     empty.querySelector("h2").textContent = "추천 코스를 불러오지 못했습니다.";
-    empty.querySelector("p").textContent = error?.message || "잠시 후 다시 확인해 주세요.";
+    empty.querySelector("p").textContent = "인터넷 연결을 확인한 뒤 다시 불러와 주세요.";
     document.getElementById("resetCourseFilters").hidden = true;
+    document.getElementById("retryCourseLoad").hidden = false;
   }
 }
 

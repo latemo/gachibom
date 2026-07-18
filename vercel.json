@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "functions": {
     "api/**/*.py": {
-      "includeFiles": "{data/jeju_accessible_spots.json,data/place_location_overrides.json,data/roadview_image_metadata.json,data/tourism_weak_recommendation_courses.json}",
+      "includeFiles": "data/{jeju_{accessible_spots,accessible_public_toilets,power_wheelchair_fast_chargers},place_{location_overrides,visit_info_overrides},place_catalog.roadview_facility,roadview_image_metadata,tourism_weak_recommendation_courses}.json",
       "excludeFiles": "{tests/**,docs/**,scripts/**,web/assets/**,data/raw/**,.playwright-mcp/**,.serena/**,.tmp-*/**,.vercel/**,*.png,*.jpg,*.jpeg,*.mp4,*.pptx,*.docx}"
     }
   },
@@ -15,6 +15,12 @@
     { "src": "/api/(.*)\\.py", "status": 404 },
     { "src": "/README\\.md", "status": 404 },
     { "src": "/design-qa\\.md", "status": 404 },
+    { "src": "/pyproject\\.toml", "status": 404 },
+    { "src": "/uv\\.lock", "status": 404 },
+    { "src": "/\\.python-version", "status": 404 },
+    { "src": "/data/operations_readiness_report\\.json", "status": 404 },
+    { "src": "/data/recommendation_case_validation_report\\.json", "status": 404 },
+    { "src": "/data/service_launch_action_plan\\.json", "status": 404 },
     { "src": "/help-chatbot\\.html", "status": 404 },
     { "src": "/miro_service_concept\\.html", "status": 404 },
     { "src": "/api/help-chat", "dest": "/api/help_chat.py" },

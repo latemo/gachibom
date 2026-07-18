@@ -43,6 +43,10 @@ REQUIRED_APP_DATA = [
 SECRET_PATTERNS = [
     re.compile(r"sk-[A-Za-z0-9_\-]{20,}"),
     re.compile(r"OPENAI_API_KEY\s*=\s*['\"]?sk-[A-Za-z0-9_\-]{20,}", re.IGNORECASE),
+    re.compile(
+        r"KAKAO_MOBILITY_REST_API_KEY\s*=\s*['\"]?[A-Za-z0-9_\-]{20,}",
+        re.IGNORECASE,
+    ),
 ]
 
 
@@ -110,6 +114,7 @@ def environment_section(root: Path, env: Mapping[str, str]) -> dict[str, Any]:
     env_example = root / ".env.example"
     env_file = root / ".env"
     api_key_configured = bool(str(env.get("OPENAI_API_KEY", "")).strip())
+    kakao_route_api_key_configured = bool(str(env.get("KAKAO_MOBILITY_REST_API_KEY", "")).strip())
     model = str(env.get("OPENAI_MODEL", "")).strip() or "gpt-5-mini"
     checks = [
         check(
@@ -147,6 +152,15 @@ def environment_section(root: Path, env: Mapping[str, str]) -> dict[str, Any]:
             "gpt-5-mini",
             "현재 서비스에서 쓰기로 한 모델명",
             "OPENAI_MODEL을 gpt-5-mini로 맞춤",
+        ),
+        check(
+            "kakao_route_api_key_configured",
+            "pass" if kakao_route_api_key_configured else "warn",
+            "카카오 경로 API 키 설정",
+            "configured" if kakao_route_api_key_configured else "missing",
+            "configured",
+            "서버 경로 API가 카카오모빌리티 길찾기를 우선 사용하기 위한 키 설정 여부. 값은 기록하지 않음",
+            "KAKAO_MOBILITY_REST_API_KEY 값을 .env 또는 실행 환경에 설정",
         ),
     ]
     return section("environment", "환경 설정", checks)
@@ -232,7 +246,7 @@ def map_location_section(root: Path) -> dict[str, Any]:
         ),
         check(
             "frontend_coordinate_projection",
-            "pass" if all(token in app_js for token in ["projectMapCoordinate", "map-location-pin", "실제 좌표"]) else "block",
+            "pass" if all(token in app_js for token in ["projectMapCoordinate", "map-location-pin", "data-latitude"]) else "block",
             "중앙 지도 좌표 투영",
             "configured" if "projectMapCoordinate" in app_js else "missing",
             "lat/lng projection",

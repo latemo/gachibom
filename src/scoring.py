@@ -121,6 +121,7 @@ class PlaceScore:
     grade: str
     confidence: str
     breakdown: dict[str, dict[str, Any]]
+    calculation_trace: dict[str, Any]
     fit_reasons: list[str]
     deduction_reasons: list[str]
     check_before_visit: list[str]
@@ -137,6 +138,7 @@ class PlaceScore:
                 "grade": self.grade,
                 "confidence": self.confidence,
                 "breakdown": self.breakdown,
+                "calculation_trace": self.calculation_trace,
             },
             "fit_reasons": self.fit_reasons,
             "deduction_reasons": self.deduction_reasons,
@@ -170,22 +172,72 @@ def score_place(
     theme_score, theme_reason = _score_theme_fit(place, traveler_summary, fit_reasons)
     safety_score, safety_reason = _score_safety_clarity(place, check_before_visit)
 
-    raw_total = source_score + mobility_score + facility_score + theme_score + safety_score
-    raw_total += _situation_bonuses(place, traveler_summary, fit_reasons)
-    raw_total += tourism_weak_course_bonus(place, traveler_summary, fit_reasons, check_before_visit)
-    forced_deduction = _forced_deductions(place, traveler_summary, deduction_reasons, check_before_visit)
-    total = max(0, min(100, raw_total - forced_deduction))
+    base_total = source_score + mobility_score + facility_score + theme_score + safety_score
+    bonuses: list[dict[str, Any]] = []
+    deductions: list[dict[str, Any]] = []
+    caps: list[dict[str, Any]] = []
+
+    situation_bonus = _situation_bonuses(
+        place, traveler_summary, fit_reasons, bonuses
+    )
+    tourism_bonus = tourism_weak_course_bonus(
+        place, traveler_summary, fit_reasons, check_before_visit
+    )
+    if tourism_bonus:
+        _append_calculation_delta(
+            bonuses,
+            "tourism_weak_course",
+            "제주관광공사 관광약자 추천코스 근거",
+            tourism_bonus,
+        )
+
+    forced_deduction = _forced_deductions(
+        place,
+        traveler_summary,
+        deduction_reasons,
+        check_before_visit,
+        deductions,
+    )
+    before_score_bounds = base_total + situation_bonus + tourism_bonus - forced_deduction
+    total = max(0, min(100, before_score_bounds))
+    if total != before_score_bounds:
+        caps.append(
+            {
+                "id": "score_bounds",
+                "label": "점수 범위(0~100점) 적용",
+                "before": before_score_bounds,
+                "after": total,
+            }
+        )
 
     verification_status = place.get("verification", {}).get("status", "needs_check")
     if verification_status in GRADE_CAP_TOTAL and total > GRADE_CAP_TOTAL[verification_status]:
+        before_verification_cap = total
         total = GRADE_CAP_TOTAL[verification_status]
+        caps.append(
+            {
+                "id": "verification_status",
+                "label": f"정보 상태 {verification_status} 등급 상한",
+                "before": before_verification_cap,
+                "after": total,
+            }
+        )
         deduction_reasons.append(
             f"정보 상태가 {verification_status}라서 등급 상한을 적용했습니다."
         )
 
     blocked, block_reasons = _blocking_reasons(place, traveler_summary)
     if blocked:
+        before_block_cap = total
         total = min(total, 49)
+        caps.append(
+            {
+                "id": "blocked",
+                "label": "추천 제외 조건에 따른 점수 상한",
+                "before": before_block_cap,
+                "after": total,
+            }
+        )
         deduction_reasons.extend(block_reasons)
 
     total = int(round(total))
@@ -207,6 +259,13 @@ def score_place(
         grade=grade,
         confidence=confidence,
         breakdown=breakdown,
+        calculation_trace={
+            "base_total": base_total,
+            "bonuses": bonuses,
+            "deductions": deductions,
+            "caps": caps,
+            "final_total": total,
+        },
         fit_reasons=_unique(fit_reasons),
         deduction_reasons=_unique(deduction_reasons),
         check_before_visit=_unique(check_before_visit + _missing_field_checks(place)),
@@ -272,8 +331,6 @@ def build_recommendation_result(
     total = int(round(sum(item.total for item in selected) / len(selected)))
     grade = grade_for_score(total)
     confidence = _lowest_confidence([item.confidence for item in selected])
-    first = selected[0]
-
     return {
         "traveler_summary": _traveler_summary_for_schema(traveler_summary),
         "course": {
@@ -295,7 +352,7 @@ def build_recommendation_result(
             "total": total,
             "grade": grade,
             "confidence": confidence,
-            "breakdown": first.breakdown,
+            "breakdown": _average_breakdown(selected),
         },
         "recommended_spots": [item.name for item in selected],
         "fit_reasons": _unique(reason for item in selected for reason in item.fit_reasons),
@@ -496,42 +553,80 @@ def _forced_deductions(
     traveler_summary: dict[str, list[str]],
     deduction_reasons: list[str],
     check_before_visit: list[str],
+    calculation_deductions: list[dict[str, Any]] | None = None,
 ) -> int:
     total = 0
     sources = place.get("sources", [])
     if not any(source.get("url") for source in sources):
         total += 15
-        deduction_reasons.append("출처 URL이 없어 강제 감점했습니다.")
+        reason = "출처 URL이 없어 강제 감점했습니다."
+        deduction_reasons.append(reason)
+        _append_calculation_delta(
+            calculation_deductions, "missing_source_url", reason, -15
+        )
 
     if not place.get("verification", {}).get("checked_at"):
         total += 10
-        deduction_reasons.append("정보 확인일이 없어 강제 감점했습니다.")
+        reason = "정보 확인일이 없어 강제 감점했습니다."
+        deduction_reasons.append(reason)
+        _append_calculation_delta(
+            calculation_deductions, "missing_verification_date", reason, -10
+        )
 
     required = _all_terms(traveler_summary.get("required_accessibility", []))
     if _mentions(required, {"화장실", "장애인 화장실", "toilet"}) and _field(place, "accessible_toilet")["state"] in {"no", "unknown", "needs_check"}:
         total += 15
-        deduction_reasons.append("장애인 화장실을 필수로 요청했지만 정보가 부족합니다.")
+        reason = "장애인 화장실을 필수로 요청했지만 정보가 부족합니다."
+        deduction_reasons.append(reason)
+        _append_calculation_delta(
+            calculation_deductions,
+            "required_accessible_toilet_missing",
+            reason,
+            -15,
+        )
         check_before_visit.append("장애인 화장실 운영 여부")
 
     if _mentions(required, {"주차", "가까운 주차", "parking"}) and _field(place, "parking")["state"] in {"no", "unknown", "needs_check"}:
         total += 10
-        deduction_reasons.append("가까운 주차를 요청했지만 주차 정보가 부족합니다.")
+        reason = "가까운 주차를 요청했지만 주차 정보가 부족합니다."
+        deduction_reasons.append(reason)
+        _append_calculation_delta(
+            calculation_deductions, "required_parking_missing", reason, -10
+        )
         check_before_visit.append("주차장에서 입구까지 거리")
 
     if _is_wheelchair_or_stroller(traveler_summary) and _field(place, "slope_or_stairs")["state"] in {"unknown", "needs_check"}:
         total += 20
-        deduction_reasons.append("휠체어 또는 유모차 사용자에게 중요한 경사·계단 정보가 부족합니다.")
+        reason = "휠체어 또는 유모차 사용자에게 중요한 경사·계단 정보가 부족합니다."
+        deduction_reasons.append(reason)
+        _append_calculation_delta(
+            calculation_deductions, "critical_slope_information_missing", reason, -20
+        )
 
     effort = place.get("effort", {})
     if _needs_short_walking(traveler_summary) and effort.get("walking_level") == "high":
         total += 25
-        deduction_reasons.append("긴 걷기가 어려운 조건과 높은 도보 부담이 충돌합니다.")
+        reason = "긴 걷기가 어려운 조건과 높은 도보 부담이 충돌합니다."
+        deduction_reasons.append(reason)
+        _append_calculation_delta(
+            calculation_deductions, "high_walking_conflict", reason, -25
+        )
 
     if _is_recovery_or_low_energy(traveler_summary) and effort.get("outdoor_exposure") == "high":
         total += 15
-        deduction_reasons.append("체력 저하 또는 회복 중 사용자에게 장시간 야외 체류 가능성이 큽니다.")
+        reason = "체력 저하 또는 회복 중 사용자에게 장시간 야외 체류 가능성이 큽니다."
+        deduction_reasons.append(reason)
+        _append_calculation_delta(
+            calculation_deductions, "high_outdoor_exposure", reason, -15
+        )
 
-    total += _situation_deductions(place, traveler_summary, deduction_reasons, check_before_visit)
+    total += _situation_deductions(
+        place,
+        traveler_summary,
+        deduction_reasons,
+        check_before_visit,
+        calculation_deductions,
+    )
 
     return total
 
@@ -575,17 +670,27 @@ def _situation_deductions(
     traveler_summary: dict[str, list[str]],
     deduction_reasons: list[str],
     check_before_visit: list[str],
+    calculation_deductions: list[dict[str, Any]] | None = None,
 ) -> int:
     category = place.get("category", "other")
     tags = set(place.get("situation_tags", []))
     total = 0
     for rule in _active_situation_rules(traveler_summary):
+        deduction = 0
         if category in rule["penalize_categories"]:
-            total += 10
-            deduction_reasons.append(rule["reason"])
+            deduction = 10
         elif tags & rule["penalize_tags"]:
-            total += 6
+            deduction = 6
+
+        if deduction:
+            total += deduction
             deduction_reasons.append(rule["reason"])
+            _append_calculation_delta(
+                calculation_deductions,
+                f"situation_{rule['id']}",
+                rule["reason"],
+                -deduction,
+            )
         check_before_visit.extend(rule["check_before_visit"])
     return total
 
@@ -594,6 +699,7 @@ def _situation_bonuses(
     place: dict[str, Any],
     traveler_summary: dict[str, list[str]],
     fit_reasons: list[str],
+    calculation_bonuses: list[dict[str, Any]] | None = None,
 ) -> int:
     terms = _summary_terms(traveler_summary)
     if not _mentions(terms, {"유모차", "stroller", "stroller_family", "아이 동반", "가족"}):
@@ -607,10 +713,18 @@ def _situation_bonuses(
 
     if category in {"forest", "rest_area"} and walking in {"very_low", "low"}:
         bonus += 8
-        fit_reasons.append("유모차 가족 조건에 맞는 짧은 휴식형 장소입니다.")
+        reason = "유모차 가족 조건에 맞는 짧은 휴식형 장소입니다."
+        fit_reasons.append(reason)
+        _append_calculation_delta(
+            calculation_bonuses, "stroller_low_effort_rest", reason, 8
+        )
     if category in {"forest", "rest_area"} and rest_area["state"] in {"yes", "partial"}:
         bonus += 4
-        fit_reasons.append("아이와 보호자가 중간에 쉬기 좋은 장소 성격입니다.")
+        reason = "아이와 보호자가 중간에 쉬기 좋은 장소 성격입니다."
+        fit_reasons.append(reason)
+        _append_calculation_delta(
+            calculation_bonuses, "stroller_rest_area", reason, 4
+        )
 
     return bonus
 
@@ -677,6 +791,22 @@ def _empty_score() -> dict[str, Any]:
             "theme_fit": empty_item,
             "safety_clarity": empty_item,
         },
+    }
+
+
+def _average_breakdown(scores: list[PlaceScore]) -> dict[str, dict[str, Any]]:
+    return {
+        component: {
+            "score": int(
+                round(
+                    sum(score.breakdown[component]["score"] for score in scores)
+                    / len(scores)
+                )
+            ),
+            "max": maximum,
+            "reason": f"선택 장소 {len(scores)}곳의 항목별 평균",
+        }
+        for component, maximum in SCORE_MAX.items()
     }
 
 
@@ -765,6 +895,16 @@ def _has_strong_avoid_collision(user_avoid: list[str], place_warnings: list[str]
         if text in warning_text:
             return True
     return False
+
+
+def _append_calculation_delta(
+    trace: list[dict[str, Any]] | None,
+    adjustment_id: str,
+    label: str,
+    delta: int,
+) -> None:
+    if trace is not None and delta:
+        trace.append({"id": adjustment_id, "label": label, "delta": delta})
 
 
 def _unique(values: Any) -> list[Any]:

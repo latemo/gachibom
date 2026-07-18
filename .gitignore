@@ -1,5 +1,11 @@
 data/raw/roadview_images/
 data/roadview_image_download_report*.json
+data/*.checkpoint.json
+data/*_blind_key.json
+data/explanation_eval_blind_review.csv
+data/explanation_eval_reviews/
+/outputs/explanation-review-*/
+/output/
 docs/roadview_visual_review_share*/
 docs/roadview_visual_review_share.zip
 .env

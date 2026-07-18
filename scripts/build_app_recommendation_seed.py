@@ -12,6 +12,7 @@ if str(ROOT) not in sys.path:
 
 from src.app_recommendations import build_app_recommendation_seed
 from src.place_locations import load_json_list, build_place_location_index
+from src.place_visit_info import enrich_places_with_visit_info
 from src.tourism_weak_courses import augment_places_with_tourism_weak_courses, load_tourism_weak_courses
 
 
@@ -22,6 +23,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--roadview-metadata", default="data/roadview_image_metadata.json")
     parser.add_argument("--location-overrides", default="data/place_location_overrides.json")
     parser.add_argument("--tourism-weak-courses", default="data/tourism_weak_recommendation_courses.json")
+    parser.add_argument("--place-catalog", default="data/place_catalog.roadview_facility.json")
+    parser.add_argument("--visit-info-overrides", default="data/place_visit_info_overrides.json")
     parser.add_argument("--generated-at", default=None)
     return parser.parse_args()
 
@@ -35,6 +38,11 @@ def main() -> int:
     if course_dataset_path.exists():
         course_dataset = load_tourism_weak_courses(course_dataset_path)
         places = augment_places_with_tourism_weak_courses(places, course_dataset)
+    places = enrich_places_with_visit_info(
+        places,
+        load_json_list(args.place_catalog),
+        load_json_list(args.visit_info_overrides),
+    )
     location_index = build_place_location_index(
         places,
         roadview_metadata=load_json_list(args.roadview_metadata),

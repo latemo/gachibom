@@ -1,0 +1,55 @@
+{
+  "source": {
+    "title": "OpenStreetMap Nominatim Search",
+    "url": "https://nominatim.openstreetmap.org/search",
+    "license": "OpenStreetMap data © OpenStreetMap contributors, ODbL 1.0",
+    "usage_policy": "https://operations.osmfoundation.org/policies/nominatim/"
+  },
+  "generated_at": "2026-07-13",
+  "review_policy": {
+    "automatic_override_promotion": false,
+    "required_decision": "manual_review"
+  },
+  "summary": {
+    "total_places": 91,
+    "already_located": 90,
+    "missing_locations": 1,
+    "cached_results": 1,
+    "requests_this_run": 0,
+    "candidates_found": 1,
+    "no_candidates": 0,
+    "request_errors": 0,
+    "pending": 0
+  },
+  "items": [
+    {
+      "spot_id": "jeju_tourism_weak_035",
+      "name": "저지곶자왈",
+      "query": "저지곶자왈, 제주특별자치도, 대한민국",
+      "status": "candidates_found",
+      "candidates": [
+        {
+          "latitude": 33.3314871,
+          "longitude": 126.2894877,
+          "display_name": "저지곶자왈, 금악리, 한림읍, 제주시, 제주특별자치도, 63005, 대한민국",
+          "place_id": 223621695,
+          "osm_type": "node",
+          "osm_id": 11212476595,
+          "name": "저지곶자왈",
+          "category": "natural",
+          "type": "blockfield",
+          "importance": 0.10672538567177842,
+          "address": {
+            "city": "제주시",
+            "town": "한림읍",
+            "village": "금악리",
+            "ISO3166-2-lvl4": "KR-49",
+            "postcode": "63005",
+            "country": "대한민국",
+            "country_code": "kr"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -6,20 +6,18 @@
   <title>제주관광공사 추천 여행코스 | 가치봄 제주</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="styles.css?v=20260710-17">
-  <link rel="stylesheet" href="tourism-courses.css?v=20260710-1">
-  <link rel="stylesheet" href="help-chatbot.css?v=20260710-12">
+  <link rel="stylesheet" href="styles.css?v=20260718-6">
+  <link rel="stylesheet" href="tourism-courses.css?v=20260718-6">
+  <link rel="stylesheet" href="help-chatbot.css?v=20260718-6">
 </head>
 <body class="tourism-courses-page">
   <div class="app-shell">
     <header class="topbar">
       <a class="brand" href="index.html?intro=0#conceptPage" aria-label="가치봄 제주 메인으로 이동">
-        <div class="brand-mark">
-          <video class="brand-logo-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-            <source src="assets/media/gachibom-logo-final.mp4" type="video/mp4">
-          </video>
+        <div class="brand-copy">
+          <strong>가치봄 제주</strong>
+          <span>모두를 위한 제주 접근성 여행</span>
         </div>
-        <span class="sr-only">가치봄 제주</span>
       </a>
 
       <nav class="nav-tabs" aria-label="주요 메뉴">
@@ -42,9 +40,9 @@
         <img src="assets/jeju-theme-preview-hero.webp" alt="" decoding="async" fetchpriority="high">
         <div class="tourism-hero-shade" aria-hidden="true"></div>
         <div class="tourism-hero-inner">
-          <span class="tourism-kicker">제주관광공사 공식 추천 데이터</span>
+          <span class="tourism-kicker">제주관광공사가 추천한 여행코스</span>
           <h1 id="tourismPageTitle">제주관광공사 추천 여행코스</h1>
-          <p>관광약자 유형별 추천 코스와 여행지별 접근성 유의사항을 한 화면에서 확인합니다.</p>
+          <p>여행자 유형별 추천 코스와 장소별 접근성 안내를 한 화면에서 확인합니다.</p>
           <div class="tourism-hero-stats" id="tourismHeroStats" aria-live="polite">
             <span>코스 불러오는 중</span>
           </div>
@@ -63,7 +61,7 @@
 
           <div class="tourism-control tourism-filter-control">
             <span id="travelerFilterLabel">여행자 유형</span>
-            <div class="traveler-filter-tabs" id="travelerFilters" role="tablist" aria-labelledby="travelerFilterLabel"></div>
+            <div class="traveler-filter-tabs" id="travelerFilters" role="group" aria-labelledby="travelerFilterLabel"></div>
           </div>
 
           <label class="tourism-control tourism-select-control" for="courseSelect">
@@ -158,24 +156,25 @@
           <h2>조건에 맞는 코스가 없습니다.</h2>
           <p>검색어 또는 여행자 유형을 변경해 주세요.</p>
           <button class="outline-button" type="button" id="resetCourseFilters">필터 초기화</button>
+          <button class="primary-button" type="button" id="retryCourseLoad" hidden>다시 불러오기</button>
         </div>
       </section>
 
-      <section class="tourism-source-band" aria-label="데이터 출처">
+      <section class="tourism-source-band" aria-label="정보 출처">
         <div>
-          <span>데이터 출처</span>
+          <span>정보 출처</span>
           <strong>제주관광공사 관광 약자 유형별 제주관광 추천코스</strong>
-          <small>공공저작물 제4유형 · 현장 상황과 운영 정보는 방문 전 다시 확인해 주세요.</small>
+          <small>제주관광공사 공개 자료 · 현장 상황과 운영 정보는 방문 전 다시 확인해 주세요.</small>
         </div>
         <a href="https://www.data.go.kr/data/15117357/fileData.do" target="_blank" rel="noopener noreferrer">
-          공공데이터 원문
+          공식 자료 보기
           <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
         </a>
       </section>
     </main>
   </div>
 
-  <script src="tourism-courses.js?v=20260710-3"></script>
-  <script src="help-chatbot.js?v=20260710-12"></script>
+  <script src="tourism-courses.js?v=20260718-6"></script>
+  <script src="help-chatbot.js?v=20260718-6"></script>
 </body>
 </html>

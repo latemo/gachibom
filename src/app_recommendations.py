@@ -6,6 +6,15 @@ from collections import Counter
 from datetime import date
 from typing import Any
 
+from src.place_locations import normalize_point_role
+from src.place_visit_info import visit_info_for_place
+from src.rag_query import parse_query_intent
+from src.rag_retrieval import retrieve_place_candidates
+from src.recommendation_evidence import (
+    grounded_recommendation_places,
+    is_grounded_recommendation_candidate,
+)
+from src.route_optimization import optimize_course_route
 from src.scoring import PlaceScore, build_recommendation_result, rank_places
 
 
@@ -80,6 +89,55 @@ SCENARIOS: tuple[dict[str, Any], ...] = (
 )
 
 
+SCENARIO_CONDITION_FOCUS: dict[str, tuple[tuple[str, str], ...]] = {
+    "recovery_quiet": (
+        ("traveler_type", "caregiver_group"),
+        ("mobility_conditions", "휴식 필요"),
+        ("mobility_conditions", "긴 걷기 어려움"),
+        ("preferred_themes", "실내"),
+        ("required_accessibility", "주차"),
+        ("required_accessibility", "장애인 화장실"),
+        ("required_accessibility", "휴식 공간"),
+    ),
+    "diet_restricted": (
+        ("traveler_type", "diet_restricted_traveler"),
+        ("mobility_conditions", "체력 저하"),
+        ("mobility_conditions", "짧은 이동"),
+        ("preferred_themes", "실내"),
+        ("required_accessibility", "주차"),
+        ("required_accessibility", "장애인 화장실"),
+        ("avoid", "식당 제외"),
+    ),
+    "stroller_family": (
+        ("traveler_type", "stroller_family"),
+        ("mobility_conditions", "휴식 필요"),
+        ("mobility_conditions", "짧은 이동"),
+        ("preferred_themes", "공원"),
+        ("required_accessibility", "주차"),
+        ("required_accessibility", "화장실"),
+        ("required_accessibility", "휴식 공간"),
+    ),
+    "wheelchair_access": (
+        ("traveler_type", "wheelchair_user"),
+        ("mobility_conditions", "긴 걷기 어려움"),
+        ("mobility_conditions", "경사와 계단 확인"),
+        ("preferred_themes", "실내"),
+        ("required_accessibility", "주차"),
+        ("required_accessibility", "장애인 화장실"),
+        ("required_accessibility", "휠체어 접근"),
+    ),
+    "weather_sensitive": (
+        ("traveler_type", "senior"),
+        ("mobility_conditions", "바람"),
+        ("mobility_conditions", "짧은 이동"),
+        ("preferred_themes", "실내"),
+        ("required_accessibility", "주차"),
+        ("required_accessibility", "장애인 화장실"),
+        ("avoid", "강풍"),
+    ),
+}
+
+
 VISUAL_ASSETS = (
     {"src": "assets/WELCOME-1-001.jpg", "caption": "실내 진입부 확인 이미지"},
     {"src": "assets/JEJUNATIONALMU-1-001.jpg", "caption": "주차장과 출입 방향 확인 이미지"},
@@ -129,11 +187,12 @@ def build_app_recommendation_seed(
     tourism_weak_course_dataset: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     place_index = {place.get("id", ""): place for place in places}
+    recommendation_places = grounded_recommendation_places(places)
     location_index = location_index or {}
     scenarios = [
         build_app_scenario(
             scenario,
-            places,
+            recommendation_places,
             place_index,
             generated_at=generated_at,
             limit=limit,
@@ -145,6 +204,7 @@ def build_app_recommendation_seed(
         "generated_at": generated_at.isoformat(),
         "safety_notice": SAFETY_NOTICE,
         "public_gate": public_gate_summary(places),
+        "saved_route_places": saved_route_place_index(places, location_index=location_index),
         "visual_assets": list(VISUAL_ASSETS),
         "official_courses": official_course_exposure(
             tourism_weak_course_dataset or {},
@@ -153,6 +213,60 @@ def build_app_recommendation_seed(
         ),
         "scenarios": scenarios,
     }
+
+
+def saved_route_place_index(
+    places: list[dict[str, Any]],
+    *,
+    location_index: dict[str, dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Return the public fields needed to reopen a saved or shared route."""
+    result: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for place in places:
+        spot_id = str(place.get("id") or "").strip()
+        name = str(place.get("name") or "").strip()
+        if not spot_id or not name or spot_id in seen:
+            continue
+        seen.add(spot_id)
+        effort = place.get("effort") if isinstance(place.get("effort"), dict) else {}
+        duration = effort.get("recommended_duration_minutes")
+        duration_minutes = int(duration) if isinstance(duration, (int, float)) and 0 < duration <= 600 else None
+        info_url = ""
+        for source in place.get("sources") or []:
+            if not isinstance(source, dict):
+                continue
+            candidate = str(source.get("url") or "").strip()
+            if candidate.startswith(("https://", "http://")):
+                info_url = candidate[:2048]
+                break
+        location = place_location(spot_id, place, location_index)
+        public_location = None
+        if location:
+            latitude = location.get("latitude")
+            longitude = location.get("longitude")
+            if isinstance(latitude, (int, float)) and isinstance(longitude, (int, float)):
+                public_location = {
+                    "latitude": float(latitude),
+                    "longitude": float(longitude),
+                    "point_role": normalize_point_role(location.get("point_role")),
+                }
+        result.append(
+            {
+                "spot_id": spot_id,
+                "name": name,
+                "region": str(place.get("region") or "")[:120],
+                "category": str(place.get("category") or "other")[:80],
+                "available": (
+                    is_grounded_recommendation_candidate(place)
+                ),
+                "duration_minutes": duration_minutes,
+                "info_url": info_url,
+                "location": public_location,
+                "visit_info": visit_info_for_place(place),
+            }
+        )
+    return result
 
 
 def build_app_scenario(
@@ -172,6 +286,10 @@ def build_app_scenario(
         safety_notice=SAFETY_NOTICE,
         title=scenario["title"],
     )
+    recommendation["course"]["route"] = optimize_course_route(
+        recommendation["course"]["route"],
+        location_index,
+    )
     return {
         "id": scenario["id"],
         "label": scenario["label"],
@@ -182,7 +300,82 @@ def build_app_scenario(
             app_place_result(score, place_index.get(score.spot_id, {}), location_index=location_index)
             for score in scores
         ],
+        "condition_variants": build_condition_variants(
+            scenario,
+            places,
+            generated_at=generated_at,
+            limit=limit,
+            location_index=location_index,
+        ),
     }
+
+
+def build_condition_variants(
+    scenario: dict[str, Any],
+    places: list[dict[str, Any]],
+    *,
+    generated_at: date,
+    limit: int,
+    location_index: dict[str, dict[str, Any]],
+) -> dict[str, dict[str, Any]]:
+    """Precompute simple condition-priority routes for static web hosting."""
+
+    traveler_summary = scenario["traveler_summary"]
+    place_index = {place.get("id", ""): place for place in places}
+    base_scores = rank_places(places, traveler_summary, today=generated_at)
+    variants: dict[str, dict[str, Any]] = {}
+    for key, value in SCENARIO_CONDITION_FOCUS.get(scenario["id"], ()):
+        intent = parse_query_intent(value, traveler_summary)
+        hits = retrieve_place_candidates(
+            places,
+            query=value,
+            intent={
+                "regions": intent.get("regions", []),
+                "categories": intent.get("categories", []),
+            },
+            limit=max(12, limit * 4),
+            as_of=generated_at,
+        )
+        focused_places = [hit["place"] for hit in hits if isinstance(hit.get("place"), dict)]
+        focused_scores = rank_places(focused_places, traveler_summary, limit=limit, today=generated_at)
+        selected_scores = list(focused_scores)
+        selected_ids = {score.spot_id for score in selected_scores}
+        for score in base_scores:
+            if len(selected_scores) >= limit:
+                break
+            if score.spot_id in selected_ids:
+                continue
+            selected_scores.append(score)
+            selected_ids.add(score.spot_id)
+
+        recommendation = build_recommendation_result(
+            selected_scores,
+            traveler_summary,
+            safety_notice=SAFETY_NOTICE,
+            title=scenario["title"],
+        )
+        recommendation["course"]["route"] = optimize_course_route(
+            recommendation["course"]["route"],
+            location_index,
+        )
+        variant_key = f"{key}:{value}"
+        variants[variant_key] = {
+            "id": f"{scenario['id']}__condition_focus",
+            "label": scenario["label"],
+            "title": scenario["title"],
+            "focus": {"key": key, "value": value},
+            "traveler_summary": traveler_summary,
+            "recommendation": recommendation,
+            "places": [
+                app_place_result(
+                    score,
+                    place_index.get(score.spot_id, {}),
+                    location_index=location_index,
+                )
+                for score in selected_scores[:limit]
+            ],
+        }
+    return variants
 
 
 def string_list(value: Any) -> list[str]:
@@ -269,6 +462,7 @@ def app_place_result(
         "location": location,
         "safety_notes": string_list(place.get("safety_notes")),
         "avoid_for": string_list(place.get("avoid_for")),
+        "visit_info": visit_info_for_place(place),
     }
 
 
@@ -323,25 +517,24 @@ def place_location(
 ) -> dict[str, Any] | None:
     indexed = location_index.get(spot_id)
     if indexed:
-        return dict(indexed)
+        result = dict(indexed)
+        result["point_role"] = normalize_point_role(result.get("point_role"))
+        return result
     location = place.get("location")
     if isinstance(location, dict):
         latitude = location.get("latitude")
         longitude = location.get("longitude")
         if isinstance(latitude, (int, float)) and isinstance(longitude, (int, float)):
-            return dict(location)
+            result = dict(location)
+            result["point_role"] = normalize_point_role(result.get("point_role"))
+            return result
     return None
 
 
 def public_gate_summary(places: list[dict[str, Any]]) -> dict[str, Any]:
     status_counts = Counter(place.get("status", "unknown") for place in places)
     verification_counts = Counter(place.get("verification", {}).get("status", "needs_check") for place in places)
-    app_candidates = [
-        place
-        for place in places
-        if place.get("status") == "active"
-        and place.get("verification", {}).get("status") in {"verified", "partial"}
-    ]
+    app_candidates = grounded_recommendation_places(places)
     return {
         "total_places": len(places),
         "app_candidate_places": len(app_candidates),

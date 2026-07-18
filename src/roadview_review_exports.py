@@ -1601,7 +1601,10 @@ def html_asset_href(asset_path: str, *, output_path: str | Path | None) -> str:
         return ""
     if output_path is None:
         return Path(asset_path).as_posix()
-    relative_path = os.path.relpath(Path(asset_path), Path(output_path).parent)
+    try:
+        relative_path = os.path.relpath(Path(asset_path), Path(output_path).parent)
+    except ValueError:
+        return Path(asset_path).resolve().as_uri()
     return Path(relative_path).as_posix()
 
 

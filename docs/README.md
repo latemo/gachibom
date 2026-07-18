@@ -7,37 +7,43 @@
 1. `jeju_maeum_integrated_commercialization_plan.md`
    - 새 상용화 기획안과 기존 실행 기준을 통합한 최종 기준 문서
 
-2. `jeju_maeum_service_foundation.md`
+2. `rag_service_enhancement_phase_spec.md`
+   - 자연어 질의, 검색, 접근성 재정렬, 공식 근거 인용, RAG 평가의 구현 기준
+
+3. `jeju_maeum_travel_support_phase_spec.md`
+   - 충전기, 종합병원급 이상·약국, 이동지원센터 연계, 관광 복지서비스의 단계별 구현 명세
+
+4. `jeju_maeum_service_foundation.md`
    - 서비스 원칙, 경계, 신뢰도, 개인정보, 운영 기준
 
-3. `jeju_maeum_service_plan.md`
+5. `jeju_maeum_service_plan.md`
    - 서비스화 방향, 출시 범위, 운영 계획, 로드맵
 
-4. `jeju_maeum_mvp_plan.md`
+6. `jeju_maeum_mvp_plan.md`
    - 1차 서비스 화면과 기능 흐름
 
-5. `jeju_maeum_app_basic_structure.md`
+7. `jeju_maeum_app_basic_structure.md`
    - 앱 입력, 추천 결과, 데이터 공개 게이트, 화면 상태 구조
 
-6. `jeju_maeum_app_recommendation_screen.html`
+8. `jeju_maeum_app_recommendation_screen.html`
    - 첫 추천 화면 정적 시안
 
-7. `jeju_maeum_scoring_policy.md`
+9. `jeju_maeum_scoring_policy.md`
    - 적합도 점수, 강제 감점, 차단 규칙
 
-8. `jeju_maeum_launch_checklist.md`
+10. `jeju_maeum_launch_checklist.md`
    - 출시 전 검수 기준과 출시 보류 조건
 
-9. `jeju_maeum_data_collection_guide.md`
+11. `jeju_maeum_data_collection_guide.md`
    - 장소 카드 수집, 검수, 상태 판단 기준
 
-10. `jeju_maeum_situation_recommendation_policy.md`
+12. `jeju_maeum_situation_recommendation_policy.md`
    - 음식 제한, 혼잡 민감, 체력 저하, 날씨 민감 등 상황별 제외·감점 기준
 
-11. `jeju_maeum_full_catalog_plan.md`
+13. `jeju_maeum_full_catalog_plan.md`
    - 제주 전체 장소 카탈로그와 접근성 카드 연결 구조
 
-12. `jeju_maeum_color_swatch_revised.png`
+14. `jeju_maeum_color_swatch_revised.png`
    - 브랜드 컬러 팔레트 이미지
 
 관련 데이터:

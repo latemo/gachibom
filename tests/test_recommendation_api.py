@@ -1,19 +1,91 @@
 import http.client
 import json
+import tempfile
 import threading
 import unittest
 import urllib.error
+import urllib.parse
 import urllib.request
 from datetime import date
+from io import BytesIO
 from pathlib import Path
 from unittest.mock import patch
 
 from jsonschema import Draft202012Validator
 
-from src.recommendation_api import MAX_REQUEST_BODY_BYTES, create_server
+from src.recommendation_api import (
+    MAX_RECOMMENDATION_QUERY_BYTES,
+    MAX_REQUEST_BODY_BYTES,
+    create_server,
+    fetch_route_directions,
+    load_optional_json_list,
+)
+from src.vercel_api import handle_help_chat as handle_vercel_help_chat
+from src.vercel_api import handle_recommendations as handle_vercel_recommendations
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+class FakeJsonResponse:
+    def __init__(self, payload: dict):
+        self.payload = payload
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        return False
+
+    def read(self):
+        return json.dumps(self.payload).encode("utf-8")
+
+
+def route_points(count: int) -> list[dict]:
+    return [
+        {
+            "name": f"장소 {index}",
+            "spot_id": f"spot-{index}",
+            "latitude": 33.1 + index / 100,
+            "longitude": 126.1 + index / 100,
+        }
+        for index in range(count)
+    ]
+
+
+class OptionalJsonListTests(unittest.TestCase):
+    def test_missing_file_is_empty_without_warning(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "missing.json"
+
+            self.assertEqual(load_optional_json_list(path, label="place catalog"), [])
+
+    def test_invalid_json_and_non_array_fail_open_with_warning(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            invalid_path = Path(temp_dir) / "invalid.json"
+            invalid_path.write_text("{bad", encoding="utf-8")
+            invalid_encoding_path = Path(temp_dir) / "invalid-encoding.json"
+            invalid_encoding_path.write_bytes(b"\xff\xfe")
+            object_path = Path(temp_dir) / "object.json"
+            object_path.write_text('{"items": []}', encoding="utf-8")
+
+            with self.assertLogs("src.recommendation_api", level="WARNING") as logs:
+                self.assertEqual(load_optional_json_list(invalid_path, label="place catalog"), [])
+                self.assertEqual(load_optional_json_list(invalid_encoding_path, label="place catalog"), [])
+                self.assertEqual(load_optional_json_list(object_path, label="place catalog"), [])
+
+            self.assertTrue(any("could not be loaded" in message for message in logs.output))
+            self.assertTrue(any("is not a JSON array" in message for message in logs.output))
+
+    def test_valid_array_keeps_only_object_rows(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "catalog.json"
+            path.write_text('[{"catalog_id": "one"}, null, "invalid"]', encoding="utf-8")
+
+            with self.assertLogs("src.recommendation_api", level="WARNING"):
+                rows = load_optional_json_list(path, label="place catalog")
+
+            self.assertEqual(rows, [{"catalog_id": "one"}])
 
 
 class RecommendationApiContractTests(unittest.TestCase):
@@ -45,6 +117,45 @@ class RecommendationApiContractTests(unittest.TestCase):
         self.assertEqual(payload["ai_model"], "gpt-5-mini")
         self.assertGreater(payload["places"], 30)
         self.assertTrue(payload["features"]["help_chatbot"])
+        self.assertTrue(payload["features"]["grounded_rag"])
+
+    def test_server_loads_manually_reviewed_visit_information(self):
+        places = self.server.RequestHandlerClass.func.places
+        bunker = next(place for place in places if place["id"] == "jeju_indoor_bunker_lumieres_010")
+
+        self.assertEqual(
+            bunker["visit_info"]["address"],
+            "제주특별자치도 서귀포시 성산읍 서성일로1168번길 89-17",
+        )
+        self.assertEqual(bunker["visit_info"]["service_status"], "active")
+        self.assertEqual(bunker["visit_info"]["last_verified_at"], "2026-07-13")
+        self.assertTrue(bunker["visit_info"]["evidence"])
+
+    def test_server_starts_when_optional_place_catalog_is_malformed(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            catalog_path = Path(temp_dir) / "catalog.json"
+            catalog_path.write_text("{bad", encoding="utf-8")
+
+            with self.assertLogs("src.recommendation_api", level="WARNING"):
+                server = create_server(
+                    host="127.0.0.1",
+                    port=0,
+                    web_dir=ROOT / "web",
+                    places_path=ROOT / "data" / "jeju_accessible_spots.json",
+                    place_catalog_path=catalog_path,
+                    visit_info_overrides_path=Path(temp_dir) / "missing-reviewed.json",
+                    generated_at=date(2026, 7, 9),
+                )
+            try:
+                self.assertGreater(len(server.RequestHandlerClass.func.places), 30)
+                self.assertTrue(
+                    all(
+                        place["visit_info"]["address"] is None
+                        for place in server.RequestHandlerClass.func.places
+                    )
+                )
+            finally:
+                server.server_close()
 
     def test_recommendations_endpoint_returns_schema_valid_recommendation_without_ai(self):
         status, payload = self.post_json(
@@ -67,9 +178,54 @@ class RecommendationApiContractTests(unittest.TestCase):
         self.assertEqual(payload["engine"]["ai_status"], "skipped")
         self.assertLessEqual(len(payload["places"]), 4)
         self.assertFalse(any(place["location"] is None for place in payload["places"]))
+        self.assertTrue(all(place["location"]["point_role"] for place in payload["places"]))
+        self.assertTrue(all("visit_info" in place for place in payload["places"]))
+        self.assertTrue(all(place["visit_info"]["verification_status"] == "needs_check" for place in payload["places"]))
+        self.assertTrue(any(place["visit_info"]["address"] for place in payload["places"]))
 
         schema = json.loads((ROOT / "data" / "schemas" / "recommendation_result.schema.json").read_text(encoding="utf-8"))
         self.assertEqual(list(Draft202012Validator(schema).iter_errors(payload["recommendation"])), [])
+
+        seed_schema = json.loads(
+            (ROOT / "data" / "schemas" / "app_recommendation_seed.schema.json").read_text(encoding="utf-8")
+        )
+        place_contract = {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$ref": "#/$defs/placeResult",
+            "$defs": seed_schema["$defs"],
+        }
+        place_validator = Draft202012Validator(place_contract)
+        self.assertTrue(
+            all(not list(place_validator.iter_errors(place)) for place in payload["places"])
+        )
+
+    def test_recommendations_endpoint_applies_grounded_natural_language_query(self):
+        query = "제주시에서 휠체어로 이용할 실내 문학관과 장애인 화장실"
+        status, payload = self.post_json(
+            "/api/recommendations",
+            {"query": query, "use_ai": False},
+        )
+
+        self.assertEqual(status, 200)
+        self.assertEqual(payload["retrieval"]["status"], "applied")
+        self.assertEqual(payload["engine"]["retrieval"], "deterministic_bm25_structured_v1")
+        self.assertIn("제주문학관", [place["name"] for place in payload["places"]])
+        self.assertNotIn(query, json.dumps(payload, ensure_ascii=False))
+        self.assertTrue(payload["retrieval"]["matches"])
+        evidence = payload["retrieval"]["matches"][0]["evidence_bundle"]["sources"][0]
+        self.assertRegex(evidence["evidence_id"], r"^ev_[0-9a-f]{16}$")
+        self.assertTrue(evidence["url"].startswith(("https://", "http://")))
+
+    def test_recommendations_endpoint_reports_resource_data_gap_without_fallback(self):
+        status, payload = self.post_json(
+            "/api/recommendations",
+            {"query": "전동휠체어 급속충전기 위치를 알려줘", "use_ai": False},
+        )
+
+        self.assertEqual(status, 200)
+        self.assertEqual(payload["retrieval"]["status"], "resource_data_gap")
+        self.assertIn("power_wheelchair_fast_charger", payload["retrieval"]["data_gaps"])
+        self.assertEqual(payload["places"], [])
 
     def test_routes_endpoint_returns_proxy_route_with_mocked_provider(self):
         provider_payload = {
@@ -88,17 +244,10 @@ class RecommendationApiContractTests(unittest.TestCase):
             ]
         }
 
-        class FakeProviderResponse:
-            def __enter__(self):
-                return self
-
-            def __exit__(self, *args):
-                return False
-
-            def read(self):
-                return json.dumps(provider_payload).encode("utf-8")
-
-        with patch("src.recommendation_api.urlopen", return_value=FakeProviderResponse()):
+        with patch.dict("os.environ", {}, clear=True), patch(
+            "src.recommendation_api.urlopen",
+            return_value=FakeJsonResponse(provider_payload),
+        ) as provider:
             status, payload = self.post_json(
                 "/api/routes",
                 {
@@ -114,23 +263,241 @@ class RecommendationApiContractTests(unittest.TestCase):
         self.assertEqual(payload["distance_meters"], 12345.6)
         self.assertEqual(len(payload["geometry"]["coordinates"]), 2)
         self.assertEqual(len(payload["waypoints"]), 2)
+        self.assertIn("router.project-osrm.org", provider.call_args.args[0].full_url)
+        self.assertEqual(provider.call_args.kwargs["timeout"], 7)
+
+    def test_kakao_route_uses_server_key_and_flattens_road_vertices(self):
+        provider_payload = {
+            "routes": [
+                {
+                    "result_code": 0,
+                    "summary": {"distance": 23456, "duration": 2450},
+                    "sections": [
+                        {
+                            "roads": [
+                                {
+                                    "vertexes": [
+                                        126.1,
+                                        33.1,
+                                        126.11,
+                                        33.11,
+                                        126.11,
+                                        33.11,
+                                    ]
+                                },
+                                {"vertexes": [126.11, 33.11, 126.12, 33.12]},
+                            ]
+                        },
+                        {"roads": [{"vertexes": [126.12, 33.12, 126.13, 33.13]}]},
+                    ],
+                }
+            ]
+        }
+        captured = {}
+
+        def fake_urlopen(request, *, timeout):
+            captured["request"] = request
+            captured["timeout"] = timeout
+            return FakeJsonResponse(provider_payload)
+
+        with patch.dict(
+            "os.environ",
+            {"KAKAO_MOBILITY_REST_API_KEY": "unit-test-kakao-key"},
+            clear=True,
+        ), patch("src.recommendation_api.urlopen", side_effect=fake_urlopen):
+            result = fetch_route_directions(route_points(4))
+
+        request = captured["request"]
+        parsed = urllib.parse.urlparse(request.full_url)
+        query = urllib.parse.parse_qs(parsed.query)
+        self.assertEqual(parsed.netloc, "apis-navi.kakaomobility.com")
+        self.assertEqual(parsed.path, "/v1/directions")
+        self.assertEqual(request.get_header("Authorization"), "KakaoAK unit-test-kakao-key")
+        self.assertEqual(request.get_header("Content-type"), "application/json")
+        self.assertEqual(
+            [float(value) for value in query["origin"][0].split(",")],
+            [126.1, 33.1],
+        )
+        self.assertEqual(
+            [float(value) for value in query["destination"][0].split(",")],
+            [126.13, 33.13],
+        )
+        self.assertEqual(len(query["waypoints"][0].split("|")), 2)
+        self.assertEqual(captured["timeout"], 4)
+        self.assertEqual(result["provider"], "kakao_mobility_directions")
+        self.assertEqual(result["distance_meters"], 23456)
+        self.assertEqual(result["duration_seconds"], 2450)
+        self.assertEqual(
+            result["geometry"]["coordinates"],
+            [[126.1, 33.1], [126.11, 33.11], [126.12, 33.12], [126.13, 33.13]],
+        )
+
+    def test_kakao_failure_falls_back_to_osrm_with_remaining_timeout(self):
+        provider_payload = {
+            "routes": [
+                {
+                    "distance": 3456,
+                    "duration": 780,
+                    "geometry": {
+                        "type": "LineString",
+                        "coordinates": [[126.1, 33.1], [126.11, 33.11]],
+                    },
+                }
+            ]
+        }
+        calls = []
+
+        def fake_urlopen(request, *, timeout):
+            calls.append((request.full_url, timeout))
+            if "apis-navi.kakaomobility.com" in request.full_url:
+                raise urllib.error.URLError("temporary Kakao failure")
+            return FakeJsonResponse(provider_payload)
+
+        with patch.dict(
+            "os.environ",
+            {"KAKAO_MOBILITY_REST_API_KEY": "unit-test-kakao-key"},
+            clear=True,
+        ), patch(
+            "src.recommendation_api.monotonic",
+            side_effect=[100.0, 104.0],
+        ), patch("src.recommendation_api.urlopen", side_effect=fake_urlopen):
+            result = fetch_route_directions(route_points(3))
+
+        self.assertEqual(len(calls), 2)
+        self.assertIn("apis-navi.kakaomobility.com", calls[0][0])
+        self.assertIn("router.project-osrm.org", calls[1][0])
+        self.assertEqual([timeout for _, timeout in calls], [4, 3])
+        self.assertEqual(result["provider"], "osrm_public_route_proxy")
+
+    def test_malformed_kakao_routes_fall_back_to_osrm(self):
+        osrm_payload = {
+            "routes": [
+                {
+                    "distance": 4567,
+                    "duration": 890,
+                    "geometry": {
+                        "type": "LineString",
+                        "coordinates": [[126.1, 33.1], [126.12, 33.12]],
+                    },
+                }
+            ]
+        }
+        provider_responses = [
+            FakeJsonResponse({"routes": {"unexpected": "shape"}}),
+            FakeJsonResponse(osrm_payload),
+        ]
+
+        with patch.dict(
+            "os.environ",
+            {"KAKAO_MOBILITY_REST_API_KEY": "unit-test-kakao-key"},
+            clear=True,
+        ), patch(
+            "src.recommendation_api.monotonic",
+            side_effect=[100.0, 101.0],
+        ), patch(
+            "src.recommendation_api.urlopen",
+            side_effect=provider_responses,
+        ) as provider:
+            result = fetch_route_directions(route_points(3))
+
+        self.assertEqual(provider.call_count, 2)
+        self.assertEqual(result["provider"], "osrm_public_route_proxy")
+
+    def test_eight_points_skip_kakao_and_use_osrm(self):
+        provider_payload = {
+            "routes": [
+                {
+                    "distance": 4567,
+                    "duration": 890,
+                    "geometry": {
+                        "type": "LineString",
+                        "coordinates": [[126.1, 33.1], [126.17, 33.17]],
+                    },
+                }
+            ]
+        }
+
+        with patch.dict(
+            "os.environ",
+            {"KAKAO_MOBILITY_REST_API_KEY": "unit-test-kakao-key"},
+            clear=True,
+        ), patch(
+            "src.recommendation_api.urlopen",
+            return_value=FakeJsonResponse(provider_payload),
+        ) as provider:
+            result = fetch_route_directions(route_points(8))
+
+        provider.assert_called_once()
+        request = provider.call_args.args[0]
+        self.assertIn("router.project-osrm.org", request.full_url)
+        self.assertNotIn("apis-navi.kakaomobility.com", request.full_url)
+        self.assertEqual(result["provider"], "osrm_public_route_proxy")
+        self.assertEqual(len(result["waypoints"]), 8)
+
+    def test_route_provider_failures_do_not_expose_server_key(self):
+        secret = "server-secret-must-not-leak"
+
+        with patch.dict(
+            "os.environ",
+            {"KAKAO_MOBILITY_REST_API_KEY": secret},
+            clear=True,
+        ), patch(
+            "src.recommendation_api.urlopen",
+            side_effect=urllib.error.URLError(f"upstream rejected {secret}"),
+        ) as provider, self.assertRaises(urllib.error.HTTPError) as context:
+            self.post_json(
+                "/api/routes",
+                {
+                    "points": [
+                        {"name": "제주문학관", "latitude": 33.4813072, "longitude": 126.5179884},
+                        {"name": "제주한란전시관", "latitude": 33.2966815, "longitude": 126.5902364},
+                    ]
+                },
+            )
+
+        body = context.exception.read().decode("utf-8")
+        self.assertEqual(context.exception.code, 502)
+        self.assertEqual(provider.call_count, 2)
+        self.assertNotIn(secret, body)
 
     def test_help_chat_endpoint_returns_llm_backed_reply_with_mocked_client(self):
         class FakeHelpClient:
+            def __init__(self):
+                self.context = None
+
             def generate_reply(self, context, *, model):
+                self.context = context
                 return {
                     "answer": f"{context['question']} 답변",
                     "followups": ["방문 전 확인은?"],
                     "handoff_checklist": ["공식 정보 확인"],
                 }
 
-        with patch("src.recommendation_api.openai_help_chatbot_client_from_env", return_value=FakeHelpClient()):
-            status, payload = self.post_json("/api/help-chat", {"question": "점수는 어떻게 읽나요?"})
+        client = FakeHelpClient()
+        with patch("src.recommendation_api.openai_help_chatbot_client_from_env", return_value=client):
+            status, payload = self.post_json(
+                "/api/help-chat",
+                {
+                    "question": "점수는 어떻게 읽나요?",
+                    "recommendation_context": {
+                        "mode": "runtime",
+                        "selected_place": {
+                            "spot_id": "spot-1",
+                            "name": "제주문학관",
+                            "score": {"total": 84, "grade": "B"},
+                            "internal_note": "제외됨",
+                        },
+                    },
+                },
+            )
 
         self.assertEqual(status, 200)
         self.assertEqual(payload["status"], "success")
         self.assertEqual(payload["model"], "gpt-5-mini")
         self.assertIn("점수는 어떻게 읽나요?", payload["answer"])
+        recommendation_context = client.context["recommendation_context"]
+        self.assertEqual(recommendation_context["selected_place"]["score"]["total"], 84)
+        self.assertNotIn("internal_note", recommendation_context["selected_place"])
 
     def test_help_chat_endpoint_rejects_blank_question(self):
         with self.assertRaises(urllib.error.HTTPError) as context:
@@ -163,6 +530,24 @@ class RecommendationApiContractTests(unittest.TestCase):
         payload = json.loads(context.exception.read().decode("utf-8"))
         self.assertEqual(context.exception.code, 400)
         self.assertEqual(payload["code"], "invalid_limit")
+
+    def test_recommendations_endpoint_rejects_invalid_and_oversized_query(self):
+        with self.assertRaises(urllib.error.HTTPError) as invalid_context:
+            self.post_json("/api/recommendations", {"query": ["제주"], "use_ai": False})
+
+        invalid_payload = json.loads(invalid_context.exception.read().decode("utf-8"))
+        self.assertEqual(invalid_context.exception.code, 400)
+        self.assertEqual(invalid_payload["code"], "invalid_query")
+
+        with self.assertRaises(urllib.error.HTTPError) as oversized_context:
+            self.post_json(
+                "/api/recommendations",
+                {"query": "가" * (MAX_RECOMMENDATION_QUERY_BYTES + 1), "use_ai": False},
+            )
+
+        oversized_payload = json.loads(oversized_context.exception.read().decode("utf-8"))
+        self.assertEqual(oversized_context.exception.code, 413)
+        self.assertEqual(oversized_payload["code"], "query_too_large")
 
     def test_recommendations_endpoint_rejects_oversized_body(self):
         connection = http.client.HTTPConnection(self.host, self.port, timeout=5)
@@ -204,6 +589,69 @@ class RecommendationApiContractTests(unittest.TestCase):
         )
         with urllib.request.urlopen(request, timeout=5) as response:
             return response.status, json.loads(response.read().decode("utf-8"))
+
+
+class VercelHelpChatContractTests(unittest.TestCase):
+    def test_vercel_adapter_passes_recommendation_context(self):
+        class FakeHelpClient:
+            def __init__(self):
+                self.context = None
+
+            def generate_reply(self, context, *, model):
+                self.context = context
+                return {"answer": "추천 근거 답변", "followups": [], "handoff_checklist": []}
+
+        request_payload = {
+            "question": "왜 이 장소가 추천됐나요?",
+            "recommendation_context": {
+                "mode": "runtime",
+                "selected_place": {"spot_id": "spot-1", "name": "제주문학관"},
+            },
+        }
+        request = FakeVercelRequest(request_payload)
+        client = FakeHelpClient()
+
+        with patch("src.vercel_api.openai_help_chatbot_client_from_env", return_value=client):
+            handle_vercel_help_chat(request)
+
+        self.assertEqual(request.status, 200)
+        response = json.loads(request.wfile.getvalue().decode("utf-8"))
+        self.assertEqual(response["status"], "success")
+        self.assertEqual(client.context["recommendation_context"]["selected_place"]["name"], "제주문학관")
+
+    def test_vercel_recommendation_adapter_passes_optional_query(self):
+        request = FakeVercelRequest(
+            {"query": "제주시 휠체어 실내 문학관", "use_ai": False}
+        )
+        state = {"places": [], "location_index": {}, "tourism_weak_course_summary": {}}
+
+        with patch("src.vercel_api.runtime_state", return_value=state), patch(
+            "src.vercel_api.build_runtime_recommendation",
+            return_value={"status": "ok"},
+        ) as build:
+            handle_vercel_recommendations(request)
+
+        self.assertEqual(request.status, 200)
+        self.assertEqual(build.call_args.kwargs["query"], "제주시 휠체어 실내 문학관")
+
+
+class FakeVercelRequest:
+    def __init__(self, payload: dict):
+        raw = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+        self.headers = {"Content-Length": str(len(raw))}
+        self.rfile = BytesIO(raw)
+        self.wfile = BytesIO()
+        self.status = None
+        self.response_headers = []
+
+    def send_response(self, status):
+        self.status = status
+
+    def send_header(self, name, value):
+        self.response_headers.append((name, value))
+
+    def end_headers(self):
+        pass
 
 
 if __name__ == "__main__":

@@ -1,3 +1,4 @@
+import copy
 import json
 import os
 import unittest
@@ -31,6 +32,22 @@ class FakeExplanationClient:
             "rationale": [context["places"][0]["name"], context["places"][0]["name"]],
             "cautions": ["방문 전 운영 상태 확인"],
             "next_checks": ["화장실 운영 여부 확인"],
+        }
+
+
+class GroundedFakeExplanationClient:
+    def __init__(self):
+        self.context = None
+
+    def generate_summary(self, context, *, model):
+        self.context = context
+        evidence_id = context["retrieval"]["evidence"][0]["evidence_id"]
+        return {
+            "headline": "공식 근거를 확인한 추천",
+            "rationale": ["검색 조건과 접근성 근거가 연결됩니다."],
+            "cautions": ["방문 전 최신 운영 정보를 확인하세요."],
+            "next_checks": ["공식 출처 확인"],
+            "evidence_ids": [evidence_id, "ev_model_invented"],
         }
 
 
@@ -100,6 +117,182 @@ class RecommendationServiceTests(unittest.TestCase):
         self.assertEqual(result["engine"]["ai_status"], "success")
         self.assertEqual(result["ai_summary"]["model"], DEFAULT_OPENAI_MODEL)
         self.assertEqual(len(result["ai_summary"]["rationale"]), 1)
+
+    def test_blank_query_preserves_existing_recommendation_path(self):
+        profile = {
+            "traveler_type": ["wheelchair_user"],
+            "mobility_conditions": ["짧은 이동"],
+            "preferred_themes": ["실내", "문화"],
+            "required_accessibility": ["장애인 화장실"],
+            "avoid": ["계단"],
+        }
+        baseline = build_runtime_recommendation(
+            load_places(), profile, today=date(2026, 7, 8), use_ai=False
+        )
+        blank_query = build_runtime_recommendation(
+            load_places(), profile, today=date(2026, 7, 8), query="   ", use_ai=False
+        )
+
+        self.assertEqual(blank_query["traveler_summary"], baseline["traveler_summary"])
+        self.assertEqual(blank_query["recommendation"], baseline["recommendation"])
+        self.assertEqual(blank_query["places"], baseline["places"])
+        self.assertEqual(blank_query["retrieval"]["status"], "not_requested")
+        self.assertEqual(blank_query["engine"]["retrieval"], "not_requested")
+
+    def test_runtime_recommendation_optimizes_route_without_changing_score_order(self):
+        places = load_places()
+        baseline = build_runtime_recommendation(
+            places,
+            {},
+            today=date(2026, 7, 8),
+            use_ai=False,
+        )
+        score_order = [place["spot_id"] for place in baseline["places"]]
+        self.assertEqual(len(score_order), 4)
+        coordinate_order = (126.0, 126.3, 126.1, 126.2)
+        location_index = {
+            spot_id: {
+                "latitude": 33.4,
+                "longitude": longitude,
+                "point_role": "poi",
+            }
+            for spot_id, longitude in zip(score_order, coordinate_order)
+        }
+
+        optimized = build_runtime_recommendation(
+            places,
+            {},
+            today=date(2026, 7, 8),
+            use_ai=False,
+            location_index=location_index,
+        )
+
+        self.assertEqual([place["spot_id"] for place in optimized["places"]], score_order)
+        self.assertEqual(
+            optimized["recommendation"]["recommended_spots"],
+            baseline["recommendation"]["recommended_spots"],
+        )
+        self.assertEqual(
+            [item["spot_id"] for item in optimized["recommendation"]["course"]["route"]],
+            [score_order[0], score_order[2], score_order[3], score_order[1]],
+        )
+
+    def test_natural_language_query_retrieves_then_scores_grounded_places(self):
+        result = build_runtime_recommendation(
+            load_places(),
+            {},
+            today=date(2026, 7, 8),
+            query="제주시에서 휠체어로 이용할 실내 문학관과 장애인 화장실",
+            use_ai=False,
+        )
+
+        self.assertEqual(result["retrieval"]["status"], "applied")
+        self.assertEqual(result["retrieval"]["query_intent"]["regions"], ["제주시"])
+        self.assertNotIn("query_text", result["retrieval"]["query_intent"])
+        self.assertTrue(result["places"])
+        self.assertIn("제주문학관", [place["name"] for place in result["places"]])
+        self.assertEqual(
+            [place["spot_id"] for place in result["places"]],
+            [match["spot_id"] for match in result["retrieval"]["matches"]],
+        )
+        sources = result["retrieval"]["matches"][0]["evidence_bundle"]["sources"]
+        self.assertTrue(sources)
+        self.assertRegex(sources[0]["evidence_id"], r"^ev_[0-9a-f]{16}$")
+        self.assertEqual(
+            result["retrieval"]["matches"][0]["evidence_bundle"]["verification"]["freshness"],
+            "recent",
+        )
+
+    def test_support_resource_query_fails_closed_until_corpus_is_available(self):
+        result = build_runtime_recommendation(
+            load_places(),
+            {},
+            today=date(2026, 7, 8),
+            query="전동휠체어 급속충전기와 교통약자 이동지원센터를 찾아줘",
+            use_ai=False,
+        )
+
+        self.assertEqual(result["retrieval"]["status"], "resource_data_gap")
+        self.assertIn("power_wheelchair_fast_charger", result["retrieval"]["data_gaps"])
+        self.assertIn("mobility_support_center", result["retrieval"]["data_gaps"])
+        self.assertEqual(result["places"], [])
+        self.assertEqual(result["recommendation"]["recommended_spots"], [])
+        self.assertEqual(result["recommendation"]["course"]["route"], [])
+
+    def test_unmatched_rag_query_returns_no_match_without_placeholder_route(self):
+        result = build_runtime_recommendation(
+            load_places(),
+            {},
+            today=date(2026, 7, 8),
+            query="존재하지않는검색어abcxyz",
+            use_ai=False,
+        )
+
+        self.assertEqual(result["retrieval"]["status"], "no_match")
+        self.assertEqual(result["places"], [])
+        self.assertEqual(result["recommendation"]["course"]["route"], [])
+
+    def test_ai_citations_are_resolved_from_server_evidence_only(self):
+        client = GroundedFakeExplanationClient()
+        result = build_runtime_recommendation(
+            load_places(),
+            {},
+            today=date(2026, 7, 8),
+            query="제주시 휠체어 실내 문학관",
+            explanation_client=client,
+        )
+
+        self.assertTrue(client.context["retrieval"]["evidence"])
+        self.assertEqual(len(result["ai_summary"]["citations"]), 1)
+        citation = result["ai_summary"]["citations"][0]
+        self.assertRegex(citation["evidence_id"], r"^ev_[0-9a-f]{16}$")
+        self.assertTrue(citation["source_url"].startswith(("https://", "http://")))
+        self.assertNotIn("ev_model_invented", json.dumps(result["ai_summary"], ensure_ascii=False))
+
+    def test_build_runtime_recommendation_excludes_closed_services_without_mutating_input(
+        self,
+    ):
+        places = copy.deepcopy(load_places()[:4])
+        statuses = ("permanently_closed", "temporarily_closed", "unknown", "active")
+        for place, status in zip(places, statuses):
+            place["visit_info"] = {"service_status": status}
+        original_places = copy.deepcopy(places)
+
+        result = build_runtime_recommendation(
+            places,
+            {},
+            today=date(2026, 7, 13),
+            limit=4,
+            use_ai=False,
+        )
+
+        self.assertEqual(
+            {place["spot_id"] for place in result["places"]},
+            {places[2]["id"], places[3]["id"]},
+        )
+        self.assertEqual(places, original_places)
+
+    def test_build_runtime_recommendation_handles_no_candidates_after_service_status_gate(
+        self,
+    ):
+        places = copy.deepcopy(load_places()[:2])
+        places[0]["visit_info"] = {"service_status": "permanently_closed"}
+        places[1]["visit_info"] = {"service_status": "temporarily_closed"}
+
+        result = build_runtime_recommendation(
+            places,
+            {},
+            today=date(2026, 7, 13),
+            limit=4,
+            use_ai=False,
+        )
+
+        self.assertEqual(result["places"], [])
+        self.assertEqual(result["recommendation"]["recommended_spots"], [])
+        self.assertEqual(
+            result["recommendation"]["course"]["route"][0]["spot_id"],
+            "no_recommendation",
+        )
 
     def test_normalize_ai_summary_limits_overlong_generated_text(self):
         long_repeated = "제주한란전시관 방문 전 확인 " * 20
