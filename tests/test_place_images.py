@@ -125,7 +125,7 @@ class PlaceImagePolicyTests(unittest.TestCase):
 
     def test_roadview_policy_links_to_image_dataset(self):
         self.assertIn("https://www.data.go.kr/data/15110209/fileData.do", self.app)
-        self.assertIn("이용허락범위 제한 없음 · 16:9 크롭/리사이즈", self.app)
+        self.assertIn("이용허락 범위 제한 없음", self.app)
 
 
 if __name__ == "__main__":

@@ -246,7 +246,7 @@ def map_location_section(root: Path) -> dict[str, Any]:
         ),
         check(
             "frontend_coordinate_projection",
-            "pass" if all(token in app_js for token in ["projectMapCoordinate", "map-location-pin", "실제 좌표"]) else "block",
+            "pass" if all(token in app_js for token in ["projectMapCoordinate", "map-location-pin", "data-latitude"]) else "block",
             "중앙 지도 좌표 투영",
             "configured" if "projectMapCoordinate" in app_js else "missing",
             "lat/lng projection",

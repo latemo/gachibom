@@ -106,10 +106,10 @@ class HelpChatbotServiceTests(unittest.TestCase):
         self.assertEqual(reply["status"], "success")
         self.assertEqual(reply["answer_source"], "deterministic_mode_rule")
         self.assertEqual(reply["behavior_version"], HELP_CHATBOT_MODE_RULE_VERSION)
-        self.assertIn("사전 계산 시나리오", reply["answer"])
-        self.assertIn('mode가 "static"', reply["answer"])
+        self.assertIn("기본 추천", reply["answer"])
+        self.assertIn("조건을 바꾸면", reply["answer"])
+        self.assertNotIn("mode", reply["answer"])
         self.assertNotIn("점수", reply["answer"])
-        self.assertEqual(reply["answer"].count("입니다."), 2)
 
     def test_runtime_mode_question_uses_runtime_field_only(self):
         reply = build_help_chatbot_reply(
@@ -119,8 +119,8 @@ class HelpChatbotServiceTests(unittest.TestCase):
             client=FakeHelpClient(),
         )
 
-        self.assertIn("실행 시점에 계산한 결과", reply["answer"])
-        self.assertIn('mode가 "runtime"', reply["answer"])
+        self.assertIn("새로 계산한 추천", reply["answer"])
+        self.assertNotIn("mode", reply["answer"])
 
     def test_nearby_resource_question_requests_location_without_calling_llm(self):
         class FailIfCalledClient:
@@ -137,7 +137,7 @@ class HelpChatbotServiceTests(unittest.TestCase):
         self.assertEqual(reply["status"], "location_required")
         self.assertEqual(reply["answer_source"], "grounded_accessibility_resource_retrieval")
         self.assertIn("위치 권한", reply["answer"])
-        self.assertIn("OpenAI 요청에 넣지 않습니다", reply["answer"])
+        self.assertIn("외부 답변 요청에 넣지 않습니다", reply["answer"])
 
     def test_pre_visit_question_uses_only_selected_place_checks(self):
         class FailIfCalledClient:
@@ -271,7 +271,8 @@ class HelpChatbotServiceTests(unittest.TestCase):
         reply = build_help_chatbot_reply("처음 어떻게 쓰나요?", client=None)
 
         self.assertEqual(reply["status"], "disabled_no_key")
-        self.assertIn("OPENAI_API_KEY", reply["answer"])
+        self.assertIn("기본 도움말", reply["answer"])
+        self.assertNotIn("OPENAI_API_KEY", reply["answer"])
 
     def test_normalize_help_history_keeps_safe_recent_messages(self):
         history = normalize_help_history(

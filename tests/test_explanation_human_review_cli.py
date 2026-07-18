@@ -150,9 +150,17 @@ class ExplanationHumanReviewCliTests(unittest.TestCase):
 
     def test_xlsx_builder_creates_three_reviewer_files_and_protects_existing(self):
         with tempfile.TemporaryDirectory() as temp_dir:
-            output_dir = Path(temp_dir) / "workbooks"
+            root = Path(temp_dir)
+            master_csv = root / "master.csv"
+            key_json = root / "key.json"
+            output_dir = root / "workbooks"
+            with redirect_stdout(io.StringIO()):
+                self.assertEqual(
+                    build_main(self._build_args(master_csv, key_json), seed="xlsx-builder"),
+                    0,
+                )
             args = [
-                "--master-csv", str(ROOT / "data" / "explanation_eval_blind_review.csv"),
+                "--master-csv", str(master_csv),
                 "--output-dir", str(output_dir),
             ]
             with redirect_stdout(io.StringIO()):
@@ -172,8 +180,13 @@ class ExplanationHumanReviewCliTests(unittest.TestCase):
     def test_three_completed_xlsx_files_pass_existing_human_gate(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
-            master_csv = ROOT / "data" / "explanation_eval_blind_review.csv"
-            key_json = ROOT / "data" / "explanation_eval_blind_key.json"
+            master_csv = root / "master.csv"
+            key_json = root / "key.json"
+            with redirect_stdout(io.StringIO()):
+                self.assertEqual(
+                    build_main(self._build_args(master_csv, key_json), seed="xlsx-gate"),
+                    0,
+                )
             master_rows = self._read_csv(master_csv)
             key = json.loads(key_json.read_text(encoding="utf-8"))
             assignments = {item["blind_id"]: item for item in key["assignments"]}

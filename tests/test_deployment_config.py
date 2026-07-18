@@ -31,6 +31,12 @@ BLOCKED_ROUTES = {
     r"/api/(.*)\.py",
     r"/README\.md",
     r"/design-qa\.md",
+    r"/pyproject\.toml",
+    r"/uv\.lock",
+    r"/\.python-version",
+    r"/data/operations_readiness_report\.json",
+    r"/data/recommendation_case_validation_report\.json",
+    r"/data/service_launch_action_plan\.json",
     r"/help-chatbot\.html",
     r"/miro_service_concept\.html",
 }
@@ -71,6 +77,7 @@ class DeploymentConfigTests(unittest.TestCase):
             {
                 "data/**",
                 "scripts/",
+                ".gstack/",
                 "/31. EARLYFONT_JEJUDOLDAM/",
                 "web/README.md",
                 "web/design-qa.md",

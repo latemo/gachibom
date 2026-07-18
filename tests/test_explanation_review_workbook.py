@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import csv
 import json
 import tempfile
 import unittest
@@ -8,6 +7,7 @@ import zipfile
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from src.explanation_blind_review import build_blind_review_packet
 from src.explanation_review_workbook import (
     ExplanationReviewWorkbookError,
     read_explanation_review_workbook,
@@ -16,16 +16,21 @@ from src.explanation_review_workbook import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MASTER_CSV = ROOT / "data" / "explanation_eval_blind_review.csv"
-KEY_JSON = ROOT / "data" / "explanation_eval_blind_key.json"
+RESULTS = ROOT / "data" / "explanation_eval_results.json"
+CASES = ROOT / "data" / "explanation_eval_cases.json"
 NS = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
 
 
 class ExplanationReviewWorkbookTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        with MASTER_CSV.open("r", encoding="utf-8-sig", newline="") as stream:
-            cls.master_rows = [dict(row) for row in csv.DictReader(stream)]
+        packet = build_blind_review_packet(
+            json.loads(RESULTS.read_text(encoding="utf-8")),
+            seed="workbook-tests",
+            cases=json.loads(CASES.read_text(encoding="utf-8")),
+        )
+        cls.master_rows = [dict(row) for row in packet["review_rows"]]
+        cls.deblind_key = packet["deblind_key"]
 
     def test_blank_workbook_roundtrips_as_pending_with_locked_layout(self):
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -102,8 +107,9 @@ class ExplanationReviewWorkbookTests(unittest.TestCase):
                 read_explanation_review_workbook(wrong, self.master_rows)
 
     def _completed_rows(self, reviewer_id: str) -> list[dict[str, str]]:
-        key = json.loads(KEY_JSON.read_text(encoding="utf-8"))
-        assignments = {item["blind_id"]: item for item in key["assignments"]}
+        assignments = {
+            item["blind_id"]: item for item in self.deblind_key["assignments"]
+        }
         rows = [dict(row) for row in self.master_rows]
         for row in rows:
             assignment = assignments[row["blind_id"]]

@@ -7,6 +7,7 @@ artifacts/
 outputs/
 .agents/
 .codex/
+.gstack/
 tmp/
 tests/
 docs/

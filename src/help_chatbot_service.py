@@ -104,8 +104,8 @@ HELP_CHATBOT_PRODUCT_CONTEXT = {
         "실제 경로 보기",
         "출처와 최신성",
         "개인정보와 건강정보",
-        "API 또는 화면 실패",
-        "운영자 검수 항목",
+        "화면이 제대로 열리지 않을 때",
+        "방문 전 확인 항목",
     ],
     "safety_note": HELP_CHATBOT_SAFETY_NOTE,
 }
@@ -155,12 +155,9 @@ def build_help_chatbot_reply(
         return {
             "status": "disabled_no_key",
             "model": model,
-            "answer": (
-                "LLM 도움말 답변을 사용하려면 서버 실행 환경에 OPENAI_API_KEY가 필요합니다. "
-                "현재는 브라우저의 기본 도움말만 사용할 수 있습니다."
-            ),
+            "answer": "지금은 자동 답변을 사용할 수 없어 기본 도움말을 보여드립니다.",
             "followups": ["처음 사용하는 방법", "점수와 등급 읽는 법", "개인정보는 저장되나요?"],
-            "handoff_checklist": ["OPENAI_API_KEY 설정", "추천 API 서버로 페이지 열기", "/api/help-chat 상태 확인"],
+            "handoff_checklist": ["아래 기본 도움말에서 주제 선택", "잠시 후 다시 질문", "방문 전 공식 정보 확인"],
             "safety_note": HELP_CHATBOT_SAFETY_NOTE,
         }
 
@@ -173,11 +170,11 @@ def build_help_chatbot_reply(
         context["recommendation_context"] = normalized_recommendation_context
     try:
         generated = client.generate_reply(context, model=model)
-    except Exception as exc:
+    except Exception:
         return {
             "status": "error",
             "model": model,
-            "answer": f"LLM 도움말 답변 생성에 실패했습니다: {exc.__class__.__name__}",
+            "answer": "지금 답변을 불러오지 못했습니다. 잠시 후 다시 시도하거나 기본 도움말을 이용해 주세요.",
             "followups": ["처음 사용하는 방법", "화면 오류가 날 때", "방문 전 확인 항목"],
             "handoff_checklist": ["잠시 후 다시 시도", "질문을 한 문장으로 줄여 재입력", "공식 정보와 현장 문의 확인"],
             "safety_note": HELP_CHATBOT_SAFETY_NOTE,
@@ -196,7 +193,7 @@ def build_mode_distinction_reply(
 
     mode = str(recommendation_context.get("mode") or "").strip().casefold()
     asks_about_mode = (
-        any(term in question for term in ("실시간", "사전 계산", "사전계산", "재계산"))
+        any(term in question for term in ("실시간", "사전 계산", "사전계산", "재계산", "기본 추천"))
         and any(term in question for term in ("추천", "결과", "계산", "표시"))
     )
     if mode not in {"static", "runtime"} or not asks_about_mode:
@@ -204,13 +201,13 @@ def build_mode_distinction_reply(
 
     if mode == "static":
         answer = (
-            "이 추천은 실시간 개인별 재계산 결과가 아니라, 입력 조건과 가장 가까운 사전 계산 시나리오 결과입니다. "
-            '근거는 recommendation_context.mode가 "static"으로 표시된 점입니다.'
+            "이 결과는 지금 입력한 조건과 가장 가까운 기본 추천입니다. "
+            "조건을 바꾸면 그에 맞는 추천을 다시 확인할 수 있습니다."
         )
     else:
         answer = (
-            "이 추천은 현재 입력을 사용해 실행 시점에 계산한 결과입니다. "
-            '근거는 recommendation_context.mode가 "runtime"으로 표시된 점입니다.'
+            "이 결과는 현재 입력한 조건을 사용해 새로 계산한 추천입니다. "
+            "조건을 바꾸면 추천 결과도 달라질 수 있습니다."
         )
     return {
         "status": "success",

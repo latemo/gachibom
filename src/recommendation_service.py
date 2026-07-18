@@ -530,7 +530,7 @@ def build_ai_summary(
     retrieval: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     if not use_ai:
-        return empty_ai_summary("skipped", ai_model, "요청에서 AI 설명 생성을 끄도록 지정했습니다.")
+        return empty_ai_summary("skipped", ai_model, "자동 설명을 요청하지 않아 기본 추천 기준만 사용했습니다.")
 
     retrieval_status = str((retrieval or {}).get("status") or "not_requested")
     grounded_query = _is_grounded_retrieval_request(retrieval)
@@ -539,24 +539,22 @@ def build_ai_summary(
         return empty_ai_summary(
             "blocked_retrieval",
             ai_model,
-            "검색 근거가 적용되지 않아 AI 설명을 생성하지 않았습니다.",
+            "조건에 맞는 확인 자료가 없어 자동 설명을 만들지 않았습니다.",
         )
     if grounded_query and not evidence_index:
         return empty_ai_summary(
             "insufficient_evidence",
             ai_model,
-            "유효한 공식 근거가 없어 AI 설명을 생성하지 않았습니다.",
+            "확인할 수 있는 공식 자료가 없어 자동 설명을 만들지 않았습니다.",
         )
     if explanation_client is None:
-        return empty_ai_summary("disabled_no_key", ai_model, "OPENAI_API_KEY가 설정되지 않아 로컬 점수 근거만 사용했습니다.")
+        return empty_ai_summary("disabled_no_key", ai_model, "지금은 자동 설명을 사용할 수 없어 기본 추천 기준만 표시합니다.")
 
     context = ai_prompt_context(recommendation, places, traveler_summary, retrieval=retrieval)
     try:
         generated = explanation_client.generate_summary(context, model=ai_model)
-    except OpenAIExplanationResponseError as exc:
-        return empty_ai_summary("error", ai_model, f"AI 설명 생성 실패: {exc}")
-    except Exception as exc:
-        return empty_ai_summary("error", ai_model, f"AI 설명 생성 실패: {exc.__class__.__name__}")
+    except Exception:
+        return empty_ai_summary("error", ai_model, "자동 설명을 만들지 못했습니다. 잠시 후 다시 시도해 주세요.")
 
     summary = normalize_ai_summary(
         generated,
@@ -567,7 +565,7 @@ def build_ai_summary(
         return empty_ai_summary(
             "ungrounded",
             ai_model,
-            "생성된 설명에 검증 가능한 근거 인용이 없어 결과를 표시하지 않았습니다.",
+            "설명을 확인할 수 있는 출처가 충분하지 않아 결과를 표시하지 않았습니다.",
         )
     return summary
 

@@ -110,7 +110,7 @@ def build_location_required_reply(question: Any, *, model: str) -> dict[str, Any
         "behavior_version": NEARBY_RESOURCE_BEHAVIOR_VERSION,
         "answer": (
             f"현재 위치에서 가까운 {' · '.join(labels)}을 찾으려면 위치 권한이 필요합니다. "
-            "좌표는 이번 거리 검색에만 사용하며 대화 기록이나 OpenAI 요청에 넣지 않습니다."
+            "현재 위치 정보는 이번 거리 검색에만 사용하며 대화 기록이나 외부 답변 요청에 넣지 않습니다."
         ),
         "resource_types": list(resource_types),
         "nearby_results": [],
@@ -272,7 +272,7 @@ def _toilet_venue_candidates(
                 "managing_organization": "",
                 "capacity": None,
                 "accessibility_note": (
-                    "장애인 화장실 보유 정보가 확인된 관광지이며, 좌표는 화장실 자체가 아닌 장소 대표점입니다."
+                    "장애인 화장실 보유 정보가 확인된 관광지이며, 지도 위치는 화장실이 아닌 관광지 위치입니다."
                 ),
                 "coordinate_basis": "venue_representative_point",
                 "verification_status": _verification_status(verification.get("status")),
@@ -472,7 +472,7 @@ def _format_operating_hours(value: Mapping[str, Any]) -> str:
 
 
 def _resource_safety_note(resource_types: Sequence[str]) -> str:
-    notes = ["거리 표시는 좌표 간 직선거리이며 실제 이동거리·무장애 경로와 다를 수 있습니다."]
+    notes = ["표시된 거리는 두 위치 사이의 직선거리이며 실제 이동거리·무장애 경로와 다를 수 있습니다."]
     if ACCESSIBLE_TOILET in resource_types:
         notes.append("공중화장실 공공데이터는 현재 제주시 제공 범위이며, 개방·사용 가능 여부는 방문 전 관리기관에 확인해 주세요.")
     if POWER_WHEELCHAIR_FAST_CHARGER in resource_types:
