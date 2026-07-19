@@ -480,6 +480,8 @@ globalThis.__savedFlowApp = {
   shareableSavedSpotIds,
   safePhoneHref,
   visitInfoMarkup,
+  renderValidationEvidence,
+  buildAccessibilityReportText,
   mergePlaceLocation,
   locationPointLabel,
   locationPointShortLabel,
@@ -619,6 +621,29 @@ const catalogVisitMarkup = app.visitInfoMarkup(catalogVisitPlace);
 assert(catalogVisitMarkup.includes("재확인 필요"), "stale public data must not look currently verified");
 assert(catalogVisitMarkup.includes("원본 갱신"), "dataset update date must be labeled separately from field verification");
 assert(!catalogVisitMarkup.includes("정보 확인 2025"), "dataset update date must not look like a field verification date");
+
+const verificationPlace = seed.scenarios.flatMap((scenario) => scenario.places || []).find(
+  (place) => place.verification?.checked_at && place.source_summary?.some((source) => source.url)
+);
+assert(verificationPlace, "fixture should contain dated verification evidence");
+const validationMarkup = app.renderValidationEvidence(verificationPlace);
+assert(validationMarkup.includes("접근성 정보 상태"), "detail should name the accessibility verification section");
+assert(validationMarkup.includes("정보 확인일"), "detail should label the accessibility verification date");
+assert(validationMarkup.includes("2026년 7월 7일"), "detail should render the human-readable verification date");
+assert(validationMarkup.includes(`data-report-place-info="${verificationPlace.spot_id}"`), "detail should expose the report action for the selected place");
+
+const reportText = app.buildAccessibilityReportText(verificationPlace, {
+  category: "access",
+  visitedAt: "2026-07-18",
+  details: "입구 경사로가 공사 중이었습니다."
+});
+assert(reportText.includes("[가치봄 접근성 정보 제보]"), "shared report should identify its purpose");
+assert(reportText.includes(verificationPlace.name), "shared report should include the place name");
+assert(reportText.includes(verificationPlace.spot_id), "shared report should include the stable place id");
+assert(reportText.includes("출입구·경사·계단"), "shared report should include the selected category");
+assert(reportText.includes("2026-07-18"), "shared report should include the visit date");
+assert(reportText.includes("입구 경사로가 공사 중이었습니다."), "shared report should include the observed difference");
+assert(!reportText.includes("traveler_summary"), "shared report must not include recommendation profile data");
 
 const unavailableSeedPlace = seed.saved_route_places.find((place) => place.available === false);
 assert(unavailableSeedPlace, "fixture should retain an unavailable place for old saved routes");
@@ -896,8 +921,10 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
         self.assertIn('id="savedRoutesModal"', index)
         self.assertIn("data-open-saved-routes", index)
         self.assertGreaterEqual(index.count("data-save-current-route"), 2)
-        self.assertIn("styles.css?v=20260718-7", index)
-        self.assertIn("app.js?v=20260718-6", index)
+        self.assertIn("styles.css?v=20260720-1", index)
+        self.assertIn("app.js?v=20260720-1", index)
+        self.assertIn('id="accessibilityReportDialog"', index)
+        self.assertIn('id="accessibilityReportForm"', index)
         self.assertIn("top-save-route-button", index)
         self.assertIn("live-map-save-button", index)
         self.assertIn("loadSavedRouteState();", app)
@@ -999,21 +1026,18 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
         self.assertIn('<div class="brand-copy">', index)
         self.assertIn("<strong>가치봄 제주</strong>", index)
         self.assertNotIn('class="brand-copy sr-only"', index)
-        self.assertIn("grid-template-columns: repeat(2, minmax(0, 1fr))", mobile)
+        self.assertIn("grid-template-columns: 1fr", mobile)
         self.assertIn(
             ".evidence-grid {\n    grid-template-columns: repeat(2, minmax(0, 1fr))",
             mobile,
         )
-        self.assertIn(".concept-card:last-child:nth-child(odd)", mobile)
-        self.assertIn("grid-column: 1 / -1", mobile)
+        self.assertIn("grid-template-columns: 44px minmax(0, 1fr)", mobile)
         self.assertIn(
-            "body:not(.concept-result-open) .concept-card-score-row",
+            ".concept-card-score-row,",
             mobile,
         )
-        self.assertIn(
-            "body.concept-result-open .concept-main {\n    display: none",
-            mobile,
-        )
+        self.assertIn(".concept-card-visual,", mobile)
+        self.assertIn("display: none", mobile)
         self.assertIn('class="bi bi-map"', index)
         self.assertIn('class="bi bi-share"', index)
 
@@ -1077,6 +1101,16 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
         self.assertIn(".concept-preference-chip:focus-visible", styles)
         self.assertIn(".concept-preference-chip.is-priority", styles)
 
+        mobile_styles = styles.split("@media (max-width: 560px) {", 1)[1]
+        self.assertNotIn("grid-auto-rows: 680px", mobile_styles)
+        self.assertNotIn("min-height: 680px", mobile_styles)
+        self.assertIn(
+            "grid-template-columns: 44px minmax(0, 1fr)",
+            mobile_styles,
+        )
+        self.assertIn(".concept-card-visual,", mobile_styles)
+        self.assertIn("display: none", mobile_styles)
+
     def test_theme_cards_use_clean_line_art_instead_of_photo_backgrounds(self):
         app = APP_SCRIPT.read_text(encoding="utf-8")
         styles = STYLES_FILE.read_text(encoding="utf-8")
@@ -1093,6 +1127,40 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
         self.assertIn("background: #fff", styles)
         self.assertNotIn("--theme-image:", styles)
         self.assertNotIn("theme-recovery-editorial.webp", styles)
+
+    def test_mobile_theme_header_is_compact_without_duplicate_action(self):
+        styles = STYLES_FILE.read_text(encoding="utf-8")
+        mobile_styles = styles.split("@media (max-width: 560px) {", 1)[1]
+        recipe_guide = mobile_styles.split("  .concept-recipe-guide {", 1)[1].split("  }", 1)[0]
+        preference_chip = mobile_styles.split("  .concept-preference-chip {", 1)[1].split("  }", 1)[0]
+
+        self.assertIn('"brand actions"\n      "nav nav"', mobile_styles)
+        self.assertIn(".top-actions > [data-go-concepts]", mobile_styles)
+        self.assertIn("width: 44px", mobile_styles)
+        self.assertIn("scroll-margin-top: 12px", mobile_styles)
+        self.assertIn("min-height: 56px", recipe_guide)
+        self.assertIn("padding-right: 72px", recipe_guide)
+        self.assertIn("min-height: 44px", preference_chip)
+
+    def test_theme_preview_assets_are_lazy_and_result_panel_receives_focus(self):
+        app = APP_SCRIPT.read_text(encoding="utf-8")
+        open_panel = app[
+            app.index("function openConceptResultPanel()"):
+            app.index("function closeConceptResultPanel()")
+        ]
+
+        self.assertIn(
+            'class="concept-card-line-art" src="${escapeHtml(card.lineArt)}" alt="" loading="lazy"',
+            app,
+        )
+        self.assertIn(
+            'class="concept-card-character" src="${escapeHtml(card.character)}" alt="" loading="lazy"',
+            app,
+        )
+        self.assertLess(
+            open_panel.index("panel.focus?.({ preventScroll: true })"),
+            open_panel.index('window.matchMedia("(max-width: 1180px)")'),
+        )
 
     def test_concept_travel_time_uses_the_shared_route_summary(self):
         app = APP_SCRIPT.read_text(encoding="utf-8")
@@ -1122,6 +1190,7 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
         self.assertIn('id="safetyNotice"', condition_bar)
         self.assertIn("data-open-profile-modal", condition_bar)
         self.assertLess(map_panel_start, place_detail_start)
+        self.assertIn('id="placeDetail" aria-label="선택 장소 상세" tabindex="-1"', recommendations)
 
         def css_block(source, marker):
             marker_start = source.index(marker)
@@ -1180,6 +1249,23 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
         self.assertEqual(len(grid_tracks(base_journey_rule)), 2)
         self.assertEqual(len(grid_tracks(compact_journey_rule)), 2)
         self.assertEqual(grid_tracks(mobile_journey_rule), ["1fr"])
+
+    def test_mobile_recommendations_keep_the_map_compact_and_details_optional(self):
+        app = APP_SCRIPT.read_text(encoding="utf-8")
+        styles = STYLES_FILE.read_text(encoding="utf-8")
+        mobile_styles = styles.split("@media (max-width: 560px) {", 1)[1]
+
+        self.assertIn('<details class="score-basis detail-disclosure">', app)
+        self.assertIn('<details class="source-box detail-disclosure">', app)
+        self.assertIn("추천 점수 기준", app)
+        self.assertIn("정보 출처", app)
+        self.assertIn(".detail-disclosure > summary", styles)
+        self.assertNotIn(".detail-more > summary", styles)
+        self.assertIn("height: 280px", mobile_styles)
+        self.assertIn("grid-template-columns: repeat(3, minmax(0, 1fr))", mobile_styles)
+        self.assertIn("min-height: 76px", mobile_styles)
+        self.assertIn(".map-list-card > i", mobile_styles)
+        self.assertIn("grid-template-columns: repeat(2, minmax(0, 1fr))", mobile_styles)
 
     def test_local_map_fallback_and_leaflet_assets_are_committed(self):
         fallback = MAP_FALLBACK_FILE.read_text(encoding="utf-8")
