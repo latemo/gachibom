@@ -45,12 +45,21 @@ const ROUTE_SUMMARY_CACHE_LIMIT = 24;
 const ROUTE_KEY_COLOR = "#126fb5";
 const SITE_INTRO_SEEN_KEY = "gachibom:site-intro-seen";
 const SAVED_TRIPS = window.GachibomSavedTrips || null;
+const ACCESSIBILITY_REPORT_CATEGORIES = Object.freeze({
+  access: "출입구·경사·계단",
+  restroom: "화장실",
+  parking: "주차·하차",
+  hours: "운영시간·휴무",
+  service: "시설·대여",
+  other: "기타"
+});
 const shareFeedbackTimers = new WeakMap();
 const standardModalReturnFocus = new WeakMap();
 let savedRouteDeleteTimer = null;
 let savedRoutesReturnFocus = null;
 let aiExplanationReturnFocus = null;
 let promoReturnHash = "#conceptPage";
+let accessibilityReportReturnFocus = null;
 let centerMap = null;
 let centerTileLayer = null;
 let centerRouteLayerGroup = null;
@@ -2667,8 +2676,8 @@ function renderConceptPage(scenario) {
           <strong>${escapeHtml(card.title)}</strong>
           <small>${escapeHtml(card.body)}</small>
           <span class="concept-card-visual" aria-hidden="true">
-            <img class="concept-card-line-art" src="${escapeHtml(card.lineArt)}" alt="" loading="eager" decoding="async">
-            <img class="concept-card-character" src="${escapeHtml(card.character)}" alt="" loading="eager" decoding="async">
+            <img class="concept-card-line-art" src="${escapeHtml(card.lineArt)}" alt="" loading="lazy" decoding="async">
+            <img class="concept-card-character" src="${escapeHtml(card.character)}" alt="" loading="lazy" decoding="async">
           </span>
           <span class="concept-card-divider" aria-hidden="true"></span>
           <span class="concept-card-score-row">
@@ -2779,12 +2788,12 @@ function openConceptResultPanel() {
     if (!panel) {
       return;
     }
+    panel.focus?.({ preventScroll: true });
     if (window.matchMedia("(max-width: 1180px)").matches) {
       const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
       panel.scrollIntoView({ behavior, block: "start" });
       return;
     }
-    panel.focus?.({ preventScroll: true });
   });
 }
 
@@ -4566,6 +4575,7 @@ function renderDetail(scenario) {
   const retrievalSources = retrievalEvidenceItems(scenario, place.spot_id);
   const locationEvidence = locationEvidenceItem(place);
   const sourceCount = retrievalSources.length + sources.length + (locationEvidence ? 1 : 0);
+  const validationMarkup = renderValidationEvidence(place);
 
   detail.innerHTML = `
     <div class="detail-head">
@@ -4595,6 +4605,7 @@ function renderDetail(scenario) {
       <small>${savedRoute ? "저장함에서 방문 전 체크를 이어갈 수 있습니다." : "개인 조건 없이 장소 목록만 이 기기에 저장합니다."}</small>
     </button>
     ${visitInfoMarkup(place)}
+    ${validationMarkup}
     <section class="detail-score">
       <span>접근성 점수</span>
       <strong>${score}<small>/100</small></strong>
@@ -4704,12 +4715,16 @@ function renderDetail(scenario) {
             <b>${escapeHtml(displayLabel(source.status))}</b>
           </li>
         `).join("")}
-        ${(sources.length ? sources : [{ title: "가치봄 추천 기준", status: "partial" }]).map((source) => `
-          <li>
-            <span>${escapeHtml(source.title || "출처명 확인 필요")}</span>
-            <b>${escapeHtml(displayLabel(source.status || "partial"))}</b>
-          </li>
-        `).join("")}
+        ${(sources.length ? sources : [{ title: "가치봄 추천 기준", status: "partial" }]).map((source) => {
+          const sourceUrl = safeExternalUrl(source.url);
+          const title = escapeHtml(source.title || "출처명 확인 필요");
+          return `
+            <li>
+              <span>${sourceUrl ? `<a href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer">${title}</a>` : title}</span>
+              <b>${escapeHtml(displayLabel(source.status || "partial"))}</b>
+            </li>
+          `;
+        }).join("")}
         ${locationEvidence ? `
           <li>
             <span>${escapeHtml(locationEvidence.title)}</span>
@@ -4755,6 +4770,134 @@ function renderAiExplanationModal(scenario = currentScenario()) {
   if (state.aiExplanationModalOpen && currentAiExplanationState(scenario).status !== "success") {
     closeAiExplanationModal({ restoreFocus: false });
   }
+}
+
+function renderValidationEvidence(place) {
+  if (!place) {
+    return "";
+  }
+  const status = place.verification?.status || place.verification_status || "needs_check";
+  const statusClass = status === "verified" ? "pass" : status === "partial" ? "partial" : "fail";
+  const statusCopy = {
+    verified: "등록된 접근성 항목을 근거 자료로 확인했습니다. 현장 상황은 달라질 수 있습니다.",
+    partial: "일부 접근성 항목만 확인했습니다. 아래 추가 확인 항목을 방문 전에 확인해 주세요.",
+    needs_check: "접근성 정보의 최신 확인이 필요합니다. 이용 가능하다고 단정하지 않습니다."
+  }[status] || "접근성 정보의 최신 확인이 필요합니다. 이용 가능하다고 단정하지 않습니다.";
+  const checkedAt = formatVisitInfoDate(place.verification?.checked_at);
+  const sources = sourceSummaryItems(place);
+  const missingFields = Array.isArray(place.verification?.missing_fields)
+    ? place.verification.missing_fields
+      .map((field) => accessibilityFieldLabels[field] || String(field || "").trim())
+      .filter(Boolean)
+    : [];
+
+  return `
+    <section class="validation-box" id="validationEvidence" tabindex="-1" aria-labelledby="validationEvidenceTitle">
+      <div class="detail-section-row neutral">
+        <h3 id="validationEvidenceTitle">접근성 정보 상태</h3>
+        <span class="validation-status ${statusClass}">${escapeHtml(verificationLabel(place))}</span>
+      </div>
+      <p>${escapeHtml(statusCopy)}</p>
+      <div class="validation-source-grid">
+        <span><b>정보 확인일</b>${escapeHtml(checkedAt)}</span>
+        <span><b>근거 자료</b>${sources.length ? `${sources.length}건` : "확인 중"}</span>
+        <span><b>추가 확인</b>${escapeHtml(missingFields.length ? missingFields.slice(0, 3).join(" · ") : "없음")}</span>
+      </div>
+      <div class="visit-info-actions validation-actions">
+        <button type="button" data-report-place-info="${escapeHtml(place.spot_id)}">정보가 다른가요?</button>
+      </div>
+    </section>
+  `;
+}
+
+function buildAccessibilityReportText(place, report = {}) {
+  const category = Object.prototype.hasOwnProperty.call(ACCESSIBILITY_REPORT_CATEGORIES, report.category)
+    ? report.category
+    : "other";
+  const visitedAt = /^\d{4}-\d{2}-\d{2}$/.test(String(report.visitedAt || ""))
+    ? String(report.visitedAt)
+    : "미입력";
+  const details = String(report.details || "").trim().slice(0, 500);
+  return [
+    "[가치봄 접근성 정보 제보]",
+    `장소: ${String(place?.name || "장소명 확인 필요")}`,
+    `장소 ID: ${String(place?.spot_id || "확인 필요")}`,
+    `현재 표시: ${verificationLabel(place)}`,
+    `정보 확인일: ${formatVisitInfoDate(place?.verification?.checked_at)}`,
+    `변경 항목: ${ACCESSIBILITY_REPORT_CATEGORIES[category]}`,
+    `방문일: ${visitedAt}`,
+    `내용: ${details}`
+  ].join("\n");
+}
+
+function reportPlaceById(spotId) {
+  const scenario = currentScenario();
+  return placesById(scenario).get(spotId) || staticPlacesById().get(spotId) || null;
+}
+
+function openAccessibilityReport(spotId, returnFocus = document.activeElement) {
+  const dialog = document.getElementById("accessibilityReportDialog");
+  const form = document.getElementById("accessibilityReportForm");
+  const place = reportPlaceById(spotId);
+  if (!dialog || !form || !place) {
+    return;
+  }
+  accessibilityReportReturnFocus = returnFocus;
+  form.reset();
+  dialog.dataset.spotId = place.spot_id;
+  document.getElementById("accessibilityReportPlace").textContent = `${place.name} · ${verificationLabel(place)} · 정보 확인일 ${formatVisitInfoDate(place.verification?.checked_at)}`;
+  document.getElementById("accessibilityReportStatus").textContent = "";
+  document.body.classList.add("modal-open");
+  dialog.showModal();
+  window.requestAnimationFrame(() => form.querySelector('input[name="category"]')?.focus());
+}
+
+function closeAccessibilityReport() {
+  const dialog = document.getElementById("accessibilityReportDialog");
+  if (dialog?.open) {
+    dialog.close();
+  }
+}
+
+async function shareAccessibilityReport(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const dialog = document.getElementById("accessibilityReportDialog");
+  const place = reportPlaceById(dialog?.dataset.spotId);
+  const status = document.getElementById("accessibilityReportStatus");
+  const submitButton = form.querySelector('button[type="submit"]');
+  if (!place) {
+    status.textContent = "장소 정보를 찾지 못했습니다. 창을 닫고 다시 시도해 주세요.";
+    return;
+  }
+  const text = buildAccessibilityReportText(place, Object.fromEntries(new FormData(form)));
+  submitButton.disabled = true;
+  try {
+    if (typeof navigator.share === "function") {
+      await navigator.share({ title: `${place.name} 접근성 정보`, text });
+      status.textContent = "제보 내용을 공유했습니다.";
+    } else {
+      await copyTextToClipboard(text);
+      status.textContent = "제보 내용을 복사했습니다. 기관 또는 시설 담당자에게 전달해 주세요.";
+    }
+  } catch (error) {
+    status.textContent = error?.name === "AbortError"
+      ? "공유를 취소했습니다. 작성한 내용은 그대로 남아 있습니다."
+      : "공유하지 못했습니다. 작성한 내용은 그대로 남아 있습니다.";
+  } finally {
+    submitButton.disabled = false;
+  }
+}
+
+function focusSelectedDetailOnMobile() {
+  if (!window.matchMedia?.("(max-width: 1180px)").matches) {
+    return;
+  }
+  window.requestAnimationFrame(() => {
+    const detail = document.getElementById("placeDetail");
+    scrollToSelector("#placeDetail");
+    detail?.focus({ preventScroll: true });
+  });
 }
 
 function render() {
@@ -5605,8 +5748,12 @@ async function shareRouteSpotIds(button, spotIds, text) {
 
 async function copyTextToClipboard(text) {
   if (navigator.clipboard?.writeText) {
-    await navigator.clipboard.writeText(text);
-    return;
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch (error) {
+      // Continue with the browser's legacy copy command when clipboard permission is denied.
+    }
   }
   const textarea = document.createElement("textarea");
   textarea.value = text;
@@ -5879,6 +6026,18 @@ function bindEvents() {
       return;
     }
 
+    const reportPlaceInfoButton = event.target.closest("[data-report-place-info]");
+    if (reportPlaceInfoButton) {
+      openAccessibilityReport(reportPlaceInfoButton.dataset.reportPlaceInfo, reportPlaceInfoButton);
+      return;
+    }
+
+    const closeAccessibilityReportButton = event.target.closest("[data-close-accessibility-report]");
+    if (closeAccessibilityReportButton) {
+      closeAccessibilityReport();
+      return;
+    }
+
     const openModalButton = event.target.closest("[data-open-profile-modal]");
     if (openModalButton) {
       openProfileModal();
@@ -6025,6 +6184,7 @@ function bindEvents() {
       }
       state.detailCollapsed = false;
       render();
+      focusSelectedDetailOnMobile();
       return;
     }
 
@@ -6054,6 +6214,13 @@ function bindEvents() {
     scheduleRagQueryAssist(event.target.value);
   });
 
+  document.getElementById("accessibilityReportForm")?.addEventListener("submit", shareAccessibilityReport);
+  const accessibilityReportDialog = document.getElementById("accessibilityReportDialog");
+  accessibilityReportDialog?.addEventListener("close", () => {
+    document.body.classList.remove("modal-open");
+    accessibilityReportReturnFocus?.focus();
+    accessibilityReportReturnFocus = null;
+  });
   document.addEventListener("change", (event) => {
     const scheduleInput = event.target.closest?.("[data-saved-trip-date], [data-saved-start-time]");
     if (scheduleInput) {
