@@ -6861,7 +6861,11 @@ body.ai-explanation-modal-open .helpbot-wing-wrap {
   }
 
   .concept-result-panel {
-    scroll-margin-top: 12px;
+    scroll-margin-top: 112px;
+  }
+
+  body.concept-result-open .concept-result-panel {
+    animation: none;
   }
 
   .concept-result-heading h2 {

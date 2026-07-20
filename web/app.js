@@ -2790,8 +2790,7 @@ function openConceptResultPanel() {
     }
     panel.focus?.({ preventScroll: true });
     if (window.matchMedia("(max-width: 1180px)").matches) {
-      const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
-      panel.scrollIntoView({ behavior, block: "start" });
+      panel.scrollIntoView({ block: "start" });
       return;
     }
   });
@@ -6218,8 +6217,9 @@ function bindEvents() {
   const accessibilityReportDialog = document.getElementById("accessibilityReportDialog");
   accessibilityReportDialog?.addEventListener("close", () => {
     document.body.classList.remove("modal-open");
-    accessibilityReportReturnFocus?.focus();
+    const returnFocus = accessibilityReportReturnFocus;
     accessibilityReportReturnFocus = null;
+    window.requestAnimationFrame(() => returnFocus?.focus({ preventScroll: true }));
   });
   document.addEventListener("change", (event) => {
     const scheduleInput = event.target.closest?.("[data-saved-trip-date], [data-saved-start-time]");
