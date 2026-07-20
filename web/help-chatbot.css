@@ -1608,6 +1608,30 @@
 }
 
 @media (max-width: 560px) {
+  .helpbot-wing-wrap {
+    --helpbot-wing-size: 44px;
+  }
+
+  .helpbot-wing-banner {
+    top: 8px !important;
+    right: 8px;
+    bottom: auto;
+  }
+
+  .helpbot-wing-wrap.is-page-middle:not(.is-open) .helpbot-wing-banner {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  .helpbot-presence {
+    display: none;
+  }
+
+  .top-actions {
+    padding-right: 48px;
+  }
+
   .help-brief h1 {
     font-size: 33px;
   }
