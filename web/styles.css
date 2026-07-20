@@ -4592,6 +4592,10 @@ body.saved-routes-modal-open .helpbot-wing-wrap {
   font-weight: 400;
 }
 
+.detail-card .detail-disclosure-status small {
+  display: none;
+}
+
 .detail-disclosure-status {
   flex: 0 0 auto;
   justify-content: flex-end;
@@ -6154,10 +6158,6 @@ body.ai-explanation-modal-open .helpbot-wing-wrap {
 @media (max-width: 1480px) {
   .app-shell {
     --page-inline-gutter: 14px;
-  }
-
-  .detail-card .detail-disclosure-status small {
-    display: none;
   }
 
   .concept-page {

@@ -921,7 +921,7 @@ assert(routeProxyEnabled("?routeProxy=1", "file:") === true, "routeProxy=1 shoul
         self.assertIn('id="savedRoutesModal"', index)
         self.assertIn("data-open-saved-routes", index)
         self.assertGreaterEqual(index.count("data-save-current-route"), 2)
-        self.assertIn("styles.css?v=20260720-3", index)
+        self.assertIn("styles.css?v=20260720-4", index)
         self.assertIn("app.js?v=20260720-4", index)
         self.assertIn('id="accessibilityReportDialog"', index)
         self.assertIn('id="accessibilityReportForm"', index)

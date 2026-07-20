@@ -92,6 +92,12 @@ class FrontendUxRegressionTests(unittest.TestCase):
         self.assertIn("padding-right: 48px", mobile_help_styles)
         self.assertIn(".helpbot-presence {\n    display: none", mobile_help_styles)
 
+    def test_place_visit_summary_keeps_the_date_out_of_its_compact_row(self):
+        styles = (WEB / "styles.css").read_text(encoding="utf-8")
+        base_styles = styles.split("@media (max-width: 1480px) {", 1)[0]
+
+        self.assertIn(".detail-card .detail-disclosure-status small {\n  display: none", base_styles)
+
 
 if __name__ == "__main__":
     unittest.main()
